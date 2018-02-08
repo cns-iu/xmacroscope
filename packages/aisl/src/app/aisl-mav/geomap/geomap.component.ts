@@ -14,7 +14,7 @@ import { GeomapDataService } from '../shared/geomap-data.service';
   providers: [GeomapDataService]
 })
 export class GeomapComponent implements OnInit {
-  private stateDataStream: Observable<Changes>;
+  stateDataStream: Observable<Changes>;
 
   stateField: IField<any>;
   stateColorField: IField<any>;
@@ -22,7 +22,7 @@ export class GeomapComponent implements OnInit {
   stateFields: IField<any>[];
   stateColorFields: IField<any>[];
 
-  private pointDataStream: Observable<Changes>;
+  pointDataStream: Observable<Changes>;
 
   pointPositionField: IField<any>;
   pointSizeField: IField<any>;
