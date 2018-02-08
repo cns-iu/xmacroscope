@@ -6,6 +6,7 @@ import { SharedModule } from './shared';
 
 import { AislGraphqlModule } from './aisl-graphql';
 import { AislGraphqlClientdbModule } from './aisl-graphql-clientdb';
+import { AislGraphqlServerdbModule } from './aisl-graphql-serverdb';
 
 import { AislBackendModule } from './aisl-backend';
 import { AislEndlineModule } from './aisl-endline';
@@ -23,6 +24,7 @@ import { AppComponent } from './app.component';
     CoreModule,
     SharedModule,
     AislGraphqlClientdbModule,
+    // AislGraphqlServerdbModule,
     AislBackendModule,
     AislGraphqlModule,
     AislEndlineModule,
