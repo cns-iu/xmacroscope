@@ -5,6 +5,7 @@ import {
   graphiqlExpress,
 } from 'graphql-server-express';
 import bodyParser from 'body-parser';
+import path from 'path';
 import cors from 'cors';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { createServer } from 'http';
@@ -91,6 +92,11 @@ const formatError = (error) => {
 
   return formattedError;
 };
+
+/**
+ * Setup MAV compiled project path
+ */
+app.use('/mav', express.static(path.join(__dirname, '../../../aisl/dist')))
 
 /**
  * Setup GraphQl endpoint
