@@ -77,6 +77,8 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         this.updateStreamProcessor();
       } else if (propName === 'yField' && this.yField) {
         this.updateStreamProcessor();
+      } else if (propName === 'colorField' && this.colorField) {
+        this.updateStreamProcessor();
       }
     }
   }
