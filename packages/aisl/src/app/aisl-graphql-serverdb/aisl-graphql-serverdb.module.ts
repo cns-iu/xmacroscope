@@ -6,8 +6,13 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import { WebSocketLink } from 'apollo-link-ws';
 
+const url = new URL('/subscriptions', window.location.href);
+url.protocol = url.protocol.replace('http', 'ws');
+const ws_url = url.href;
+// const ws_url = `ws://localhost:4000/subscriptions`;
+
 const link = new WebSocketLink({
-  uri: `ws://localhost:4000/subscriptions`, // FIXME: Externalize URL
+  uri: ws_url, // FIXME: Externalize URL
   options: {
     reconnect: true
   }
