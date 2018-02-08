@@ -31,6 +31,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   @Input() xField: IField<number | string>;
   @Input() yField: IField<number | string>;
   @Input() dataStream: Observable<Changes<any>>;
+  @Input() colorField: IField<string>;
 
   @Input() margin = { top: 20, right: 15, bottom: 60, left: 60 };
   @Input() svgWidth: number = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
@@ -83,7 +84,10 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   updateStreamProcessor() {
     this.data = [];
     if (this.dataStream && this.xField && this.yField) {
-      this.dataService.fetchData(this.dataStream, this.xField, this.yField);
+      this.dataService.fetchData(
+        this.dataStream, this.xField, this.yField,
+        this.colorField
+      );
     }
     this.updateAxisLabels();
   }
@@ -165,7 +169,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .attr('cy', (d) => yscale(d.y))
       .attr('r', 12)
       .attr('fill', 'red')
-      .transition().duration(1000).attr('fill', 'black').attr('r', 8);
+      .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
     this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
