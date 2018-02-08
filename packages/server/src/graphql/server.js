@@ -92,7 +92,10 @@ const formatError = (error) => {
 
   return formattedError;
 };
-
+/**
+ * Setup SMM compiled project path
+ */
+app.use('/', express.static(path.join(__dirname, '../../../client/build')))
 /**
  * Setup MAV compiled project path
  */
