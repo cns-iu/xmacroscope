@@ -1,0 +1,30 @@
+<aisl-backend-home *ngIf="activeScreen == 'aisl-backend'"></aisl-backend-home>
+<aisl-mav-home *ngIf="activeScreen == 'aisl-mav'"></aisl-mav-home>
+<aisl-endline-home *ngIf="activeScreen == 'aisl-endline'"></aisl-endline-home>
+<aisl-mockup-home *ngIf="activeScreen == 'aisl-mockup'"></aisl-mockup-home>
+
+<div *ngIf="!activeScreen">
+  <mat-toolbar class="toolbar z-depth-1-half">
+    <span>AISL Demo (this is a work in progress)</span>
+  </mat-toolbar>
+  <div class="main-content mat-typography">
+    <mat-tab-group (selectedTabChange)="selectedIndex = tabs.selectedIndex" #tabs>
+      <mat-tab label="Home">
+        <h1>AISL Demo</h1>
+        <h2> This is a work in progress!</h2> Choose a tab to see individual screens.
+      </mat-tab>
+      <mat-tab label="Backend">
+        <div class="aisl-screen">
+          <aisl-backend-home></aisl-backend-home>
+        </div>
+      </mat-tab>
+      <mat-tab label="Make a Vis"></mat-tab>
+      <mat-tab label="Endline"></mat-tab>
+      <mat-tab label="Mockup"></mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <aisl-mav-home *ngIf="selectedIndex == 2"></aisl-mav-home>
+  <aisl-endline-home *ngIf="selectedIndex == 3"></aisl-endline-home>
+  <aisl-mockup-home *ngIf="selectedIndex == 4"></aisl-mockup-home>
+</div>

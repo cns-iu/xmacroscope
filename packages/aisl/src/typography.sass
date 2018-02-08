@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500')
+@import url('https://fonts.googleapis.com/css?family=Open+Sans')
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+
+@import '~@angular/material/theming'
+
+$r-normal : 'Roboto', sans-serif
+$r-mono: 'Roboto Mono', monospace
+$oswald: 'Oswald', sans-serif
+
+
+$headline: mat-typography-level(32px, 48px, 700)
+$body-1: mat-typography-level(16px, 24px, 500)
+
+$general-typography : mat-typography-config($font-family: quote($r-normal $r-mono))
+
+@include mat-core($general-typography)
+
+// $custom-typography: mat-typography-config($open-sans $oswald)
+//
+// @include mat-core($custom-typography)
+
+// $custom-typography: mat-typography-config($font-family: 'Oswald', monospace $headline: mat-typography-level(32px, 48px, 700) $body-1: mat-typography-level(16px, 24px, 500))
+//
+// @include mat-core($custom-typography)

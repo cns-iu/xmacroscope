@@ -1,0 +1,21 @@
+<mat-sidenav-container class="sidebar-container">
+  <mat-sidenav mode="side"
+               [opened]="true">
+    <aisl-field-list [fields]="fields">
+    </aisl-field-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-tab-group (selectedTabChange)="setFields(tabs.selectedIndex)"
+                   #tabs>
+      <mat-tab label="Scatterplot">
+        <aisl-scatterplot>
+        </aisl-scatterplot>
+      </mat-tab>
+      <mat-tab label="Geomap">
+        <aisl-geomap>
+        </aisl-geomap>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-sidenav-content>
+</mat-sidenav-container>

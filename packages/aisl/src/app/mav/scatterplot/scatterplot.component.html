@@ -1,0 +1,15 @@
+<dino-scatterplot [xField]="xField"
+                  [yField]="yField"
+                  [dataStream]="dataStream">
+</dino-scatterplot>
+
+<mav-field-dropzones>
+  <mav-field-dropzone label="X-Axis"
+                      [fields]="xFields"
+                      [(field)]="xField">
+  </mav-field-dropzone>
+  <mav-field-dropzone label="Y-Axis"
+                      [fields]="yFields"
+                      [(field)]="yField">
+  </mav-field-dropzone>
+</mav-field-dropzones>

@@ -1,0 +1,9 @@
+mutation (
+  $type: String!
+  $timestamp: String!
+) {
+  sendMessage(message: {
+    type: $type
+    timestamp: $timestamp
+  })
+}

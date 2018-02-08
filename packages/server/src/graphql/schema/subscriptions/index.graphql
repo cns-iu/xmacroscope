@@ -1,0 +1,9 @@
+type Subscription {
+  messageStream: AnyMessage
+
+  runSelected: RunSelectedMessage
+  raceInitiated: RaceInitiatedMessage
+  raceCompleted: RaceCompletedMessage
+  runCompletedRecords: [RunRecord]!
+  runCompleted: [Run]!
+}

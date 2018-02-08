@@ -1,0 +1,153 @@
+# Define GraphQL types
+
+type User {
+  id: String
+  sub: String
+  email: String
+}
+
+type Person {
+  id: ID!
+  firstName: String
+  middleName: String
+  lastName: String
+  preferedName: String
+  preferedPronouns: String
+  createdAt: String
+  updatedAt: String
+}
+
+type Avatar {
+  id: ID!
+  name: String
+  runMillis: Int
+}
+
+type Run {
+  avatar: Avatar!
+  persona: Persona!
+
+  timestamp: String
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+type RunRecord {
+  avatar: ID!
+  persona: ID!
+  timestamp: String
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+  asRun: Run
+}
+interface Message {
+  type: String
+  timestamp: String
+}
+
+type RunSelectedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+}
+
+type RaceInitiatedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+}
+
+type RaceResult {
+  lane: Int
+  persona: Persona
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+type RaceCompletedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+  results: [RaceResult]!
+}
+
+type AnyMessage implements Message {
+  type: String!
+  timestamp: String!
+  avatar: Avatar
+  results: [RaceResult]
+}
+
+input NewRaceResult {
+  lane: Int
+  persona: NewPersona
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+input NewAnyMessage {
+  type: String!
+  timestamp: String!
+  avatar: NewAvatar
+  results: [NewRaceResult]
+}
+
+input NewAvatar {
+  name: String
+  runMillis: Int
+}
+
+input NewRunRecord {
+  avatar: ID!
+  persona: ID!
+  timestamp: String
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+enum GENDER {
+  male
+  female
+  other
+}
+
+enum HANDEDNESS {
+  left
+  right
+}
+
+type Persona {
+  id: ID!
+  name: String
+  icon: String
+  color: String
+  gender: GENDER
+  age_group: String
+  handedness: HANDEDNESS
+  zipcode: String
+  state: String
+  latitude: Float
+  longitude: Float
+}
+
+input NewPersona {
+  name: String
+  icon: String
+  color: String
+  gender: GENDER
+  age_group: String
+  handedness: HANDEDNESS
+  zipcode: String
+  state: String
+  latitude: Float
+  longitude: Float
+}
+
