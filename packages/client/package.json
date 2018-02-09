@@ -118,6 +118,7 @@
       "node"
     ]
   },
+  "homepage": ".",
   "babel": {
     "presets": [
       "react-app"

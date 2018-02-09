@@ -13,7 +13,7 @@ function AppRoutes() {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/smm"
             render={props => <Home {...props} />}
           />
           <Route exact path="/start" component={StartMutationContainer} />
