@@ -92,10 +92,13 @@ const formatError = (error) => {
 
   return formattedError;
 };
+/** 
+ * sub-apps EXPRESS ROUTER
+ **/
 /**
  * Setup SMM compiled project path
  */
-app.use('/', express.static(path.join(__dirname, '../../../client/build')))
+app.use('/smm', express.static(path.join(__dirname, '../../../client/build')))
 /**
  * Setup MAV compiled project path
  */
