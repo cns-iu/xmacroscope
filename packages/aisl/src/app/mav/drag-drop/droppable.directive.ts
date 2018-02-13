@@ -1,5 +1,6 @@
-import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Directive, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { DragDropEvent } from './events';
 import { DragDropService } from './drag-drop.service';
@@ -7,9 +8,10 @@ import { DragDropService } from './drag-drop.service';
 @Directive({
   selector: '[mavDroppable]'
 })
-export class DroppableDirective {
+export class DroppableDirective implements OnDestroy {
   private _zones: string[] = ['any-zone'];
   private acceptsCurrentDrop = false;
+  private eventSubscription: Subscription;
 
   @Input()
   set zones(zone: string | string[]) {
@@ -31,6 +33,9 @@ export class DroppableDirective {
 
       return event;
     });
+
+    // Events must be observed so that acceptsCurrentDrop become set.
+    this.eventSubscription = this.dragDropEvents.subscribe(() => undefined);
   }
 
   @HostListener('dragenter', ['$event'])
@@ -42,5 +47,9 @@ export class DroppableDirective {
   @HostListener('drop')
   onDrop(): void {
     this.mavDroppable.emit(this.service.currentItem);
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription.unsubscribe();
   }
 }

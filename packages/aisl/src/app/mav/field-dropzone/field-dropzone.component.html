@@ -1,6 +1,8 @@
 <hr>
-<div [mavDropTarget]
-     (mavDrop)="fieldDropped($event)">
+<div (mavDroppable)="fieldDropped($event)"
+     (dragDropEvents)="onDragDropEvent($event)"
+     [acceptsDrop]="acceptsDrop"
+     [style.background-color]="backgroundColor">
   {{ label }}: {{ field?.label }}
   <br>
 </div>

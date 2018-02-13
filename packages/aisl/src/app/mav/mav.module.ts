@@ -10,11 +10,8 @@ import { ScatterplotComponent } from './scatterplot/scatterplot.component';
 import { AttributeSelectorComponent } from './attribute-selector/attribute-selector.component';
 import { FieldDropzoneComponent } from './field-dropzone/field-dropzone.component';
 import { FieldDropzonesComponent } from './field-dropzones/field-dropzones.component';
-// import { DraggableDirective } from './draggable/draggable.directive';
-// import { DropTargetDirective } from './drop-target/drop-target.directive';
-import { DragService } from './shared/drag.service';
 
-import { DraggableDirective, DroppableDirective } from './drag-drop';
+import { DragDropService, DraggableDirective, DroppableDirective } from './drag-drop';
 
 const components: any[] = [
   GeomapComponent,
@@ -23,7 +20,6 @@ const components: any[] = [
   FieldDropzoneComponent,
   FieldDropzonesComponent,
   DraggableDirective,
-  // DropTargetDirective
   DroppableDirective
 ];
 
@@ -38,7 +34,7 @@ const components: any[] = [
   ],
   exports: components,
   providers: [
-    DragService
+    DragDropService
   ],
   declarations: components
 })
