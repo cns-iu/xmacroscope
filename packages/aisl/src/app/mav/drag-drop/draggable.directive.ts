@@ -20,6 +20,7 @@ export class DraggableDirective {
   @HostListener('dragstart', ['$event'])
   onDragStart(event: DragEvent): void {
     event.dataTransfer.effectAllowed = this.dropEffect;
+    event.dataTransfer.setData('text/plain', 'Useless Data');
     this.service.startDrag(this.zone, this.mavDraggable);
   }
 
