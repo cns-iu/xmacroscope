@@ -12,46 +12,46 @@ const defaultStateField = new Field<string>('state', 'State');
 const defaultStateColorField = new Field<string>('color', 'State Coloring');
 
 const defaultPointLatLongField = new Field<[number, number]>(
-  'lat_long', 'Latitude,Longitude', 'number',
+  'lat_long', 'Latitude,Longitude',
   (data: any): [number, number] => {
     const { latitude = 0, longitude = 0 } = data;
     return [latitude, longitude];
-  }
+  }, undefined, 'number'
 );
 const defaultPointSizeField = new Field<number>('size', 'Point Size');
 const defaultPointColorField = new Field<string>('color', 'Point Color');
 
 // Computed fields
 const computedStateIdField = new Field<number>(
-  'id', 'State ANSI Id', 'number',
+  'id', 'State ANSI Id',
   (data: Partial<State>): number => {
     return data.label ? lookupStateCode(data.label) : 0;
-  }
+  }, undefined, 'number'
 );
 
 const computedPointIdField = new Field<string>(
-  'id', 'Computed Point Id', 'string',
+  'id', 'Computed Point Id',
   (data: Partial<Point>): string => {
     if (!data.latitude || !data.longitude) {
       return '';
     } else {
       return '' + data.latitude + '+' + data.longitude;
     }
-  }
+  }, undefined, 'string'
 );
 
 const computedPointLatitudeField = new Field<number>(
-  'latitude', 'Computed Point Latitude', 'number',
+  'latitude', 'Computed Point Latitude',
   (data: Partial<Point>): number => {
     return data.lat_long[0];
-  }
+  }, undefined, 'number'
 );
 
 const computedPointLongitudeField = new Field<number>(
-  'longitude', 'Computed Point Longitude', 'number',
+  'longitude', 'Computed Point Longitude',
   (data: Partial<Point>): number => {
     return data.lat_long[1];
-  }
+  }, undefined, 'number'
 );
 
 @Injectable()

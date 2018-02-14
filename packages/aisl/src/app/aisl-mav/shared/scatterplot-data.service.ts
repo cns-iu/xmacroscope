@@ -12,26 +12,26 @@ const genderToColorMap = {
 };
 
 const defaultPositionFields: IField<any>[] = [
-  new Field<string>('name', 'Person Name', 'string', (item: any): string => {
+  new Field<string>('name', 'Person Name', (item: any): string => {
     return item.persona.name;
-  }),
-  new Field<number>('timeMillis', 'Person Run Time', 'number', (item: any): number => {
+  }, undefined, 'string'),
+  new Field<number>('timeMillis', 'Person Run Time', (item: any): number => {
     return item.timeMillis;
-  }, (value: number) => value / 1000.0),
-  new Field<number>('timeMillis', 'Avatar Run Time', 'number', (item: any): number => {
+  }, (value: number) => value / 1000.0, 'number'),
+  new Field<number>('timeMillis', 'Avatar Run Time', (item: any): number => {
     return item.avatar.runMillis;
-  }, (value: number) => value / 1000.0)
+  }, (value: number) => value / 1000.0, 'number')
 ];
 
 const defaultColorFields = [
-  new Field<string>('color', 'Runner\'s Color', 'string', (item: any): string => {
+  new Field<string>('color', 'Runner\'s Color', (item: any): string => {
     return item.persona.color;
-  }),
-  new Field<string>('gender', 'Runner\'s Gender', 'string', (item: any): string => {
+  }, undefined, 'string'),
+  new Field<string>('gender', 'Runner\'s Gender', (item: any): string => {
     return item.persona.gender;
   }, (value: any): string => {
     return genderToColorMap[value] || genderToColorMap['other'];
-  })
+  }, 'string')
 ];
 
 @Injectable()
