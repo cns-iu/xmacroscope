@@ -4,7 +4,8 @@
              [pointDataStream]="pointDataStream"
              [pointLatLongField]="pointPositionField"
              [pointSizeField]="pointSizeField"
-             [pointColorField]="pointColorField">
+             [pointColorField]="pointColorField"
+             [pointShapeField]="pointShapeField">
 </dino-geomap>
 
 <mav-field-dropzones>
@@ -27,5 +28,9 @@
   <mav-field-dropzone label="Point Color Field"
                       [fields]="pointColorFields"
                       [(field)]="pointColorField">
+  </mav-field-dropzone>
+  <mav-field-dropzone label="Point Shape Field"
+                      [fields]="pointShapeFields"
+                      [(field)]="pointShapeField">
   </mav-field-dropzone>
 </mav-field-dropzones>

@@ -20,6 +20,7 @@ const defaultPointLatLongField = new Field<[number, number]>(
 );
 const defaultPointSizeField = new Field<number>('size', 'Point Size');
 const defaultPointColorField = new Field<string>('color', 'Point Color');
+const defaultPointShapeField = new Field<string>('shape', 'Point Shape');
 
 // Computed fields
 const computedStateIdField = new Field<number>(
@@ -89,12 +90,14 @@ export class GeomapDataService {
     stream: Observable<Changes> = Observable.of(),
     pointLatLongField: IField<[number, number]> = defaultPointLatLongField,
     pointSizeField: IField<number> = defaultPointSizeField,
-    pointColorField: IField<string> = defaultPointColorField
+    pointColorField: IField<string> = defaultPointColorField,
+    pointShapeField: IField<string> = defaultPointShapeField
   ): this {
     this.pointProcessor = new FieldProcessor<Point>(stream, {
       lat_long: pointLatLongField,
       size: pointSizeField,
-      color: pointColorField
+      color: pointColorField,
+      shape: pointShapeField
     }, {
       id: computedPointIdField,
       latitude: computedPointLatitudeField,

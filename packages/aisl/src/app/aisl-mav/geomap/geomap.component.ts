@@ -27,10 +27,12 @@ export class GeomapComponent implements OnInit {
   pointPositionField: IField<any>;
   pointSizeField: IField<any>;
   pointColorField: IField<any>;
+  pointShapeField: IField<any>;
 
   pointPositionFields: IField<any>[];
   pointSizeFields: IField<any>[];
   pointColorFields: IField<any>[];
+  pointShapeFields: IField<any>[];
 
   constructor(public massager: GeomapDataService) {
     this.stateDataStream = massager.stateDataStream;
@@ -46,10 +48,12 @@ export class GeomapComponent implements OnInit {
     this.pointPositionField = massager.pointPositionFields[0];
     this.pointSizeField = massager.pointSizeFields[0];
     this.pointColorField = massager.pointColorFields[0];
+    this.pointShapeField = massager.pointShapeFields[0];
 
     this.pointPositionFields = massager.pointPositionFields;
     this.pointSizeFields = massager.pointSizeFields;
     this.pointColorFields = massager.pointColorFields;
+    this.pointShapeFields = massager.pointShapeFields;
   }
 
   ngOnInit() {

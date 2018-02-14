@@ -19,9 +19,11 @@ export class GeomapComponent implements OnInit {
   @Input() pointPositionField: IField<[number, number]>;
   @Input() pointSizeField: IField<number>;
   @Input() pointColorField: IField<string>;
+  @Input() pointShapeField: IField<string>;
   @Input() pointPositionFields: IField<[number, number]>[];
   @Input() pointSizeFields: IField<number>[];
   @Input() pointColorFields: IField<string>[];
+  @Input() pointShapeFields: IField<string>[];
 
   constructor() { }
 

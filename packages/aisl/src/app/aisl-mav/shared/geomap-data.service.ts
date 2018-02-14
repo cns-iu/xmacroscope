@@ -86,6 +86,12 @@ const defaultPointColorFields = [].concat(
   defaultStateColorFields
 );
 
+const defaultPointShapeFields = [
+  new Field<string>('shape', 'Point Shape', (item: any): string => {
+    return 'circle';
+  })
+];
+
 // Constants
 const maxConcurrentResults = 2;
 
@@ -129,10 +135,12 @@ export class GeomapDataService {
   readonly pointPositionFields: IField<[Number, Number]>[] = defaultPointPositionFields;
   readonly pointSizeFields: IField<number>[] = defaultPointSizeFields;
   readonly pointColorFields: IField<string>[] = defaultPointColorFields;
+  readonly pointShapeFields: IField<string>[] = defaultPointShapeFields;
 
   readonly fields: IField<any>[] = [].concat(
     defaultStateFields, commonFields, defaultStateColorFields,
-    defaultPointPositionFields, defaultPointSizeFields
+    defaultPointPositionFields, defaultPointSizeFields,
+    defaultPointShapeFields
   );
 
   constructor(private messageService: MessageService) {
