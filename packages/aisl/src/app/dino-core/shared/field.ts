@@ -11,6 +11,7 @@ export class Field<T> implements IField<T> {
   constructor(
     public name: string,
     public label: string,
+    public datatype = 'string',
     public accessor?: (item: any) => any | T,
     public transform?: (value: any | T) => T
   ) { }

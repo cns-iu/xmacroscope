@@ -91,7 +91,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         this.colorField
       );
     }
-    this.updateAxisLabels();
+    // this.updateAxisLabels();
   }
 
   updateAxisLabels() {
@@ -160,6 +160,9 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     const xscale = this.xScale;
     const yscale = this.yScale;
 
+    this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
+    this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
+
     const plots = this.mainG.selectAll('circle')
       .data(data);
 
@@ -173,9 +176,6 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .attr('fill', 'red')
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
-    this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
-    this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
-
     plots.exit().remove();
   }
 
@@ -184,18 +184,16 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     switch (this.xField.datatype) {
       default:
       case 'number':
-        if (!this.xScale) {
-          this.xScale = scaleLinear();
-        }
-        this.xScale.domain([0, d3Array.max(data, (d) => <number>d.x)])
+        this.xScale = scaleLinear();
+        this.xAxis = d3Axis.axisBottom(this.xScale);
+        this.xScale.domain([0, d3Array.max(this.data, (d) => <number>d.x)])
           .range([0, this.svgWidth]);
         break;
 
       case 'string':
-        if (!this.xScale) {
-          this.xScale = scalePoint();
-        }
-        this.xScale.domain(data.map(el => el.x))
+        this.xScale = scalePoint();
+        this.xAxis = d3Axis.axisBottom(this.xScale);
+        this.xScale.domain(this.data.map(el => el.x))
           .range([0, this.svgWidth]);
         break;
     }
@@ -203,20 +201,20 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     switch (this.yField.datatype) {
       default:
       case 'number':
-        if (!this.yScale) {
-          this.yScale = scaleLinear();
-        }
-        this.yScale.domain([0, d3Array.max(data, (d) => <number>d.y)])
+        this.yScale = scaleLinear();
+        this.yAxis = d3Axis.axisLeft(this.yScale);
+        this.yScale.domain([0, d3Array.max(this.data, (d) => <number>d.y)])
           .range([this.svgHeight, 0]);
         break;
 
       case 'string':
-        if (!this.yScale) {
-          this.yScale = scalePoint();
-        }
-        this.yScale.domain(data.map(el => el.y))
+        this.yScale = scalePoint();
+        this.yAxis = d3Axis.axisLeft(this.yScale);
+        this.yScale.domain(this.data.map(el => el.y))
           .range([this.svgHeight, 0]);
         break;
+
     }
+    this.updateAxisLabels();
   }
 }

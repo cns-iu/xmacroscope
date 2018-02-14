@@ -17,10 +17,10 @@ const genderToColorMap = {
 
 // Common fields
 const commonFields = [
-  new Field<string>('color', 'Runner\'s Color', (item: any): string => {
+  new Field<string>('color', 'Runner\'s Color', 'string', (item: any): string => {
     return item.persona.color;
   }),
-  new Field<string>('gender', 'Runner\'s Gender', (item: any): string => {
+  new Field<string>('gender', 'Runner\'s Gender', 'string', (item: any): string => {
     return item.persona.gender;
   }, (value: any): string => {
     return genderToColorMap[value] || genderToColorMap['other'];
@@ -29,16 +29,16 @@ const commonFields = [
 
 // Default fields
 const defaultStateFields = [
-  new Field<string>('state', 'State', (item: any): string => {
+  new Field<string>('state', 'State', 'string', (item: any): string => {
     return item.persona.state;
   })
 ];
 
 const defaultStateColorFields = [
-  new Field<string>('falseStart', 'False Start', (item: any): string => {
+  new Field<string>('falseStart', 'False Start', 'string', (item: any): string => {
     return item.falseStart ? 'red' : 'green';
   }),
-  new Field<string>('lane', 'Lane', (item: any): string => {
+  new Field<string>('lane', 'Lane', 'string', (item: any): string => {
     switch (item.lane) {
       case 1:
         return 'crimson';
@@ -53,17 +53,17 @@ const defaultStateColorFields = [
 ];
 
 const defaultPointPositionFields = [
-  new Field<[number, number]>('position', 'Point Position', (item: any): [number, number] => {
+  new Field<[number, number]>('position', 'Point Position', 'number', (item: any): [number, number] => {
     return [item.persona.latitude, item.persona.longitude];
   })
 ];
 
 const defaultPointSizeFields = [
-  new Field<number>('size', 'Point Fixed Size', (item: any): number => {
+  new Field<number>('size', 'Point Fixed Size', 'number', (item: any): number => {
     const radius = 5;
     return radius * radius * Math.PI;
   }),
-  new Field<number>('timeMillis', 'Point Run Time Size', (item: any): number => {
+  new Field<number>('timeMillis', 'Point Run Time Size', 'number', (item: any): number => {
     const minRadius = 5;
     const maxRadius = 15;
     const minArea = minRadius * minRadius * Math.PI;
@@ -96,7 +96,7 @@ function getStates(messages: RaceCompletedMessage[]): any {
 }
 
 function accumulateMessages(acc: List<RaceCompletedMessage>,
-    current: RaceCompletedMessage): List<RaceCompletedMessage> {
+  current: RaceCompletedMessage): List<RaceCompletedMessage> {
   const maxSize = maxConcurrentResults + 1;
   const size = acc.size;
 

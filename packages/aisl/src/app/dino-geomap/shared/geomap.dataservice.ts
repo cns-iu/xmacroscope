@@ -12,9 +12,9 @@ const defaultStateField = new Field<string>('state', 'State');
 const defaultStateColorField = new Field<string>('color', 'State Coloring');
 
 const defaultPointLatLongField = new Field<[number, number]>(
-  'lat_long', 'Latitude,Longitude',
+  'lat_long', 'Latitude,Longitude', 'number',
   (data: any): [number, number] => {
-    const {latitude = 0, longitude = 0} = data;
+    const { latitude = 0, longitude = 0 } = data;
     return [latitude, longitude];
   }
 );
@@ -23,14 +23,14 @@ const defaultPointColorField = new Field<string>('color', 'Point Color');
 
 // Computed fields
 const computedStateIdField = new Field<number>(
-  'id', 'State ANSI Id',
+  'id', 'State ANSI Id', 'number',
   (data: Partial<State>): number => {
     return data.label ? lookupStateCode(data.label) : 0;
   }
 );
 
 const computedPointIdField = new Field<string>(
-  'id', 'Computed Point Id',
+  'id', 'Computed Point Id', 'string',
   (data: Partial<Point>): string => {
     if (!data.latitude || !data.longitude) {
       return '';
@@ -41,14 +41,14 @@ const computedPointIdField = new Field<string>(
 );
 
 const computedPointLatitudeField = new Field<number>(
-  'latitude', 'Computed Point Latitude',
+  'latitude', 'Computed Point Latitude', 'number',
   (data: Partial<Point>): number => {
     return data.lat_long[0];
   }
 );
 
 const computedPointLongitudeField = new Field<number>(
-  'longitude', 'Computed Point Longitude',
+  'longitude', 'Computed Point Longitude', 'number',
   (data: Partial<Point>): number => {
     return data.lat_long[1];
   }
@@ -64,7 +64,7 @@ export class GeomapDataService {
   private pointsChange = new BehaviorSubject<Changes<Point>>(new Changes<Point>());
   points: Observable<Changes<Point>> = this.pointsChange.asObservable();
 
-  constructor() {}
+  constructor() { }
 
   initializeStates(
     stream: Observable<Changes> = Observable.of(),
@@ -75,8 +75,8 @@ export class GeomapDataService {
       label: stateField,
       color: stateColorField
     }, {
-      id: computedStateIdField
-    });
+        id: computedStateIdField
+      });
 
     this.stateProcessor.asObservable().subscribe((change) => {
       this.statesChange.next(change);
@@ -96,10 +96,10 @@ export class GeomapDataService {
       size: pointSizeField,
       color: pointColorField
     }, {
-      id: computedPointIdField,
-      latitude: computedPointLatitudeField,
-      longitude: computedPointLongitudeField
-    });
+        id: computedPointIdField,
+        latitude: computedPointLatitudeField,
+        longitude: computedPointLongitudeField
+      });
 
     this.pointProcessor.asObservable().subscribe((change) => {
       this.pointsChange.next(change);
