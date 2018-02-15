@@ -23,7 +23,7 @@ const defaultFields = ([].concat(
     return 1;
   }
 }).reduce(({current, result}, field) => {
-  if (current !== field) {
+  if (current === null || current.label !== field.label) {
     current = field;
     result.push(field);
   }

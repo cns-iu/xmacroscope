@@ -17,12 +17,9 @@ export class FieldDropzoneComponent implements OnInit {
 
   ngOnInit() { }
 
-  fieldDropped(field: any) {
-    const matches = this.fields.filter((f) => JSON.stringify(f) === JSON.stringify(field));
-    if (matches.length > 0) {
-      this.field = matches[0];
-      this.fieldChange.emit(this.field);
-    }
+  fieldDropped(field: IField<any>) {
+    this.field = this.fields[this.findFieldIndex(field.label)];
+    this.fieldChange.emit(this.field);
   }
 
   onDragDropEvent(event: any) {
@@ -35,7 +32,11 @@ export class FieldDropzoneComponent implements OnInit {
 
   get acceptsDrop() {
     return (field) => {
-      return this.fields.includes(field);
+      return this.findFieldIndex(field.label) !== -1;
     };
+  }
+
+  private findFieldIndex(label: string): number {
+    return this.fields.findIndex((field) => field.label === label);
   }
 }
