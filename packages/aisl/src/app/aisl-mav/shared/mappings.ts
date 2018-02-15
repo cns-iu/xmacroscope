@@ -56,16 +56,60 @@ export const genderMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
 });
 
 // Age group
+// TODO fix shape and color
 export const ageGroupMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
-  // TODO
+  '07-09': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '10-12': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '13-18': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '19-30': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '31-40': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '41-50': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '51-60': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '61-70': {
+    shape: 'circle',
+    color: 'black'
+  },
+  '70+': {
+    shape: 'circle',
+    color: 'black'
+  }
 }, {
   shape: 'circle',
   color: 'black'
 });
 
 // Handedness
+// TODO fix shape and color
 export const handednessMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
-  // TODO
+  right: {
+    shape: 'circle',
+    color: 'black'
+  },
+  left: {
+    shape: 'circle',
+    color: 'black'
+  }
 }, {
   shape: 'circle',
   color: 'black'
@@ -80,8 +124,16 @@ export const athleticismMapping: Mapping<ShapeProp & ColorProp> = new MappingImp
 });
 
 // Lane
+// TODO fix shapes
 export const laneMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
-  // TODO
+  '1': {
+    shape: 'circle',
+    color: '#e84949'
+  },
+  '2': {
+    shape: 'circle',
+    color: '#00ff00'
+  }
 }, {
   shape: 'circle',
   color: 'black'
