@@ -5,6 +5,7 @@ import { List } from 'immutable';
 import { IField, Changes } from '../../dino-core';
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
+  defaultStateFields, defaultPointPositionFields,
   defaultStateColorFields, defaultPointColorFields,
   defaultPointShapeFields, defaultPointSizeFields
 } from '../shared/geomap-fields';
@@ -19,11 +20,14 @@ export class GeomapComponent implements OnInit {
   stateDataStream: Observable<Changes>;
   pointDataStream: Observable<Changes>;
 
-  stateField: IField<any>;
-  stateFields: IField<any>[];
+  stateField = defaultStateFields.default;
+  stateFields = defaultStateFields;
 
   stateColorField = defaultStateColorFields.default;
   stateColorFields = defaultStateColorFields;
+
+  pointPositionField = defaultPointPositionFields.default;
+  pointPositionFields = defaultPointPositionFields;
 
   pointShapeField = defaultPointShapeFields.default;
   pointShapeFields = defaultPointShapeFields;
@@ -34,18 +38,9 @@ export class GeomapComponent implements OnInit {
   pointColorField = defaultPointColorFields.default;
   pointColorFields = defaultPointColorFields;
 
-  pointPositionField: IField<any>;
-  pointPositionFields: IField<any>[];
-
   constructor(public service: GeomapDataService) {
     this.stateDataStream = service.stateDataStream;
     this.pointDataStream = service.pointDataStream;
-
-    this.stateField = service.stateFields[0];
-    this.stateFields = service.stateFields;
-
-    this.pointPositionField = service.pointPositionFields[0];
-    this.pointPositionFields = service.pointPositionFields;
   }
 
   ngOnInit() {

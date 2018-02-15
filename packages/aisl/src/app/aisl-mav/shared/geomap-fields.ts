@@ -23,6 +23,20 @@ function makeFieldList<T>(fields: IField<T>[], defaultIndex: number = 0): FieldL
   return result;
 }
 
+// State fields
+const stateFields: IField<string>[] = [
+  new Field('persona.state', 'Runner\'s State')
+];
+
+export const defaultStateFields = makeFieldList(stateFields);
+
+// Point position fields
+const pointPositionFields: IField<[number, number]>[] = [
+  new Field('position', 'Point Position', ({persona: {latitude, longitude}}) => [latitude, longitude])
+];
+
+export const defaultPointPositionFields = makeFieldList(pointPositionFields);
+
 // Color fields
 const colorFields: IField<string>[] = [
   new Field('persona.color', 'Runner\'s Color'),
@@ -51,10 +65,23 @@ const shapeFields: IField<string>[] = [
 export const defaultPointShapeFields = makeFieldList(shapeFields);
 
 // Size fields
-const fixedMinRadius = 5;
+const minArea = Math.pow(5, 2) * Math.PI;
+const maxArea = Math.pow(20, 2) * Math.PI;
+const areaDiff = maxArea - minArea;
+
+const minRuntime = 2000;
+const maxRuntime = 10000;
+const runtimeDiff = maxRuntime - minRuntime;
 
 const sizeFields: IField<number>[] = [
-  new Field('fixed', 'Fixed Size', () => Math.pow(fixedMinRadius, 2) * Math.PI)
+  new Field('fixed', 'Fixed Size', () => minArea),
+  new Field('timeMillis', 'Size of Runner\'s Runtime', undefined, (time: number): number => {
+    const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
+    const factor = (clampedTime - minRuntime) / runtimeDiff;
+    const area = minArea + factor * areaDiff;
+
+    return area;
+  })
   // TODO
 ];
 
