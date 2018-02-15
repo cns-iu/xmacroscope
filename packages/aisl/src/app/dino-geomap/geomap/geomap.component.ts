@@ -31,6 +31,7 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() pointLatLongField: IField<[number, number]>;
   @Input() pointSizeField: IField<number>;
   @Input() pointColorField: IField<string>;
+  @Input() pointShapeField: IField<string>;
 
   constructor(element: ElementRef, private dataService: GeomapDataService) {
     this.nativeElement = element.nativeElement;
@@ -44,7 +45,8 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
       this.pointDataStream,
       this.pointLatLongField,
       this.pointSizeField,
-      this.pointColorField
+      this.pointColorField,
+      this.pointShapeField
     );
   }
 

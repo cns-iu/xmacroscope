@@ -5,4 +5,5 @@ export interface Point {
   longitude: number;
   size: number;
   color: string;
+  shape: string;
 }

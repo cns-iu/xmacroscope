@@ -50,6 +50,11 @@
         {
           "type": "filter",
           "expr": "datum.x != null && datum.y != null"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.shape || 'circle'",
+          "as": "shape"
         }
       ]
     }
@@ -102,6 +107,9 @@
         "enter": {
         },
         "update": {
+          "shape": {
+            "field": "shape"
+          },
           "x": {
             "field": "x"
           },

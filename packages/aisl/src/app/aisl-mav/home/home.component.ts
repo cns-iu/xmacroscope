@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     if (index === 0) {
       this.fields = this.scatterplot.massager.fields;
     } else if (index === 1) {
-      this.fields = this.geomap.massager.fields;
+      this.fields = this.geomap.service.fields;
     }
   }
 }

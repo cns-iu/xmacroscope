@@ -6,6 +6,8 @@ import { IField } from '../../dino-core';
   styleUrls: ['./field-dropzone.component.sass']
 })
 export class FieldDropzoneComponent implements OnInit {
+  backgroundColor = 'inherit';
+
   @Input() label: String;
   @Input() fields: IField<any>[];
   @Input() field: IField<any>;
@@ -21,5 +23,19 @@ export class FieldDropzoneComponent implements OnInit {
       this.field = matches[0];
       this.fieldChange.emit(this.field);
     }
+  }
+
+  onDragDropEvent(event: any) {
+    if (event.type === 'drag-start') {
+      this.backgroundColor = event.accepted ? 'green' : 'red';
+    } else {
+      this.backgroundColor = 'inherit';
+    }
+  }
+
+  get acceptsDrop() {
+    return (field) => {
+      return this.fields.includes(field);
+    };
   }
 }
