@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Changes, IField, Field, FieldProcessor } from '../../dino-core';
 import { State } from './state';
@@ -58,10 +59,12 @@ const computedPointLongitudeField = new Field<number>(
 @Injectable()
 export class GeomapDataService {
   private stateProcessor: FieldProcessor<State>;
+  private statesSubscription: Subscription = undefined;
   private statesChange = new BehaviorSubject<Changes<State>>(new Changes<State>());
   states: Observable<Changes<State>> = this.statesChange.asObservable();
 
-  private pointProcessor: FieldProcessor<Point>;
+  private pointsProcessor: FieldProcessor<Point>;
+  private pointsSubscription: Subscription = undefined;
   private pointsChange = new BehaviorSubject<Changes<Point>>(new Changes<Point>());
   points: Observable<Changes<Point>> = this.pointsChange.asObservable();
 
@@ -72,6 +75,10 @@ export class GeomapDataService {
     stateField: IField<string> = defaultStateField,
     stateColorField: IField<string> = defaultStateColorField
   ): this {
+    if (this.statesSubscription) {
+      this.statesSubscription.unsubscribe();
+    }
+
     this.stateProcessor = new FieldProcessor<State>(stream, {
       label: stateField,
       color: stateColorField
@@ -79,7 +86,7 @@ export class GeomapDataService {
       id: computedStateIdField
     });
 
-    this.stateProcessor.asObservable().subscribe((change) => {
+    this.statesSubscription = this.stateProcessor.asObservable().subscribe((change) => {
       this.statesChange.next(change);
     });
 
@@ -93,7 +100,11 @@ export class GeomapDataService {
     pointColorField: IField<string> = defaultPointColorField,
     pointShapeField: IField<string> = defaultPointShapeField
   ): this {
-    this.pointProcessor = new FieldProcessor<Point>(stream, {
+    if (this.pointsSubscription) {
+      this.pointsSubscription.unsubscribe();
+    }
+
+    this.pointsProcessor = new FieldProcessor<Point>(stream, {
       lat_long: pointLatLongField,
       size: pointSizeField,
       color: pointColorField,
@@ -104,7 +115,7 @@ export class GeomapDataService {
       longitude: computedPointLongitudeField
     });
 
-    this.pointProcessor.asObservable().subscribe((change) => {
+    this.pointsSubscription = this.pointsProcessor.asObservable().subscribe((change) => {
       this.pointsChange.next(change);
     });
 
