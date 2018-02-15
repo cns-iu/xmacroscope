@@ -39,11 +39,11 @@ class MappingImpl<T> implements Mapping<T> {
 // TODO fix shape
 export const genderMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   male: {
-    shape: 'circle',
+    shape: 'square',
     color: 'blue'
   },
   female: {
-    shape: 'circle',
+    shape: 'diamond',
     color: 'pink'
   },
   other: {
@@ -103,12 +103,12 @@ export const ageGroupMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
 // TODO fix shape and color
 export const handednessMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   right: {
-    shape: 'circle',
-    color: 'black'
+    shape: 'triangle-right',
+    color: 'gold'
   },
   left: {
-    shape: 'circle',
-    color: 'black'
+    shape: 'triangle-left',
+    color: 'brown'
   }
 }, {
   shape: 'circle',
@@ -127,11 +127,11 @@ export const athleticismMapping: Mapping<ShapeProp & ColorProp> = new MappingImp
 // TODO fix shapes
 export const laneMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   '1': {
-    shape: 'circle',
+    shape: 'triangle-up',
     color: '#e84949'
   },
   '2': {
-    shape: 'circle',
+    shape: 'triangle-down',
     color: '#00ff00'
   }
 }, {
@@ -143,7 +143,7 @@ export const laneMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
 // TODO fix shapes
 export const falseStartMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   'true': {
-    shape: 'circle',
+    shape: 'cross',
     color: 'red'
   },
   'false': {
