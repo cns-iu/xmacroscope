@@ -3,4 +3,6 @@ export interface Point {
   x: number | string;
   y: number | string;
   color: string;
+  shape: string;
+  size: string;
 }

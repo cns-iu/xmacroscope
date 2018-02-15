@@ -1,7 +1,9 @@
 <dino-scatterplot [xField]="xField"
                   [yField]="yField"
                   [dataStream]="dataStream"
-                  [colorField]="colorField">
+                  [colorField]="colorField"
+                  [shapeField]="shapeField"
+                  [sizeField]="sizeField">
 </dino-scatterplot>
 
 <mav-field-dropzones>
@@ -16,5 +18,13 @@
   <mav-field-dropzone label="Color Field"
                       [fields]="colorFields"
                       [(field)]="colorField">
+  </mav-field-dropzone>
+  <mav-field-dropzone label="Shape Field"
+                      [fields]="shapeFields"
+                      [(field)]="shapeField">
+  </mav-field-dropzone>
+  <mav-field-dropzone label="Size Field"
+                      [fields]="sizeFields"
+                      [(field)]="sizeField">
   </mav-field-dropzone>
 </mav-field-dropzones>

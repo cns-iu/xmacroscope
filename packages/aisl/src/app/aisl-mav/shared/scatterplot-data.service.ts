@@ -11,6 +11,25 @@ const genderToColorMap = {
   'other': 'purple'
 };
 
+const genderToShapeMap = {
+  'male': 'cross',
+  'female': 'diamond',
+  'other': 'circle'
+};
+
+const ageGroupToSizeMap = {
+  '07-09': '66',
+  '10-12': '77',
+  '13-18': '88',
+  '19-30': '99',
+  '31-40': '110',
+  '41-50': '121',
+  '51-60': '132',
+  '61-70': '143',
+  '71+': '154',
+  'other': '100'
+};
+
 const defaultPositionFields: IField<any>[] = [
   new Field<string>('name', 'Person Name', (item: any): string => {
     return item.persona.name;
@@ -34,13 +53,33 @@ const defaultColorFields = [
   }, 'string')
 ];
 
+const defaultShapeFields = [
+  new Field<string>('gender', 'Runner\'s Gender Shape', (item: any): string => {
+    return item.persona.gender;
+  }, (value: any): string => {
+    return genderToShapeMap[value] || genderToShapeMap['other'];
+  }, 'string')
+];
+
+const defaultSizeFields = [
+  new Field<string>('age_group', 'Runner\'s Age Group', (item: any): string => {
+    return item.persona.age_group;
+  }, (value: any): string => {
+    return ageGroupToSizeMap[value] || ageGroupToSizeMap['other'];
+  }, 'string')];
+
 @Injectable()
 export class ScatterPlotDataService {
   xFields: IField<any>[] = defaultPositionFields;
   yFields: IField<any>[] = defaultPositionFields;
   colorFields: IField<string>[] = defaultColorFields;
+  shapeFields: IField<string>[] = defaultShapeFields;
+  sizeFields: IField<string>[] = defaultSizeFields;
   fields = [].concat(
-    defaultPositionFields, defaultColorFields
+    defaultPositionFields,
+    defaultColorFields,
+    defaultShapeFields,
+    defaultSizeFields
   );
   dataStream: Observable<Changes<any>>;
 

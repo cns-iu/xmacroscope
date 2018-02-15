@@ -12,10 +12,14 @@ export class ScatterplotComponent implements OnInit {
   @Input() xFields: IField<any>[];
   @Input() yFields: IField<any>[];
   @Input() colorFields: IField<string>[];
+  @Input() shapeFields: IField<string>[];
+  @Input() sizeFields: IField<string>[];
   @Input() dataStream: Observable<Changes<any>>;
   @Input() xField: IField<any>;
   @Input() yField: IField<any>;
   @Input() colorField: IField<string>;
+  @Input() shapeField: IField<string>;
+  @Input() sizeField: IField<string>;
 
   constructor() { }
 
