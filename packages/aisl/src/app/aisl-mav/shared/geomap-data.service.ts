@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/scan';
 import { List } from 'immutable';
 
-import { IField, Field, Changes } from '../../dino-core';
-import { MessageService, RaceCompletedMessage } from '../../aisl-backend';
+import { IField, Changes } from '../../dino-core';
+import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
 import {
   defaultStateColorFields, defaultPointColorFields,
   defaultPointShapeFields, defaultPointSizeFields
@@ -31,33 +31,46 @@ const defaultFields = ([].concat(
   return {current, result};
 }, {current: null, result: [] as IField<any>[]}).result;
 
-// Change tracker
-const maxConcurrentResults = 2;
+//
+class ChangeTracker {
+  private readonly mappedStream: Observable<Changes>;
+  private accumulator: List<RaceCompletedMessage> = List();
 
-function getStates(messages: RaceCompletedMessage[]): any {
-  const results = messages.map((message) => message.results);
-  return results.reduce((acc, current) => acc.concat(current), []);
-}
+  constructor(private readonly stream: Observable<Message>, public readonly count: number) {
+    this.mappedStream = stream.filter((message: Message) => {
+      return message instanceof RaceCompletedMessage;
+    }).scan((self: ChangeTracker, message: RaceCompletedMessage) => {
+      self.accumulateMessage(message);
+      return self;
+    }, this).map(() => {
+      return this.convertMessagesToChanges();
+    });
+  }
 
-function accumulateMessages(acc: List<RaceCompletedMessage>,
-    current: RaceCompletedMessage): List<RaceCompletedMessage> {
-  const maxSize = maxConcurrentResults + 1;
-  const size = acc.size;
+  asObservable(): Observable<Changes> {
+    return this.mappedStream;
+  }
 
-  return (size === maxSize ? acc.shift() : acc).push(current);
-}
+  private accumulateMessage(message: RaceCompletedMessage): void {
+    const maxCount = this.count + 1;
+    const currentCount = this.accumulator.size;
 
-function messagesToChanges(messages: List<RaceCompletedMessage>): Changes {
-  const maxSize = maxConcurrentResults + 1;
-  const size = messages.size;
+    if (currentCount === maxCount) {
+      this.accumulator = this.accumulator.shift();
+    }
 
-  if (size !== maxSize || size <= maxConcurrentResults) {
-    return new Changes(getStates(messages.toJS()));
-  } else {
-    const added = [messages.last()];
-    const removed = [messages.first()];
+    this.accumulator = this.accumulator.push(message);
+  }
 
-    return new Changes(getStates(added), getStates(removed));
+  private convertMessagesToChanges(): Changes {
+    const currentCount = this.accumulator.size;
+    let removed: RaceResult[] = [];
+
+    if (currentCount > this.count) {
+      removed = this.accumulator.first().results;
+    }
+
+    return new Changes(this.accumulator.last().results, removed);
   }
 }
 
@@ -69,11 +82,8 @@ export class GeomapDataService {
   readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
-    this.stateDataStream = messageService.asObservable().filter((message) => {
-      return message instanceof RaceCompletedMessage;
-    }).scan(accumulateMessages, List<RaceCompletedMessage>()).map(messagesToChanges);
-    this.pointDataStream = messageService.asObservable().filter((message) => {
-      return message instanceof RaceCompletedMessage;
-    }).scan(accumulateMessages, List<RaceCompletedMessage>()).map(messagesToChanges);
+    this.stateDataStream = new ChangeTracker(messageService.asObservable(), 2).asObservable();
+
+    this.pointDataStream = new ChangeTracker(messageService.asObservable(), 2).asObservable();
   }
 }
