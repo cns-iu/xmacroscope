@@ -12,6 +12,7 @@ export class GeomapComponent implements OnInit {
   @Input() stateDataStream: Observable<Changes>;
   @Input() stateField: IField<string>;
   @Input() stateColorField: IField<string>;
+
   @Input() stateFields: IField<any>[];
   @Input() stateColorFields: IField<any>[];
 
@@ -20,6 +21,7 @@ export class GeomapComponent implements OnInit {
   @Input() pointSizeField: IField<number>;
   @Input() pointColorField: IField<string>;
   @Input() pointShapeField: IField<string>;
+
   @Input() pointPositionFields: IField<[number, number]>[];
   @Input() pointSizeFields: IField<number>[];
   @Input() pointColorFields: IField<string>[];

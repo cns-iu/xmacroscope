@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/scan';
-
 import { List } from 'immutable';
 
 import { IField, Field, Changes } from '../../dino-core';
-
 import { MessageService, RaceCompletedMessage } from '../../aisl-backend';
+import {
+  defaultStateColorFields, defaultPointColorFields,
+  defaultPointShapeFields, defaultPointSizeFields
+} from './geomap-fields';
 
-// Gender to color mapping
-const genderToColorMap = {
-  'male': 'blue',
-  'female': 'pink',
-  'other': 'purple'
-};
+// Fields
+const defaultFieldSet = new Set<IField<any>>([].concat(
+  defaultStateColorFields, defaultPointColorFields,
+  defaultPointShapeFields, defaultPointSizeFields
+));
+const defaultFields = Array.from(defaultFieldSet.values()).sort(({label: label1}, {label: label2}) => {
+  if (label1 < label2) {
+    return -1;
+  } else if (label1 === label2) {
+    return 0;
+  } else {
+    return 1;
+  }
+});
 
-// Common fields
-const commonFields = [
-  new Field<string>('color', 'Runner\'s Color', (item: any): string => {
-    return item.persona.color;
-  }),
-  new Field<string>('gender', 'Runner\'s Gender', (item: any): string => {
-    return item.persona.gender;
-  }, (value: any): string => {
-    return genderToColorMap[value] || genderToColorMap['other'];
-  })
-];
 
 // Default fields
 const defaultStateFields = [
@@ -34,23 +33,6 @@ const defaultStateFields = [
   })
 ];
 
-const defaultStateColorFields = [
-  new Field<string>('falseStart', 'False Start', (item: any): string => {
-    return item.falseStart ? 'red' : 'green';
-  }),
-  new Field<string>('lane', 'Lane', (item: any): string => {
-    switch (item.lane) {
-      case 1:
-        return 'crimson';
-
-      case 2:
-        return 'turquoise';
-
-      default:
-        return 'yellow';
-    }
-  })
-];
 
 const defaultPointPositionFields = [
   new Field<[number, number]>('position', 'Point Position', (item: any): [number, number] => {
@@ -58,7 +40,7 @@ const defaultPointPositionFields = [
   })
 ];
 
-const defaultPointSizeFields = [
+const adefaultPointSizeFields = [
   new Field<number>('size', 'Point Fixed Size', (item: any): number => {
     const radius = 5;
     return radius * radius * Math.PI;
@@ -81,21 +63,9 @@ const defaultPointSizeFields = [
   })
 ];
 
-const defaultPointColorFields = [].concat(
-  commonFields,
-  defaultStateColorFields
-);
-
-const defaultPointShapeFields = [
-  new Field<string>('shape', 'Point Shape', (item: any): string => {
-    return 'circle';
-  })
-];
-
-// Constants
+// Change tracker
 const maxConcurrentResults = 2;
 
-// Helper functions
 function getStates(messages: RaceCompletedMessage[]): any {
   const results = messages.map((message) => message.results);
   return results.reduce((acc, current) => acc.concat(current), []);
@@ -126,22 +96,12 @@ function messagesToChanges(messages: List<RaceCompletedMessage>): Changes {
 @Injectable()
 export class GeomapDataService {
   readonly stateDataStream: Observable<Changes>;
-  readonly stateFields: IField<string>[] = defaultStateFields;
-  readonly stateColorFields: IField<string>[] = [].concat(
-    commonFields, defaultStateColorFields
-  );
-
   readonly pointDataStream: Observable<Changes>;
-  readonly pointPositionFields: IField<[Number, Number]>[] = defaultPointPositionFields;
-  readonly pointSizeFields: IField<number>[] = defaultPointSizeFields;
-  readonly pointColorFields: IField<string>[] = defaultPointColorFields;
-  readonly pointShapeFields: IField<string>[] = defaultPointShapeFields;
 
-  readonly fields: IField<any>[] = [].concat(
-    defaultStateFields, commonFields, defaultStateColorFields,
-    defaultPointPositionFields, defaultPointSizeFields,
-    defaultPointShapeFields
-  );
+  readonly stateFields: IField<string>[] = defaultStateFields;
+  readonly pointPositionFields: IField<[Number, Number]>[] = defaultPointPositionFields;
+
+  readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
     this.stateDataStream = this.pointDataStream = messageService.asObservable().filter((message) => {
