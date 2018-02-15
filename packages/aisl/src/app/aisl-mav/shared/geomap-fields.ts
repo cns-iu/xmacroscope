@@ -57,7 +57,8 @@ export const defaultPointColorFields = makeFieldList(colorFields);
 
 // Shape fields
 const shapeFields: IField<string>[] = [
-  new Field('fixed', 'Fixed Shape', () => 'circle')
+  new Field('fixed', 'Fixed Shape', () => 'circle'),
+  new Field('persona.gender', 'Runner\'s Gender', undefined, genderMapping.makeMapper('shape'))
   // TODO
 ];
 
