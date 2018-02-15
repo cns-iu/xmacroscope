@@ -45,8 +45,9 @@ export class DroppableDirective implements OnDestroy {
   }
 
   @HostListener('drop')
-  onDrop(): void {
+  onDrop(): boolean {
     this.mavDroppable.emit(this.service.currentItem);
+    return false;
   }
 
   ngOnDestroy(): void {
