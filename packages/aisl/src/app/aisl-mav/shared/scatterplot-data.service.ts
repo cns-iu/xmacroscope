@@ -12,9 +12,9 @@ const genderToColorMap = {
 };
 
 const genderToShapeMap = {
-  'male': 'cross',
+  'male': 'square',
   'female': 'diamond',
-  'other': 'circle'
+  'other': 'triangle-down'
 };
 
 const ageGroupToSizeMap = {
