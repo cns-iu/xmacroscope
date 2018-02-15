@@ -58,7 +58,13 @@ export const defaultPointColorFields = makeFieldList(colorFields);
 // Shape fields
 const shapeFields: IField<string>[] = [
   new Field('fixed', 'Fixed Shape', () => 'circle'),
-  new Field('persona.gender', 'Runner\'s Gender', undefined, genderMapping.makeMapper('shape'))
+  new Field('persona.gender', 'Runner\'s Gender', undefined, genderMapping.makeMapper('shape')),
+  new Field('persona.age_group', 'Runner\'s Age Group', undefined, ageGroupMapping.makeMapper('shape')),
+  new Field('persona.handedness', 'Runner\'s Handedness', undefined, handednessMapping.makeMapper('shape')),
+  // Not available yet
+  /*new Field('persona.athleticism', 'Runner\'s Athleticism', undefined, athleticismMapping.makeMapper('shape')),*/
+  new Field('lane', 'Runner\'s Lane', undefined, laneMapping.makeMapper('shape')),
+  new Field('falseStart', 'Runner made a false start', undefined, falseStartMapping.makeMapper('shape'))
   // TODO
 ];
 
