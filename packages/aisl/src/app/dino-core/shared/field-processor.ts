@@ -28,7 +28,7 @@ export class FieldProcessor<T> {
       const remove = this.filterComplete(changes.remove.map(
         (item) => this.mapItemOrDatumId(item))) as (T | DatumId)[];
       const update = changes.update.reduce((result, [key, upd]) => {
-        const {isComplete, result: newKey} = this.mapItemOrDatumId(key);
+        const { isComplete, result: newKey } = this.mapItemOrDatumId(key);
         if (isComplete) {
           const newUpdate = this.mapItem(upd);
           result.push([newKey, newUpdate]);
@@ -69,6 +69,6 @@ export class FieldProcessor<T> {
   }
 
   private filterComplete<U>(items: MappingResult<U>[]): U[] {
-    return items.filter(({isComplete}) => isComplete).map(({result}) => result);
+    return items.filter(({ isComplete }) => isComplete).map(({ result }) => result);
   }
 }

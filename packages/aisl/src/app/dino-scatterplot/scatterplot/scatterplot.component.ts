@@ -16,6 +16,7 @@ import * as d3Selection from 'd3-selection';
 import 'd3-transition'; // This adds transition support to d3-selection
 import * as d3Array from 'd3-array';
 import { scaleLinear, scaleOrdinal, scalePow, scaleTime, scalePoint } from 'd3-scale';
+import * as d3Shape from 'd3-shape';
 
 import { Changes, IField } from '../../dino-core';
 import { ScatterplotDataService } from '../shared/scatterplot-data.service';
@@ -32,6 +33,8 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   @Input() yField: IField<number | string>;
   @Input() dataStream: Observable<Changes<any>>;
   @Input() colorField: IField<string>;
+  @Input() shapeField: IField<string>;
+  @Input() sizeField: IField<string>;
 
   @Input() margin = { top: 20, right: 15, bottom: 60, left: 60 };
   @Input() svgWidth: number = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
@@ -79,6 +82,10 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         this.updateStreamProcessor();
       } else if (propName === 'colorField' && this.colorField) {
         this.updateStreamProcessor();
+      } else if (propName === 'shapeField' && this.shapeField) {
+        this.updateStreamProcessor();
+      } else if (propName === 'sizeField' && this.sizeField) {
+        this.updateStreamProcessor();
       }
     }
   }
@@ -88,10 +95,10 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     if (this.dataStream && this.xField && this.yField) {
       this.dataService.fetchData(
         this.dataStream, this.xField, this.yField,
-        this.colorField
+        this.colorField, this.shapeField, this.sizeField
       );
     }
-    this.updateAxisLabels();
+    // this.updateAxisLabels();
   }
 
   updateAxisLabels() {
@@ -160,21 +167,35 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     const xscale = this.xScale;
     const yscale = this.yScale;
 
-    const plots = this.mainG.selectAll('circle')
-      .data(data);
-
-    plots.transition().duration(500).attr('cx', (d) => xscale(d.x))
-      .attr('cy', (d) => yscale(d.y));
-
-    plots.enter().append('circle')
-      .attr('cx', (d) => xscale(d.x))
-      .attr('cy', (d) => yscale(d.y))
-      .attr('r', 12)
-      .attr('fill', 'red')
-      .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
-
     this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
     this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
+
+    const plots = this.mainG.selectAll('.plots')
+      .data(data);
+
+    plots.transition().duration(500)
+      .attr('transform', (d) => 'translate(' + xscale(d.x) + ',' + yscale(d.y) + ')');
+
+    plots.enter().append('path')
+      .data(data)
+      .attr('class', 'plots')
+      .attr('d', d3Shape.symbol()
+        .size((d) => <number>2 * d.size)
+        .type((d) => {
+          switch (d.shape) {
+            case 'triangle': return d3Shape.symbolTriangle;
+            case 'circle': return d3Shape.symbolCircle;
+            case 'cross': return d3Shape.symbolCross;
+            case 'diamond': return d3Shape.symbolDiamond;
+            case 'square': return d3Shape.symbolSquare;
+            case 'star': return d3Shape.symbolStar;
+            case 'wye': return d3Shape.symbolWye;
+          }
+        }
+        ))
+      .attr('transform', (d) => 'translate(' + xscale(d.x) + ',' + yscale(d.y) + ')')
+      .attr('fill', 'red')
+      .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     plots.exit().remove();
   }
@@ -184,18 +205,16 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     switch (this.xField.datatype) {
       default:
       case 'number':
-        if (!this.xScale) {
-          this.xScale = scaleLinear();
-        }
-        this.xScale.domain([0, d3Array.max(data, (d) => <number>d.x)])
+        this.xScale = scaleLinear();
+        this.xAxis = d3Axis.axisBottom(this.xScale);
+        this.xScale.domain([0, d3Array.max(this.data, (d) => <number>d.x)])
           .range([0, this.svgWidth]);
         break;
 
       case 'string':
-        if (!this.xScale) {
-          this.xScale = scalePoint();
-        }
-        this.xScale.domain(data.map(el => el.x))
+        this.xScale = scalePoint();
+        this.xAxis = d3Axis.axisBottom(this.xScale);
+        this.xScale.domain(this.data.map(el => el.x))
           .range([0, this.svgWidth]);
         break;
     }
@@ -203,20 +222,20 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     switch (this.yField.datatype) {
       default:
       case 'number':
-        if (!this.yScale) {
-          this.yScale = scaleLinear();
-        }
-        this.yScale.domain([0, d3Array.max(data, (d) => <number>d.y)])
+        this.yScale = scaleLinear();
+        this.yAxis = d3Axis.axisLeft(this.yScale);
+        this.yScale.domain([0, d3Array.max(this.data, (d) => <number>d.y)])
           .range([this.svgHeight, 0]);
         break;
 
       case 'string':
-        if (!this.yScale) {
-          this.yScale = scalePoint();
-        }
-        this.yScale.domain(data.map(el => el.y))
+        this.yScale = scalePoint();
+        this.yAxis = d3Axis.axisLeft(this.yScale);
+        this.yScale.domain(this.data.map(el => el.y))
           .range([this.svgHeight, 0]);
         break;
+
     }
+    this.updateAxisLabels();
   }
 }

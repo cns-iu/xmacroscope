@@ -12,7 +12,8 @@ export class Field<T> implements IField<T> {
     public name: string,
     public label: string,
     public accessor?: (item: any) => any | T,
-    public transform?: (value: any | T) => T
+    public transform?: (value: any | T) => T,
+    public datatype = 'string'
   ) { }
 
   get(item: any): T {
