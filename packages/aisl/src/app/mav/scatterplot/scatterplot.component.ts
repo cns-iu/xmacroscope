@@ -9,6 +9,7 @@ import { IField, Changes } from '../../dino-core';
   styleUrls: ['./scatterplot.component.sass']
 })
 export class ScatterplotComponent implements OnInit {
+  @Input() pointIDField: IField<string>; // not user facing
   @Input() xFields: IField<any>[];
   @Input() yFields: IField<any>[];
   @Input() colorFields: IField<string>[];

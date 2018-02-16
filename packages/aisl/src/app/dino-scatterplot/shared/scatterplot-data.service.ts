@@ -17,12 +17,14 @@ export class ScatterplotDataService {
   constructor() { }
 
   fetchData(stream: Observable<Changes<any>>,
+    pointIDField: IField<string>,
     xField: IField<number | string>,
     yField: IField<number | string>,
     colorField: IField<string>,
     shapeField: IField<string>,
     sizeField: IField<string>): this {
     this.pointProcessor = new FieldProcessor<Point>(stream, {
+      id: pointIDField,
       x: xField,
       y: yField,
       color: colorField,

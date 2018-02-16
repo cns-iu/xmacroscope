@@ -61,6 +61,7 @@ class ChangeTracker {
 
     message.results.forEach((r) => {
       r['avatar'] = message.avatar;
+      r['raceTimestamp'] = message.timestamp.getTime();
     });
 
     if (currentCount === maxCount) {
