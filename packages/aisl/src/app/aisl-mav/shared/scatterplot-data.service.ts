@@ -1,99 +1,89 @@
 import { Injectable } from '@angular/core';
-import { List } from 'immutable';
-import { MessageService } from '../../aisl-backend/shared/message.service';
-import { RaceCompletedMessage } from '../../aisl-backend/shared/aisl-messages';
-import { IField, Field, Changes } from '../../dino-core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/scan';
+import { List } from 'immutable';
 
-const genderToColorMap = {
-  'male': 'blue',
-  'female': 'pink',
-  'other': 'purple'
-};
+import { IField, Changes } from '../../dino-core';
+import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
+import {
+  defaultPointPositionFields,
+  defaultPointColorFields,
+  defaultPointShapeFields,
+  defaultPointSizeFields
+} from './scatterplot-fields';
 
-const genderToShapeMap = {
-  'male': 'square',
-  'female': 'diamond',
-  'other': 'triangle-down'
-};
+// Fields
+const defaultFields = ([].concat(
+  defaultPointPositionFields,
+  defaultPointColorFields,
+  defaultPointShapeFields,
+  defaultPointSizeFields
+) as IField<any>[]).sort(({ label: label1 }, { label: label2 }) => {
+  if (label1 < label2) {
+    return -1;
+  } else if (label1 === label2) {
+    return 0;
+  } else {
+    return 1;
+  }
+}).reduce(({ current, result }, field) => {
+  if (current === null || current.label !== field.label) {
+    current = field;
+    result.push(field);
+  }
 
-const ageGroupToSizeMap = {
-  '07-09': '66',
-  '10-12': '77',
-  '13-18': '88',
-  '19-30': '99',
-  '31-40': '110',
-  '41-50': '121',
-  '51-60': '132',
-  '61-70': '143',
-  '71+': '154',
-  'other': '100'
-};
+  return { current, result };
+}, { current: null, result: [] as IField<any>[] }).result;
 
-const defaultPositionFields: IField<any>[] = [
-  new Field<string>('name', 'Person Name', (item: any): string => {
-    return item.persona.name;
-  }, undefined, 'string'),
-  new Field<number>('timeMillis', 'Person Run Time', (item: any): number => {
-    return item.timeMillis;
-  }, (value: number) => value / 1000.0, 'number'),
-  new Field<number>('timeMillis', 'Avatar Run Time', (item: any): number => {
-    return item.avatar.runMillis;
-  }, (value: number) => value / 1000.0, 'number')
-];
 
-const defaultColorFields = [
-  new Field<string>('color', 'Runner\'s Color', (item: any): string => {
-    return item.persona.color;
-  }, undefined, 'string'),
-  new Field<string>('gender', 'Runner\'s Gender', (item: any): string => {
-    return item.persona.gender;
-  }, (value: any): string => {
-    return genderToColorMap[value] || genderToColorMap['other'];
-  }, 'string')
-];
+class ChangeTracker {
+  private readonly mappedStream: Observable<Changes>;
+  private accumulator: List<RaceCompletedMessage> = List();
 
-const defaultShapeFields = [
-  new Field<string>('gender', 'Runner\'s Gender Shape', (item: any): string => {
-    return item.persona.gender;
-  }, (value: any): string => {
-    return genderToShapeMap[value] || genderToShapeMap['other'];
-  }, 'string')
-];
+  constructor(private readonly stream: Observable<Message>, public readonly count: number) {
+    this.mappedStream = stream.filter((message: Message) => {
+      return message instanceof RaceCompletedMessage;
+    }).scan((self: ChangeTracker, message: RaceCompletedMessage) => {
+      self.accumulateMessage(message);
+      return self;
+    }, this).map(() => {
+      return this.convertMessagesToChanges();
+    });
+  }
 
-const defaultSizeFields = [
-  new Field<string>('age_group', 'Runner\'s Age Group', (item: any): string => {
-    return item.persona.age_group;
-  }, (value: any): string => {
-    return ageGroupToSizeMap[value] || ageGroupToSizeMap['other'];
-  }, 'string')];
+  asObservable(): Observable<Changes> {
+    return this.mappedStream;
+  }
+
+  private accumulateMessage(message: RaceCompletedMessage): void {
+    const maxCount = this.count + 1;
+    const currentCount = this.accumulator.size;
+
+    if (currentCount === maxCount) {
+      this.accumulator = this.accumulator.shift();
+    }
+
+    this.accumulator = this.accumulator.push(message);
+  }
+
+  private convertMessagesToChanges(): Changes {
+    const currentCount = this.accumulator.size;
+    let removed: RaceResult[] = [];
+
+    if (currentCount > this.count) {
+      removed = this.accumulator.first().results;
+    }
+
+    return new Changes(this.accumulator.last().results, removed);
+  }
+}
 
 @Injectable()
 export class ScatterPlotDataService {
-  xFields: IField<any>[] = defaultPositionFields;
-  yFields: IField<any>[] = defaultPositionFields;
-  colorFields: IField<string>[] = defaultColorFields;
-  shapeFields: IField<string>[] = defaultShapeFields;
-  sizeFields: IField<string>[] = defaultSizeFields;
-  fields = [].concat(
-    defaultPositionFields,
-    defaultColorFields,
-    defaultShapeFields,
-    defaultSizeFields
-  );
-  dataStream: Observable<Changes<any>>;
+  readonly dataStream: Observable<Changes<any>>;
+  readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
-    this.dataStream = <Observable<Changes<any>>>messageService
-      .asBoundedList(1, RaceCompletedMessage).map((messages) => {
-        return new Changes(messages.reduce((result, message) => {
-          const raceMessage = <RaceCompletedMessage>message;
-          raceMessage.results.forEach((race) => {
-            race['avatar'] = raceMessage.avatar;
-            result.push(race);
-          });
-          return result;
-        }, []));
-      });
+    this.dataStream = new ChangeTracker(messageService.asObservable(), 2).asObservable();
   }
 }

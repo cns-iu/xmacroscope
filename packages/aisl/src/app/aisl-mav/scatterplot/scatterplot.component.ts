@@ -3,6 +3,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 import { IField, Field, Changes } from '../../dino-core';
+import {
+  defaultPointPositionFields,
+  defaultPointColorFields,
+  defaultPointShapeFields,
+  defaultPointSizeFields
+} from '../shared/scatterplot-fields';
 
 @Component({
   selector: 'aisl-scatterplot',
@@ -11,30 +17,24 @@ import { IField, Field, Changes } from '../../dino-core';
   providers: [ScatterPlotDataService]
 })
 export class ScatterplotComponent implements OnInit {
-  xFields: IField<any>[];
-  yFields: IField<any>[];
-  colorFields: IField<string>[];
-  shapeFields: IField<string>[];
-  sizeFields: IField<string>[];
+  xFields = defaultPointPositionFields;
+  xField = defaultPointPositionFields.default;
+
+  yFields = defaultPointPositionFields;
+  yField = defaultPointPositionFields.default;
+
+  colorFields = defaultPointColorFields;
+  colorField = defaultPointColorFields.default;
+
+  shapeFields = defaultPointShapeFields;
+  shapeField = defaultPointShapeFields.default;
+
+  sizeFields = defaultPointSizeFields;
+  sizeField = defaultPointSizeFields.default;
+
   dataStream: Observable<Changes<any>>;
 
-  xField: IField<any>;
-  yField: IField<any>;
-  colorField: IField<string>;
-  shapeField: IField<string>;
-  sizeField: IField<string>;
-
   constructor(public massager: ScatterPlotDataService) {
-    this.xFields = massager.xFields;
-    this.yFields = massager.yFields;
-    this.colorFields = massager.colorFields;
-    this.shapeFields = massager.shapeFields;
-    this.sizeFields = massager.sizeFields;
-    this.xField = massager.xFields[0];
-    this.yField = massager.yFields[1];
-    this.colorField = massager.colorFields[0];
-    this.shapeField = massager.shapeFields[0];
-    this.sizeField = massager.sizeFields[0];
     this.dataStream = massager.dataStream;
   }
 
