@@ -38,8 +38,14 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   @Input() sizeField: IField<string>;
 
   @Input() margin = { top: 20, right: 15, bottom: 60, left: 60 };
-  @Input() svgWidth: number = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
-  @Input() svgHeight: number = window.innerHeight - this.margin.top - this.margin.bottom - 200; // initializing height for map container
+
+  // Temporary change so that Geomap and Scatterplot are the same size.
+  @Input() svgWidth = 955 - this.margin.left - this.margin.right;
+  @Input() svgHeight: number = 560 - this.margin.top - this.margin.bottom;
+
+  // This is the better way, but is inconsistent with geomap
+  // @Input() svgWidth = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
+  // @Input() svgHeight: number = window.innerHeight - this.margin.top - this.margin.bottom - 200; // initializing height for map container
 
   private streamSubscription: Subscription;
   private parentNativeElement: any; // a native Element to access this component's selector for drawing the map
