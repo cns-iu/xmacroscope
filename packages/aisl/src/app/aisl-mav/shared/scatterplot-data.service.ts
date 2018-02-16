@@ -36,54 +36,22 @@ const defaultFields = ([].concat(
 }, { current: null, result: [] as IField<any>[] }).result;
 
 
-class ChangeTracker {
-  private readonly mappedStream: Observable<Changes>;
-  private accumulator: List<RaceCompletedMessage> = List();
-
-  constructor(private readonly stream: Observable<Message>, public readonly count: number) {
-    this.mappedStream = stream.filter((message: Message) => {
-      return message instanceof RaceCompletedMessage;
-    }).scan((self: ChangeTracker, message: RaceCompletedMessage) => {
-      self.accumulateMessage(message);
-      return self;
-    }, this).map(() => {
-      return this.convertMessagesToChanges();
-    });
-  }
-
-  asObservable(): Observable<Changes> {
-    return this.mappedStream;
-  }
-
-  private accumulateMessage(message: RaceCompletedMessage): void {
-    const maxCount = this.count + 1;
-    const currentCount = this.accumulator.size;
-
-    if (currentCount === maxCount) {
-      this.accumulator = this.accumulator.shift();
-    }
-
-    this.accumulator = this.accumulator.push(message);
-  }
-
-  private convertMessagesToChanges(): Changes {
-    const currentCount = this.accumulator.size;
-    let removed: RaceResult[] = [];
-
-    if (currentCount > this.count) {
-      removed = this.accumulator.first().results;
-    }
-
-    return new Changes(this.accumulator.last().results, removed);
-  }
-}
-
 @Injectable()
 export class ScatterPlotDataService {
   readonly dataStream: Observable<Changes<any>>;
   readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
-    this.dataStream = new ChangeTracker(messageService.asObservable(), 2).asObservable();
+    this.dataStream = <Observable<Changes<any>>>messageService
+      .asBoundedList(1, RaceCompletedMessage).map((messages) => {
+        return new Changes(messages.reduce((result, message) => {
+          const raceMessage = <RaceCompletedMessage>message;
+          raceMessage.results.forEach((race) => {
+            race['avatar'] = raceMessage.avatar;
+            result.push(race);
+          });
+          return result;
+        }, []));
+      });
   }
 }
