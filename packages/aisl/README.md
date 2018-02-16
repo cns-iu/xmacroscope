@@ -1,13 +1,5 @@
 # AISL
 
-## Work In Progress
-
-This repo is a work in progress. Come back later. 
-
-## Demo site
-
-https://cns-iu.github.io/aisl/
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.
 
 ## Development server

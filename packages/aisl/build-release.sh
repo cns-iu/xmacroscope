@@ -1,5 +1,5 @@
 #!/bin/bash
 
-ng build --prod --aot --output-hashing=none --sourcemaps --base-href /aisl/
+ng build --prod --aot --output-hashing=none --sourcemaps --base-href /xmacroscope/
 
-cp -r dist/* ../../../aisl-release/
+cp -r dist/* ../../../xmacroscope-release/
