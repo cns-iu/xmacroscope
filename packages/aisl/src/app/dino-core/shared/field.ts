@@ -1,3 +1,5 @@
+import { get as deepGet } from 'lodash';
+
 export interface IField<T> {
   name: string;
   label: string;
@@ -18,7 +20,7 @@ export class Field<T> implements IField<T> {
 
   get(item: any): T {
     item = item || {};
-    const value = this.accessor ? this.accessor(item) : item[this.name];
+    const value = this.accessor ? this.accessor(item) : deepGet(item, this.name);
     return value != null && this.transform ? this.transform(value) : value as T;
   }
 }

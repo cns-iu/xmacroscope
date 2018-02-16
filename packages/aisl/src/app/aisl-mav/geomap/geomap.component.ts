@@ -1,11 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
 import { List } from 'immutable';
 
 import { IField, Changes } from '../../dino-core';
-
 import { GeomapDataService } from '../shared/geomap-data.service';
+import {
+  defaultStateFields, defaultPointPositionFields,
+  defaultStateColorFields, defaultPointColorFields,
+  defaultPointShapeFields, defaultPointSizeFields
+} from '../shared/geomap-fields';
 
 @Component({
   selector: 'aisl-geomap',
@@ -15,45 +18,29 @@ import { GeomapDataService } from '../shared/geomap-data.service';
 })
 export class GeomapComponent implements OnInit {
   stateDataStream: Observable<Changes>;
-
-  stateField: IField<any>;
-  stateColorField: IField<any>;
-
-  stateFields: IField<any>[];
-  stateColorFields: IField<any>[];
-
   pointDataStream: Observable<Changes>;
 
-  pointPositionField: IField<any>;
-  pointSizeField: IField<any>;
-  pointColorField: IField<any>;
-  pointShapeField: IField<any>;
+  stateField = defaultStateFields.default;
+  stateFields = defaultStateFields;
 
-  pointPositionFields: IField<any>[];
-  pointSizeFields: IField<any>[];
-  pointColorFields: IField<any>[];
-  pointShapeFields: IField<any>[];
+  stateColorField = defaultStateColorFields.default;
+  stateColorFields = defaultStateColorFields;
 
-  constructor(public massager: GeomapDataService) {
-    this.stateDataStream = massager.stateDataStream;
+  pointPositionField = defaultPointPositionFields.default;
+  pointPositionFields = defaultPointPositionFields;
 
-    this.stateField = massager.stateFields[0];
-    this.stateColorField = massager.stateColorFields[1];
+  pointShapeField = defaultPointShapeFields.default;
+  pointShapeFields = defaultPointShapeFields;
 
-    this.stateFields = massager.stateFields;
-    this.stateColorFields = massager.stateColorFields;
+  pointSizeField = defaultPointSizeFields.default;
+  pointSizeFields = defaultPointSizeFields;
 
-    this.pointDataStream = massager.pointDataStream;
+  pointColorField = defaultPointColorFields.default;
+  pointColorFields = defaultPointColorFields;
 
-    this.pointPositionField = massager.pointPositionFields[0];
-    this.pointSizeField = massager.pointSizeFields[0];
-    this.pointColorField = massager.pointColorFields[0];
-    this.pointShapeField = massager.pointShapeFields[0];
-
-    this.pointPositionFields = massager.pointPositionFields;
-    this.pointSizeFields = massager.pointSizeFields;
-    this.pointColorFields = massager.pointColorFields;
-    this.pointShapeFields = massager.pointShapeFields;
+  constructor(public service: GeomapDataService) {
+    this.stateDataStream = service.stateDataStream;
+    this.pointDataStream = service.pointDataStream;
   }
 
   ngOnInit() {

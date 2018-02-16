@@ -1,151 +1,89 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/scan';
-
 import { List } from 'immutable';
 
-import { IField, Field, Changes } from '../../dino-core';
+import { IField, Changes } from '../../dino-core';
+import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
+import {
+  defaultStateColorFields, defaultPointColorFields,
+  defaultPointShapeFields, defaultPointSizeFields
+} from './geomap-fields';
 
-import { MessageService, RaceCompletedMessage } from '../../aisl-backend';
-
-// Gender to color mapping
-const genderToColorMap = {
-  'male': 'blue',
-  'female': 'pink',
-  'other': 'purple'
-};
-
-// Common fields
-const commonFields = [
-  new Field<string>('color', 'Runner\'s Color', (item: any): string => {
-    return item.persona.color;
-  }, undefined, 'string'),
-  new Field<string>('gender', 'Runner\'s Gender', (item: any): string => {
-    return item.persona.gender;
-  }, (value: any): string => {
-    return genderToColorMap[value] || genderToColorMap['other'];
-  }, 'string')
-];
-
-// Default fields
-const defaultStateFields = [
-  new Field<string>('state', 'State', (item: any): string => {
-    return item.persona.state;
-  }, undefined, 'string')
-];
-
-const defaultStateColorFields = [
-  new Field<string>('falseStart', 'False Start', (item: any): string => {
-    return item.falseStart ? 'red' : 'green';
-  }, undefined, 'string'),
-  new Field<string>('lane', 'Lane', (item: any): string => {
-    switch (item.lane) {
-      case 1:
-        return 'crimson';
-
-      case 2:
-        return 'turquoise';
-
-      default:
-        return 'yellow';
-    }
-  }, undefined, 'string')
-];
-
-const defaultPointPositionFields = [
-  new Field<[number, number]>('position', 'Point Position', (item: any): [number, number] => {
-    return [item.persona.latitude, item.persona.longitude];
-  }, undefined, 'number')
-];
-
-const defaultPointSizeFields = [
-  new Field<number>('size', 'Point Fixed Size', (item: any): number => {
-    const radius = 5;
-    return radius * radius * Math.PI;
-  }, undefined, 'number'),
-  new Field<number>('timeMillis', 'Point Run Time Size', (item: any): number => {
-    const minRadius = 5;
-    const maxRadius = 15;
-    const minArea = minRadius * minRadius * Math.PI;
-    const maxArea = maxRadius * maxRadius * Math.PI;
-    const areaDiff = maxArea - minArea;
-
-    const minTime = 2000;
-    const maxTime = 10000;
-    const timeDiff = maxTime - minTime;
-    const timeMillis = Math.min(Math.max(item.timeMillis, minTime), maxTime);
-    const timeFactor = (timeMillis - minTime) / timeDiff;
-
-    const area = minArea + areaDiff * timeFactor;
-    return area;
-  }, undefined, 'number')
-];
-
-const defaultPointColorFields = [].concat(
-  commonFields,
-  defaultStateColorFields
-);
-
-const defaultPointShapeFields = [
-  new Field<string>('shape', 'Point Shape', (item: any): string => {
-    return 'circle';
-  })
-];
-
-// Constants
-const maxConcurrentResults = 2;
-
-// Helper functions
-function getStates(messages: RaceCompletedMessage[]): any {
-  const results = messages.map((message) => message.results);
-  return results.reduce((acc, current) => acc.concat(current), []);
-}
-
-function accumulateMessages(acc: List<RaceCompletedMessage>,
-  current: RaceCompletedMessage): List<RaceCompletedMessage> {
-  const maxSize = maxConcurrentResults + 1;
-  const size = acc.size;
-
-  return (size === maxSize ? acc.shift() : acc).push(current);
-}
-
-function messagesToChanges(messages: List<RaceCompletedMessage>): Changes {
-  const maxSize = maxConcurrentResults + 1;
-  const size = messages.size;
-
-  if (size !== maxSize || size <= maxConcurrentResults) {
-    return new Changes(getStates(messages.toJS()));
+// Fields
+const defaultFields = ([].concat(
+  defaultStateColorFields, defaultPointColorFields,
+  defaultPointShapeFields, defaultPointSizeFields
+) as IField<any>[]).sort(({label: label1}, {label: label2}) => {
+  if (label1 < label2) {
+    return -1;
+  } else if (label1 === label2) {
+    return 0;
   } else {
-    const added = [messages.last()];
-    const removed = [messages.first()];
+    return 1;
+  }
+}).reduce(({current, result}, field) => {
+  if (current === null || current.label !== field.label) {
+    current = field;
+    result.push(field);
+  }
 
-    return new Changes(getStates(added), getStates(removed));
+  return {current, result};
+}, {current: null, result: [] as IField<any>[]}).result;
+
+//
+class ChangeTracker {
+  private readonly mappedStream: Observable<Changes>;
+  private accumulator: List<RaceCompletedMessage> = List();
+
+  constructor(private readonly stream: Observable<Message>, public readonly count: number) {
+    this.mappedStream = stream.filter((message: Message) => {
+      return message instanceof RaceCompletedMessage;
+    }).scan((self: ChangeTracker, message: RaceCompletedMessage) => {
+      self.accumulateMessage(message);
+      return self;
+    }, this).map(() => {
+      return this.convertMessagesToChanges();
+    });
+  }
+
+  asObservable(): Observable<Changes> {
+    return this.mappedStream;
+  }
+
+  private accumulateMessage(message: RaceCompletedMessage): void {
+    const maxCount = this.count + 1;
+    const currentCount = this.accumulator.size;
+
+    if (currentCount === maxCount) {
+      this.accumulator = this.accumulator.shift();
+    }
+
+    this.accumulator = this.accumulator.push(message);
+  }
+
+  private convertMessagesToChanges(): Changes {
+    const currentCount = this.accumulator.size;
+    let removed: RaceResult[] = [];
+
+    if (currentCount > this.count) {
+      removed = this.accumulator.first().results;
+    }
+
+    return new Changes(this.accumulator.last().results, removed);
   }
 }
 
 @Injectable()
 export class GeomapDataService {
   readonly stateDataStream: Observable<Changes>;
-  readonly stateFields: IField<string>[] = defaultStateFields;
-  readonly stateColorFields: IField<string>[] = [].concat(
-    commonFields, defaultStateColorFields
-  );
-
   readonly pointDataStream: Observable<Changes>;
-  readonly pointPositionFields: IField<[Number, Number]>[] = defaultPointPositionFields;
-  readonly pointSizeFields: IField<number>[] = defaultPointSizeFields;
-  readonly pointColorFields: IField<string>[] = defaultPointColorFields;
-  readonly pointShapeFields: IField<string>[] = defaultPointShapeFields;
 
-  readonly fields: IField<any>[] = [].concat(
-    defaultStateFields, commonFields, defaultStateColorFields,
-    defaultPointPositionFields, defaultPointSizeFields,
-    defaultPointShapeFields
-  );
+  readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
-    this.stateDataStream = this.pointDataStream = messageService.asObservable().filter((message) => {
-      return message instanceof RaceCompletedMessage;
-    }).scan(accumulateMessages, List<RaceCompletedMessage>()).map(messagesToChanges);
+    this.stateDataStream = new ChangeTracker(messageService.asObservable(), 2).asObservable();
+
+    this.pointDataStream = new ChangeTracker(messageService.asObservable(), 2).asObservable();
   }
 }
