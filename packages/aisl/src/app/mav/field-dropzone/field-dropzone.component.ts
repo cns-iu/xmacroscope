@@ -24,7 +24,7 @@ export class FieldDropzoneComponent implements OnInit {
 
   onDragDropEvent(event: any) {
     if (event.type === 'drag-start') {
-      this.backgroundColor = event.accepted ? 'green' : 'red';
+      this.backgroundColor = event.accepted ? 'rgba(0,255,0,0.1)' : 'rgba(255,0,0,0.1)';
     } else {
       this.backgroundColor = 'inherit';
     }

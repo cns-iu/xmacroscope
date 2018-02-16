@@ -5,7 +5,8 @@
     <mat-header-cell *matHeaderCellDef>Fields</mat-header-cell>
     <mat-cell *matCellDef="let field"
               [mavDraggable]="field"
-              class="draggable">{{field.label}}</mat-cell>
+              class="draggable">{{field.label}}
+    </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="['name']"></mat-header-row>
