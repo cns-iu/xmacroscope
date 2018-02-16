@@ -59,6 +59,10 @@ class ChangeTracker {
     const maxCount = this.count + 1;
     const currentCount = this.accumulator.size;
 
+    message.results.forEach((r) => {
+      r['avatar'] = message.avatar;
+    });
+
     if (currentCount === maxCount) {
       this.accumulator = this.accumulator.shift();
     }

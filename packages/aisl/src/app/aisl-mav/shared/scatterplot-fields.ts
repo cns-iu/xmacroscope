@@ -28,8 +28,9 @@ const positionFields: IField<string | number>[] = [
   new Field<number>('timeMillis', 'Person Run Time', (item: any): number => {
     return item.timeMillis;
   }, (value: number) => value / 1000.0, 'number'),
-  new Field<number>('avatar.timeMillis', 'Avatar Run Time', (item: any): number => {
-    return item.avatar.timeMillis;
+  new Field<number>('timeMillis', 'Avatar Run Time', (item: any): number => {
+    console.log(item);
+    return item.avatar.runMillis;
   }, (value: number) => value / 1000.0, 'number')
 ];
 // Point position fields
