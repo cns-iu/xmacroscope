@@ -7,13 +7,15 @@ import { IField, Changes } from '../../dino-core';
 import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
 import {
   defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, defaultPointSizeFields
+  defaultPointShapeFields, defaultPointSizeFields,
+  defaultTooltipFields
 } from './geomap-fields';
 
 // Fields
 const defaultFields = ([].concat(
   defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, defaultPointSizeFields
+  defaultPointShapeFields, defaultPointSizeFields,
+  defaultTooltipFields
 ) as IField<any>[]).sort(({ label: label1 }, { label: label2 }) => {
   if (label1 < label2) {
     return -1;

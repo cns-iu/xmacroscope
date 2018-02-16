@@ -29,6 +29,7 @@ import { Point } from '../shared/point';
   providers: [ScatterplotDataService]
 })
 export class ScatterplotComponent implements OnInit, OnChanges {
+  @Input() pointIDField: IField<string>;
   @Input() xField: IField<number | string>;
   @Input() yField: IField<number | string>;
   @Input() dataStream: Observable<Changes<any>>;
@@ -65,7 +66,8 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.updateAxisLabels();
 
     this.dataService.points.subscribe((data) => {
-      this.data = this.data.concat(data.add);
+      this.data = this.data.filter((e: Point) => !data.remove
+        .some((obj: Point) => obj.id === e.id)).concat(data.add);
       this.setScales(this.data);
       this.drawPlots(this.data);
     });
@@ -94,7 +96,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.data = [];
     if (this.dataStream && this.xField && this.yField) {
       this.dataService.fetchData(
-        this.dataStream, this.xField, this.yField,
+        this.dataStream, this.pointIDField, this.xField, this.yField,
         this.colorField, this.shapeField, this.sizeField
       );
     }
@@ -170,8 +172,9 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
     this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
 
+    console.log('data = ', data);
     const plots = this.mainG.selectAll('.plots')
-      .data(data);
+      .data(data, (d: Point) => d.id);
 
     plots.transition().duration(500)
       .attr('transform', (d) => this.shapeTransform(d));

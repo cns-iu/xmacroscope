@@ -1,5 +1,5 @@
 export interface Point {
-  // id: number;
+  id: string;
   x: number | string;
   y: number | string;
   color: string;

@@ -4,7 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 import { IField, Field, Changes } from '../../dino-core';
 import {
+  pointIDField,
   defaultPointPositionFields,
+  defaultXField,
+  defaultYField,
   defaultPointColorFields,
   defaultPointShapeFields,
   defaultPointSizeFields
@@ -17,11 +20,13 @@ import {
   providers: [ScatterPlotDataService]
 })
 export class ScatterplotComponent implements OnInit {
+  pointIDField = pointIDField; // not user facing
+
   xFields = defaultPointPositionFields;
-  xField = defaultPointPositionFields.default;
+  xField = defaultXField;
 
   yFields = defaultPointPositionFields;
-  yField = defaultPointPositionFields.default;
+  yField = defaultYField;
 
   colorFields = defaultPointColorFields;
   colorField = defaultPointColorFields.default;
