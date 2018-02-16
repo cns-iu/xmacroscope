@@ -14,7 +14,7 @@ import {
 const defaultFields = ([].concat(
   defaultStateColorFields, defaultPointColorFields,
   defaultPointShapeFields, defaultPointSizeFields
-) as IField<any>[]).sort(({label: label1}, {label: label2}) => {
+) as IField<any>[]).sort(({ label: label1 }, { label: label2 }) => {
   if (label1 < label2) {
     return -1;
   } else if (label1 === label2) {
@@ -22,14 +22,14 @@ const defaultFields = ([].concat(
   } else {
     return 1;
   }
-}).reduce(({current, result}, field) => {
+}).reduce(({ current, result }, field) => {
   if (current === null || current.label !== field.label) {
     current = field;
     result.push(field);
   }
 
-  return {current, result};
-}, {current: null, result: [] as IField<any>[]}).result;
+  return { current, result };
+}, { current: null, result: [] as IField<any>[] }).result;
 
 //
 class ChangeTracker {

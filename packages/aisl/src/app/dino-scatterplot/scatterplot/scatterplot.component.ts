@@ -174,7 +174,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .data(data);
 
     plots.transition().duration(500)
-      .attr('transform', (d) => 'translate(' + xscale(d.x) + ',' + yscale(d.y) + ')');
+      .attr('transform', (d) => this.shapeTransform(d));
 
     plots.enter().append('path')
       .data(data)
@@ -183,21 +183,37 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         .size((d) => <number>2 * d.size)
         .type((d) => {
           switch (d.shape) {
-            case 'triangle': return d3Shape.symbolTriangle;
+            default:
             case 'circle': return d3Shape.symbolCircle;
+            case 'square': return d3Shape.symbolSquare;
             case 'cross': return d3Shape.symbolCross;
             case 'diamond': return d3Shape.symbolDiamond;
-            case 'square': return d3Shape.symbolSquare;
+            case 'triangle-up': return d3Shape.symbolTriangle;
+            case 'triangle-down': return d3Shape.symbolTriangle;
+            case 'triangle-left': return d3Shape.symbolTriangle;
+            case 'triangle-right': return d3Shape.symbolTriangle;
             case 'star': return d3Shape.symbolStar;
             case 'wye': return d3Shape.symbolWye;
           }
         }
         ))
-      .attr('transform', (d) => 'translate(' + xscale(d.x) + ',' + yscale(d.y) + ')')
+      .attr('transform', (d) => this.shapeTransform(d))
       .attr('fill', 'red')
+      .attr('stroke', 'black')
+      .attr('stroke-width', '0.5')
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     plots.exit().remove();
+  }
+
+  /**** This function applies a transform to the shape encoded on the data ****/
+  shapeTransform(d) {
+    switch (d.shape) {
+      default: return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ')';
+      case 'triangle-down': return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ') rotate(' + 180 + ')';
+      case 'triangle-left': return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ') rotate(' + (-90) + ')';
+      case 'triangle-right': return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ') rotate(' + 90 + ')';
+    }
   }
 
   /**** This function sets scales on x and y axes based on fields selected *****/

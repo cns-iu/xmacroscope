@@ -6,6 +6,10 @@ export interface ColorProp {
   color: string;
 }
 
+export interface SizeProp {
+  size: number;
+}
+
 export interface Mapping<T> {
   default: T;
   get(key: string): T;
@@ -15,7 +19,7 @@ export interface Mapping<T> {
 class MappingImpl<T> implements Mapping<T> {
   public readonly default: T;
 
-  constructor(private mapping: {[key: string]: T}, defaultValue: T | string) {
+  constructor(private mapping: { [key: string]: T }, defaultValue: T | string) {
     if (typeof defaultValue === 'string') {
       this.default = mapping[defaultValue];
     } else {
@@ -47,57 +51,67 @@ export const genderMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
     color: 'pink'
   },
   other: {
-    shape: 'circle',
+    shape: 'triangle-down',
     color: 'purple'
   }
 }, {
-  shape: 'circle',
-  color: 'black'
-});
+    shape: 'circle',
+    color: 'black'
+  });
 
 // Age group
 // TODO fix shape and color
-export const ageGroupMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
+export const ageGroupMapping: Mapping<ShapeProp & ColorProp & SizeProp> = new MappingImpl({
   '07-09': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 66
   },
   '10-12': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 77
   },
   '13-18': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 88
   },
   '19-30': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 99
   },
   '31-40': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 110
   },
   '41-50': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 121
   },
   '51-60': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 132
   },
   '61-70': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 143
   },
   '70+': {
     shape: 'circle',
-    color: 'black'
+    color: 'black',
+    size: 155
   }
 }, {
-  shape: 'circle',
-  color: 'black'
-});
+    shape: 'circle',
+    color: 'black',
+    size: 100
+  });
 
 // Handedness
 // TODO fix shape and color
@@ -111,17 +125,17 @@ export const handednessMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl
     color: 'brown'
   }
 }, {
-  shape: 'circle',
-  color: 'black'
-});
+    shape: 'circle',
+    color: 'black'
+  });
 
 // Athleticism
 export const athleticismMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   // TODO
 }, {
-  shape: 'circle',
-  color: 'black'
-});
+    shape: 'circle',
+    color: 'black'
+  });
 
 // Lane
 // TODO fix shapes
@@ -135,9 +149,9 @@ export const laneMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
     color: '#00ff00'
   }
 }, {
-  shape: 'circle',
-  color: 'black'
-});
+    shape: 'circle',
+    color: 'black'
+  });
 
 // False Start
 // TODO fix shapes
@@ -151,6 +165,6 @@ export const falseStartMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl
     color: 'green'
   }
 }, {
-  shape: 'circle',
-  color: 'black'
-});
+    shape: 'circle',
+    color: 'black'
+  });
