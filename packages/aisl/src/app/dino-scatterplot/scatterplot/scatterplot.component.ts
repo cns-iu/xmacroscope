@@ -18,7 +18,7 @@ import * as d3Array from 'd3-array';
 import { scaleLinear, scaleOrdinal, scalePow, scaleTime, scalePoint } from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 
-import { Changes, IField } from '../../dino-core';
+import { Changes, IField, StreamCache } from '../../dino-core';
 import { ScatterplotDataService } from '../shared/scatterplot-data.service';
 import { Point } from '../shared/point';
 
@@ -47,6 +47,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   // @Input() svgWidth = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
   // @Input() svgHeight: number = window.innerHeight - this.margin.top - this.margin.bottom - 200; // initializing height for map container
 
+  private streamCache: StreamCache<any>;
   private streamSubscription: Subscription;
   private parentNativeElement: any; // a native Element to access this component's selector for drawing the map
   svgContainer: d3Selection.Selection<d3Selection.BaseType, any, HTMLElement, undefined>;
@@ -74,16 +75,19 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.dataService.points.subscribe((data) => {
       this.data = this.data.filter((e: Point) => !data.remove
         .some((obj: Point) => obj.id === e.id)).concat(data.add);
+      console.log('update = ', data); // testing update changes
       this.setScales(this.data);
       this.drawPlots(this.data);
     });
-  }
 
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
       if (propName === 'dataStream' && this.dataStream) {
-        this.updateStreamProcessor();
+        this.data = [];
+        this.streamCache = new StreamCache<any>(this.pointIDField, this.dataStream);
+        this.updateStreamProcessor(false);
       } else if (propName === 'xField' && this.xField) {
         this.updateStreamProcessor();
       } else if (propName === 'yField' && this.yField) {
@@ -98,13 +102,15 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     }
   }
 
-  updateStreamProcessor() {
-    this.data = [];
-    if (this.dataStream && this.xField && this.yField) {
+  updateStreamProcessor(update = true) {
+    if (this.streamCache && this.xField && this.yField) {
       this.dataService.fetchData(
-        this.dataStream, this.pointIDField, this.xField, this.yField,
+        this.streamCache.asObservable(), this.pointIDField, this.xField, this.yField,
         this.colorField, this.shapeField, this.sizeField
       );
+    }
+    if (this.streamCache && update) {
+      this.streamCache.sendUpdate();
     }
     // this.updateAxisLabels();
   }
@@ -137,8 +143,8 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     // text label for the x axis
     this.containerMain.append('text')
       .attr('transform',
-      'translate(' + (this.svgWidth / 2) + ' ,' +
-      (this.svgHeight + this.margin.top + 20) + ')')
+        'translate(' + (this.svgWidth / 2) + ' ,' +
+        (this.svgHeight + this.margin.top + 20) + ')')
       .attr('id', 'xAxisLabel')
       .style('text-anchor', 'middle')
       .text(this.xAxisLabel);
@@ -178,7 +184,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
     this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
 
-    console.log('data = ', data);
+    // console.log('data = ', data);
     const plots = this.mainG.selectAll('.plots')
       .data(data, (d: Point) => d.id);
 
@@ -232,14 +238,14 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       case 'number':
         this.xScale = scaleLinear();
         this.xAxis = d3Axis.axisBottom(this.xScale);
-        this.xScale.domain([0, d3Array.max(this.data, (d) => <number>d.x)])
+        this.xScale.domain([0, d3Array.max(data, (d) => <number>d.x)])
           .range([0, this.svgWidth]);
         break;
 
       case 'string':
         this.xScale = scalePoint();
         this.xAxis = d3Axis.axisBottom(this.xScale);
-        this.xScale.domain(this.data.map(el => el.x))
+        this.xScale.domain(data.map(el => el.x))
           .range([0, this.svgWidth]);
         break;
     }
@@ -249,14 +255,14 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       case 'number':
         this.yScale = scaleLinear();
         this.yAxis = d3Axis.axisLeft(this.yScale);
-        this.yScale.domain([0, d3Array.max(this.data, (d) => <number>d.y)])
+        this.yScale.domain([0, d3Array.max(data, (d) => <number>d.y)])
           .range([this.svgHeight, 0]);
         break;
 
       case 'string':
         this.yScale = scalePoint();
         this.yAxis = d3Axis.axisLeft(this.yScale);
-        this.yScale.domain(this.data.map(el => el.y))
+        this.yScale.domain(data.map(el => el.y))
           .range([this.svgHeight, 0]);
         break;
 
