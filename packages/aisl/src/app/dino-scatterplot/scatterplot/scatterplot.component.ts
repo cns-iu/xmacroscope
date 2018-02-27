@@ -78,14 +78,12 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
       data.update.forEach((el) => {
         const index = this.data.findIndex((e) => e.id === el[1].id);
-        console.log('Before =', this.data[index]);
-        this.data[index] = Object.assign({}, <Point>el[1]);
-        console.log('After =', this.data[index]);
+        this.data[index] = Object.assign(this.data[index] || {}, <Point>el[1]);
       });
 
-      // console.log('data = ', data.update); // testing update changes
       this.setScales(this.data);
       this.drawPlots(this.data);
+      this.drawText(this.data, false);
     });
 
   }
@@ -120,7 +118,6 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     if (this.streamCache && update) {
       this.streamCache.sendUpdate();
     }
-    // this.updateAxisLabels();
   }
 
   updateAxisLabels() {
@@ -197,7 +194,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
     plots.transition().duration(500)
       .attr('d', d3Shape.symbol()
-        .size((d) => <number> 2 * d.size)
+        .size((d) => <number>2 * d.size)
         .type((d) => this.selectShape(d)))
       .attr('transform', (d) => this.shapeTransform(d))
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
@@ -206,7 +203,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .data(data)
       .attr('class', 'plots')
       .attr('d', d3Shape.symbol()
-        .size((d) => <number> 2 * d.size)
+        .size((d) => <number>2 * d.size)
         .type((d) => this.selectShape(d)))
       .attr('transform', (d) => this.shapeTransform(d))
       .attr('fill', 'red')
@@ -215,28 +212,32 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     plots.exit().remove();
+  }
+  /**** This function draws text next to each plot with info about it ****/
+  drawText(data: Point[], enabled = false) {
+    if (enabled) {
+      const labels = this.mainG.selectAll('.label')
+        .data(data, (d: Point) => d.id);
 
-    const labels = this.mainG.selectAll('.label')
-      .data(data, (d: Point) => d.id);
+      labels.transition().duration(500)
+        .attr('x', (d) => this.xScale(d.x) + 12)
+        .attr('y', (d) => this.yScale(d.y) + 14)
+        .text((d) => '(' + d.shape + ')')
+        .attr('font-size', '8px');
 
-    labels.transition().duration(500)
-    .attr('x', (d) => this.xScale(d.x) + 12)
-    .attr('y', (d) => this.yScale(d.y) + 14)
-    .text((d) => '(' + d.shape + ')')
-    .attr('font-size', '8px');
+      labels.enter().append('text')
+        .data(data)
+        .attr('class', 'label')
+        .attr('x', (d) => this.xScale(d.x) + 12)
+        .attr('y', (d) => this.yScale(d.y) + 14)
+        .text((d) => '(' + d.shape + ')')
+        .attr('font-size', '8px');
 
-    labels.enter().append('text')
-    .data(data)
-    .attr('class', 'label')
-    .attr('x', (d) => this.xScale(d.x) + 12)
-    .attr('y', (d) => this.yScale(d.y) + 14)
-    .text((d) => '(' + d.shape + ')')
-    .attr('font-size', '8px');
-
-    labels.exit().remove();
+      labels.exit().remove();
+    }
   }
 
- /**** This function draws the shape encoded on the data ****/
+  /**** This function draws the shape encoded on the data ****/
   selectShape(d) {
     switch (d.shape) {
       default:
