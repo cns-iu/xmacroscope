@@ -75,7 +75,15 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.dataService.points.subscribe((data) => {
       this.data = this.data.filter((e: Point) => !data.remove
         .some((obj: Point) => obj.id === e.id)).concat(data.add);
-      console.log('update = ', data); // testing update changes
+
+      data.update.forEach((el) => {
+        const index = this.data.findIndex((e) => e.id === el[1].id);
+        console.log('Before =', this.data[index]);
+        this.data[index] = Object.assign({}, <Point>el[1]);
+        console.log('After =', this.data[index]);
+      });
+
+      // console.log('data = ', data.update); // testing update changes
       this.setScales(this.data);
       this.drawPlots(this.data);
     });
@@ -184,34 +192,22 @@ export class ScatterplotComponent implements OnInit, OnChanges {
     this.xAxisGroup.transition().call(this.xAxis);  // Update X-Axis
     this.yAxisGroup.transition().call(this.yAxis);  // Update Y-Axis
 
-    // console.log('data = ', data);
     const plots = this.mainG.selectAll('.plots')
       .data(data, (d: Point) => d.id);
 
     plots.transition().duration(500)
-      .attr('transform', (d) => this.shapeTransform(d));
+      .attr('d', d3Shape.symbol()
+        .size((d) => <number> 2 * d.size)
+        .type((d) => this.selectShape(d)))
+      .attr('transform', (d) => this.shapeTransform(d))
+      .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     plots.enter().append('path')
       .data(data)
       .attr('class', 'plots')
       .attr('d', d3Shape.symbol()
-        .size((d) => <number>2 * d.size)
-        .type((d) => {
-          switch (d.shape) {
-            default:
-            case 'circle': return d3Shape.symbolCircle;
-            case 'square': return d3Shape.symbolSquare;
-            case 'cross': return d3Shape.symbolCross;
-            case 'diamond': return d3Shape.symbolDiamond;
-            case 'triangle-up': return d3Shape.symbolTriangle;
-            case 'triangle-down': return d3Shape.symbolTriangle;
-            case 'triangle-left': return d3Shape.symbolTriangle;
-            case 'triangle-right': return d3Shape.symbolTriangle;
-            case 'star': return d3Shape.symbolStar;
-            case 'wye': return d3Shape.symbolWye;
-          }
-        }
-        ))
+        .size((d) => <number> 2 * d.size)
+        .type((d) => this.selectShape(d)))
       .attr('transform', (d) => this.shapeTransform(d))
       .attr('fill', 'red')
       .attr('stroke', 'black')
@@ -219,6 +215,42 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     plots.exit().remove();
+
+    const labels = this.mainG.selectAll('.label')
+      .data(data, (d: Point) => d.id);
+
+    labels.transition().duration(500)
+    .attr('x', (d) => this.xScale(d.x) + 12)
+    .attr('y', (d) => this.yScale(d.y) + 14)
+    .text((d) => '(' + d.shape + ')')
+    .attr('font-size', '8px');
+
+    labels.enter().append('text')
+    .data(data)
+    .attr('class', 'label')
+    .attr('x', (d) => this.xScale(d.x) + 12)
+    .attr('y', (d) => this.yScale(d.y) + 14)
+    .text((d) => '(' + d.shape + ')')
+    .attr('font-size', '8px');
+
+    labels.exit().remove();
+  }
+
+ /**** This function draws the shape encoded on the data ****/
+  selectShape(d) {
+    switch (d.shape) {
+      default:
+      case 'circle': return d3Shape.symbolCircle;
+      case 'square': return d3Shape.symbolSquare;
+      case 'cross': return d3Shape.symbolCross;
+      case 'diamond': return d3Shape.symbolDiamond;
+      case 'triangle-up': return d3Shape.symbolTriangle;
+      case 'triangle-down': return d3Shape.symbolTriangle;
+      case 'triangle-left': return d3Shape.symbolTriangle;
+      case 'triangle-right': return d3Shape.symbolTriangle;
+      case 'star': return d3Shape.symbolStar;
+      case 'wye': return d3Shape.symbolWye;
+    }
   }
 
   /**** This function applies a transform to the shape encoded on the data ****/
