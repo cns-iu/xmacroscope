@@ -46,7 +46,6 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   // This is the better way, but is inconsistent with geomap
   // @Input() svgWidth = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
   // @Input() svgHeight: number = window.innerHeight - this.margin.top - this.margin.bottom - 200; // initializing height for map container
-
   private streamCache: StreamCache<any>;
   private streamSubscription: Subscription;
   private parentNativeElement: any; // a native Element to access this component's selector for drawing the map
@@ -90,19 +89,11 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
-      if (propName === 'dataStream' && this.dataStream) {
+      if (propName.endsWith('Stream') && this[propName]) {
         this.data = [];
         this.streamCache = new StreamCache<any>(this.pointIDField, this.dataStream);
         this.updateStreamProcessor(false);
-      } else if (propName === 'xField' && this.xField) {
-        this.updateStreamProcessor();
-      } else if (propName === 'yField' && this.yField) {
-        this.updateStreamProcessor();
-      } else if (propName === 'colorField' && this.colorField) {
-        this.updateStreamProcessor();
-      } else if (propName === 'shapeField' && this.shapeField) {
-        this.updateStreamProcessor();
-      } else if (propName === 'sizeField' && this.sizeField) {
+      } else if (propName.endsWith('Field') && this[propName]) {
         this.updateStreamProcessor();
       }
     }
