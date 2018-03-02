@@ -82,7 +82,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
       this.setScales(this.data);
       this.drawPlots(this.data);
-      this.drawText(this.data, false);
+      this.drawText(this.data);
     });
 
   }
