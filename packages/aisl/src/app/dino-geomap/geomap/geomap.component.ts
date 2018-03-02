@@ -12,25 +12,6 @@ import { GeomapDataService } from '../shared/geomap.dataservice';
 import * as us10m from '../shared/us-10m.json';
 import * as geomapSpec from '../shared/spec.json';
 
-// Computed fields
-const pointIdField = new Field<string>(
-  'id', 'Computed Point Id',
-  (data: Partial<any>): string => {
-    if (!data.persona.latitude || !data.persona.longitude) {
-      return null;
-    } else {
-      return data.persona.latitude + '+' + data.persona.longitude;
-    }
-  }, undefined, 'string'
-);
-
-const stateIdField = new Field<number>(
-  'id', 'State ANSI Id',
-  (data: Partial<any>): number => {
-    return data.persona.state ? lookupStateCode(data.persona.state) : 0;
-  }, undefined, 'number'
-);
-
 @Component({
   selector: 'dino-geomap',
   templateUrl: './geomap.component.html',
@@ -44,11 +25,13 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() stateColorField: IField<string>;
 
   @Input() pointDataStream: Observable<Changes>;
+  @Input() pointIdField: IField<string>;
   @Input() pointLatLongField: IField<[number, number]>;
   @Input() pointSizeField: IField<number>;
   @Input() pointColorField: IField<string>;
   @Input() pointShapeField: IField<string>;
 
+  private stateIdField: IField<number>;
   private nativeElement: any;
   private view: any = null;
   private statesSubscription: Subscription;
@@ -58,6 +41,13 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(element: ElementRef, private dataService: GeomapDataService) {
     this.nativeElement = element.nativeElement;
+    this.stateIdField = new Field<number>(
+      'id', 'State ANSI Id',
+      (data: Partial<any>): number => {
+        const state = this.stateField.get(data);
+        return state ? lookupStateCode(state) : 0;
+      }, undefined, 'number'
+    );
   }
 
   ngOnInit() {
@@ -67,8 +57,8 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes) {
     for (const propName in changes) {
       if (propName.endsWith('Stream') && this[propName]) {
-        this.stateStreamCache = new StreamCache<any>(stateIdField, this.stateDataStream);
-        this.pointStreamCache = new StreamCache<any>(pointIdField, this.pointDataStream);
+        this.stateStreamCache = new StreamCache<any>(this.stateIdField, this.stateDataStream);
+        this.pointStreamCache = new StreamCache<any>(this.pointIdField, this.pointDataStream);
         this.updateStreamProcessor();
       } else if (propName.endsWith('Field') && this[propName]) {
         if (propName.startsWith('point')) {
@@ -96,8 +86,8 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
         this.stateStreamCache.asObservable(),
         this.stateField,
         this.stateColorField,
-        stateIdField,
-        pointIdField,
+        this.stateIdField,
+        this.pointIdField,
         this.pointLatLongField,
         this.pointSizeField,
         this.pointColorField,

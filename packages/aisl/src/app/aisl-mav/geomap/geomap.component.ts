@@ -5,6 +5,7 @@ import { List } from 'immutable';
 import { IField, Changes } from '../../dino-core';
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
+  pointIdField,
   defaultStateFields, defaultPointPositionFields,
   defaultStateColorFields, defaultPointColorFields,
   defaultPointShapeFields, defaultPointSizeFields
@@ -25,6 +26,8 @@ export class GeomapComponent implements OnInit {
 
   stateColorField = defaultStateColorFields.default;
   stateColorFields = defaultStateColorFields;
+
+  pointIdField = pointIdField;
 
   pointPositionField = defaultPointPositionFields.default;
   pointPositionFields = defaultPointPositionFields;
