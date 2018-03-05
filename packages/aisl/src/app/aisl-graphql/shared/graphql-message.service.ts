@@ -74,6 +74,22 @@ const RACE_COMPLETED = gql`
   }
 `;
 
+const SEND_MESSAGE = gql`
+  mutation (
+    $type: String!
+    $timestamp: String!
+    $avatar: NewAvatar
+    $results: [NewRaceResult]
+  ) {
+    sendMessage(message: {
+      type: $type
+      timestamp: $timestamp,
+      avatar: $avatar,
+      results: $results
+    })
+  }
+`;
+
 @Injectable()
 export class GraphQLMessageService {
   runSelected: Observable<RunSelectedMessage>;
@@ -84,6 +100,22 @@ export class GraphQLMessageService {
     this.listenForRunSelected();
     this.listenForRaceInitiated();
     this.listenForRaceCompleted();
+  }
+
+  send(message: Message) {
+    const m: any = Object.assign({}, message, {
+      timestamp: moment(message.timestamp).format() // GraphQL timestamp is a String
+    });
+
+    this.apollo.mutate({
+      mutation: SEND_MESSAGE,
+      variables: {
+        type: m.type,
+        timestamp: m.timestamp,
+        avatar: m.avatar,
+        results: m.results
+      }
+    }).subscribe();
   }
 
   listenForRunSelected() {
