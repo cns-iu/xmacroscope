@@ -107,3 +107,16 @@ const sizeFields: IField<number>[] = [
 
 // Point size fields
 export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
+
+// Computed fields - not user facing.
+export const pointIdField = new Field<string>(
+  'id', 'Computed Point Id',
+  (data: Partial<any>): string => {
+    if (!data.persona.latitude || !data.persona.longitude) {
+      return null;
+    } else {
+      return data.persona.latitude + '+' + data.persona.longitude;
+    }
+  }, undefined, 'string'
+);
+

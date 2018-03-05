@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Changes, IField } from '../../dino-core';
+import { pointIdField } from '../../aisl-mav/shared/geomap-fields';
 
 @Component({
   selector: 'mav-geomap',
@@ -16,6 +17,7 @@ export class GeomapComponent implements OnInit {
   @Input() stateFields: IField<any>[];
   @Input() stateColorFields: IField<any>[];
 
+  @Input() pointIdField: IField<string>;
   @Input() pointDataStream: Observable<Changes>;
   @Input() pointPositionField: IField<[number, number]>;
   @Input() pointSizeField: IField<number>;

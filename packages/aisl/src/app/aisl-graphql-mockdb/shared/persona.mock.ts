@@ -2,6 +2,9 @@ import { Persona } from '../../aisl-backend';
 import * as casual from 'casual-browserify';
 import { randomInt, randFromList } from './random';
 
+const SHAPES: string[] = ['circle', 'square', 'cross', 'diamond',
+  'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star', 'wye'
+];
 const GENDERS: string[] = ['male', 'female', 'other'];
 const AGE_GROUPS: string[] = ['07-09', '10-12', '13-18', '19-30', '31-40', '41-50', '51-60', '61-70', '71+'];
 
@@ -30,7 +33,7 @@ export class GeneratedPersona implements Persona {
   constructor() {
     this.id = 'person' + casual.integer(1, 500);
     this.name = casual.first_name;
-    this.icon = casual.word;
+    this.icon = casual.random_element(SHAPES);
     this.color = casual.safe_color_name;
     this.gender = casual.random_element(GENDERS);
     this.age_group = casual.random_element(AGE_GROUPS);

@@ -78,7 +78,7 @@ export class FieldProcessor<T> {
     return changes.update.reduce((result, [key, upd]) => {
       const { isComplete, result: newKey } = this.mapItemOrDatumId(key);
       if (isComplete) {
-        const newUpdate = this.mapItem(upd);
+        const newUpdate = this.mapItem(upd).result;
         result.push([newKey, newUpdate]);
       }
 
