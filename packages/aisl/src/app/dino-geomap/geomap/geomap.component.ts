@@ -3,10 +3,11 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { vega, defaultLogLevel } from '../../vega';
-import { IField, Changes } from '../../dino-core';
+import { Changes, IField, Field, FieldProcessor, StreamCache } from '../../dino-core';
 import { makeChangeSet } from '../../dino-vega';
 import { State } from '../shared/state';
 import { Point } from '../shared/point';
+import { lookupStateCode } from '../shared/state-lookup';
 import { GeomapDataService } from '../shared/geomap.dataservice';
 import * as us10m from '../shared/us-10m.json';
 import * as geomapSpec from '../shared/spec.json';
@@ -17,36 +18,35 @@ import * as geomapSpec from '../shared/spec.json';
   styleUrls: ['./geomap.component.sass'],
   providers: [GeomapDataService]
 })
-export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
-  private nativeElement: any;
-  private view: any = null;
-  private statesSubscription: Subscription;
-  private pointSubscription: Subscription;
 
+export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() stateDataStream: Observable<Changes>;
   @Input() stateField: IField<string>;
   @Input() stateColorField: IField<string>;
 
   @Input() pointDataStream: Observable<Changes>;
+  @Input() pointIdField: IField<string>;
   @Input() pointLatLongField: IField<[number, number]>;
   @Input() pointSizeField: IField<number>;
   @Input() pointColorField: IField<string>;
   @Input() pointShapeField: IField<string>;
 
+  private stateIdField: IField<number>;
+  private nativeElement: any;
+  private view: any = null;
+  private statesSubscription: Subscription;
+  private pointSubscription: Subscription;
+  private pointStreamCache: StreamCache<any>;
+  private stateStreamCache: StreamCache<any>;
+
   constructor(element: ElementRef, private dataService: GeomapDataService) {
     this.nativeElement = element.nativeElement;
-  }
-
-  ngOnChanges(changes) {
-    this.dataService.initializeStates(
-      this.stateDataStream, this.stateField,
-      this.stateColorField
-    ).initializePoints(
-      this.pointDataStream,
-      this.pointLatLongField,
-      this.pointSizeField,
-      this.pointColorField,
-      this.pointShapeField
+    this.stateIdField = new Field<number>(
+      'id', 'State ANSI Id',
+      (data: Partial<any>): number => {
+        const state = this.stateField.get(data);
+        return state ? lookupStateCode(state) : 0;
+      }, undefined, 'number'
     );
   }
 
@@ -54,8 +54,53 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
     this.renderView(geomapSpec);
   }
 
+  ngOnChanges(changes) {
+    for (const propName in changes) {
+      if (propName.endsWith('Stream') && this[propName]) {
+        this.stateStreamCache = new StreamCache<any>(this.stateIdField, this.stateDataStream);
+        this.pointStreamCache = new StreamCache<any>(this.pointIdField, this.pointDataStream);
+        this.updateStreamProcessor();
+      } else if (propName.endsWith('Field') && this[propName]) {
+        if (propName.startsWith('point')) {
+          this.updateStreamProcessor('point');
+        } else {
+          this.updateStreamProcessor('state');
+        }
+      }
+    }
+  }
+
   ngOnDestroy() {
     this.finalizeView();
+  }
+
+  updateStreamProcessor(update: string = null) {
+    if (this.pointStreamCache
+      && this.stateStreamCache
+      && this.stateColorField
+      && this.pointColorField
+      && this.pointShapeField
+      && this.pointSizeField) {
+        this.dataService.fetchData(
+        this.pointStreamCache.asObservable(),
+        this.stateStreamCache.asObservable(),
+        this.stateField,
+        this.stateColorField,
+        this.stateIdField,
+        this.pointIdField,
+        this.pointLatLongField,
+        this.pointSizeField,
+        this.pointColorField,
+        this.pointShapeField
+      );
+    }
+    if (this.pointStreamCache && this.stateStreamCache && update) {
+      if (update === 'point') {
+        this.pointStreamCache.sendUpdate();
+      } else {
+        this.stateStreamCache.sendUpdate();
+      }
+    }
   }
 
   private renderView(spec: any) {
