@@ -43,7 +43,7 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
     this.nativeElement = element.nativeElement;
     this.stateIdField = new Field({
       name: 'id', label: 'State ANSI Id', datatype: 'number',
-      accessor: (data: Partial<any>): number => {
+      accessor: (data: any): number => {
         const state = this.stateField.get(data);
         return state ? lookupStateCode(state) : 0;
       }

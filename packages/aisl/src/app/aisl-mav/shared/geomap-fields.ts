@@ -133,7 +133,8 @@ const runtimeDiff = maxRuntime - minRuntime;
 const sizeFields: IField<number>[] = [
   new Field({name: 'fixed', label: 'Fixed Size', accessor: () => minArea}),
   new Field({
-    name: 'timeMillis', label: 'Run Time', accessor: (time: number): number => {
+    name: 'timeMillis', label: 'Run Time',
+    transform: (time: number): number => {
       const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
       const factor = (clampedTime - minRuntime) / runtimeDiff;
       const area = minArea + factor * areaDiff;
@@ -143,7 +144,7 @@ const sizeFields: IField<number>[] = [
   }),
   new Field<number>({
     name: 'avatar.runMillis', label: 'Avatar\'s Time',
-    datatype: 'number', accessor: (value: number) => value / 1000.0
+    datatype: 'number', transform: (value: number) => value / 1000.0
   }),
   new Field<number>({
     name: 'persona.age_group', label: 'Age Group',
