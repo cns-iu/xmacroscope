@@ -42,8 +42,12 @@ export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
 // TODO: Add tooltips?
 const tooltipFields: IField<string>[] = [
-  new Field<string>({name: 'persona.name', label: 'Name'}),
-  new Field<string>({name: 'avatar.name', label: 'Avatar'})
+  new Field<string>({
+    name: 'persona.name', label: 'Name', default: 'Unknown persona'
+  }),
+  new Field<string>({
+    name: 'avatar.name', label: 'Avatar', default: 'Unknown avatar'
+  })
 ];
 
 // TODO: Tooltip fields
@@ -51,30 +55,30 @@ export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
 
 // Color fields
 const colorFields: IField<string>[] = [
-  new Field({name: 'persona.color', label: 'Color'}),
+  new Field({name: 'persona.color', label: 'Color', default: '#696969'}),
   new Field({
-    name: 'persona.gender', label: 'Gender',
+    name: 'persona.gender', label: 'Gender', default: '#696969',
     transform: genderMapping.makeMapper('color')
   }),
   new Field({
-    name: 'persona.age_group', label: 'Age Group',
+    name: 'persona.age_group', label: 'Age Group', default: '#696969',
     transform: ageGroupMapping.makeMapper('color')
   }),
   new Field({
-    name: 'persona.handedness', label: 'Handedness',
+    name: 'persona.handedness', label: 'Handedness', default: '#696969',
     transform: handednessMapping.makeMapper('color')
   }),
   // Not available yet
   /*new Field({
     name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    transform: athleticismMapping.makeMapper('color')
+    default: '#696969', transform: athleticismMapping.makeMapper('color')
   }),*/
   new Field({
-    name: 'lane', label: 'Run Lane',
+    name: 'lane', label: 'Run Lane', default: '#696969',
     transform: laneMapping.makeMapper('color')
   }),
   new Field({
-    name: 'falseStart', label: 'False Start',
+    name: 'falseStart', label: 'False Start', default: '#696969',
     transform: falseStartMapping.makeMapper('color')
   })
 ];
@@ -133,7 +137,7 @@ const runtimeDiff = maxRuntime - minRuntime;
 const sizeFields: IField<number>[] = [
   new Field({name: 'fixed', label: 'Fixed Size', accessor: () => minArea}),
   new Field({
-    name: 'timeMillis', label: 'Run Time',
+    name: 'timeMillis', label: 'Run Time', default: minArea,
     transform: (time: number): number => {
       const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
       const factor = (clampedTime - minRuntime) / runtimeDiff;
@@ -143,11 +147,11 @@ const sizeFields: IField<number>[] = [
     }
   }),
   new Field<number>({
-    name: 'avatar.runMillis', label: 'Avatar\'s Time',
+    name: 'avatar.runMillis', label: 'Avatar\'s Time', default: minArea,
     datatype: 'number', transform: (value: number) => value / 1000.0
   }),
   new Field<number>({
-    name: 'persona.age_group', label: 'Age Group',
+    name: 'persona.age_group', label: 'Age Group', default: minArea,
     transform: ageGroupMapping.makeMapper('size')
   })
   // TODO

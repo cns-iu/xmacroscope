@@ -37,6 +37,13 @@ export class Field<T> implements IField<T> {
   get(item: any): T {
     item = item || {};
     const value = this.accessor ? this.accessor(item) : deepGet(item, this.name);
-    return value != null && this.transform ? this.transform(value) : (this.default || value);
+
+    if (value != null) {
+      return this.transform ? this.transform(value) : value;
+    } else if (this.default != null && this.transform) {
+      return this.transform(this.default);
+    } else {
+      return this.default != null ? this.default : value;
+    }
   }
 }
