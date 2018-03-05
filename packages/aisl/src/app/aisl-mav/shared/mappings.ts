@@ -64,52 +64,52 @@ export const genderMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
 export const ageGroupMapping: Mapping<ShapeProp & ColorProp & SizeProp> = new MappingImpl({
   '07-09': {
     shape: 'circle',
-    color: 'black',
+    color: '#7fc97f',
     size: 66
   },
   '10-12': {
     shape: 'circle',
-    color: 'black',
+    color: '#beaed4',
     size: 77
   },
   '13-18': {
     shape: 'circle',
-    color: 'black',
+    color: '#fdc086',
     size: 88
   },
   '19-30': {
     shape: 'circle',
-    color: 'black',
+    color: '#ffff99',
     size: 99
   },
   '31-40': {
     shape: 'circle',
-    color: 'black',
+    color: '#386cb0',
     size: 110
   },
   '41-50': {
     shape: 'circle',
-    color: 'black',
+    color: '#f0027f',
     size: 121
   },
   '51-60': {
     shape: 'circle',
-    color: 'black',
+    color: '#bf5b17',
     size: 132
   },
   '61-70': {
     shape: 'circle',
-    color: 'black',
+    color: '#666666',
     size: 143
   },
   '70+': {
     shape: 'circle',
-    color: 'black',
+    color: '#17becf',
     size: 155
   }
 }, {
     shape: 'circle',
-    color: 'black',
+    color: '#bcbd22',
     size: 100
   });
 
