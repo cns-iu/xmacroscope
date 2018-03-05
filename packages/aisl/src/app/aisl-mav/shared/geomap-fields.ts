@@ -42,8 +42,12 @@ export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
 // TODO: Add tooltips?
 const tooltipFields: IField<string>[] = [
-  new Field<string>({name: 'persona.name', label: 'Name'}),
-  new Field<string>({name: 'avatar.name', label: 'Avatar'})
+  new Field<string>({
+    name: 'persona.name', label: 'Name', default: 'Unknown persona'
+  }),
+  new Field<string>({
+    name: 'avatar.name', label: 'Avatar', default: 'Unknown avatar'
+  })
 ];
 
 // TODO: Tooltip fields
@@ -133,7 +137,7 @@ const runtimeDiff = maxRuntime - minRuntime;
 const sizeFields: IField<number>[] = [
   new Field({name: 'fixed', label: 'Fixed Size', accessor: () => minArea}),
   new Field({
-    name: 'timeMillis', label: 'Run Time',
+    name: 'timeMillis', label: 'Run Time', default: minArea,
     transform: (time: number): number => {
       const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
       const factor = (clampedTime - minRuntime) / runtimeDiff;
@@ -143,11 +147,11 @@ const sizeFields: IField<number>[] = [
     }
   }),
   new Field<number>({
-    name: 'avatar.runMillis', label: 'Avatar\'s Time',
+    name: 'avatar.runMillis', label: 'Avatar\'s Time', default: minArea,
     datatype: 'number', transform: (value: number) => value / 1000.0
   }),
   new Field<number>({
-    name: 'persona.age_group', label: 'Age Group',
+    name: 'persona.age_group', label: 'Age Group', default: minArea,
     transform: ageGroupMapping.makeMapper('size')
   })
   // TODO
