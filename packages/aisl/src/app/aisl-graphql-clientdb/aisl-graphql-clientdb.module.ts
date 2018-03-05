@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import { link } from './shared/client-link';
+import { link } from './graphql/client-link';
 
 const dataIdFromObject = result => result.id;
 const cache = new InMemoryCache({ dataIdFromObject });

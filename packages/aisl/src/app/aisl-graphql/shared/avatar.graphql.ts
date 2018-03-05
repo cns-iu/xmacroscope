@@ -6,6 +6,7 @@ type Avatar {
 }
 
 input NewAvatar {
+  id: ID
   name: String
   runMillis: Int
 }

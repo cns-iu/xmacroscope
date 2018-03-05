@@ -25,6 +25,7 @@ type Persona {
 }
 
 input NewPersona {
+  id: ID
   name: String
   icon: String
   color: String
