@@ -25,22 +25,25 @@ function makeFieldList<T>(fields: IField<T>[], defaultIndex: number = 0): FieldL
 
 // State fields
 const stateFields: IField<string>[] = [
-  new Field('persona.state', 'Runner\'s State')
+  new Field({name: 'persona.state', label: 'Runner\'s State'})
 ];
 
 export const defaultStateFields = makeFieldList(stateFields);
 
 // Point position fields
 const pointPositionFields: IField<[number, number]>[] = [
-  new Field('position', 'Point Position', ({ persona: { latitude, longitude } }) => [latitude, longitude])
+  new Field({
+    name: 'position', label: 'Point Position',
+    accessor: ({ persona: { latitude, longitude } }) => [latitude, longitude]
+  })
 ];
 
 export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
 // TODO: Add tooltips?
 const tooltipFields: IField<string>[] = [
-  new Field<string>('persona.name', 'Name', undefined, undefined, 'string'),
-  new Field<string>('avatar.name', 'Avatar', undefined, undefined, 'string')
+  new Field<string>({name: 'persona.name', label: 'Name'}),
+  new Field<string>({name: 'avatar.name', label: 'Avatar'})
 ];
 
 // TODO: Tooltip fields
@@ -48,14 +51,32 @@ export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
 
 // Color fields
 const colorFields: IField<string>[] = [
-  new Field('persona.color', 'Color'),
-  new Field('persona.gender', 'Gender', undefined, genderMapping.makeMapper('color')),
-  new Field('persona.age_group', 'Age Group', undefined, ageGroupMapping.makeMapper('color')),
-  new Field('persona.handedness', 'Handedness', undefined, handednessMapping.makeMapper('color')),
+  new Field({name: 'persona.color', label: 'Color'}),
+  new Field({
+    name: 'persona.gender', label: 'Gender',
+    transform: genderMapping.makeMapper('color')
+  }),
+  new Field({
+    name: 'persona.age_group', label: 'Age Group',
+    transform: ageGroupMapping.makeMapper('color')
+  }),
+  new Field({
+    name: 'persona.handedness', label: 'Handedness',
+    transform: handednessMapping.makeMapper('color')
+  }),
   // Not available yet
-  /*new Field('persona.athleticism', 'Runner\'s Athleticism', undefined, athleticismMapping.makeMapper('color')),*/
-  new Field('lane', 'Run Lane', undefined, laneMapping.makeMapper('color')),
-  new Field('falseStart', 'False Start', undefined, falseStartMapping.makeMapper('color'))
+  /*new Field({
+    name: 'persona.athleticism', label: 'Runner\'s Athleticism',
+    transform: athleticismMapping.makeMapper('color')
+  }),*/
+  new Field({
+    name: 'lane', label: 'Run Lane',
+    transform: laneMapping.makeMapper('color')
+  }),
+  new Field({
+    name: 'falseStart', label: 'False Start',
+    transform: falseStartMapping.makeMapper('color')
+  })
 ];
 
 // State color fields
@@ -66,14 +87,34 @@ export const defaultPointColorFields = makeFieldList(colorFields, 1);
 
 // Shape fields
 const shapeFields: IField<string>[] = [
-  new Field('fixed', 'Fixed Shape', () => 'circle'),
-  new Field('persona.gender', 'Gender', undefined, genderMapping.makeMapper('shape')),
-  new Field('persona.age_group', 'Age Group', undefined, ageGroupMapping.makeMapper('shape')),
-  new Field('persona.handedness', 'Handedness', undefined, handednessMapping.makeMapper('shape')),
+  new Field({
+    name: 'fixed', label: 'Fixed Shape', accessor: () => 'circle'
+  }),
+  new Field({
+    name: 'persona.gender', label: 'Gender',
+    transform: genderMapping.makeMapper('shape')
+  }),
+  new Field({
+    name: 'persona.age_group', label: 'Age Group',
+    transform: ageGroupMapping.makeMapper('shape')
+  }),
+  new Field({
+    name: 'persona.handedness', label: 'Handedness',
+    transform: handednessMapping.makeMapper('shape')
+  }),
   // Not available yet
-  /*new Field('persona.athleticism', 'Runner\'s Athleticism', undefined, athleticismMapping.makeMapper('shape')),*/
-  new Field('lane', 'Run Lane', undefined, laneMapping.makeMapper('shape')),
-  new Field('falseStart', 'False Start', undefined, falseStartMapping.makeMapper('shape'))
+  /*new Field({
+    name: 'persona.athleticism', label: 'Runner\'s Athleticism',
+    transform: athleticismMapping.makeMapper('shape')
+  }),*/
+  new Field({
+    name: 'lane', label: 'Run Lane',
+    transform: laneMapping.makeMapper('shape')
+  }),
+  new Field({
+    name: 'falseStart', label: 'False Start',
+    transform: falseStartMapping.makeMapper('shape')
+  })
   // TODO
 ];
 
@@ -90,18 +131,24 @@ const maxRuntime = 10000;
 const runtimeDiff = maxRuntime - minRuntime;
 
 const sizeFields: IField<number>[] = [
-  new Field('fixed', 'Fixed Size', () => minArea),
-  new Field('timeMillis', 'Run Time', undefined, (time: number): number => {
-    const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
-    const factor = (clampedTime - minRuntime) / runtimeDiff;
-    const area = minArea + factor * areaDiff;
+  new Field({name: 'fixed', label: 'Fixed Size', accessor: () => minArea}),
+  new Field({
+    name: 'timeMillis', label: 'Run Time', accessor: (time: number): number => {
+      const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
+      const factor = (clampedTime - minRuntime) / runtimeDiff;
+      const area = minArea + factor * areaDiff;
 
-    return area;
+      return area;
+    }
   }),
-  new Field<number>('avatar.runMillis', 'Avatar\'s Time', undefined,
-    (value: number) => value / 1000.0, 'number'),
-  new Field<number>('persona.age_group', 'Age Group', undefined,
-    ageGroupMapping.makeMapper('size'))
+  new Field<number>({
+    name: 'avatar.runMillis', label: 'Avatar\'s Time',
+    datatype: 'number', accessor: (value: number) => value / 1000.0
+  }),
+  new Field<number>({
+    name: 'persona.age_group', label: 'Age Group',
+    transform: ageGroupMapping.makeMapper('size')
+  })
   // TODO
 ];
 
@@ -109,14 +156,13 @@ const sizeFields: IField<number>[] = [
 export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
 
 // Computed fields - not user facing.
-export const pointIdField = new Field<string>(
-  'id', 'Computed Point Id',
-  (data: Partial<any>): string => {
+export const pointIdField = new Field<string>({
+  name: 'id', label: 'Computed Point Id',
+  accessor: (data: Partial<any>): string => {
     if (!data.persona.latitude || !data.persona.longitude) {
       return null;
     } else {
       return data.persona.latitude + '+' + data.persona.longitude;
     }
-  }, undefined, 'string'
-);
-
+  }
+});

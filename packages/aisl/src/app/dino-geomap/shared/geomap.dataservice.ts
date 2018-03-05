@@ -9,33 +9,41 @@ import { Point } from './point';
 import { lookupStateCode } from './state-lookup';
 
 // Field defaults
-const defaultStateField = new Field<string>('state', 'State');
-const defaultStateColorField = new Field<string>('color', 'State Coloring');
+const defaultStateField = new Field<string>({name: 'state', label: 'State'});
+const defaultStateColorField = new Field<string>({
+  name: 'color', label: 'State Coloring'
+});
 
-const defaultPointLatLongField = new Field<[number, number]>(
-  'lat_long', 'Latitude,Longitude',
-  (data: any): [number, number] => {
+const defaultPointLatLongField = new Field<[number, number]>({
+  name: 'lat_long', label: 'Latitude,Longitude', datatype: 'number',
+  accessor: (data: any): [number, number] => {
     const { latitude = 0, longitude = 0 } = data;
     return [latitude, longitude];
-  }, undefined, 'number'
-);
-const defaultPointSizeField = new Field<number>('size', 'Point Size');
-const defaultPointColorField = new Field<string>('color', 'Point Color');
-const defaultPointShapeField = new Field<string>('shape', 'Point Shape');
+  }
+});
+const defaultPointSizeField = new Field<number>({
+  name: 'size', label: 'Point Size'
+});
+const defaultPointColorField = new Field<string>({
+  name: 'color', label: 'Point Color'
+});
+const defaultPointShapeField = new Field<string>({
+  name: 'shape', label: 'Point Shape'
+});
 
-const computedPointLatitudeField = new Field<number>(
-  'latitude', 'Computed Point Latitude',
-  (data: Partial<Point>): number => {
+const computedPointLatitudeField = new Field<number>({
+  name: 'latitude', label: 'Computed Point Latitude', datatype: 'number',
+  accessor: (data: Partial<Point>): number => {
     return data.lat_long[0];
-  }, undefined, 'number'
-);
+  }
+});
 
-const computedPointLongitudeField = new Field<number>(
-  'longitude', 'Computed Point Longitude',
-  (data: Partial<Point>): number => {
+const computedPointLongitudeField = new Field<number>({
+  name: 'longitude', label: 'Computed Point Longitude', datatype: 'number',
+  accessor: (data: Partial<Point>): number => {
     return data.lat_long[1];
-  }, undefined, 'number'
-);
+  }
+});
 
 
 @Injectable()
