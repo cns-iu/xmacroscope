@@ -47,30 +47,32 @@ export const defaultYField = positionFields[3];
 
 // Color fields
 const colorFields: IField<string>[] = [
-  new Field({name: 'persona.color', label: 'Color'}),
   new Field({
-    name: 'persona.gender', label: 'Gender',
+    name: 'persona.color', label: 'Color', default: '#696969'
+  }),
+  new Field({
+    name: 'persona.gender', label: 'Gender', default: '#696969',
     transform: genderMapping.makeMapper('color')
   }),
   new Field({
-    name: 'persona.age_group', label: 'Age Group',
+    name: 'persona.age_group', label: 'Age Group', default: '#696969',
     transform: ageGroupMapping.makeMapper('color')
   }),
   new Field({
-    name: 'persona.handedness', label: 'Handedness',
+    name: 'persona.handedness', label: 'Handedness', default: '#696969',
     transform: handednessMapping.makeMapper('color')
   }),
   // Not available yet
   /*new Field({
     name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    transform: athleticismMapping.makeMapper('color')
+    default: '#696969', transform: athleticismMapping.makeMapper('color')
   }),*/
   new Field({
-    name: 'lane', label: 'Run Lane',
+    name: 'lane', label: 'Run Lane', default: '#696969',
     transform: laneMapping.makeMapper('color')
   }),
   new Field({
-    name: 'falseStart', label: 'False Start',
+    name: 'falseStart', label: 'False Start', default: '#696969',
     transform: falseStartMapping.makeMapper('color')
   })
 ];
@@ -81,31 +83,31 @@ export const defaultPointColorFields = makeFieldList(colorFields, 1);
 // Shape fields
 const shapeFields: IField<string>[] = [
   new Field({
-    name: 'fixed', label: 'Fixed Shape', accessor: () => 'circle'
+    name: 'fixed', label: 'Fixed Shape', accessor: () => 'square'
   }),
   new Field({
-    name: 'persona.gender', label: 'Gender',
+    name: 'persona.gender', label: 'Gender', default: 'circle',
     transform: genderMapping.makeMapper('shape')
   }),
   new Field({
-    name: 'persona.age_group', label: 'Age Group',
+    name: 'persona.age_group', label: 'Age Group', default: 'circle',
     transform: ageGroupMapping.makeMapper('shape')
   }),
   new Field({
-    name: 'persona.handedness', label: 'Handedness',
+    name: 'persona.handedness', label: 'Handedness', default: 'circle',
     transform: handednessMapping.makeMapper('shape')
   }),
   // Not available yet
   /*new Field({
     name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    transform: athleticismMapping.makeMapper('shape')
+    default: 'circle', transform: athleticismMapping.makeMapper('shape')
   }),*/
   new Field({
-    name: 'lane', label: 'Run Lane',
+    name: 'lane', label: 'Run Lane', default: 'circle',
     transform: laneMapping.makeMapper('shape')
   }),
   new Field({
-    name: 'falseStart', label: 'False Start',
+    name: 'falseStart', label: 'False Start', default: 'circle',
     transform: falseStartMapping.makeMapper('shape')
   })
   // TODO
@@ -118,7 +120,7 @@ export const defaultPointShapeFields = makeFieldList(shapeFields, 3);
 const sizeFields: IField<number>[] = [
   new Field({name: 'fixed', label: 'Fixed Size', accessor: () => 100}),
   new Field({
-    name: 'persona.age_group', label: 'Age Group',
+    name: 'persona.age_group', label: 'Age Group', default: 100,
     transform: ageGroupMapping.makeMapper('size')
   })
 ];

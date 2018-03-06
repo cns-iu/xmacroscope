@@ -40,7 +40,6 @@ class MappingImpl<T> implements Mapping<T> {
 }
 
 // Gender
-// TODO fix shape
 export const genderMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   male: {
     shape: 'square',
@@ -114,7 +113,6 @@ export const ageGroupMapping: Mapping<ShapeProp & ColorProp & SizeProp> = new Ma
   });
 
 // Handedness
-// TODO fix shape and color
 export const handednessMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   right: {
     shape: 'triangle-right',
@@ -138,7 +136,6 @@ export const athleticismMapping: Mapping<ShapeProp & ColorProp> = new MappingImp
   });
 
 // Lane
-// TODO fix shapes
 export const laneMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   '1': {
     shape: 'triangle-up',
@@ -154,14 +151,13 @@ export const laneMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   });
 
 // False Start
-// TODO fix shapes
 export const falseStartMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl({
   'true': {
     shape: 'cross',
     color: 'red'
   },
   'false': {
-    shape: 'circle',
+    shape: 'square',
     color: 'green'
   }
 }, {
