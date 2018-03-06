@@ -13,6 +13,8 @@ import { FieldDropzonesComponent } from './field-dropzones/field-dropzones.compo
 
 import { DragDropService, DraggableDirective, DroppableDirective } from './drag-drop';
 
+import { FieldHoverService } from './shared/field-hover.service';
+
 const components: any[] = [
   GeomapComponent,
   ScatterplotComponent,
@@ -34,7 +36,7 @@ const components: any[] = [
   ],
   exports: components,
   providers: [
-    DragDropService
+    DragDropService, FieldHoverService
   ],
   declarations: components
 })
