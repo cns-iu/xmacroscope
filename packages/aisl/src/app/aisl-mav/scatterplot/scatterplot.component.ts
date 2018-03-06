@@ -4,12 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 import { IField, Field, Changes } from '../../dino-core';
 import {
+  defaultPointColorFields, defaultPointShapeFields
+} from '../shared/common-fields';
+import {
   pointIDField,
   defaultPointPositionFields,
-  defaultXField,
-  defaultYField,
-  defaultPointColorFields,
-  defaultPointShapeFields,
+  defaultXField, defaultYField,
   defaultPointSizeFields
 } from '../shared/scatterplot-fields';
 

@@ -6,9 +6,10 @@ import { List } from 'immutable';
 import { IField, Changes } from '../../dino-core';
 import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
 import {
+  defaultPointColorFields, defaultPointShapeFields
+} from './common-fields';
+import {
   defaultPointPositionFields,
-  defaultPointColorFields,
-  defaultPointShapeFields,
   defaultPointSizeFields
 } from './scatterplot-fields';
 
