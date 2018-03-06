@@ -5,10 +5,12 @@ import { List } from 'immutable';
 import { IField, Changes } from '../../dino-core';
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
-  pointIdField,
-  defaultStateFields, defaultPointPositionFields,
   defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, defaultPointSizeFields
+  defaultPointShapeFields
+} from '../shared/common-fields';
+import {
+  pointIdField,
+  defaultStateFields, defaultPointPositionFields, defaultPointSizeFields
 } from '../shared/geomap-fields';
 
 @Component({

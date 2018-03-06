@@ -3,25 +3,7 @@ import {
   genderMapping, ageGroupMapping, handednessMapping,
   athleticismMapping, laneMapping, falseStartMapping
 } from './mappings';
-
-export interface FieldList<T> {
-  default: IField<T>;
-  [index: number]: IField<T>;
-}
-
-function makeFieldList<T>(fields: IField<T>[], defaultIndex: number = 0): FieldList<T> {
-  // This should be a class but for some reason extending array did not work properly
-  const result: FieldList<T> = fields.slice() as any;
-  Object.defineProperties(result, {
-    default: {
-      get() {
-        return this[defaultIndex];
-      }
-    }
-  });
-
-  return result;
-}
+import { makeFieldList } from './common-fields';
 
 // State fields
 const stateFields: IField<string>[] = [
@@ -34,13 +16,15 @@ export const defaultStateFields = makeFieldList(stateFields);
 const pointPositionFields: IField<[number, number]>[] = [
   new Field({
     name: 'position', label: 'Point Position',
-    accessor: ({ persona: { latitude, longitude } }) => [latitude, longitude]
+    accessor: ({ persona: { latitude = 0, longitude = 0 } = {} }) => {
+      return [latitude, longitude];
+    }
   })
 ];
 
 export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
-// TODO: Add tooltips?
+// Tooltip fields
 const tooltipFields: IField<string>[] = [
   new Field<string>({
     name: 'persona.name', label: 'Name', default: 'Unknown persona'
@@ -50,80 +34,9 @@ const tooltipFields: IField<string>[] = [
   })
 ];
 
-// TODO: Tooltip fields
+// Tooltip fields
 export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
 
-// Color fields
-const colorFields: IField<string>[] = [
-  new Field({name: 'persona.color', label: 'Color', default: '#696969'}),
-  new Field({
-    name: 'persona.gender', label: 'Gender', default: '#696969',
-    transform: genderMapping.makeMapper('color')
-  }),
-  new Field({
-    name: 'persona.age_group', label: 'Age Group', default: '#696969',
-    transform: ageGroupMapping.makeMapper('color')
-  }),
-  new Field({
-    name: 'persona.handedness', label: 'Handedness', default: '#696969',
-    transform: handednessMapping.makeMapper('color')
-  }),
-  // Not available yet
-  /*new Field({
-    name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    default: '#696969', transform: athleticismMapping.makeMapper('color')
-  }),*/
-  new Field({
-    name: 'lane', label: 'Run Lane', default: '#696969',
-    transform: laneMapping.makeMapper('color')
-  }),
-  new Field({
-    name: 'falseStart', label: 'False Start', default: '#696969',
-    transform: falseStartMapping.makeMapper('color')
-  })
-];
-
-// State color fields
-export const defaultStateColorFields = makeFieldList(colorFields, 0);
-
-// Point color fields
-export const defaultPointColorFields = makeFieldList(colorFields, 1);
-
-// Shape fields
-const shapeFields: IField<string>[] = [
-  new Field({
-    name: 'fixed', label: 'Fixed Shape', accessor: () => 'circle'
-  }),
-  new Field({
-    name: 'persona.gender', label: 'Gender',
-    transform: genderMapping.makeMapper('shape')
-  }),
-  new Field({
-    name: 'persona.age_group', label: 'Age Group',
-    transform: ageGroupMapping.makeMapper('shape')
-  }),
-  new Field({
-    name: 'persona.handedness', label: 'Handedness',
-    transform: handednessMapping.makeMapper('shape')
-  }),
-  // Not available yet
-  /*new Field({
-    name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    transform: athleticismMapping.makeMapper('shape')
-  }),*/
-  new Field({
-    name: 'lane', label: 'Run Lane',
-    transform: laneMapping.makeMapper('shape')
-  }),
-  new Field({
-    name: 'falseStart', label: 'False Start',
-    transform: falseStartMapping.makeMapper('shape')
-  })
-  // TODO
-];
-
-// Point shape fields
-export const defaultPointShapeFields = makeFieldList(shapeFields, 3);
 
 // Size fields
 const minArea = Math.pow(5, 2) * Math.PI;
@@ -154,7 +67,6 @@ const sizeFields: IField<number>[] = [
     name: 'persona.age_group', label: 'Age Group', default: minArea,
     transform: ageGroupMapping.makeMapper('size')
   })
-  // TODO
 ];
 
 // Point size fields
@@ -164,7 +76,7 @@ export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
 export const pointIdField = new Field<string>({
   name: 'id', label: 'Computed Point Id',
   accessor: (data: Partial<any>): string => {
-    if (!data.persona.latitude || !data.persona.longitude) {
+    if (!data.persona || !data.persona.latitude || !data.persona.longitude) {
       return null;
     } else {
       return data.persona.latitude + '+' + data.persona.longitude;

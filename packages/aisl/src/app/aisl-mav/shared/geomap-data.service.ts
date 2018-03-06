@@ -7,8 +7,10 @@ import { IField, Changes } from '../../dino-core';
 import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
 import {
   defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, defaultPointSizeFields,
-  defaultTooltipFields
+  defaultPointShapeFields
+} from './common-fields';
+import {
+  defaultPointSizeFields, defaultTooltipFields
 } from './geomap-fields';
 import { ChangeTracker } from './change-tracker';
 
