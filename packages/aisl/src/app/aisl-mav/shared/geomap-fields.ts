@@ -10,7 +10,9 @@ export interface FieldList<T> {
 }
 
 function makeFieldList<T>(fields: IField<T>[], defaultIndex: number = 0): FieldList<T> {
-  // This should be a class but for some reason extending array did not work properly
+  // This should be a class but typescript can not transpile super calls to
+  // builtins correctly. Therefore we cannot extend Array. See:
+  // https://github.com/Microsoft/TypeScript/wiki/FAQ#why-doesnt-extending-built-ins-like-error-array-and-map-work
   const result: FieldList<T> = fields.slice() as any;
   Object.defineProperties(result, {
     default: {
@@ -34,13 +36,15 @@ export const defaultStateFields = makeFieldList(stateFields);
 const pointPositionFields: IField<[number, number]>[] = [
   new Field({
     name: 'position', label: 'Point Position',
-    accessor: ({ persona: { latitude, longitude } }) => [latitude, longitude]
+    accessor: ({ persona: { latitude = 0, longitude = 0 } = {} }) => {
+      return [latitude, longitude];
+    }
   })
 ];
 
 export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
-// TODO: Add tooltips?
+// Tooltip fields
 const tooltipFields: IField<string>[] = [
   new Field<string>({
     name: 'persona.name', label: 'Name', default: 'Unknown persona'
@@ -50,7 +54,7 @@ const tooltipFields: IField<string>[] = [
   })
 ];
 
-// TODO: Tooltip fields
+// Tooltip fields
 export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
 
 // Color fields
@@ -119,7 +123,6 @@ const shapeFields: IField<string>[] = [
     name: 'falseStart', label: 'False Start', default: 'circle',
     transform: falseStartMapping.makeMapper('shape')
   })
-  // TODO
 ];
 
 // Point shape fields
@@ -154,7 +157,6 @@ const sizeFields: IField<number>[] = [
     name: 'persona.age_group', label: 'Age Group', default: minArea,
     transform: ageGroupMapping.makeMapper('size')
   })
-  // TODO
 ];
 
 // Point size fields
@@ -164,7 +166,7 @@ export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
 export const pointIdField = new Field<string>({
   name: 'id', label: 'Computed Point Id',
   accessor: (data: Partial<any>): string => {
-    if (!data.persona.latitude || !data.persona.longitude) {
+    if (!data.persona || !data.persona.latitude || !data.persona.longitude) {
       return null;
     } else {
       return data.persona.latitude + '+' + data.persona.longitude;

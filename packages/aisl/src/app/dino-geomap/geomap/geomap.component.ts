@@ -45,7 +45,7 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
       name: 'id', label: 'State ANSI Id', datatype: 'number',
       accessor: (data: any): number => {
         const state = this.stateField.get(data);
-        return state ? lookupStateCode(state) : 0;
+        return state ? lookupStateCode(state) : -1;
       }
     });
   }
