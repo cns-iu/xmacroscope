@@ -42,8 +42,8 @@ export class GeomapDataService {
   readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
-    this.stateDataStream = new ChangeTracker(messageService.asObservable(), 200).asObservable();
+    this.stateDataStream = new ChangeTracker(messageService.asObservable(), 200, 400).asObservable();
 
-    this.pointDataStream = new ChangeTracker(messageService.asObservable(), 200).asObservable();
+    this.pointDataStream = new ChangeTracker(messageService.asObservable(), 200, 400).asObservable();
   }
 }

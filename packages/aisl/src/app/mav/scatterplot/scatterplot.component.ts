@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { IField, Changes } from '../../dino-core';
+import { showPersonaField } from '../../aisl-mav/shared/scatterplot-fields';
 
 @Component({
   selector: 'mav-scatterplot',
@@ -10,6 +11,7 @@ import { IField, Changes } from '../../dino-core';
 })
 export class ScatterplotComponent implements OnInit {
   @Input() pointIDField: IField<string>; // not user facing
+  @Input() showPersonaField: IField<boolean>; // not user facing
   @Input() xFields: IField<any>[];
   @Input() yFields: IField<any>[];
   @Input() colorFields: IField<string>[];
