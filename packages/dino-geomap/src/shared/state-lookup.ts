@@ -1,4 +1,4 @@
-import * as stateMappingData from './state-mapping.json';
+const stateMappingData: any = require('./state-mapping.json');
 
 // Tables
 const stateByName = ((stateMappingData as any) as any[]).reduce((result, state) => {
