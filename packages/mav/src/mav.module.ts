@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTabsModule, MatSidenavModule } from '@angular/material';
 
-import { DinoGeomapModule } from '../dino-geomap';
-import { DinoScatterplotModule } from '../dino-scatterplot';
+import { DinoGeomapModule } from '@ngx-dino/geomap';
+import { DinoScatterplotModule } from '@ngx-dino/scatterplot';
 
 import { GeomapComponent } from './geomap/geomap.component';
 import { ScatterplotComponent } from './scatterplot/scatterplot.component';

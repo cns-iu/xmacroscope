@@ -46,6 +46,7 @@
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.18.0",
     "immutable": "^3.8.2",
+    "make-a-vis": "^0.0.0",
     "moment": "^2.20.0",
     "moment-duration-format": "^2.0.1",
     "@ngx-dino/core": "^0.0.0",
