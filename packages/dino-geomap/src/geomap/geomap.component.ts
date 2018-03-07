@@ -9,8 +9,9 @@ import { State } from '../shared/state';
 import { Point } from '../shared/point';
 import { lookupStateCode } from '../shared/state-lookup';
 import { GeomapDataService } from '../shared/geomap.dataservice';
-import * as us10m from '../shared/us-10m.json';
-import * as geomapSpec from '../shared/spec.json';
+
+const us10m: any = require('../shared/us-10m.json');
+const geomapSpec: any = require('../shared/spec.json');
 
 @Component({
   selector: 'dino-geomap',
