@@ -9,7 +9,8 @@ export class ChangeTracker {
 
     constructor(
         private readonly stream: Observable<Message>,
-        public readonly count: number) {
+        public readonly count: number,
+        private readonly highlightCount: number) {
         this.mappedStream = stream.filter((message: Message) => {
             return message instanceof RaceCompletedMessage;
         }).scan((self: ChangeTracker, message: RaceCompletedMessage) => {
@@ -30,6 +31,7 @@ export class ChangeTracker {
         message.results.forEach((r) => {
             r['avatar'] = message.avatar;
             r['raceTimestamp'] = message.timestamp.getTime();
+            r['showPersona'] = true; // set showPersona to true for every incoming race entry.
         });
 
         if (currentCount === maxCount) {
@@ -42,11 +44,29 @@ export class ChangeTracker {
     private convertMessagesToChanges(): Changes {
         const currentCount = this.accumulator.size;
         let removed: RaceResult[] = [];
+        const updated: [string | number | RaceResult, Partial<RaceResult>][] = [];
 
         if (currentCount > this.count) {
             removed = this.accumulator.first().results;
         }
 
-        return new Changes(this.accumulator.last().results, removed);
+        const index = this.accumulator.findIndex(function (m) {
+            return m.results[0]['showPersona'] === true; // find first element from the beginning which has showPersona set to true.
+        });
+
+       // update the entry at the found index, if the index is less than the last highlightCount number of indices.
+        if (index === this.accumulator.size - this.highlightCount - 1) {
+            this.accumulator = this.accumulator.update(
+                index, function (item) {
+                    item.results.map((r) => {
+                        r['showPersona'] = false;
+                        updated.push([r, r]);
+                    });
+                    return item;
+                }
+            );
+        }
+
+        return new Changes(this.accumulator.last().results, removed, updated);
     }
 }

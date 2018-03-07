@@ -43,6 +43,6 @@ export class ScatterPlotDataService {
   readonly fields: IField<any>[] = defaultFields;
 
   constructor(private messageService: MessageService) {
-    this.dataStream = new ChangeTracker(messageService.asObservable(), 200).asObservable();
+    this.dataStream = new ChangeTracker(messageService.asObservable(), 200, 4).asObservable();
   }
 }

@@ -30,6 +30,7 @@ import { Point } from '../shared/point';
 })
 export class ScatterplotComponent implements OnInit, OnChanges {
   @Input() pointIDField: IField<string>;
+  @Input() showPersonaField: IField<boolean>;
   @Input() xField: IField<number | string>;
   @Input() yField: IField<number | string>;
   @Input() dataStream: Observable<Changes<any>>;
@@ -102,7 +103,8 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   updateStreamProcessor(update = true) {
     if (this.streamCache && this.xField && this.yField) {
       this.dataService.fetchData(
-        this.streamCache.asObservable(), this.pointIDField, this.xField, this.yField,
+        this.streamCache.asObservable(), this.pointIDField,
+         this.showPersonaField, this.xField, this.yField,
         this.colorField, this.shapeField, this.sizeField
       );
     }
@@ -187,6 +189,14 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .attr('d', d3Shape.symbol()
         .size((d) => <number>2 * d.size)
         .type((d) => this.selectShape(d)))
+      .attr('stroke', (d) => {
+          if (d.showPersona === true) {
+            return 'green';
+          } else {
+            return 'black';
+          }
+         })
+      .attr('stroke-width', '2px')
       .attr('transform', (d) => this.shapeTransform(d))
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
@@ -198,8 +208,14 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         .type((d) => this.selectShape(d)))
       .attr('transform', (d) => this.shapeTransform(d))
       .attr('fill', 'red')
-      .attr('stroke', 'black')
-      .attr('stroke-width', '0.5')
+      .attr('stroke', (d) => {
+        if (d.showPersona === true) {
+          return 'green';
+        } else {
+          return 'black';
+        }
+       })
+      .attr('stroke-width', '2px')
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
     plots.exit().remove();
@@ -213,7 +229,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       labels.transition().duration(500)
         .attr('x', (d) => this.xScale(d.x) + 12)
         .attr('y', (d) => this.yScale(d.y) + 14)
-        .text((d) => '(' + d.shape + ')')
+        .text((d) => '(' + d.showPersona + ')')
         .attr('font-size', '8px');
 
       labels.enter().append('text')
@@ -221,7 +237,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         .attr('class', 'label')
         .attr('x', (d) => this.xScale(d.x) + 12)
         .attr('y', (d) => this.yScale(d.y) + 14)
-        .text((d) => '(' + d.shape + ')')
+        .text((d) => '(' + d.showPersona + ')')
         .attr('font-size', '8px');
 
       labels.exit().remove();

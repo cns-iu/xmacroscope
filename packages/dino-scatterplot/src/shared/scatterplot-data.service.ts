@@ -18,6 +18,7 @@ export class ScatterplotDataService {
 
   fetchData(stream: Observable<Changes<any>>,
     pointIDField: IField<string>,
+    showPersonaField: IField<boolean>,
     xField: IField<number | string>,
     yField: IField<number | string>,
     colorField: IField<string>,
@@ -29,7 +30,8 @@ export class ScatterplotDataService {
       y: yField,
       color: colorField,
       shape: shapeField,
-      size: sizeField
+      size: sizeField,
+      showPersona: showPersonaField
     });
 
     if (this.streamSubscription) {

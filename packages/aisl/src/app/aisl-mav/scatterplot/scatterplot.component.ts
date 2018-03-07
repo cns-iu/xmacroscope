@@ -10,7 +10,8 @@ import {
   pointIDField,
   defaultPointPositionFields,
   defaultXField, defaultYField,
-  defaultPointSizeFields
+  defaultPointSizeFields,
+  showPersonaField
 } from '../shared/scatterplot-fields';
 
 @Component({
@@ -21,6 +22,7 @@ import {
 })
 export class ScatterplotComponent implements OnInit {
   pointIDField = pointIDField; // not user facing
+  showPersonaField = showPersonaField; // not user facing
 
   xFields = defaultPointPositionFields;
   xField = defaultXField;
