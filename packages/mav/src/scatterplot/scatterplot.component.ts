@@ -1,12 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-<<<<<<< HEAD:packages/mav/src/scatterplot/scatterplot.component.ts
 import { IField, Changes } from '@ngx-dino/core';
-=======
-import { IField, Changes } from '../../dino-core';
-import { showPersonaField } from '../../aisl-mav/shared/scatterplot-fields';
->>>>>>> f7f82e1ab70c8e993b076ad1e11c2e9d8fce4f7c:packages/aisl/src/app/mav/scatterplot/scatterplot.component.ts
 
 @Component({
   selector: 'mav-scatterplot',
