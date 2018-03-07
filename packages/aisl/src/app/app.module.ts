@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { CoreModule } from './core';
 import { SharedModule } from './shared';
@@ -13,7 +13,6 @@ import { AislGraphqlMockdbModule } from './aisl-graphql-mockdb';
 import { AislBackendModule } from './aisl-backend';
 import { AislEndlineModule } from './aisl-endline';
 import { AislMavModule } from './aisl-mav';
-import { MavMockupModule } from './mav-mockup';
 
 import { AppComponent } from './app.component';
 
@@ -32,7 +31,7 @@ import { AppComponent } from './app.component';
     AislGraphqlModule,
     AislEndlineModule,
     AislMavModule,
-    MavMockupModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
