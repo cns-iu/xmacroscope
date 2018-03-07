@@ -1,4 +1,4 @@
-import { vega } from './vega';
+import { vega } from '@ngx-dino/vega';
 
 // FIXME: Need a more generic/angular way to see if in production mode
 import { environment } from './../../shared';

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IField } from '@ngx-dino/core';
-=======
 import {
   Component,
   OnInit,
@@ -10,11 +6,9 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { IField } from '../../dino-core';
+import { IField } from '@ngx-dino/core';
 import { FieldHoverService } from '../shared/field-hover.service';
 
-
->>>>>>> e606459dd41c14bb98530847e44430e63ca848b3
 @Component({
   selector: 'mav-field-dropzone',
   templateUrl: './field-dropzone.component.html',

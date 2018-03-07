@@ -2,9 +2,9 @@ import { ElementRef, Component, Input, OnInit, OnDestroy, OnChanges } from '@ang
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { vega, defaultLogLevel } from '../../vega';
+import { defaultLogLevel } from '../shared/log-level';
 import { Changes, IField, Field, FieldProcessor, StreamCache } from '@ngx-dino/core';
-import { makeChangeSet } from '../../dino-vega';
+import { vega, makeChangeSet } from '@ngx-dino/vega';
 import { State } from '../shared/state';
 import { Point } from '../shared/point';
 import { lookupStateCode } from '../shared/state-lookup';
