@@ -1,9 +1,13 @@
 import { IField, Field } from '@ngx-dino/core';
+
 import {
   genderMapping, ageGroupMapping, handednessMapping,
   athleticismMapping, laneMapping, falseStartMapping
 } from './mappings';
-import { makeFieldList } from './common-fields';
+import {
+  makeFieldList,
+  defaultNameFields
+} from './common-fields';
 
 // State fields
 const stateFields: IField<string>[] = [
@@ -29,14 +33,9 @@ const pointPositionFields: IField<[number, number]>[] = [
 export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
 // Tooltip fields
-const tooltipFields: IField<string>[] = [
-  new Field<string>({
-    name: 'persona.name', label: 'Name', default: 'Unknown'
-  }),
-  new Field<string>({
-    name: 'avatar.name', label: 'Avatar', default: 'Unknown'
-  })
-];
+const tooltipFields: IField<string>[] = [].concat(defaultNameFields, [
+  // Additional fields goes here
+]);
 
 // Tooltip fields
 export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
