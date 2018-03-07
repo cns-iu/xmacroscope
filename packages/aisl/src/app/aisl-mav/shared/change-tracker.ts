@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Changes } from '../../dino-core';
+import { Changes } from '@ngx-dino/core';
 import { List } from 'immutable';
 import { RaceCompletedMessage, Message, RaceResult } from '../../aisl-backend';
 

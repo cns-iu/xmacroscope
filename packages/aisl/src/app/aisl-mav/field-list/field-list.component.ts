@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
-import { IField } from '../../dino-core';
+import { IField } from '@ngx-dino/core';
 
 @Component({
   selector: 'aisl-field-list',

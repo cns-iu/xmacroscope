@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Changes, IField, Field, FieldProcessor } from '../../dino-core';
+import { Changes, IField, Field, FieldProcessor } from '@ngx-dino/core';
 import { Point } from './point';
 
 @Injectable()

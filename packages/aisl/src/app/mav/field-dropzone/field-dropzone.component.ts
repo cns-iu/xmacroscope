@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IField } from '../../dino-core';
+import { IField } from '@ngx-dino/core';
 @Component({
   selector: 'mav-field-dropzone',
   templateUrl: './field-dropzone.component.html',

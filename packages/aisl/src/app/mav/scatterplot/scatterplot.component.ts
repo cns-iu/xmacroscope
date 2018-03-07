@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { IField, Changes } from '../../dino-core';
+import { IField, Changes } from '@ngx-dino/core';
 
 @Component({
   selector: 'mav-scatterplot',

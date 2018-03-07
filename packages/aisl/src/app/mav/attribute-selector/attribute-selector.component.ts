@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { IField } from '../../dino-core';
+import { IField } from '@ngx-dino/core';
 
 @Component({
   selector: 'mav-attribute-selector',

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { vega, defaultLogLevel } from '../../vega';
-import { Changes, IField, Field, FieldProcessor, StreamCache } from '../../dino-core';
+import { Changes, IField, Field, FieldProcessor, StreamCache } from '@ngx-dino/core';
 import { makeChangeSet } from '../../dino-vega';
 import { State } from '../shared/state';
 import { Point } from '../shared/point';

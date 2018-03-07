@@ -1,5 +1,5 @@
 import { vega } from '../../vega';
-import { Changes, DatumId, isDatumId } from '../../dino-core';
+import { Changes, DatumId, isDatumId } from '@ngx-dino/core';
 
 function addToSet<T>(changeSet: any, items: T[]): void {
   changeSet.insert(items);

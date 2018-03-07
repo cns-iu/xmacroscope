@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { List } from 'immutable';
 
-import { IField, Changes } from '../../dino-core';
+import { IField, Changes } from '@ngx-dino/core';
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
   defaultStateColorFields, defaultPointColorFields,

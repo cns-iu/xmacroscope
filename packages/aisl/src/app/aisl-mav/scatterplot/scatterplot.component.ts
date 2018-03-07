@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
-import { IField, Field, Changes } from '../../dino-core';
+import { IField, Field, Changes } from '@ngx-dino/core';
 import {
   defaultPointColorFields, defaultPointShapeFields
 } from '../shared/common-fields';

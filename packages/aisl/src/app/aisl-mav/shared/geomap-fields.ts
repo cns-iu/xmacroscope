@@ -1,4 +1,4 @@
-import { IField, Field } from '../../dino-core';
+import { IField, Field } from '@ngx-dino/core';
 import {
   genderMapping, ageGroupMapping, handednessMapping,
   athleticismMapping, laneMapping, falseStartMapping

@@ -18,7 +18,7 @@ import * as d3Array from 'd3-array';
 import { scaleLinear, scaleOrdinal, scalePow, scaleTime, scalePoint } from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 
-import { Changes, IField, StreamCache } from '../../dino-core';
+import { Changes, IField, StreamCache } from '@ngx-dino/core';
 import { ScatterplotDataService } from '../shared/scatterplot-data.service';
 import { Point } from '../shared/point';
 

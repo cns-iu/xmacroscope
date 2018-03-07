@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/scan';
 import { List } from 'immutable';
 
-import { IField, Changes } from '../../dino-core';
+import { IField, Changes } from '@ngx-dino/core';
 import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
 import {
   defaultStateColorFields, defaultPointColorFields,

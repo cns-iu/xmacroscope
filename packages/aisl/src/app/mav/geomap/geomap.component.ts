@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Changes, IField } from '../../dino-core';
+import { Changes, IField } from '@ngx-dino/core';
 import { pointIdField } from '../../aisl-mav/shared/geomap-fields';
 
 @Component({
