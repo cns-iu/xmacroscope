@@ -40,8 +40,6 @@ export class Field<T> implements IField<T> {
 
     if (value != null) {
       return this.transform ? this.transform(value) : value;
-    } else if (this.default != null && this.transform) {
-      return this.transform(this.default);
     } else {
       return this.default != null ? this.default : value;
     }

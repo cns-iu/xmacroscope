@@ -17,6 +17,10 @@ export function mockUSLatLng(): [number, number] {
   return [randomInt(MIN_LAT, MAX_LAT), randomInt(MIN_LNG, MAX_LNG)];
 }
 
+function nullable<T>(value: T, nullProb = .1): T | null {
+  return casual.random > nullProb ? value : null;
+}
+
 export class GeneratedPersona implements Persona {
   id: string;
   name: string;
@@ -34,10 +38,10 @@ export class GeneratedPersona implements Persona {
     this.id = 'person' + casual.integer(1, 500);
     this.name = casual.first_name;
     this.icon = casual.random_element(SHAPES);
-    this.color = casual.safe_color_name;
-    this.gender = casual.random_element(GENDERS);
-    this.age_group = casual.random_element(AGE_GROUPS);
-    this.handedness = casual.random > 0.1 ? 'right' : 'left';
+    this.color = nullable(casual.safe_color_name);
+    this.gender = nullable(casual.random_element(GENDERS));
+    this.age_group = nullable(casual.random_element(AGE_GROUPS));
+    this.handedness = nullable(casual.random > 0.1 ? 'right' : 'left');
     this.zipcode = casual.zip(5);
     this.state = casual.state;
     [this.latitude, this.longitude] = mockUSLatLng();
