@@ -14,10 +14,14 @@ export const defaultStateFields = makeFieldList(stateFields);
 
 // Point position fields
 const pointPositionFields: IField<[number, number]>[] = [
-  new Field({
-    name: 'position', label: 'Point Position',
-    accessor: ({ persona: { latitude = 0, longitude = 0 } = {} }) => {
-      return [latitude, longitude];
+  new Field<[number, number]>({
+    name: 'position', label: 'Point Position', default: [30, -80],
+    accessor: (item: any) => {
+      if (!item.persona || !item.persona.latitude || !item.persona.longitude) {
+        return null;
+      } else {
+        return [item.persona.latitude, item.persona.longitude];
+      }
     }
   })
 ];
@@ -27,10 +31,10 @@ export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 // Tooltip fields
 const tooltipFields: IField<string>[] = [
   new Field<string>({
-    name: 'persona.name', label: 'Name', default: 'Unknown persona'
+    name: 'persona.name', label: 'Name', default: 'Unknown'
   }),
   new Field<string>({
-    name: 'avatar.name', label: 'Avatar', default: 'Unknown avatar'
+    name: 'avatar.name', label: 'Avatar', default: 'Unknown'
   })
 ];
 
@@ -74,7 +78,7 @@ export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
 
 // Computed fields - not user facing.
 export const pointIdField = new Field<string>({
-  name: 'id', label: 'Computed Point Id',
+  name: 'id', label: 'Computed Point Id', default: '30+-80',
   accessor: (data: Partial<any>): string => {
     if (!data.persona || !data.persona.latitude || !data.persona.longitude) {
       return null;

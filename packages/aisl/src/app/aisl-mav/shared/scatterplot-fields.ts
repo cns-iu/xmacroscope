@@ -13,15 +13,19 @@ export const pointIDField = new Field<string>({
 });
 
 const positionFields: IField<string | number>[] = [
-  new Field<string>({name: 'persona.name', label: 'Name'}),
-  new Field<string>({name: 'avatar.name', label: 'Avatar'}),
+  new Field<string>({
+    name: 'persona.name', label: 'Name', default: 'Unknown'
+  }),
+  new Field<string>({
+    name: 'avatar.name', label: 'Avatar', default: 'Unknown'
+  }),
   new Field({
-    name: 'timeMillis', label: 'Run Time', datatype: 'number',
+    name: 'timeMillis', label: 'Run Time', datatype: 'number', default: 0,
     transform: (value: number) => value / 1000.0
   }),
   new Field({
     name: 'avatar.runMillis', label: 'Avatar\'s Time', datatype: 'number',
-    transform: (value: number) => value / 1000.0
+    default: 0, transform: (value: number) => value / 1000.0
   })
 ];
 // Point position fields
