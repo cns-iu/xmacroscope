@@ -1,5 +1,20 @@
+<<<<<<< HEAD
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IField } from '@ngx-dino/core';
+=======
+import {
+  Component,
+  OnInit,
+  Input, Output,
+  HostListener,
+  EventEmitter
+} from '@angular/core';
+
+import { IField } from '../../dino-core';
+import { FieldHoverService } from '../shared/field-hover.service';
+
+
+>>>>>>> e606459dd41c14bb98530847e44430e63ca848b3
 @Component({
   selector: 'mav-field-dropzone',
   templateUrl: './field-dropzone.component.html',
@@ -13,7 +28,7 @@ export class FieldDropzoneComponent implements OnInit {
   @Input() field: IField<any>;
   @Output() fieldChange = new EventEmitter<IField<any>>();
 
-  constructor() { }
+  constructor(private hoverService: FieldHoverService) { }
 
   ngOnInit() { }
 
@@ -25,9 +40,19 @@ export class FieldDropzoneComponent implements OnInit {
   onDragDropEvent(event: any) {
     if (event.type === 'drag-start') {
       this.backgroundColor = event.accepted ? 'rgba(0,255,0,0.1)' : 'rgba(255,0,0,0.1)';
-    } else {
+    } else if (event.type === 'drag-end') {
       this.backgroundColor = 'inherit';
     }
+  }
+
+  @HostListener('mouseover', [])
+  onMouseOver() {
+    this.hoverService.startHover(this.fields);
+  }
+
+  @HostListener('mouseout', [])
+  onMouseOut() {
+    this.hoverService.endHover();
   }
 
   get acceptsDrop() {
