@@ -27,6 +27,19 @@ export function makeFieldList<T>(
 }
 
 
+// Name fields
+const nameFields: IField<string>[] = [
+  new Field<string>({
+    name: 'persona.name', label: 'Name', default: 'Unknown'
+  }),
+  new Field<string>({
+    name: 'avatar.name', label: 'Avatar', default: 'Unknown'
+  })
+];
+
+export const defaultNameFields = makeFieldList(nameFields);
+
+
 // Color fields
 const colorFields: IField<string>[] = [
   new Field({

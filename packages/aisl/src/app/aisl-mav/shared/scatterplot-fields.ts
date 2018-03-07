@@ -1,9 +1,13 @@
 import { IField, Field } from '@ngx-dino/core';
+
 import {
   genderMapping, ageGroupMapping, handednessMapping,
   athleticismMapping, laneMapping, falseStartMapping
 } from './mappings';
-import { makeFieldList } from './common-fields';
+import {
+  makeFieldList,
+  defaultNameFields
+} from './common-fields';
 
 
 // not user facing
@@ -12,13 +16,7 @@ export const pointIDField = new Field<string>({
   accessor: (item: any): string => item.raceTimestamp + item.persona.id
 });
 
-const positionFields: IField<string | number>[] = [
-  new Field<string>({
-    name: 'persona.name', label: 'Name', default: 'Unknown'
-  }),
-  new Field<string>({
-    name: 'avatar.name', label: 'Avatar', default: 'Unknown'
-  }),
+const positionFields: IField<string | number>[] = [].concat(defaultNameFields, [
   new Field({
     name: 'timeMillis', label: 'Run Time', datatype: 'number', default: 0,
     transform: (value: number) => value / 1000.0
@@ -27,7 +25,7 @@ const positionFields: IField<string | number>[] = [
     name: 'avatar.runMillis', label: 'Avatar\'s Time', datatype: 'number',
     default: 0, transform: (value: number) => value / 1000.0
   })
-];
+]);
 // Point position fields
 export const defaultPointPositionFields = makeFieldList(positionFields);
 export const defaultXField = positionFields[2];
