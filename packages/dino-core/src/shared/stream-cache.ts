@@ -5,53 +5,65 @@ import { List, Map } from 'immutable';
 import { IField } from './field';
 import { DatumId, Changes, getDatumId } from './changes';
 
+
+class Cache<T> {
+  private cache = Map<DatumId, T>();
+
+  constructor(public idField: IField<DatumId>) {}
+
+  cacheChanges(changes: Changes<T>): void {
+    this.cache = this.cache.withMutations((cache) => {
+      changes.add.forEach((datum) => {
+        cache.set(getDatumId(datum, this.idField), datum)
+      });
+
+      changes.remove.forEach((datum) => {
+        cache.delete(getDatumId(datum, this.idField))
+      });
+
+      changes.update.forEach(([datumOrId, update]) => {
+        cache.update(getDatumId(datumOrId, this.idField), (datum) => {
+          return datum !== undefined ? Object.assign(datum, update) : datum;
+        });
+      });
+    });
+  }
+
+  emitUpdates(): Changes<T> {
+    return new Changes(undefined, undefined, Array.from(this.cache as any));
+  }
+}
+
 export class StreamCache<T> {
-    private subject = new Subject<Changes<T>>();
-    private cache = List<DatumId>();
-    private idToObjectMap = Map<DatumId, T>();
+  private readonly changeStream = new Subject<Changes<T>>();
+  private readonly cache: Cache<T>;
 
-    constructor(public idField: IField<DatumId>, private stream: Observable<Changes<T>>) {
-        stream.subscribe(this.processChanges.bind(this));
-    }
+  get idField() {
+    return this.cache.idField;
+  }
 
-    asObservable(): Observable<Changes<T>> {
-        return this.subject.asObservable();
-    }
+  set idField(field: IField<DatumId>) {
+    this.cache.idField = field;
+  }
 
-    processChanges(changes: Changes<T>) {
-        changes.add.forEach((d) => {
-            const id = this.idField.get(d);
-            if (!this.idToObjectMap.has(id)) {
-                this.cache = this.cache.push(id);
-                this.idToObjectMap = this.idToObjectMap.set(id, d);
-            }
-        });
-        changes.remove.forEach((d) => {
-            const id = this.idField.get(d);
-            if (this.idToObjectMap.has(id)) {
-                this.cache = this.cache.delete(this.cache.indexOf(id));
-                this.idToObjectMap = this.idToObjectMap.delete(id);
-            }
-        });
-        changes.update.forEach(([incomingId, d]) => {
-            const id: DatumId = getDatumId(incomingId, this.idField);
-            if (this.idToObjectMap.has(id)) {
-                const obj: T = Object.assign(this.idToObjectMap.get(id), d);
-                this.idToObjectMap = this.idToObjectMap.set(id, obj);
-            }
-        });
-        this.subject.next(changes);
-    }
+  constructor(
+    idField: IField<DatumId>,
+    stream: Observable<Changes<T>>
+  ) {
+    this.cache = new Cache(idField);
+    stream.subscribe(this.processChanges.bind(this));
+  }
 
-    sendUpdate() {
-        this.processChanges(this.getUpdateChange());
-    }
+  asObservable(): Observable<Changes<T>> {
+    return this.changeStream.asObservable();
+  }
 
-    getUpdateChange(): Changes<T> {
-        const idMap = this.idToObjectMap;
-        const update: [DatumId, T][] = this.cache.map((id) => {
-            return [id, idMap.get(id)];
-        }).toJS();
-        return new Changes<T>([], [], update);
-    }
+  sendUpdate(): void {
+    this.changeStream.next(this.cache.emitUpdates());
+  }
+
+  private processChanges(changes: Changes<T>): void {
+    this.cache.cacheChanges(changes);
+    this.changeStream.next(changes);
+  }
 }
