@@ -1,9 +1,12 @@
 import { IField, Field } from '@ngx-dino/core';
+
 import {
   genderMapping, ageGroupMapping, handednessMapping,
   athleticismMapping, laneMapping, falseStartMapping
 } from './mappings';
 
+
+// Field list type
 export interface FieldList<T> extends Array<IField<T>> {
   default: IField<T>;
 }
@@ -17,9 +20,7 @@ export function makeFieldList<T>(
   const result: FieldList<T> = fields.slice() as any;
   Object.defineProperties(result, {
     default: {
-      get() {
-        return this[defaultIndex];
-      }
+      value: result[defaultIndex]
     }
   });
 
