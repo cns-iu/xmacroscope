@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import { Changes } from '@ngx-dino/core';
 import { List } from 'immutable';
-import { RaceCompletedMessage, Message, RaceResult } from '../../aisl-backend';
+import { RaceCompletedMessage, Message, RaceResult } from 'aisl-api';
 
 export class ChangeTracker {
     private readonly mappedStream: Observable<Changes>;

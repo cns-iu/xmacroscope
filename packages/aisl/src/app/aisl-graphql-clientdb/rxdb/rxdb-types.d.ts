@@ -1,4 +1,4 @@
-import { Avatar, Persona, Run, FlatRun } from '../../aisl-backend/shared/models';
+import { Avatar, Persona, Run, FlatRun } from 'aisl-api';
 
 import { RxDocument, RxCollection, RxDatabase } from 'rxdb';
 import { Observable } from 'rxjs/Observable';

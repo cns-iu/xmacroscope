@@ -6,12 +6,12 @@ import * as moment from 'moment';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-import { MessageService } from '../../aisl-backend';
+import { MessageService } from './message.service';
 
 import {
   Persona, Avatar, Message, RunSelectedMessage,
   RaceInitiatedMessage, RaceCompletedMessage, RaceResult
-} from '../../aisl-backend/shared/models';
+} from 'aisl-api';
 
 const RUN_SELECTED = gql`
   subscription runSelected {
