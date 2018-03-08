@@ -6,6 +6,8 @@ import { MessageService } from './shared/message.service';
 import { GraphQLMessageService } from './shared/graphql-message.service';
 import { MockMessageService } from './shared/mock-message.service';
 
+import { environment } from '../shared';
+
 @NgModule({
   imports: [
     CommonModule
@@ -17,6 +19,9 @@ import { MockMessageService } from './shared/mock-message.service';
   providers: [MessageService, GraphQLMessageService, MockMessageService]
 })
 export class AislBackendModule {
-  constructor(private graphQLMessageService: GraphQLMessageService) {
+  constructor(private graphQLMessageService: GraphQLMessageService, private mockMessageService: MockMessageService) {
+    if (!environment.production) {
+      mockMessageService.startMocking();
+    }
   }
 }
