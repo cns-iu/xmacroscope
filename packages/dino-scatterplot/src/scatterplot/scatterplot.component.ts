@@ -15,7 +15,9 @@ import * as d3Axis from 'd3-axis';
 import * as d3Selection from 'd3-selection';
 import 'd3-transition'; // This adds transition support to d3-selection
 import * as d3Array from 'd3-array';
-import { scaleLinear, scaleOrdinal, scalePow, scaleTime, scalePoint } from 'd3-scale';
+import {
+  scaleLinear, scaleOrdinal, scalePow, scaleTime, scalePoint
+} from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 
 import { Changes, IField, StreamCache } from '@ngx-dino/core';
@@ -42,7 +44,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
   // Temporary change so that Geomap and Scatterplot are the same size.
   @Input() svgWidth = 955 - this.margin.left - this.margin.right;
-  @Input() svgHeight: number = 560 - this.margin.top - this.margin.bottom;
+  @Input() svgHeight = 560 - this.margin.top - this.margin.bottom;
 
   // This is the better way, but is inconsistent with geomap
   // @Input() svgWidth = window.innerWidth - this.margin.left - this.margin.right - 300; // initializing width for map container
@@ -214,7 +216,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         } else {
           return 'black';
         }
-       })
+      })
       .attr('stroke-width', '2px')
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
 
@@ -247,7 +249,6 @@ export class ScatterplotComponent implements OnInit, OnChanges {
   /**** This function draws the shape encoded on the data ****/
   selectShape(d) {
     switch (d.shape) {
-      default:
       case 'circle': return d3Shape.symbolCircle;
       case 'square': return d3Shape.symbolSquare;
       case 'cross': return d3Shape.symbolCross;
@@ -258,17 +259,28 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       case 'triangle-right': return d3Shape.symbolTriangle;
       case 'star': return d3Shape.symbolStar;
       case 'wye': return d3Shape.symbolWye;
+      default: return d3Shape.symbolCircle;
     }
   }
 
   /**** This function applies a transform to the shape encoded on the data ****/
   shapeTransform(d) {
+    let rotation = 0;
+
     switch (d.shape) {
-      default: return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ')';
-      case 'triangle-down': return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ') rotate(' + 180 + ')';
-      case 'triangle-left': return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ') rotate(' + (-90) + ')';
-      case 'triangle-right': return 'translate(' + this.xScale(d.x) + ',' + this.yScale(d.y) + ') rotate(' + 90 + ')';
+      case 'triangle-down':
+        rotation = 180;
+        break;
+      case 'triangle-left':
+        rotation = -90;
+        break;
+      case 'triangle-right':
+        rotation = 90;
+        break;
     }
+
+    return `translate(${this.xScale(d.x)},${this.yScale(d.y)})` +
+      `rotate(${rotation})`;
   }
 
   /**** This function sets scales on x and y axes based on fields selected *****/
@@ -278,7 +290,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       case 'number':
         this.xScale = scaleLinear();
         this.xAxis = d3Axis.axisBottom(this.xScale);
-        this.xScale.domain([0, d3Array.max(data, (d) => <number>d.x)])
+        this.xScale.domain([0, d3Array.max(data, (d) => Number(d.x))])
           .range([0, this.svgWidth]);
         break;
 
@@ -295,7 +307,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       case 'number':
         this.yScale = scaleLinear();
         this.yAxis = d3Axis.axisLeft(this.yScale);
-        this.yScale.domain([0, d3Array.max(data, (d) => <number>d.y)])
+        this.yScale.domain([0, d3Array.max(data, (d) => Number(d.y))])
           .range([this.svgHeight, 0]);
         break;
 

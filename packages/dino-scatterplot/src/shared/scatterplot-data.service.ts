@@ -1,9 +1,9 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Changes, IField, Field, FieldProcessor } from '@ngx-dino/core';
+import { Changes, IField, FieldProcessor } from '@ngx-dino/core';
 import { Point } from './point';
 
 @Injectable()
@@ -16,14 +16,16 @@ export class ScatterplotDataService {
 
   constructor() { }
 
-  fetchData(stream: Observable<Changes<any>>,
+  fetchData(
+    stream: Observable<Changes<any>>,
     pointIDField: IField<string>,
     showPersonaField: IField<boolean>,
     xField: IField<number | string>,
     yField: IField<number | string>,
     colorField: IField<string>,
     shapeField: IField<string>,
-    sizeField: IField<string>): this {
+    sizeField: IField<string>
+  ): this {
     this.pointProcessor = new FieldProcessor<Point>(stream, {
       id: pointIDField,
       x: xField,
@@ -38,9 +40,10 @@ export class ScatterplotDataService {
       this.streamSubscription.unsubscribe();
     }
 
-    this.streamSubscription = this.pointProcessor.asObservable().subscribe((change) => {
-      this.pointsChange.next(change);
-    });
+    this.streamSubscription = this.pointProcessor.asObservable().subscribe(
+      (change) => this.pointsChange.next(change)
+    );
+
     return this;
   }
 }

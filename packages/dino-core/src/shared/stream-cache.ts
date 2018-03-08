@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 import { List, Map } from 'immutable';
 
 import { IField } from './field';
-import { DatumId, Changes, isDatumId } from './changes';
+import { DatumId, Changes, getDatumId } from './changes';
 
 export class StreamCache<T> {
     private subject = new Subject<Changes<T>>();
@@ -34,7 +34,7 @@ export class StreamCache<T> {
             }
         });
         changes.update.forEach(([incomingId, d]) => {
-            const id: DatumId = isDatumId(incomingId) ? incomingId : this.idField.get(d);
+            const id: DatumId = getDatumId(incomingId, this.idField);
             if (this.idToObjectMap.has(id)) {
                 const obj: T = Object.assign(this.idToObjectMap.get(id), d);
                 this.idToObjectMap = this.idToObjectMap.set(id, obj);
