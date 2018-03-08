@@ -25,11 +25,7 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts",
-        "backend": "environments/environment.backend.ts",
-        "endline": "environments/environment.endline.ts",
-        "mav": "environments/environment.mav.ts",
-        "mockup": "environments/environment.mockup.ts"
+        "prod": "environments/environment.prod.ts"
       }
     }
   ],

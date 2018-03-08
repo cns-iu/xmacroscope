@@ -83,7 +83,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
       this.setScales(this.data);
       this.drawPlots(this.data);
-      this.drawText(this.data);
+      this.drawText(this.data, true);
     });
 
   }
@@ -224,7 +224,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       labels.transition().duration(500)
         .attr('x', (d) => this.xScale(d.x) + 12)
         .attr('y', (d) => this.yScale(d.y) + 14)
-        .text((d) => '(' + d.stroke + ')')
+        .text((d) => '(' + d.shape + ')')
         .attr('font-size', '8px');
 
       labels.enter().append('text')
@@ -232,7 +232,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         .attr('class', 'label')
         .attr('x', (d) => this.xScale(d.x) + 12)
         .attr('y', (d) => this.yScale(d.y) + 14)
-        .text((d) => '(' + d.stroke + ')')
+        .text((d) => '(' + d.shape + ')')
         .attr('font-size', '8px');
 
       labels.exit().remove();

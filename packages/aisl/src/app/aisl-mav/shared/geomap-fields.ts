@@ -1,9 +1,13 @@
 import { IField, Field } from '@ngx-dino/core';
+
 import {
   genderMapping, ageGroupMapping, handednessMapping,
   athleticismMapping, laneMapping, falseStartMapping
 } from './mappings';
-import { makeFieldList } from './common-fields';
+import {
+  makeFieldList,
+  defaultNameFields
+} from './common-fields';
 
 // State fields
 const stateFields: IField<string>[] = [
@@ -14,10 +18,14 @@ export const defaultStateFields = makeFieldList(stateFields);
 
 // Point position fields
 const pointPositionFields: IField<[number, number]>[] = [
-  new Field({
-    name: 'position', label: 'Point Position',
-    accessor: ({ persona: { latitude = 0, longitude = 0 } = {} }) => {
-      return [latitude, longitude];
+  new Field<[number, number]>({
+    name: 'position', label: 'Point Position', default: [30, -80],
+    accessor: (item: any) => {
+      if (!item.persona || !item.persona.latitude || !item.persona.longitude) {
+        return null;
+      } else {
+        return [item.persona.latitude, item.persona.longitude];
+      }
     }
   })
 ];
@@ -25,14 +33,9 @@ const pointPositionFields: IField<[number, number]>[] = [
 export const defaultPointPositionFields = makeFieldList(pointPositionFields);
 
 // Tooltip fields
-const tooltipFields: IField<string>[] = [
-  new Field<string>({
-    name: 'persona.name', label: 'Name', default: 'Unknown persona'
-  }),
-  new Field<string>({
-    name: 'avatar.name', label: 'Avatar', default: 'Unknown avatar'
-  })
-];
+const tooltipFields: IField<string>[] = [].concat(defaultNameFields, [
+  // Additional fields goes here
+]);
 
 // Tooltip fields
 export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
@@ -74,7 +77,7 @@ export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
 
 // Computed fields - not user facing.
 export const pointIdField = new Field<string>({
-  name: 'id', label: 'Computed Point Id',
+  name: 'id', label: 'Computed Point Id', default: '30+-80',
   accessor: (data: Partial<any>): string => {
     if (!data.persona || !data.persona.latitude || !data.persona.longitude) {
       return null;

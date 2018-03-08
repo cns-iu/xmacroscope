@@ -11,7 +11,6 @@ import { lookupStateCode } from '../shared/state-lookup';
 import { GeomapDataService } from '../shared/geomap.dataservice';
 import * as us10m from '../shared/us-10m.json';
 import * as geomapSpec from '../shared/spec.json';
-import { strokeField } from '../../../aisl/src/app/aisl-mav/shared/common-fields';
 
 @Component({
   selector: 'dino-geomap',

@@ -165,7 +165,7 @@ export const falseStartMapping: Mapping<ShapeProp & ColorProp> = new MappingImpl
     color: 'black'
   });
 
-  //showPersona mapping
+  // showPersona mapping
   export const showPersonaMapping: Mapping<ColorProp> = new MappingImpl({
     true: {
       color: 'green'

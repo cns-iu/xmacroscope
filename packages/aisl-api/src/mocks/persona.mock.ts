@@ -1,6 +1,7 @@
-import { Persona } from '../../aisl-backend';
 import * as casual from 'casual-browserify';
-import { randomInt, randFromList } from './random';
+
+import { Persona } from '../models/persona';
+
 
 const SHAPES: string[] = ['circle', 'square', 'cross', 'diamond',
   'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star', 'wye'
@@ -13,8 +14,12 @@ const MIN_LAT = 24.7433195; // south lat
 const MAX_LNG = -124.7844079; // west long
 const MIN_LNG = -66.9513812; // east long
 
+function nullable<T>(value: T, nullProb = .1): T | null {
+  return casual.random > nullProb ? value : null;
+}
+
 export function mockUSLatLng(): [number, number] {
-  return [randomInt(MIN_LAT, MAX_LAT), randomInt(MIN_LNG, MAX_LNG)];
+  return [casual.integer(MIN_LAT, MAX_LAT), casual.integer(MIN_LNG, MAX_LNG)];
 }
 
 export class GeneratedPersona implements Persona {
@@ -32,15 +37,15 @@ export class GeneratedPersona implements Persona {
 
   constructor() {
     this.id = 'person' + casual.integer(1, 500);
-    this.name = casual.first_name;
+    this.name = nullable(casual.first_name);
     this.icon = casual.random_element(SHAPES);
-    this.color = casual.safe_color_name;
-    this.gender = casual.random_element(GENDERS);
-    this.age_group = casual.random_element(AGE_GROUPS);
-    this.handedness = casual.random > 0.1 ? 'right' : 'left';
-    this.zipcode = casual.zip(5);
-    this.state = casual.state;
-    [this.latitude, this.longitude] = mockUSLatLng();
+    this.color = nullable(casual.safe_color_name);
+    this.gender = nullable(casual.random_element(GENDERS));
+    this.age_group = nullable(casual.random_element(AGE_GROUPS));
+    this.handedness = nullable(casual.random > 0.1 ? 'right' : 'left');
+    this.zipcode = nullable(casual.zip(5));
+    this.state = nullable(casual.state);
+    [this.latitude, this.longitude] = nullable(mockUSLatLng()) || [null, null];
   }
 }
 

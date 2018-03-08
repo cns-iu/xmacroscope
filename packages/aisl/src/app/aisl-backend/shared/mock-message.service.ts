@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { GraphQLMessageService } from '../../aisl-graphql';
-import { RaceMocker } from './race-mocker';
+import { GraphQLMessageService } from './graphql-message.service';
+import { RaceMocker } from 'aisl-api';
 
 @Injectable()
 export class MockMessageService {

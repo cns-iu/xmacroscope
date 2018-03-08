@@ -6,10 +6,6 @@
     "ng": "ng",
     "start": "ng serve",
     "start-prod": "ng serve --prod --aot --sourcemaps",
-    "start-backend": "ng serve --env=backend --watch=true",
-    "start-endline": "ng serve --env=endline --watch=true",
-    "start-mav": "ng serve --env=mav --watch=true",
-    "start-mockup": "ng serve --env=mockup --watch=true",
     "build": "ng build --prod --aot --sourcemaps",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,6 +15,7 @@
   },
   "private": true,
   "dependencies": {
+    "aisl-api": "^0.0.0",
     "@angular/animations": "^5.1.1",
     "@angular/cdk": "^5.0.1",
     "@angular/common": "^5.0.0",

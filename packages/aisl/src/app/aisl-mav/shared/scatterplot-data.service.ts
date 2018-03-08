@@ -4,7 +4,9 @@ import 'rxjs/add/operator/scan';
 import { List } from 'immutable';
 
 import { IField, Changes } from '@ngx-dino/core';
-import { MessageService, Message, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
+import { Message, RaceCompletedMessage, RaceResult } from 'aisl-api';
+
+import { MessageService } from '../../aisl-backend';
 import {
   defaultPointColorFields, defaultPointShapeFields
 } from './common-fields';

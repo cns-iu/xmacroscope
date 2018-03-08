@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { List } from 'immutable';
 
-import { Message } from './message';
+import { Message } from 'aisl-api';
 
 @Injectable()
 export class MessageService {
