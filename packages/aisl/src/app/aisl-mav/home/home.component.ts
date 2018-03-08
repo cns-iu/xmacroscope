@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+
+import { IField } from '@ngx-dino/core';
+
 import { ScatterplotComponent } from '../scatterplot/scatterplot.component';
 import { GeomapComponent } from '../geomap/geomap.component';
-import { IField } from '@ngx-dino/core';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(ScatterplotComponent) scatterplot: ScatterplotComponent;
   @ViewChild(GeomapComponent) geomap: GeomapComponent;
-  @Input() fields;
+  @Input() fields: IField<any>[];
 
   constructor() { }
 

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { List } from 'immutable';
 
-import { IField, Changes } from '@ngx-dino/core';
+import { Changes } from '@ngx-dino/core';
+
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
   combineUnique,
@@ -52,7 +52,7 @@ export class GeomapComponent implements OnInit {
   pointColorField = defaultPointColorFields.default;
   pointColorFields = defaultPointColorFields;
 
-  constructor(public service: GeomapDataService) {
+  constructor(service: GeomapDataService) {
     this.stateDataStream = service.stateDataStream;
     this.pointDataStream = service.pointDataStream;
   }

@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { Changes } from '@ngx-dino/core';
+
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
-import { IField, Field, Changes } from '@ngx-dino/core';
 import {
   combineUnique,
   defaultPointColorFields, defaultPointShapeFields
@@ -48,10 +49,10 @@ export class ScatterplotComponent implements OnInit {
   sizeFields = defaultPointSizeFields;
   sizeField = defaultPointSizeFields.default;
 
-  dataStream: Observable<Changes<any>>;
+  dataStream: Observable<Changes>;
 
-  constructor(public massager: ScatterPlotDataService) {
-    this.dataStream = massager.dataStream;
+  constructor(service: ScatterPlotDataService) {
+    this.dataStream = service.dataStream;
   }
 
   ngOnInit() { }

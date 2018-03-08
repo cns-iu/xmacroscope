@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/scan';
-import { List } from 'immutable';
 
-import { IField, Changes } from '@ngx-dino/core';
-import { Message, RaceCompletedMessage, RaceResult } from 'aisl-api';
+import { Changes } from '@ngx-dino/core';
 
 import { MessageService } from '../../aisl-backend';
 import { ChangeTracker } from './change-tracker';
