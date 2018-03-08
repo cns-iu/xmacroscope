@@ -19,14 +19,14 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.fields = this.scatterplot.massager.fields;
+    this.fields = this.scatterplot.fields;
   }
 
   setFields(index: number) {
     if (index === 0) {
-      this.fields = this.scatterplot.massager.fields;
+      this.fields = this.scatterplot.fields;
     } else if (index === 1) {
-      this.fields = this.geomap.service.fields;
+      this.fields = this.geomap.fields;
     }
   }
 }

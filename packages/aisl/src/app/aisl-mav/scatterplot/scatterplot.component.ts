@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 import { IField, Field, Changes } from '@ngx-dino/core';
 import {
+  combineUnique,
   defaultPointColorFields, defaultPointShapeFields
 } from '../shared/common-fields';
 import {
@@ -14,6 +15,7 @@ import {
   showPersonaField
 } from '../shared/scatterplot-fields';
 
+
 @Component({
   selector: 'aisl-scatterplot',
   templateUrl: './scatterplot.component.html',
@@ -23,6 +25,13 @@ import {
 export class ScatterplotComponent implements OnInit {
   pointIDField = pointIDField; // not user facing
   showPersonaField = showPersonaField; // not user facing
+
+  fields = combineUnique<any>(
+    defaultPointPositionFields,
+    defaultPointColorFields,
+    defaultPointShapeFields,
+    defaultPointSizeFields
+  );
 
   xFields = defaultPointPositionFields;
   xField = defaultXField;

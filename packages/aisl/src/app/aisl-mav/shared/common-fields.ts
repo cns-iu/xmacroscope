@@ -1,3 +1,5 @@
+import { Seq } from 'immutable';
+
 import { IField, Field } from '@ngx-dino/core';
 
 import {
@@ -25,6 +27,23 @@ export function makeFieldList<T>(
   });
 
   return result;
+}
+
+
+// Utility
+// FIXME add sorting and grouping options
+export function combineUnique<T>(...fields: IField<T>[][]): IField<T>[] {
+  if (fields.length === 0) {
+    return [];
+  }
+
+  const fieldSeq = Seq.Indexed<IField<T>>().concat(...fields);
+  const sortedSeq = fieldSeq.sortBy((field) => field.label);
+  const groupedSeq = sortedSeq.groupBy((field) => field.label);
+  const groups = groupedSeq.valueSeq();
+  const uniqueSeq = groups.map((group) => group.first());
+
+  return uniqueSeq.toArray();
 }
 
 

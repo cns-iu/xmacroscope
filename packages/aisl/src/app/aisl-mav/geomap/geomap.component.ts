@@ -5,13 +5,16 @@ import { List } from 'immutable';
 import { IField, Changes } from '@ngx-dino/core';
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
+  combineUnique,
   defaultStateColorFields, defaultPointColorFields,
   defaultPointShapeFields
 } from '../shared/common-fields';
 import {
-  pointIdField,
-  defaultStateFields, defaultPointPositionFields, defaultPointSizeFields
+  defaultTooltipFields,
+  defaultStateFields,
+  pointIdField, defaultPointPositionFields, defaultPointSizeFields
 } from '../shared/geomap-fields';
+
 
 @Component({
   selector: 'aisl-geomap',
@@ -22,6 +25,12 @@ import {
 export class GeomapComponent implements OnInit {
   stateDataStream: Observable<Changes>;
   pointDataStream: Observable<Changes>;
+
+  fields = combineUnique<any>(
+    defaultStateColorFields, defaultPointColorFields,
+    defaultPointShapeFields, defaultPointSizeFields,
+    defaultTooltipFields
+  );
 
   stateField = defaultStateFields.default;
   stateFields = defaultStateFields;
