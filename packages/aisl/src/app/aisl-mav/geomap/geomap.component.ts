@@ -6,7 +6,7 @@ import { IField, Changes } from '@ngx-dino/core';
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
   defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, strokeField
+  defaultPointShapeFields, PersonastrokeColorField
 } from '../shared/common-fields';
 import {
   pointIdField,
@@ -23,7 +23,7 @@ export class GeomapComponent implements OnInit {
   stateDataStream: Observable<Changes>;
   pointDataStream: Observable<Changes>;
 
-  strokeField = strokeField; // not user facing 
+  strokeColorField: IField<string>; // not user facing
 
   stateField = defaultStateFields.default;
   stateFields = defaultStateFields;
@@ -48,6 +48,7 @@ export class GeomapComponent implements OnInit {
   constructor(public service: GeomapDataService) {
     this.stateDataStream = service.stateDataStream;
     this.pointDataStream = service.pointDataStream;
+    this.strokeColorField = new PersonastrokeColorField(this, 'pointColorField');
   }
 
   ngOnInit() {

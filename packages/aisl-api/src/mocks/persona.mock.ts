@@ -4,7 +4,7 @@ import { Persona } from '../models/persona';
 
 
 const SHAPES: string[] = ['circle', 'square', 'cross', 'diamond',
-  'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star', 'wye'
+  'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star'
 ];
 const GENDERS: string[] = ['male', 'female', 'other'];
 const AGE_GROUPS: string[] = ['07-09', '10-12', '13-18', '19-30', '31-40', '41-50', '51-60', '61-70', '71+'];

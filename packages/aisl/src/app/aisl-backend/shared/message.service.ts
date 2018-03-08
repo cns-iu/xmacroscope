@@ -3,18 +3,21 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { List } from 'immutable';
 
+import 'rxjs/add/operator/share';
+
 import { Message } from 'aisl-api';
 
 @Injectable()
 export class MessageService {
   private subject = new Subject<Message>();
+  private observable: Observable<Message> = this.subject.asObservable().share();
 
   send(message: Message) {
     this.subject.next(message);
   }
 
   asObservable(): Observable<Message> {
-    return this.subject.asObservable();
+    return this.observable;
   }
 
   observe(T: new () => Message): Observable<Message> {

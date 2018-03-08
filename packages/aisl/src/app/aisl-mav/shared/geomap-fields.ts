@@ -6,7 +6,8 @@ import {
 } from './mappings';
 import {
   makeFieldList,
-  defaultNameFields
+  defaultNameFields,
+  wrapFieldsForShowPersona
 } from './common-fields';
 
 // State fields
@@ -71,6 +72,11 @@ const sizeFields: IField<number>[] = [
     transform: ageGroupMapping.makeMapper('size')
   })
 ];
+
+const personaSizeField = new Field({
+  name: 'persona.size', label: 'Show Persona Size', accessor: (item) => 200
+});
+wrapFieldsForShowPersona(personaSizeField, sizeFields);
 
 // Point size fields
 export const defaultPointSizeFields = makeFieldList(sizeFields, 1);

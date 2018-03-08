@@ -28,45 +28,39 @@ export class ChangeTracker {
     private accumulateMessage(message: RaceCompletedMessage): void {
         const maxCount = this.count + 1;
         const currentCount = this.accumulator.size;
-        message.results.forEach((r) => {
-            r['avatar'] = message.avatar;
-            r['raceTimestamp'] = message.timestamp.getTime();
-            r['showPersona'] = true; // set showPersona to true for every incoming race entry.
-        });
-
         if (currentCount === maxCount) {
             this.accumulator = this.accumulator.shift();
         }
-
         this.accumulator = this.accumulator.push(message);
+    }
+
+    private getRaceResults(message: RaceCompletedMessage, showPersona = true): RaceResult[] {
+        return message.results.map((r) => {
+            return Object.assign({}, r, {
+                avatar: message.avatar,
+                timestamp: message.timestamp,
+                showPersona
+            });
+        });
     }
 
     private convertMessagesToChanges(): Changes {
         const currentCount = this.accumulator.size;
+        const added = this.getRaceResults(this.accumulator.last(), true);
         let removed: RaceResult[] = [];
-        const updated: [string | number | RaceResult, Partial<RaceResult>][] = [];
+        let updated: [string | number | RaceResult, Partial<RaceResult>][] = [];
 
         if (currentCount > this.count) {
             removed = this.accumulator.first().results;
         }
 
-        const index = this.accumulator.findIndex(function (m) {
-            return m.results[0]['showPersona'] === true; // find first element from the beginning which has stroke set to true.
-        });
-
+        const index = currentCount - this.highlightCount - 1;
        // update the entry at the found index, if the index is less than the last highlightCount number of indices.
-        if (index === this.accumulator.size - this.highlightCount - 1) {
-            this.accumulator = this.accumulator.update(
-                index, function (item) {
-                    item.results.map((r) => {
-                        r['showPersona'] = false;
-                        updated.push([r, r]);
-                    });
-                    return item;
-                }
-            );
+        if (index >= 0) {
+            updated = <[string | number | RaceResult, Partial<RaceResult>][]>
+                this.getRaceResults(this.accumulator.get(index), false).map((r) => [r, r]);
         }
 
-        return new Changes(this.accumulator.last().results, removed, updated);
+        return new Changes(added, removed, updated);
     }
 }

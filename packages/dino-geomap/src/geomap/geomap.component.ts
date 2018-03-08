@@ -22,7 +22,7 @@ import * as geomapSpec from '../shared/spec.json';
 export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() stateDataStream: Observable<Changes>;
   
-  @Input() strokeField: IField<string>;
+  @Input() strokeColorField: IField<string>;
 
   @Input() stateField: IField<string>;
   @Input() stateColorField: IField<string>;
@@ -87,7 +87,7 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
         this.dataService.fetchData(
         this.pointStreamCache.asObservable(),
         this.stateStreamCache.asObservable(),
-        this.strokeField,
+        this.strokeColorField,
         this.stateField,
         this.stateColorField,
         this.stateIdField,

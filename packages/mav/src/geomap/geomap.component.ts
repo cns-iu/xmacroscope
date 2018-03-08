@@ -11,7 +11,7 @@ import { Changes, IField } from '@ngx-dino/core';
 export class GeomapComponent implements OnInit {
   @Input() stateDataStream: Observable<Changes>;
 
-  @Input() strokeField:IField<string>;
+  @Input() strokeColorField:IField<string>;
   
   @Input() stateField: IField<string>;
   @Input() stateColorField: IField<string>;

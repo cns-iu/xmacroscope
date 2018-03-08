@@ -30,7 +30,7 @@ import { Point } from '../shared/point';
 })
 export class ScatterplotComponent implements OnInit, OnChanges {
   @Input() pointIDField: IField<string>;
-  @Input() strokeField: IField<string>;
+  @Input() strokeColorField: IField<string>;
   @Input() xField: IField<number | string>;
   @Input() yField: IField<number | string>;
   @Input() dataStream: Observable<Changes<any>>;
@@ -83,7 +83,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
 
       this.setScales(this.data);
       this.drawPlots(this.data);
-      this.drawText(this.data, true);
+      this.drawText(this.data);
     });
 
   }
@@ -106,7 +106,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
         this.streamCache.asObservable(), this.pointIDField,
         this.xField, this.yField,
         this.colorField, this.shapeField, 
-        this.sizeField, this.strokeField
+        this.sizeField, this.strokeColorField
       );
     }
     if (this.streamCache && update) {
@@ -190,13 +190,7 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       .attr('d', d3Shape.symbol()
         .size((d) => <number>2 * d.size)
         .type((d) => this.selectShape(d)))
-      .attr('stroke', (d) => {
-       if (d.stroke !== 'black') { 
-            return d.stroke;
-       } else {
-         return d.color;
-       }
-      })
+      .attr('stroke', (d) => d.stroke)
       .attr('stroke-width', '2px')
       .attr('transform', (d) => this.shapeTransform(d))
       .transition().duration(1000).attr('fill', (d) => d.color).attr('r', 8);
@@ -252,7 +246,6 @@ export class ScatterplotComponent implements OnInit, OnChanges {
       case 'triangle-left': return d3Shape.symbolTriangle;
       case 'triangle-right': return d3Shape.symbolTriangle;
       case 'star': return d3Shape.symbolStar;
-      case 'wye': return d3Shape.symbolWye;
     }
   }
 

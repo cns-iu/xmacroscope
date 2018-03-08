@@ -1,12 +1,34 @@
 import { IField, Field } from '@ngx-dino/core';
 import {
   genderMapping, ageGroupMapping, handednessMapping,
-  athleticismMapping, laneMapping, falseStartMapping,
-  showPersonaMapping
+  athleticismMapping, laneMapping, falseStartMapping
 } from './mappings';
 
 export interface FieldList<T> extends Array<IField<T>> {
   default: IField<T>;
+}
+
+export class ShowPersonaField<T> extends Field<T> {
+  constructor(private field1: IField<T>, private field2: IField<T>) {
+    super(field2);
+    this['get'] = this.realGet.bind(this);
+  }
+
+  realGet(item: any): T {
+    if (item.showPersona) {
+      return this.field1.get(item);
+    } else {
+      return this.field2.get(item);
+    }
+  }
+}
+
+export function wrapFieldsForShowPersona<T>(srcField: IField<T>, listOfFields: IField<T>[]) {
+  listOfFields.forEach((field, index, arr) => {
+    if (field !== srcField) {
+      arr[index] = new ShowPersonaField(srcField, field);
+    }
+  });
 }
 
 export function makeFieldList<T>(
@@ -40,12 +62,12 @@ const nameFields: IField<string>[] = [
 
 export const defaultNameFields = makeFieldList(nameFields);
 
-
+const personaColorField =  new Field({
+  name: 'persona.color', label: 'Color', default: '#696969'
+});
 // Color fields
 const colorFields: IField<string>[] = [
-  new Field({
-    name: 'persona.color', label: 'Color', default: '#696969'
-  }),
+  personaColorField,
   new Field({
     name: 'persona.gender', label: 'Gender', default: '#696969',
     transform: genderMapping.makeMapper('color')
@@ -72,6 +94,7 @@ const colorFields: IField<string>[] = [
     transform: falseStartMapping.makeMapper('color')
   })
 ];
+wrapFieldsForShowPersona(personaColorField, colorFields);
 
 // State color fields
 export const defaultStateColorFields = makeFieldList(colorFields, 0);
@@ -79,9 +102,12 @@ export const defaultStateColorFields = makeFieldList(colorFields, 0);
 // Point color fields
 export const defaultPointColorFields = makeFieldList(colorFields, 1);
 
-
+const personaShapeField = new Field({
+  name: 'persona.icon', label: 'Shape', default: 'star'
+});
 // Shape fields
 const shapeFields: IField<string>[] = [
+  personaShapeField,
   new Field({
     name: 'fixed', label: 'Fixed Shape', accessor: () => 'square'
   }),
@@ -111,12 +137,17 @@ const shapeFields: IField<string>[] = [
     transform: falseStartMapping.makeMapper('shape')
   })
 ];
+wrapFieldsForShowPersona(personaShapeField, shapeFields);
 
 // Point shape fields
 export const defaultPointShapeFields = makeFieldList(shapeFields, 3);
 
 /* internal field - not user facing */
-export const strokeField = new Field({
-  name: 'showPersona', label: 'Stroke', datatype: 'boolean',
-  transform: showPersonaMapping.makeMapper('color')
-});
+export class PersonastrokeColorField<T> extends Field<T> {
+  constructor(parent: any, fieldName: string) {
+    super({
+      name: 'showPersona', label: 'Stroke', datatype: 'boolean',
+      accessor: (item) => item.showPersona ? 'green' : parent[fieldName].get(item)
+    });
+  }
+}

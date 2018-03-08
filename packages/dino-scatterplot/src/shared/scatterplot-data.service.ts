@@ -23,7 +23,7 @@ export class ScatterplotDataService {
     colorField: IField<string>,
     shapeField: IField<string>,
     sizeField: IField<string>,
-    strokeField: IField<string>): this {
+    strokeColorField: IField<string>): this {
     this.pointProcessor = new FieldProcessor<Point>(stream, {
       id: pointIDField,
       x: xField,
@@ -31,7 +31,7 @@ export class ScatterplotDataService {
       color: colorField,
       shape: shapeField,
       size: sizeField,
-      stroke: strokeField
+      stroke: strokeColorField
     });
 
     if (this.streamSubscription) {
