@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { Duration, duration } from 'moment';
 
 import { MessageService } from '../../aisl-backend';
-import { RunSelectedMessage, RaceInitiatedMessage, RaceCompletedMessage } from '../../aisl-backend';
+import { RunSelectedMessage, RaceInitiatedMessage, RaceCompletedMessage } from 'aisl-api';
 import { Timer } from './timer';
 
 @Injectable()

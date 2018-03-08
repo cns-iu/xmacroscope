@@ -1,12 +1,13 @@
+import * as casual from 'casual-browserify';
+
 import {
   Persona, Avatar, Message, RunSelectedMessage,
   RaceInitiatedMessage, RaceCompletedMessage, RaceResult
-} from '../../aisl-backend/shared/models';
+} from '../models';
 
 import { MockAvatar } from './avatar.mock';
 import { MockPersona } from './persona.mock';
 
-import { randomInt, randomBool } from './random';
 
 export class RaceMocker {
   private _mocking = false;
@@ -32,9 +33,9 @@ export class RaceMocker {
   }
 
   protected mockRace() {
-    const runSelectedTime = randomInt(100, 500),
-      raceInitiatedTime = randomInt(500, 1500),
-      raceCompletedTime = randomInt(1000, 4000);
+    const runSelectedTime = casual.integer(100, 500),
+      raceInitiatedTime = casual.integer(500, 1500),
+      raceCompletedTime = casual.integer(1000, 4000);
 
     setTimeout(() => {
       const runSelectedMessage = this.runSelected();
@@ -70,8 +71,8 @@ export class RaceMocker {
       avatar,
       results: [this.raceResults(maxTime, 1)]
     });
-    if (randomBool()) {
-      message.results.push(this.raceResults(randomInt(2000, maxTime), 2));
+    if (casual.coin_flip) {
+      message.results.push(this.raceResults(casual.integer(2000, maxTime), 2));
     }
     this.send(message);
     return message;
@@ -80,8 +81,8 @@ export class RaceMocker {
     return <RaceResult>{
       lane,
       persona: MockPersona(),
-      started: randomBool(),
-      falseStart: randomBool(),
+      started: casual.coin_flip,
+      falseStart: casual.coin_flip,
       timeMillis: time
     };
   }

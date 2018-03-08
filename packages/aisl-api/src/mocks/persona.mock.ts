@@ -1,6 +1,7 @@
-import { Persona } from '../../aisl-backend';
 import * as casual from 'casual-browserify';
-import { randomInt, randFromList } from './random';
+
+import { Persona } from '../models/persona';
+
 
 const SHAPES: string[] = ['circle', 'square', 'cross', 'diamond',
   'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star', 'wye'
@@ -18,7 +19,7 @@ function nullable<T>(value: T, nullProb = .1): T | null {
 }
 
 export function mockUSLatLng(): [number, number] {
-  return [randomInt(MIN_LAT, MAX_LAT), randomInt(MIN_LNG, MAX_LNG)];
+  return [casual.integer(MIN_LAT, MAX_LAT), casual.integer(MIN_LNG, MAX_LNG)];
 }
 
 export class GeneratedPersona implements Persona {

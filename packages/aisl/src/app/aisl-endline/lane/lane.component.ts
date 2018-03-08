@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Duration, duration } from 'moment';
 
 import { MessageService } from '../../aisl-backend';
-import { RunSelectedMessage, RaceCompletedMessage, RaceResult } from '../../aisl-backend';
+import { RunSelectedMessage, RaceCompletedMessage, RaceResult } from 'aisl-api';
 
 @Component({
   selector: 'aisl-lane',
@@ -14,7 +14,7 @@ export class LaneComponent implements OnInit {
   @Input() laneId: number;
   @Input() timeFormat: string | null = null;
 
-  falseStart: boolean = false;
+  falseStart = false;
   time?: Duration;
 
   constructor(private messageService: MessageService) {

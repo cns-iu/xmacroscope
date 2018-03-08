@@ -13,9 +13,7 @@ import { RxAislDatabase } from './rxdb-types.d';
 import { AvatarSchema } from '../rxdb/avatar.schema';
 import { PersonaSchema } from './persona.schema';
 import { RunSchema } from './run.schema';
-import { Avatar, Persona, Run, FlatRun } from '../../aisl-backend/shared/models';
-
-import { AvatarFixtures } from '../../aisl-graphql-mockdb/shared/avatar.fixture';
+import { Avatar, AvatarFixtures, Persona, Run, FlatRun } from 'aisl-api';
 
 import { environment } from '../../shared';
 

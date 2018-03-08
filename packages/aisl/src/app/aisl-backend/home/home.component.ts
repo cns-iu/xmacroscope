@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { List } from 'immutable';
 
-import { Message } from '../shared/message';
+import { Message } from 'aisl-api';
 import { MessageService } from '../shared/message.service';
 
 @Component({
