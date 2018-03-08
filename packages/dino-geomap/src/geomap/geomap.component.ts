@@ -11,6 +11,7 @@ import { lookupStateCode } from '../shared/state-lookup';
 import { GeomapDataService } from '../shared/geomap.dataservice';
 import * as us10m from '../shared/us-10m.json';
 import * as geomapSpec from '../shared/spec.json';
+import { strokeField } from '../../../aisl/src/app/aisl-mav/shared/common-fields';
 
 @Component({
   selector: 'dino-geomap',
@@ -21,6 +22,9 @@ import * as geomapSpec from '../shared/spec.json';
 
 export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
   @Input() stateDataStream: Observable<Changes>;
+  
+  @Input() strokeField: IField<string>;
+
   @Input() stateField: IField<string>;
   @Input() stateColorField: IField<string>;
 
@@ -84,6 +88,7 @@ export class GeomapComponent implements OnInit, OnDestroy, OnChanges {
         this.dataService.fetchData(
         this.pointStreamCache.asObservable(),
         this.stateStreamCache.asObservable(),
+        this.strokeField,
         this.stateField,
         this.stateColorField,
         this.stateIdField,

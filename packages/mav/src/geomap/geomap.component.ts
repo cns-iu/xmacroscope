@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Changes, IField } from '@ngx-dino/core';
+import { strokeField } from '../../../aisl/src/app/aisl-mav/shared/common-fields';
 
 @Component({
   selector: 'mav-geomap',
@@ -10,6 +11,9 @@ import { Changes, IField } from '@ngx-dino/core';
 })
 export class GeomapComponent implements OnInit {
   @Input() stateDataStream: Observable<Changes>;
+
+  @Input() strokeField:IField<string>;
+  
   @Input() stateField: IField<string>;
   @Input() stateColorField: IField<string>;
 

@@ -4,14 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 import { IField, Field, Changes } from '@ngx-dino/core';
 import {
-  defaultPointColorFields, defaultPointShapeFields
+  defaultPointColorFields, defaultPointShapeFields, strokeField
 } from '../shared/common-fields';
 import {
   pointIDField,
   defaultPointPositionFields,
   defaultXField, defaultYField,
-  defaultPointSizeFields,
-  showPersonaField
+  defaultPointSizeFields
 } from '../shared/scatterplot-fields';
 
 @Component({
@@ -22,7 +21,7 @@ import {
 })
 export class ScatterplotComponent implements OnInit {
   pointIDField = pointIDField; // not user facing
-  showPersonaField = showPersonaField; // not user facing
+  strokeField = strokeField; // not user facing
 
   xFields = defaultPointPositionFields;
   xField = defaultXField;

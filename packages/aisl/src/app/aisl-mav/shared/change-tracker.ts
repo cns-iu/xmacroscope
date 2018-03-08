@@ -51,7 +51,7 @@ export class ChangeTracker {
         }
 
         const index = this.accumulator.findIndex(function (m) {
-            return m.results[0]['showPersona'] === true; // find first element from the beginning which has showPersona set to true.
+            return m.results[0]['showPersona'] === true; // find first element from the beginning which has stroke set to true.
         });
 
        // update the entry at the found index, if the index is less than the last highlightCount number of indices.

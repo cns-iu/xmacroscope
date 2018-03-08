@@ -40,8 +40,3 @@ const sizeFields: IField<number>[] = [
 
 // Point size fields
 export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
-
-/* internal field - not user facing */
-export const showPersonaField: IField<boolean> = new Field({
-  name: 'showPersona', label: 'Show Persona'
-});

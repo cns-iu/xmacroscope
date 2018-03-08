@@ -1,7 +1,8 @@
 import { IField, Field } from '@ngx-dino/core';
 import {
   genderMapping, ageGroupMapping, handednessMapping,
-  athleticismMapping, laneMapping, falseStartMapping
+  athleticismMapping, laneMapping, falseStartMapping,
+  showPersonaMapping
 } from './mappings';
 
 export interface FieldList<T> extends Array<IField<T>> {
@@ -100,3 +101,9 @@ const shapeFields: IField<string>[] = [
 
 // Point shape fields
 export const defaultPointShapeFields = makeFieldList(shapeFields, 3);
+
+/* internal field - not user facing */
+export const strokeField = new Field({
+  name: 'showPersona', label: 'Stroke', datatype: 'boolean',
+  transform: showPersonaMapping.makeMapper('color')
+});
