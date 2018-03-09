@@ -1,1 +1,1 @@
-export { AislGraphqlClientdbModule } from './aisl-graphql-clientdb.module';
+export { createClientDBLink } from './graphql/client-link';

@@ -2,10 +2,12 @@ import './rxjs-operators.ts';
 
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GraphqlConnectionModule } from './graphql-connection.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    GraphqlConnectionModule
   ],
   declarations: [],
   providers: []

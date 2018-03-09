@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  mockMessages: true
+  mockMessages: true,
+  graphqlEndpoint: 'clientdb'
 };
