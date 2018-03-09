@@ -2,93 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import * as moment from 'moment';
-
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
+import { RUN_SELECTED, RACE_INITIATED, RACE_COMPLETED, SEND_MESSAGE} from './graphql-queries';
 import { MessageService } from './message.service';
 
 import {
   Persona, Avatar, Message, RunSelectedMessage,
   RaceInitiatedMessage, RaceCompletedMessage, RaceResult
 } from 'aisl-api';
-
-const RUN_SELECTED = gql`
-  subscription runSelected {
-    runSelected {
-      type
-      timestamp
-      avatar {
-        id
-        name
-        runMillis
-      }
-    }
-  }
-`;
-
-const RACE_INITIATED = gql`
-  subscription raceInitiated {
-    raceInitiated {
-      type
-      timestamp
-      avatar {
-        id
-        name
-        runMillis
-      }
-    }
-  }
-`;
-
-const RACE_COMPLETED = gql`
-  subscription raceCompleted {
-    raceCompleted {
-      type
-      timestamp
-      avatar {
-        id
-        name
-        runMillis
-      }
-      results {
-        lane
-        persona {
-          id
-          name
-          icon
-          color
-          gender
-          age_group
-          handedness
-          zipcode
-          state
-          latitude
-          longitude
-        }
-        started
-        falseStart
-        timeMillis
-      }
-    }
-  }
-`;
-
-const SEND_MESSAGE = gql`
-  mutation (
-    $type: String!
-    $timestamp: String!
-    $avatar: NewAvatar
-    $results: [NewRaceResult]
-  ) {
-    sendMessage(message: {
-      type: $type
-      timestamp: $timestamp,
-      avatar: $avatar,
-      results: $results
-    })
-  }
-`;
 
 @Injectable()
 export class GraphQLMessageService {

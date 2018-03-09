@@ -19,8 +19,7 @@ import { AppComponent } from './app.component';
     SharedModule,
     AislBackendModule,
     AislEndlineModule,
-    AislMavModule,
-    SharedModule
+    AislMavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
