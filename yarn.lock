@@ -903,12 +903,6 @@ apollo-link-http@^1.3.0, apollo-link-http@^1.3.1:
     apollo-link "^1.2.1"
     apollo-link-http-common "^0.2.3"
 
-apollo-link-schema@^1.0.2:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/apollo-link-schema/-/apollo-link-schema-1.0.6.tgz#a0dc6c2efb3c7678e15c27f4d8432e45bbaa8262"
-  dependencies:
-    apollo-link "^1.2.1"
-
 apollo-link-webworker@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/apollo-link-webworker/-/apollo-link-webworker-0.1.3.tgz#22642e46ece3901eb2cfab42196cd7dc4a4eacfc"
@@ -922,7 +916,7 @@ apollo-link-ws@^1.0.4:
   dependencies:
     apollo-link "^1.2.1"
 
-apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.0.7, apollo-link@^1.1.0, apollo-link@^1.2.1:
+apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.1.0, apollo-link@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.1.tgz#c120b16059f9bd93401b9f72b94d2f80f3f305d2"
   dependencies:

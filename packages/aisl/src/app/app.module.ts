@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     CoreModule,
     SharedModule,
-    AislBackendModule,
+    AislBackendModule.forRoot(),
     AislEndlineModule,
     AislMavModule
   ],

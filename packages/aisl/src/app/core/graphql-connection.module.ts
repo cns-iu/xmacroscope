@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloLink } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 
 import { createClientDBLink } from 'aisl-clientdb';
@@ -26,7 +27,7 @@ export class GraphqlConnectionModule {
     apollo.create({ link, cache });
   }
 
-  createLink(endpoint: string): any {
+  createLink(endpoint: string): ApolloLink {
     if (endpoint === 'clientdb') {
       return createClientDBLink();
     }
