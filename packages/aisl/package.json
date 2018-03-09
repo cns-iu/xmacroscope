@@ -10,12 +10,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "worker": "webpack --config webpack.worker.config.js",
     "serve.build": "lite-server --baseDir='dist'"
   },
   "private": true,
   "dependencies": {
     "aisl-api": "^0.0.0",
+    "aisl-clientdb": "^0.0.0",
     "@angular/animations": "^5.1.1",
     "@angular/cdk": "^5.0.1",
     "@angular/common": "^5.0.0",

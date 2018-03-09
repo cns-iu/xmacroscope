@@ -1,6 +1,5 @@
 // FIXME: casual-browserify needs to be updated to change the line below on their repo.
-declare module "casual-browserify";
- {
+declare module "casual-browserify" {
 
   interface generators {
     // EMBEDDED GENERATORS

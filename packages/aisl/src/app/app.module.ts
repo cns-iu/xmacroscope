@@ -7,8 +7,8 @@ import { AislBackendModule } from './aisl-backend';
 import { AislEndlineModule } from './aisl-endline';
 import { AislMavModule } from './aisl-mav';
 
-import { AislGraphqlClientdbModule } from './aisl-graphql-clientdb';
-import { AislGraphqlServerdbModule } from './aisl-graphql-serverdb';
+import { AislGraphqlClientdbModule } from 'aisl-clientdb';
+import { AislGraphqlServerdbModule } from './aisl-backend';
 
 import { AppComponent } from './app.component';
 

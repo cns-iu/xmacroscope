@@ -15,7 +15,7 @@ import { PersonaSchema } from './persona.schema';
 import { RunSchema } from './run.schema';
 import { Avatar, AvatarFixtures, Persona, Run, FlatRun } from 'aisl-api';
 
-import { environment } from '../../shared';
+const environment = {production: false};
 
 /** Setup RxDB Plugins **/
 if (!environment.production) {

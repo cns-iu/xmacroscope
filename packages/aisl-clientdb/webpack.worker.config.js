@@ -11,17 +11,17 @@ module.exports = {
       ".js"
     ],
     "modules": [
-      "./node_modules"
+      "../../node_modules"
     ]
   },
   "resolveLoader": {
     "modules": [
-      "./node_modules"
+      "../../node_modules"
     ]
   },
   "entry": {
-    "src/app/aisl-graphql-clientdb/worker.bundle": [
-      './src/app/aisl-graphql-clientdb/worker.ts'
+    "src/worker.bundle": [
+      './src/worker.ts'
     ]
   },
 
@@ -30,7 +30,7 @@ module.exports = {
     "filename": "[name].js"
   },
 
-  "watch": true,
+  "watch": false,
 
   "module": {
     "rules": [
@@ -43,12 +43,19 @@ module.exports = {
         ]
       },
       {
+        loader: 'worker-loader',
+        options: { inline: true, fallback: false }
+      },
+      {
         "test": /\.json$/,
         "loader": "json-loader"
       },
       {
         "test": /\.ts$/,
-        "loader": "@ngtools/webpack"
+        "loader": "@ngtools/webpack",
+        options: {
+          "tsConfigPath": "src/tsconfig.app.json"
+        }
       }
     ]
   },
@@ -56,10 +63,7 @@ module.exports = {
     new NoEmitOnErrorsPlugin(),
     new ProgressPlugin(),
     new AotPlugin({
-      "mainPath": "main.ts",
-      "hostReplacementPaths": {
-        "environments/environment.ts": "environments/environment.ts"
-      },
+      "mainPath": "index.ts",
       "exclude": [],
       "tsConfigPath": "src/tsconfig.app.json",
       "skipCodeGeneration": true

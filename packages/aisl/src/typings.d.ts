@@ -3,13 +3,3 @@ declare var module: NodeModule;
 interface NodeModule {
   id: string;
 }
-
-declare module 'worker-loader!*' {
-  const content: any;
-  export = content;
-}
-
-declare module '*.json' {
-  const value: any;
-  export default value;
-}
