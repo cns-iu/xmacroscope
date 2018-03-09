@@ -167,7 +167,7 @@ export class PersonastrokeColorField<T> extends Field<T> {
   constructor(parent: any, fieldName: string) {
     super({
       name: 'showPersona', label: 'Stroke', datatype: 'boolean',
-      accessor: (item) => item.showPersona ? 'green' : parent[fieldName].get(item)
+      accessor: (item) => item.showPersona ? 'black' : parent[fieldName].get(item)
     });
   }
 }
