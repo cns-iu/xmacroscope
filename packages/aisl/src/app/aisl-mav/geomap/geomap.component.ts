@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Changes } from '@ngx-dino/core';
+import { Changes, IField } from '@ngx-dino/core';
 
 import { GeomapDataService } from '../shared/geomap-data.service';
 import {
   combineUnique,
   defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields
+  defaultPointShapeFields, PersonastrokeColorField
 } from '../shared/common-fields';
 import {
   defaultTooltipFields,
@@ -32,6 +32,8 @@ export class GeomapComponent implements OnInit {
     defaultTooltipFields
   );
 
+  strokeColorField: IField<string>; // not user facing
+
   stateField = defaultStateFields.default;
   stateFields = defaultStateFields;
 
@@ -55,6 +57,7 @@ export class GeomapComponent implements OnInit {
   constructor(service: GeomapDataService) {
     this.stateDataStream = service.stateDataStream;
     this.pointDataStream = service.pointDataStream;
+    this.strokeColorField = new PersonastrokeColorField(this, 'pointColorField');
   }
 
   ngOnInit() {

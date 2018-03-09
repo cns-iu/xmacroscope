@@ -10,7 +10,7 @@ import { IField, Changes } from '@ngx-dino/core';
 })
 export class ScatterplotComponent implements OnInit {
   @Input() pointIDField: IField<string>; // not user facing
-  @Input() showPersonaField: IField<boolean>; // not user facing
+  @Input() strokeColorField: IField<boolean>; // not user facing
   @Input() xFields: IField<any>[];
   @Input() yFields: IField<any>[];
   @Input() colorFields: IField<string>[];

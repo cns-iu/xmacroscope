@@ -1,19 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Changes } from '@ngx-dino/core';
+import { Changes, IField } from '@ngx-dino/core';
 
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 import {
   combineUnique,
-  defaultPointColorFields, defaultPointShapeFields
+  defaultPointColorFields, defaultPointShapeFields, PersonastrokeColorField
 } from '../shared/common-fields';
 import {
   pointIDField,
   defaultPointPositionFields,
   defaultXField, defaultYField,
-  defaultPointSizeFields,
-  showPersonaField
+  defaultPointSizeFields
 } from '../shared/scatterplot-fields';
 
 
@@ -25,7 +24,7 @@ import {
 })
 export class ScatterplotComponent implements OnInit {
   pointIDField = pointIDField; // not user facing
-  showPersonaField = showPersonaField; // not user facing
+  strokeColorField: IField<string>; // not user facing
 
   fields = combineUnique<any>(
     defaultPointPositionFields,
@@ -53,6 +52,7 @@ export class ScatterplotComponent implements OnInit {
 
   constructor(service: ScatterPlotDataService) {
     this.dataStream = service.dataStream;
+    this.strokeColorField = new PersonastrokeColorField(this, 'colorField');
   }
 
   ngOnInit() { }
