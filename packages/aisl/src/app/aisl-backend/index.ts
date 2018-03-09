@@ -3,4 +3,3 @@ export { GraphQLMessageService } from './shared/graphql-message.service';
 export { MockMessageService } from './shared/mock-message.service';
 
 export { AislBackendModule } from './aisl-backend.module';
-export { AislGraphqlServerdbModule } from './aisl-graphql-serverdb.module';
