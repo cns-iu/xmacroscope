@@ -20,7 +20,7 @@ import { environment } from '../shared';
 })
 export class AislBackendModule {
   constructor(private graphQLMessageService: GraphQLMessageService, private mockMessageService: MockMessageService) {
-    if (!environment.production) {
+    if (!environment.mockMessages) {
       mockMessageService.startMocking();
     }
   }
