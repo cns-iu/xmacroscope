@@ -1,0 +1,3 @@
+[submodule "ngx-dino"]
+	path = ngx-dino
+	url = https://github.com/cns-iu/ngx-dino.git
