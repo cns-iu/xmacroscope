@@ -28,3 +28,11 @@ git clone git@github.com:cns-iu/xmacroscope.git
 cd xmacroscope
 lerna bootstrap
 ```
+
+## Setup environment
+TODO - Automate this with a setup script.
+```
+cp graphQLServer/env.example graphQLServer/.env
+```
+Fill out database details.
+
