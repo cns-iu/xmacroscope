@@ -43,7 +43,7 @@ TODO: Description of how the project is organized into packages with Lerna.
 
 ## Packages
 
- - **aisl**- CNS client application for the Make a Viz experience.
+ - **aisl**- CNS client application for the Run experience
  - **aisl-api**- Client API connecting to server db and client db
  - **aisl-clientdb**- Client side DB mocker, using RxDB
  - **clientRun**- SMM client application for the run experience
