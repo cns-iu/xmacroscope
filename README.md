@@ -36,3 +36,20 @@ cp graphQLServer/env.example graphQLServer/.env
 ```
 Fill out database details.
 
+# Project structure
+
+## Lerna
+TODO: Description of how the project is organized into packages with Lerna.
+
+## Packages
+
+ - **aisl**- CNS client application for the Make a Viz experience.
+ - **aisl-api**- Client API connecting to server db and client db
+ - **aisl-clientdb**- Client side DB mocker, using RxDB
+ - **clientRun**- SMM client application for the run experience
+ - **dino-core**- CNS core visualization system
+ - **dino-geomap**- CNS geomap visualization library
+ - **dino-scatterplot**- CNS scatterplot visualization library
+ - **dino-vega**- CNS visualization library - Vega interface
+ - **serverGraphQL**- Central server for GraphQL system and database interface
+ - **mav**- Make a Viz - A group of tools that give visitors the ability to create a visualization.
