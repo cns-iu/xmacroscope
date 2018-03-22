@@ -18,9 +18,7 @@ module.exports = merge(common, {
     contentBase: './build',
   },
 
-  //
   // Dev server and hot reload plugins
-  //
   plugins: [
     new StartServerPlugin('server.js'),
     new webpack.NamedModulesPlugin(),

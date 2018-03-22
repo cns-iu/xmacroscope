@@ -29,6 +29,8 @@ module.exports = {
   //
   module: {
     rules: [
+
+      // Load JS files
       {
         test: /\.js?$/,
         use: [
@@ -53,9 +55,7 @@ module.exports = {
     ],
   },
 
-  //
   // Compile everything and output it to the build/server.js file.
-  //
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'server.js',
