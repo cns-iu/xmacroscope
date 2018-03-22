@@ -1,7 +1,7 @@
 {
-  "name": "macroscope-server",
+  "name": "graphQLServer",
   "version": "0.0.1",
-  "description": "GraphQL server for the Macroscope application",
+  "description": "GraphQL server for the Macroscope system",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
