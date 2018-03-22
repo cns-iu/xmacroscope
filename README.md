@@ -32,9 +32,10 @@ lerna bootstrap
 ## Setup environment
 TODO - Automate this with a setup script.
 ```
+cp clientRun/env.development.example clientRun/.env.development
 cp graphQLServer/env.example graphQLServer/.env
 ```
-Fill out database details.
+Fill out the details in these env files.
 
 # Project structure
 
