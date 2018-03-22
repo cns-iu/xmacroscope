@@ -1,10 +1,10 @@
-/**
- * Message content type
- *
- * Datatype for generic messages from the client systems.
- */
+//
+// Message content type
+//
+// Datatype for generic messages from the client systems.
+//
 import Sequelize from 'sequelize';
-import sequelize from './sequelize';
+import sequelize from '../config/sequelize';
 
 const Message = sequelize.define('message', {
   type: { type: Sequelize.STRING },

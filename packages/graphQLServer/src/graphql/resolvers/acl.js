@@ -1,6 +1,5 @@
 import { createError } from 'apollo-errors';
-import db from '../connectors/db';
-
+import db from '../../db/models/index';
 import baseResolver from './baseResolver';
 
 const ForbiddenError = createError('ForbiddenError', {

@@ -19,6 +19,8 @@ const baseResolver = createResolver(
    // such as ORM errors etc
    //
   (root, args, context, error) => {
+    console.log(error);
+    console.log('----^ ^ ^ ^ ^ error ^ ^ ^ ^ ^----');
     if (isInstance(error)) {
       return error;
     }

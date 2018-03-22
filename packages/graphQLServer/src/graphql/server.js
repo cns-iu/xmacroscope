@@ -12,7 +12,7 @@ import { createServer } from 'http';
 import { GraphQLError, execute, subscribe } from 'graphql';
 import { formatError as apolloFormatError, createError } from 'apollo-errors';
 import schema from './schema/schema';
-import db from './connectors/db';
+import db from '../db/models/index';
 
 //
 // Environment setup

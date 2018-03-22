@@ -1,5 +1,5 @@
 import baseResolver from './baseResolver';
-import db from '../connectors/db';
+import db from '../../db/models/index';
 import pubsub from './subscriptions';
 
 /**
