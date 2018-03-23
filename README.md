@@ -27,6 +27,13 @@ npm install --global yarn
 npm install --global @angular/cli
 ```
 
+## Initialize [@ngx-dino](https://github.com/cns-iu/ngx-dino) Submodule
+[@ngx-dino](https://github.com/cns-iu/ngx-dino) is CNS' in development visualization framework. As it is not yet on npm, we reference it from a git submodule.
+```
+git submodule init
+git submodule update
+```
+
 ## Bootstrap the project
 Download the latest code and bootstrap all the package dependencies with Lerna.
 
