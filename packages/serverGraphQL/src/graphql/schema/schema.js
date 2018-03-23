@@ -9,10 +9,10 @@ import resolvers from '../resolvers';
 import TYPES from './types/index.graphql';
 import QUERIES from './queries/index.graphql';
 import MUTATIONS from './mutations/index.graphql';
-import SUBSCRIPTION from './subscriptions/index.graphql';
+import SUBSCRIPTIONS from './subscriptions/index.graphql';
 
 const schema = makeExecutableSchema({
-  typeDefs: [TYPES, QUERIES, MUTATIONS, SUBSCRIPTION],
+  typeDefs: [TYPES, QUERIES, MUTATIONS, SUBSCRIPTIONS],
   resolvers,
 });
 

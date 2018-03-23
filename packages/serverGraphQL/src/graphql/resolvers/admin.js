@@ -8,10 +8,8 @@ const ExposedError = createError('ExposedError', {
 const banUser = isAdminResolver.createResolver(
   (root, { input }, { models: { UserModel } }) => UserModel.ban(input),
   (root, args, context, error) => {
-    /*
-      For admin users, let's tell the user what actually broke
-      in the case of an unhandled exception
-    */
+    // For admin users, let's tell the user what actually broke
+    // in the case of an unhandled exception
 
     if (!isInstance(error)) {
       throw new ExposedError({

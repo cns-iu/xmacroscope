@@ -2,6 +2,7 @@ import { combineResolvers } from 'apollo-resolvers';
 import pubsub from './subscriptions';
 import MessageResolver from './message';
 
+// TODO - Break these out into a subscription file
 const Subscription = {
   Subscription: {
     runSelected: {

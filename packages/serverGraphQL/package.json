@@ -1,7 +1,7 @@
 {
-  "name": "macroscope-server",
+  "name": "graphQLServer",
   "version": "0.0.1",
-  "description": "GraphQL server for the Macroscope application",
+  "description": "GraphQL server for the Macroscope system",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -41,6 +41,7 @@
     "bcrypt": "^1.0.3",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.1",
+    "chalk": "^2.3.1",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
@@ -62,6 +63,7 @@
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.23.2",
+    "sequelize-cli": "^4.0.0",
     "sqlite3": "^3.1.13",
     "subscriptions-transport-ws": "^0.9.5"
   }

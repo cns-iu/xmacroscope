@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    // Allow dev dependencies to be imported.
+    // Webpack is a dev tool, but we need to import it in our scripts
+    // to create the build proceesses.
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
+  }
+}

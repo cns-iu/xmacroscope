@@ -1,13 +1,11 @@
 import baseResolver from './baseResolver';
-import db from '../connectors/db';
+import db from '../../db/models/index';
 
-/**
- * --- Queries ---
- */
+//------------------------------------------------------------------------------
+// Queries
+//------------------------------------------------------------------------------
 
-/**
- * Load a performance
- */
+// Load a performance
 const performance = baseResolver
   .createResolver((root, args, context) => {
     const { user: contextUser } = context;
@@ -25,13 +23,11 @@ const performance = baseResolver
     }
   });
 
-/**
- * --- Mutations ---
- */
+//------------------------------------------------------------------------------
+// Mutations
+//------------------------------------------------------------------------------
 
-/**
- * Create a performance
- */
+// Create a performance
 const createPerformance = baseResolver
   .createResolver((root, args, context) => db.performance.create({
     type: args.input.type,
