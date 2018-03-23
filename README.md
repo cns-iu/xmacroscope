@@ -20,6 +20,13 @@ Install it globally to get started
 npm install --global lerna
 ```
 
+## Install Other Global Dependencies
+Yarn is used as a package manager and Angular CLI is used for the CNS UI components
+```
+npm install --global yarn
+npm install --global @angular/cli
+```
+
 ## Bootstrap the project
 Download the latest code and bootstrap all the package dependencies with Lerna.
 
@@ -44,12 +51,12 @@ TODO: Description of how the project is organized into packages with Lerna.
 ## Packages
 
  - **aisl**- CNS client application for the Run experience
- - **aisl-api**- Client API connecting to server db and client db
- - **aisl-clientdb**- Client side DB mocker, using RxDB
+ - **aisl-api**- GraphQL API for the Run experience
+ - **aisl-clientdb**- Client side implemention of the aisl-api, using RxDB
  - **clientRun**- SMM client application for the run experience
- - **dino-core**- CNS core visualization system
- - **dino-geomap**- CNS geomap visualization library
- - **dino-scatterplot**- CNS scatterplot visualization library
- - **dino-vega**- CNS visualization library - Vega interface
+ - **dino-core**- CNS @ngx-dino/core visualization framework
+ - **dino-geomap**- CNS @ngx-dino/geomap visualization component
+ - **dino-scatterplot**- CNS @ngx-dino/scatterplot visualization component
+ - **dino-vega**- CNS @ngx-dino/vega visualization integration library
  - **serverGraphQL**- Central server for GraphQL system and database interface
- - **mav**- Make a Viz - A group of tools that give visitors the ability to create a visualization.
+ - **mav**- Make a Viz - The generic part of the Make a Viz experience that can be applied to multiple kinds of exhibits
