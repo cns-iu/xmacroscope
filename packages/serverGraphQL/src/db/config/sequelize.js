@@ -10,18 +10,26 @@ const envConfig = process.env.NODE_ENV !== 'production'
   ? config.development
   : config.production;
 
+const { dialect } = envConfig;
+const database = dialect === 'sqlite' ? '' : envConfig.database;
+const username = dialect === 'sqlite' ? '' : envConfig.username;
+const password = dialect === 'sqlite' ? '' : envConfig.password;
+const host = dialect === 'sqlite' ? '' : envConfig.host;
+const storage = dialect === 'sqlite' ? envConfig.storage : '';
+// Sequelize operator aliases are a security issue, disable them.
+const operatorsAliases = false;
+
 // Create DB connection
 const sequelize = new Sequelize(
-  envConfig.database,
-  envConfig.username,
-  envConfig.password,
+  database,
+  username,
+  password,
   {
-    host: envConfig.host,
-    dialect: envConfig.dialect,
-
-    // Operator aliases are a security issue, disable them.
-    operatorsAliases: false,
-  },
+    host,
+    dialect,
+    storage,
+    operatorsAliases
+  }
 );
 
 export default sequelize;

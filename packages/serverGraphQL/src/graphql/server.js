@@ -13,6 +13,8 @@ import { GraphQLError, execute, subscribe } from 'graphql';
 import { formatError as apolloFormatError, createError } from 'apollo-errors';
 import schema from './schema/schema';
 import db from '../db/models/index';
+import fs from 'fs';
+import chalk from 'chalk';
 
 //
 // Environment setup
@@ -22,6 +24,29 @@ import db from '../db/models/index';
 //
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+}
+
+//
+// SQLite setup
+//
+// If the database dialect is set to sqlite, check for an existing storage
+// file. Create one if it doesn't exist.
+//
+if (process.env.DB_DIALECT === 'sqlite') {
+  const sqlite = require('sqlite3');
+  const sqliteStorage = path.join(__dirname, `../../private/${process.env.DB_STORAGE}`);
+  fs.access(sqliteStorage, function(err) {
+    if (err === null) {
+      console.log(chalk.yellow('A SQLite database file already exists. ' +
+        'Leaving it intact.'));
+    } else if (err.code === 'ENOENT') {
+      console.log(chalk.blue('The defined SQLite file doesn\'t exist.\n' +
+        `Creating the SQLite db at ${sqliteStorage}.`));
+      const sqliteDb = new sqlite.Database(sqliteStorage);
+    } else {
+      console.log(chalk.red('Unknown error: ', err.code));
+    }
+  });
 }
 
 // GraphQL port
