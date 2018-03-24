@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Start from '../Start/Start';
+import StartPage from '../Start/Page';
 import Home from '../Pages/Home';
 import NoMatch from '../Pages/NoMatch';
 
@@ -12,7 +12,7 @@ function AppRoutes() {
       <div className="col-10 offset-1">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/start" component={Start} />
+          <Route exact path="/start" component={StartPage} />
           <Route component={NoMatch} />
         </Switch>
       </div>

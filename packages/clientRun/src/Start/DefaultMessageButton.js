@@ -3,12 +3,12 @@ import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
 import SEND_MESSAGE from './graphql/SendMessage.graphql';
 
-const Start = ({ id, text }) => (
+const Start = () => (
   <Mutation
     mutation={SEND_MESSAGE}
     variables={{ type: 'thing', timestamp: '2018-03-23' }}
   >
-    {(sendMessage, { loading, error, data }) => (
+    {(sendMessage, { loading, error }) => (
       <div>
         <Button color="primary" onClick={sendMessage}>
           Send defeault message
