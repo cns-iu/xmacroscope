@@ -12,7 +12,6 @@ class Start extends React.Component {
   }
 
   componentDidMount() {
-
     // Bind keys for Keyboard
     // encoder input.
     Mousetrap.bind('s', () => {

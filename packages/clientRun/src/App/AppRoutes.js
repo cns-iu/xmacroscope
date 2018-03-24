@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import StartMutationContainer from '../Start/StartMutationContainer';
+import Start from '../Start/Start';
 import Home from '../Pages/Home';
 import NoMatch from '../Pages/NoMatch';
 
@@ -11,15 +11,10 @@ function AppRoutes() {
     <div className="row">
       <div className="col-10 offset-1">
         <Switch>
-          <Route
-            exact
-            path="/smm"
-            render={props => <Home {...props} />}
-          />
-          <Route exact path="/start" component={StartMutationContainer} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/start" component={Start} />
           <Route component={NoMatch} />
         </Switch>
-
       </div>
     </div>
   );

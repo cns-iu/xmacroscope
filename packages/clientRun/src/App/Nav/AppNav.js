@@ -29,7 +29,7 @@ class AppNav extends React.Component {
     return (
       <div>
         <Navbar light expand="md">
-          <NavbarBrand href="/smm">Macroscope</NavbarBrand>
+          <NavbarBrand href="/">Macroscope</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
 
