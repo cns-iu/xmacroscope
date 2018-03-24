@@ -11,10 +11,12 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { createServer } from 'http';
 import { GraphQLError, execute, subscribe } from 'graphql';
 import { formatError as apolloFormatError, createError } from 'apollo-errors';
-import schema from './schema/schema';
-import db from '../db/models/index';
 import fs from 'fs';
 import chalk from 'chalk';
+import faker from 'faker';
+import _ from 'lodash';
+import schema from './schema/schema';
+import db from '../db/models/index';
 
 //
 // Environment setup
@@ -34,15 +36,18 @@ if (process.env.NODE_ENV !== 'production') {
 //
 if (process.env.DB_DIALECT === 'sqlite') {
   const sqlite = require('sqlite3');
-  const sqliteStorage = path.join(__dirname, `../../private/${process.env.DB_STORAGE}`);
-  fs.access(sqliteStorage, function(err) {
+  const sqliteStorage = path.join(
+    __dirname,
+    `../../private/${process.env.DB_STORAGE}`,
+  );
+  fs.access(sqliteStorage, (err) => {
     if (err === null) {
       console.log(chalk.yellow('A SQLite database file already exists. ' +
         'Leaving it intact.'));
     } else if (err.code === 'ENOENT') {
       console.log(chalk.blue('The defined SQLite file doesn\'t exist.\n' +
         `Creating the SQLite db at ${sqliteStorage}.`));
-      const sqliteDb = new sqlite.Database(sqliteStorage);
+      new sqlite.Database(sqliteStorage);
     } else {
       console.log(chalk.red('Unknown error: ', err.code));
     }
@@ -138,7 +143,7 @@ app.use('/mav', express.static(path.join(__dirname, '../../../aisl/dist')));
 // Load the schema and context for each GraphQL request.
 //
 // TODO - test removing unused param, response
-app.use('/graphql', bodyParser.json(), graphqlExpress((request, response) => ({
+app.use('/graphql', bodyParser.json(), graphqlExpress(() => ({
   schema,
   formatError,
 })));
@@ -156,6 +161,15 @@ app.use('/graphiql', graphiqlExpress({
   subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
 }));
 
+// Generate n fake messages on startup
+const populateMessages = (n) => {
+  const fakeMessages = _.times(n, (() => ({
+    type: faker.lorem.words(),
+    timestamp: faker.date.future(),
+  })));
+  db.message.bulkCreate(fakeMessages);
+};
+
 // Start the GraphQL server and populate DB with seed data if empty
 const server = createServer(app);
 server.listen(PORT, () => {
@@ -169,6 +183,10 @@ server.listen(PORT, () => {
   });
 
   // Ensure DB tables are created
-  db.sequelize.sync();
+  // Add mock data
+  db.sequelize.sync({ force: true })
+    .then(() => {
+      populateMessages(10);
+    });
 });
 

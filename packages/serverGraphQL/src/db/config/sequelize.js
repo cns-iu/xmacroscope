@@ -5,6 +5,7 @@
 //------------------------------------------------------------------------------
 import Sequelize from 'sequelize';
 import config from './config';
+import path from 'path';
 
 const envConfig = process.env.NODE_ENV !== 'production'
   ? config.development
@@ -15,7 +16,10 @@ const database = dialect === 'sqlite' ? '' : envConfig.database;
 const username = dialect === 'sqlite' ? '' : envConfig.username;
 const password = dialect === 'sqlite' ? '' : envConfig.password;
 const host = dialect === 'sqlite' ? '' : envConfig.host;
-const storage = dialect === 'sqlite' ? envConfig.storage : '';
+const storage = dialect === 'sqlite'
+  ? path.join(__dirname, `../../../private/${process.env.DB_STORAGE}`)
+  : '';
+
 // Sequelize operator aliases are a security issue, disable them.
 const operatorsAliases = false;
 
