@@ -23,19 +23,11 @@ class Start extends React.Component {
       console.log('Keypress E');
       this.props.handleEndSignal();
     });
-
   }
 
   handleAvatarSelection(name) {
     // Do mutation
-    console.log('onAvatarSelected', name);
-
     this.props.handleAvatarSelection(name);
-
-
-    // TODO: Trigger avatar display to start
-    // countdown here.
-
   }
 
   renderSelect() {

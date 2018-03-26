@@ -37,7 +37,7 @@ class AppNav extends React.Component {
             <Nav className="mr-auto" navbar>
               {/* Anonymous user navigation */}
               <NavItem>
-                <Link className="nav-link" to="/start">Start</Link>
+                <Link className="nav-link" to="/start">Run</Link>
               </NavItem>
             </Nav>
 
