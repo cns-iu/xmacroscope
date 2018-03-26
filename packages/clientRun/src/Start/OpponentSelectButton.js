@@ -13,7 +13,7 @@ const OpponentSelectButton = ({ opponentName }) => {
     <Mutation
       onCompleted={handleMutationCompleted}
       mutation={SEND_MESSAGE}
-      variables={{ type: 'thing', timestamp: '2018-03-23' }}
+      variables={{ type: opponentName, timestamp: '2018-03-23' }}
     >
       {(sendMessage, { loading, error }) => (
         <div>
