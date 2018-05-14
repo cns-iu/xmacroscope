@@ -36,24 +36,22 @@ class OpponentSelect extends React.Component {
       { name: 'cartoon character' },
     ];
     return (
-      <Fragment>
-        <Query query={GET_OPPONENT}>
-          {({ data: { opponent } }) => (
-            opponent
-            ? <div>Opponent: {opponent} </div>
-            :
-            <Row>
-              {
-                opponents.map(item => (
-                  <Col key={item.name} md={6} lg={6} className="mb-3">
-                    <OpponentSelectButton opponentName={item.name} />
-                  </Col>
-                ))
-              }
-            </Row>
-          )}
-        </Query>
-      </Fragment>
+      <Query query={GET_OPPONENT}>
+        {({ data: { opponent } }) => (
+          opponent
+          ? <RaceStart opponentName={opponent} />
+          :
+          <Row>
+            {
+              opponents.map(item => (
+                <Col key={item.name} md={6} lg={6} className="mb-3">
+                  <OpponentSelectButton opponentName={item.name} />
+                </Col>
+              ))
+            }
+          </Row>
+        )}
+      </Query>
     );
   }
 }
