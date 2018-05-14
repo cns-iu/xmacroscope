@@ -1,35 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Mutation } from 'react-apollo';
+import { ApolloConsumer } from 'react-apollo';
 import { Button } from 'reactstrap';
-import SEND_MESSAGE from './graphql/SendMessage.graphql';
 
-const OpponentSelectButton = ({ opponentName }) => {
-  const handleMutationCompleted = () => {
-    console.log('mutation done');
-  };
-
-  return (
-    <Mutation
-      onCompleted={handleMutationCompleted}
-      mutation={SEND_MESSAGE}
-      variables={{ type: opponentName, timestamp: '2018-03-23' }}
-    >
-      {(sendMessage, { loading, error }) => (
-        <div>
-          <Button color="primary" onClick={sendMessage}>
-            {opponentName}
-          </Button>
-          {loading && ''}
-          {error && <p>Error :( Please try again</p>}
-        </div>
-      )}
-    </Mutation>
-  );
-};
-
-export default OpponentSelectButton;
+const OpponentSelectButton = ({ opponentName }) => (
+  <ApolloConsumer>
+    {cache => (
+      <Button
+        color="primary"
+        onClick={() => cache.writeData({ data: { opponent: opponentName } })
+        }
+      >
+        {opponentName}
+      </Button>
+    )}
+  </ApolloConsumer>
+);
 
 OpponentSelectButton.propTypes = {
   opponentName: PropTypes.string.isRequired,
 };
+
+export default OpponentSelectButton;

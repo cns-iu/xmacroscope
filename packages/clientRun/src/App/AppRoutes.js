@@ -6,7 +6,6 @@ import Home from '../Pages/Home';
 import NoMatch from '../Pages/NoMatch';
 
 function AppRoutes() {
-
   return (
     <div className="row">
       <div className="col-10 offset-1">

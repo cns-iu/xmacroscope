@@ -1,41 +1,36 @@
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-client-preset';
-import { setContext } from 'apollo-link-context';
+import { ApolloLink } from 'apollo-link';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+import { withClientState } from 'apollo-link-state';
+import { resolvers, defaults } from './resolvers';
 
-/**
- * Load GraphQL endpoint from env var
- */
-const graphqlUrl = process.env.REACT_APP_GRAPHQL_URL;
-
-/**
- * Get Auth token and send it as a header for the GraphQL request
- *
- * This will allow us to validate the user on the server for each query
- */
 const httpLink = new HttpLink({
-  uri: `${graphqlUrl}/graphql`,
+  uri: `${process.env.REACT_APP_GRAPHQL_URL}/graphql`,
 });
 
-const authLink = setContext((_, { headers }) => {
-  const auth = new Auth();
-  const token = auth.getAccessToken();
-  // TODO: Handle anon. situations better
-  // We shouldn't need to send along the auth header with a null value when
-  // anon. visitors send gql requests.
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      Authorization: token ? `Bearer ${token}` : null,
-    },
-  };
-});
+const typeDefs = `
+  type Mutation {
+    opponent(name: String!): String
+  }
+  type Query {
+    opponent: String
+  }
+`;
 
-/**
- * Establish the Apollo Client connection with our GraphQL server
- */
-const graphQLClient = new ApolloClient({
-  link: httpLink,
+const stateLink = withClientState({
+  resolvers,
+  defaults,
   cache: new InMemoryCache(),
+  typeDefs,
+});
+
+const graphQLClient = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: ApolloLink.from([
+    stateLink,
+    httpLink,
+  ]),
 });
 
 export default graphQLClient;
