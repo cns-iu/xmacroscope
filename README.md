@@ -34,7 +34,9 @@ npm install --global @angular/cli
 ```
 
 ## Bootstrap the project
-Download the latest code and bootstrap all the package dependencies with Lerna.
+Download the latest code and bootstrap the project with Lerna.
+
+This will install all the required projects in each project.
 
 ```
 git clone git@github.com:cns-iu/xmacroscope.git
