@@ -12,6 +12,12 @@ This repo is a work in progress. Come back later.
 
 # Setup instructions
 
+## Requirements
+
+Node < 10
+
+Some modules are not compatible with Node v10 yet.
+
 ## Install Lerna
 We use Lerna to manage dependencies across the different projects.
 
