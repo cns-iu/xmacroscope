@@ -1,0 +1,35 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Mutation } from 'react-apollo';
+import { Button } from 'reactstrap';
+import SEND_MESSAGE from './graphql/SendMessage.graphql';
+
+const RaceStart = ({ opponentName }) => {
+  const handleMutationCompleted = () => {
+    console.log('mutation done');
+  };
+
+  return (
+    <Mutation
+      onCompleted={handleMutationCompleted}
+      mutation={SEND_MESSAGE}
+      variables={{ type: opponentName, timestamp: '2018-03-23' }}
+    >
+      {(sendMessage, { loading, error }) => (
+        <div>
+          <Button color="primary" onClick={sendMessage}>
+            Start race
+          </Button>
+          {loading && ''}
+          {error && <p>Error :( Please try again</p>}
+        </div>
+      )}
+    </Mutation>
+  );
+};
+
+export default RaceStart;
+
+RaceStart.propTypes = {
+  opponentName: PropTypes.string.isRequired,
+};

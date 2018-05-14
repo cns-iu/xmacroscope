@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import OpponentSelectButton from './OpponentSelectButton';
+import RaceStart from './RaceStart';
 
 const GET_OPPONENT = gql`
   {
