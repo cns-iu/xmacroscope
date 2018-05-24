@@ -56,8 +56,8 @@ Fill out the details in these env files.
 Seed local data in the database before developing.
 
 TODO - Automate this in a setup script
-```
-cd serverGraphQL/
+```bash
+cd packages/serverGraphQL/
 node_modules/.bin/sequelize db:seed:all
 ```
 
@@ -78,3 +78,44 @@ TODO: Description of how the project is organized into packages with Lerna.
  - **dino-vega**- CNS @ngx-dino/vega visualization integration library
  - **serverGraphQL**- Central server for GraphQL system and database interface
  - **mav**- Make a Viz - The generic part of the Make a Viz experience that can be applied to multiple kinds of exhibits
+
+# Database development
+This project uses Sequelize as an ORM for the backend database. When developing you may need to update the database schema, chaning tables or adding new ones. To ensure that this database structure change is properly handled across each environment follow these steps to create Sequelize CLI migration scripts that will help developers and deployments keep the database in sync with schema changes.
+
+## Creating a new table/model
+
+```bash
+cd packages/serverGraphQL/
+node_modules/.bin/sequelize model:generate --name DatabaseTableName --attributes exampleField:string
+```
+ 
+This will create two files:
+* `packages/serverGraphQL/src/db/models/databasetestname.js`
+* `packages/serverGraphQL/src/db/migrations/ISODATESTRING-create-database-table-name.js`
+...where `ISODATESTRING` is the current datetime string.
+
+The `models` file is the definition of the database model that is used by the server when running GraphQL. Manually edit this file to contain any of the fields you need in the database table.
+
+The `migrations` file is a state-in-time file that tells the Sequelize CLI how to update the database when you run `db:migrate` on various machines. As you change the database schema you will add new files to the the migrations directory defining the sequelize actions needed to update the database schema so that it reflects the fields defined in the models file.
+
+After editing these files to reflect the desired table shape, you can run the migration on your database with:
+```bash
+node_modules/.bin/sequelize db:migrate
+```
+
+## Updating a table/model
+After you create a table, you might need to modify the table schema, adding or deleting fields. To do this, first generate a new migration file for the table. This time we use the `migration:generate` command, since we don't need to create the model, just a migration file for an existing model.
+
+```bash
+cd packages/serverGraphQL/
+node_modules/.bin/sequelize migration:generate --name DatabaseTableName 
+```
+This will create a new timestamped skeleteon file in your migrations directory. You must manually edit this file using the [Sequelize Query Interface to create, modify, or delete table structure](http://docs.sequelizejs.com/class/lib/query-interface.js~QueryInterface.html).
+
+Once you're happy with your new structure, update the model definition for the table in the `model` folder.
+
+You can test your migration by running
+
+```bash
+node_modules/.bin/sequelize db:migrate
+```
