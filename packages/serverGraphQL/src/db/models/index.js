@@ -7,7 +7,7 @@
 //------------------------------------------------------------------------------
 import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
-import Message from './Message';
+import Message from './message';
 
 const db = {};
 

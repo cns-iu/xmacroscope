@@ -52,6 +52,15 @@ cp graphQLServer/env.example graphQLServer/.env
 ```
 Fill out the details in these env files.
 
+## Seed the local database
+Seed local data in the database before developing.
+
+TODO - Automate this in a setup script
+```
+cd serverGraphQL/
+node_modules/.bin/sequelize db:seed:all
+```
+
 # Project structure
 
 ## Lerna

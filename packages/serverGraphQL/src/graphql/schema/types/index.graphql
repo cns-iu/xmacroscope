@@ -26,7 +26,6 @@ type Avatar {
 type Run {
   avatar: Avatar!
   persona: Persona!
-
   timestamp: String
   lane: Int
   started: Boolean

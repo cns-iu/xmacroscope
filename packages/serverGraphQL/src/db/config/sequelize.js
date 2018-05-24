@@ -4,8 +4,8 @@
 // Load the config details based on the node environment
 //------------------------------------------------------------------------------
 import Sequelize from 'sequelize';
-import config from './config';
 import path from 'path';
+import config from './config';
 
 const envConfig = process.env.NODE_ENV !== 'production'
   ? config.development
@@ -32,8 +32,8 @@ const sequelize = new Sequelize(
     host,
     dialect,
     storage,
-    operatorsAliases
-  }
+    operatorsAliases,
+  },
 );
 
 export default sequelize;
