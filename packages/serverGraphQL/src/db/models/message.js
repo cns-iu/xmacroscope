@@ -1,12 +1,12 @@
 //
-// Message content type
+// Message
 //
-// Datatype for generic messages from the client systems.
+// Model for storing system messages
 //
 import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 
-const Message = sequelize.define('message', {
+const Message = sequelize.define('Message', {
   type: { type: Sequelize.STRING },
   timestamp: { type: Sequelize.STRING },
 }, {

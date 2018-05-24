@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('People', {
     id: {
       allowNull: false,
@@ -7,6 +7,9 @@ export default {
       type: Sequelize.INTEGER,
     },
     firstName: {
+      type: Sequelize.STRING,
+    },
+    lastName: {
       type: Sequelize.STRING,
     },
     createdAt: {
@@ -18,5 +21,5 @@ export default {
       type: Sequelize.DATE,
     },
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('People'),
+  down: queryInterface => queryInterface.dropTable('People'),
 };

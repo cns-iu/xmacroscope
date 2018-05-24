@@ -8,6 +8,8 @@
 import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 import Message from './message';
+import Person from './person';
+import Setting from './setting';
 
 const db = {};
 
@@ -18,6 +20,8 @@ db.sequelize = sequelize;
 // Models
 //------------------------------------------------------------------------------
 db.message = Message;
+db.person = Person;
+db.setting = Setting;
 
 //------------------------------------------------------------------------------
 // Associations

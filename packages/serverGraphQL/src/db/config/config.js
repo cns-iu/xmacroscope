@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const env = process.env.NODE_ENV || 'development';
+const storage = env === 'development' ? `private/${process.env.DB_STORAGE}` : '';
 
 export default {
   [env]: {
@@ -16,7 +17,7 @@ export default {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     dialect: process.env.DB_DIALECT,
-    storage: process.env.DB_STORAGE,
+    storage,
     host: process.env.DB_HOST,
   },
 };

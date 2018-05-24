@@ -1,5 +1,5 @@
 //
-// Settings content type
+// Settings
 //
 // Table for storing instances of exhibit settings
 // Settings include variables associated with the operations of the exhibit.
@@ -9,7 +9,7 @@
 import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 
-const Setting = sequelize.define('setting', {
+const Setting = sequelize.define('Setting', {
   location: { type: Sequelize.STRING, unique: true },
   // Milliseconds...
   //
@@ -24,6 +24,8 @@ const Setting = sequelize.define('setting', {
   // ...after start to wait before reseting the experience if no one crosses
   // the start line. Starts after preRaceDelay
   startLineTimeout: { type: Sequelize.INTEGER },
+
+  latitude: { type: Sequelize.INTEGER },
 
   // ...after start to wait before resetting the experience if no one crosses
   // the finish line. Starts after startLineTimeout.
