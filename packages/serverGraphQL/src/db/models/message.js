@@ -1,5 +1,5 @@
 //
-// Message
+// Messages
 //
 // Model for storing system messages
 //
