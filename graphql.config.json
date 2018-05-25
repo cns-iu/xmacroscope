@@ -1,0 +1,30 @@
+{
+  "README_schema": "This JSON file specifies how to load the load the GraphQL schema for IDE assistance.",
+  "schema": {
+    "README_request": "To request the schema from a url instead, remove the 'file' JSON property above (and optionally delete the default graphql.schema.json file).",
+    "request": {
+      "url": "http://localhost:4000/graphql",
+      "method": "POST",
+      "README_postIntrospectionQuery": "Whether to POST an introspectionQuery to the url. If the url always returns the schema JSON, set to false and consider using GET",
+      "postIntrospectionQuery": true,
+      "README_options": "See the 'Options' section at https://github.com/then/then-request",
+      "options": {
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    }
+  },
+  "README_endpoints": "This JSON file specifies how to load the load the GraphQL endpoints for IDE assistance.",
+  "endpoints": [
+    {
+      "name": "Default (http://localhost:4000/graphql)",
+      "url": "http://localhost:4000/graphql",
+      "options": {
+        "headers": {
+          "user-agent": "JS GraphQL"
+        }
+      }
+    }
+  ]
+}
