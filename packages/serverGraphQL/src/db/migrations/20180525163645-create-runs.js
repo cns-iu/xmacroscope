@@ -15,6 +15,13 @@ module.exports = {
     end: {
       type: Sequelize.DATE,
     },
+    performanceId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'performance',
+        key: 'id',
+      },
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,

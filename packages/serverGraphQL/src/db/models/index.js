@@ -10,6 +10,8 @@ import sequelize from '../config/sequelize';
 import Message from './message';
 import Person from './person';
 import Setting from './setting';
+import Run from './run';
+import Performance from './performance';
 
 const db = {};
 
@@ -22,6 +24,8 @@ db.sequelize = sequelize;
 db.message = Message;
 db.person = Person;
 db.setting = Setting;
+db.run = Run;
+db.performance = Performance;
 
 //------------------------------------------------------------------------------
 // Associations
@@ -30,7 +34,6 @@ db.setting = Setting;
 // need to be defined within the Sequelize object before we can assign
 // associations.
 //------------------------------------------------------------------------------
-
-// TODO: Assign associations here.
+db.run.belongsTo(db.performance);
 
 export default db;
