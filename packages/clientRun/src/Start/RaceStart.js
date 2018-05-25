@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
-import SEND_MESSAGE from './graphql/SendMessage.graphql';
+import START_RUN from './graphql/StartRun.graphql';
 
 const RaceStart = ({ opponentName }) => {
   const handleMutationCompleted = () => {
@@ -12,8 +12,8 @@ const RaceStart = ({ opponentName }) => {
   return (
     <Mutation
       onCompleted={handleMutationCompleted}
-      mutation={SEND_MESSAGE}
-      variables={{ type: opponentName, timestamp: '2018-03-23' }}
+      mutation={START_RUN}
+      variables={{ start: '2018-03-23', opponent: 'thing' }}
     >
       {(sendMessage, { loading, error }) => (
         <div>

@@ -104,6 +104,11 @@ input NewAvatar {
 }
 
 input NewRunRecord {
+  start: String!
+  opponent: String
+}
+
+input UpdateRunRecord {
   avatar: ID!
   persona: ID!
   timestamp: String

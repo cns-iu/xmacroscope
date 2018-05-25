@@ -4,6 +4,7 @@ type Mutation {
   registerAvatar(avatar: NewAvatar): ID
   registerPersona(persona: NewPersona): ID
   raceCompleted(runs: [NewRunRecord!]!): [ID!]!
+  runStart(run: NewRunRecord!): ID!
   sendMessage(message: NewAnyMessage): Boolean
 }
 
