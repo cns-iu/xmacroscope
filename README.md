@@ -124,3 +124,10 @@ node_modules/.bin/sequelize db:migrate
 Sequelize pluralizes database tables. So when you are working directly with the database, like when writing migration code, you need to refer directly to the plural database names.
 
 When working with the JS sequelize code for the server and when you are using the Sequelize CLI, you should use the singluar object name. E.g. Person vs People, User vs Users. Model names should use CapitalCase.
+
+# Troubleshooting
+
+## SQLite startup issues
+If you are getting an error about sqlite not being installed, but you have installed it, you might have a node compatability issue.
+
+Ensure that your system node matches the project requirements. We're currently only supporting the Node LTS v8.11.2
