@@ -22,6 +22,9 @@ module.exports = {
     latitude: {
       type: Sequelize.INTEGER,
     },
+    longitude: {
+      type: Sequelize.INTEGER,
+    },
     raceTimeout: {
       type: Sequelize.INTEGER,
     },

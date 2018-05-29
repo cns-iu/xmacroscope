@@ -25,7 +25,9 @@ const Setting = sequelize.define('Setting', {
   // the start line. Starts after preRaceDelay
   startLineTimeout: { type: Sequelize.INTEGER },
 
+  // Physical location of the installation
   latitude: { type: Sequelize.INTEGER },
+  longitude: { type: Sequelize.INTEGER },
 
   // ...after start to wait before resetting the experience if no one crosses
   // the finish line. Starts after startLineTimeout.
