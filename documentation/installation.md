@@ -33,12 +33,18 @@ lerna bootstrap
 ```
 
 ## Setup environment
+### Client
 TODO - Automate this with a setup script.
 ```
 cp clientRun/env.development.example clientRun/.env.development
+```
+REACT_APP_GRAPHQL_URL: Leave at the default unless you're running the GraphQL in a unique location.
+REACT_APP_LOCATION: Select a location for your installation. Options can be found in the `packages/serverGraphQL/src/db/seeders/*-demo-settings.js` file
+### Server
+```
 cp graphQLServer/env.example graphQLServer/.env
 ```
-Fill out the details in these env files.
+Unless you're deploying this to a server, you should keep all the defaults.
 
 ## Seed the local database
 Seed local data in the database before developing.
