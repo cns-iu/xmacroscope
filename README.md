@@ -8,7 +8,7 @@ will provide a novel platform for conducting research on the efficacy of differe
 
 ## Work In Progress
 
-This project is a work in progress, under active development. It is not ready for production deployment yet.
+This project is a work in progress, under active development. It is not ready for a production deployment yet.
 
 ## Demo site
 
