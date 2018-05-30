@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Nav,
   NavItem,
+  NavLink,
   Navbar,
   NavbarBrand,
   NavbarToggler,
@@ -38,6 +39,11 @@ class AppNav extends React.Component {
               {/* Anonymous user navigation */}
               <NavItem>
                 <Link className="nav-link" to="/start">Starting line kiosk</Link>
+              </NavItem>
+            </Nav>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                Location: {process.env.REACT_APP_LOCATION}
               </NavItem>
             </Nav>
 
