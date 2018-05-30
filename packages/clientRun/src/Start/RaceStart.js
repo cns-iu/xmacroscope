@@ -30,7 +30,6 @@ const RaceStart = ({ opponentName }) => {
                   </Button>
                 </Col>
                 <Col>
-
                   <OponentResetButton />
                 </Col>
               </Row>
