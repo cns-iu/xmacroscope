@@ -49,8 +49,15 @@ Unless you're deploying this to a server, you should keep all the defaults.
 ## Seed the local database
 Seed local data in the database before developing.
 
-TODO - Automate this in a setup script
 ```bash
 cd packages/serverGraphQL/
 node_modules/.bin/sequelize db:seed:all
 ```
+
+# Running the application
+
+In the project root directory:
+```
+lerna run start --stream --concurrency
+```
+This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
