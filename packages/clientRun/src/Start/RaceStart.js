@@ -16,26 +16,24 @@ const RaceStart = ({ opponentName }) => {
       mutation={START_RUN}
       variables={{ start: '2018-03-23', opponent: 'thing' }}
     >
-      {(sendMessage, { loading, error }) => {
-        return (
-          <Row>
-            <Col>
-              <Row>
-                <Col>
-                  <Button color="primary" onClick={sendMessage}>
+      {(sendMessage, { loading, error }) => (
+        <Row>
+          <Col>
+            <Row>
+              <Col>
+                <Button color="primary" onClick={sendMessage}>
                     Start your race against {opponentName}
-                  </Button>
-                </Col>
-                <Col>
-                  <OponentResetButton />
-                </Col>
-              </Row>
-              {loading && ''}
-              {error && <p>Error :( Please try again</p>}
-            </Col>
-          </Row>
-      );
-      }}
+                </Button>
+              </Col>
+              <Col>
+                <OponentResetButton />
+              </Col>
+            </Row>
+            {loading && ''}
+            {error && <p>Error :( Please try again</p>}
+          </Col>
+        </Row>
+      )}
     </Mutation>
   );
 };
