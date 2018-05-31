@@ -17,16 +17,13 @@ const RaceStart = ({ opponentName }) => {
       variables={{ start: '2018-03-23', opponent: 'thing' }}
     >
       {(sendMessage, { loading, error }) => {
-        const clearLocalState = () => {
-          console.log('clearing');
-        };
         return (
           <Row>
             <Col>
               <Row>
                 <Col>
                   <Button color="primary" onClick={sendMessage}>
-                    Start race
+                    Start your race against {opponentName}
                   </Button>
                 </Col>
                 <Col>
@@ -43,8 +40,8 @@ const RaceStart = ({ opponentName }) => {
   );
 };
 
-export default RaceStart;
-
 RaceStart.propTypes = {
   opponentName: PropTypes.string.isRequired,
 };
+
+export default RaceStart;

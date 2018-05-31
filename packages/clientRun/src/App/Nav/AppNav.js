@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Nav,
   NavItem,
-  NavLink,
   Navbar,
   NavbarBrand,
   NavbarToggler,
