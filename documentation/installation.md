@@ -34,7 +34,6 @@ lerna bootstrap
 
 ## Setup environment
 ### Client
-TODO - Automate this with a setup script.
 ```
 cp clientRun/env.development.example clientRun/.env.development
 ```
