@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import StartPage from '../Start/Page';
+import StartPage from '../Start/StartPage';
 import Home from '../Pages/Home';
 import NoMatch from '../Pages/NoMatch';
 

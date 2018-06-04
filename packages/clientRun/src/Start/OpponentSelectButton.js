@@ -1,20 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ApolloConsumer } from 'react-apollo';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
 
+const UPDATE_RUN = gql`
+  mutation UpdateRun($status: String!, $opponent: String!) {
+    updateRun(status: $status, opponent: $opponent) @client
+  }
+`;
+
 const OpponentSelectButton = ({ opponentName }) => (
-  <ApolloConsumer>
-    {cache => (
+  <Mutation
+    mutation={UPDATE_RUN}
+    variables={{ status: 'running', opponent: opponentName }}
+  >
+    {updateRun => (
       <Button
         color="primary"
-        onClick={() => cache.writeData({ data: { opponent: opponentName } })
-        }
+        onClick={updateRun}
       >
         {opponentName}
       </Button>
     )}
-  </ApolloConsumer>
+  </Mutation>
 );
 
 OpponentSelectButton.propTypes = {

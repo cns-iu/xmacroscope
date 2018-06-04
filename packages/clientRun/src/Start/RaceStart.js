@@ -6,12 +6,12 @@ import OponentResetButton from './OpponentResetButton';
 import START_RUN from './graphql/StartRun.graphql';
 import OpponentStartButton from './OpponentStartButton';
 
-const RaceStart = ({ opponentName }) => (
+const RaceStart = ({ race }) => (
   <Row>
     <Col>
       <Row>
         <Col>
-          <OpponentStartButton opponentName={opponentName} />
+          <OpponentStartButton race={race} />
         </Col>
         <Col>
           <OponentResetButton />
@@ -22,7 +22,7 @@ const RaceStart = ({ opponentName }) => (
 );
 
 RaceStart.propTypes = {
-  opponentName: PropTypes.string.isRequired,
+  race: PropTypes.string.isRequired,
 };
 
 export default RaceStart;

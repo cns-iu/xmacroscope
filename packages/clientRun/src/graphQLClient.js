@@ -3,18 +3,21 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { withClientState } from 'apollo-link-state';
-import { resolvers, defaults } from './resolvers';
+import { resolvers, defaults } from './App/resolvers';
 
 const httpLink = new HttpLink({
   uri: `${process.env.REACT_APP_GRAPHQL_URL}/graphql`,
 });
 
 const typeDefs = `
-  type Mutation {
-    opponent(name: String!): String
-  }
   type Query {
-    opponent: String
+    currentRace: CurrentRace
+  }
+
+  type CurrentRace {
+    opponent: String!
+    secondthing: String!
+    status: String!
   }
 `;
 

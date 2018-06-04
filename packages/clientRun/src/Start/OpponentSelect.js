@@ -1,19 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Row, Col } from 'reactstrap';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import OpponentSelectButton from './OpponentSelectButton';
-import RaceStart from './RaceStart';
 
-// Local state
-// Store selected opponent
-const GET_OPPONENT = gql`
-  {
-    opponent @client
-  }
-`;
-
-function OpponentSelect() {
+const OpponentSelect = () => {
   const opponents = [
     { name: 'fast animal' },
     { name: 'slow animal' },
@@ -22,23 +11,26 @@ function OpponentSelect() {
     { name: 'cartoon character' },
   ];
   return (
-    <Query query={GET_OPPONENT}>
-      {({ data: { opponent } }) => (
-          opponent
-          ? <RaceStart opponentName={opponent} />
-          :
-          <Row>
-            {
-              opponents.map(item => (
-                <Col key={item.name} md={6} lg={6} className="mb-3">
-                  <OpponentSelectButton opponentName={item.name} />
-                </Col>
-              ))
-            }
-          </Row>
-        )}
-    </Query>
+
+    <Row>
+      <Col>
+        <Row>
+          <Col>
+            <h1>Select an opponent</h1>
+          </Col>
+        </Row>
+        <Row>
+          {
+            opponents.map(item => (
+              <Col key={item.name} md={6} lg={6} className="mb-3">
+                <OpponentSelectButton opponentName={item.name} />
+              </Col>
+            ))
+          }
+        </Row>
+      </Col>
+    </Row>
   );
-}
+};
 
 export default OpponentSelect;

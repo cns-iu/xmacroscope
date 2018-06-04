@@ -1,8 +1,14 @@
+import gql from 'graphql-tag';
+
 //
 // Defaults for local state
 //
 export const defaults = {
-  opponent: '',
+  currentRace: {
+    __typename: 'CurrentRace',
+    opponent: 'none',
+    status: 'startup',
+  },
 };
 
 //
@@ -10,14 +16,16 @@ export const defaults = {
 //
 export const resolvers = {
   Mutation: {
-    // TODO: write a resolver here for selecting an opponent
-    // obj, args, context, info
-    selectOpponent: (_, opponent, { cache }) => {
+    updateRun: (_, { status, opponent }, { cache }) => {
       const data = {
-        opponent,
+        currentRace: {
+          __typename: 'CurrentRace',
+          opponent,
+          status,
+        },
       };
       cache.writeData({ data });
-      return opponent;
+      return data;
     },
   },
 };

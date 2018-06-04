@@ -4,7 +4,7 @@ import { Mutation } from 'react-apollo';
 import { Row, Col, Button } from 'reactstrap';
 import START_RUN from './graphql/StartRun.graphql';
 
-const OpponentStartButton = ({ opponentName }) => {
+const OpponentStartButton = ({ race }) => {
   const handleMutationCompleted = () => {
     console.log('mutation done');
   };
@@ -16,14 +16,19 @@ const OpponentStartButton = ({ opponentName }) => {
       variables={{ start: '2018-03-23', opponent: 'thing' }}
       update={(cache) => {
         cache.writeData({
-          data: { opponent: '' },
+          data: {
+            race: {
+              opponent: '',
+              status: 'running',
+            }
+          },
         });
       }}
     >
       {(sendMessage, { loading, error }) => (
         <Fragment>
           <Button color="primary" onClick={sendMessage}>
-            Start your race against {opponentName}
+            Start your race against {race.opponent}
           </Button>
           {loading && ''}
           {error && <p>Error :( Please try again</p>}
@@ -34,7 +39,7 @@ const OpponentStartButton = ({ opponentName }) => {
 };
 
 OpponentStartButton.propTypes = {
-  opponentName: PropTypes.string.isRequired,
+  race: PropTypes.object.isRequired,
 };
 
 export default OpponentStartButton;
