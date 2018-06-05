@@ -11,6 +11,11 @@ import sequelize from '../config/sequelize';
 
 const Setting = sequelize.define('Setting', {
   location: { type: Sequelize.STRING, unique: true },
+
+  // Physical location of the installation
+  latitude: { type: Sequelize.INTEGER },
+  longitude: { type: Sequelize.INTEGER },
+
   // Milliseconds...
   //
   // ...of time between start race signal, and race actually beginning. This
@@ -24,10 +29,6 @@ const Setting = sequelize.define('Setting', {
   // ...after start to wait before reseting the experience if no one crosses
   // the start line. Starts after preRaceDelay
   startLineTimeout: { type: Sequelize.INTEGER },
-
-  // Physical location of the installation
-  latitude: { type: Sequelize.INTEGER },
-  longitude: { type: Sequelize.INTEGER },
 
   // ...after start to wait before resetting the experience if no one crosses
   // the finish line. Starts after startLineTimeout.

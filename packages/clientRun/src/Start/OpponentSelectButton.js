@@ -13,7 +13,7 @@ const UPDATE_RUN = gql`
 const OpponentSelectButton = ({ opponentName }) => (
   <Mutation
     mutation={UPDATE_RUN}
-    variables={{ status: 'running', opponent: opponentName }}
+    variables={{ status: 'preRunningTimer', opponent: opponentName }}
   >
     {updateRun => (
       <Button

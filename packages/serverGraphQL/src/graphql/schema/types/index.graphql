@@ -83,6 +83,17 @@ type AnyMessage implements Message {
   results: [RaceResult]
 }
 
+type Setting {
+  location: String
+  latitude: Float
+  longitude: Float
+  preRaceDelay: Int
+  postRaceDelay: Int
+  startLineTimeout: Int
+  raceTimeout: Int
+  attractDelay: Int
+}
+
 input NewRaceResult {
   lane: Int
   persona: NewPersona
