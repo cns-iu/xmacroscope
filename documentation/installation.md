@@ -45,14 +45,6 @@ cp graphQLServer/env.example graphQLServer/.env
 ```
 Unless you're deploying this to a server, you should keep all the defaults.
 
-## Seed the local database
-Seed local data in the database before developing.
-
-```bash
-cd packages/serverGraphQL/
-node_modules/.bin/sequelize db:seed:all
-```
-
 # Running the application
 
 In the project root directory:
