@@ -20,8 +20,8 @@ const GET_SETTINGS = gql`
 `;
 
 const UPDATE_RUN = gql`
-  mutation UpdateRun($status: String!, $opponent: String!) {
-    updateRun(status: $status, opponent: $opponent)
+  mutation RunStart($runRecord: NewRunRecord!) {
+    runStart(runRecord: $runRecord)
   }
 `;
 
@@ -36,8 +36,15 @@ class RunningTimerPre extends React.Component {
     this.onCompleted = this.onCompleted.bind(this);
   }
 
-  onCompleted(updateRun) {
-    updateRun({ variables: { status: 'thing', opponent: 'grabber' } });
+  onCompleted(runStart) {
+    runStart({
+      variables: {
+        runRecord: {
+          status: 'placeholderStatus',
+          opponent: 'placeholderOpponent',
+        },
+      },
+    });
   }
 
   render() {
@@ -51,7 +58,7 @@ class RunningTimerPre extends React.Component {
           if (error) return `Error! ${error.message}`;
           return (
             <Mutation mutation={UPDATE_RUN}>
-              {updateRun => (
+              {runStart => (
                 <div>
                   <p>Pre race delay</p>
                   <p>The user has selected an opponent on the start line kiosk
@@ -64,7 +71,7 @@ class RunningTimerPre extends React.Component {
                   <Timer
                     duration={data.settings.preRaceDelay}
                     completion={() => {
-                    this.onCompleted(updateRun);
+                    this.onCompleted(runStart);
                   }}
                   /> milliseconds
                 </div>
