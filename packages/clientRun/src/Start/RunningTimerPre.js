@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Timer from './Timer';
 
@@ -19,6 +19,12 @@ const GET_SETTINGS = gql`
   }
 `;
 
+const UPDATE_RUN = gql`
+  mutation UpdateRun($status: String!, $opponent: String!) {
+    updateRun(status: $status, opponent: $opponent)
+  }
+`;
+
 class RunningTimerPre extends React.Component {
   constructor(props) {
     super(props);
@@ -30,8 +36,8 @@ class RunningTimerPre extends React.Component {
     this.onCompleted = this.onCompleted.bind(this);
   }
 
-  onCompleted() {
-    console.log('finished');
+  onCompleted(updateRun) {
+    updateRun({ variables: { status: 'thing', opponent: 'grabber' } });
   }
 
   render() {
@@ -44,19 +50,26 @@ class RunningTimerPre extends React.Component {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           return (
-            <div>
-              <p>Pre race delay</p>
-              <p>The user has selected an opponent on the start line kiosk and
-                now a timer is running.
-              </p>
-              <p>Once this timer has completed the race will automatically
-                start.
-              </p>
-              <Timer
-                duration={data.settings.preRaceDelay}
-                completion={this.onCompleted}
-              /> milliseconds
-            </div>
+            <Mutation mutation={UPDATE_RUN}>
+              {updateRun => (
+                <div>
+                  <p>Pre race delay</p>
+                  <p>The user has selected an opponent on the start line kiosk
+                    and
+                    now a timer is running.
+                  </p>
+                  <p>Once this timer has completed the race will automatically
+                    start.
+                  </p>
+                  <Timer
+                    duration={data.settings.preRaceDelay}
+                    completion={() => {
+                    this.onCompleted(updateRun);
+                  }}
+                  /> milliseconds
+                </div>
+              )}
+            </Mutation>
           );
         }}
       </Query>
