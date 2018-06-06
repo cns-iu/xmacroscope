@@ -6,14 +6,14 @@ class Timer extends React.Component {
     super(props);
 
     this.state = {
-      timer: props.milliseconds,
+      timer: props.duration,
       tick: props.tick,
     };
     this.decrementTimer = this.decrementTimer.bind(this);
   }
 
   componentWillMount() {
-    this.timer = setInterval(this.decrementTimer, 100);
+    this.timer = setInterval(this.decrementTimer, this.state.tick);
   }
 
   componentWillUnmount() {
@@ -21,12 +21,16 @@ class Timer extends React.Component {
   }
 
   decrementTimer() {
-    if (this.state.timer < 0) {
+    if (this.state.timer === 0) {
       clearInterval(this.timer);
       this.props.completion();
     } else {
       const initialTimer = this.state.timer;
-      this.setState({ timer: initialTimer - 100 });
+      this.setState({
+        timer: ((initialTimer - this.state.tick) > 0)
+          ? (initialTimer - this.state.tick)
+          : 0,
+      });
     }
   }
 
@@ -40,7 +44,7 @@ class Timer extends React.Component {
 }
 
 Timer.propTypes = {
-  milliseconds: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
   completion: PropTypes.func.isRequired,
   tick: PropTypes.number,
 };

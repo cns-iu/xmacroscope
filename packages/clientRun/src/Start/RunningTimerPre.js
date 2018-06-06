@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import { duration } from 'moment';
 import gql from 'graphql-tag';
 import Timer from './Timer';
 
@@ -36,9 +35,6 @@ class RunningTimerPre extends React.Component {
   }
 
   render() {
-    const { milliseconds } = this.props;
-    console.log(process.env.REACT_APP_LOCATION);
-    console.log('----^ ^ ^ ^ ^ process.env.REACT_APP_LOCATION ^ ^ ^ ^ ^----');
     return (
       <Query
         query={GET_SETTINGS}
@@ -47,8 +43,6 @@ class RunningTimerPre extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          console.log(data);
-          console.log('----^ ^ ^ ^ ^ data ^ ^ ^ ^ ^----');
           return (
             <div>
               <p>Pre race delay</p>
@@ -59,10 +53,9 @@ class RunningTimerPre extends React.Component {
                 start.
               </p>
               <Timer
-                milliseconds={500}
+                duration={data.settings.preRaceDelay}
                 completion={this.onCompleted}
               /> milliseconds
-              {/* <Timer milliseconds={data.settings.preRaceDelay} /> milliseconds */}
             </div>
           );
         }}

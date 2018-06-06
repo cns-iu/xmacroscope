@@ -25,7 +25,7 @@ function StartPage() {
           <div>
             {{
               startup: <OpponentSelect />,
-              preRunningTimer: <RunningTimerPre/>,
+              preRunningTimer: <RunningTimerPre />,
               falseStart: <div>False start</div>,
             }[currentRace.status]}
           </div>
