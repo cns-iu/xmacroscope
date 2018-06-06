@@ -24,11 +24,11 @@ const runStart = baseResolver
     });
   });
 
-const RunResolvers = {
+const RunResolver = {
   Mutation: {
     runStart,
   },
 };
 
-export default RunResolvers;
+export default RunResolver;
 
