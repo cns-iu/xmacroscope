@@ -13,6 +13,7 @@ module.exports = {
         longitude: -93.0999668,
         createdAt: new Date(),
         updatedAt: new Date(),
+        deletedAt: null,
       },
       {
         location: 'cns-iu',
@@ -25,6 +26,7 @@ module.exports = {
         longitude: -86.5234313,
         createdAt: new Date(),
         updatedAt: new Date(),
+        deletedAt: null,
       },
       {
         location: 'cosi',
@@ -37,6 +39,7 @@ module.exports = {
         longitude: -83.0092084,
         createdAt: new Date(),
         updatedAt: new Date(),
+        deletedAt: null,
       },
     ],
     {},

@@ -19,6 +19,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
     },
   ),
   down: queryInterface => queryInterface.dropTable('Performances'),
