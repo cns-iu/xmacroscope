@@ -20,8 +20,12 @@ const GET_SETTINGS = gql`
 `;
 
 const UPDATE_RUN = gql`
-  mutation RunStart($runRecord: NewRunRecord!) {
-    runStart(runRecord: $runRecord)
+  mutation RunStart(
+    $run: NewRunRecord!
+  ) {
+    runStart(
+      run: $run
+    )
   }
 `;
 
@@ -39,8 +43,8 @@ class RunningTimerPre extends React.Component {
   onCompleted(runStart) {
     runStart({
       variables: {
-        runRecord: {
-          status: 'placeholderStatus',
+        run: {
+          start: 'placeholderStatus',
           opponent: 'placeholderOpponent',
         },
       },
