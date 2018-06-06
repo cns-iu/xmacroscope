@@ -32,11 +32,6 @@ const UPDATE_RUN = gql`
 class RunningTimerPre extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      timer: 0,
-    };
-
     this.onCompleted = this.onCompleted.bind(this);
   }
 
