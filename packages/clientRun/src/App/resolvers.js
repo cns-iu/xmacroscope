@@ -16,7 +16,7 @@ export const defaults = {
 //
 export const resolvers = {
   Mutation: {
-    updateRun: (_, { status, opponent }, { cache }) => {
+    updateRunLocal: (_, { status, opponent }, { cache }) => {
       const data = {
         currentRace: {
           __typename: 'CurrentRace',
