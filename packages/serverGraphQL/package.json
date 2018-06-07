@@ -1,11 +1,12 @@
 {
-  "name": "graphQLServer",
+  "name": "serverGraphQL",
   "version": "0.0.1",
   "description": "GraphQL server for the Macroscope system",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "webpack --config webpack.dev.js",
+    "start-smm": "webpack --config webpack.dev.js",
     "build": "webpack --progress --colors --config webpack.prod.js"
   },
   "devDependencies": {
