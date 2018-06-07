@@ -31,4 +31,3 @@ const RunResolver = {
 };
 
 export default RunResolver;
-

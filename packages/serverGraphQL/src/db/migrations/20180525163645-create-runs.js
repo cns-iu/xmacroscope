@@ -15,13 +15,14 @@ module.exports = {
     end: {
       type: Sequelize.DATE,
     },
-    performanceId: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'performance',
-        key: 'id',
-      },
-    },
+    // TODO re-enable association for general associations record
+    // performanceId: {
+    //   type: Sequelize.INTEGER,
+    //   references: {
+    //     model: 'performance',
+    //     key: 'id',
+    //   },
+    // },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,

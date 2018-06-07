@@ -39,7 +39,7 @@ class RunningTimerPre extends React.Component {
     runStart({
       variables: {
         run: {
-          start: 'placeholderStatus',
+          start: new Date().toLocaleString(),
           opponent: 'placeholderOpponent',
         },
       },
