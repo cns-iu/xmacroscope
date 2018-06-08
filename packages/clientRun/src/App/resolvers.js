@@ -1,5 +1,3 @@
-import gql from 'graphql-tag';
-
 //
 // Defaults for local state
 //
