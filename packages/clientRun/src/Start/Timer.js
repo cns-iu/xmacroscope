@@ -6,30 +6,48 @@ class Timer extends React.Component {
     super(props);
 
     this.state = {
-      timer: props.duration,
-      tick: props.tick,
+      timer: props.direction === 'down'
+        ? (Math.abs(props.start - props.end))
+        : (props.start),
     };
-    this.decrementTimer = this.decrementTimer.bind(this);
+    this.incrementTimer = this.incrementTimer.bind(this);
   }
 
   componentWillMount() {
-    this.timer = setInterval(this.decrementTimer, this.state.tick);
+    this.timer = setInterval(
+      this.incrementTimer,
+      this.props.tick,
+    );
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
   }
 
-  decrementTimer() {
-    if (this.state.timer === 0) {
+  incrementTimer() {
+    const { direction, stop } = this.props;
+    // Pick the appropriate operator for check when the timer is done
+    const op = direction === 'down' ? 'gt' : 'lt';
+    const operators = {
+      gt(a, b) {
+        return a > b;
+      },
+      lt(a, b) {
+        return a < b;
+      },
+    };
+
+    // Increment the timer in the correct direction
+    const tick = direction === 'down' ? this.props.tick * -1 : this.props.tick;
+    if (this.state.timer === this.props.end || stop) {
       clearInterval(this.timer);
       this.props.completion();
     } else {
-      const initialTimer = this.state.timer;
+      const newTimer = (this.state.timer + tick);
       this.setState({
-        timer: ((initialTimer - this.state.tick) > 0)
-          ? (initialTimer - this.state.tick)
-          : 0,
+        timer: (operators[op](newTimer, this.props.end))
+          ? (newTimer)
+          : this.props.end,
       });
     }
   }
@@ -44,13 +62,17 @@ class Timer extends React.Component {
 }
 
 Timer.propTypes = {
-  duration: PropTypes.number.isRequired,
   completion: PropTypes.func.isRequired,
+  direction: PropTypes.oneOf(['up', 'down']).isRequired,
+  end: PropTypes.number.isRequired,
+  start: PropTypes.number.isRequired,
   tick: PropTypes.number,
+  stop: PropTypes.bool,
 };
 
 Timer.defaultProps = {
   tick: 100,
+  stop: false,
 };
 
 export default Timer;

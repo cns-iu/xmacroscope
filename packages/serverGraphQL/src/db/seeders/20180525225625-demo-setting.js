@@ -43,10 +43,10 @@ module.exports = {
       },
       {
         location: 'dev',
-        preRaceDelay: 500,
+        preRaceDelay: 1500,
+        raceTimeout: 6000,
         postRaceDelay: 500,
         startLineTimeout: 500,
-        raceTimeout: 500,
         attractDelay: 5000,
         latitude: 37.0902,
         longitude: -95.7129,

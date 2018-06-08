@@ -13,16 +13,12 @@ import db from '../../db/models/index';
 // Mutations
 //------------------------------------------------------------------------------
 
-// Create a run
+// Create a run, return the ID
 const runStart = baseResolver
-  .createResolver((root, args) => {
-    console.log(args);
-    console.log('----^ ^ ^ ^ ^ args ^ ^ ^ ^ ^----');
-    return db.run.create({
-      opponent: args.run.opponent,
-      start: args.run.start,
-    });
-  });
+  .createResolver((root, args) => db.run.create({
+    opponent: args.run.opponent,
+    start: args.run.start,
+  }).then(createdRun => createdRun.id));
 
 const RunResolver = {
   Mutation: {

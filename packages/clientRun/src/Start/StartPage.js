@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
+import Running from './Running';
 
 // Local state
 // Store selected opponent
@@ -26,6 +27,7 @@ function StartPage() {
             {{
               startup: <OpponentSelect />,
               preRunningTimer: <RunningTimerPre />,
+              running: <Running />,
               falseStart: <div>False start</div>,
             }[currentRace.status]}
           </div>

@@ -21,7 +21,7 @@ const GET_SETTINGS = gql`
 
 const UPDATE_RUN = gql`
   mutation RunStart(
-    $run: NewRunRecord!
+  $run: NewRunRecord!
   ) {
     runStart(
       run: $run
@@ -29,13 +29,19 @@ const UPDATE_RUN = gql`
   }
 `;
 
+const UPDATE_LOCAL_STATE = gql`
+  mutation UpdateRunLocal($status: String!, $opponent: String!) {
+    updateRunLocal(status: $status, opponent: $opponent) @client
+  }
+`;
+
 class RunningTimerPre extends React.Component {
   constructor(props) {
     super(props);
-    this.onCompleted = this.onCompleted.bind(this);
+    this.onTimerCompleted = this.onTimerCompleted.bind(this);
   }
 
-  onCompleted(runStart) {
+  onTimerCompleted(runStart) {
     runStart({
       variables: {
         run: {
@@ -43,6 +49,9 @@ class RunningTimerPre extends React.Component {
           opponent: 'placeholderOpponent',
         },
       },
+    }).then((mutationResult) => {
+      console.log(mutationResult.data.runStart);
+      console.log('----^ ^ ^ ^ ^ mutationResult.data.runStart ^ ^ ^ ^ ^----');
     });
   }
 
@@ -55,11 +64,24 @@ class RunningTimerPre extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
+          const { preRaceDelay } = data.settings;
           return (
-            <Mutation mutation={UPDATE_RUN}>
+            <Mutation
+              mutation={UPDATE_RUN}
+              update={(cache, { data: { runStart } }) => {
+              const data = {
+                currentRace: {
+                  __typename: 'CurrentRace',
+                  opponent: 'nothing',
+                  status: 'running',
+                },
+              };
+              cache.writeData({ data });
+            }}
+            >
               {runStart => (
                 <div>
-                  <p>Pre race delay</p>
+                  <h1>Pre race delay</h1>
                   <p>The user has selected an opponent on the start line kiosk
                     and
                     now a timer is running.
@@ -68,10 +90,12 @@ class RunningTimerPre extends React.Component {
                     start.
                   </p>
                   <Timer
-                    duration={data.settings.preRaceDelay}
                     completion={() => {
-                    this.onCompleted(runStart);
-                  }}
+                      this.onTimerCompleted(runStart);
+                    }}
+                    direction="down"
+                    start={preRaceDelay}
+                    end={0}
                   /> milliseconds
                 </div>
               )}

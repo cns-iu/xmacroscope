@@ -7,4 +7,3 @@ type Mutation {
   runStart(run: NewRunRecord!): ID!
   sendMessage(message: NewAnyMessage): Boolean
 }
-
