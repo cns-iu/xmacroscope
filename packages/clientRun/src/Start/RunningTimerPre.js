@@ -73,6 +73,7 @@ class RunningTimerPre extends React.Component {
                 currentRace: {
                   __typename: 'CurrentRace',
                   opponent: 'nothing',
+                  raceId: runStart,
                   status: 'running',
                 },
               };
