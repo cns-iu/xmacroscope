@@ -7,8 +7,8 @@ const OpponentSelect = () => {
     { name: 'fast animal', raceTime: 1500 },
     { name: 'slow animal', raceTime: 4500 },
     { name: 'fast person', raceTime: 2500 },
-    { name: 'slow person', raceTime: 5000 },
-    { name: 'cartoon character', raceTime: 8000 },
+    { name: 'slow person', raceTime: 4000 },
+    { name: 'cartoon character', raceTime: 5000 },
   ];
   return (
 
