@@ -5,6 +5,7 @@ export const defaults = {
   currentRace: {
     __typename: 'CurrentRace',
     opponent: 'none',
+    opponentTime: 0,
     status: 'startup',
   },
 };
@@ -14,11 +15,12 @@ export const defaults = {
 //
 export const resolvers = {
   Mutation: {
-    updateRunLocal: (_, { status, opponent }, { cache }) => {
+    updateRunLocal: (_, { status, opponent, opponentTime }, { cache }) => {
       const data = {
         currentRace: {
           __typename: 'CurrentRace',
           opponent,
+          opponentTime,
           status,
         },
       };

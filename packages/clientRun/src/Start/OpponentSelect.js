@@ -4,11 +4,11 @@ import OpponentSelectButton from './OpponentSelectButton';
 
 const OpponentSelect = () => {
   const opponents = [
-    { name: 'fast animal' },
-    { name: 'slow animal' },
-    { name: 'fast person' },
-    { name: 'slow person' },
-    { name: 'cartoon character' },
+    { name: 'fast animal', raceTime: 1500 },
+    { name: 'slow animal', raceTime: 4500 },
+    { name: 'fast person', raceTime: 2500 },
+    { name: 'slow person', raceTime: 5000 },
+    { name: 'cartoon character', raceTime: 8000 },
   ];
   return (
 
@@ -23,7 +23,10 @@ const OpponentSelect = () => {
           {
             opponents.map(item => (
               <Col key={item.name} md={6} lg={6} className="mb-3">
-                <OpponentSelectButton opponentName={item.name} />
+                <OpponentSelectButton
+                  opponentName={item.name}
+                  opponentTime={item.raceTime}
+                />
               </Col>
             ))
           }

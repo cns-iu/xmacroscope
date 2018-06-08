@@ -5,15 +5,27 @@ import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
 
 const UPDATE_RUN = gql`
-  mutation UpdateRunLocal($status: String!, $opponent: String!) {
-    updateRunLocal(status: $status, opponent: $opponent) @client
+  mutation UpdateRunLocal(
+  $status: String!,
+  $opponent: String!,
+  $opponentTime: Int!
+  ) {
+    updateRunLocal(
+      status: $status,
+      opponent: $opponent
+      opponentTime: $opponentTime
+    ) @client
   }
 `;
 
-const OpponentSelectButton = ({ opponentName }) => (
+const OpponentSelectButton = ({ opponentName, opponentTime }) => (
   <Mutation
     mutation={UPDATE_RUN}
-    variables={{ status: 'preRunningTimer', opponent: opponentName }}
+    variables={{
+      status: 'preRunningTimer',
+      opponent: opponentName,
+      opponentTime,
+    }}
   >
     {updateRunLocal => (
       <Button
@@ -28,6 +40,7 @@ const OpponentSelectButton = ({ opponentName }) => (
 
 OpponentSelectButton.propTypes = {
   opponentName: PropTypes.string.isRequired,
+  opponentTime: PropTypes.number.isRequired,
 };
 
 export default OpponentSelectButton;
