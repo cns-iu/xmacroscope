@@ -108,12 +108,4 @@ class RunningTimerPre extends React.Component {
   }
 }
 
-RunningTimerPre.propTypes = {
-  propItem: PropTypes.string,
-};
-
-RunningTimerPre.defaultProps = {
-  propItem: '',
-};
-
 export default RunningTimerPre;
