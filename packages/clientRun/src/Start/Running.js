@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Query, Mutation } from 'react-apollo';
 import { Row, Col, Button } from 'reactstrap';
@@ -32,9 +32,9 @@ const UPDATE_RUN = gql`
   }
 `;
 
-const UPDATE_LOCAL_STATE = gql`
-  mutation UpdateRunLocal($status: String!, $opponent: String!) {
-    updateRunLocal(status: $status, opponent: $opponent) @client
+const UPDATE_RUN_LOCAL = gql`
+  mutation UpdateRunLocal($status: String!) {
+    updateRunLocal(status: $status) @client
   }
 `;
 
@@ -46,17 +46,17 @@ class Running extends React.Component {
 
   onTimerCompleted(runFinish) {
     // TODO: enable timeout timer in sync with lane timers
-    // runFinish({
-    //   variables: {
-    //     run: {
-    //       id: 3,
-    //       finish: new Date().toLocaleString(),
-    //     },
-    //   },
-    // }).then((mutationResult) => {
-    //   console.log(mutationResult.data.runFinish);
-    //   console.log('----^ ^ ^ ^ ^ mutationResult.data.runFinish ^ ^ ^ ^ ^----');
-    // });
+    runFinish({
+      variables: {
+        run: {
+          id: 3,
+          finish: new Date().toLocaleString(),
+        },
+      },
+    }).then((mutationResult) => {
+      console.log(mutationResult.data.runFinish);
+      console.log('----^ ^ ^ ^ ^ mutationResult.data.runFinish ^ ^ ^ ^ ^----');
+    });
   }
 
   render() {
@@ -112,16 +112,27 @@ class Running extends React.Component {
                       <Col>
                         <h3>Run timeout timer</h3>
                         <p>Background timer that resets the running experience
-                          if the two runners don't complete a race.
+                          if the two runners don&apos;t complete a race.
                         </p>
-                        <Timer
-                          completion={() => {
-                            this.onTimerCompleted(runFinish);
-                          }}
-                          direction="down"
-                          start={raceTimeout}
-                          end={0}
-                        /> milliseconds
+                        <Mutation
+                          mutation={UPDATE_RUN_LOCAL}
+                          variables={{
+                          status: 'postRunTimer',
+                        }}
+                        >
+                          {updateRunLocal => (
+                            <Fragment>
+                              <Timer
+                                completion={() => {
+                                  updateRunLocal();
+                                }}
+                                direction="down"
+                                start={raceTimeout}
+                                end={0}
+                              /> milliseconds
+                            </Fragment>
+                          )}
+                        </Mutation>
                       </Col>
 
                     </Row>

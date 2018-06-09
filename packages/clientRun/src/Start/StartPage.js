@@ -5,6 +5,7 @@ import { Row, Col } from 'reactstrap';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
+import RunningTimerPost from './RunningTimerPost';
 import AppState from '../App/AppState';
 
 // Local state
@@ -31,8 +32,9 @@ function StartPage() {
             <Col>
               {{
                 startup: <OpponentSelect />,
-                preRunningTimer: <RunningTimerPre />,
+                preRunTimer: <RunningTimerPre />,
                 running: <Running />,
+                postRunTimer: <RunningTimerPost />,
                 falseStart: <div>False start</div>,
               }[currentRace.status]}
             </Col>

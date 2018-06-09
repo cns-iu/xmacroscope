@@ -45,7 +45,7 @@ module.exports = {
         location: 'dev',
         preRaceDelay: 1500,
         raceTimeout: 6000,
-        postRaceDelay: 500,
+        postRaceDelay: 7500,
         startLineTimeout: 500,
         attractDelay: 5000,
         latitude: 37.0902,

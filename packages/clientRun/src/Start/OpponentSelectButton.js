@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
 
-const UPDATE_RUN = gql`
+const UPDATE_RUN_LOCAL = gql`
   mutation UpdateRunLocal(
   $status: String!,
   $opponent: String!,
@@ -20,9 +20,9 @@ const UPDATE_RUN = gql`
 
 const OpponentSelectButton = ({ opponentName, opponentTime }) => (
   <Mutation
-    mutation={UPDATE_RUN}
+    mutation={UPDATE_RUN_LOCAL}
     variables={{
-      status: 'preRunningTimer',
+      status: 'preRunTimer',
       opponent: opponentName,
       opponentTime,
     }}
