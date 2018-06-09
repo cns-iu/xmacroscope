@@ -1,9 +1,11 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Row, Col } from 'reactstrap';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
+import AppState from '../App/AppState';
 
 // Local state
 // Store selected opponent
@@ -11,6 +13,8 @@ const GET_RACE = gql`
   query {
     currentRace @client {
       opponent
+      opponentTime
+      raceId
       status
     }
   }
@@ -23,14 +27,19 @@ function StartPage() {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
         return (
-          <div>
-            {{
-              startup: <OpponentSelect />,
-              preRunningTimer: <RunningTimerPre />,
-              running: <Running />,
-              falseStart: <div>False start</div>,
-            }[currentRace.status]}
-          </div>
+          <Row>
+            <Col>
+              {{
+                startup: <OpponentSelect />,
+                preRunningTimer: <RunningTimerPre />,
+                running: <Running />,
+                falseStart: <div>False start</div>,
+              }[currentRace.status]}
+            </Col>
+            <Col xs={3}>
+              <AppState currentRace={currentRace} />
+            </Col>
+          </Row>
         );
       }}
     </Query>
