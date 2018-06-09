@@ -19,8 +19,8 @@ const GET_SETTINGS = gql`
 `;
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation UpdateRunLocal($status: String!) {
-    updateRunLocal(status: $status) @client
+  mutation updateRace($status: String!) {
+    updateRace(status: $status) @client
   }
 `;
 
@@ -46,7 +46,7 @@ class RunningTimerPost extends React.Component {
               status: 'startup',
             }}
             >
-              {updateRunLocal => (
+              {updateRace => (
                 <div>
                   <h1>Post race delay</h1>
                   <p>All runners and the opponent have finished the race.</p>
@@ -60,7 +60,7 @@ class RunningTimerPost extends React.Component {
                   </p>
                   <Timer
                     completion={() => {
-                      updateRunLocal();
+                      updateRace();
                       console.log('post race timer done');
                     }}
                     direction="down"

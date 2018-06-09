@@ -2,8 +2,8 @@
 // Defaults for local state
 //
 export const defaults = {
-  currentRace: {
-    __typename: 'CurrentRace',
+  activeRace: {
+    __typename: 'ActiveRace',
     opponent: 'none',
     opponentTime: 0,
     raceId: null,
@@ -16,13 +16,13 @@ export const defaults = {
 //
 export const resolvers = {
   Mutation: {
-    updateRunLocal: (_, {
+    updateRace: (_, {
       status, opponent, opponentTime, raceId,
     },
     { cache }) => {
       const data = {
-        currentRace: {
-          __typename: 'CurrentRace',
+        activeRace: {
+          __typename: 'ActiveRace',
           opponent,
           opponentTime,
           raceId,

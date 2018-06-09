@@ -1,30 +1,17 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Row, Col } from 'reactstrap';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
 import AppState from '../App/AppState';
-
-// Local state
-// Store selected opponent
-const GET_RACE = gql`
-  query {
-    currentRace @client {
-      opponent
-      opponentTime
-      raceId
-      status
-    }
-  }
-`;
+import GET_RACE_STATE_LOCAL from './graphql/GetRaceStateLocal.graphql';
 
 function StartPage() {
   return (
-    <Query query={GET_RACE}>
-      {({ loading, error, data: { currentRace } }) => {
+    <Query query={GET_RACE_STATE_LOCAL}>
+      {({ loading, error, data: { activeRace } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
         return (
@@ -36,10 +23,10 @@ function StartPage() {
                 running: <Running />,
                 postRunTimer: <RunningTimerPost />,
                 falseStart: <div>False start</div>,
-              }[currentRace.status]}
+              }[activeRace.status]}
             </Col>
             <Col xs={3}>
-              <AppState currentRace={currentRace} />
+              <AppState activeRace={activeRace} />
             </Col>
           </Row>
         );

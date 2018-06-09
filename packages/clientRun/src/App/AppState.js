@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { Card, CardTitle } from 'reactstrap';
 import './AppState.css';
 
-function AppState({ currentRace }) {
-  const raceState = Object.entries(currentRace).map(([key, value]) => (
+function AppState({ activeRace }) {
+  const raceState = Object.entries(activeRace).map(([key, value]) => (
     <Fragment key={key}>
       <dt className="col-sm-5 text-right">{key}</dt>
       <dd className="col-sm-7">{value}</dd>
@@ -20,7 +20,7 @@ function AppState({ currentRace }) {
 }
 
 AppState.propTypes = {
-  currentRace: PropTypes.object.isRequired,
+  activeRace: PropTypes.object.isRequired,
 };
 
 export default AppState;

@@ -33,8 +33,8 @@ const UPDATE_RUN = gql`
 `;
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation UpdateRunLocal($status: String!) {
-    updateRunLocal(status: $status) @client
+  mutation updateRace($status: String!) {
+    updateRace(status: $status) @client
   }
 `;
 
@@ -74,8 +74,8 @@ class Running extends React.Component {
               mutation={UPDATE_RUN}
               update={(cache, { data: { runFinish } }) => {
                 const cacheData = {
-                  currentRace: {
-                    __typename: 'CurrentRace',
+                  activeRace: {
+                    __typename: 'ActiveRace',
                     opponent: 'nothing',
                     status: 'running',
                   },
@@ -120,11 +120,11 @@ class Running extends React.Component {
                           status: 'postRunTimer',
                         }}
                         >
-                          {updateRunLocal => (
+                          {updateRace => (
                             <Fragment>
                               <Timer
                                 completion={() => {
-                                  updateRunLocal();
+                                  updateRace();
                                 }}
                                 direction="down"
                                 start={raceTimeout}

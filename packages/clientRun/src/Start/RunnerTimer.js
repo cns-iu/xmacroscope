@@ -7,7 +7,7 @@ import Timer from './Timer';
 
 const GET_RACE = gql`
   query {
-    currentRace @client {
+    activeRace @client {
       raceId
     }
   }
@@ -48,7 +48,7 @@ class RunnerTimer extends React.Component {
     const { timerStopped } = this.state;
     return (
       <Query query={GET_RACE}>
-        {({ loading, error, data: { currentRace } }) => {
+        {({ loading, error, data: { activeRace } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           return (
@@ -56,7 +56,7 @@ class RunnerTimer extends React.Component {
               mutation={UPDATE_RUN}
               variables={{
               run: {
-                id: currentRace.raceId,
+                id: activeRace.raceId,
                 finish: new Date().toLocaleString(),
               },
             }}

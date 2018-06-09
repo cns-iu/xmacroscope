@@ -11,10 +11,10 @@ const httpLink = new HttpLink({
 
 const typeDefs = `
   type Query {
-    currentRace: CurrentRace
+    activeRace: ActiveRace
   }
 
-  type CurrentRace {
+  type ActiveRace {
     opponent: String!
     secondthing: String!
     status: String!
