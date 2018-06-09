@@ -27,28 +27,26 @@ class AppNav extends React.Component {
 
   render() {
     return (
-      <div>
-        <Navbar light expand="md">
-          <NavbarBrand href="/">xMacroscope</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+      <Navbar light expand="md">
+        <NavbarBrand href="/">xMacroscope</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
 
-            {/* Left navigation */}
-            <Nav className="mr-auto" navbar>
-              {/* Anonymous user navigation */}
-              <NavItem>
-                <Link className="nav-link" to="/start">Starting line kiosk</Link>
-              </NavItem>
-            </Nav>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                Location: {process.env.REACT_APP_LOCATION}
-              </NavItem>
-            </Nav>
+          {/* Left navigation */}
+          <Nav className="mr-auto" navbar>
+            {/* Anonymous user navigation */}
+            <NavItem>
+              <Link className="nav-link" to="/start">Starting line kiosk</Link>
+            </NavItem>
+          </Nav>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              Location: {process.env.REACT_APP_LOCATION}
+            </NavItem>
+          </Nav>
 
-          </Collapse>
-        </Navbar>
-      </div>
+        </Collapse>
+      </Navbar>
     );
   }
 }
