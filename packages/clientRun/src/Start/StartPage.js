@@ -21,8 +21,8 @@ function StartPage() {
           <Row>
             <Col>
               {{
-                startup: <OpponentSelect />,
-                preRunTimer: <RunningTimerPre />,
+                opponentSelect: <OpponentSelect />,
+                runTimerPre: <RunningTimerPre />,
                 running: <Running />,
                 postRunTimer: <RunningTimerPost />,
                 falseStart: <div>False start</div>,

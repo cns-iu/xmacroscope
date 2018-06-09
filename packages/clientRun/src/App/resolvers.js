@@ -7,7 +7,7 @@ export const defaults = {
     opponent: 'none',
     opponentTime: 0,
     raceId: null,
-    status: 'startup',
+    status: 'opponentSelect',
   },
 };
 

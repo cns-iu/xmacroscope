@@ -1,5 +1,5 @@
 //
-// Mutate local state, changing race state to preRun and define opponent
+// Mutate local state, changing race state to preRun and define opponent details
 //
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -25,13 +25,13 @@ const OpponentSelectButton = ({ opponentName, opponentTime }) => (
   <Mutation
     mutation={UPDATE_RACE_OPPONENT}
     variables={{
-    status: 'preRunTimer',
+    status: 'runTimerPre',
     opponent: opponentName,
     opponentTime,
   }}
   >
     {updateRace => (
-      <Button color="primary" onClick={updateRace}> {opponentName} </Button>
+      <Button color="primary" onClick={updateRace}>{opponentName}</Button>
     )}
   </Mutation>
 );

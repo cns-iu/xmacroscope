@@ -6,6 +6,7 @@ import { Row, Col } from 'reactstrap';
 import OpponentSelectButton from './OpponentSelectButton';
 
 const OpponentSelect = () => {
+  // TODO - Load these from settings
   const opponents = [
     { name: 'fast animal', raceTime: 1500 },
     { name: 'slow animal', raceTime: 4500 },
