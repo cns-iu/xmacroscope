@@ -1,20 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Timer from './Timer';
 
-const GET_SETTINGS = gql`
-  query settings($location: String!) {
+const GET_PRE_RACE_DELAY = gql`
+  query getPreRaceDelay($location: String!) {
     settings(location: $location){
-      location
-      latitude
-      longitude
       preRaceDelay
-      postRaceDelay
-      startLineTimeout
-      raceTimeout
-      attractDelay
     }
   }
 `;
@@ -58,13 +50,14 @@ class RunningTimerPre extends React.Component {
   render() {
     return (
       <Query
-        query={GET_SETTINGS}
+        query={GET_PRE_RACE_DELAY}
         variables={{ location: process.env.REACT_APP_LOCATION }}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data: { settings } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const { preRaceDelay } = data.settings;
+          const { preRaceDelay } = settings;
+
           return (
             <Mutation
               mutation={UPDATE_RUN}
