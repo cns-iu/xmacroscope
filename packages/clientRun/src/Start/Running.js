@@ -23,8 +23,8 @@ const GET_SETTINGS = gql`
 `;
 
 const UPDATE_RUN = gql`
-  mutation RunStart(
-  $run: NewRunRecord!
+  mutation RunUpdate(
+  $run: FinishRunRecord!
   ) {
     runFinish(
       run: $run
@@ -45,17 +45,18 @@ class Running extends React.Component {
   }
 
   onTimerCompleted(runFinish) {
-    runFinish({
-      variables: {
-        run: {
-          start: new Date().toLocaleString(),
-          opponent: 'placeholderOpponent',
-        },
-      },
-    }).then((mutationResult) => {
-      console.log(mutationResult.data.runFinish);
-      console.log('----^ ^ ^ ^ ^ mutationResult.data.runFinish ^ ^ ^ ^ ^----');
-    });
+    // TODO: enable timeout timer in sync with lane timers
+    // runFinish({
+    //   variables: {
+    //     run: {
+    //       id: 3,
+    //       finish: new Date().toLocaleString(),
+    //     },
+    //   },
+    // }).then((mutationResult) => {
+    //   console.log(mutationResult.data.runFinish);
+    //   console.log('----^ ^ ^ ^ ^ mutationResult.data.runFinish ^ ^ ^ ^ ^----');
+    // });
   }
 
   render() {
@@ -72,14 +73,14 @@ class Running extends React.Component {
             <Mutation
               mutation={UPDATE_RUN}
               update={(cache, { data: { runFinish } }) => {
-                const data = {
+                const cacheData = {
                   currentRace: {
                     __typename: 'CurrentRace',
                     opponent: 'nothing',
                     status: 'running',
                   },
                 };
-                cache.writeData({ data });
+                cache.writeData({ cacheData });
               }}
             >
               {runFinish => (
@@ -104,10 +105,6 @@ class Running extends React.Component {
                       <RunnerTimer
                         raceTimeout={raceTimeout}
                         lane="1"
-                      />
-                      <RunnerTimer
-                        raceTimeout={raceTimeout}
-                        lane="2"
                       />
                     </Row>
 

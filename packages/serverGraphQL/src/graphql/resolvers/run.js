@@ -20,9 +20,17 @@ const runStart = baseResolver
     start: args.run.start,
   }).then(createdRun => createdRun.id));
 
+// Update an existing run record with a finish time, return the ID
+const runFinish = baseResolver
+  .createResolver((root, args) => db.run.update(
+    { end: args.run.finish },
+    { where: { id: args.run.id } },
+  ));
+
 const RunResolver = {
   Mutation: {
     runStart,
+    runFinish,
   },
 };
 

@@ -119,6 +119,11 @@ input NewRunRecord {
   opponent: String
 }
 
+input FinishRunRecord {
+  id: ID!
+  finish: String!
+}
+
 input UpdateRunRecord {
   avatar: ID!
   persona: ID!

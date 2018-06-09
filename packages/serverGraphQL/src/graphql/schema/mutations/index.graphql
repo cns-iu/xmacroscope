@@ -4,6 +4,12 @@ type Mutation {
   registerAvatar(avatar: NewAvatar): ID
   registerPersona(persona: NewPersona): ID
   raceCompleted(runs: [NewRunRecord!]!): [ID!]!
+
+  # Run start is a create operation and returns the create Run's ID
   runStart(run: NewRunRecord!): ID!
+
+  # Run finish is an update operation and simply returns the number of rows affected.
+  runFinish(run: FinishRunRecord!): [Int]
+
   sendMessage(message: NewAnyMessage): Boolean
 }
