@@ -22,7 +22,7 @@ const OpponentSelect = () => {
         <Row>
           {
             opponents.map(item => (
-              <Col key={item.name} md={6} lg={6} className="mb-3">
+              <Col key={item.name} xs={6} className="mb-3">
                 <OpponentSelectButton
                   opponentName={item.name}
                   opponentTime={item.raceTime}
