@@ -1,3 +1,6 @@
+//
+// Opponent select view
+//
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import OpponentSelectButton from './OpponentSelectButton';

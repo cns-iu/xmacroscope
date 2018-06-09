@@ -1,3 +1,6 @@
+//
+// Mutate local state, changing race state to preRun and define opponent
+//
 import PropTypes from 'prop-types';
 import React from 'react';
 import gql from 'graphql-tag';
@@ -22,18 +25,13 @@ const OpponentSelectButton = ({ opponentName, opponentTime }) => (
   <Mutation
     mutation={UPDATE_RACE_OPPONENT}
     variables={{
-      status: 'preRunTimer',
-      opponent: opponentName,
-      opponentTime,
-    }}
+    status: 'preRunTimer',
+    opponent: opponentName,
+    opponentTime,
+  }}
   >
     {updateRace => (
-      <Button
-        color="primary"
-        onClick={updateRace}
-      >
-        {opponentName}
-      </Button>
+      <Button color="primary" onClick={updateRace}> {opponentName} </Button>
     )}
   </Mutation>
 );

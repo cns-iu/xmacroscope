@@ -1,3 +1,6 @@
+//
+// Start kiosk page
+//
 import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
