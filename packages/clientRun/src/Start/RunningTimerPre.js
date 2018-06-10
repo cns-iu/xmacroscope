@@ -11,7 +11,7 @@ const GET_PRE_RACE_DELAY = gql`
   }
 `;
 
-const UPDATE_RUN = gql`
+const START_RUN = gql`
   mutation RunStart(
   $run: NewRunRecord!
   ) {
@@ -21,84 +21,58 @@ const UPDATE_RUN = gql`
   }
 `;
 
-const UPDATE_LOCAL_STATE = gql`
-  mutation updateRace($status: String!, $opponent: String!) {
-    updateRace(status: $status, opponent: $opponent) @client
-  }
-`;
+function RunningTimerPre() {
+  return (
+    <Query
+      query={GET_PRE_RACE_DELAY}
+      variables={{ location: process.env.REACT_APP_LOCATION }}
+    >
+      {({ loading, error, data: { settings } }) => {
+        if (loading) return 'Loading...';
+        if (error) return `Error! ${error.message}`;
+        const { preRaceDelay } = settings;
 
-class RunningTimerPre extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onTimerCompleted = this.onTimerCompleted.bind(this);
-  }
-
-  onTimerCompleted(runStart) {
-    runStart({
-      variables: {
-        run: {
-          start: new Date().toLocaleString(),
-          opponent: 'placeholderOpponent',
-        },
-      },
-    }).then((mutationResult) => {
-      console.log(mutationResult.data.runStart);
-      console.log('----^ ^ ^ ^ ^ mutationResult.data.runStart ^ ^ ^ ^ ^----');
-    });
-  }
-
-  render() {
-    return (
-      <Query
-        query={GET_PRE_RACE_DELAY}
-        variables={{ location: process.env.REACT_APP_LOCATION }}
-      >
-        {({ loading, error, data: { settings } }) => {
-          if (loading) return 'Loading...';
-          if (error) return `Error! ${error.message}`;
-          const { preRaceDelay } = settings;
-
-          return (
-            <Mutation
-              mutation={UPDATE_RUN}
-              update={(cache, { data: { runStart } }) => {
-              const data = {
+        return (
+          <Mutation
+            mutation={START_RUN}
+            variables={{
+            run: { start: new Date().toLocaleString() },
+          }}
+            update={(cache, { data }) => {
+            const createdRunID = data.runStart;
+            cache.writeData({
+              data: {
                 activeRace: {
                   __typename: 'ActiveRace',
-                  opponent: 'nothing',
-                  raceId: runStart,
+                  raceId: createdRunID,
                   status: 'running',
                 },
-              };
-              cache.writeData({ data });
-            }}
-            >
-              {runStart => (
-                <div>
-                  <h1>Pre race delay</h1>
-                  <p>The user has selected an opponent on the start line kiosk
-                    and
-                    now a timer is running.
-                  </p>
-                  <p>Once this timer has completed the race will automatically
-                    start.
-                  </p>
-                  <Timer
-                    completion={() => {
-                      this.onTimerCompleted(runStart);
-                    }}
-                    direction="down"
-                    start={preRaceDelay}
-                    end={0}
-                  /> milliseconds
-                </div>
-              )}
-            </Mutation>
-          );
-        }}
-      </Query>
-    );
-  }
+              },
+            });
+          }}
+          >
+            {runStart => (
+              <div>
+                <h1>Pre race delay</h1>
+                <p>The user has selected an opponent on the start line kiosk
+                  and now a timer is running.
+                </p>
+                <p>Once this timer has completed the race will automatically
+                  start.
+                </p>
+                <Timer
+                  completion={runStart}
+                  direction="down"
+                  start={preRaceDelay}
+                  end={0}
+                /> milliseconds
+              </div>
+            )}
+          </Mutation>
+        );
+      }}
+    </Query>
+  );
 }
 
 export default RunningTimerPre;
