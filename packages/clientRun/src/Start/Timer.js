@@ -62,15 +62,16 @@ class Timer extends React.Component {
 }
 
 Timer.propTypes = {
-  completion: PropTypes.func.isRequired,
   direction: PropTypes.oneOf(['up', 'down']).isRequired,
   end: PropTypes.number.isRequired,
   start: PropTypes.number.isRequired,
+  completion: PropTypes.func,
   tick: PropTypes.number,
   stop: PropTypes.bool,
 };
 
 Timer.defaultProps = {
+  completion: () => {},
   tick: 100,
   stop: false,
 };

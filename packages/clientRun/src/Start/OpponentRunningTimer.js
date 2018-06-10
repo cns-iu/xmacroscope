@@ -1,47 +1,34 @@
 import React from 'react';
-import { Button, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Timer from './Timer';
 
-const GET_RACE = gql`
+const GET_OPPONENT_TIME = gql`
   query {
     activeRace @client {
-      opponent
       opponentTime
-      status
     }
   }
 `;
 
 function OpponentRunningTimer() {
   return (
-    <Query query={GET_RACE}>
+    <Query query={GET_OPPONENT_TIME}>
       {({ loading, error, data: { activeRace } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
+        const { opponentTime } = activeRace;
         return (
           <Col>
             <Row>
               <Col>
                 <h3>Opponent race time</h3>
                 <Timer
-                  completion={() => {
-                    console.log('Opponent end');
-                  }}
                   direction="up"
                   start={0}
-                  end={activeRace.opponentTime}
+                  end={opponentTime}
                 /> milliseconds
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Button
-                  disabled
-                >
-                  Opponent finish
-                </Button>
               </Col>
             </Row>
           </Col>
