@@ -43,7 +43,7 @@ class RunningTimerPost extends React.Component {
             <Mutation
               mutation={UPDATE_RUN_LOCAL}
               variables={{
-              status: 'startup',
+              status: 'opponentSelect',
             }}
             >
               {updateRace => (
