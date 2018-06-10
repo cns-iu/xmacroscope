@@ -1,28 +1,24 @@
+//
+// Active race timers
+//
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Query, Mutation } from 'react-apollo';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import gql from 'graphql-tag';
 import Timer from './Timer';
 import OpponentRunningTimer from './OpponentRunningTimer';
 import RunnerTimer from './RunnerTimer';
 
-const GET_SETTINGS = gql`
+const GET_RACE_TIMEOUT = gql`
   query settings($location: String!) {
     settings(location: $location){
-      location
-      latitude
-      longitude
-      preRaceDelay
-      postRaceDelay
-      startLineTimeout
       raceTimeout
-      attractDelay
     }
   }
 `;
 
-const UPDATE_RUN = gql`
+const FINISH_RUN = gql`
   mutation RunUpdate(
   $run: FinishRunRecord!
   ) {
@@ -59,88 +55,77 @@ class Running extends React.Component {
     });
   }
 
+  // Get race timeout setting and pass it to children timers
   render() {
     return (
       <Query
-        query={GET_SETTINGS}
+        query={GET_RACE_TIMEOUT}
         variables={{ location: process.env.REACT_APP_LOCATION }}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data: { settings } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const { raceTimeout } = data.settings;
+          const { raceTimeout } = settings;
           return (
-            <Mutation
-              mutation={UPDATE_RUN}
-              update={(cache, { data: { runFinish } }) => {
-                const cacheData = {
-                  activeRace: {
-                    __typename: 'ActiveRace',
-                    opponent: 'nothing',
-                    status: 'running',
-                  },
-                };
-                cache.writeData({ cacheData });
-              }}
-            >
-              {runFinish => (
+            <Row>
+              <Col>
+
+                {/* Running message */}
                 <Row>
                   <Col>
-                    <Row>
-                      <Col>
-                        <h1>Running display</h1>
-                        <p>A race has started.</p>
-                        <p>Once both runners cross the finish line the race will
-                          complete.
-                        </p>
-                        <p>If neither runner crosses the finish line by the
-                          timeout,
-                          the race will complete.
-                        </p>
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      <OpponentRunningTimer />
-                      <RunnerTimer
-                        raceTimeout={raceTimeout}
-                        lane="1"
-                      />
-                    </Row>
-
-                    <Row className="mt-4">
-                      <Col>
-                        <h3>Run timeout timer</h3>
-                        <p>Background timer that resets the running experience
-                          if the two runners don&apos;t complete a race.
-                        </p>
-                        <Mutation
-                          mutation={UPDATE_RUN_LOCAL}
-                          variables={{
-                          status: 'postRunTimer',
-                        }}
-                        >
-                          {updateRace => (
-                            <Fragment>
-                              <Timer
-                                completion={() => {
-                                  updateRace();
-                                }}
-                                direction="down"
-                                start={raceTimeout}
-                                end={0}
-                              /> milliseconds
-                            </Fragment>
-                          )}
-                        </Mutation>
-                      </Col>
-
-                    </Row>
-
+                    <h1>Running display</h1>
+                    <p>A race has started.</p>
+                    <p>Once both runners cross the finish line the race will
+                      complete.
+                    </p>
+                    <p>If neither runner crosses the finish line by the
+                      timeout,
+                      the race will complete.
+                    </p>
                   </Col>
                 </Row>
-              )}
-            </Mutation>
+
+                {/* Runner timers */}
+                <Row>
+                  <OpponentRunningTimer />
+                  <RunnerTimer
+                    raceTimeout={raceTimeout}
+                    lane="1"
+                  />
+                </Row>
+
+                {/* Timeout timers */}
+                <Row className="mt-4">
+                  <Col>
+                    <h3>Run timeout timer</h3>
+                    <p>Background timer that resets the running experience
+                      if the two runners don&apos;t complete a race.
+                    </p>
+                    <Mutation
+                      mutation={UPDATE_RUN_LOCAL}
+                      variables={{
+                        status: 'postRunTimer',
+                      }}
+                    >
+                      {updateRace => (
+                        <Fragment>
+                          <Timer
+                            completion={() => {
+                              updateRace();
+                            }}
+                            direction="down"
+                            start={raceTimeout}
+                            end={0}
+                          /> milliseconds
+                        </Fragment>
+                      )}
+                    </Mutation>
+                  </Col>
+
+                </Row>
+
+              </Col>
+            </Row>
           );
         }}
       </Query>

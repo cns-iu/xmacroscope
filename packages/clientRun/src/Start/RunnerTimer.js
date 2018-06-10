@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import Timer from './Timer';
 
-const GET_RACE = gql`
+const GET_RACE_ID = gql`
   query {
     activeRace @client {
       raceId
@@ -13,7 +13,7 @@ const GET_RACE = gql`
   }
 `;
 
-const UPDATE_RUN = gql`
+const FINISH_RUN = gql`
   mutation RunUpdate(
   $run: FinishRunRecord!
   ) {
@@ -36,30 +36,30 @@ class RunnerTimer extends React.Component {
     const { lane, raceTimeout } = this.props;
     const { timerStopped } = this.state;
     return (
-      <Query query={GET_RACE}>
+      <Query query={GET_RACE_ID}>
         {({ loading, error, data: { activeRace } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
+          const { raceId } = activeRace;
+
           return (
             <Mutation
-              mutation={UPDATE_RUN}
+              mutation={FINISH_RUN}
               variables={{
-              run: {
-                id: activeRace.raceId,
-                finish: new Date().toLocaleString(),
-              },
-            }}
+                run: {
+                  id: raceId,
+                  finish: new Date().toLocaleString(),
+                },
+              }}
             >
               {runFinish => (
 
                 <Col>
+
                   <Row>
                     <Col>
                       <h3>Lane {lane} race time</h3>
                       <Timer
-                        completion={() => {
-                          console.log('Done in the lane');
-                        }}
                         stop={timerStopped}
                         direction="up"
                         start={0}
@@ -67,24 +67,22 @@ class RunnerTimer extends React.Component {
                       /> milliseconds
                     </Col>
                   </Row>
+
                   <Row>
                     <Col>
                       <Button
                         disabled={timerStopped}
                         color="primary"
                         onClick={() => {
-                        console.log('lane1');
-                        this.setState({
-                          timerStopped: true,
-                        });
-                        runFinish();
-                      }
-                      }
+                          this.setState({ timerStopped: true });
+                          runFinish();
+                        }}
                       >
                         Lane {lane} finish
                       </Button>
                     </Col>
                   </Row>
+
                 </Col>
               )}
             </Mutation>

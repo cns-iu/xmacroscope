@@ -36,20 +36,20 @@ function RunningTimerPre() {
           <Mutation
             mutation={START_RUN}
             variables={{
-            run: { start: new Date().toLocaleString() },
-          }}
+              run: { start: new Date().toLocaleString() },
+            }}
             update={(cache, { data }) => {
-            const createdRunID = data.runStart;
-            cache.writeData({
-              data: {
-                activeRace: {
-                  __typename: 'ActiveRace',
-                  raceId: createdRunID,
-                  status: 'running',
+              const createdRunID = data.runStart;
+              cache.writeData({
+                data: {
+                  activeRace: {
+                    __typename: 'ActiveRace',
+                    raceId: createdRunID,
+                    status: 'running',
+                  },
                 },
-              },
-            });
-          }}
+              });
+            }}
           >
             {runStart => (
               <div>
