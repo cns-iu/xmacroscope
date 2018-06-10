@@ -28,19 +28,8 @@ class RunnerTimer extends React.Component {
     super(props);
 
     this.state = {
-      count: 0,
       timerStopped: false,
     };
-
-    this.clickHandler = this.clickHandler.bind(this);
-  }
-
-  clickHandler() {
-    this.setState({
-      count: this.state.count + 1,
-    });
-
-    console.log('Button click');
   }
 
   render() {
