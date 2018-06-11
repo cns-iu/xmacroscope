@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import moment from 'moment';
 import Timer from './Timer';
 
 const GET_PRE_RACE_DELAY = gql`
@@ -35,9 +36,6 @@ function RunningTimerPre() {
         return (
           <Mutation
             mutation={START_RUN}
-            variables={{
-              run: { start: new Date().toLocaleString() },
-            }}
             update={(cache, { data }) => {
               const createdRunID = data.runStart;
               cache.writeData({
@@ -61,7 +59,15 @@ function RunningTimerPre() {
                   start.
                 </p>
                 <Timer
-                  completion={runStart}
+                  completion={() => {
+                    runStart({
+                        variables: {
+                          run: {
+                            start: moment(),
+                          },
+                        },
+                      });
+                  }}
                   direction="down"
                   start={preRaceDelay}
                   end={0}

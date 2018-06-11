@@ -3,6 +3,7 @@ import { Row, Col, Button } from 'reactstrap';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import Timer from './Timer';
 
 const GET_RACE_ID = gql`
@@ -45,11 +46,16 @@ class RunnerTimer extends React.Component {
           return (
             <Mutation
               mutation={FINISH_RUN}
-              variables={{
-                run: {
-                  id: raceId,
-                  finish: new Date().toLocaleString(),
-                },
+              refetchQueries={['runs']}
+              update={(cache) => {
+                cache.writeData({
+                  data: {
+                    activeRace: {
+                      __typename: 'ActiveRace',
+                      status: 'postRunTimer',
+                    },
+                  },
+                });
               }}
             >
               {runFinish => (
@@ -75,7 +81,14 @@ class RunnerTimer extends React.Component {
                         color="primary"
                         onClick={() => {
                           this.setState({ timerStopped: true });
-                          runFinish();
+                          runFinish({
+                            variables: {
+                              run: {
+                                id: raceId,
+                                finish: moment(),
+                              },
+                            },
+                          });
                         }}
                       >
                         Lane {lane} finish
@@ -94,6 +107,7 @@ class RunnerTimer extends React.Component {
 }
 
 RunnerTimer.propTypes = {
+  raceTimeout: PropTypes.number.isRequired,
   lane: PropTypes.string.isRequired,
 };
 

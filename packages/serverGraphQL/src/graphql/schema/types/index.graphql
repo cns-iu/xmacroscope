@@ -1,5 +1,7 @@
 # Define GraphQL types
 
+scalar Date
+
 type User {
   id: String
   sub: String
@@ -33,7 +35,7 @@ type Run {
   timeMillis: Int
 }
 
-type RunRecord {
+type RunRecordOld {
   avatar: ID!
   persona: ID!
   timestamp: String
@@ -42,6 +44,13 @@ type RunRecord {
   falseStart: Boolean
   timeMillis: Int
   asRun: Run
+}
+
+type RunRecord {
+  id: ID
+  opponent: String
+  start: Date
+  end: Date
 }
 
 interface Message {
@@ -115,13 +124,13 @@ input NewAvatar {
 }
 
 input NewRunRecord {
-  start: String!
+  start: Date!
   opponent: String
 }
 
 input FinishRunRecord {
   id: ID!
-  finish: String!
+  finish: Date!
 }
 
 input UpdateRunRecord {
