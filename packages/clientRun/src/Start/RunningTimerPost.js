@@ -58,6 +58,7 @@ class RunningTimerPost extends React.Component {
                   <p>After the timeout the system returns to the main startup
                     state
                   </p>
+                  <h3>Post run timer</h3>
                   <Timer
                     completion={() => {
                       updateRace();
