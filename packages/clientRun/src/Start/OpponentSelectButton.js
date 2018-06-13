@@ -25,13 +25,17 @@ const OpponentSelectButton = ({ opponentName, opponentTime }) => (
   <Mutation
     mutation={UPDATE_RACE_OPPONENT}
     variables={{
-    status: 'runTimerPre',
-    opponent: opponentName,
-    opponentTime,
-  }}
+      status: 'runTimerPre',
+      opponent: opponentName,
+      opponentTime,
+    }}
   >
     {updateRace => (
-      <Button color="primary" onClick={updateRace}>{opponentName}</Button>
+      <Button
+        color="primary"
+        onClick={updateRace}
+      >{opponentName}
+      </Button>
     )}
   </Mutation>
 );
