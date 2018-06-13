@@ -6,10 +6,28 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    firstName: {
+    name: {
       type: Sequelize.STRING,
     },
-    lastName: {
+    icon: {
+      type: Sequelize.STRING,
+    },
+    color: {
+      type: Sequelize.STRING,
+    },
+    gender: {
+      type: Sequelize.STRING,
+    },
+    ageGroup: {
+      type: Sequelize.STRING,
+    },
+    handedness: {
+      type: Sequelize.STRING,
+    },
+    zipCode: {
+      type: Sequelize.STRING,
+    },
+    state: {
       type: Sequelize.STRING,
     },
     createdAt: {

@@ -7,8 +7,14 @@ import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 
 const Person = sequelize.define('Person', {
-  firstName: { type: Sequelize.STRING },
-  lastName: { type: Sequelize.STRING },
+  name: { type: Sequelize.STRING },
+  icon: { type: Sequelize.STRING },
+  color: { type: Sequelize.STRING },
+  gender: { type: Sequelize.STRING },
+  ageGroup: { type: Sequelize.STRING },
+  handedness: { type: Sequelize.STRING },
+  zipcode: { type: Sequelize.STRING },
+  state: { type: Sequelize.STRING },
 }, {
   paranoid: true,
 });
