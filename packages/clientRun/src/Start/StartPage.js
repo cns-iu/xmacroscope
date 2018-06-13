@@ -23,6 +23,7 @@ const GET_RACE_STATE_LOCAL = gql`
 `;
 
 function StartPage() {
+
   return (
     <Query query={GET_RACE_STATE_LOCAL}>
       {({ loading, error, data: { activeRace } }) => {

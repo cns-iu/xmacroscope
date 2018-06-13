@@ -126,6 +126,7 @@ input NewAvatar {
 input NewRunRecord {
   start: Date!
   opponent: String
+  persona: NewPersona
 }
 
 input FinishRunRecord {
@@ -152,6 +153,7 @@ enum GENDER {
 enum HANDEDNESS {
   left
   right
+  ambidextrous
 }
 
 type Persona {

@@ -18,14 +18,18 @@ const runs = baseResolver
 
 // Create a run, return the ID
 const runStart = baseResolver
-  .createResolver((root, args) => db.run.create({
-    opponent: args.run.opponent,
-    start: args.run.start,
-  })
-    .then((createdRun) => {
-      console.log('Updating a run record');
-      return createdRun.id;
-    }));
+  .createResolver((root, args) => {
+    console.log(args);
+    console.log('----^ ^ ^ ^ ^ args ^ ^ ^ ^ ^----');
+    return db.run.create({
+      opponent: args.run.opponent,
+      start: args.run.start,
+    })
+      .then((createdRun) => {
+        console.log('Updating a run record');
+        return createdRun.id;
+      });
+  });
 
 // Update an existing run record with a finish time, return the ID
 const runFinish = baseResolver
@@ -34,6 +38,7 @@ const runFinish = baseResolver
     { where: { id: args.run.id } },
   ).then((updatedRuns) => {
     console.log('Updating a run record');
+    // Send message here
     return updatedRuns;
   }));
 
