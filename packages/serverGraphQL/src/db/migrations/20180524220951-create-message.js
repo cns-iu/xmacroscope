@@ -10,7 +10,7 @@ module.exports = {
       type: Sequelize.STRING,
     },
     timestamp: {
-      type: Sequelize.STRING,
+      type: Sequelize.DATE,
     },
     createdAt: {
       allowNull: false,

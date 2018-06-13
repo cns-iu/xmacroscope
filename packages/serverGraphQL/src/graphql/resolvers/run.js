@@ -19,8 +19,6 @@ const runs = baseResolver
 // Create a run, return the ID
 const runStart = baseResolver
   .createResolver((root, args) => {
-    console.log(args);
-    console.log('----^ ^ ^ ^ ^ args ^ ^ ^ ^ ^----');
     return db.run.create({
       opponent: args.run.opponent,
       start: args.run.start,
@@ -35,6 +33,13 @@ const runStart = baseResolver
           handedness: args.run.persona.handedness,
         });
         return createdRun.id;
+      })
+      .then((createdRunId) => {
+        db.message.create({
+          type: 'race-initiated',
+          timestamp: args.run.start,
+        });
+        return createdRunId;
       });
   });
 
