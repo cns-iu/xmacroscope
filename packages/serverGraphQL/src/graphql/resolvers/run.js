@@ -26,7 +26,14 @@ const runStart = baseResolver
       start: args.run.start,
     })
       .then((createdRun) => {
-        console.log('Updating a run record');
+        db.person.create({
+          name: args.run.persona.name,
+          icon: args.run.persona.icon,
+          color: args.run.persona.color,
+          gender: args.run.persona.gender,
+          ageGroup: args.run.persona.age_group,
+          handedness: args.run.persona.handedness,
+        });
         return createdRun.id;
       });
   });
