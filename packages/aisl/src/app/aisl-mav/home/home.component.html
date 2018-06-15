@@ -1,22 +1,52 @@
-<mat-sidenav-container class="sidebar-container">
-  <mat-sidenav mode="side"
-               disableClose="true"
-               [opened]="true">
-    <aisl-field-list [fields]="fields">
-    </aisl-field-list>
-  </mat-sidenav>
+<div class="container">
+  <div class="first-column">
+    <button mat-raised-button class="restart-button">RESTART</button>
+    <div class="data-table-box">
+      <div class="table">
+        Data Table
+      </div>
+    </div>
+  </div>
 
-  <mat-sidenav-content>
-    <mat-tab-group (selectedTabChange)="setFields(tabs.selectedIndex)"
-                   #tabs>
-      <mat-tab label="Scatterplot">
-        <aisl-scatterplot>
-        </aisl-scatterplot>
-      </mat-tab>
-      <mat-tab label="Geomap">
-        <aisl-geomap>
-        </aisl-geomap>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  <div class="second-column">
+    <div class="item visualization-box">
+      <mat-tab-group (selectedTabChange)="setFields(tabs.selectedIndex)" #tabs>
+        <mat-tab label="Scatter Graph">
+          <aisl-scatterplot>
+          </aisl-scatterplot>
+        </mat-tab>
+
+        <mat-tab label="Map">
+          <aisl-geomap>
+          </aisl-geomap>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+    <div class="item legend-description-box" [style.background]="'#3D3D3D'">
+        <div class="description">
+          <span class="title">Select Graphic Variables</span>
+          
+          <div class="text">
+            Quantitative: Data may take on any value within a finite or infinite interval and are commonly
+            acquired via measurement.
+          </div>
+          
+          <div class="text">
+            Qualitative: Data take on only specific values with no values in between and are frequently
+            determined by counting.
+          </div>
+        </div>
+        
+        <div class="quantitative">
+          <span class="title">Quantitative</span> <br>
+          <span class="subtitle">Size: Column Header</span>
+        </div>
+
+        <div class="qualitative">
+            <span class="title">Qualitative</span><br>
+            <span class="subtitle">Color: Column Header</span>
+          </div>
+    </div>
+  </div>
+</div>
