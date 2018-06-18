@@ -1,7 +1,95 @@
-.sidebar-container
-  position: relative
-  top: 0
-  bottom: 0
-  left: 0
-  right: 0
+.container
+  display: flex
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-content: stretch
+  align-items: stretch
+  background: #000000
+  font-family: open-sans // TODO
   height: 100vh
+
+.first-column
+  width: 37.5% // 720px based on a (1920 X 1080) resolution
+
+.second-column
+  width: 62.5% // 1070px based on a (1920 X 1080) resolution
+  flex-direction: column
+  background: #000000
+
+.item
+  flex: 1
+  align-self: auto
+
+.visualization-box
+  background: #FFFFFF
+  margin: 10px
+  height: 79% // 850px based on a (1920 X 1080) resolution
+
+.restart-button
+  border-radius: 8px
+  height: 80px // 80px based on a (1920 X 1080) resolution
+  width: 98.5%
+  color: #FFFFFF
+  background: #AFAFAA
+  margin: 10px
+
+.data-table-box
+  margin: 10px
+  margin-top: 0px
+  margin-right: 0px
+  background: #3D3D3D
+  height: 90%
+
+.data-table-box .table
+  padding: 20px
+  color: #FFFFFF // temporary
+
+.legend-description-box
+  background: #000000
+  margin: 10px
+  height: 18.5%
+
+.description
+  display: table-cell
+  padding: 20px
+  padding-right: 40px
+
+.description .title
+  font-weight: bold
+  font-size: 20px
+  color: #FFB100
+
+.description .text
+  line-height: 20px
+  font-size: 16px
+  color: #FFFFFF
+  padding-top: 15px
+
+.quantitative
+  display: table-cell
+  color: #FFFFFF
+  border-right: 1px solid #AFAFAA
+  padding-right: 20px
+
+.quantitative .title
+  font-size: 20px
+  text-align: center
+  margin-left: 13%
+
+.quantitative .subtitle
+  white-space: nowrap
+  text-align: center
+
+.qualitative
+  display: table-cell
+  color: #FFFFFF
+  padding: 20px
+  
+.qualitative .title
+  font-size: 20px
+  text-align: center
+  margin-left: 13%
+
+.qualitative .subtitle
+  white-space: nowrap
+  text-align: center

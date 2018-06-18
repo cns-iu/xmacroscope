@@ -11,18 +11,21 @@ import { IField, Changes } from '@ngx-dino/core';
 export class ScatterplotComponent implements OnInit {
   @Input() pointIDField: IField<string>; // not user facing
   @Input() strokeColorField: IField<boolean>; // not user facing
-  @Input() xFields: IField<any>[];
-  @Input() yFields: IField<any>[];
-  @Input() colorFields: IField<string>[];
-  @Input() shapeFields: IField<string>[];
-  @Input() sizeFields: IField<string>[];
-  @Input() dataStream: Observable<Changes<any>>;
   @Input() xField: IField<any>;
   @Input() yField: IField<any>;
   @Input() colorField: IField<string>;
   @Input() shapeField: IField<string>;
   @Input() sizeField: IField<string>;
+  
 
+  @Input() xFields: IField<any>[];
+  @Input() yFields: IField<any>[];
+  @Input() colorFields: IField<string>[];
+  @Input() shapeFields: IField<string>[];
+  @Input() sizeFields: IField<string>[];
+  
+  @Input() dataStream: Observable<Changes<any>>;
+  
   constructor() { }
 
   ngOnInit() { }
