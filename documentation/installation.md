@@ -32,6 +32,13 @@ cd xmacroscope
 lerna bootstrap
 ```
 
+## Initialize [@ngx-dino](https://github.com/cns-iu/ngx-dino) Submodule
+[@ngx-dino](https://github.com/cns-iu/ngx-dino) is CNS' in development visualization framework. As it is not yet on npm, we reference it from a git submodule.
+```
+git submodule init
+git submodule update
+```
+
 ## Setup environment
 ### Client
 ```
