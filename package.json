@@ -1,5 +1,5 @@
 {
-	"private": "true",
+	"private": true,
 	"devDependencies": {
 		"lerna": "^2.8.0"
 	},
@@ -7,6 +7,7 @@
 		"bootstrap": "^4.0.0"
 	},
 	"workspaces": [
-    "packages/*"
+		"packages/*",
+		"ngx-dino/packages/*"
   ]
 }

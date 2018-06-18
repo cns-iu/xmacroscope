@@ -8,6 +8,8 @@ will provide a novel platform for conducting research on the efficacy of differe
 
 ## Work In Progress
 
+<a href="https://app.zenhub.com/workspace/o/cns-iu/xmacroscope"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
+
 This project is a work in progress, under active development. It is not ready for a production deployment yet.
 
 ## Demo site
@@ -31,7 +33,3 @@ The xMacroscope project is a collaboration between:
 * [The Center of Science and Industry](https://cosi.org/)
 
 <img align="left" alt="National Science Foundation logo" src="https://s3-us-west-2.amazonaws.com/smm-depot/images/logos/nsf/NSF_4-Color_bitmap_Logo-80x80.png" /> The xMacroscope project is supported by the [National Science Foundation, Advancing Informal STEM Learning (AISL - 1713567)](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1713567).
-
-<span>&nbsp;</span>
-
-<a href="https://app.zenhub.com/workspace/o/cns-iu/xmacroscope"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>

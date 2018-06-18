@@ -10,13 +10,13 @@
     "test.ts",
     "**/*.spec.ts",
     "../../aisl-*/**/*.spec.ts",
-    "../../dino-*/**/*.spec.ts",
+    "../../../ngx-dino/packages/dino-*/**/*.spec.ts",
     "../../mav/**/*.spec.ts"
   ],
   "include": [
     "**/*.ts",
     "../../aisl-*/**/*.ts",
-    "../../dino-*/**/*.ts",
+    "../../../ngx-dino/packages/dino-*/**/*.ts",
     "../../mav/**/*.ts"
   ]
 }
