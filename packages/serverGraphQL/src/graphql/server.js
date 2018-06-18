@@ -11,8 +11,9 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { createServer } from 'http';
 import { GraphQLError, execute, subscribe } from 'graphql';
 import { formatError as apolloFormatError, createError } from 'apollo-errors';
+import fs from 'fs';
+import chalk from 'chalk';
 import schema from './schema/schema';
-import db from '../db/models/index';
 
 //
 // Environment setup
@@ -22,6 +23,38 @@ import db from '../db/models/index';
 //
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
+}
+
+//
+// SQLite setup
+//
+// If the database dialect is set to sqlite, check for an existing storage
+// file. Create one if it doesn't exist.
+//
+if (process.env.DB_DIALECT === 'sqlite') {
+  const sqlite = require('sqlite3');
+  const { spawnSync } = require('child_process');
+  const sqliteStorage = path.join(
+    __dirname,
+    `../../private/${process.env.DB_STORAGE}`,
+  );
+  fs.access(sqliteStorage, (err) => {
+    if (err === null) {
+      console.log(chalk.yellow('A SQLite database file already exists. ' +
+        'Leaving it intact.'));
+    } else if (err.code === 'ENOENT') {
+      console.log(chalk.blue('The defined SQLite file doesn\'t exist.\n' +
+        `Creating the SQLite db at ${sqliteStorage}.`));
+      new sqlite.Database(sqliteStorage);
+      // Populate database using Sequelize CLI
+      const migrate = spawnSync('node_modules/.bin/sequelize', ['db:migrate']);
+      console.log(`SQLite running migrations: ${migrate.stdout.toString()}`);
+      const seed = spawnSync('node_modules/.bin/sequelize', ['db:seed:all']);
+      console.log(`SQLite running seeders: ${seed.stdout.toString()}`);
+    } else {
+      console.log(chalk.red('Unknown error: ', err.code));
+    }
+  });
 }
 
 // GraphQL port
@@ -113,7 +146,7 @@ app.use('/mav', express.static(path.join(__dirname, '../../../aisl/dist')));
 // Load the schema and context for each GraphQL request.
 //
 // TODO - test removing unused param, response
-app.use('/graphql', bodyParser.json(), graphqlExpress((request, response) => ({
+app.use('/graphql', bodyParser.json(), graphqlExpress(() => ({
   schema,
   formatError,
 })));
@@ -131,7 +164,7 @@ app.use('/graphiql', graphiqlExpress({
   subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
 }));
 
-// Start the GraphQL server and populate DB with seed data if empty
+// Start the GraphQL server
 const server = createServer(app);
 server.listen(PORT, () => {
   new SubscriptionServer({
@@ -142,8 +175,5 @@ server.listen(PORT, () => {
     server,
     path: '/subscriptions',
   });
-
-  // Ensure DB tables are created
-  db.sequelize.sync();
 });
 

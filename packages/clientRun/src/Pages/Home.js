@@ -1,13 +1,12 @@
 import React from 'react';
 
-class Home extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Welcome to the Macroscope</h1>
-      </div>
-    );
-  }
+function Home() {
+  return (
+    <div>
+      <h1>xMacroscope</h1>
+      <p>Select a client screen from the navigation above.</p>
+    </div>
+  );
 }
 
 export default Home;

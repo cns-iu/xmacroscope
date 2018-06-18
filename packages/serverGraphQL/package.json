@@ -1,11 +1,12 @@
 {
-  "name": "graphQLServer",
+  "name": "serverGraphQL",
   "version": "0.0.1",
   "description": "GraphQL server for the Macroscope system",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "webpack --config webpack.dev.js",
+    "start-smm": "webpack --config webpack.dev.js",
     "build": "webpack --progress --colors --config webpack.prod.js"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
   "dependencies": {
     "apollo-errors": "^1.5.1",
     "apollo-resolvers": "^1.0.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "bcrypt": "^1.0.3",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.1",
@@ -49,6 +51,7 @@
     "express-jwt": "^5.3.0",
     "faker": "^4.1.0",
     "graphql": "^0.11.7",
+    "graphql-iso-date": "^3.5.0",
     "graphql-server-core": "1.2.0",
     "graphql-server-express": "^1.2.0",
     "graphql-server-module-graphiql": "^0.8.2",

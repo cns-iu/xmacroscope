@@ -1,5 +1,7 @@
 # Define GraphQL types
 
+scalar Date
+
 type User {
   id: String
   sub: String
@@ -26,7 +28,6 @@ type Avatar {
 type Run {
   avatar: Avatar!
   persona: Persona!
-
   timestamp: String
   lane: Int
   started: Boolean
@@ -34,7 +35,7 @@ type Run {
   timeMillis: Int
 }
 
-type RunRecord {
+type RunRecordOld {
   avatar: ID!
   persona: ID!
   timestamp: String
@@ -44,6 +45,14 @@ type RunRecord {
   timeMillis: Int
   asRun: Run
 }
+
+type RunRecord {
+  id: ID
+  opponent: String
+  start: Date
+  end: Date
+}
+
 interface Message {
   type: String
   timestamp: String
@@ -83,6 +92,17 @@ type AnyMessage implements Message {
   results: [RaceResult]
 }
 
+type Setting {
+  location: String
+  latitude: Float
+  longitude: Float
+  preRaceDelay: Int
+  postRaceDelay: Int
+  startLineTimeout: Int
+  raceTimeout: Int
+  attractDelay: Int
+}
+
 input NewRaceResult {
   lane: Int
   persona: NewPersona
@@ -104,6 +124,17 @@ input NewAvatar {
 }
 
 input NewRunRecord {
+  start: Date!
+  opponent: String
+  persona: NewPersona
+}
+
+input FinishRunRecord {
+  id: ID!
+  finish: Date!
+}
+
+input UpdateRunRecord {
   avatar: ID!
   persona: ID!
   timestamp: String
@@ -122,6 +153,7 @@ enum GENDER {
 enum HANDEDNESS {
   left
   right
+  ambidextrous
 }
 
 type Persona {

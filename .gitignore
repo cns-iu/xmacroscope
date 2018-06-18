@@ -8,7 +8,7 @@ packages/*/.env.production
 # Compiled applications
 packages/*/build
 packages/*/dist
-packages/serverGraphQL/*.sqlite
+packages/serverGraphQL/private
 
 # dependencies
 packages/*/node_modules

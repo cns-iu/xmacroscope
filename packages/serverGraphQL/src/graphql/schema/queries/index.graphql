@@ -7,5 +7,6 @@ type Query {
   runRecords(lastX: Int): [RunRecord!]!
   runs(lastX: Int): [RunRecord!]!
   messages(lastX: Int): AnyMessage
+  settings(location: String!): Setting
 }
 

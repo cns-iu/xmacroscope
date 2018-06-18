@@ -1,0 +1,4 @@
+.wordwrap {
+  white-space: pre-line !important;
+  word-wrap: break-word;
+}

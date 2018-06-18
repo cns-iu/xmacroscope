@@ -1,6 +1,6 @@
 import React from 'react';
 import mouseTrap from 'react-mousetrap';
-import Start from './Start';
+import Start from './StartAvatar';
 
 class StartKeyCapture extends React.Component {
   componentWillMount() {
