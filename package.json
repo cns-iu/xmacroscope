@@ -1,16 +1,16 @@
 {
-	"private": true,
-	"scripts": {
+  "private": true,
+  "scripts": {
     "start": "lerna run start --stream --concurrency"
-	},
-	"devDependencies": {
-		"lerna": "^2.8.0"
-	},
-	"dependencies": {
-		"bootstrap": "^4.0.0"
-	},
-	"workspaces": [
-		"packages/*",
-		"ngx-dino/packages/*"
+  },
+  "devDependencies": {
+    "lerna": "^2.8.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0"
+  },
+  "workspaces": [
+    "packages/*",
+    "ngx-dino/packages/*"
   ]
 }
