@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "start": "lerna run start --stream --concurrency"
+    "start": "lerna run start --stream --concurrency",
+    "start-smm": "lerna run start-smm --stream --concurrency"
   },
   "devDependencies": {
     "lerna": "^2.8.0"
