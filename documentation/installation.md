@@ -56,6 +56,6 @@ Unless you're deploying this to a server, you should keep all the defaults.
 
 In the project root directory:
 ```
-lerna run start --stream --concurrency
+yarn start
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
