@@ -15,14 +15,15 @@ module.exports = {
     end: {
       type: Sequelize.DATE,
     },
-    // TODO re-enable association for general associations record
-    // performanceId: {
-    //   type: Sequelize.INTEGER,
-    //   references: {
-    //     model: 'performance',
-    //     key: 'id',
-    //   },
-    // },
+    personId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'People',
+        key: 'id',
+      },
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,

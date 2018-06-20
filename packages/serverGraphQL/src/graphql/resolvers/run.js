@@ -18,30 +18,19 @@ const runs = baseResolver
 
 // Create a run, return the ID
 const runStart = baseResolver
-  .createResolver((root, args) => {
-    return db.run.create({
-      opponent: args.run.opponent,
+  .createResolver((root, args) => db.person.create({
+    name: args.run.persona.name,
+    icon: args.run.persona.icon,
+    color: args.run.persona.color,
+    gender: args.run.persona.gender,
+    ageGroup: args.run.persona.age_group,
+    handedness: args.run.persona.handedness,
+    Runs: {
       start: args.run.start,
-    })
-      .then((createdRun) => {
-        db.person.create({
-          name: args.run.persona.name,
-          icon: args.run.persona.icon,
-          color: args.run.persona.color,
-          gender: args.run.persona.gender,
-          ageGroup: args.run.persona.age_group,
-          handedness: args.run.persona.handedness,
-        });
-        return createdRun.id;
-      })
-      .then((createdRunId) => {
-        db.message.create({
-          type: 'race-initiated',
-          timestamp: args.run.start,
-        });
-        return createdRunId;
-      });
-  });
+    },
+  }, {
+    include: [db.run],
+  }));
 
 // Update an existing run record with a finish time, return the ID
 const runFinish = baseResolver

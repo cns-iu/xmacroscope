@@ -34,6 +34,6 @@ db.performance = Performance;
 // need to be defined within the Sequelize object before we can assign
 // associations.
 //------------------------------------------------------------------------------
-// db.run.belongsTo(db.performance);
+db.person.hasMany(db.run);
 
 export default db;
