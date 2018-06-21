@@ -1,5 +1,8 @@
 {
-	"private": "true",
+	"private": true,
+	"scripts": {
+    "start": "lerna run start --stream --concurrency"
+	},
 	"devDependencies": {
 		"lerna": "^2.8.0"
 	},

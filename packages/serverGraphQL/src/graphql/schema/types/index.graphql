@@ -1,0 +1,185 @@
+# Define GraphQL types
+
+scalar Date
+
+type User {
+  id: String
+  sub: String
+  email: String
+}
+
+type Person {
+  id: ID!
+  firstName: String
+  middleName: String
+  lastName: String
+  preferedName: String
+  preferedPronouns: String
+  createdAt: String
+  updatedAt: String
+}
+
+type Avatar {
+  id: ID!
+  name: String
+  runMillis: Int
+}
+
+type Run {
+  avatar: Avatar!
+  persona: Persona!
+  timestamp: String
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+type RunRecordOld {
+  avatar: ID!
+  persona: ID!
+  timestamp: String
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+  asRun: Run
+}
+
+type RunRecord {
+  id: ID
+  opponent: String
+  start: Date
+  end: Date
+}
+
+interface Message {
+  type: String
+  timestamp: String
+}
+
+type RunSelectedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+}
+
+type RaceInitiatedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+}
+
+type RaceResult {
+  lane: Int
+  persona: Persona
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+type RaceCompletedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+  results: [RaceResult]!
+}
+
+type AnyMessage implements Message {
+  type: String!
+  timestamp: String!
+  avatar: Avatar
+  results: [RaceResult]
+}
+
+type Setting {
+  location: String
+  latitude: Float
+  longitude: Float
+  preRaceDelay: Int
+  postRaceDelay: Int
+  startLineTimeout: Int
+  raceTimeout: Int
+  attractDelay: Int
+}
+
+input NewRaceResult {
+  lane: Int
+  persona: NewPersona
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+input NewAnyMessage {
+  type: String!
+  timestamp: String!
+  avatar: NewAvatar
+  results: [NewRaceResult]
+}
+
+input NewAvatar {
+  name: String
+  runMillis: Int
+}
+
+input NewRunRecord {
+  start: Date!
+  opponent: String
+  persona: NewPersona
+}
+
+input FinishRunRecord {
+  id: ID!
+  finish: Date!
+}
+
+input UpdateRunRecord {
+  avatar: ID!
+  persona: ID!
+  timestamp: String
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+enum GENDER {
+  male
+  female
+  other
+}
+
+enum HANDEDNESS {
+  left
+  right
+  ambidextrous
+}
+
+type Persona {
+  id: ID!
+  name: String
+  icon: String
+  color: String
+  gender: GENDER
+  age_group: String
+  handedness: HANDEDNESS
+  zipcode: String
+  state: String
+  latitude: Float
+  longitude: Float
+}
+
+input NewPersona {
+  name: String
+  icon: String
+  color: String
+  gender: GENDER
+  age_group: String
+  handedness: HANDEDNESS
+  zipcode: String
+  state: String
+  latitude: Float
+  longitude: Float
+}
+

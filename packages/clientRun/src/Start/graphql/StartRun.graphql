@@ -1,0 +1,9 @@
+mutation (
+  $start: String!
+  $opponent: String
+) {
+  runStart(run: {
+    start: $start
+    opponent: $opponent
+  })
+}

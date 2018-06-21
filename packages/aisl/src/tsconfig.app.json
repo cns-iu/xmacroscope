@@ -13,6 +13,7 @@
     "../../../ngx-dino/packages/dino-*/node_modules/**/*.ts",
     "../../../ngx-dino/packages/dino-core/src/test-*/**/*.ts",
     "../../../ngx-dino/packages/**/*.spec.ts",
+    "../../../ngx-dino/packages/dino-*/**/*.spec.ts",
     "../../aisl-*/**/*.spec.ts",
     "../../mav/**/*.spec.ts",
     "../../mav/node_modules/**/*.ts"
