@@ -15,6 +15,7 @@ const GET_RACE_STATE_LOCAL = gql`
   query {
     activeRace @client {
       opponent
+      opponentName
       opponentTime
       raceId
       status
@@ -33,7 +34,10 @@ function StartPage() {
             <Col>
               {{
                 opponentSelect: <OpponentSelect />,
-                runTimerPre: <RunningTimerPre opponent={activeRace.opponent} />,
+                runTimerPre: <RunningTimerPre
+                  opponent={activeRace.opponent}
+                  opponentName={activeRace.opponentName}
+                />,
                 running: <Running />,
                 postRunTimer: <RunningTimerPost />,
                 falseStart: <div>False start</div>,

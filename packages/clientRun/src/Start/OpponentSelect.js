@@ -6,14 +6,13 @@ import { Row, Col } from 'reactstrap';
 import OpponentSelectButton from './OpponentSelectButton';
 
 const OpponentSelect = () => {
-
   // TODO - Load these from settings
   const opponents = [
-    { name: 'fast animal', raceTime: 1500 },
-    { name: 'slow animal', raceTime: 4500 },
-    { name: 'fast person', raceTime: 2500 },
-    { name: 'slow person', raceTime: 4000 },
-    { name: 'cartoon character', raceTime: 5000 },
+    { id: 'fast-animal', name: 'Fast animal', raceTime: 1500 },
+    { id: 'slow-animal', name: 'Slow animal', raceTime: 4500 },
+    { id: 'fast-person', name: 'Fast person', raceTime: 2500 },
+    { id: 'slow-person', name: 'Slow person', raceTime: 4000 },
+    { id: 'cartoon-character', name: 'Cartoon character', raceTime: 5000 },
   ];
   return (
 
@@ -27,8 +26,13 @@ const OpponentSelect = () => {
         <Row>
           {
             opponents.map(item => (
-              <Col key={item.name} xs={6} className="mb-3">
+              <Col
+                key={item.name}
+                xs={6}
+                className="mb-3"
+              >
                 <OpponentSelectButton
+                  opponent={item.id}
                   opponentName={item.name}
                   opponentTime={item.raceTime}
                 />

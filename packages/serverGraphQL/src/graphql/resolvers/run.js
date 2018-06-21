@@ -27,6 +27,8 @@ const runStart = baseResolver
     handedness: args.run.persona.handedness,
     Runs: {
       start: args.run.start,
+      opponent: args.run.opponent,
+      opponentName: args.run.opponentName,
     },
   }, {
     include: [db.run],

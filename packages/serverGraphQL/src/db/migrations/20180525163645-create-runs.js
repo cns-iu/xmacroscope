@@ -9,6 +9,9 @@ module.exports = {
     opponent: {
       type: Sequelize.STRING,
     },
+    opponentName: {
+      type: Sequelize.STRING,
+    },
     start: {
       type: Sequelize.DATE,
     },

@@ -11,22 +11,25 @@ const UPDATE_RACE_OPPONENT = gql`
   mutation UpdateRaceOpponent(
   $status: String!,
   $opponent: String!,
+  $opponentName: String!,
   $opponentTime: Int!
   ) {
     updateRace(
       status: $status,
       opponent: $opponent
+      opponentName: $opponentName
       opponentTime: $opponentTime
     ) @client
   }
 `;
 
-const OpponentSelectButton = ({ opponentName, opponentTime }) => (
+const OpponentSelectButton = ({ opponent, opponentName, opponentTime }) => (
   <Mutation
     mutation={UPDATE_RACE_OPPONENT}
     variables={{
       status: 'runTimerPre',
-      opponent: opponentName,
+      opponent,
+      opponentName,
       opponentTime,
     }}
   >
