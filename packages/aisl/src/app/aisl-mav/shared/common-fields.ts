@@ -1,43 +1,69 @@
-import { Seq } from 'immutable';
+import { Seq, Map } from 'immutable';
 
-import { IField, Field } from '@ngx-dino/core';
+import { BoundField, Field, simpleField, DataType, Operator } from '@ngx-dino/core';
+
+import { access } from '@ngx-dino/core/src/operators/methods/extracting/access';
+import { chain } from '@ngx-dino/core/src/operators/methods/grouping/chain';
+import { map } from '@ngx-dino/core/src/operators/methods/transforming/map';
 
 import {
   genderMapping, ageGroupMapping, handednessMapping,
-  athleticismMapping, laneMapping, falseStartMapping
+  laneMapping, falseStartMapping
 } from './mappings';
 
-
 // Field list type
-export interface FieldList<T> extends Array<IField<T>> {
-  default: IField<T>;
+export interface FieldList<T> extends Array<Field<T>> {
+  default: Field<T>;
 }
 
-export class ShowPersonaField<T> extends Field<T> {
-  constructor(private field1: IField<T>, private field2: IField<T>) {
-    super(field2);
-    this['get'] = this.realGet.bind(this);
-  }
+export function conditionalField<T>(
+  op: Operator<any, boolean>, trueField: Field<T>, falseField: Field<T>, metadataField: Field<T>
+): Field<T> {
+  const mapping: {[id: string]: Operator<any, T>} = {};
+  const wrap = function(key) {
+    const trueBoundField = trueField.getBoundField(key);
+    const falseBoundField = falseField.getBoundField(key);
+    return map<any, T>(
+        (item) => {
+          return (op.get(item) ? trueBoundField : falseBoundField).get(item);
+        }
+      );
+  };
 
-  realGet(item: any): T {
-    if (item.showPersona) {
-      return this.field1.get(item);
+  for (const key of trueField.getBoundFieldIds().toArray()) {
+    if (falseField.mapping.has(key)) {
+      mapping[key] = wrap(key);
     } else {
-      return this.field2.get(item);
+      mapping[key] = trueField.getBoundField(key).operator;
     }
   }
+  for (const key of falseField.getBoundFieldIds().toArray()) {
+    if (trueField.mapping.has(key)) {
+      mapping[key] = wrap(key);
+    } else {
+      mapping[key] = falseField.getBoundField(key).operator;
+    }
+  }
+
+  return new Field<T>({
+    id: metadataField.id,
+    label: metadataField.label,
+    dataType: metadataField.dataType,
+    mapping: mapping
+  });
 }
 
-export function wrapFieldsForShowPersona<T>(srcField: IField<T>, listOfFields: IField<T>[]) {
+export const showPersonaOp = map<any, boolean>((item) => !!item.showPersona);
+export function wrapFieldsForShowPersona<T>(srcField: Field<T>, listOfFields: Field<T>[]) {
   listOfFields.forEach((field, index, arr) => {
     if (field !== srcField) {
-      arr[index] = new ShowPersonaField(srcField, field);
+      arr[index] = conditionalField(showPersonaOp, srcField, field, field);
     }
   });
 }
 
 export function makeFieldList<T>(
-  fields: IField<T>[], defaultIndex: number = 0
+  fields: Field<T>[], defaultIndex: number = 0
 ): FieldList<T> {
   // This should be a class but typescript can not transpile super calls to
   // builtins correctly. Therefore we cannot extend Array. See:
@@ -52,15 +78,14 @@ export function makeFieldList<T>(
   return result;
 }
 
-
 // Utility
 // FIXME add sorting and grouping options
-export function combineUnique<T>(...fields: IField<T>[][]): IField<T>[] {
+export function combineUnique<T>(...fields: FieldList<T>[]): Field<T>[] {
   if (fields.length === 0) {
     return [];
   }
 
-  const fieldSeq = Seq.Indexed<IField<T>>().concat(...fields);
+  const fieldSeq = Seq.Indexed<Field<T>>().concat(...fields);
   const sortedSeq = fieldSeq.sortBy((field) => field.label);
   const groupedSeq = sortedSeq.groupBy((field) => field.label);
   const groups = groupedSeq.valueSeq();
@@ -69,105 +94,192 @@ export function combineUnique<T>(...fields: IField<T>[][]): IField<T>[] {
   return uniqueSeq.toArray();
 }
 
-
 // Name fields
-const nameFields: IField<string>[] = [
-  new Field<string>({
-    name: 'persona.name', label: 'Name', default: 'Unknown'
-  }),
-  new Field<string>({
-    name: 'avatar.name', label: 'Avatar', default: 'Unknown'
-  })
-];
+export const nameFields = makeFieldList<string>(
+  [
+    simpleField<string>({
+      bfieldId: 'name',
+      label: 'Name',
 
-export const defaultNameFields = makeFieldList(nameFields);
+      operator: access('persona.name', 'Unknown')
+    }),
 
-const personaColorField =  new Field({
-  name: 'persona.color', label: 'Color', default: '#696969'
+    simpleField<string>({
+      bfieldId: 'avatarName',
+      label: 'Avatar',
+
+      operator: access('avatar.name', 'Unknown')
+    })
+  ]
+);
+
+export const personaColorField: Field<string> =  simpleField<string>({
+  bfieldId: 'color',
+  label: 'Color',
+
+  operator: access('persona.color', '#696969')
 });
+
+export const stateColorField = simpleField({
+  bfieldId: 'ageGroup',
+  label: 'Age Group',
+
+  operator: chain(
+    access('persona.age_group', '#696969'),
+    map((a) => ageGroupMapping.makeMapper('color'))
+  )
+});
+
 // Color fields
-const colorFields: IField<string>[] = [
+const colorFields: Field<any>[] = [
   personaColorField,
-  new Field({
-    name: 'persona.gender', label: 'Gender', default: '#696969',
-    transform: genderMapping.makeMapper('color')
+
+  simpleField({
+    bfieldId: 'gender',
+    label: 'Gender',
+
+    operator: chain(
+      access('persona.gender', '#696969'),
+      map((g) => genderMapping.makeMapper('color'))
+    ),
   }),
-  new Field({
-    name: 'persona.age_group', label: 'Age Group', default: '#696969',
-    transform: ageGroupMapping.makeMapper('color')
+
+  simpleField({
+    bfieldId: 'ageGroup',
+    label: 'Age Group',
+
+    operator: chain(
+      access('persona.age_group', '#696969'),
+      map((a) => ageGroupMapping.makeMapper('color'))
+    )
   }),
-  new Field({
-    name: 'persona.handedness', label: 'Handedness', default: '#696969',
-    transform: handednessMapping.makeMapper('color')
+
+  simpleField({
+    bfieldId: 'handedness',
+    label: 'Handedness',
+
+    operator: chain(
+      access('persona.handedness', '#696969'),
+      map((h) => handednessMapping.makeMapper('color'))
+    )
   }),
-  // Not available yet
-  /*new Field({
-    name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    default: '#696969', transform: athleticismMapping.makeMapper('color')
-  }),*/
-  new Field({
-    name: 'lane', label: 'Run Lane', default: '#696969',
-    transform: laneMapping.makeMapper('color')
-  }),
-  new Field({
-    name: 'falseStart', label: 'False Start', default: '#696969',
-    transform: falseStartMapping.makeMapper('color')
+
+  simpleField({
+    bfieldId: 'runLane',
+    label: 'Run Lane',
+
+    operator: chain(
+      access('lane', '#696969'),
+      map((l) => laneMapping.makeMapper('color'))
+    )
   })
 ];
-wrapFieldsForShowPersona(personaColorField, colorFields);
 
 // State color fields
-export const defaultStateColorFields = makeFieldList(colorFields, 0);
-
+export const stateColorFields = makeFieldList(colorFields, 0);
 // Point color fields
-export const defaultPointColorFields = makeFieldList(colorFields, 1);
+export const pointColorFields = makeFieldList(colorFields, 1);
 
-const personaShapeField = new Field({
-  name: 'persona.icon', label: 'Shape', default: 'star'
+wrapFieldsForShowPersona(personaColorField, colorFields);
+
+
+const personaShapeField: Field<any> = simpleField({ // TODO typings
+  bfieldId: 'shape',
+    label: 'Shape',
+
+    operator: chain(
+      access('persona.icon', 'star'),
+      map((l) => laneMapping.makeMapper('color'))
+    )
 });
+
+export const pointShapeField = simpleField({
+  bfieldId: 'ageGroup',
+  label: 'Age Group',
+
+  operator: chain(
+    access('persona.age_group'),
+    map((g) => ageGroupMapping.makeMapper('shape')) // TODO default shape
+  )
+});
+
 // Shape fields
-const shapeFields: IField<string>[] = [
+const shapeFields: Field<any>[] = [
   personaShapeField,
-  new Field({
-    name: 'fixed', label: 'Fixed Shape', accessor: () => 'square'
+
+  simpleField({
+    bfieldId: 'fixedShape',
+    label: 'Fixed Shape',
+
+    operator: map(() => 'square')
   }),
-  new Field({
-    name: 'persona.gender', label: 'Gender', default: 'circle',
-    transform: genderMapping.makeMapper('shape')
+
+  simpleField({
+    bfieldId: 'gender',
+    label: 'Gender',
+
+    operator: chain(
+      access('persona.gender'),
+      map((g) => genderMapping.makeMapper('shape')) // TODO default shape
+    )
   }),
-  new Field({
-    name: 'persona.age_group', label: 'Age Group', default: 'circle',
-    transform: ageGroupMapping.makeMapper('shape')
+
+  simpleField({
+    bfieldId: 'ageGroup',
+    label: 'Age Group',
+
+    operator: chain(
+      access('persona.age_group'),
+      map((g) => ageGroupMapping.makeMapper('shape')) // TODO default shape
+    )
   }),
-  new Field({
-    name: 'persona.handedness', label: 'Handedness', default: 'circle',
-    transform: handednessMapping.makeMapper('shape')
+
+  simpleField({
+    bfieldId: 'handedness',
+    label: 'Handedness',
+
+    operator: chain(
+      access('persona.handedness'),
+      map((g) => handednessMapping.makeMapper('shape')) // TODO default shape
+    )
   }),
-  // Not available yet
-  /*new Field({
-    name: 'persona.athleticism', label: 'Runner\'s Athleticism',
-    default: 'circle', transform: athleticismMapping.makeMapper('shape')
-  }),*/
-  new Field({
-    name: 'lane', label: 'Run Lane', default: 'circle',
-    transform: laneMapping.makeMapper('shape')
+
+  simpleField({
+    bfieldId: 'runLane',
+    label: 'Run Lane',
+
+    operator: chain(
+      access('lane'),
+      map((g) => laneMapping.makeMapper('shape')) // TODO default shape
+    )
   }),
-  new Field({
-    name: 'falseStart', label: 'False Start', default: 'circle',
-    transform: falseStartMapping.makeMapper('shape')
+
+  simpleField({
+    bfieldId: 'falseStart',
+    label: 'False Start',
+
+    operator: chain(
+      access('falseStart'),
+      map((g) => falseStartMapping.makeMapper('shape')) // TODO default shape
+    )
   })
 ];
-wrapFieldsForShowPersona(personaShapeField, shapeFields);
 
 // Point shape fields
-export const defaultPointShapeFields = makeFieldList(shapeFields, 3);
+export const pointShapeFields = makeFieldList(shapeFields, 3);
+
+wrapFieldsForShowPersona(personaShapeField, shapeFields);
+
+const defaultSymbol = Field.defaultSymbol;
 
 /* internal field - not user facing */
-export class PersonastrokeColorField<T> extends Field<T> {
-  constructor(parent: any, fieldName: string) {
-    super({
-      name: 'showPersona', label: 'Stroke', datatype: 'boolean',
-      accessor: (item) => item.showPersona ? 'black' : parent[fieldName].get(item)
-    });
-  }
+export function personaStrokeColorField(parent: any, fieldName: string): Field<string> {
+  return simpleField({
+    id: 'showPersona', label: 'Stroke', dataType: DataType.Boolean,
+    operator: map((item) => {
+      return item
+    ? item.showPersona ? 'black' : parent[fieldName].get(item)
+    : 'black';
+    })
+  });
 }

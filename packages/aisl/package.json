@@ -43,6 +43,11 @@
     "moment-duration-format": "^2.0.1",
     "node-sass": "^4.7.2",
     "rxjs": "^5.5.2",
+    "typeface-open-sans": "^0.0.54",
+    "typeface-oswald": "^0.0.54",
+    "typeface-roboto": "^0.0.54",
+    "typeface-roboto-mono": "^0.0.54",
+		"typeface-lato": "^0.0.54",
     "vega": "^3.0.8",
     "vega-embed": "^3.0.0-rc7",
     "zone.js": "^0.8.14"

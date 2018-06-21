@@ -3,13 +3,13 @@ import 'rxjs/add/operator/scan';
 
 import { List } from 'immutable';
 
-import { Changes } from '@ngx-dino/core';
+import { RawChangeSet } from '@ngx-dino/core';
 
 import { RaceCompletedMessage, Message, RaceResult } from 'aisl-api';
 
 
 export class ChangeTracker {
-  private readonly mappedStream: Observable<Changes>;
+  private readonly mappedStream: Observable<RawChangeSet>;
   private accumulator: List<RaceCompletedMessage> = List();
 
   constructor(
@@ -27,7 +27,7 @@ export class ChangeTracker {
     });
   }
 
-  asObservable(): Observable<Changes> {
+  asObservable(): Observable<RawChangeSet> {
     return this.mappedStream;
   }
 
@@ -50,7 +50,7 @@ export class ChangeTracker {
     });
   }
 
-  private convertMessagesToChanges(): Changes {
+  private convertMessagesToChanges(): RawChangeSet {
     const currentCount = this.accumulator.size;
     const added = this.getRaceResults(this.accumulator.last(), true);
     const removed: RaceResult[] = [];
@@ -63,6 +63,6 @@ export class ChangeTracker {
           this.getRaceResults(this.accumulator.get(index), false).map((r) => [r, r]);
     }
 
-    return new Changes(added, removed, updated);
+    return new RawChangeSet(added, removed, updated);
   }
 }

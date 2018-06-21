@@ -1,49 +1,84 @@
-import { IField, Field } from '@ngx-dino/core';
+import { simpleField, Field } from '@ngx-dino/core';
+import { access } from '@ngx-dino/core/src/operators/methods/extracting/access';
+import { combine } from '@ngx-dino/core/src/operators/methods/grouping/combine';
+import { chain } from '@ngx-dino/core/src/operators/methods/grouping/chain';
+import { map } from '@ngx-dino/core/src/operators/methods/transforming/map';
 
-import {
-  genderMapping, ageGroupMapping, handednessMapping,
-  athleticismMapping, laneMapping, falseStartMapping
-} from './mappings';
+import { ageGroupMapping } from './mappings';
 import {
   makeFieldList,
-  defaultNameFields,
+  nameFields,
   wrapFieldsForShowPersona
 } from './common-fields';
 
 
 // not user facing
-export const pointIDField = new Field<string>({
-  name: 'race-id', label: 'Race ID',
-  accessor: (item: any): string => item.raceTimestamp + item.persona.id
+export const pointIdField = simpleField<string>({
+  bfieldId: 'id',
+  label: 'Race ID',
+
+  operator: chain(
+    combine({
+      raceTimestamp: access('timestamp'),
+      personaId: access('persona.id')
+    }),
+    map((x: any) => (x.raceTimestamp + x.personaId).toString())
+  )
 });
 
-const positionFields: IField<string | number>[] = [].concat(defaultNameFields, [
-  new Field({
-    name: 'timeMillis', label: 'Run Time', datatype: 'number', default: 0,
-    transform: (value: number) => value / 1000.0
-  }),
-  new Field({
-    name: 'avatar.runMillis', label: 'Avatar\'s Time', datatype: 'number',
-    default: 0, transform: (value: number) => value / 1000.0
-  })
-]);
+const runnerPositionField: Field<number> = simpleField<number>({
+  bfieldId: 'timeMillis',
+  label: 'Run Time',
+
+  operator: chain(access<number>('timeMillis'), map((t: number) => t / 1000.0))
+});
+
+// Not available right now
+const  avatarPositionField: Field<number> = simpleField<number>({
+  bfieldId: 'avatarTimeMillis',
+  label: 'Avatar\'s Time',
+
+  operator: chain(access<number>('avatar.runMillis'), map((t: number) => t / 1000.0))
+});
+
+const positionFields = [].concat(nameFields, runnerPositionField, avatarPositionField);
+
 // Point position fields
-export const defaultPointPositionFields = makeFieldList(positionFields);
+export const pointPositionFields = makeFieldList(positionFields); // TODO
 export const defaultXField = positionFields[2];
 export const defaultYField = positionFields[3];
 
+const fixedSizeField: Field<number> = simpleField<number>({
+  bfieldId: 'fixedSize',
+  label: 'Fixed Size',
 
-const sizeFields: IField<number>[] = [
-  new Field({name: 'fixed', label: 'Fixed Size', accessor: () => 100}),
-  new Field({
-    name: 'persona.age_group', label: 'Age Group', default: 100,
-    transform: ageGroupMapping.makeMapper('size')
-  })
-];
-const personaSizeField = new Field({
-  name: 'persona.size', label: 'Show Persona Size', accessor: (item) => 200
+  operator: map(() => 100)
 });
-wrapFieldsForShowPersona(personaSizeField, sizeFields);
+
+const ageGroupSize: Field<any> = simpleField({ // TODO typing
+  bfieldId: 'ageGroup',
+  label: 'Age Group',
+
+  operator: chain(
+    access('persona.age_group', 1),
+    map((a) => ageGroupMapping.makeMapper('size'))
+  )
+});
+
+const sizeFields: Field<number>[] = [fixedSizeField, ageGroupSize];
+
+const personaSizeField: Field<number> = simpleField<number>({
+  bfieldId: 'showPersonaSize',
+  label: 'Show Persona Size',
+
+  operator: chain(
+    access('timeMillis'), // TODO
+    map(() => 200)
+  )
+});
 
 // Point size fields
-export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
+export const pointSizeFields = makeFieldList(sizeFields, 0);
+wrapFieldsForShowPersona(personaSizeField, sizeFields);
+
+

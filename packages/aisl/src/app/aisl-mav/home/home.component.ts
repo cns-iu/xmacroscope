@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
-import { IField } from '@ngx-dino/core';
+import { BoundField } from '@ngx-dino/core';
 
 import { ScatterplotComponent } from '../scatterplot/scatterplot.component';
 import { GeomapComponent } from '../geomap/geomap.component';
@@ -16,19 +16,22 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(ScatterplotComponent) scatterplot: ScatterplotComponent;
   @ViewChild(GeomapComponent) geomap: GeomapComponent;
-  @Input() fields: IField<any>[];
+  @Input() fields: BoundField<any>[];
 
   constructor() { }
 
   ngOnInit() {
-    this.fields = this.scatterplot.fields;
+    this.fields = this.scatterplot.fields
+      .map((f) => f.getBoundField());
   }
 
   setFields(index: number) {
-    if (index === 0) {
-      this.fields = this.scatterplot.fields;
-    } else if (index === 1) {
-      this.fields = this.geomap.fields;
+    if (index === 1) {
+      this.fields = this.scatterplot.fields
+        .map((f) => f.getBoundField());
+    } else if (index === 2) {
+      this.fields = this.geomap.fields
+        .map((f) => f.getBoundField());
     }
   }
 }

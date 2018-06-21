@@ -7,7 +7,9 @@ import { DinoScatterplotModule } from '@ngx-dino/scatterplot';
 
 import { GeomapComponent } from './geomap/geomap.component';
 import { ScatterplotComponent } from './scatterplot/scatterplot.component';
+
 import { AttributeSelectorComponent } from './attribute-selector/attribute-selector.component';
+
 import { FieldDropzoneComponent } from './field-dropzone/field-dropzone.component';
 import { FieldDropzonesComponent } from './field-dropzones/field-dropzones.component';
 
@@ -18,9 +20,12 @@ import { FieldHoverService } from './shared/field-hover.service';
 const components: any[] = [
   GeomapComponent,
   ScatterplotComponent,
+
   AttributeSelectorComponent,
+
   FieldDropzoneComponent,
   FieldDropzonesComponent,
+
   DraggableDirective,
   DroppableDirective
 ];
@@ -31,6 +36,7 @@ const components: any[] = [
     MatTableModule,
     MatTabsModule,
     MatSidenavModule,
+    
     DinoGeomapModule,
     DinoScatterplotModule
   ],

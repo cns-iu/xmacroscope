@@ -1,17 +1,23 @@
-<mav-geomap [stateDataStream]="stateDataStream"
-            [strokeColorField]="strokeColorField"
-            [stateField]="stateField"
-            [stateColorField]="stateColorField"
-            [stateFields]="stateFields"
-            [stateColorFields]="stateColorFields"
-            [pointDataStream]="pointDataStream"
-            [pointIdField]="pointIdField"
-            [pointPositionField]="pointPositionField"
-            [pointSizeField]="pointSizeField"
-            [pointColorField]="pointColorField"
-            [pointShapeField]="pointShapeField"
-            [pointPositionFields]="pointPositionFields"
-            [pointSizeFields]="pointSizeFields"
-            [pointColorFields]="pointColorFields"
-            [pointShapeFields]="pointShapeFields">
+<mav-geomap 
+  [stateDataStream]="stateDataStream"
+  [pointDataStream]="pointDataStream"
+
+  [strokeColorField]="strokeColorField"
+  
+  [stateField]="defaultFields.stateFields.default"
+  [stateColorField]="defaultFields.stateColorFields.default"
+            
+  [stateFields]="listOfFields.stateFields"
+  [stateColorFields]="listOfFields.stateColorFields"
+            
+  [pointIdField]="defaultFields.pointIdField"
+  [pointPositionField]="defaultFields.pointPositionFields.default"
+  [pointSizeField]="defaultFields.pointSizeFields.default"
+  [pointColorField]="defaultFields.pointColorFields.default"
+  [pointShapeField]="defaultFields.pointShapeFields.default"
+            
+  [pointPositionFields]="listOfFields.pointPositionFields"
+  [pointSizeFields]="listOfFields.pointSizeFields"
+  [pointColorFields]="listOfFields.pointColorFields"
+  [pointShapeFields]="listOfFields.pointShapeFields">
 </mav-geomap>

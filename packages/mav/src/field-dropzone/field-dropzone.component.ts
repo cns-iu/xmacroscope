@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { IField } from '@ngx-dino/core';
+import { BoundField } from '@ngx-dino/core';
 import { FieldHoverService } from '../shared/field-hover.service';
 
 @Component({
@@ -18,15 +18,15 @@ export class FieldDropzoneComponent implements OnInit {
   backgroundColor = 'inherit';
 
   @Input() label: String;
-  @Input() fields: IField<any>[];
-  @Input() field: IField<any>;
-  @Output() fieldChange = new EventEmitter<IField<any>>();
+  @Input() fields: BoundField<any>[];
+  @Input() field: BoundField<any>;
+  @Output() fieldChange = new EventEmitter<BoundField<any>>();
 
   constructor(private hoverService: FieldHoverService) { }
 
   ngOnInit() { }
 
-  fieldDropped(field: IField<any>) {
+  fieldDropped(field: BoundField<any>) {
     this.field = this.fields[this.findFieldIndex(field.label)];
     this.fieldChange.emit(this.field);
   }

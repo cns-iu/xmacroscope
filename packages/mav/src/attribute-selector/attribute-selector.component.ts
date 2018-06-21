@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { IField } from '@ngx-dino/core';
+import { BoundField } from '@ngx-dino/core';
 import { FieldHoverService } from '../shared/field-hover.service';
 
 @Component({
@@ -13,9 +13,9 @@ import { FieldHoverService } from '../shared/field-hover.service';
 })
 export class AttributeSelectorComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  private fieldHoverSelection: IField<any>[] = [];
+  private fieldHoverSelection: BoundField<any>[] = [];
 
-  @Input() dataSource: MatTableDataSource<IField<any>> = new MatTableDataSource();
+  @Input() dataSource: MatTableDataSource<BoundField<any>> = new MatTableDataSource();
 
   constructor(service: FieldHoverService) {
     this.subscription = service.hovers.subscribe((fields) => {
@@ -29,7 +29,7 @@ export class AttributeSelectorComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  bgColorFor(field: IField<any>): string {
+  bgColorFor(field: BoundField<any>): string {
     if (this.fieldHoverSelection.length === 0) {
       return 'inherit';
     } else if (this.fieldHoverSelection.find((f) => f.label === field.label)) {

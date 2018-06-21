@@ -1,20 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Changes, IField } from '@ngx-dino/core';
+import { RawChangeSet, BoundField, Field } from '@ngx-dino/core';
+
+import { assign, mapValues, pick } from 'lodash';
 
 import { GeomapDataService } from '../shared/geomap-data.service';
-import {
-  combineUnique,
-  defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, PersonastrokeColorField
-} from '../shared/common-fields';
-import {
-  defaultTooltipFields,
-  defaultStateFields,
-  pointIdField, defaultPointPositionFields, defaultPointSizeFields
-} from '../shared/geomap-fields';
 
+import * as commonFields from '../shared/common-fields';
+import * as geomapFields from '../shared/geomap-fields';
 
 @Component({
   selector: 'aisl-geomap',
@@ -23,41 +17,61 @@ import {
   providers: [GeomapDataService]
 })
 export class GeomapComponent implements OnInit {
-  stateDataStream: Observable<Changes>;
-  pointDataStream: Observable<Changes>;
+  stateDataStream: Observable<RawChangeSet>;
+  pointDataStream: Observable<RawChangeSet>;
 
-  fields = combineUnique<any>(
-    defaultStateColorFields, defaultPointColorFields,
-    defaultPointShapeFields, defaultPointSizeFields,
-    defaultTooltipFields
+  fields = commonFields.combineUnique<any>(
+    commonFields.stateColorFields, commonFields.pointColorFields,
+    commonFields.pointShapeFields, geomapFields.pointSizeFields,
+    geomapFields.tooltipFields
   );
 
-  strokeColorField: IField<string>; // not user facing
+  defaultFields: {[key: string]: BoundField<any>};
+  listOfFields: {[key: string]: BoundField<any>};
 
-  stateField = defaultStateFields.default;
-  stateFields = defaultStateFields;
-
-  stateColorField = defaultStateColorFields.default;
-  stateColorFields = defaultStateColorFields;
-
-  pointIdField = pointIdField;
-
-  pointPositionField = defaultPointPositionFields.default;
-  pointPositionFields = defaultPointPositionFields;
-
-  pointShapeField = defaultPointShapeFields.default;
-  pointShapeFields = defaultPointShapeFields;
-
-  pointSizeField = defaultPointSizeFields.default;
-  pointSizeFields = defaultPointSizeFields;
-
-  pointColorField = defaultPointColorFields.default;
-  pointColorFields = defaultPointColorFields;
+  strokeColorField: BoundField<string>; // not user facing
+  pointColorField = commonFields.pointColorFields.default;
 
   constructor(service: GeomapDataService) {
+
+    const combinedDefaultFields = assign({}, pick(commonFields, [
+      'stateColorFields.default', 'pointColorFields.default',
+      'pointShapeFields.default'
+      ]), pick(geomapFields, [
+        'stateFields.default', 'pointIdField',
+        'pointSizeFields.default', 'pointPositionFields.default'
+      ]));
+
+    this.defaultFields = mapValues(combinedDefaultFields, // mapping to bound fields
+    (d: any) => {
+      const n: any = {};
+      if  (d.default) {
+        n.default = d.default.getBoundField();
+        return n;
+      } else {
+        return d.getBoundField();
+      }
+    });
+
+    const combinedFields = assign({}, pick(commonFields, [
+    'stateColorFields', 'pointColorFields',
+    'pointShapeFields'
+    ]), pick(geomapFields, [
+      'stateFields', 'pointIdField',
+      'pointSizeFields', 'pointPositionFields'
+    ]));
+
+
+    this.listOfFields = mapValues(
+      combinedFields, (l: any) => Array.isArray(l)
+        ? l.map((f) => f.getBoundField())
+        : l.getBoundField()
+    );
+
     this.stateDataStream = service.stateDataStream;
     this.pointDataStream = service.pointDataStream;
-    this.strokeColorField = new PersonastrokeColorField(this, 'pointColorField');
+
+    this.strokeColorField = commonFields.personaStrokeColorField(this, 'pointColorField').getBoundField();
   }
 
   ngOnInit() {

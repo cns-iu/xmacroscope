@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
-import { IField } from '@ngx-dino/core';
+import { BoundField } from '@ngx-dino/core';
 
 @Component({
   selector: 'aisl-field-list',
@@ -9,9 +9,9 @@ import { IField } from '@ngx-dino/core';
   styleUrls: ['./field-list.component.sass']
 })
 export class FieldListComponent implements OnInit, OnChanges {
-  @Input() fields: IField<any>[];
+  @Input() fields: BoundField<any>[];
 
-  dataSource: MatTableDataSource<IField<any>> = new MatTableDataSource();
+  dataSource: MatTableDataSource<BoundField<any>> = new MatTableDataSource();
 
   constructor() { }
 

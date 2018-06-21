@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { IField, Changes } from '@ngx-dino/core';
+import { BoundField, RawChangeSet } from '@ngx-dino/core';
 
 @Component({
   selector: 'mav-scatterplot',
@@ -9,22 +9,24 @@ import { IField, Changes } from '@ngx-dino/core';
   styleUrls: ['./scatterplot.component.sass']
 })
 export class ScatterplotComponent implements OnInit {
-  @Input() pointIDField: IField<string>; // not user facing
-  @Input() strokeColorField: IField<boolean>; // not user facing
-  @Input() xField: IField<any>;
-  @Input() yField: IField<any>;
-  @Input() colorField: IField<string>;
-  @Input() shapeField: IField<string>;
-  @Input() sizeField: IField<string>;
+  @Input() pointIdField: BoundField<string>; // not user facing
   
+  @Input() xField: BoundField<any>;
+  @Input() yField: BoundField<any>;
+  
+  @Input() colorField: BoundField<string>;
+  @Input() shapeField: BoundField<string>;
+  @Input() sizeField: BoundField<string>;
+  @Input() strokeColorField: BoundField<boolean>; // not user facing
 
-  @Input() xFields: IField<any>[];
-  @Input() yFields: IField<any>[];
-  @Input() colorFields: IField<string>[];
-  @Input() shapeFields: IField<string>[];
-  @Input() sizeFields: IField<string>[];
+  @Input() xFields: BoundField<any>[];
+  @Input() yFields: BoundField<any>[];
   
-  @Input() dataStream: Observable<Changes<any>>;
+  @Input() colorFields: BoundField<string>[];
+  @Input() shapeFields: BoundField<string>[];
+  @Input() sizeFields: BoundField<string>[];
+  
+  @Input() dataStream: Observable<RawChangeSet<any>>;
   
   constructor() { }
 

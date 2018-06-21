@@ -1,46 +1,50 @@
-import { IField, Field } from '@ngx-dino/core';
+import { simpleField, Field} from '@ngx-dino/core';
+import { access } from '@ngx-dino/core/src/operators/methods/extracting/access';
+import { combine } from '@ngx-dino/core/src/operators/methods/grouping/combine';
+import { chain } from '@ngx-dino/core/src/operators/methods/grouping/chain';
+import { map } from '@ngx-dino/core/src/operators/methods/transforming/map';
 
+import { ageGroupMapping } from './mappings';
 import {
-  genderMapping, ageGroupMapping, handednessMapping,
-  athleticismMapping, laneMapping, falseStartMapping
-} from './mappings';
-import {
+  FieldList,
   makeFieldList,
-  defaultNameFields,
+  nameFields,
   wrapFieldsForShowPersona
 } from './common-fields';
 
-// State fields
-const stateFields: IField<string>[] = [
-  new Field({name: 'persona.state', label: 'Runner\'s State'})
-];
+export const stateFields = makeFieldList(
+  [
+    simpleField<string>({
+    bfieldId: 'runnerState',
+    label: 'Runner\'s State',
 
-export const defaultStateFields = makeFieldList(stateFields);
+    operator: access('persona.state')
+    })
+  ]
+, 0);
 
-// Point position fields
-const pointPositionFields: IField<[number, number]>[] = [
-  new Field<[number, number]>({
-    name: 'position', label: 'Point Position', default: [30, -80],
-    accessor: (item: any) => {
-      if (!item.persona || !item.persona.latitude || !item.persona.longitude) {
-        return null;
-      } else {
-        return [item.persona.latitude, item.persona.longitude];
-      }
-    }
-  })
-];
+export const pointPositionFields = makeFieldList(
+  [
+    simpleField<[number, number]>({
+      bfieldId: 'pointPosition',
+      label: 'Point Position',
 
-export const defaultPointPositionFields = makeFieldList(pointPositionFields);
+      operator: chain<any, [number, number]>(
+        combine({
+          latitude: access<number>('persona.latitude', 30),
+          longitude: access<number>('persona.longitude', -80)
+        }),
+        map((latitude, longitude) => [latitude, longitude])
+      )
+    })
+  ]
+, 0);
 
 // Tooltip fields
-const tooltipFields: IField<string>[] = [].concat(defaultNameFields, [
-  // Additional fields goes here
-]);
+// const tooltipFields: any = defaultNameFields; // Additional fields can be added here
 
 // Tooltip fields
-export const defaultTooltipFields = makeFieldList(tooltipFields, 0);
-
+export const tooltipFields = nameFields;
 
 // Size fields
 const minArea = Math.pow(5, 2) * Math.PI;
@@ -51,44 +55,89 @@ const minRuntime = 2000;
 const maxRuntime = 10000;
 const runtimeDiff = maxRuntime - minRuntime;
 
-const sizeFields: IField<number>[] = [
-  new Field({name: 'fixed', label: 'Fixed Size', accessor: () => minArea}),
-  new Field({
-    name: 'timeMillis', label: 'Run Time', default: minArea,
-    transform: (time: number): number => {
+const fixedSizeField: Field<number> = simpleField<number>({
+  bfieldId: 'fixedSize',
+  label: 'Fixed Size',
+
+  operator: map(() => minArea)
+});
+
+const runTimeField: Field<number> = simpleField<number>({
+  bfieldId: 'runTime',
+  label: 'Run Time',
+
+  operator: chain(
+    access('timeMillis', minArea),
+    map((time) => {
       const clampedTime = Math.min(maxRuntime, Math.max(minRuntime, time));
       const factor = (clampedTime - minRuntime) / runtimeDiff;
       const area = minArea + factor * areaDiff;
 
-      return area;
-    }
-  }),
-  new Field<number>({
-    name: 'avatar.runMillis', label: 'Avatar\'s Time', default: minArea,
-    datatype: 'number', transform: (value: number) => value / 1000.0
-  }),
-  new Field<number>({
-    name: 'persona.age_group', label: 'Age Group', default: minArea,
-    transform: ageGroupMapping.makeMapper('size')
-  })
+      return area as number;
+    })
+  )
+});
+
+// Not available right now
+const avatarTimeField: Field<number> = simpleField<number>({
+  bfieldId: 'avatarsTime',
+  label: 'Avatar\'s Time',
+
+  operator: chain(
+    access('avatar.runMillis', minArea),
+    map((a: number) => a / 1000.0)
+  )
+
+});
+
+const ageGroupField: Field<any> = simpleField({ // TODO typing
+  bfieldId: 'ageGroup',
+  label: 'Age Group',
+
+  operator: chain(
+    access('persona.age_group', minArea),
+    map((g) => ageGroupMapping.makeMapper('size'))
+  )
+});
+
+const sizeFields: Field<number>[] = [
+  fixedSizeField,
+  runTimeField,
+  avatarTimeField,
+  ageGroupField
 ];
 
-const personaSizeField = new Field({
-  name: 'persona.size', label: 'Show Persona Size', accessor: (item) => 200
+const personaSizeField: Field<number> = simpleField<number>({
+  bfieldId: 'showPersonaSize',
+  label: 'Show Persona Size',
+
+  operator: chain(
+    access('timeMillis'), // TODO
+    map(() => 200)
+  )
 });
-wrapFieldsForShowPersona(personaSizeField, sizeFields);
 
 // Point size fields
-export const defaultPointSizeFields = makeFieldList(sizeFields, 1);
+export const pointSizeFields = makeFieldList(sizeFields, 0);
 
-// Computed fields - not user facing.
-export const pointIdField = new Field<string>({
-  name: 'id', label: 'Computed Point Id', default: '30+-80',
-  accessor: (data: Partial<any>): string => {
-    if (!data.persona || !data.persona.latitude || !data.persona.longitude) {
-      return null;
-    } else {
-      return data.persona.latitude + '+' + data.persona.longitude;
-    }
-  }
+wrapFieldsForShowPersona(personaSizeField, sizeFields);
+
+export const pointIdField: Field<string> = simpleField<string>({
+  bfieldId: 'computedPointId',
+  label: 'Computed Point Id',
+
+  operator: chain(
+    combine({
+      persona: access('persona'),
+      latitude: access('persona.latitude', 30),
+      longitude: access('persona.longitude', -80)
+    }),
+    map(({persona, latitude, longitude}) => {
+      if (!persona || !latitude || !longitude) {
+        return null;
+      } else {
+        return latitude + '+' + longitude;
+      }
+    })
+  )
 });

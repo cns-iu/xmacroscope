@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Changes, IField } from '@ngx-dino/core';
+import { BoundField, RawChangeSet } from '@ngx-dino/core';
 
 @Component({
   selector: 'mav-geomap',
@@ -9,27 +9,27 @@ import { Changes, IField } from '@ngx-dino/core';
   styleUrls: ['./geomap.component.sass']
 })
 export class GeomapComponent implements OnInit {
-  @Input() stateDataStream: Observable<Changes>;
+  @Input() stateDataStream: Observable<RawChangeSet>;
 
-  @Input() strokeColorField:IField<string>;
+  @Input() strokeColorField:BoundField<string>;
   
-  @Input() stateField: IField<string>;
-  @Input() stateColorField: IField<string>;
+  @Input() stateField: BoundField<string>;
+  @Input() stateColorField: BoundField<string>;
 
-  @Input() stateFields: IField<any>[];
-  @Input() stateColorFields: IField<any>[];
+  @Input() stateFields: BoundField<any>[];
+  @Input() stateColorFields: BoundField<any>[];
 
-  @Input() pointIdField: IField<string>;
-  @Input() pointDataStream: Observable<Changes>;
-  @Input() pointPositionField: IField<[number, number]>;
-  @Input() pointSizeField: IField<number>;
-  @Input() pointColorField: IField<string>;
-  @Input() pointShapeField: IField<string>;
+  @Input() pointIdField: BoundField<string>;
+  @Input() pointDataStream: Observable<RawChangeSet>;
+  @Input() pointPositionField: BoundField<[number, number]>;
+  @Input() pointSizeField: BoundField<number>;
+  @Input() pointColorField: BoundField<string>;
+  @Input() pointShapeField: BoundField<string>;
 
-  @Input() pointPositionFields: IField<[number, number]>[];
-  @Input() pointSizeFields: IField<number>[];
-  @Input() pointColorFields: IField<string>[];
-  @Input() pointShapeFields: IField<string>[];
+  @Input() pointPositionFields: BoundField<[number, number]>[];
+  @Input() pointSizeFields: BoundField<number>[];
+  @Input() pointColorFields: BoundField<string>[];
+  @Input() pointShapeFields: BoundField<string>[];
 
   constructor() { }
 

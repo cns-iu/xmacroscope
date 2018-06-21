@@ -1,14 +1,19 @@
-<mav-scatterplot [pointIDField]="pointIDField"
-                 [strokeColorField]="strokeColorField"
-                 [xFields]="xFields"
-                 [yFields]="yFields"
-                 [colorFields]="colorFields"
-                 [shapeFields]="shapeFields"
-                 [sizeFields]="sizeFields"
-                 [dataStream]="dataStream"
-                 [xField]="xField"
-                 [yField]="yField"
-                 [colorField]="colorField"
-                 [shapeField]="shapeField"
-                 [sizeField]="sizeField">
+<mav-scatterplot
+  [pointIdField]="defaultFields.pointIdField"
+  
+  [strokeColorField]="strokeColorField"
+  
+  [xFields]="listOfFields.pointPositionFields"
+  [yFields]="listOfFields.pointPositionFields"
+  [colorFields]="listOfFields.pointColorFields"
+  [shapeFields]="listOfFields.pointShapeFields"
+  [sizeFields]="listOfFields.pointSizeFields"
+  
+  [dataStream]="dataStream"
+  
+  [xField]="defaultFields.defaultXField"
+  [yField]="defaultFields.defaultYField"
+  [colorField]="defaultFields.pointColorFields.default"
+  [shapeField]="defaultFields.pointShapeFields.default"
+  [sizeField]="defaultFields.pointSizeFields.default">
 </mav-scatterplot>

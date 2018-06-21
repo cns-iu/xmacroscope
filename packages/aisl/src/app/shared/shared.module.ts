@@ -10,15 +10,16 @@ import {
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [ BrowserAnimationsModule, CommonModule, MatTableModule,
             MatSidenavModule, MatTabsModule, MatToolbarModule,
-            MatGridListModule, MatButtonModule
+            MatGridListModule, MatButtonModule, MatIconModule
           ],
   exports: [ BrowserAnimationsModule, CommonModule, MatTableModule,
              MatSidenavModule, MatTabsModule, MatToolbarModule,
-             MatGridListModule, MatButtonModule
+             MatGridListModule, MatButtonModule, MatIconModule
             ],
   declarations: []
 })

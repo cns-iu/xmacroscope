@@ -10,13 +10,29 @@
 
   <div class="second-column">
     <div class="item visualization-box">
-      <mat-tab-group (selectedTabChange)="setFields(tabs.selectedIndex)" #tabs>
-        <mat-tab label="Scatter Graph">
+      <mat-tab-group [selectedIndex]="1" class="visualization-tabs"
+        (selectedTabChange)="setFields(tabs.selectedIndex)" #tabs>
+        <mat-tab
+          label="Select Visualization Type" 
+          [disabled]="true" 
+          isActive="false">
+        </mat-tab>
+        
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <img src="assets/icon-mav-scatter-graph.svg">
+              Scatter Graph
+          </ng-template>
+          
           <aisl-scatterplot>
           </aisl-scatterplot>
         </mat-tab>
 
-        <mat-tab label="Map">
+        <mat-tab>
+            <ng-template mat-tab-label>
+              <img src="assets/icon-mav-geomap.svg">
+                Map
+            </ng-template>
           <aisl-geomap>
           </aisl-geomap>
         </mat-tab>
