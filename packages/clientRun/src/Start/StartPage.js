@@ -37,6 +37,7 @@ function StartPage() {
                 runTimerPre: <RunningTimerPre
                   opponent={activeRace.opponent}
                   opponentName={activeRace.opponentName}
+                  opponentTime={activeRace.opponentTime}
                 />,
                 running: <Running />,
                 postRunTimer: <RunningTimerPost />,

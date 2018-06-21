@@ -1,5 +1,6 @@
 import baseResolver from './baseResolver';
 import db from '../../db/models/index';
+import pubsub from './subscriptions';
 
 //------------------------------------------------------------------------------
 // Queries
@@ -32,7 +33,23 @@ const runStart = baseResolver
     },
   }, {
     include: [db.run],
-  }));
+  })
+    .then((createdPerson) => {
+      // Publish a message with the race initiation data.
+      const publishPayload = {
+        raceInitiated: {
+          type: 'race-initiated',
+          timestamp: args.run.start,
+          avatar: {
+            id: args.run.opponent,
+            name: args.run.opponentName,
+            runMillis: args.run.opponentTime,
+          },
+        },
+      };
+      pubsub.publish('race-initiated', publishPayload);
+      return createdPerson;
+    }));
 
 // Update an existing run record with a finish time, return the ID
 const runFinish = baseResolver
