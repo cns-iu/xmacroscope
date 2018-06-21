@@ -73,4 +73,13 @@ table
   border-bottom: 0
 
 .mat-tab-label
-  height: 65px !important
+  height: 10vh !important
+
+/* focus style */
+.mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+.mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus
+  background: none
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar
+  background: black
+  height: 3px

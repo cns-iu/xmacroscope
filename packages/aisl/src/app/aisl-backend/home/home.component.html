@@ -2,7 +2,7 @@
   <h1>Backend Debug Display</h1>
 
   <h2>Incoming Messages</h2>
-  <div style="max-height:500px; overflow-y: scroll;">
+  <div style="max-height:80%; overflow-y: scroll;">
     <code style="display:block;margin-bottom:10px;" *ngFor="let msg of messages | async" [innerHTML]="formatMsg(msg)"></code>
   </div>
 </div>
