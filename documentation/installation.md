@@ -24,12 +24,12 @@ npm install --global @angular/cli
 ## Bootstrap the project
 Download the latest code and bootstrap the project with Lerna.
 
-This will install all the required projects in each project.
-
+This will install all the required projects in each project and link required binaries.
 ```
 git clone git@github.com:cns-iu/xmacroscope.git
 cd xmacroscope
 lerna bootstrap
+lerna link
 ```
 
 ## Initialize [@ngx-dino](https://github.com/cns-iu/ngx-dino) Submodule
@@ -59,3 +59,11 @@ In the project root directory:
 yarn start
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
+
+
+## Running the application loaclly
+During development you may want to MAV system to point to the database sever, rather than its internal mocking data source.
+
+To do this start each package separately, using `yarn ng serve --env=local` in the MAV package.
+
+Once the local graphql server is stable we'll simplify this process into a dev and production environment.
