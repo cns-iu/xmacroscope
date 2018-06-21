@@ -18,7 +18,7 @@ This project is a work in progress, under active development. It is not ready fo
 
 # Documentation
 
-- [Installation]( documentation/instllation.md )
+- [Installation]( documentation/installation.md )
 - [Project structure]( documentation/structure.md )
 - [Database development]( documentation/database.md )
 - [Troubleshooting]( documentation/troubleshooting.md )

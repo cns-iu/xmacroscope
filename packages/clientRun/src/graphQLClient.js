@@ -16,6 +16,7 @@ const typeDefs = `
 
   type ActiveRace {
     opponent: String!
+    opponentName: String!
     secondthing: String!
     status: String!
   }

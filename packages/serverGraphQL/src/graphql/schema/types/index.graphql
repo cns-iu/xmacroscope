@@ -126,6 +126,8 @@ input NewAvatar {
 input NewRunRecord {
   start: Date!
   opponent: String
+  opponentName: String
+  opponentTime: Int
   persona: NewPersona
 }
 

@@ -80,7 +80,7 @@ const START_RUN = gql`
   }
 `;
 
-function RunningTimerPre() {
+function RunningTimerPre({ opponent, opponentName, opponentTime }) {
   return (
     <Query
       query={GET_PRE_RACE_DELAY}
@@ -118,24 +118,27 @@ function RunningTimerPre() {
                 </p>
                 <Timer
                   completion={() => {
-                  runStart({
-                    variables: {
-                      run: {
-                        start: moment(),
-                        persona,
+                    runStart({
+                      variables: {
+                        run: {
+                          start: moment(),
+                          opponent,
+                          opponentName,
+                          opponentTime,
+                          persona,
+                        },
                       },
-                    },
-                  });
-                }}
+                    });
+                  }}
                   direction="down"
                   start={preRaceDelay}
                   end={0}
                 /> milliseconds
               </div>
-                  )}
+            )}
           </Mutation>
-              );
-              }}
+        );
+      }}
     </Query>
   );
 }
