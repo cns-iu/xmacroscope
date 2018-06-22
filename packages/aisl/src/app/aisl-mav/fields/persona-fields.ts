@@ -1,5 +1,5 @@
 import { Field, simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
-import { access, lookup, identity, map, constant, persona, mappingWithDefault } from './field-utils';
+import { access, lookup, identity, map, chain, persona, mappingWithDefault } from './field-utils';
 
 export const id = simpleField<string>({
   id: 'persona.id',
@@ -121,31 +121,39 @@ export const siblings = prePostMultiField({
   id: 'persona.siblings',
   label: 'Siblings',
   dataType: DataType.Number,
-  pre: access<number>('persona.siblings', 1),
+  pre: chain<number, string>(access<number>('persona.siblings', 1), map(String)),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
     'color': lookup<string>({
-      '07-09': '#7fc97f',
-      '10-12': '#beaed4',
-      '13-18': '#fdc086',
-      '19-30': '#ffff99',
-      '31-40': '#386cb0',
-      '41-50': '#f0027f',
-      '51-60': '#bf5b17',
-      '61-70': '#666666',
-      '70+': '#17becf'
+      '0': '#7fc97f',
+      '1': '#beaed4',
+      '2': '#fdc086',
+      '3': '#ffff99',
+      '4': '#386cb0',
+      '5': '#f0027f',
+      '6': '#bf5b17',
+      '7': '#666666',
+      '8': '#17becf',
+      '9': '#17becf',
+      '10': '#17becf',
+      '11': '#17becf',
+      '12': '#17becf'
     }, '#bcbd22'),
     'size': lookup<number>({
-      '07-09': 66,
-      '10-12': 77,
-      '13-18': 88,
-      '19-30': 99,
-      '31-40': 110,
-      '41-50': 121,
-      '51-60': 132,
-      '61-70': 143,
-      '70+': 155
+      '0': 66,
+      '1': 77,
+      '2': 88,
+      '3': 99,
+      '4': 110,
+      '5': 121,
+      '6': 132,
+      '7': 143,
+      '8': 155,
+      '9': 165,
+      '10': 175,
+      '11': 185,
+      '12': 195,
     }, 10),
   }, 'axis')
 });
