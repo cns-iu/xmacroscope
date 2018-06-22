@@ -1,27 +1,24 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
-import { BoundField } from '@ngx-dino/core';
-
-import { ScatterplotComponent } from '../scatterplot/scatterplot.component';
-import { GeomapComponent } from '../geomap/geomap.component';
-import { RunFields, wrapFieldsForShowPersona, wrapFieldForShowPersona } from '../fields';
+import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-mav-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass']
 })
-
 export class HomeComponent implements OnInit {
-  encodingFields = wrapFieldsForShowPersona([
+  encodingFields = [
     RunFields.timeMillis,
     RunFields.persona.height,
     RunFields.persona.siblings,
     RunFields.persona.age_group,
     RunFields.persona.zipcode
-  ]);
-  sizeField = wrapFieldForShowPersona(RunFields.persona.age_group);
-  colorField = wrapFieldForShowPersona(RunFields.timeMillis);
+  ];
+  sizeField = RunFields.persona.age_group;
+  colorField = RunFields.timeMillis;
+  scatterPlotX = RunFields.timeMillis;
+  scatterPlotY = RunFields.persona.height;
 
   constructor() { }
   ngOnInit() { }

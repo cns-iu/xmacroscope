@@ -1,19 +1,17 @@
-import { runMillis } from './../fields/avatar-fields';
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { RawChangeSet, Field } from '@ngx-dino/core';
 
 import { SharedDataService } from '../shared/shared-data.service';
-
-import { RunFields } from '../fields';
+import { RunFields, wrapFieldForShowPersona } from '../fields';
 
 @Component({
   selector: 'aisl-geomap',
   templateUrl: './geomap.component.html',
   styleUrls: ['./geomap.component.sass']
 })
-export class GeomapComponent implements OnInit {
+export class GeomapComponent {
   stateDataStream: Observable<RawChangeSet>;
   pointDataStream: Observable<RawChangeSet>;
   fields = RunFields;
@@ -27,6 +25,11 @@ export class GeomapComponent implements OnInit {
     this.pointDataStream = service.dataStream;
   }
 
-  ngOnInit() {
+  wrapField(field: Field<any>): Field<any> {
+    if (field) {
+      return wrapFieldForShowPersona(field);
+    } else {
+      return RunFields.persona.persona;
+    }
   }
 }

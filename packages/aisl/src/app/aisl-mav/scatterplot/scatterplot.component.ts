@@ -1,15 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { assign, mapValues, pick } from 'lodash';
-
 import { Field, BoundField, RawChangeSet } from '@ngx-dino/core';
 
 import { SharedDataService } from '../shared/shared-data.service';
-import * as commonFields from '../shared/common-fields';
-import * as scatterplotFields from '../shared/scatterplot-fields';
-
-import { RunFields } from '../fields';
+import { RunFields, wrapFieldForShowPersona } from '../fields';
 
 @Component({
   selector: 'aisl-scatterplot',
@@ -32,6 +27,14 @@ export class ScatterplotComponent implements OnInit {
 
   constructor(service: SharedDataService) {
     this.dataStream = service.dataStream;
+  }
+
+  wrapField(field: Field<any>): Field<any> {
+    if (field) {
+      return wrapFieldForShowPersona(field);
+    } else {
+      return RunFields.persona.persona;
+    }
   }
 
   ngOnInit() { }

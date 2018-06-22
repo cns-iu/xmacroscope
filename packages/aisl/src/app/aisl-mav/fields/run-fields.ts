@@ -16,7 +16,7 @@ export const fixed = new Field<any>({
   label: 'Fixed',
   dataType: DataType.String,
   mapping: mappingWithDefault({
-    'label': 'Fixed',
+    'label': constant('Fixed'),
     'shape': constant('circle'),
     'size': constant(10),
     'color': constant('#cccccc'),
