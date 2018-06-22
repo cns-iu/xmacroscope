@@ -13,7 +13,7 @@ export class AppComponent {
     this.routeLinks = [
       {
         label: 'Home',
-        route: '/',
+        route: '/home',
         index: '0'
       },
       {

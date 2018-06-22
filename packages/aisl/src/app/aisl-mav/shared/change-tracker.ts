@@ -5,11 +5,11 @@ import { List } from 'immutable';
 
 import { RawChangeSet } from '@ngx-dino/core';
 
-import { RaceCompletedMessage, Message, RaceResult } from 'aisl-api';
+import { RaceCompletedMessage, Message, RaceResult, RunData } from 'aisl-api';
 
 
 export class ChangeTracker {
-  private readonly mappedStream: Observable<RawChangeSet>;
+  private readonly mappedStream: Observable<RawChangeSet<RunData>>;
   private accumulator: List<RaceCompletedMessage> = List();
 
   constructor(
@@ -40,9 +40,9 @@ export class ChangeTracker {
     this.accumulator = this.accumulator.push(message);
   }
 
-  private getRaceResults(message: RaceCompletedMessage, showPersona = true): RaceResult[] {
+  private getRunData(message: RaceCompletedMessage, showPersona = true): RunData[] {
     return message.results.map((r) => {
-      return Object.assign({}, r, {
+      return <RunData>Object.assign({}, r, {
         avatar: message.avatar,
         timestamp: message.timestamp,
         showPersona
@@ -52,15 +52,15 @@ export class ChangeTracker {
 
   private convertMessagesToChanges(): RawChangeSet {
     const currentCount = this.accumulator.size;
-    const added = this.getRaceResults(this.accumulator.last(), true);
-    const removed: RaceResult[] = [];
-    let updated: [string | number | RaceResult, Partial<RaceResult>][] = [];
+    const added = this.getRunData(this.accumulator.last(), true);
+    const removed: RunData[] = [];
+    let updated: [string | number | RunData, Partial<RunData>][] = [];
 
     const index = currentCount - this.highlightCount - 1;
     // update the entry at the found index, if the index is less than the last highlightCount number of indices.
     if (index >= 0) {
-      updated = <[string | number | RaceResult, Partial<RaceResult>][]>
-          this.getRaceResults(this.accumulator.get(index), false).map((r) => [r, r]);
+      updated = <[string | number | RunData, Partial<RunData>][]>
+          this.getRunData(this.accumulator.get(index), false).map((r) => [r, r]);
     }
 
     return new RawChangeSet(added, removed, updated);

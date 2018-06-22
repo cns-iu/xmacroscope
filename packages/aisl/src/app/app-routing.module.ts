@@ -7,11 +7,11 @@ import { HomeComponent as mav } from './aisl-mav/home/home.component';
 import { HomeComponent as endline } from './aisl-endline/home/home.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: home },
+  { path: 'home', pathMatch: 'full', component: home },
   { path: 'backend', component: backend },
   { path: 'mav', component: mav },
   { path: 'endline', component: endline },
-  { path: '**', redirectTo: '/', pathMatch: 'full' }
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
