@@ -1,6 +1,6 @@
 <div class="datatable">
-    <mat-table [dataSource]="dataSource">
-      <ng-container *ngFor="let col of fields; index as i;" [matColumnDef]="col.field.label">
+    <mat-table [dataSource]="dataSource" class="table">
+      <ng-container *ngFor="let col of fields; index as i;" [matColumnDef]="col.field.label" class="container">
         <mat-header-cell *matHeaderCellDef>{{col.field.label}}</mat-header-cell>
         <mat-cell *matCellDef="let item"
                   [ngSwitch]="col.field.id">
@@ -18,4 +18,5 @@
       <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
       <mat-row *matRowDef="let row; index as i; columns: columns;" (click)="rowClick.emit(i)"></mat-row>
     </mat-table>
+</div>
   
