@@ -1,5 +1,5 @@
 import { simpleField, prePostMultiField, Field, DataType } from '@ngx-dino/core';
-import { access, lookup, identity, map, constant, autoId } from './field-utils';
+import { access, lookup, identity, constant, autoId, mappingWithDefault } from './field-utils';
 
 import { AvatarFields } from './avatar-fields';
 import { PersonaFields } from './persona-fields';
@@ -15,12 +15,13 @@ export const fixed = new Field<any>({
   id: 'fixed',
   label: 'Fixed',
   dataType: DataType.String,
-  mapping: {
+  mapping: mappingWithDefault({
+    'label': 'Fixed',
     'shape': constant('circle'),
     'size': constant(10),
     'color': constant('#cccccc'),
     'stateColor': constant('#ffffff')
-  }
+  }, 'label')
 });
 
 export const lane = simpleField<number>({
@@ -36,7 +37,7 @@ export const timeMillis = prePostMultiField({
   dataType: DataType.Number,
   pre: access<number>('timeMillis', 1),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
     'axis': identity(),
     'color': lookup<string>({
       '07-09': '#7fc97f',
@@ -60,7 +61,7 @@ export const timeMillis = prePostMultiField({
       '61-70': 143,
       '70+': 155
     }, 10),
-  }
+  }, 'axis')
 });
 
 export const RunFields = {

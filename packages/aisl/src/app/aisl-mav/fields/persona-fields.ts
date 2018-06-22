@@ -1,5 +1,5 @@
 import { Field, simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
-import { access, lookup, identity, map, constant, persona } from './field-utils';
+import { access, lookup, identity, map, constant, persona, mappingWithDefault } from './field-utils';
 
 export const id = simpleField<string>({
   id: 'persona.id',
@@ -35,7 +35,8 @@ export const gender = prePostMultiField({
   dataType: DataType.String,
   pre: access<string>('persona.gender'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
+    'label': identity(),
     'shape': lookup<string>({
       'male': 'square',
       'female': 'diamond',
@@ -46,7 +47,7 @@ export const gender = prePostMultiField({
       'female': 'pink',
       'other': 'purple'
     }, 'black')
-  }
+  }, 'label')
 });
 
 export const handedness = prePostMultiField({
@@ -55,7 +56,8 @@ export const handedness = prePostMultiField({
   dataType: DataType.String,
   pre: access<string>('persona.handedness'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
+    'label': identity(),
     'shape': lookup<string>({
       'right': 'triangle-right',
       'left': 'triangle-left'
@@ -64,7 +66,7 @@ export const handedness = prePostMultiField({
       'right': 'gold',
       'left': 'brown'
     }, 'black'),
-  }
+  }, 'label')
 });
 
 export const state = simpleField<string>({
@@ -88,7 +90,7 @@ export const height = prePostMultiField({
   dataType: DataType.Number,
   pre: access<number>('persona.height'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
     'axis': identity(),
     'color': lookup<string>({
       '07-09': '#7fc97f',
@@ -112,7 +114,7 @@ export const height = prePostMultiField({
       '61-70': 143,
       '70+': 155
     }, 10),
-  }
+  }, 'axis')
 });
 
 export const siblings = prePostMultiField({
@@ -121,7 +123,7 @@ export const siblings = prePostMultiField({
   dataType: DataType.Number,
   pre: access<string>('persona.siblings'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
     'axis': identity(),
     'color': lookup<string>({
       '07-09': '#7fc97f',
@@ -145,7 +147,7 @@ export const siblings = prePostMultiField({
       '61-70': 143,
       '70+': 155
     }, 10),
-  }
+  }, 'axis')
 });
 
 export const ageGroup = prePostMultiField({
@@ -154,7 +156,7 @@ export const ageGroup = prePostMultiField({
   dataType: DataType.String,
   pre: access<string>('persona.age_group'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
     'axis': identity(),
     'color': lookup<string>({
       '07-09': '#7fc97f',
@@ -178,7 +180,7 @@ export const ageGroup = prePostMultiField({
       '61-70': 143,
       '70+': 155
     }, 10),
-  }
+  }, 'axis')
 });
 
 export const zipcode = simpleField<string>({

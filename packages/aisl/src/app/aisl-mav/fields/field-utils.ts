@@ -16,6 +16,9 @@ export { lookup } from '@ngx-dino/core/src/operators/methods/extracting/lookup';
 export { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 export { autoId } from '@ngx-dino/core/src/operators/methods/generating/auto-id';
 
+export function mappingWithDefault(mapping: any, defaultKey: string): any {
+  mapping[Field.defaultSymbol] = mapping[defaultKey];
+}
 
 export function conditionalField<T>(
   op: Operator<any, boolean>, trueField: Field<T>, falseField: Field<T>, metadataField: Field<T>
