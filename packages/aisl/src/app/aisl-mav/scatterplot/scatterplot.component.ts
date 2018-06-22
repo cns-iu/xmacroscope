@@ -5,7 +5,7 @@ import { assign, mapValues, pick } from 'lodash';
 
 import { Field, RawChangeSet } from '@ngx-dino/core';
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
-import { RunFields } from '../fields';
+import { RunFields, wrapFieldForShowPersona } from '../fields';
 
 @Component({
   selector: 'aisl-scatterplot',
@@ -28,7 +28,16 @@ export class ScatterplotComponent implements OnInit {
   autoresize = true;
 
   constructor(service: ScatterPlotDataService) {
+    console.log(this);
     this.dataStream = service.dataStream;
+  }
+
+  wrapField(field: Field<any>): Field<any> {
+    if (field) {
+      return wrapFieldForShowPersona(field);
+    } else {
+      return RunFields.persona.persona;
+    }
   }
 
   ngOnInit() { }

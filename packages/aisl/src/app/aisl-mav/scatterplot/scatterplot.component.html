@@ -1,15 +1,15 @@
-<!-- <dino-scatterplot
+<dino-scatterplot
   [dataStream]="dataStream"
   [pointIdField]="fields.id.getBoundField('id')"
 
   [xField]="xField?.getBoundField('axis')"
   [yField]="yField?.getBoundField('axis')"
-  [sizeField]="pointShapeField?.getBoundField('size')"
-  [colorField]="pointColorField?.getBoundField('color')"
-  [strokeColorField]="pointColorField?.getBoundField('color')"
-  [shapeField]="pointShapeField?.getBoundField('shape')"
+  [sizeField]="wrapField(pointShapeField).getBoundField('size')"
+  [colorField]="wrapField(pointColorField).getBoundField('color')"
+  [strokeColorField]="wrapField(pointColorField).getBoundField('color')"
+  [shapeField]="wrapField(pointShapeField).getBoundField('shape')"
 
   [width]="width"
   [height]="height"
   [autoresize]="autoresize">
-</dino-scatterplot> -->
+</dino-scatterplot>

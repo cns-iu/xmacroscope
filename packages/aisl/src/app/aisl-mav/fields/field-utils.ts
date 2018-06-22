@@ -18,6 +18,7 @@ export { autoId } from '@ngx-dino/core/src/operators/methods/generating/auto-id'
 
 export function mappingWithDefault(mapping: any, defaultKey: string): any {
   mapping[Field.defaultSymbol] = mapping[defaultKey];
+  return mapping;
 }
 
 export function conditionalField<T>(
@@ -70,7 +71,6 @@ export const persona = new Field({
 });
 
 export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
-  const mapping: {[id: string]: Operator<any, T>} = {};
   const wrap = function(key) {
     const trueBoundField = persona.getBoundField(key);
     const falseBoundField = field.getBoundField(key);
@@ -79,14 +79,10 @@ export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
     });
   };
 
+  const mapping = field.mapping.toJS();
   for (const key of persona.getBoundFieldIds().toArray()) {
     if (field.mapping.has(key)) {
       mapping[key] = wrap(key);
-    }
-  }
-  for (const key of field.getBoundFieldIds().toArray()) {
-    if (!mapping[key]) {
-      mapping[key] = field.getBoundField(key).operator;
     }
   }
 
