@@ -32,6 +32,11 @@ export class ScatterplotComponent implements OnInit {
 
   dataStream: Observable<RawChangeSet>;
 
+  width = window.innerWidth;
+  height = 75 / 100 * window.innerHeight;
+
+  autoresize = true;
+
   constructor(service: ScatterPlotDataService) {
     const combinedDefaultFields = assign({}, pick(commonFields, [
       'pointColorFields.default', 'pointShapeFields.default'

@@ -27,6 +27,10 @@ export class ScatterplotComponent implements OnInit {
   @Input() sizeFields: BoundField<string>[];
   
   @Input() dataStream: Observable<RawChangeSet<any>>;
+
+  @Input() width: number;
+  @Input() height: number;
+  @Input() autoresize: boolean;
   
   constructor() { }
 
