@@ -1,5 +1,5 @@
-import { simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
-import { access, lookup, identity, map } from './field-utils';
+import { Field, simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
+import { access, lookup, identity, map, constant, persona, mappingWithDefault } from './field-utils';
 
 export const id = simpleField<string>({
   id: 'persona.id',
@@ -35,7 +35,8 @@ export const gender = prePostMultiField({
   dataType: DataType.String,
   pre: access<string>('persona.gender'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
+    'label': identity(),
     'shape': lookup<string>({
       'male': 'square',
       'female': 'diamond',
@@ -46,27 +47,51 @@ export const gender = prePostMultiField({
       'female': 'pink',
       'other': 'purple'
     }, 'black')
-  }
+  }, 'label')
 });
 
-export const ageGroup = prePostMultiField({
-  id: 'persona.age_group',
-  label: 'Age Group',
+export const handedness = prePostMultiField({
+  id: 'persona.handedness',
+  label: 'Handedness',
   dataType: DataType.String,
-  pre: access<string>('persona.age_group'),
+  pre: access<string>('persona.handedness'),
   post: identity(),
-  mapping: {
+  mapping: mappingWithDefault({
+    'label': identity(),
     'shape': lookup<string>({
-      '07-09': 'circle',
-      '10-12': 'circle',
-      '13-18': 'circle',
-      '19-30': 'circle',
-      '31-40': 'circle',
-      '41-50': 'circle',
-      '51-60': 'circle',
-      '61-70': 'circle',
-      '70+': 'circle'
+      'right': 'triangle-right',
+      'left': 'triangle-left'
     }, 'circle'),
+    'color': lookup<string>({
+      'right': 'gold',
+      'left': 'brown'
+    }, 'black'),
+  }, 'label')
+});
+
+export const state = simpleField<string>({
+  id: 'persona.state',
+  label: 'State',
+  bfieldId: 'state',
+  operator: access('persona.state', 'Unknown')
+});
+
+export const location = simpleField<number[]>({
+  id: 'persona.location',
+  label: 'Location',
+  bfieldId: 'location',
+  operator: map((item) => [item.latitude, item.longitude], [30, -80])
+});
+
+
+export const height = prePostMultiField({
+  id: 'persona.height',
+  label: 'Height',
+  dataType: DataType.Number,
+  pre: access<number>('persona.height'),
+  post: identity(),
+  mapping: mappingWithDefault({
+    'axis': identity(),
     'color': lookup<string>({
       '07-09': '#7fc97f',
       '10-12': '#beaed4',
@@ -88,26 +113,74 @@ export const ageGroup = prePostMultiField({
       '51-60': 132,
       '61-70': 143,
       '70+': 155
-    }, 100),
-  }
+    }, 10),
+  }, 'axis')
 });
 
-export const handedness = prePostMultiField({
-  id: 'persona.handedness',
-  label: 'Handedness',
-  dataType: DataType.String,
-  pre: access<string>('persona.handedness'),
+export const siblings = prePostMultiField({
+  id: 'persona.siblings',
+  label: 'Siblings',
+  dataType: DataType.Number,
+  pre: access<string>('persona.siblings'),
   post: identity(),
-  mapping: {
-    'shape': lookup<string>({
-      'right': 'triangle-right',
-      'left': 'triangle-left'
-    }, 'circle'),
+  mapping: mappingWithDefault({
+    'axis': identity(),
     'color': lookup<string>({
-      'right': 'gold',
-      'left': 'brown'
-    }, 'black'),
-  }
+      '07-09': '#7fc97f',
+      '10-12': '#beaed4',
+      '13-18': '#fdc086',
+      '19-30': '#ffff99',
+      '31-40': '#386cb0',
+      '41-50': '#f0027f',
+      '51-60': '#bf5b17',
+      '61-70': '#666666',
+      '70+': '#17becf'
+    }, '#bcbd22'),
+    'size': lookup<number>({
+      '07-09': 66,
+      '10-12': 77,
+      '13-18': 88,
+      '19-30': 99,
+      '31-40': 110,
+      '41-50': 121,
+      '51-60': 132,
+      '61-70': 143,
+      '70+': 155
+    }, 10),
+  }, 'axis')
+});
+
+export const ageGroup = prePostMultiField({
+  id: 'persona.age_group',
+  label: 'Age Group',
+  dataType: DataType.String,
+  pre: access<string>('persona.age_group'),
+  post: identity(),
+  mapping: mappingWithDefault({
+    'axis': identity(),
+    'color': lookup<string>({
+      '07-09': '#7fc97f',
+      '10-12': '#beaed4',
+      '13-18': '#fdc086',
+      '19-30': '#ffff99',
+      '31-40': '#386cb0',
+      '41-50': '#f0027f',
+      '51-60': '#bf5b17',
+      '61-70': '#666666',
+      '70+': '#17becf'
+    }, '#bcbd22'),
+    'size': lookup<number>({
+      '07-09': 66,
+      '10-12': 77,
+      '13-18': 88,
+      '19-30': 99,
+      '31-40': 110,
+      '41-50': 121,
+      '51-60': 132,
+      '61-70': 143,
+      '70+': 155
+    }, 10),
+  }, 'axis')
 });
 
 export const zipcode = simpleField<string>({
@@ -117,27 +190,7 @@ export const zipcode = simpleField<string>({
   operator: access('persona.zipcode', 'Unknown')
 });
 
-export const state = simpleField<string>({
-  id: 'persona.state',
-  label: 'State',
-  bfieldId: 'state',
-  operator: access('persona.state', 'Unknown')
-});
-
-export const location = simpleField<number[]>({
-  id: 'persona.location',
-  label: 'Location',
-  bfieldId: 'location',
-  operator: map((item) => [item.latitude, item.longitude], [30, -80])
-});
-
-// FIXME: add siblings
-export const siblings = ageGroup;
-
-// FIXME: add height
-export const height = ageGroup;
-
-export const PersonaFields = { id, icon, color,
+export const PersonaFields = { id, persona, icon, color,
   siblings, height, zipcode, state, location,
 
   // Below are doing away
