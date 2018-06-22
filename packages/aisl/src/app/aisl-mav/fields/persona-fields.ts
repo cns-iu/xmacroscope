@@ -88,7 +88,7 @@ export const height = prePostMultiField({
   id: 'persona.height',
   label: 'Height',
   dataType: DataType.Number,
-  pre: access<number>('persona.height'),
+  pre: access<number>('persona.height', 36),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
@@ -121,7 +121,7 @@ export const siblings = prePostMultiField({
   id: 'persona.siblings',
   label: 'Siblings',
   dataType: DataType.Number,
-  pre: access<string>('persona.siblings'),
+  pre: access<number>('persona.siblings', 1),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
@@ -154,7 +154,7 @@ export const ageGroup = prePostMultiField({
   id: 'persona.age_group',
   label: 'Age Group',
   dataType: DataType.String,
-  pre: access<string>('persona.age_group'),
+  pre: access<string>('persona.age_group', '51-60'),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),

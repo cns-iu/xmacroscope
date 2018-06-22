@@ -48,6 +48,8 @@ export const RACE_COMPLETED = gql`
           gender
           age_group
           handedness
+          height
+          siblings
           zipcode
           state
           latitude
