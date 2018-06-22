@@ -4,6 +4,7 @@ import { BoundField } from '@ngx-dino/core';
 
 import { ScatterplotComponent } from '../scatterplot/scatterplot.component';
 import { GeomapComponent } from '../geomap/geomap.component';
+import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-mav-home',
@@ -12,25 +13,10 @@ import { GeomapComponent } from '../geomap/geomap.component';
 })
 
 export class HomeComponent implements OnInit {
-
-  @ViewChild(ScatterplotComponent) scatterplot: ScatterplotComponent;
-  @ViewChild(GeomapComponent) geomap: GeomapComponent;
-  @Input() fields: BoundField<any>[];
+  fields = RunFields;
+  sizeField = RunFields.persona.age_group;
+  colorField = RunFields.persona.gender;
 
   constructor() { }
-
-  ngOnInit() {
-    this.fields = this.scatterplot.fields
-      .map((f) => f.getBoundField());
-  }
-
-  setFields(index: number) {
-    if (index === 1) {
-      this.fields = this.scatterplot.fields
-        .map((f) => f.getBoundField());
-    } else if (index === 2) {
-      this.fields = this.geomap.fields
-        .map((f) => f.getBoundField());
-    }
-  }
+  ngOnInit() { }
 }

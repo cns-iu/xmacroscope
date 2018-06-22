@@ -1,12 +1,11 @@
 <mat-table #table
            style="width:200px;"
-           [dataSource]="dataSource">
+           [dataSource]="fields">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Fields</mat-header-cell>
     <mat-cell *matCellDef="let field"
               [mavDraggable]="field"
-              class="draggable"
-              [style.background-color]="bgColorFor(field)">
+              [class]="selectionClass(field)">
       {{field.label}}
     </mat-cell>
   </ng-container>

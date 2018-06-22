@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { DinoGeomapModule } from '@ngx-dino/geomap';
+import { DinoScatterplotModule } from '@ngx-dino/scatterplot';
+
 import { MavModule } from 'make-a-vis';
 import { SharedModule } from '../shared';
 
@@ -24,7 +27,9 @@ const components: any[] = [
   imports: [
     CommonModule,
     SharedModule,
-    MavModule
+    MavModule,
+    DinoGeomapModule,
+    DinoScatterplotModule
   ],
   exports: components,
   declarations: components,

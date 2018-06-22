@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { BoundField } from '@ngx-dino/core';
+import { BoundField, Field } from '@ngx-dino/core';
 import { FieldHoverService } from '../shared/field-hover.service';
 
 @Component({
@@ -15,10 +15,9 @@ import { FieldHoverService } from '../shared/field-hover.service';
   styleUrls: ['./field-dropzone.component.sass']
 })
 export class FieldDropzoneComponent implements OnInit {
-  backgroundColor = 'inherit';
+  selectionClass = '';
 
-  @Input() label: String;
-  @Input() fields: BoundField<any>[];
+  @Input() mappingKey: string;
   @Input() field: BoundField<any>;
   @Output() fieldChange = new EventEmitter<BoundField<any>>();
 
@@ -26,22 +25,27 @@ export class FieldDropzoneComponent implements OnInit {
 
   ngOnInit() { }
 
-  fieldDropped(field: BoundField<any>) {
-    this.field = this.fields[this.findFieldIndex(field.label)];
+  fieldDropped(field: Field<any>) {
+    this.field = field.getBoundField(this.mappingKey);
+
+    // FIXME: Remove this
+    if (!this.field) {
+      this.field = field.getBoundField();
+    }
     this.fieldChange.emit(this.field);
   }
 
   onDragDropEvent(event: any) {
     if (event.type === 'drag-start') {
-      this.backgroundColor = event.accepted ? 'rgba(0,255,0,0.1)' : 'rgba(255,0,0,0.1)';
+      this.selectionClass = event.accepted ? 'selectable' : 'unselectable'; // 'rgba(0,255,0,0.1)' : 'rgba(255,0,0,0.1)';
     } else if (event.type === 'drag-end') {
-      this.backgroundColor = 'inherit';
+      this.selectionClass = '';
     }
   }
 
   @HostListener('mouseover', [])
   onMouseOver() {
-    this.hoverService.startHover(this.fields);
+    this.hoverService.startHover([this.mappingKey]);
   }
 
   @HostListener('mouseout', [])
@@ -50,12 +54,8 @@ export class FieldDropzoneComponent implements OnInit {
   }
 
   get acceptsDrop() {
-    return (field) => {
-      return this.findFieldIndex(field.label) !== -1;
+    return (field: Field<any>) => {
+      return !!field.getBoundField(this.mappingKey);
     };
-  }
-
-  private findFieldIndex(label: string): number {
-    return this.fields.findIndex((field) => field.label === label);
   }
 }
