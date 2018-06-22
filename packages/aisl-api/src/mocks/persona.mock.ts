@@ -30,6 +30,8 @@ export class GeneratedPersona implements Persona {
   gender: 'male' | 'female' | 'other';
   age_group: '07-09' | '10-12' | '13-18' | '19-30' | '31-40' | '41-50' | '51-60' | '61-70' | '71+';
   handedness: 'left' | 'right';
+  height: number;
+  siblings: number;
   zipcode: string;
   state: string;
   latitude: number;
@@ -43,6 +45,8 @@ export class GeneratedPersona implements Persona {
     this.gender = nullable(casual.random_element(GENDERS));
     this.age_group = nullable(casual.random_element(AGE_GROUPS));
     this.handedness = nullable(casual.random > 0.1 ? 'right' : 'left');
+    this.height = nullable(casual.integer(36, 96));
+    this.siblings = nullable(casual.integer(0, 12));
     this.zipcode = nullable(casual.zip(5));
     this.state = nullable(casual.state);
     [this.latitude, this.longitude] = nullable(mockUSLatLng()) || [null, null];
