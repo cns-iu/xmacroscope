@@ -13,8 +13,8 @@ export class GeomapDataService {
   readonly pointDataStream: Observable<RawChangeSet>;
 
   constructor(private messageService: MessageService) {
-    this.stateDataStream = new ChangeTracker(messageService.asObservable(), 200, 4).asObservable();
+    this.stateDataStream = new ChangeTracker(messageService.asObservable(), 50, 4).asObservable();
 
-    this.pointDataStream = new ChangeTracker(messageService.asObservable(), 200, 4).asObservable();
+    this.pointDataStream = new ChangeTracker(messageService.asObservable(), 50, 4).asObservable();
   }
 }

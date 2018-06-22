@@ -12,6 +12,6 @@ export class ScatterPlotDataService {
   readonly dataStream: Observable<RawChangeSet<any>>;
 
   constructor(private messageService: MessageService) {
-    this.dataStream = new ChangeTracker(messageService.asObservable(), 200, 4).asObservable();
+    this.dataStream = new ChangeTracker(messageService.asObservable(), 50, 4).asObservable();
   }
 }
