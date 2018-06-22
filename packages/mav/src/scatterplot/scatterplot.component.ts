@@ -18,13 +18,6 @@ export class ScatterplotComponent implements OnInit {
   @Input() shapeField: BoundField<string>;
   @Input() sizeField: BoundField<string>;
   @Input() strokeColorField: BoundField<boolean>; // not user facing
-
-  @Input() xFields: BoundField<any>[];
-  @Input() yFields: BoundField<any>[];
-  
-  @Input() colorFields: BoundField<string>[];
-  @Input() shapeFields: BoundField<string>[];
-  @Input() sizeFields: BoundField<string>[];
   
   @Input() dataStream: Observable<RawChangeSet<any>>;
 

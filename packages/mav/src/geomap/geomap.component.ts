@@ -10,14 +10,9 @@ import { BoundField, RawChangeSet } from '@ngx-dino/core';
 })
 export class GeomapComponent implements OnInit {
   @Input() stateDataStream: Observable<RawChangeSet>;
-
-  @Input() strokeColorField:BoundField<string>;
-  
   @Input() stateField: BoundField<string>;
   @Input() stateColorField: BoundField<string>;
-
-  @Input() stateFields: BoundField<any>[];
-  @Input() stateColorFields: BoundField<any>[];
+  @Input() strokeColorField: BoundField<string>;
 
   @Input() pointIdField: BoundField<string>;
   @Input() pointDataStream: Observable<RawChangeSet>;
@@ -25,11 +20,6 @@ export class GeomapComponent implements OnInit {
   @Input() pointSizeField: BoundField<number>;
   @Input() pointColorField: BoundField<string>;
   @Input() pointShapeField: BoundField<string>;
-
-  @Input() pointPositionFields: BoundField<[number, number]>[];
-  @Input() pointSizeFields: BoundField<number>[];
-  @Input() pointColorFields: BoundField<string>[];
-  @Input() pointShapeFields: BoundField<string>[];
 
   constructor() { }
 

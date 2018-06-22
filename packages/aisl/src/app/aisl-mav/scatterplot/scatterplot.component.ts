@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { assign, mapValues, pick } from 'lodash';
 
-import { BoundField, RawChangeSet } from '@ngx-dino/core';
+import { Field, RawChangeSet } from '@ngx-dino/core';
 import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
-
-
-import * as commonFields from '../shared/common-fields';
-import * as scatterplotFields from '../shared/scatterplot-fields';
+import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-scatterplot',
@@ -17,60 +14,21 @@ import * as scatterplotFields from '../shared/scatterplot-fields';
   providers: [ScatterPlotDataService]
 })
 export class ScatterplotComponent implements OnInit {
-  strokeColorField: BoundField<string>; // not user facing
-
-  defaultFields: {[key: string]: BoundField<any>};
-  listOfFields: {[key: string]: BoundField<any>};
-
-  fields = commonFields.combineUnique<any>(
-    scatterplotFields.pointPositionFields,
-    scatterplotFields.pointSizeFields,
-
-    commonFields.pointColorFields,
-    commonFields.pointShapeFields
-  );
-
   dataStream: Observable<RawChangeSet>;
+  fields = RunFields;
+
+  @Input() xField: Field<any> = RunFields.persona.height;
+  @Input() yField: Field<any> = RunFields.timeMillis;
+  @Input() pointSizeField: Field<any> = RunFields.timeMillis;
+  @Input() pointShapeField: Field<any> = RunFields.fixed;
+  @Input() pointColorField: Field<any> = RunFields.persona.age_group;
 
   width = window.innerWidth;
   height = 75 / 100 * window.innerHeight;
-
   autoresize = true;
 
   constructor(service: ScatterPlotDataService) {
-    const combinedDefaultFields = assign({}, pick(commonFields, [
-      'pointColorFields.default', 'pointShapeFields.default'
-      ]), pick(scatterplotFields, [
-        'pointIdField', 'defaultXField', 'defaultYField',
-        'pointSizeFields.default', 'pointPositionFields.default'
-      ])
-    );
-
-    this.defaultFields = mapValues(combinedDefaultFields, // mapping to bound fields
-      (d: any) => {
-        const n: any = {};
-        if  (d.default) {
-          n.default = d.default.getBoundField();
-          return n;
-        } else {
-          return d.getBoundField();
-        }
-      });
-
-    const combinedFields = assign({}, pick(commonFields, [
-      'pointColorFields', 'pointShapeFields'
-      ]), pick(scatterplotFields, [
-        'pointPositionFields', 'pointSizeFields'
-    ]));
-
-    this.listOfFields = mapValues(
-      combinedFields, (l: any) => Array.isArray(l)
-        ? l.map((f) => f.getBoundField())
-        : l.getBoundField()
-    );
-
     this.dataStream = service.dataStream;
-    this.strokeColorField = commonFields.personaStrokeColorField(this, 'colorField').getBoundField();
   }
 
   ngOnInit() { }

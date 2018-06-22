@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { BoundField } from '@ngx-dino/core';
+import { Field } from '@ngx-dino/core';
 import { FieldHoverService } from '../shared/field-hover.service';
 
 @Component({
@@ -13,13 +13,13 @@ import { FieldHoverService } from '../shared/field-hover.service';
 })
 export class AttributeSelectorComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  private fieldHoverSelection: BoundField<any>[] = [];
+  private mappingKeySelection: string[] = [];
 
-  @Input() dataSource: MatTableDataSource<BoundField<any>> = new MatTableDataSource();
+  @Input() fields: Field<any>[];
 
   constructor(service: FieldHoverService) {
     this.subscription = service.hovers.subscribe((fields) => {
-      this.fieldHoverSelection = fields;
+      this.mappingKeySelection = fields;
     });
   }
 
@@ -29,13 +29,15 @@ export class AttributeSelectorComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  bgColorFor(field: BoundField<any>): string {
-    if (this.fieldHoverSelection.length === 0) {
-      return 'inherit';
-    } else if (this.fieldHoverSelection.find((f) => f.label === field.label)) {
-      return 'rgba(0,255,0,0.1)';
-    } else {
-      return 'rgba(255,0,0,0.1)';
+  selectionClass(field: Field<any>): string {
+    if (this.mappingKeySelection.length === 0) {
+      return '';
     }
+    for (const mappingKey of this.mappingKeySelection) {
+      if (!!field.getBoundField(mappingKey)) {
+        return 'selectable';
+      }
+    }
+    return 'unselectable';
   }
 }
