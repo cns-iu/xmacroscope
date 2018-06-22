@@ -1,7 +1,7 @@
 import { BoundField, Field, simpleField, DataType, Operator } from '@ngx-dino/core';
 import { access } from '@ngx-dino/core/src/operators/methods/extracting/access';
-import { chain } from '@ngx-dino/core/src/operators/methods/grouping/chain';
 import { map } from '@ngx-dino/core/src/operators/methods/transforming/map';
+import { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 
 // Fields are assumed to be pulled from a RunData instance in AISL
 import { RunData } from 'aisl-api';
@@ -55,11 +55,46 @@ export function conditionalField<T>(
 }
 
 export const showPersonaOp = map<any, boolean>((item) => !!item.showPersona);
+export const persona = new Field({
+  id: 'persona',
+  label: 'Persona',
+  dataType: DataType.String,
+  mapping: {
+    'shape': access('persona.icon'),
+    'color': access('persona.color'),
+    'size': constant(100)
+  }
+});
 
-export function wrapFieldsForShowPersona<T>(srcField: Field<T>, listOfFields: Field<T>[]) {
-  listOfFields.forEach((field, index, arr) => {
-    if (field !== srcField) {
-      arr[index] = conditionalField(showPersonaOp, srcField, field, field);
+export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
+  const mapping: {[id: string]: Operator<any, T>} = {};
+  const wrap = function(key) {
+    const trueBoundField = persona.getBoundField(key);
+    const falseBoundField = field.getBoundField(key);
+    return map<T, any>((item) => {
+      return (showPersonaOp.get(item) ? trueBoundField : falseBoundField).get(item);
+    });
+  };
+
+  for (const key of persona.getBoundFieldIds().toArray()) {
+    if (field.mapping.has(key)) {
+      mapping[key] = wrap(key);
     }
+  }
+  for (const key of field.getBoundFieldIds().toArray()) {
+    if (!mapping[key]) {
+      mapping[key] = field.getBoundField(key).operator;
+    }
+  }
+
+  return new Field<T>({
+    id: field.id,
+    label: field.label,
+    dataType: field.dataType,
+    mapping: mapping
   });
+}
+
+export function wrapFieldsForShowPersona(fields: Field<any>[]): Field<any>[] {
+  return fields.map(wrapFieldForShowPersona);
 }

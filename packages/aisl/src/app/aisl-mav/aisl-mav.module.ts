@@ -10,13 +10,11 @@ import { SharedModule } from '../shared';
 import { GeomapComponent } from './geomap/geomap.component';
 import { HomeComponent } from './home/home.component';
 import { ScatterplotComponent } from './scatterplot/scatterplot.component';
-import { FieldListComponent } from './field-list/field-list.component';
 
 const components: any[] = [
-  GeomapComponent,
   HomeComponent,
-  ScatterplotComponent,
-  FieldListComponent
+  GeomapComponent,
+  ScatterplotComponent
 ];
 
 @NgModule({
