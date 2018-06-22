@@ -5,7 +5,6 @@ import { BoundField } from '@ngx-dino/core';
 import { ScatterplotComponent } from '../scatterplot/scatterplot.component';
 import { GeomapComponent } from '../geomap/geomap.component';
 
-
 @Component({
   selector: 'aisl-mav-home',
   templateUrl: './home.component.html',

@@ -8,12 +8,16 @@ import { GeomapComponent } from './geomap/geomap.component';
 import { HomeComponent } from './home/home.component';
 import { ScatterplotComponent } from './scatterplot/scatterplot.component';
 import { FieldListComponent } from './field-list/field-list.component';
+import { DatatableComponent } from './datatable/datatable.component';
+
+import { SharedDataService } from './shared/shared-data.service';
 
 const components: any[] = [
   GeomapComponent,
   HomeComponent,
   ScatterplotComponent,
-  FieldListComponent
+  FieldListComponent,
+  DatatableComponent
 ];
 
 @NgModule({
@@ -24,6 +28,6 @@ const components: any[] = [
   ],
   exports: components,
   declarations: components,
-  providers: []
+  providers: [SharedDataService]
 })
 export class AislMavModule { }

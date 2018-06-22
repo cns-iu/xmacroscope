@@ -5,7 +5,8 @@ import { RawChangeSet, BoundField, Field } from '@ngx-dino/core';
 
 import { assign, mapValues, pick } from 'lodash';
 
-import { GeomapDataService } from '../shared/geomap-data.service';
+// import { GeomapDataService } from '../shared/geomap-data.service';
+import { SharedDataService } from '../shared/shared-data.service';
 
 import * as commonFields from '../shared/common-fields';
 import * as geomapFields from '../shared/geomap-fields';
@@ -14,7 +15,7 @@ import * as geomapFields from '../shared/geomap-fields';
   selector: 'aisl-geomap',
   templateUrl: './geomap.component.html',
   styleUrls: ['./geomap.component.sass'],
-  providers: [GeomapDataService]
+  // providers: [GeomapDataService]
 })
 export class GeomapComponent implements OnInit {
   stateDataStream: Observable<RawChangeSet>;
@@ -32,7 +33,7 @@ export class GeomapComponent implements OnInit {
   strokeColorField: BoundField<string>; // not user facing
   pointColorField = commonFields.pointColorFields.default;
 
-  constructor(service: GeomapDataService) {
+  constructor(service: SharedDataService) {
 
     const combinedDefaultFields = assign({}, pick(commonFields, [
       'stateColorFields.default', 'pointColorFields.default',
@@ -68,8 +69,8 @@ export class GeomapComponent implements OnInit {
         : l.getBoundField()
     );
 
-    this.stateDataStream = service.stateDataStream;
-    this.pointDataStream = service.pointDataStream;
+    this.stateDataStream = service.dataStream;
+    this.pointDataStream = service.dataStream;
 
     this.strokeColorField = commonFields.personaStrokeColorField(this, 'pointColorField').getBoundField();
   }

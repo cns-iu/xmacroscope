@@ -8,10 +8,14 @@ import { ChangeTracker } from './change-tracker';
 
 
 @Injectable()
-export class ScatterPlotDataService {
+export class SharedDataService {
   readonly dataStream: Observable<RawChangeSet<any>>;
+  historySize = 50; // TODO
+  highlightCount = 4; // TODO
 
   constructor(private messageService: MessageService) {
-    this.dataStream = new ChangeTracker(messageService.asObservable(), 50, 4).asObservable();
+    this.dataStream = new ChangeTracker(
+      messageService.asObservable(), this.historySize, this.highlightCount
+    ).asObservable();
   }
 }

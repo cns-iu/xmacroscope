@@ -4,17 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import { assign, mapValues, pick } from 'lodash';
 
 import { BoundField, RawChangeSet } from '@ngx-dino/core';
-import { ScatterPlotDataService } from '../shared/scatterplot-data.service';
 
-
+import { SharedDataService } from '../shared/shared-data.service';
 import * as commonFields from '../shared/common-fields';
 import * as scatterplotFields from '../shared/scatterplot-fields';
 
 @Component({
   selector: 'aisl-scatterplot',
   templateUrl: './scatterplot.component.html',
-  styleUrls: ['./scatterplot.component.sass'],
-  providers: [ScatterPlotDataService]
+  styleUrls: ['./scatterplot.component.sass']
 })
 export class ScatterplotComponent implements OnInit {
   strokeColorField: BoundField<string>; // not user facing
@@ -37,7 +35,7 @@ export class ScatterplotComponent implements OnInit {
 
   autoresize = true;
 
-  constructor(service: ScatterPlotDataService) {
+  constructor(service: SharedDataService) {
     const combinedDefaultFields = assign({}, pick(commonFields, [
       'pointColorFields.default', 'pointShapeFields.default'
       ]), pick(scatterplotFields, [
