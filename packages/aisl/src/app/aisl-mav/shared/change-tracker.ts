@@ -38,7 +38,6 @@ export class ChangeTracker {
         this.accumulator = this.accumulator.shift();
     }
     this.accumulator = this.accumulator.push(message);
-    console.log(currentCount, message);
   }
 
   private getRunData(message: RaceCompletedMessage, showPersona = true): RunData[] {

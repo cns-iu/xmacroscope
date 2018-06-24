@@ -4,10 +4,10 @@
 
   [xField]="xField?.getBoundField('axis')"
   [yField]="yField?.getBoundField('axis')"
-  [sizeField]="wrapField(pointShapeField).getBoundField('size')"
-  [colorField]="wrapField(pointColorField).getBoundField('color')"
-  [strokeColorField]="wrapField(pointStrokeColorField).getBoundField('strokeColor')"
-  [shapeField]="wrapField(pointShapeField).getBoundField('shape')"
+  [sizeField]="pointShapeField?.getBoundField('size')"
+  [colorField]="pointColorField?.getBoundField('color')"
+  [strokeColorField]="pointStrokeColorField?.getBoundField('strokeColor')"
+  [shapeField]="pointShapeField?.getBoundField('shape')"
 
   [width]="width"
   [height]="height"
