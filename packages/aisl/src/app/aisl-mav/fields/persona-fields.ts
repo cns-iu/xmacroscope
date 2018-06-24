@@ -1,5 +1,5 @@
 import { Field, simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
-import { access, lookup, identity, map, chain, persona, mappingWithDefault } from './field-utils';
+import { access, combine, lookup, identity, map, chain, persona, mappingWithDefault } from './field-utils';
 
 export const id = simpleField<string>({
   id: 'persona.id',
@@ -80,7 +80,10 @@ export const location = simpleField<number[]>({
   id: 'persona.location',
   label: 'Location',
   bfieldId: 'location',
-  operator: map((item) => [item.latitude, item.longitude], [30, -80])
+  operator: combine<any, number[]>([
+      access<number>('persona.latitude', 30),
+      access<number>('persona.longitude', -80)
+  ])
 });
 
 
@@ -187,7 +190,7 @@ export const ageGroup = prePostMultiField({
       '51-60': 132,
       '61-70': 143,
       '70+': 155
-    }, 10),
+    }, 100),
   }, 'axis')
 });
 

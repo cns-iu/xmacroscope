@@ -2,6 +2,8 @@ import { BoundField, Field, simpleField, DataType, Operator } from '@ngx-dino/co
 import { access } from '@ngx-dino/core/src/operators/methods/extracting/access';
 import { map } from '@ngx-dino/core/src/operators/methods/transforming/map';
 import { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
+import { combine } from '@ngx-dino/core/src/operators/methods/grouping/combine';
+import { chain } from '@ngx-dino/core/src/operators/methods/grouping/chain';
 
 // Fields are assumed to be pulled from a RunData instance in AISL
 import { RunData } from 'aisl-api';
@@ -58,7 +60,7 @@ export function conditionalField<T>(
   });
 }
 
-export const showPersonaOp = map<any, boolean>((item) => !!item.showPersona);
+export const showPersonaOp = map<any, boolean>((item: any) => item && !!item.showPersona);
 export const persona = new Field({
   id: 'persona',
   label: 'Persona',
@@ -66,23 +68,30 @@ export const persona = new Field({
   mapping: {
     'shape': access('persona.icon'),
     'color': access('persona.color'),
+    'strokeColor': constant('#000000'),
     'size': constant(100)
   }
 });
 
 export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
   const wrap = function(key) {
-    const trueBoundField = persona.getBoundField(key);
-    const falseBoundField = field.getBoundField(key);
-    return map<T, any>((item) => {
-      return (showPersonaOp.get(item) ? trueBoundField : falseBoundField).get(item);
-    });
+    const personaOp = persona.getBoundField(key).operator;
+    const fieldOp = field.getBoundField(key).operator;
+    return chain(
+      combine([showPersonaOp, personaOp, fieldOp]),
+      map((data) => data[0] ? data[1] : data[2])
+    );
   };
 
-  const mapping = field.mapping.toJS();
+  const mapping = {};
   for (const key of persona.getBoundFieldIds().toArray()) {
     if (field.mapping.has(key)) {
       mapping[key] = wrap(key);
+    }
+  }
+  for (const key of field.getBoundFieldIds().toArray()) {
+    if (!mapping.hasOwnProperty(key)) {
+      mapping[key] = field.getBoundField(key).operator;
     }
   }
 

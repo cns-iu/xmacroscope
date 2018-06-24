@@ -16,20 +16,12 @@ export class GeomapComponent {
   pointDataStream: Observable<RawChangeSet>;
   fields = RunFields;
 
-  @Input() pointSizeField: Field<any> = RunFields.timeMillis;
+  @Input() pointSizeField: Field<any> = RunFields.fixed;
   @Input() pointShapeField: Field<any> = RunFields.fixed;
-  @Input() pointColorField: Field<any> = RunFields.persona.age_group;
+  @Input() pointColorField: Field<any> = RunFields.fixed;
 
   constructor(service: SharedDataService) {
     this.stateDataStream = service.dataStream;
     this.pointDataStream = service.dataStream;
-  }
-
-  wrapField(field: Field<any>): Field<any> {
-    if (field) {
-      return wrapFieldForShowPersona(field);
-    } else {
-      return RunFields.persona.persona;
-    }
   }
 }

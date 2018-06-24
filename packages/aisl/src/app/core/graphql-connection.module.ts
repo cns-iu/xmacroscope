@@ -20,11 +20,11 @@ import { environment } from '../shared';
 })
 export class GraphqlConnectionModule {
   constructor(private apollo: Apollo) {
-    const link = this.createLink(environment.graphqlEndpoint);
-    const dataIdFromObject = result => result.id;
-    const cache = new InMemoryCache({ dataIdFromObject });
+    // const link = this.createLink(environment.graphqlEndpoint);
+    // const dataIdFromObject = result => result.id;
+    // const cache = new InMemoryCache({ dataIdFromObject });
 
-    apollo.create({ link, cache });
+    // apollo.create({ link, cache });
   }
 
   createLink(endpoint: string): ApolloLink {

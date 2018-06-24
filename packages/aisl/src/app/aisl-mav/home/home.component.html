@@ -30,6 +30,7 @@
           <aisl-scatterplot
             [xField]="scatterPlotX"
             [yField]="scatterPlotY"
+            [pointShapeField]="shapeField"
             [pointColorField]="colorField"
             [pointSizeField]="sizeField">
           </aisl-scatterplot>
@@ -44,6 +45,7 @@
           </ng-template>
 
           <aisl-geomap
+            [pointShapeField]="shapeField"
             [pointColorField]="colorField"
             [pointSizeField]="sizeField">
           </aisl-geomap>

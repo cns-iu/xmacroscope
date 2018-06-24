@@ -28,7 +28,7 @@ export class ChangeTracker {
   }
 
   asObservable(): Observable<RawChangeSet> {
-    return this.mappedStream;
+    return this.mappedStream.share();
   }
 
   private accumulateMessage(message: RaceCompletedMessage): void {
@@ -38,6 +38,7 @@ export class ChangeTracker {
         this.accumulator = this.accumulator.shift();
     }
     this.accumulator = this.accumulator.push(message);
+    console.log(currentCount, message);
   }
 
   private getRunData(message: RaceCompletedMessage, showPersona = true): RunData[] {
@@ -63,6 +64,6 @@ export class ChangeTracker {
           this.getRunData(this.accumulator.get(index), false).map((r) => [r, r]);
     }
 
-    return new RawChangeSet(added, removed, updated);
+    return new RawChangeSet(added, removed, [], updated);
   }
 }

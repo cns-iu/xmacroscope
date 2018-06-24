@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
-import { RunFields } from '../fields';
+import { RunFields, wrapFieldForShowPersona } from '../fields';
 
 @Component({
   selector: 'aisl-mav-home',
@@ -15,8 +15,9 @@ export class HomeComponent implements OnInit {
     RunFields.persona.age_group,
     RunFields.persona.zipcode
   ];
-  sizeField = RunFields.persona.age_group;
-  colorField = RunFields.timeMillis;
+  sizeField = wrapFieldForShowPersona(RunFields.persona.siblings);
+  colorField = wrapFieldForShowPersona(RunFields.persona.age_group);
+  shapeField = wrapFieldForShowPersona(RunFields.fixed);
   scatterPlotX = RunFields.timeMillis;
   scatterPlotY = RunFields.persona.height;
 

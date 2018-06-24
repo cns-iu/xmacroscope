@@ -1,5 +1,5 @@
 import { simpleField, prePostMultiField, Field, DataType } from '@ngx-dino/core';
-import { access, lookup, identity, constant, autoId, mappingWithDefault } from './field-utils';
+import { access, map, lookup, identity, constant, mappingWithDefault } from './field-utils';
 
 import { AvatarFields } from './avatar-fields';
 import { PersonaFields } from './persona-fields';
@@ -8,7 +8,7 @@ export const id = simpleField<any>({
   id: 'run.id',
   label: 'Run ID',
   bfieldId: 'id',
-  operator: autoId('runData.')
+  operator: map<any, string>((item) => item ? item.timestamp + ':' + item.lane : undefined)
 });
 
 export const fixed = new Field<any>({
@@ -20,7 +20,9 @@ export const fixed = new Field<any>({
     'shape': constant('circle'),
     'size': constant(10),
     'color': constant('#cccccc'),
-    'stateColor': constant('#ffffff')
+    'strokeColor': constant('#bebebe'),
+    'stateColor': constant('#ffffff'),
+    'undefined': constant(undefined)
   }, 'label')
 });
 
