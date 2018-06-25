@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
     RunFields.persona.siblings,
     RunFields.persona.age_group,
     RunFields.persona.zipcode
-  ];
+  ].map(wrapFieldForShowPersona);
   sizeField = wrapFieldForShowPersona(RunFields.persona.siblings);
   colorField = wrapFieldForShowPersona(RunFields.persona.age_group);
   shapeField = wrapFieldForShowPersona(RunFields.fixed);
-  scatterPlotX = RunFields.timeMillis;
-  scatterPlotY = RunFields.persona.height;
+  scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
+  scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);
 
   constructor() { }
   ngOnInit() { }

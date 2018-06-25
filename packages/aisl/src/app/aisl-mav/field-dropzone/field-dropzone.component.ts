@@ -6,7 +6,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { BoundField, Field } from '@ngx-dino/core';
+import { Field } from '@ngx-dino/core';
 import { FieldHoverService } from '../shared/field-hover.service';
 
 @Component({
@@ -18,20 +18,16 @@ export class FieldDropzoneComponent implements OnInit {
   selectionClass = '';
 
   @Input() mappingKey: string;
-  @Input() field: BoundField<any>;
-  @Output() fieldChange = new EventEmitter<BoundField<any>>();
+  @Input() field: Field<any>;
+  @Output() fieldChange = new EventEmitter<Field<any>>();
 
   constructor(private hoverService: FieldHoverService) { }
 
   ngOnInit() { }
 
   fieldDropped(field: Field<any>) {
-    this.field = field.getBoundField(this.mappingKey);
+    this.field = field;
 
-    // FIXME: Remove this
-    if (!this.field) {
-      this.field = field.getBoundField();
-    }
     this.fieldChange.emit(this.field);
   }
 
