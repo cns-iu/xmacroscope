@@ -12,6 +12,8 @@ import { DataType } from '../shared/data-types';
 import { SharedDataService } from '../shared/shared-data.service';
 import { DatatableService } from '../shared/datatable.service';
 
+import { RunFields } from '../fields';
+
 @Component({
   selector: 'aisl-datatable',
   templateUrl: './datatable.component.html',
