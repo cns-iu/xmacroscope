@@ -24,11 +24,11 @@ export class ChangeTracker {
       return self;
     }, this).map(() => {
       return this.convertMessagesToChanges();
-    });
+    }).share();
   }
 
   asObservable(): Observable<RawChangeSet> {
-    return this.mappedStream.share();
+    return this.mappedStream;
   }
 
   private accumulateMessage(message: RaceCompletedMessage): void {
