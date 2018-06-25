@@ -6,13 +6,8 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { assign, mapValues, pick, values } from 'lodash';
+import { DatumId, Field, BoundField, RawChangeSet } from '@ngx-dino/core';
 
-import { DatumId, BoundField, RawChangeSet } from '@ngx-dino/core';
-import { combine } from '@ngx-dino/core/src/operators/methods/grouping/combine';
-
-import * as commonFields from '../shared/common-fields'; // TODO
-import * as scatterplotFields from '../shared/scatterplot-fields'; // TODO
 import { DataType } from '../shared/data-types';
 import { SharedDataService } from '../shared/shared-data.service';
 import { DatatableService } from '../shared/datatable.service';
@@ -25,40 +20,20 @@ import { DatatableService } from '../shared/datatable.service';
 })
 export class DatatableComponent implements OnInit {
   @Input() dataStream: any[] | Observable<any[]> | Observable<RawChangeSet>;
+  @Input() fields: Field<any>[];
   @Output() rowClick: Observable<number> = new EventEmitter();
 
   idField: BoundField<DatumId>;
   dataSource: Observable<DataType[][]>;
-  fields: BoundField<DataType>[];
 
   get columns(): string[] {
-    return (this.fields || []).map((f) => f.field.label);
+    return (this.fields || []).map((f) => f.label);
   }
 
   constructor(
     private sharedService: SharedDataService,
     private datatableService: DatatableService
   ) {
-      const combinedFields = assign({}, pick(commonFields, [
-        'pointColorFields.default', 'pointShapeFields.default'
-        ]), pick(scatterplotFields, [
-          'pointIdField',
-          'pointSizeFields.default', 'pointPositionFields.default'
-        ])
-      );
-
-      const combinedBoundFields = mapValues(combinedFields, // mapping to bound fields
-        (d: any) => {
-          if  (d.default) {
-            return d.default.getBoundField();
-          } else {
-            return d.getBoundField();
-          }
-        });
-
-      this.fields = values(combinedBoundFields);
-      this.idField = combinedBoundFields.pointIdField;
-
       this.dataStream = this.sharedService.dataStream;
   }
 
@@ -69,7 +44,7 @@ export class DatatableComponent implements OnInit {
   makeDataSource() {
     const stream = this.normalizeDataStream();
     this.dataSource = this.datatableService.processData(
-      stream, this.idField, this.fields
+      stream, this.idField, this.fields.map(f => f.getBoundField())
     );
   }
 

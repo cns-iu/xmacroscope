@@ -9,14 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts",
-    "../../aisl-*/**/*.spec.ts",
-    "../../dino-*/**/*.spec.ts",
-    "../../mav/**/*.spec.ts"
+    "../../aisl-api/**/*.spec.ts"
   ],
   "include": [
     "**/*.ts",
-    "../../aisl-*/**/*.ts",
-    "../../dino-*/**/*.ts",
-    "../../mav/**/*.ts"
+    "../../aisl-api/**/*.ts"
   ]
 }

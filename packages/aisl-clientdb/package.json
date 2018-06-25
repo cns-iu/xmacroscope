@@ -7,7 +7,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "ng-packagr -p package.json",
-    "worker": "webpack --config webpack.worker.config.js"
+    "worker": "node --max-old-space-size=8192 node_modules/.bin/webpack --config webpack.worker.config.js"
   },
   "private": true,
   "ngPackage": {
@@ -33,12 +33,6 @@
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.18.0",
     "moment": "^2.20.0",
-    "pouchdb-adapter-http": "^6.4.1",
-    "pouchdb-adapter-idb": "^6.4.1",
-    "pouchdb-adapter-localstorage": "^6.4.1",
-    "pouchdb-adapter-memory": "^6.4.1",
-    "pouchdb-adapter-websql": "^6.4.1",
-    "rxdb": "^7.3.0",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
@@ -46,11 +40,6 @@
     "@angular/cli": "^1.6.1",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
-    "@types/pouchdb-adapter-http": "^6.1.2",
-    "@types/pouchdb-adapter-idb": "^6.1.2",
-    "@types/pouchdb-adapter-localstorage": "^6.1.2",
-    "@types/pouchdb-adapter-memory": "^6.1.2",
-    "@types/pouchdb-adapter-websql": "^6.1.2",
     "codelyzer": "^4.0.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
