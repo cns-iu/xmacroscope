@@ -6,8 +6,8 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "ng-packagr -p package.json",
-    "worker": "node --max-old-space-size=8192 node_modules/.bin/webpack --config webpack.worker.config.js"
+    "build": "yarn worker && ng-packagr -p package.json",
+    "worker": "webpack --config webpack.worker.config.js"
   },
   "private": true,
   "ngPackage": {

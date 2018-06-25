@@ -43,14 +43,6 @@ module.exports = {
         ]
       },
       {
-        loader: 'worker-loader',
-        options: { inline: true, fallback: false }
-      },
-      {
-        "test": /\.json$/,
-        "loader": "json-loader"
-      },
-      {
         "test": /\.ts$/,
         "loader": "@ngtools/webpack",
         options: {

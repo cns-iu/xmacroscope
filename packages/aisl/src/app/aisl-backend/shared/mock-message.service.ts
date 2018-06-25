@@ -11,7 +11,7 @@ export class MockMessageService {
   private _mocking = false;
 
   constructor(private graphQLMessageService: GraphQLMessageService, private localMessageService: MessageService) {
-    this.mocker = new RaceMocker(localMessageService);
+    this.mocker = new RaceMocker(graphQLMessageService);
   }
 
   get mocking(): boolean {

@@ -19,9 +19,9 @@ export class GraphQLMessageService {
   raceCompleted: Observable<RaceCompletedMessage>;
 
   constructor(private messageService: MessageService, private apollo: Apollo) {
-    // this.listenForRunSelected();
-    // this.listenForRaceInitiated();
-    // this.listenForRaceCompleted();
+    this.listenForRunSelected();
+    this.listenForRaceInitiated();
+    this.listenForRaceCompleted();
   }
 
   send(message: Message) {
