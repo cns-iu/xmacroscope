@@ -6,7 +6,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 
-import { createClientDBLink } from 'aisl-clientdb';
+import { createClientDBLink } from '../aisl-backend/clientdb/client-link';
 
 import { environment } from '../shared';
 
@@ -30,18 +30,19 @@ export class GraphqlConnectionModule {
   createLink(endpoint: string): ApolloLink {
     if (endpoint === 'clientdb') {
       return createClientDBLink();
-    }
-    if (endpoint.startsWith('/')) {
-      const url = new URL(endpoint, window.location.href);
-      url.protocol = url.protocol.replace('http', 'ws');
-      endpoint = url.href;
-    }
-
-    return new WebSocketLink({
-      uri: endpoint,
-      options: {
-        reconnect: true
+    } else {
+      if (endpoint.startsWith('/')) {
+        const url = new URL(endpoint, window.location.href);
+        url.protocol = url.protocol.replace('http', 'ws');
+        endpoint = url.href;
       }
-    });
+
+      return new WebSocketLink({
+        uri: endpoint,
+        options: {
+          reconnect: true
+        }
+      });
+    }
   }
 }
