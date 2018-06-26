@@ -8,7 +8,9 @@ import { RunFields, wrapFieldForShowPersona } from '../fields';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+  personaIdField = RunFields.persona.id;
   encodingFields = [
+    RunFields.persona.persona,
     RunFields.timeMillis,
     RunFields.persona.height,
     RunFields.persona.siblings,
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
   scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
   scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);
 
-  constructor() { }
+  constructor() {
+  }
   ngOnInit() { }
 }

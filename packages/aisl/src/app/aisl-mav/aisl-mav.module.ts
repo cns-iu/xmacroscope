@@ -10,6 +10,7 @@ import { GeomapComponent } from './geomap/geomap.component';
 import { HomeComponent } from './home/home.component';
 import { ScatterplotComponent } from './scatterplot/scatterplot.component';
 import { DatatableComponent } from './datatable/datatable.component';
+import { AislPersonaComponent } from './aisl-persona/aisl-persona.component';
 import { AttributeSelectorComponent } from './attribute-selector/attribute-selector.component';
 import { FieldDropzoneComponent } from './field-dropzone/field-dropzone.component';
 
@@ -21,6 +22,7 @@ const components: any[] = [
   HomeComponent,
   ScatterplotComponent,
   DatatableComponent,
+  AislPersonaComponent,
   GeomapComponent,
   ScatterplotComponent,
   AttributeSelectorComponent,

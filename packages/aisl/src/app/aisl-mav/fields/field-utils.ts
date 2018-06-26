@@ -69,11 +69,18 @@ export const persona = new Field({
     'shape': access('persona.icon'),
     'color': access('persona.color'),
     'strokeColor': constant('#000000'),
-    'size': constant(100)
+    'size': constant(100),
+    'label': combine({
+      'shape': access('persona.icon'),
+      'color': access('persona.color')
+    })
   }
 });
 
 export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
+  if (field === persona) {
+    return field;
+  }
   const wrap = function(key) {
     const personaOp = persona.getBoundField(key).operator;
     const fieldOp = field.getBoundField(key).operator;
@@ -93,6 +100,9 @@ export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
     if (!mapping.hasOwnProperty(key)) {
       mapping[key] = field.getBoundField(key).operator;
     }
+  }
+  if (field.getBoundField()) {
+    mapping[Field.defaultSymbol] = field.getBoundField().operator;
   }
 
   return new Field<T>({

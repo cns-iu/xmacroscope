@@ -7,8 +7,6 @@ import {
   simpleField
 } from '@ngx-dino/core';
 import '@ngx-dino/core/src/operators/add/common';
-import { DataType } from './data-types';
-
 
 @Injectable()
 export class DatatableService {
@@ -17,8 +15,8 @@ export class DatatableService {
   processData(
     stream: Observable<RawChangeSet>,
     idField: BoundField<DatumId>,
-    fields: BoundField<DataType>[]
-  ): Observable<DataType[][]> {
+    fields: BoundField<any>[]
+  ): Observable<any[][]> {
     const cfield = simpleField({
       label: 'Combined fields',
       operator: Operator.combine<any, any[]>(fields.map((f) => f.operator))
@@ -27,7 +25,8 @@ export class DatatableService {
       stream, idField, {data: cfield}
     );
     return processor.asObservable().map(() => {
-      return processor.processedCache.cache.items.valueSeq().map((datum) => {
+      return processor.processedCache.cache.items.valueSeq().reverse()
+        .map((datum) => {
         return datum['data'];
       }).toArray();
     });
