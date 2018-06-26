@@ -3,8 +3,11 @@
     <button mat-raised-button class="restart-button">RESTART</button>
     <div class="data-table-box">
       <div class="table">
-        <!-- <aisl-datatable></aisl-datatable> -->
-        <mav-attribute-selector [fields]="encodingFields"></mav-attribute-selector>
+        <aisl-datatable
+          [fields]="encodingFields"
+          [idField]="personaIdField">
+        </aisl-datatable>
+        <!-- <mav-attribute-selector [fields]="encodingFields"></mav-attribute-selector> -->
       </div>
     </div>
   </div>

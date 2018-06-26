@@ -1,14 +1,15 @@
 <div class="datatable">
     <mat-table [dataSource]="dataSource" class="table">
-      <ng-container *ngFor="let col of fields; index as i;" [matColumnDef]="col.field.label" class="container">
-        <mat-header-cell *matHeaderCellDef>{{col.field.label}}</mat-header-cell>
+      <ng-container *ngFor="let field of fields; index as i" [matColumnDef]="field.label" class="container">
+        <mat-header-cell [mavDraggable]="field" *matHeaderCellDef>{{field.label}}</mat-header-cell>
         <mat-cell *matCellDef="let item"
-                  [ngSwitch]="col.field.id">
+                  [mavDraggable]="field"
+                  [ngSwitch]="field.id">
   
-          <div *ngSwitchCase="'runner'">
-            ( R )
-          </div>
-  
+          <aisl-persona *ngSwitchCase="'persona'" 
+            [shape]="item[i].shape" [color]="item[i].color">
+          </aisl-persona>
+
           <div *ngSwitchDefault [innerHTML]="item[i]">
           </div>
   

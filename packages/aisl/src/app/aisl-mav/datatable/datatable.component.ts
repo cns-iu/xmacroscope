@@ -6,11 +6,13 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { DatumId, Field, BoundField, RawChangeSet } from '@ngx-dino/core';
+import { DatumId, Field, BoundField, RawChangeSet, simpleField } from '@ngx-dino/core';
+import { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 
-import { DataType } from '../shared/data-types';
 import { SharedDataService } from '../shared/shared-data.service';
 import { DatatableService } from '../shared/datatable.service';
+
+import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-datatable',
@@ -20,11 +22,12 @@ import { DatatableService } from '../shared/datatable.service';
 })
 export class DatatableComponent implements OnInit {
   @Input() dataStream: any[] | Observable<any[]> | Observable<RawChangeSet>;
+  @Input() idField: Field<DatumId>;
   @Input() fields: Field<any>[];
   @Output() rowClick: Observable<number> = new EventEmitter();
 
-  idField: BoundField<DatumId>;
-  dataSource: Observable<DataType[][]>;
+  dataSource: Observable<any[][]>;
+  indexField = simpleField<any>({id: 'index', label: ' ', operator: constant<string>('0')});
 
   get columns(): string[] {
     return (this.fields || []).map((f) => f.label);
@@ -43,9 +46,16 @@ export class DatatableComponent implements OnInit {
 
   makeDataSource() {
     const stream = this.normalizeDataStream();
+    if (this.fields[0] !== this.indexField) {
+      this.fields = [this.indexField].concat(this.fields);
+    }
     this.dataSource = this.datatableService.processData(
-      stream, this.idField, this.fields.map(f => f.getBoundField())
-    );
+      stream, this.idField.getBoundField('id'),
+      this.fields.map(f => f.getBoundField('label') || f.getBoundField())
+    ).map((data) => {
+      data.forEach((row, index) => row[0] = (index + 1).toLocaleString());
+      return data;
+    });
   }
 
   private normalizeDataStream(): Observable<RawChangeSet> {

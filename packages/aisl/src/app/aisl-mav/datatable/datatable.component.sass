@@ -1,12 +1,21 @@
 .datatable
   overflow: auto
-  max-height: calc(100% - 64px)
+  height: 90.7vh
 
   .table
     background: #3D3D3D
   
   .mat-cell, .mat-header-cell
     color: #FFFFFF
+  
+  .mat-header-cell
+    font-size: 20px
+  
+  .mat-cell
+    font-size: 15px
 
-  .mat-row:nth-child(odd)
+  .mat-header-row, .mat-row
+    height: 6.6vh
+  
+  .mat-row:nth-child(even)
     background-color: #AFAFAA
