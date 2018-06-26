@@ -10,7 +10,7 @@
             [shape]="item[i].shape" [color]="item[i].color">
           </aisl-persona>
 
-          <div *ngSwitchDefault [innerHTML]="item[i]">
+          <div *ngSwitchDefault [innerHTML]="item[i]" class="mav-field-{{ field.id }}">
           </div>
   
         </mat-cell>

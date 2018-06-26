@@ -63,7 +63,7 @@ export function conditionalField<T>(
 export const showPersonaOp = map<any, boolean>((item: any) => item && !!item.showPersona);
 export const persona = new Field({
   id: 'persona',
-  label: 'Persona',
+  label: 'Select Runner',
   dataType: DataType.String,
   mapping: {
     'shape': access('persona.icon'),

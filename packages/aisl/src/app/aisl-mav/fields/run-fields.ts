@@ -35,9 +35,9 @@ export const lane = simpleField<number>({
 
 export const timeMillis = prePostMultiField({
   id: 'timeMillis',
-  label: 'Run Time',
+  label: 'Time (seconds)',
   dataType: DataType.Number,
-  pre: access<number>('timeMillis', 1),
+  pre: map<any, number>((n) => (n.timeMillis || 0) / 1000.0),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
