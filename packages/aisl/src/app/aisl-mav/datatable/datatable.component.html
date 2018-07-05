@@ -5,19 +5,18 @@
         <mat-cell *matCellDef="let item"
                   [mavDraggable]="field"
                   [ngSwitch]="field.id">
-  
-          <aisl-persona *ngSwitchCase="'persona'" 
+
+          <aisl-persona *ngSwitchCase="'persona'"
             [shape]="item[i].shape" [color]="item[i].color">
           </aisl-persona>
 
           <div *ngSwitchDefault [innerHTML]="item[i]">
           </div>
-  
+
         </mat-cell>
       </ng-container>
-  
+
       <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-      <mat-row *matRowDef="let row; index as i; columns: columns;" (click)="rowClick.emit(i)"></mat-row>
+      <mat-row *matRowDef="let row; index as i; columns: columns;" (click)="onClick(i)"></mat-row>
     </mat-table>
 </div>
-  

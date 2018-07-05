@@ -24,7 +24,7 @@ export class DatatableComponent implements OnInit {
   @Input() dataStream: any[] | Observable<any[]> | Observable<RawChangeSet>;
   @Input() idField: Field<DatumId>;
   @Input() fields: Field<any>[];
-  @Output() rowClick: Observable<number> = new EventEmitter();
+  @Output() rowClick: Observable<[number, any]> = new EventEmitter();
 
   dataSource: Observable<any[][]>;
   indexField = simpleField<any>({id: 'index', label: ' ', operator: constant<string>('0')});
@@ -58,6 +58,12 @@ export class DatatableComponent implements OnInit {
     });
   }
 
+  onClick(index: number): void {
+    const item = this.datatableService.processor.rawCache.cache.items
+      .valueSeq().reverse().get(index);
+    (this.rowClick as EventEmitter<[number, any]>).emit([index, item]);
+  }
+
   private normalizeDataStream(): Observable<RawChangeSet> {
     if (Array.isArray(this.dataStream)) {
       return Observable.of(this.dataStream).map(RawChangeSet.fromArray);
@@ -67,5 +73,4 @@ export class DatatableComponent implements OnInit {
       });
     }
   }
-
 }
