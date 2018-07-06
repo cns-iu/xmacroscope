@@ -22,11 +22,18 @@ export class ScatterplotComponent {
   @Input() pointColorField: Field<any> = RunFields.fixed;
   @Input() pointStrokeColorField: Field<any> = RunFields.fixed;
 
+  pulseItem: any;
+
   width = window.innerWidth;
   height = 75 / 100 * window.innerHeight;
   autoresize = true;
 
-  constructor(service: SharedDataService) {
+  constructor(private service: SharedDataService) {
     this.dataStream = service.dataStream;
+  }
+
+  focusItem(item: any): void {
+    // TODO stop stream
+    this.pulseItem = item;
   }
 }

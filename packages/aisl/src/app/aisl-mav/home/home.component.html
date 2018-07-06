@@ -5,7 +5,8 @@
       <div class="table">
         <aisl-datatable
           [fields]="encodingFields"
-          [idField]="personaIdField">
+          [idField]="personaIdField"
+          (rowClick)="splot.focusItem($event[1])">
         </aisl-datatable>
         <!-- <mav-attribute-selector [fields]="encodingFields"></mav-attribute-selector> -->
       </div>
@@ -30,7 +31,7 @@
             <div class="text">Scatter Graph</div>
           </ng-template>
 
-          <aisl-scatterplot
+          <aisl-scatterplot #splot
             [xField]="scatterPlotX"
             [yField]="scatterPlotY"
             [pointShapeField]="shapeField"

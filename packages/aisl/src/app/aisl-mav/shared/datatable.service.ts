@@ -3,13 +3,15 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import {
-  Operator, DatumId, BoundField, RawChangeSet, DataProcessorService,
-  simpleField
+  Operator, DatumId, Datum, BoundField, RawChangeSet, DataProcessorService,
+  DataProcessor, simpleField
 } from '@ngx-dino/core';
 import '@ngx-dino/core/src/operators/add/common';
 
 @Injectable()
 export class DatatableService {
+  public processor: DataProcessor<any, Datum<any>>;
+
   constructor(private service: DataProcessorService) { }
 
   processData(
@@ -21,7 +23,7 @@ export class DatatableService {
       label: 'Combined fields',
       operator: Operator.combine<any, any[]>(fields.map((f) => f.operator))
     }).getBoundField();
-    const processor = this.service.createProcessor(
+    const processor = this.processor = this.service.createProcessor(
       stream, idField, {data: cfield}
     );
     return processor.asObservable().map(() => {
