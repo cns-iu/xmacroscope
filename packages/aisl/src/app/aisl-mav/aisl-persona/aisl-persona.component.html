@@ -1,1 +1,17 @@
-<div [style.background-color]="color" class="persona">{{ shape }}</div>
+<div class="persona-container">
+  <svg [attr.width]="backgroundSize.width" [attr.height]="backgroundSize.height">
+    <circle class="background"
+      [attr.r]="backgroundRadius" 
+      [attr.width]="backgroundSize.width" 
+      [attr.height]="backgroundSize.height" 
+      [attr.transform]="pathPosition"
+      [attr.fill]="backgroundColor"
+      [attr.stroke]="backgroundStrokeColor">
+    </circle>
+      <path
+        [attr.d]="pathDefinition"
+        [attr.fill]="pathFill"
+        [attr.transform]="pathPosition">
+      </path>
+  </svg>
+</div>

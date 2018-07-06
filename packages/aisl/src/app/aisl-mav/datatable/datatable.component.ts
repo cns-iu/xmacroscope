@@ -1,18 +1,16 @@
 import {
   Component, Input, Output,
-  OnInit, OnChanges,
-  SimpleChanges, EventEmitter
+  OnInit, EventEmitter
 } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { DatumId, Field, BoundField, RawChangeSet, simpleField } from '@ngx-dino/core';
+import { DatumId, Field, RawChangeSet, simpleField } from '@ngx-dino/core';
 import { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 
 import { SharedDataService } from '../shared/shared-data.service';
 import { DatatableService } from '../shared/datatable.service';
 
-import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-datatable',
