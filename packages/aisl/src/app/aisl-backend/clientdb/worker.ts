@@ -1,8 +1,8 @@
 import { createWorker, handleSubscriptions } from 'apollo-link-webworker';
 
-import { schema } from './graphql/schema';
-import { context } from './graphql/context';
-import { pubsub } from './graphql/subscriptions';
+import { schema } from './schema';
+import { context } from './context';
+import { pubsub } from './subscriptions';
 
 createWorker({
   schema,

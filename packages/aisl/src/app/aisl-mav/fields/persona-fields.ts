@@ -89,7 +89,7 @@ export const location = simpleField<number[]>({
 
 export const height = prePostMultiField({
   id: 'persona.height',
-  label: 'Height',
+  label: 'Height (inches)',
   dataType: DataType.Number,
   pre: access<number>('persona.height', 36),
   post: identity(),
@@ -122,7 +122,7 @@ export const height = prePostMultiField({
 
 export const siblings = prePostMultiField({
   id: 'persona.siblings',
-  label: 'Siblings',
+  label: '# Siblings',
   dataType: DataType.Number,
   pre: chain<number, string>(access<number>('persona.siblings', 1), map(String)),
   post: identity(),

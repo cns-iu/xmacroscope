@@ -20,8 +20,8 @@ module.exports = {
     ]
   },
   "entry": {
-    "src/worker.bundle": [
-      './src/worker.ts'
+    "src/app/aisl-backend/clientdb/worker.bundle": [
+      './src/app/aisl-backend/clientdb/worker.ts'
     ]
   },
 
