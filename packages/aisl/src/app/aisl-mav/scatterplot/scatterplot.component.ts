@@ -21,8 +21,7 @@ export class ScatterplotComponent {
   @Input() pointShapeField: Field<any> = RunFields.fixed;
   @Input() pointColorField: Field<any> = RunFields.fixed;
   @Input() pointStrokeColorField: Field<any> = RunFields.fixed;
-
-  pulseItem: any;
+  @Input() pointPulseField: Field<boolean> = RunFields.fixed;
 
   width = window.innerWidth;
   height = 75 / 100 * window.innerHeight;
@@ -34,6 +33,6 @@ export class ScatterplotComponent {
 
   focusItem(item: any): void {
     // TODO stop stream
-    this.pulseItem = item;
+    // TODO send update with pulse === true
   }
 }

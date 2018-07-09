@@ -22,6 +22,7 @@ export const fixed = new Field<any>({
     'color': constant('#cccccc'),
     'strokeColor': constant('#bebebe'),
     'stateColor': constant('#ffffff'),
+    'pulse': constant(false),
     'undefined': constant(undefined)
   }, 'label')
 });

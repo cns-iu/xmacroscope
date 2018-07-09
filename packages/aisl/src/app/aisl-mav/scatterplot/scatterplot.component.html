@@ -2,18 +2,17 @@
   [dataStream]="dataStream"
   [pointIdField]="fields.id.getBoundField('id')"
 
-  [pulseItem]="pulseItem"
-
   [xField]="xField?.getBoundField('axis')"
   [yField]="yField?.getBoundField('axis')"
   [sizeField]="pointShapeField?.getBoundField('size')"
   [colorField]="pointColorField?.getBoundField('color')"
   [strokeColorField]="pointStrokeColorField?.getBoundField('strokeColor')"
   [shapeField]="pointShapeField?.getBoundField('shape')"
+  [pulseField]="pointPulseField?.getBoundField('pulse')"
 
   [width]="width"
   [height]="height"
   [autoresize]="autoresize"
-  
+
   [gridlines]="true">
 </dino-scatterplot>
