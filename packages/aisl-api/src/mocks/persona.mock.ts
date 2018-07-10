@@ -6,7 +6,7 @@ import { Persona } from '../models/persona';
 const ALL_SHAPES: string[] = ['circle', 'square', 'cross', 'diamond',
   'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star'
 ];
-const SHAPES: string[] = ['square', 'cross', 'diamond', 'triangle-up', 'star' ];
+const SHAPES: string[] = ['square', 'cross', 'diamond', 'triangle-up', 'star'];
 const COLORS: string[] = ['#D36E44', '#D30706', '#0707D2', '#8E1BCE', '#D372D2', '#55D4D2', '#9B180F', '#33820D', '#D39827', '#D3D406'];
 const GENDERS: string[] = ['male', 'female', 'other'];
 const AGE_GROUPS: string[] = ['07-09', '10-12', '13-18', '19-30', '31-40', '41-50', '51-60', '61-70', '71+'];

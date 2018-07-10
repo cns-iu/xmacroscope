@@ -68,11 +68,13 @@ export const persona = new Field({
   mapping: {
     'shape': access('persona.icon'),
     'color': access('persona.color'),
-    'strokeColor': constant('#000000'),
-    'size': constant(100),
+    'strokeColor': access('persona.color'),
+    'size': constant(150),
     'label': combine({
       'shape': access('persona.icon'),
-      'color': access('persona.color')
+      'color': access('persona.color'),
+      'strokeColor': access('persona.color'),
+      'size': constant(150),
     })
   }
 });

@@ -13,8 +13,11 @@ export class AislPersonaComponent implements OnInit, OnChanges {
   @Input() shape: string;
   @Input() shapeSize = 300;
 
-  @Input() backgroundColor = '#FFFFFF';
-  @Input() backgroundStrokeColor = '#AFAFAA';
+  @Input() pathStrokeColor = '#bebebe';
+  @Input() pathStrokeSize = 2;
+
+  @Input() backgroundColor = '#ffffff';
+  @Input() backgroundStrokeColor = '#afafaa';
   @Input() backroundStrokeWidth = 4;
   @Input() backgroundSize = { width: 50, height: 50 };
   @Input() backgroundRadius = 22;

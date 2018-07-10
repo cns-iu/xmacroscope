@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ].map(wrapFieldForShowPersona);
   sizeField = wrapFieldForShowPersona(RunFields.persona.siblings);
   colorField = wrapFieldForShowPersona(RunFields.fixed);
+  strokeColorField = wrapFieldForShowPersona(RunFields.fixed);
   shapeField = wrapFieldForShowPersona(RunFields.fixed);
   scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
   scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);
