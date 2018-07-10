@@ -24,6 +24,8 @@ export class DatatableComponent implements OnInit {
   @Input() fields: Field<any>[];
   @Output() rowClick: Observable<[number, any]> = new EventEmitter();
 
+  selectedIndex: number;
+
   dataSource: Observable<any[][]>;
   indexField = simpleField<any>({id: 'index', label: ' ', operator: constant<string>('0')});
 
@@ -57,6 +59,7 @@ export class DatatableComponent implements OnInit {
   }
 
   onClick(index: number): void {
+    this.selectedIndex = index;
     const item = this.datatableService.processor.rawCache.cache.items
       .valueSeq().reverse().get(index);
     (this.rowClick as EventEmitter<[number, any]>).emit([index, item]);

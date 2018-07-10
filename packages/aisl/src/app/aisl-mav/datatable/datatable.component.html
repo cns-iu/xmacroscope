@@ -20,6 +20,8 @@
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-      <mat-row *matRowDef="let row; index as i; columns: columns;" (click)="onClick(i)"></mat-row>
+      <mat-row *matRowDef="let row; index as i; columns: columns;" (click)="onClick(i)"
+        [class.selected]="i===selectedIndex">
+      </mat-row>
     </mat-table>
 </div>
