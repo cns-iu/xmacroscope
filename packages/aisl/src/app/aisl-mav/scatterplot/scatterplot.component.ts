@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Field, RawChangeSet } from '@ngx-dino/core';
+import { Field, RawChangeSet, Datum, rawDataSymbol } from '@ngx-dino/core';
 
 import { SharedDataService } from '../shared/shared-data.service';
 import { RunFields } from '../fields';
@@ -21,18 +21,36 @@ export class ScatterplotComponent {
   @Input() pointShapeField: Field<any> = RunFields.fixed;
   @Input() pointColorField: Field<any> = RunFields.fixed;
   @Input() pointStrokeColorField: Field<any> = RunFields.fixed;
-  @Input() pointPulseField: Field<boolean> = RunFields.fixed;
+  @Input() pointPulseField: Field<boolean> = RunFields.pulse;
 
   width = window.innerWidth;
   height = 75 / 100 * window.innerHeight;
   autoresize = true;
 
+  private currentFocusItem: any;
+
   constructor(private service: SharedDataService) {
     this.dataStream = service.dataStream;
   }
 
-  focusItem(item: any): void {
+  focusItem(item: Datum<any>): void {
+    const replace: [any, any][] = [];
+    if (item) {
+      const data = item[rawDataSymbol];
+      const newData = Object.assign({pulse: true}, data);
+      replace.push([data, newData]);
+    }
+    if (this.currentFocusItem) {
+      const data = this.currentFocusItem[rawDataSymbol];
+      const newData = Object.assign({pulse: false}, data);
+      replace.push([data, newData]);
+    }
+
+    this.service.emit(new RawChangeSet(
+      undefined, undefined, undefined, replace
+    ));
+    this.currentFocusItem = item;
+
     // TODO stop stream
-    // TODO send update with pulse === true
   }
 }
