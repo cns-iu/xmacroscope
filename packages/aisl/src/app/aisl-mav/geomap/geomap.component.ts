@@ -22,6 +22,6 @@ export class GeomapComponent {
 
   constructor(service: SharedDataService) {
     this.stateDataStream = Observable.of(new RawChangeSet());
-    this.pointDataStream = service.dataStream;
+    this.pointDataStream = service.createStream();
   }
 }

@@ -15,19 +15,28 @@ import { ChangeTracker } from './change-tracker';
 @Injectable()
 export class SharedDataService {
   private readonly emitter = new Subject<RawChangeSet>();
-  readonly dataStream: Observable<RawChangeSet<any>>;
+  private readonly stopper = new Subject<any>();
+  private readonly dataStream: Observable<RawChangeSet>;
   historySize = 50; // TODO
   highlightCount = 4; // TODO
 
   constructor(private messageService: MessageService) {
-    const origStream = new ChangeTracker(
+    this.dataStream = new ChangeTracker(
       messageService.asObservable(), this.historySize, this.highlightCount
     ).asObservable().share();
-    const mergedStream = Observable.merge(origStream, this.emitter);
-    this.dataStream = mergedStream.takeUntil(origStream.last());
+  }
+
+  createStream() {
+    const stopStream = Observable.merge(this.dataStream.last(), this.stopper);
+    const stoppableStream = this.dataStream.takeUntil(stopStream);
+    return Observable.merge(stoppableStream, this.emitter);
   }
 
   emit(change: RawChangeSet): void {
     this.emitter.next(change);
+  }
+
+  stop() {
+    this.stopper.next('stop');
   }
 }

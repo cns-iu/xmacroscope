@@ -30,7 +30,7 @@ export class ScatterplotComponent {
   private currentFocusItem: any;
 
   constructor(private service: SharedDataService) {
-    this.dataStream = service.dataStream;
+    this.dataStream = service.createStream();
   }
 
   focusItem(item: Datum<any>): void {
@@ -42,8 +42,7 @@ export class ScatterplotComponent {
     }
     if (this.currentFocusItem) {
       const data = this.currentFocusItem[rawDataSymbol];
-      const newData = Object.assign({pulse: false}, data);
-      replace.push([data, newData]);
+      replace.push([data, data]);
     }
 
     this.service.emit(new RawChangeSet(
@@ -51,6 +50,6 @@ export class ScatterplotComponent {
     ));
     this.currentFocusItem = item;
 
-    // TODO stop stream
+    this.service.stop();
   }
 }

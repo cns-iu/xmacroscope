@@ -37,7 +37,7 @@ export class DatatableComponent implements OnInit {
     private sharedService: SharedDataService,
     private datatableService: DatatableService
   ) {
-      this.dataStream = this.sharedService.dataStream;
+      this.dataStream = this.sharedService.createStream();
   }
 
   ngOnInit() {
