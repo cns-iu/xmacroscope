@@ -67,11 +67,19 @@ export const timeMillis = prePostMultiField({
   }, 'axis')
 });
 
+export const pulse = simpleField<boolean>({
+  id: 'pulse',
+  label: 'Pulse',
+  bfieldId: 'pulse',
+  operator: access('pulse', false)
+});
+
 export const RunFields = {
   id,
   avatar: AvatarFields,
   persona: PersonaFields,
   lane,
   timeMillis,
+  pulse,
   fixed
 };
