@@ -22,7 +22,9 @@ const START_RUN = gql`
   }
 `;
 
-function RunningTimerPre({ persona, opponent, opponentName, opponentTime }) {
+function RunningTimerPre({
+  persona, opponent, opponentName, opponentTime,
+}) {
   return (
     <Query
       query={GET_PRE_RACE_DELAY}
