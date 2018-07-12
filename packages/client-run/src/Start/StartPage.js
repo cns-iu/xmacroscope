@@ -5,6 +5,8 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
 import gql from 'graphql-tag';
+import _ from 'lodash';
+import faker from 'faker';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -23,6 +25,63 @@ const GET_RACE_STATE_LOCAL = gql`
   }
 `;
 
+// Generate persona
+// TODO: load these from the signup screen
+const fakeShape = _.sample([
+  'square',
+  'diamond',
+  'crossbars',
+  'triangle-up',
+  'star',
+]);
+
+const fakeColor = _.sample([
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'indigo',
+  'blue',
+  'violet',
+]);
+
+const fakeGender = _.sample([
+  'female',
+  'male',
+  'other',
+]);
+
+const fakeAgeGroup = _.sample([
+  '0-6',
+  '6-14',
+  '15-24',
+  '25-34',
+  '35-44',
+  '45-54',
+  '55-64',
+  '65-74',
+  '75-85',
+  '85+',
+]);
+
+const fakeHandedness = _.sample([
+  'left',
+  'right',
+  'ambidextrous',
+]);
+
+const persona = {
+  name: faker.name.findName(),
+  icon: fakeShape,
+  color: fakeColor,
+  gender: fakeGender,
+  age_group: fakeAgeGroup,
+  handedness: fakeHandedness,
+  zipCode: faker.address.zipCode,
+  state: faker.address.state,
+};
+
+// Modify this so that the fake data is regenerated on the state change
 function StartPage() {
   return (
     <Query query={GET_RACE_STATE_LOCAL}>
@@ -31,10 +90,43 @@ function StartPage() {
         if (error) return `Error! ${error.message}`;
         return (
           <Row>
+            <Col xs={3}>
+              <Row>
+                <Col>
+                  <h1>Signup details placeholder</h1>
+                  <p>
+                    The signup screen is still in development. Currently, we
+                    generate fake runner information each time the opponent
+                    select screen is generated.
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <dl className="row">
+                    <dt className="col-sm-4">Name</dt>
+                    <dd className="col-sm-8">{persona.name}</dd>
+                    <dt className="col-sm-4">Color</dt>
+                    <dd className="col-sm-8">{persona.color}</dd>
+                    <dt className="col-sm-4">Icon</dt>
+                    <dd className="col-sm-8">{persona.icon}</dd>
+                    <dt className="col-sm-4">Gender</dt>
+                    <dd className="col-sm-8">{persona.gender}</dd>
+                    <dt className="col-sm-4">Age group</dt>
+                    <dd className="col-sm-8">{persona.age_group}</dd>
+                    <dt className="col-sm-4">Handedness</dt>
+                    <dd className="col-sm-8">{persona.handedness}</dd>
+                    <dt className="col-sm-4">State</dt>
+                    <dd className="col-sm-8">{persona.state}</dd>
+                  </dl>
+                </Col>
+              </Row>
+            </Col>
             <Col>
               {{
                 opponentSelect: <OpponentSelect />,
                 runTimerPre: <RunningTimerPre
+                  persona={persona}
                   opponent={activeRace.opponent}
                   opponentName={activeRace.opponentName}
                   opponentTime={activeRace.opponentTime}
