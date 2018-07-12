@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --env=dev",
+    "start-smm": "ng serve --env=local",
     "start-prod": "ng serve --prod --aot --sourcemaps",
     "build": "ng build --prod --aot --sourcemaps",
     "test": "ng test",
