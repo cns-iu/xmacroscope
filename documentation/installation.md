@@ -60,7 +60,6 @@ yarn start
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
 
-
 ## Running the application loaclly
 During development you may want to MAV system to point to the database sever, rather than its internal mocking data source.
 
