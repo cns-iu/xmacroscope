@@ -77,8 +77,8 @@ const persona = {
   gender: fakeGender,
   age_group: fakeAgeGroup,
   handedness: fakeHandedness,
-  zipCode: faker.address.zipCode,
-  state: faker.address.state,
+  zipcode: faker.address.zipCode(),
+  state: faker.address.state(),
 };
 
 // Modify this so that the fake data is regenerated on the state change
@@ -118,6 +118,8 @@ function StartPage() {
                     <dd className="col-sm-8">{persona.handedness}</dd>
                     <dt className="col-sm-4">State</dt>
                     <dd className="col-sm-8">{persona.state}</dd>
+                    <dt className="col-sm-4">Zip Code</dt>
+                    <dd className="col-sm-8">{persona.zipcode}</dd>
                   </dl>
                 </Col>
               </Row>
