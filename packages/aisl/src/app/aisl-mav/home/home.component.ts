@@ -32,7 +32,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() { }
 
   restartStream(): void {
-    // TODO clear old + send 50 items
     this.service.start();
   }
 }

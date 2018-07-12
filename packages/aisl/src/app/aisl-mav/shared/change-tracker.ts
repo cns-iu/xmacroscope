@@ -33,6 +33,10 @@ export class ChangeTracker {
     return this.changeStream;
   }
 
+  snapshot(): List<RunData> {
+    return this.accumulator;
+  }
+
   private accumulate(run: RunData): RawChangeSet<RunData> {
     const inserted: RunData[] = [run];
     const removed: RunData[] = [];
@@ -50,7 +54,7 @@ export class ChangeTracker {
     if (count >= highlightCount) {
       const index = count - highlightCount;
       const data = accumulator.get(index);
-      const newData = Object.assign({}, data, {showPersona: false});
+      const newData = Object.assign(data, {showPersona: false});
       replaced.push([data, newData]);
     }
 
