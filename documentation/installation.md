@@ -42,10 +42,10 @@ git submodule update
 ## Setup environment
 ### Client
 ```
-cp clientRun/env.development.example clientRun/.env.development
+cp client-run/env.development.example client-run/.env.development
 ```
 REACT_APP_GRAPHQL_URL: Leave at the default unless you're running the GraphQL in a unique location.
-REACT_APP_LOCATION: Select a location for your installation. Options can be found in the `packages/serverGraphQL/src/db/seeders/*-demo-settings.js` file
+REACT_APP_LOCATION: Select a location for your installation. Options can be found in the `packages/server-graphql/src/db/seeders/*-demo-settings.js` file
 ### Server
 ```
 cp graphQLServer/env.example graphQLServer/.env

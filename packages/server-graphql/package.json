@@ -1,5 +1,5 @@
 {
-  "name": "serverGraphQL",
+  "name": "server-graphql",
   "version": "0.0.1",
   "description": "GraphQL server for the Macroscope system",
   "main": "index.js",
