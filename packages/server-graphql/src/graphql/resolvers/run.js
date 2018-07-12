@@ -26,6 +26,8 @@ const runStart = baseResolver
     gender: args.run.persona.gender,
     ageGroup: args.run.persona.age_group,
     handedness: args.run.persona.handedness,
+    zipcode: args.run.persona.zipcode,
+    state: args.run.persona.state,
     Runs: {
       start: args.run.start,
       opponent: args.run.opponent,
