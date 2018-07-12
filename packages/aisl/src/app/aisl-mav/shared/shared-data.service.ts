@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/last';
-import 'rxjs/add/operator/share';
-import 'rxjs/add/operator/takeUntil';
+import { merge, mergeAll, share, windowToggle } from 'rxjs/operators';
 
 import { RawChangeSet } from '@ngx-dino/core';
 
@@ -14,29 +11,49 @@ import { ChangeTracker } from './change-tracker';
 
 @Injectable()
 export class SharedDataService {
+  private readonly changeTracker: ChangeTracker;
+  private readonly rawStream: Observable<RawChangeSet>;
   private readonly emitter = new Subject<RawChangeSet>();
+  private readonly starter = new Subject<any>();
   private readonly stopper = new Subject<any>();
-  private readonly dataStream: Observable<RawChangeSet>;
+  private readonly stream: Observable<RawChangeSet>;
+  private running = true;
+
   historySize = 50; // TODO
   highlightCount = 4; // TODO
 
   constructor(private messageService: MessageService) {
-    this.dataStream = new ChangeTracker(
+    this.changeTracker = new ChangeTracker(
       messageService.asObservable(), this.historySize, this.highlightCount
-    ).asObservable().share();
+    );
+    this.stream = this.changeTracker.asObservable().pipe(
+      windowToggle(this.starter, () => this.stopper),
+      mergeAll() as (s: any) => Observable<RawChangeSet>,
+      merge(this.emitter),
+      share()
+    );
+    setTimeout(() => this.starter.next(), 0);
   }
 
-  createStream() {
-    const stopStream = Observable.merge(this.dataStream.last(), this.stopper);
-    const stoppableStream = this.dataStream.takeUntil(stopStream);
-    return Observable.merge(stoppableStream, this.emitter);
+  createStream(): Observable<RawChangeSet> {
+    return this.stream;
   }
 
   emit(change: RawChangeSet): void {
     this.emitter.next(change);
   }
 
-  stop() {
-    this.stopper.next('stop');
+  start(): void {
+    if (!this.running) {
+      this.starter.next();
+      this.running = true;
+    }
+  }
+
+  stop(): void {
+    if (this.running) {
+      this.stopper.next();
+      this.running = false;
+    }
   }
 }

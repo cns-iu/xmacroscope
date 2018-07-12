@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Field, RawChangeSet, Datum, rawDataSymbol } from '@ngx-dino/core';
+import {
+  Field, RawChangeSet, Datum, idSymbol, rawDataSymbol
+} from '@ngx-dino/core';
 
 import { SharedDataService } from '../shared/shared-data.service';
 import { RunFields } from '../fields';
@@ -35,21 +37,27 @@ export class ScatterplotComponent {
 
   focusItem(item: Datum<any>): void {
     const replace: [any, any][] = [];
+    let itemId;
+    let currentId;
     if (item) {
       const data = item[rawDataSymbol];
       const newData = Object.assign({pulse: true}, data);
+      itemId = item[idSymbol];
       replace.push([data, newData]);
     }
     if (this.currentFocusItem) {
       const data = this.currentFocusItem[rawDataSymbol];
+      currentId = this.currentFocusItem[idSymbol];
       replace.push([data, data]);
     }
 
-    this.service.emit(new RawChangeSet(
-      undefined, undefined, undefined, replace
-    ));
-    this.currentFocusItem = item;
+    if (itemId !== currentId) {
+      this.service.emit(new RawChangeSet(
+        undefined, undefined, undefined, replace
+      ));
+      this.currentFocusItem = item;
 
-    this.service.stop();
+      this.service.stop();
+    }
   }
 }

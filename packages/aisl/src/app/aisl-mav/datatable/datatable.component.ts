@@ -44,7 +44,11 @@ export class DatatableComponent implements OnInit {
     this.makeDataSource();
   }
 
-  makeDataSource() {
+  resetSelection(): void {
+    this.selectedIndex = undefined;
+  }
+
+  makeDataSource(): void {
     const stream = this.normalizeDataStream();
     if (this.fields[0] !== this.indexField) {
       this.fields = [this.indexField].concat(this.fields);

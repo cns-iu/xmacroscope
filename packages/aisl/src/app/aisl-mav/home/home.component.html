@@ -1,9 +1,14 @@
 <div class="container">
   <div class="first-column">
-    <button mat-raised-button class="restart-button">RESTART</button>
+    <button
+      mat-raised-button
+      class="restart-button"
+      (click)="[dtable.resetSelection(), restartStream()]">
+    RESTART
+    </button>
     <div class="data-table-box">
       <div class="table">
-        <aisl-datatable
+        <aisl-datatable #dtable
           [fields]="encodingFields"
           [idField]="personaIdField"
           (rowClick)="splot.focusItem($event[1])">
