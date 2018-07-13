@@ -50,7 +50,7 @@ const runStart = baseResolver
         },
       };
       pubsub.publish('race-initiated', publishPayload);
-      return createdPerson;
+      return createdPerson.Runs[0].id;
     }));
 
 // Update an existing run record with a finish time, return the ID
