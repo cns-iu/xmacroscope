@@ -12,7 +12,7 @@ import { MockPersona } from './persona.mock';
 export class RaceMocker {
   private _mocking = false;
 
-  constructor(private messageService: { send: (message: Message) => void }) {}
+  constructor(private messageService: { send: (message: Message) => void }, private initialFakes = 0) {}
 
   send(message: Message) {
     this.messageService.send(message);
@@ -25,7 +25,7 @@ export class RaceMocker {
   startMocking() {
     if (!this.mocking) {
       this._mocking = true;
-      setTimeout(() => this.sendPastRuns(50), 10);
+      setTimeout(() => this.sendPastRuns(this.initialFakes), 10);
       this.mockRace();
     }
   }
