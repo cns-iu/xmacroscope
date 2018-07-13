@@ -76,7 +76,7 @@ const runFinish = baseResolver
         db.person.findOne({ where: { id: completedRun.personId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const publishPayload = {
-              raceInitiated: {
+              raceCompleted: {
                 type: 'race-completed',
                 avatar: {
                   id: args.run.opponent,
