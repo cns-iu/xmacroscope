@@ -33,6 +33,7 @@ const sequelize = new Sequelize(
     dialect,
     storage,
     operatorsAliases,
+    logging: false,
   },
 );
 
