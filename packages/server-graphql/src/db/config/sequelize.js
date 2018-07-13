@@ -23,6 +23,9 @@ const storage = dialect === 'sqlite'
 // Sequelize operator aliases are a security issue, disable them.
 const operatorsAliases = false;
 
+// Don't log every SQL call to the console
+const logging = false;
+
 // Create DB connection
 const sequelize = new Sequelize(
   database,
@@ -33,7 +36,7 @@ const sequelize = new Sequelize(
     dialect,
     storage,
     operatorsAliases,
-    logging: false,
+    logging,
   },
 );
 

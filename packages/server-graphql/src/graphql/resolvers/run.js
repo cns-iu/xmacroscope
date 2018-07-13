@@ -1,3 +1,4 @@
+import moment from 'moment';
 import baseResolver from './baseResolver';
 import db from '../../db/models/index';
 import pubsub from './subscriptions';
@@ -37,7 +38,7 @@ const runStart = baseResolver
     include: [db.run],
   })
     .then((createdPerson) => {
-      // Publish a message with the race initiation data.
+      // Publish race initiation for MAV
       const publishPayload = {
         raceInitiated: {
           type: 'race-initiated',
@@ -59,8 +60,46 @@ const runFinish = baseResolver
     { end: args.run.finish },
     { where: { id: args.run.id } },
   ).then((updatedRuns) => {
-    console.log('Updating a run record');
-    // Send message here
+    // We get the raw data object here instead of a Sequelize object
+    // so that we can access the personId without worry about the association
+    db.run.findOne({
+      attributes: ['start', 'end', 'personId'],
+      where: { id: args.run.id },
+      raw: true,
+    })
+      .then((completedRun) => {
+        // Pulling the raw data requires us to make a date object out of the
+        // string before we pass it to moment
+        const startTime = moment(new Date(completedRun.start));
+        const endTime = moment(moment(new Date(completedRun.end)));
+
+        db.person.findOne({ where: { id: completedRun.personId } })
+          .then(runnerPerson => runnerPerson).then((runnerPerson) => {
+            const publishPayload = {
+              raceInitiated: {
+                type: 'race-completed',
+                avatar: {
+                  id: args.run.opponent,
+                  name: args.run.opponentName,
+                  runMillis: args.run.opponentTime,
+                },
+                run: {
+                  lane: 1,
+                  persona: runnerPerson,
+                  started: true,
+                  // TODO: Step 1 - generate random false starts on client
+                  // TODO: Step 2 - generate false start from sensor
+                  falseStart: false,
+                  timeMillis: endTime.diff(startTime),
+                },
+              },
+            };
+            console.log(publishPayload);
+            console.log('----^ ^ ^ ^ ^ publishPayload ^ ^ ^ ^ ^----');
+            pubsub.publish('race-completed', publishPayload);
+          });
+      });
+    // Publish race completion for MAV
     return updatedRuns;
   }));
 
