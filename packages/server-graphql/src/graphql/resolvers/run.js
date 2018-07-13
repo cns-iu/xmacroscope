@@ -83,19 +83,29 @@ const runFinish = baseResolver
                   name: args.run.opponentName,
                   runMillis: args.run.opponentTime,
                 },
-                run: {
-                  lane: 1,
-                  persona: runnerPerson,
-                  started: true,
-                  // TODO: Step 1 - generate random false starts on client
-                  // TODO: Step 2 - generate false start from sensor
-                  falseStart: false,
-                  timeMillis: endTime.diff(startTime),
-                },
+                results: [
+                  {
+                    lane: 1,
+                    persona: {
+                      name: runnerPerson.name,
+                      icon: runnerPerson.icon,
+                      color: runnerPerson.color,
+                      gender: runnerPerson.gender,
+                      ageGroup: runnerPerson.ageGroup,
+                      handedness: runnerPerson.handedness,
+                      state: runnerPerson.state,
+                    },
+                    started: true,
+
+                    // TODO: Step 1 - generate random false starts on client
+                    // TODO: Step 2 - generate false start from sensor
+                    falseStart: false,
+
+                    timeMillis: endTime.diff(startTime),
+                  },
+                ],
               },
             };
-            console.log(publishPayload);
-            console.log('----^ ^ ^ ^ ^ publishPayload ^ ^ ^ ^ ^----');
             pubsub.publish('race-completed', publishPayload);
           });
       });
