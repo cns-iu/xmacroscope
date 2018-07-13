@@ -25,6 +25,7 @@ export class RaceMocker {
   startMocking() {
     if (!this.mocking) {
       this._mocking = true;
+      setTimeout(() => this.sendPastRuns(50), 10);
       this.mockRace();
     }
   }
@@ -85,5 +86,30 @@ export class RaceMocker {
       falseStart: casual.coin_flip,
       timeMillis: time
     };
+  }
+
+  private sendPastRuns(count: number): void {
+    let i = 0;
+
+    // Evil! Hijack send method
+    const oldSend = this.send;
+    this.send = (message: Message) => {
+      message.timestamp.setMinutes(i);
+      oldSend.call(this, message);
+    }
+
+    for (;i < count; ++i) {
+      this.sendFullRace();
+    }
+
+    // Restore send method
+    delete this.send;
+  }
+
+  private sendFullRace(): void {
+    const raceCompletedTime = casual.integer(1000, 4000);
+    const runSelectedMessage = this.runSelected();
+    this.raceInitiated(runSelectedMessage.avatar);
+    this.raceCompleted(runSelectedMessage.avatar, raceCompletedTime);
   }
 }
