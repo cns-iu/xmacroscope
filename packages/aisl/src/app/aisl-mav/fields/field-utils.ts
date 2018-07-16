@@ -18,6 +18,10 @@ export { lookup } from '@ngx-dino/core/src/operators/methods/extracting/lookup';
 export { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 export { autoId } from '@ngx-dino/core/src/operators/methods/generating/auto-id';
 
+import { Colorscale } from './colorscale';
+
+export const greyscale = new Colorscale('#bdbdbd', '#ffffff', 4);
+
 export function mappingWithDefault(mapping: any, defaultKey: string): any {
   mapping[Field.defaultSymbol] = mapping[defaultKey];
   return mapping;
