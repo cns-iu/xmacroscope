@@ -6,7 +6,6 @@
       (click)="[dtable.resetSelection(), restartStream()]">
     RESTART
     </button>
-    <div class="data-table-box">
       <div class="table">
         <aisl-datatable #dtable
           [fields]="encodingFields"
@@ -15,16 +14,15 @@
         </aisl-datatable>
         <!-- <mav-attribute-selector [fields]="encodingFields"></mav-attribute-selector> -->
       </div>
-    </div>
   </div>
-
+ 
   <div class="second-column">
-    <div class="item visualization-box">
+    <div class="visualization-box">
       <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs>
         <mat-tab [disabled]="true" isActive="false">
-          <ng-template mat-tab-label >
-              <div class="partial-disabled-tab-label">Select</div>
-              Visualization Type
+          <ng-template mat-tab-label>
+            <div class="partial-disabled-tab-label">Select</div>
+            Visualization Type
           </ng-template>
         </mat-tab>
 
@@ -63,34 +61,36 @@
       </mat-tab-group>
     </div>
 
-    <div class="item legend-description-box" [style.background]="'#3D3D3D'">
-        <div class="description">
-          <span class="title">Select Graphic Variables</span>
+    <div class="legend-description-box">
 
-          <div class="text">
-            Quantitative: Data may take on any value within a finite or infinite interval and are commonly
-            acquired via measurement.
-          </div>
+      <div class="description">
+        <span class="title">Select Graphic Variables</span>
 
-          <div class="text">
-            Qualitative: Data take on only specific values with no values in between and are frequently
-            determined by counting.
-          </div>
+        <div class="text">
+          Quantitative: Data may take on any value within a finite or infinite interval and are commonly acquired via measurement.
         </div>
 
-        <div class="quantitative">
-          <span class="title">Quantitative</span> <br>
-          <mav-field-dropzone mappingKey="size" [(field)]="sizeField" #sizeEncoding>
-            <span class="subtitle encodingDropZone {{ sizeEncoding.selectionClass }}">Size: {{ sizeEncoding.field?.label }}</span>
-          </mav-field-dropzone>
+        <div class="text">
+          Qualitative: Data take on only specific values with no values in between and are frequently determined by counting.
         </div>
+      </div>
 
-        <div class="qualitative">
-          <span class="title">Qualitative</span><br>
-          <mav-field-dropzone mappingKey="color" [(field)]="colorField" #colorEncoding>
-            <span class="subtitle encodingDropZone {{ colorEncoding.selectionClass }}">Color: {{ colorEncoding.field?.label }}</span>
-          </mav-field-dropzone>
-        </div>
+      <div class="quantitative">
+        <span class="title">Quantitative</span>
+        <br>
+        <mav-field-dropzone mappingKey="size" [(field)]="sizeField" #sizeEncoding>
+          <span class="subtitle encodingDropZone {{ sizeEncoding.selectionClass }}">Size: {{ sizeEncoding.field?.label }}</span>
+        </mav-field-dropzone>
+      </div>
+
+      <div class="qualitative">
+        <span class="title">Qualitative</span>
+        <br>
+        <mav-field-dropzone mappingKey="color" [(field)]="colorField" #colorEncoding>
+          <span class="subtitle encodingDropZone {{ colorEncoding.selectionClass }}">Color: {{ colorEncoding.field?.label }}</span>
+        </mav-field-dropzone>
+      </div>
+
     </div>
   </div>
 </div>

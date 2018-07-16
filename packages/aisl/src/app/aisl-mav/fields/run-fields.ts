@@ -1,5 +1,13 @@
 import { simpleField, prePostMultiField, Field, DataType } from '@ngx-dino/core';
-import { access, map, lookup, identity, constant, mappingWithDefault } from './field-utils';
+import {
+  access,
+  map,
+  lookup,
+  identity,
+  constant,
+  mappingWithDefault,
+  greyscale
+} from './field-utils';
 
 import { AvatarFields } from './avatar-fields';
 import { PersonaFields } from './persona-fields';
@@ -42,17 +50,8 @@ export const timeMillis = prePostMultiField({
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
-    'color': lookup<string>({
-      '07-09': '#7fc97f',
-      '10-12': '#beaed4',
-      '13-18': '#fdc086',
-      '19-30': '#ffff99',
-      '31-40': '#386cb0',
-      '41-50': '#f0027f',
-      '51-60': '#bf5b17',
-      '61-70': '#666666',
-      '70+': '#17becf'
-    }, '#bcbd22'),
+    'color': greyscale.quantitative([0, 6], 0), // domain = 0 - 6 ms TBD TODO
+    'strokeColor': greyscale.quantitative([0, 6], 10), // domain = 0 - 6 ms TBD TODO
     'size': lookup<number>({
       '07-09': 66,
       '10-12': 77,
