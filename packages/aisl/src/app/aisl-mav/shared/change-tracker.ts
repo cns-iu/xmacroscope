@@ -27,6 +27,7 @@ export class ChangeTracker {
         });
       })),
       bufferTime(bufferInterval),
+      filter((runs) => runs.length > 0),
       map((runs) => this.accumulate(runs))
     );
   }
