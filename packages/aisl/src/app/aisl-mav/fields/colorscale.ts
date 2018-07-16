@@ -29,7 +29,6 @@ export class Colorscale {
   }
 
   quantitative(range: number[], offset = 0): Operator<number, string> {
-    console.log(this.getQuantitativeColorFunction(range, offset));
     return map<number, string>(this.getQuantitativeColorFunction(range, offset));
   }
 
