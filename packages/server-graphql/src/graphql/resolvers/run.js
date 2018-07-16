@@ -64,7 +64,7 @@ const runFinish = baseResolver
     // We get the raw data object here instead of a Sequelize object
     // so that we can access the personId without worry about the association
     db.run.findOne({
-      attributes: ['start', 'end', 'personId'],
+      attributes: ['opponent', 'opponentName', 'start', 'end', 'personId'],
       where: { id: args.run.id },
       raw: true,
     })
@@ -78,11 +78,12 @@ const runFinish = baseResolver
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const publishPayload = {
               raceCompleted: {
+                timestamp: endTime,
                 type: 'race-completed',
                 avatar: {
-                  id: args.run.opponent,
-                  name: args.run.opponentName,
-                  runMillis: args.run.opponentTime,
+                  id: completedRun.opponent,
+                  name: completedRun.opponentName,
+                  runMillis: completedRun.opponentTime,
                 },
                 results: [
                   {
