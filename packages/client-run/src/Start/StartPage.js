@@ -70,6 +70,19 @@ const fakeHandedness = _.sample([
   'ambidextrous',
 ]);
 
+// South Lat
+const MIN_LAT = 24.7433195;
+// North lat
+const MAX_LAT = 49.3457868;
+// East long
+const MIN_LNG = -66.9513812;
+// West long
+const MAX_LNG = -124.7844079;
+
+faker.finance.amount(9000,10000,4)
+const fakeLat = faker.finance.amount(MIN_LAT, MAX_LAT, 9);
+const fakeLong = faker.finance.amount(MIN_LNG, MAX_LNG, 9);
+
 const persona = {
   name: faker.name.findName(),
   icon: fakeShape,
@@ -78,6 +91,8 @@ const persona = {
   age_group: fakeAgeGroup,
   handedness: fakeHandedness,
   zipcode: faker.address.zipCode(),
+  latitude: fakeLat,
+  longitude: fakeLong,
   state: faker.address.state(),
 };
 
@@ -120,6 +135,10 @@ function StartPage() {
                     <dd className="col-sm-8">{persona.state}</dd>
                     <dt className="col-sm-4">Zip Code</dt>
                     <dd className="col-sm-8">{persona.zipcode}</dd>
+                    <dt className="col-sm-4">Latitude</dt>
+                    <dd className="col-sm-8">{persona.latitude}</dd>
+                    <dt className="col-sm-4">Longitude</dt>
+                    <dd className="col-sm-8">{persona.longitude}</dd>
                   </dl>
                 </Col>
               </Row>

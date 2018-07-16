@@ -27,6 +27,12 @@ module.exports = {
     zipcode: {
       type: Sequelize.STRING,
     },
+    latitude: {
+      type: Sequelize.FLOAT(9, 6),
+    },
+    longitude: {
+      type: Sequelize.FLOAT(9, 6),
+    },
     state: {
       type: Sequelize.STRING,
     },

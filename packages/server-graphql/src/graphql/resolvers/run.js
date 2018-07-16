@@ -27,6 +27,8 @@ const runStart = baseResolver
     gender: args.run.persona.gender,
     ageGroup: args.run.persona.age_group,
     handedness: args.run.persona.handedness,
+    latitude: args.run.persona.latitude,
+    longitude: args.run.persona.longitude,
     zipcode: args.run.persona.zipcode,
     state: args.run.persona.state,
     Runs: {
@@ -96,6 +98,8 @@ const runFinish = baseResolver
                       gender: runnerPerson.gender,
                       age_group: runnerPerson.ageGroup,
                       handedness: runnerPerson.handedness,
+                      latitude: runnerPerson.latitude,
+                      longitude: runnerPerson.longitude,
                       zipcode: runnerPerson.zipcode,
                       state: runnerPerson.state,
                     },
