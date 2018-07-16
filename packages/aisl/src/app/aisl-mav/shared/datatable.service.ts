@@ -29,8 +29,8 @@ export class DatatableService {
     return processor.asObservable().map(() => {
       return processor.processedCache.cache.items.valueSeq().reverse()
         .map((datum) => {
-        return datum['data'];
-      }).toArray();
+          return datum['data'];
+        }).toArray();
     });
   }
 }

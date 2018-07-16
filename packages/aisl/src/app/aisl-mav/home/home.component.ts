@@ -10,7 +10,7 @@ import { SharedDataService } from '../shared/shared-data.service';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  personaIdField = RunFields.persona.id;
+  datatableIdField = RunFields.id;
   encodingFields = [
     RunFields.persona.persona,
     RunFields.timeMillis,
