@@ -64,7 +64,7 @@ const runFinish = baseResolver
     // We get the raw data object here instead of a Sequelize object
     // so that we can access the personId without worry about the association
     db.run.findOne({
-      attributes: ['opponent', 'opponentName', 'start', 'end', 'personId'],
+      attributes: ['opponent', 'opponentName', 'opponentTime', 'start', 'end', 'personId'],
       where: { id: args.run.id },
       raw: true,
     })
