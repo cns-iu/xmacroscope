@@ -89,12 +89,14 @@ const runFinish = baseResolver
                   {
                     lane: 1,
                     persona: {
+                      id: runnerPerson.id,
                       name: runnerPerson.name,
                       icon: runnerPerson.icon,
                       color: runnerPerson.color,
                       gender: runnerPerson.gender,
-                      ageGroup: runnerPerson.ageGroup,
+                      age_group: runnerPerson.ageGroup,
                       handedness: runnerPerson.handedness,
+                      zipcode: runnerPerson.zipcode,
                       state: runnerPerson.state,
                     },
                     started: true,

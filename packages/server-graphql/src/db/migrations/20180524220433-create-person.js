@@ -24,7 +24,7 @@ module.exports = {
     handedness: {
       type: Sequelize.STRING,
     },
-    zipCode: {
+    zipcode: {
       type: Sequelize.STRING,
     },
     state: {
