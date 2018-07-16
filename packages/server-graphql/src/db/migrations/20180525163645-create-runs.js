@@ -12,6 +12,9 @@ module.exports = {
     opponentName: {
       type: Sequelize.STRING,
     },
+    opponentTime: {
+      type: Sequelize.INTEGER,
+    },
     start: {
       type: Sequelize.DATE,
     },

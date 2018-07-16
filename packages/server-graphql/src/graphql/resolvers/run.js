@@ -33,6 +33,7 @@ const runStart = baseResolver
       start: args.run.start,
       opponent: args.run.opponent,
       opponentName: args.run.opponentName,
+      opponentTime: args.run.opponentTime,
     },
   }, {
     include: [db.run],
