@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
 import { RunFields, wrapFieldForShowPersona } from '../fields';
+import { SharedDataService } from '../shared/shared-data.service';
+
 
 @Component({
   selector: 'aisl-mav-home',
@@ -24,7 +26,12 @@ export class HomeComponent implements OnInit {
   scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
   scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);
 
-  constructor() {
+  constructor(private service: SharedDataService) {
   }
+
   ngOnInit() { }
+
+  restartStream(): void {
+    this.service.start();
+  }
 }

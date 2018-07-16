@@ -1,68 +1,63 @@
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/scan';
+import { concatMap, filter, map } from 'rxjs/operators';
 
 import { List } from 'immutable';
 
 import { RawChangeSet } from '@ngx-dino/core';
-
-import { RaceCompletedMessage, Message, RaceResult, RunData } from 'aisl-api';
+import { RaceCompletedMessage, Message, RunData } from 'aisl-api';
 
 
 export class ChangeTracker {
-  private readonly mappedStream: Observable<RawChangeSet<RunData>>;
-  private accumulator: List<RaceCompletedMessage> = List();
+  private readonly changeStream: Observable<RawChangeSet<RunData>>;
+  private accumulator: List<RunData> = List();
 
   constructor(
     stream: Observable<Message>,
     public readonly count: number,
     public readonly highlightCount: number
   ) {
-    this.mappedStream = stream.filter((message: Message) => {
-      return message instanceof RaceCompletedMessage;
-    }).scan((self: ChangeTracker, message: RaceCompletedMessage) => {
-      self.accumulateMessage(message);
-      return self;
-    }, this).map(() => {
-      return this.convertMessagesToChanges();
-    }).share();
+    this.changeStream = stream.pipe(
+      filter((message) => message instanceof RaceCompletedMessage),
+      concatMap((message: RaceCompletedMessage) => message.results.map((run) => {
+        return Object.assign({}, run, {
+          avatar: message.avatar,
+          timestamp: message.timestamp,
+          showPersona: true
+        });
+      })),
+      map((run) => this.accumulate(run))
+    );
   }
 
-  asObservable(): Observable<RawChangeSet> {
-    return this.mappedStream;
+  asObservable(): Observable<RawChangeSet<RunData>> {
+    return this.changeStream;
   }
 
-  private accumulateMessage(message: RaceCompletedMessage): void {
-    const maxCount = this.count + 1;
-    const currentCount = this.accumulator.size;
-    if (currentCount === maxCount) {
-        this.accumulator = this.accumulator.shift();
-    }
-    this.accumulator = this.accumulator.push(message);
+  snapshot(): List<RunData> {
+    return this.accumulator;
   }
 
-  private getRunData(message: RaceCompletedMessage, showPersona = true): RunData[] {
-    return message.results.map((r) => {
-      return <RunData>Object.assign({}, r, {
-        avatar: message.avatar,
-        timestamp: message.timestamp,
-        showPersona
-      });
-    });
-  }
-
-  private convertMessagesToChanges(): RawChangeSet {
-    const currentCount = this.accumulator.size;
-    const added = this.getRunData(this.accumulator.last(), true);
+  private accumulate(run: RunData): RawChangeSet<RunData> {
+    const inserted: RunData[] = [run];
     const removed: RunData[] = [];
-    let updated: [string | number | RunData, Partial<RunData>][] = [];
+    const replaced: [RunData, any][] = [];
 
-    const index = currentCount - this.highlightCount - 1;
-    // update the entry at the found index, if the index is less than the last highlightCount number of indices.
-    if (index >= 0) {
-      updated = <[string | number | RunData, Partial<RunData>][]>
-          this.getRunData(this.accumulator.get(index), false).map((r) => [r, r]);
+    const { count: maxCount, highlightCount } = this;
+    let { accumulator } = this;
+    const count = accumulator.size;
+    if (count === maxCount) {
+      removed.push(accumulator.first());
+      accumulator = accumulator.shift();
+    }
+    this.accumulator = accumulator = accumulator.push(run);
+
+    if (count >= highlightCount) {
+      const index = count - highlightCount;
+      const data = accumulator.get(index);
+      const newData = Object.assign(data, {showPersona: false});
+      replaced.push([data, newData]);
     }
 
-    return new RawChangeSet(added, removed, [], updated);
+    return new RawChangeSet(inserted, removed, undefined, replaced);
   }
 }

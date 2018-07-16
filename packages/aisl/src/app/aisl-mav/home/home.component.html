@@ -1,17 +1,21 @@
 <div class="container">
   <div class="first-column">
-    <button mat-raised-button class="restart-button">RESTART</button>
+    <button
+      mat-raised-button
+      class="restart-button"
+      (click)="[dtable.resetSelection(), restartStream()]">
+    RESTART
+    </button>
       <div class="table">
-        <aisl-datatable
+        <aisl-datatable #dtable
           [fields]="encodingFields"
           [idField]="personaIdField"
           (rowClick)="splot.focusItem($event[1])">
         </aisl-datatable>
         <!-- <mav-attribute-selector [fields]="encodingFields"></mav-attribute-selector> -->
       </div>
-   </div>
+  </div>
  
-
   <div class="second-column">
     <div class="visualization-box">
       <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs>
