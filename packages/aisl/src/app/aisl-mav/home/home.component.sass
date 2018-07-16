@@ -2,131 +2,102 @@
 
 .container
   display: flex
-  flex-wrap: nowrap
-  justify-content: flex-start
-  align-content: stretch
-  align-items: stretch
-  background: #000000
-  font-family: $lato
-  height: 100vh
-
-.first-column
-  width: 37.5% // 720px based on a (1920 X 1080) resolution
-
-.second-column
-  width: 62.5% // 1070px based on a (1920 X 1080) resolution
-  flex-direction: column
-  background: #000000
-
-.item
-  flex: 1
-  // align-self: auto
-
-.visualization-box
-  background: #FFFFFF
-  margin: 10px
-  height: 78.7vh // 850px based on a (1920 X 1080) resolution
-
-.restart-button
-  border-radius: 8px
-  height: 7.4vh // 80px based on a (1920 X 1080) resolution
-  width: 98.5%
-  color: #FFFFFF
-  background: #AFAFAA
-  margin: 10px
-
-.data-table-box
-  display: table
-  margin: 10px
-  margin-top: 0px
-  margin-right: 0px
-  background: #3D3D3D
-  height: 96.3vh
-  width: 98.3%
-
-.data-table-box .table
-  padding: 20px
-  color: #FFFFFF // temporary
-
-.legend-description-box
-  display: table
-  background: #000000
-  margin: 10px
-  height: 18.5vh
-
-.description
-  display: table-cell
-  padding: 20px
-  padding-right: 50px
-  width: 70%
-
-  .title
-    font-weight: bold
-    font-size: 20px
-    color: #FFB100
-
-  .text
-    line-height: 20px
-    font-size: 15px
-    color: #FFFFFF
-    padding-top: 15px
-
-.quantitative
-  border-right: 1px solid #AFAFAA
-  display: table-cell
-  color: #FFFFFF
-  padding: 20px
-  width: 15%
-
-  .title
-    font-size: 20px
-    text-align: center
-    margin-left: 13%
-
-  .subtitle
-    white-space: nowrap
-    text-align: center
-
-.qualitative
-  display: table-cell
-  color: #FFFFFF
-  padding: 20px
-  width: 15%
-
-  .title
-    font-size: 20px
-    text-align: center
-    margin-left: 13%
-
-  .subtitle
-    white-space: nowrap
-    text-align: center
-
-.tab-label
-  display: table
-
-.tab-label .image
-  display: table-row
-
-.tab-label .text
-  display: table-row
-
-.partial-disabled-tab-label
-  text-align: left
-  padding-bottom: 0.5em
-
-.selectable
-  background-color: rgba(0,255,0,0.1)
-
-.unselectable
-  background-color: rgba(255,0,0,0.1)
-
-.encodingDropZone
-  border: 1px dashed #aaaaaa
-  font-size: 15px
+  flex-direction: row
+  // flex-wrap: wrap // TODO
   width: 100%
-  height: 18.15vh
-  margin: 6px
-  display: inline-block
-  float: left
-  cursor: pointer
+  height: 89vh
+  align-items: stretch
+  font-family: $lato
+
+  .first-column
+    width: 35%
+    padding: 1vh 5px 1vh 10px
+    
+    .restart-button
+      margin-bottom: 1vh
+      border-radius: 8px
+      height: 5vh
+      width: 100%
+      color: #ffffff
+      background: #afafaa
+      cursor: pointer
+
+  .second-column
+    position: relative
+    width: 65%
+    flex-direction: column
+    background: #000000
+    padding: 1vh 10px 1vh 5px
+
+    .visualization-box
+      background: #ffffff
+      margin-bottom: 1vh
+      height: 65vh
+
+    // .visualization-tabs // TODO ?
+    //   height: 7vh
+
+    .legend-description-box
+      display: flex
+      background: #3d3d3d
+      height: 21vh
+
+      .description
+        padding: 10px
+        width: 50%
+
+        .title
+          font-weight: bold
+          font-size: 20px
+          color: #ffb100
+
+        .text
+          line-height: 20px
+          font-size: 15px
+          color: #ffffff
+          padding-top: 15px
+
+      .quantitative, .qualitative
+        width: 25%
+        display: table-column
+        margin-left: 50px
+
+        .title
+          font-size: 15px
+          text-align: center
+          margin-bottom: 5px
+
+        .subtitle
+          white-space: nowrap
+          text-align: center
+          font-size: 15px
+        
+        .encodingDropZone
+          display: table-cell
+          border: 1px dashed #aaaaaa
+          font-size: 15px
+          width: 100%
+          height: 16vh
+          padding: 10px
+
+        .selectable
+          background-color: rgba(0,255,0,0.1)
+
+        .unselectable
+          background-color: rgba(255,0,0,0.1)
+
+      .quantitative
+        border-right: 1px solid #afafaa
+
+
+  .tab-label
+    display: table
+
+    .image
+      display: table-row
+
+    .text
+      display: table-row
+
+  .partial-disabled-tab-label
+    text-align: left

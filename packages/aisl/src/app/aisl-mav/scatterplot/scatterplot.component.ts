@@ -23,8 +23,8 @@ export class ScatterplotComponent {
   @Input() pointStrokeColorField: Field<any> = RunFields.fixed;
   @Input() pointPulseField: Field<boolean> = RunFields.pulse;
 
-  width = window.innerWidth;
-  height = 75 / 100 * window.innerHeight;
+  width = 55 / 100 * window.innerWidth;
+  height = 40 / 100 * window.innerHeight;
   autoresize = true;
 
   private currentFocusItem: any;

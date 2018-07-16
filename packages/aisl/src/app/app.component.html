@@ -4,13 +4,13 @@
 
 <div class="nav-tabs">
   <nav mat-tab-nav-bar>
-      <a mat-tab-link
-         *ngFor="let routeLink of routeLinks; let i = index;"
-         [routerLink]="routeLink.route"
-         routerLinkActive #rla="routerLinkActive"
-         [active]="rla.isActive">
-          {{routeLink.label}}
-      </a>
+    <a mat-tab-link 
+      *ngFor="let routeLink of routeLinks; let i = index;"
+      [routerLink]="routeLink.route" 
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+      {{routeLink.label}}
+    </a>
   </nav>
 </div>
 

@@ -1,7 +1,8 @@
 .datatable
-  overflow: auto
-  height: 90.7vh
-  width: 98.3%
+  overflow-y: auto
+  height: 81vh
+  width: 100%
+  background: #3D3D3D
 
   .table
     background: #3D3D3D
@@ -9,20 +10,23 @@
   .mat-cell, .mat-header-cell
     color: #FFFFFF
     text-align: center
+    font-size: 15px
+    cursor: move
   
   .mat-header-cell
+    height: 5vh
     font-size: 20px
-  
-  .mat-cell
-    font-size: 15px
 
   .mat-header-row, .mat-row
     height: 6.6vh
     padding-left: 0px
     margin-right: 10px
+  
+  .mat-row
+    cursor: pointer
 
-  .mat-row:nth-child(even)
-    background-color: #696969
+    &:nth-child(even)
+      background-color: #696969
 
   .mav-field-index
     margin: 0px
