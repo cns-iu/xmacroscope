@@ -4,13 +4,13 @@ This project uses Sequelize as an ORM for the backend database. When developing 
 ## Creating a new table/model
 
 ```bash
-cd packages/serverGraphQL/
+cd packages/server-graphql/
 node_modules/.bin/sequelize model:generate --name DatabaseTableName --attributes exampleField:string
 ```
  
 This will create two files:
-* `packages/serverGraphQL/src/db/models/databasetestname.js`
-* `packages/serverGraphQL/src/db/migrations/ISODATESTRING-create-database-table-name.js`
+* `packages/server-graphql/src/db/models/databasetestname.js`
+* `packages/server-graphql/src/db/migrations/ISODATESTRING-create-database-table-name.js`
 ...where `ISODATESTRING` is the current datetime string.
 
 The `models` file is the definition of the database model that is used by the server when running GraphQL. Manually edit this file to contain any of the fields you need in the database table. You will need to manually convert this file to match our ES6 style.
@@ -26,7 +26,7 @@ node_modules/.bin/sequelize db:migrate
 After you create a table, you might need to modify the table schema, adding or deleting fields. To do this, first generate a new migration file for the table. This time we use the `migration:generate` command, since we don't need to create the model, just a migration file for an existing model.
 
 ```bash
-cd packages/serverGraphQL/
+cd packages/server-graphql/
 node_modules/.bin/sequelize migration:generate --name DatabaseTableName 
 ```
 This will create a new timestamped skeleteon file in your migrations directory. You must manually edit this file using the [Sequelize Query Interface to create, modify, or delete table structure](http://docs.sequelizejs.com/class/lib/query-interface.js~QueryInterface.html).

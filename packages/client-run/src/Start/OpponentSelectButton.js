@@ -7,30 +7,38 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
 
-const UPDATE_RACE_OPPONENT = gql`
-  mutation UpdateRaceOpponent(
-  $status: String!,
-  $opponent: String!,
-  $opponentName: String!,
-  $opponentTime: Int!
+const SELECT_RUN = gql`
+  mutation RunSelect(
+  $run: RunSelect!
   ) {
-    updateRace(
-      status: $status,
-      opponent: $opponent
-      opponentName: $opponentName
-      opponentTime: $opponentTime
-    ) @client
+    runSelect(
+      run: $run
+    )
   }
 `;
 
 const OpponentSelectButton = ({ opponent, opponentName, opponentTime }) => (
   <Mutation
-    mutation={UPDATE_RACE_OPPONENT}
+    mutation={SELECT_RUN}
+    update={(cache) => {
+      cache.writeData({
+        data: {
+          activeRace: {
+            __typename: 'ActiveRace',
+            status: 'runTimerPre',
+            opponent,
+            opponentName,
+            opponentTime,
+          },
+        },
+      });
+    }}
     variables={{
-      status: 'runTimerPre',
-      opponent,
-      opponentName,
-      opponentTime,
+      run: {
+        opponent,
+        opponentName,
+        opponentTime,
+      },
     }}
   >
     {updateRace => (
