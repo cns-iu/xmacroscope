@@ -20,6 +20,7 @@ export class GeomapComponent {
   @Input() pointSizeField: Field<any> = RunFields.fixed;
   @Input() pointShapeField: Field<any> = RunFields.fixed;
   @Input() pointColorField: Field<any> = RunFields.fixed;
+  @Input() pointStrokeColorField: Field<any> = RunFields.fixed;
 
   constructor(service: SharedDataService) {
     this.stateDataStream = Observable.of(new RawChangeSet());

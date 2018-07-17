@@ -1,4 +1,4 @@
-import { Field, simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
+import { simpleField, prePostMultiField, DataType } from '@ngx-dino/core';
 import {
   access,
   combine,
@@ -8,7 +8,8 @@ import {
   chain,
   persona,
   mappingWithDefault,
-  greyscale
+  greyscale,
+  sizescale
 } from './field-utils';
 
 export const id = simpleField<string>({
@@ -134,7 +135,7 @@ export const siblings = prePostMultiField({
   id: 'persona.siblings',
   label: '# Siblings',
   dataType: DataType.Number,
-  pre: chain<number, string>(access<number>('persona.siblings', 1), map(String)),
+  pre: access<number>('persona.siblings', 1),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
@@ -153,21 +154,7 @@ export const siblings = prePostMultiField({
       '11': '#17becf',
       '12': '#17becf'
     }, '#bcbd22'),
-    'size': lookup<number>({
-      '0': 66,
-      '1': 77,
-      '2': 88,
-      '3': 99,
-      '4': 110,
-      '5': 121,
-      '6': 132,
-      '7': 143,
-      '8': 155,
-      '9': 165,
-      '10': 175,
-      '11': 185,
-      '12': 195,
-    }, 10),
+    'size': sizescale.quantitative([0, 12]),
   }, 'axis')
 });
 
@@ -188,8 +175,8 @@ export const ageGroup = prePostMultiField({
       '41-50',
       '51-60',
       '61-70',
-      '70+'], '#bdbdbd'), // '#bdbdbd' is default color TBD TODO
-    'strokeColor': greyscale.qualitative([
+      '70+']),
+    'strokeColor': greyscale.qualitativeStrokeColor([
       '07-09',
       '10-12',
       '13-18',
@@ -198,7 +185,7 @@ export const ageGroup = prePostMultiField({
       '41-50',
       '51-60',
       '61-70',
-      '70+'], '#bdbdbd', 10), // '#bdbdbd' is default color, offset is 10 TBD TODO
+      '70+']),
     'size': lookup<number>({
       '07-09': 66,
       '10-12': 77,

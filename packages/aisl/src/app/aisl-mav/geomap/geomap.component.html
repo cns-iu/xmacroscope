@@ -3,16 +3,19 @@
 
   [stateDataStream]="stateDataStream"
   [pointDataStream]="pointDataStream"
+
   [pointIdField]="fields.id.getBoundField('id')"
   [pointLatLongField]="fields.persona.location.getBoundField('location')"
   [pointTitleField]="fields.fixed.getBoundField('undefined')"
+
+  [pointSizeField]="pointSizeField?.getBoundField('size')"
+  [pointColorField]="pointColorField?.getBoundField('color')"
+  [strokeColorField]="pointStrokeColorField?.getBoundField('strokeColor')"
+  [pointShapeField]="pointShapeField?.getBoundField('shape')"
+
   [stateField]="fields.persona.state.getBoundField('state')"
   [stateColorField]="fields.fixed.getBoundField('stateColor')"
-  [stateDefaultColor]="'#ffffff'"
-  [stateDefaultStrokeColor]="'#000000'"
 
-  [pointSizeField]="pointShapeField?.getBoundField('size')"
-  [pointColorField]="pointColorField?.getBoundField('color')"
-  [strokeColorField]="pointColorField?.getBoundField('color')"
-  [pointShapeField]="pointShapeField?.getBoundField('shape')">
+  [stateDefaultColor]="'#ffffff'"
+  [stateDefaultStrokeColor]="'#000000'">
 </dino-geomap>

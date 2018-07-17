@@ -14,32 +14,43 @@ export class Colorscale {
   private startRGB: RGB;
   private endRGB: RGB;
 
-  constructor(start: string, end: string, private strokeOffset: number = 0) {
+  constructor(
+    start: string,
+    end: string,
+    private outOfDomainColor: string,
+    private strokeOffset: number = 0
+  ) {
     this.startRGB = this.getRGB(start);
     this.endRGB = this.getRGB(end);
   }
 
-  qualitative<T>(items: T[], defaultColor: string, offset = 0): Operator<T, string> {
+  qualitative<T>(items: T[], strokeOffset = 0): Operator<T, string> {
     const colors: Map<T, string> = new Map();
-    const colorer = this.getQualitativeColorFunction([0, items.length - 1], offset);
+    const colorer = this.getQualitativeColorFunction([0, items.length - 1], strokeOffset);
     items.forEach((item, index) => {
       colors.set(item, colorer(index));
     });
-    return lookup<T, string>(colors, defaultColor);
+    return lookup<T, string>(colors, this.outOfDomainColor);
   }
-
-  quantitative(range: number[], offset = 0): Operator<number, string> {
-    return map<number, string>(this.getQuantitativeColorFunction(range, offset));
+  qualitativeStrokeColor<T>(items: T[]): Operator<T, string> {
+    return this.qualitative(items, this.strokeOffset);
   }
 
   getQualitativeColorFunction(domain: number[], offset = 0): (number) => string {
     const addends = this.getAddends(domain[1] - domain[0]);
 
     return (index) =>  this.getHex({
-        r: this.startRGB.r + addends[0] * index + offset,
-        g: this.startRGB.g + addends[1] * index + offset,
-        b: this.startRGB.b + addends[2] * index + offset
+        r: Math.min(255, Math.max(0, this.startRGB.r + addends[0] * index + offset)),
+        g: Math.min(255, Math.max(0, this.startRGB.g + addends[1] * index + offset)),
+        b: Math.min(255, Math.max(0, this.startRGB.b + addends[2] * index + offset))
     });
+  }
+
+  quantitative(domain: number[], strokeOffset = 0): Operator<number, string> {
+    return map<number, string>(this.getQuantitativeColorFunction(domain, strokeOffset));
+  }
+  quantitativeStrokeColor(domain: number[]): Operator<number, string> {
+    return this.quantitative(domain, this.strokeOffset);
   }
 
   getQuantitativeColorFunction(domain: number[], offset = 0): (number) => string {
@@ -47,14 +58,14 @@ export class Colorscale {
       .domain(domain)
       .range([
         this.getHex({
-          r: this.startRGB.r + offset,
-          g: this.startRGB.g + offset,
-          b: this.startRGB.b + offset
+          r: Math.min(255, Math.max(0, this.startRGB.r + offset)),
+          g: Math.min(255, Math.max(0, this.startRGB.g + offset)),
+          b: Math.min(255, Math.max(0, this.startRGB.b + offset))
          }),
         this.getHex({
-          r: this.endRGB.r + offset,
-          g: this.endRGB.g + offset,
-          b: this.endRGB.b + offset
+          r: Math.min(255, Math.max(0, this.endRGB.r + offset)),
+          g: Math.min(255, Math.max(0, this.endRGB.g + offset)),
+          b: Math.min(255, Math.max(0, this.endRGB.b + offset))
         })
       ]);
   }
