@@ -14,6 +14,8 @@ const Person = sequelize.define('Person', {
   ageGroup: { type: Sequelize.STRING },
   handedness: { type: Sequelize.STRING },
   zipcode: { type: Sequelize.STRING },
+  latitude: { type: Sequelize.FLOAT(9, 6) },
+  longitude: { type: Sequelize.FLOAT(9, 6) },
   state: { type: Sequelize.STRING },
 }, {
   paranoid: true,
