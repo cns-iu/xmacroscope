@@ -123,6 +123,12 @@ input NewAvatar {
   runMillis: Int
 }
 
+input RunSelect {
+  opponent: String
+  opponentName: String
+  opponentTime: Int
+}
+
 input NewRunRecord {
   start: Date!
   opponent: String
