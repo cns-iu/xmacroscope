@@ -1,34 +1,34 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('People', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Runs', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    name: {
+    opponent: {
       type: Sequelize.STRING,
     },
-    icon: {
+    opponentName: {
       type: Sequelize.STRING,
     },
-    color: {
-      type: Sequelize.STRING,
+    opponentTime: {
+      type: Sequelize.INTEGER,
     },
-    gender: {
-      type: Sequelize.STRING,
+    start: {
+      type: Sequelize.DATE,
     },
-    ageGroup: {
-      type: Sequelize.STRING,
+    end: {
+      type: Sequelize.DATE,
     },
-    handedness: {
-      type: Sequelize.STRING,
-    },
-    zipCode: {
-      type: Sequelize.STRING,
-    },
-    state: {
-      type: Sequelize.STRING,
+    personId: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'People',
+        key: 'id',
+      },
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
     },
     createdAt: {
       allowNull: false,
@@ -42,6 +42,7 @@ module.exports = {
       allowNull: true,
       type: Sequelize.DATE,
     },
+
   }),
-  down: queryInterface => queryInterface.dropTable('People'),
+  down: queryInterface => queryInterface.dropTable('Runs'),
 };

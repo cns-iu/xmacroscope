@@ -5,6 +5,11 @@ type Mutation {
   registerPersona(persona: NewPersona): ID
   raceCompleted(runs: [NewRunRecord!]!): [ID!]!
 
+  # Run select is a message operation that sends out Avatar message
+  # Returns null, but GQL requires a return definition. We just allow
+  # it to be nullable here by excluding !
+  runSelect(run: RunSelect!): Boolean
+
   # Run start is a create operation and returns the create Run's ID
   runStart(run: NewRunRecord!): ID!
 
