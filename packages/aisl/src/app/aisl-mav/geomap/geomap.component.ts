@@ -16,6 +16,7 @@ export class GeomapComponent {
   pointDataStream: Observable<RawChangeSet>;
   fields = RunFields;
 
+  @Input() showCounties = false;
   @Input() pointSizeField: Field<any> = RunFields.fixed;
   @Input() pointShapeField: Field<any> = RunFields.fixed;
   @Input() pointColorField: Field<any> = RunFields.fixed;
