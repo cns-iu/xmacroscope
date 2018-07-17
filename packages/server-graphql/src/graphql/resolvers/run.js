@@ -18,7 +18,24 @@ const runs = baseResolver
 // Keeping extraneous console statements and return helpers in the code
 // while in active DB development.
 
-// Create a run, return the ID
+// Send a run selection message
+// No database operations
+const runSelect = baseResolver
+  .createResolver((root, args) => {
+    const publishPayload = {
+      raceSelected: {
+        type: 'run-selected',
+        timestamp: new Date(),
+        avatar: {
+          id: args.run.opponent,
+          name: args.run.opponentName,
+          runMillis: args.run.opponentTime,
+        },
+      },
+    };
+    pubsub.publish('run-selected', publishPayload);
+  });
+
 const runStart = baseResolver
   .createResolver((root, args) => db.person.create({
     name: args.run.persona.name,
@@ -126,6 +143,7 @@ const RunResolver = {
     runs,
   },
   Mutation: {
+    runSelect,
     runStart,
     runFinish,
   },
