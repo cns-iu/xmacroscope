@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 
-import { IField } from '@ngx-dino/core';
-
-import { ScatterplotComponent } from '../scatterplot/scatterplot.component';
-import { GeomapComponent } from '../geomap/geomap.component';
+import { RunFields, wrapFieldForShowPersona } from '../fields';
+import { SharedDataService } from '../shared/shared-data.service';
 
 
 @Component({
@@ -11,24 +9,29 @@ import { GeomapComponent } from '../geomap/geomap.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass']
 })
-
 export class HomeComponent implements OnInit {
+  personaIdField = RunFields.persona.id;
+  encodingFields = [
+    RunFields.persona.persona,
+    RunFields.timeMillis,
+    RunFields.persona.height,
+    RunFields.persona.siblings,
+    RunFields.persona.age_group,
+    RunFields.persona.zipcode
+  ].map(wrapFieldForShowPersona);
+  sizeField = wrapFieldForShowPersona(RunFields.persona.siblings);
+  colorField = wrapFieldForShowPersona(RunFields.fixed);
+  strokeColorField = wrapFieldForShowPersona(RunFields.fixed);
+  shapeField = wrapFieldForShowPersona(RunFields.fixed);
+  scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
+  scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);
 
-  @ViewChild(ScatterplotComponent) scatterplot: ScatterplotComponent;
-  @ViewChild(GeomapComponent) geomap: GeomapComponent;
-  @Input() fields: IField<any>[];
-
-  constructor() { }
-
-  ngOnInit() {
-    this.fields = this.scatterplot.fields;
+  constructor(private service: SharedDataService) {
   }
 
-  setFields(index: number) {
-    if (index === 0) {
-      this.fields = this.scatterplot.fields;
-    } else if (index === 1) {
-      this.fields = this.geomap.fields;
-    }
+  ngOnInit() { }
+
+  restartStream(): void {
+    this.service.start();
   }
 }

@@ -1,23 +1,63 @@
 <div class="container">
   <div class="first-column">
-    <button mat-raised-button class="restart-button">RESTART</button>
+    <button
+      mat-raised-button
+      class="restart-button"
+      (click)="[dtable.resetSelection(), restartStream()]">
+    RESTART
+    </button>
     <div class="data-table-box">
       <div class="table">
-        Data Table
+        <aisl-datatable #dtable
+          [fields]="encodingFields"
+          [idField]="personaIdField"
+          (rowClick)="splot.focusItem($event[1])">
+        </aisl-datatable>
+        <!-- <mav-attribute-selector [fields]="encodingFields"></mav-attribute-selector> -->
       </div>
     </div>
   </div>
 
   <div class="second-column">
     <div class="item visualization-box">
-      <mat-tab-group (selectedTabChange)="setFields(tabs.selectedIndex)" #tabs>
-        <mat-tab label="Scatter Graph">
-          <aisl-scatterplot>
+      <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs>
+        <mat-tab [disabled]="true" isActive="false">
+          <ng-template mat-tab-label >
+              <div class="partial-disabled-tab-label">Select</div>
+              Visualization Type
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label class="tab-label">
+            <div>
+              <img src="assets/icon-mav-scatter-graph.svg" height="100%">
+            </div>
+            <div class="text">Scatter Graph</div>
+          </ng-template>
+
+          <aisl-scatterplot #splot
+            [xField]="scatterPlotX"
+            [yField]="scatterPlotY"
+            [pointShapeField]="shapeField"
+            [pointColorField]="colorField"
+            [pointStrokeColorField]="strokeColorField"
+            [pointSizeField]="sizeField">
           </aisl-scatterplot>
         </mat-tab>
 
-        <mat-tab label="Map">
-          <aisl-geomap>
+        <mat-tab>
+          <ng-template mat-tab-label class="tab-label">
+            <div class="image">
+              <img src="assets/icon-mav-geomap.svg" height="100%">
+            </div>
+            <div class="text">&emsp;&emsp;&ensp;Map&emsp;&emsp;</div>
+          </ng-template>
+
+          <aisl-geomap
+            [pointShapeField]="shapeField"
+            [pointColorField]="colorField"
+            [pointSizeField]="sizeField">
           </aisl-geomap>
         </mat-tab>
       </mat-tab-group>
@@ -26,27 +66,31 @@
     <div class="item legend-description-box" [style.background]="'#3D3D3D'">
         <div class="description">
           <span class="title">Select Graphic Variables</span>
-          
+
           <div class="text">
             Quantitative: Data may take on any value within a finite or infinite interval and are commonly
             acquired via measurement.
           </div>
-          
+
           <div class="text">
             Qualitative: Data take on only specific values with no values in between and are frequently
             determined by counting.
           </div>
         </div>
-        
+
         <div class="quantitative">
           <span class="title">Quantitative</span> <br>
-          <span class="subtitle">Size: Column Header</span>
+          <mav-field-dropzone mappingKey="size" [(field)]="sizeField" #sizeEncoding>
+            <span class="subtitle encodingDropZone {{ sizeEncoding.selectionClass }}">Size: {{ sizeEncoding.field?.label }}</span>
+          </mav-field-dropzone>
         </div>
 
         <div class="qualitative">
-            <span class="title">Qualitative</span><br>
-            <span class="subtitle">Color: Column Header</span>
-          </div>
+          <span class="title">Qualitative</span><br>
+          <mav-field-dropzone mappingKey="color" [(field)]="colorField" #colorEncoding>
+            <span class="subtitle encodingDropZone {{ colorEncoding.selectionClass }}">Color: {{ colorEncoding.field?.label }}</span>
+          </mav-field-dropzone>
+        </div>
     </div>
   </div>
 </div>

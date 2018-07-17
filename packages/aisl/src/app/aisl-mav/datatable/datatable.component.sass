@@ -1,0 +1,46 @@
+.datatable
+  overflow: auto
+  height: 90.7vh
+  width: 98.3%
+
+  .table
+    background: #3D3D3D
+  
+  .mat-cell, .mat-header-cell
+    color: #FFFFFF
+    text-align: center
+  
+  .mat-header-cell
+    font-size: 20px
+  
+  .mat-cell
+    font-size: 15px
+
+  .mat-header-row, .mat-row
+    height: 6.6vh
+    padding-left: 0px
+    margin-right: 10px
+
+  .mat-row:nth-child(even)
+    background-color: #696969
+
+  .mav-field-index
+    margin: 0px
+    padding: 5px
+    padding-left: 0px
+    width: 6.6vh
+    height: 6.6vh
+    background-color: #3D3D3D
+    display: table-cell
+    vertical-align: middle
+    text-align: center
+    font-weight: bold
+  
+  .selected
+    background-color: #ffffff
+    .mat-cell
+      color: #000000
+    .mav-field-index
+      color: #ffffff
+    &.mat-row:nth-child(even)
+      background-color: #ffffff

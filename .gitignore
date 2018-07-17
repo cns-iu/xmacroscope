@@ -55,3 +55,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#lock files
+yarn.lock
+package-lock.json
+
+#error-log files
+yarn-error.log

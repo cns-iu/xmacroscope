@@ -1,65 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Changes, IField } from '@ngx-dino/core';
+import { RawChangeSet, Field } from '@ngx-dino/core';
 
-import { GeomapDataService } from '../shared/geomap-data.service';
-import {
-  combineUnique,
-  defaultStateColorFields, defaultPointColorFields,
-  defaultPointShapeFields, PersonastrokeColorField
-} from '../shared/common-fields';
-import {
-  defaultTooltipFields,
-  defaultStateFields,
-  pointIdField, defaultPointPositionFields, defaultPointSizeFields
-} from '../shared/geomap-fields';
-
+import { SharedDataService } from '../shared/shared-data.service';
+import { RunFields, wrapFieldForShowPersona } from '../fields';
 
 @Component({
   selector: 'aisl-geomap',
   templateUrl: './geomap.component.html',
-  styleUrls: ['./geomap.component.sass'],
-  providers: [GeomapDataService]
+  styleUrls: ['./geomap.component.sass']
 })
-export class GeomapComponent implements OnInit {
-  stateDataStream: Observable<Changes>;
-  pointDataStream: Observable<Changes>;
+export class GeomapComponent {
+  stateDataStream: Observable<RawChangeSet>;
+  pointDataStream: Observable<RawChangeSet>;
+  fields = RunFields;
 
-  fields = combineUnique<any>(
-    defaultStateColorFields, defaultPointColorFields,
-    defaultPointShapeFields, defaultPointSizeFields,
-    defaultTooltipFields
-  );
+  @Input() pointSizeField: Field<any> = RunFields.fixed;
+  @Input() pointShapeField: Field<any> = RunFields.fixed;
+  @Input() pointColorField: Field<any> = RunFields.fixed;
 
-  strokeColorField: IField<string>; // not user facing
-
-  stateField = defaultStateFields.default;
-  stateFields = defaultStateFields;
-
-  stateColorField = defaultStateColorFields.default;
-  stateColorFields = defaultStateColorFields;
-
-  pointIdField = pointIdField;
-
-  pointPositionField = defaultPointPositionFields.default;
-  pointPositionFields = defaultPointPositionFields;
-
-  pointShapeField = defaultPointShapeFields.default;
-  pointShapeFields = defaultPointShapeFields;
-
-  pointSizeField = defaultPointSizeFields.default;
-  pointSizeFields = defaultPointSizeFields;
-
-  pointColorField = defaultPointColorFields.default;
-  pointColorFields = defaultPointColorFields;
-
-  constructor(service: GeomapDataService) {
-    this.stateDataStream = service.stateDataStream;
-    this.pointDataStream = service.pointDataStream;
-    this.strokeColorField = new PersonastrokeColorField(this, 'pointColorField');
-  }
-
-  ngOnInit() {
+  constructor(service: SharedDataService) {
+    this.stateDataStream = Observable.of(new RawChangeSet());
+    this.pointDataStream = service.createStream();
   }
 }

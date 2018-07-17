@@ -18,6 +18,8 @@ type Persona {
   gender: GENDER
   age_group: String
   handedness: HANDEDNESS
+  height: Int
+  siblings: Int
   zipcode: String
   state: String
   latitude: Float
@@ -32,6 +34,8 @@ input NewPersona {
   gender: GENDER
   age_group: String
   handedness: HANDEDNESS
+  height: Int
+  siblings: Int
   zipcode: String
   state: String
   latitude: Float

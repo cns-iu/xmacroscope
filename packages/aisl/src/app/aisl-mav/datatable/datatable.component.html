@@ -1,0 +1,27 @@
+<div class="datatable">
+    <mat-table [dataSource]="dataSource" class="table">
+      <ng-container *ngFor="let field of fields; index as i" [matColumnDef]="field.label" class="container">
+        <mat-header-cell [mavDraggable]="field" *matHeaderCellDef>{{field.label}}</mat-header-cell>
+        <mat-cell *matCellDef="let item"
+                  [mavDraggable]="field"
+                  [ngSwitch]="field.id">
+
+          <aisl-persona *ngSwitchCase="'persona'"
+            [shape]="item[i].shape" 
+            [color]="item[i].color" 
+            [shapeSize]="item[i].size"
+            [pathStrokeColor]="item[i].strokeColor">
+          </aisl-persona>
+
+          <div *ngSwitchDefault [innerHTML]="item[i]" class="mav-field-{{ field.id }}">
+          </div>
+
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; index as i; columns: columns;" (click)="onClick(i)"
+        [class.selected]="i===selectedIndex">
+      </mat-row>
+    </mat-table>
+</div>

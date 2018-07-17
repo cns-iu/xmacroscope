@@ -1,17 +1,16 @@
-<mav-geomap [stateDataStream]="stateDataStream"
-            [strokeColorField]="strokeColorField"
-            [stateField]="stateField"
-            [stateColorField]="stateColorField"
-            [stateFields]="stateFields"
-            [stateColorFields]="stateColorFields"
-            [pointDataStream]="pointDataStream"
-            [pointIdField]="pointIdField"
-            [pointPositionField]="pointPositionField"
-            [pointSizeField]="pointSizeField"
-            [pointColorField]="pointColorField"
-            [pointShapeField]="pointShapeField"
-            [pointPositionFields]="pointPositionFields"
-            [pointSizeFields]="pointSizeFields"
-            [pointColorFields]="pointColorFields"
-            [pointShapeFields]="pointShapeFields">
-</mav-geomap>
+<dino-geomap 
+  [stateDataStream]="stateDataStream"
+  [pointDataStream]="pointDataStream"
+  [pointIdField]="fields.id.getBoundField('id')"
+  [pointLatLongField]="fields.persona.location.getBoundField('location')"
+  [pointTitleField]="fields.fixed.getBoundField('undefined')"
+  [stateField]="fields.persona.state.getBoundField('state')"
+  [stateColorField]="fields.fixed.getBoundField('stateColor')"
+  [stateDefaultColor]="'#ffffff'"
+  [stateDefaultStrokeColor]="'#000000'"
+
+  [pointSizeField]="pointShapeField?.getBoundField('size')"
+  [pointColorField]="pointColorField?.getBoundField('color')"
+  [strokeColorField]="pointColorField?.getBoundField('color')"
+  [pointShapeField]="pointShapeField?.getBoundField('shape')">
+</dino-geomap>

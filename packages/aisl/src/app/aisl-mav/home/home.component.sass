@@ -1,3 +1,5 @@
+@import '~typography.sass'
+
 .container
   display: flex
   flex-wrap: nowrap
@@ -5,7 +7,7 @@
   align-content: stretch
   align-items: stretch
   background: #000000
-  font-family: open-sans // TODO
+  font-family: $lato
   height: 100vh
 
 .first-column
@@ -18,78 +20,113 @@
 
 .item
   flex: 1
-  align-self: auto
+  // align-self: auto
 
 .visualization-box
   background: #FFFFFF
   margin: 10px
-  height: 79% // 850px based on a (1920 X 1080) resolution
+  height: 78.7vh // 850px based on a (1920 X 1080) resolution
 
 .restart-button
   border-radius: 8px
-  height: 80px // 80px based on a (1920 X 1080) resolution
+  height: 7.4vh // 80px based on a (1920 X 1080) resolution
   width: 98.5%
   color: #FFFFFF
   background: #AFAFAA
   margin: 10px
 
 .data-table-box
+  display: table
   margin: 10px
   margin-top: 0px
   margin-right: 0px
   background: #3D3D3D
-  height: 90%
+  height: 96.3vh
+  width: 98.3%
 
 .data-table-box .table
   padding: 20px
   color: #FFFFFF // temporary
 
 .legend-description-box
+  display: table
   background: #000000
   margin: 10px
-  height: 18.5%
+  height: 18.5vh
 
 .description
   display: table-cell
   padding: 20px
-  padding-right: 40px
+  padding-right: 50px
+  width: 70%
 
-.description .title
-  font-weight: bold
-  font-size: 20px
-  color: #FFB100
+  .title
+    font-weight: bold
+    font-size: 20px
+    color: #FFB100
 
-.description .text
-  line-height: 20px
-  font-size: 16px
-  color: #FFFFFF
-  padding-top: 15px
+  .text
+    line-height: 20px
+    font-size: 15px
+    color: #FFFFFF
+    padding-top: 15px
 
 .quantitative
+  border-right: 1px solid #AFAFAA
   display: table-cell
   color: #FFFFFF
-  border-right: 1px solid #AFAFAA
-  padding-right: 20px
+  padding: 20px
+  width: 15%
 
-.quantitative .title
-  font-size: 20px
-  text-align: center
-  margin-left: 13%
+  .title
+    font-size: 20px
+    text-align: center
+    margin-left: 13%
 
-.quantitative .subtitle
-  white-space: nowrap
-  text-align: center
+  .subtitle
+    white-space: nowrap
+    text-align: center
 
 .qualitative
   display: table-cell
   color: #FFFFFF
   padding: 20px
-  
-.qualitative .title
-  font-size: 20px
-  text-align: center
-  margin-left: 13%
+  width: 15%
 
-.qualitative .subtitle
-  white-space: nowrap
-  text-align: center
+  .title
+    font-size: 20px
+    text-align: center
+    margin-left: 13%
+
+  .subtitle
+    white-space: nowrap
+    text-align: center
+
+.tab-label
+  display: table
+
+.tab-label .image
+  display: table-row
+
+.tab-label .text
+  display: table-row
+
+.partial-disabled-tab-label
+  text-align: left
+  padding-bottom: 0.5em
+
+.selectable
+  background-color: rgba(0,255,0,0.1)
+
+.unselectable
+  background-color: rgba(255,0,0,0.1)
+
+.encodingDropZone
+  border: 1px dashed #aaaaaa
+  font-size: 15px
+  width: 100%
+  height: 18.15vh
+  margin: 6px
+  display: inline-block
+  float: left
+  cursor: pointer

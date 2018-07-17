@@ -9,14 +9,19 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts",
-    "../../aisl-*/**/*.spec.ts",
+    "../../../ngx-dino/packages/dino-demo1/**/*.ts",
+    "../../../ngx-dino/packages/dino-*/node_modules/**/*.ts",
+    "../../../ngx-dino/packages/dino-core/src/test-*/**/*.ts",
+    "../../../ngx-dino/packages/**/*.spec.ts",
     "../../../ngx-dino/packages/dino-*/**/*.spec.ts",
-    "../../mav/**/*.spec.ts"
+    "../../aisl-*/**/*.spec.ts",
+    "../../mav/**/*.spec.ts",
+    "../../mav/node_modules/**/*.ts"
   ],
   "include": [
     "**/*.ts",
     "../../aisl-*/**/*.ts",
-    "../../../ngx-dino/packages/dino-*/**/*.ts",
-    "../../mav/**/*.ts"
+    "../../mav/**/*.ts",
+    "../../../ngx-dino/packages/dino-*/**/*.ts"
   ]
 }

@@ -1,14 +1,20 @@
-<mav-scatterplot [pointIDField]="pointIDField"
-                 [strokeColorField]="strokeColorField"
-                 [xFields]="xFields"
-                 [yFields]="yFields"
-                 [colorFields]="colorFields"
-                 [shapeFields]="shapeFields"
-                 [sizeFields]="sizeFields"
-                 [dataStream]="dataStream"
-                 [xField]="xField"
-                 [yField]="yField"
-                 [colorField]="colorField"
-                 [shapeField]="shapeField"
-                 [sizeField]="sizeField">
-</mav-scatterplot>
+<dino-scatterplot
+  [dataStream]="dataStream"
+  [pointIdField]="fields.id.getBoundField('id')"
+
+  [xField]="xField?.getBoundField('axis')"
+  [yField]="yField?.getBoundField('axis')"
+  [sizeField]="pointShapeField?.getBoundField('size')"
+  [colorField]="pointColorField?.getBoundField('color')"
+  [strokeColorField]="pointStrokeColorField?.getBoundField('strokeColor')"
+  [shapeField]="pointShapeField?.getBoundField('shape')"
+  [pulseField]="pointPulseField?.getBoundField('pulse')"
+
+  [width]="width"
+  [height]="height"
+  [autoresize]="autoresize"
+
+  [gridlines]="true"
+  
+  [showAxisIndicators]="true">
+</dino-scatterplot>

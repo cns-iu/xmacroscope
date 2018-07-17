@@ -17,11 +17,11 @@ h2
   font-size: 20px
 
 h3
-  font-family: $r-normal
+  font-family: $lato // $r-normal
   font-weight: 400
 
 body
-  font-family: $r-normal
+  font-family: $lato // $r-normal
 
 .z-depth-1-half
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)
@@ -65,3 +65,21 @@ q
 table
   border-collapse: collapse
   border-spacing: 0
+
+.mat-tab-label.mat-tab-disabled
+  color: #FFB100
+
+.mat-tab-nav-bar, .mat-tab-header
+  border-bottom: 0
+
+.mat-tab-label
+  height: 10vh !important
+
+/* focus style */
+.mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+.mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus
+  background: none
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar
+  background: #000000
+  height: 3px

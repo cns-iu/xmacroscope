@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { GraphQLMessageService } from './graphql-message.service';
+import { MessageService } from './message.service';
+
 import { RaceMocker } from 'aisl-api';
 
 @Injectable()
@@ -8,8 +10,8 @@ export class MockMessageService {
   private mocker: RaceMocker;
   private _mocking = false;
 
-  constructor(private messageService: GraphQLMessageService) {
-    this.mocker = new RaceMocker(messageService);
+  constructor(private graphQLMessageService: GraphQLMessageService, private localMessageService: MessageService) {
+    this.mocker = new RaceMocker(graphQLMessageService);
   }
 
   get mocking(): boolean {
