@@ -24,6 +24,12 @@ module.exports = {
     handedness: {
       type: Sequelize.STRING,
     },
+    height: {
+      type: Sequelize.INTEGER,
+    },
+    siblings: {
+      type: Sequelize.INTEGER,
+    },
     zipcode: {
       type: Sequelize.STRING,
     },

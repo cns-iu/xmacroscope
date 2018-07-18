@@ -13,6 +13,8 @@ const Person = sequelize.define('Person', {
   gender: { type: Sequelize.STRING },
   ageGroup: { type: Sequelize.STRING },
   handedness: { type: Sequelize.STRING },
+  height: { type: Sequelize.INTEGER },
+  siblings: { type: Sequelize.INTEGER },
   zipcode: { type: Sequelize.STRING },
   latitude: { type: Sequelize.FLOAT(9, 6) },
   longitude: { type: Sequelize.FLOAT(9, 6) },

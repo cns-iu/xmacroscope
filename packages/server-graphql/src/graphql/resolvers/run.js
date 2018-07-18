@@ -50,6 +50,8 @@ const runStart = baseResolver
     gender: args.run.persona.gender,
     ageGroup: args.run.persona.age_group,
     handedness: args.run.persona.handedness,
+    height: args.run.persona.height,
+    siblings: args.run.persona.siblings,
     latitude: args.run.persona.latitude,
     longitude: args.run.persona.longitude,
     zipcode: args.run.persona.zipcode,
