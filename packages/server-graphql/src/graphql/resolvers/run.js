@@ -33,7 +33,13 @@ const runSelect = baseResolver
         },
       },
     };
-    pubsub.publish('run-selected', publishPayload);
+    const message = pubsub.publish('run-selected', publishPayload);
+    if (message) {
+      console.log('Run selected - Message sent');
+    } else {
+      console.log('Run selected - Message failed');
+    }
+    return message;
   });
 
 const runStart = baseResolver
@@ -70,7 +76,12 @@ const runStart = baseResolver
           },
         },
       };
-      pubsub.publish('race-initiated', publishPayload);
+      const message = pubsub.publish('race-initiated', publishPayload);
+      if (message) {
+        console.log('Run initiated - Message sent');
+      } else {
+        console.log('Run initiated - Message failed');
+      }
       return createdPerson.Runs[0].id;
     }));
 
@@ -131,7 +142,12 @@ const runFinish = baseResolver
                 ],
               },
             };
-            pubsub.publish('race-completed', publishPayload);
+            const message = pubsub.publish('race-completed', publishPayload);
+            if (message) {
+              console.log('Run completed - Message sent');
+            } else {
+              console.log('Run completed - Message failed');
+            }
           });
       });
     // Publish race completion for MAV
