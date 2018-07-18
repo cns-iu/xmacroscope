@@ -79,7 +79,13 @@ const MIN_LNG = -66.9513812;
 // West long
 const MAX_LNG = -124.7844079;
 
-faker.finance.amount(9000,10000,4)
+// Height in inches
+const fakeHeight = faker.random.number({ min: 36, max: 96 });
+
+// Number of siblings
+const fakeSiblings = faker.random.number({ min: 0, max: 12 });
+
+// Location
 const fakeLat = faker.finance.amount(MIN_LAT, MAX_LAT, 9);
 const fakeLong = faker.finance.amount(MIN_LNG, MAX_LNG, 9);
 
@@ -90,6 +96,8 @@ const persona = {
   gender: fakeGender,
   age_group: fakeAgeGroup,
   handedness: fakeHandedness,
+  height: fakeHeight,
+  siblings: fakeSiblings,
   zipcode: faker.address.zipCode(),
   latitude: fakeLat,
   longitude: fakeLong,
@@ -131,6 +139,10 @@ function StartPage() {
                     <dd className="col-sm-8">{persona.age_group}</dd>
                     <dt className="col-sm-4">Handedness</dt>
                     <dd className="col-sm-8">{persona.handedness}</dd>
+                    <dt className="col-sm-4">Siblings</dt>
+                    <dd className="col-sm-8">{persona.siblings}</dd>
+                    <dt className="col-sm-4">Height</dt>
+                    <dd className="col-sm-8">{persona.height}</dd>
                     <dt className="col-sm-4">State</dt>
                     <dd className="col-sm-8">{persona.state}</dd>
                     <dt className="col-sm-4">Zip Code</dt>
