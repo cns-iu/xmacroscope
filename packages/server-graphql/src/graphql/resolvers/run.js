@@ -23,7 +23,7 @@ const runs = baseResolver
 const runSelect = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
-      raceSelected: {
+      runSelected: {
         type: 'run-selected',
         timestamp: new Date(),
         avatar: {
