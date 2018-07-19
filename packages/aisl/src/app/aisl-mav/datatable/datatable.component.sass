@@ -6,7 +6,17 @@
 
   .table
     background: #3D3D3D
+
+  .draggable-header:hover
+    color: rgb(235,237,79)
+
+  .draggable:hover
+    background-color: rgba(235,237,79,0.5)
+    border: 1px solid rgb(235,237,79)
   
+  .mat-cell
+    line-height: 6.6vh
+
   .mat-cell, .mat-header-cell
     color: #FFFFFF
     text-align: center
@@ -14,7 +24,7 @@
     cursor: move
   
   .mat-header-cell
-    height: 5vh
+    padding: 3px
     font-size: 20px
 
   .mat-header-row, .mat-row
@@ -28,17 +38,19 @@
     &:nth-child(even)
       background-color: #696969
 
+  .mav-field-persona
+    height: 6.6vh
+
   .mav-field-index
-    margin: 0px
-    padding: 5px
-    padding-left: 0px
     width: 6.6vh
     height: 6.6vh
+    padding-left: 3.3vh
     background-color: #3D3D3D
     display: table-cell
     vertical-align: middle
     text-align: center
     font-weight: bold
+    cursor: default
   
   .selected
     background-color: #ffffff
