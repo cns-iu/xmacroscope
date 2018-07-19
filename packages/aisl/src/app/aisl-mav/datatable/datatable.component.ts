@@ -5,7 +5,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { DatumId, Field, RawChangeSet, simpleField } from '@ngx-dino/core';
+import { DatumId, Field, RawChangeSet, simpleField, idSymbol } from '@ngx-dino/core';
 import { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 
 import { SharedDataService } from '../shared/shared-data.service';
@@ -26,7 +26,9 @@ export class DatatableComponent implements OnInit {
 
   selectedIndex: number;
 
+  data: any = [];
   dataSource: Observable<any[][]>;
+
   indexField = simpleField<any>({id: 'index', label: ' ', operator: constant<string>('0')});
 
   get columns(): string[] {
@@ -50,22 +52,47 @@ export class DatatableComponent implements OnInit {
 
   makeDataSource(): void {
     const stream = this.normalizeDataStream();
+
     if (this.fields[0] !== this.indexField) {
       this.fields = [this.indexField].concat(this.fields);
     }
-    this.dataSource = this.datatableService.processData(
+
+    this.datatableService.processData(
       stream, this.idField.getBoundField('id'),
       this.fields.map(f => f.getBoundField('label') || f.getBoundField())
-    ).map((data) => {
-      data.forEach((row, index) => row[0] = (index + 1).toLocaleString());
-      return data;
+    );
+
+
+    this.datatableService.points.subscribe((data) => {
+      this.data = this.data.filter((e: any) => !data.remove
+        .some((obj: any) => obj[idSymbol] === e[idSymbol])).concat(data.insert.toArray() as any);
+
+      data.update.forEach((el: any) => { // TODO typing for el
+        const index = this.data.findIndex((e) => e[idSymbol] === el[idSymbol]);
+        if (index !== -1) {
+          this.data[index] = Object.assign(this.data[index] || {}, el );
+        }
+      });
+
+      data.replace.forEach((el: any) => { // TODO typing for el
+        const index = this.data.findIndex((e) => e[idSymbol] === el[idSymbol]);
+        if (index !== -1) {
+          this.data[index] = el;
+        }
+      });
+
+      this.dataSource = Observable.of(this.data.map((datum) => datum['data']).reverse()
+        .map((entry, index) => {
+          entry[0] = (index + 1).toLocaleString();
+          return entry;
+        })
+      );
     });
   }
 
   onClick(index: number): void {
     this.selectedIndex = index;
-    const item = this.datatableService.processor.rawCache.cache.items
-      .valueSeq().reverse().get(index);
+    const item = this.data.find((d) => parseInt(d.data[0], 10) === index + 1);
     (this.rowClick as EventEmitter<[number, any]>).emit([index, item]);
   }
 
