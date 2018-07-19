@@ -12,13 +12,16 @@ const generatePersona = () => {
   ]);
 
   const fakeColor = sample([
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'indigo',
-    'blue',
-    'violet',
+    '#D36E44',
+    '#D30706',
+    '#0707D2',
+    '#8E1BCE',
+    '#D372D2',
+    '#55D4D2',
+    '#9B180F',
+    '#33820D',
+    '#D39827',
+    '#D3D406',
   ]);
 
   const fakeGender = sample([
