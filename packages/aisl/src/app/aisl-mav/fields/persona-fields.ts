@@ -4,8 +4,6 @@ import {
   combine,
   lookup,
   identity,
-  map,
-  chain,
   persona,
   mappingWithDefault,
   greyscale,
@@ -37,9 +35,10 @@ export const color = simpleField<string>({
   id: 'persona.color',
   label: 'Color',
   bfieldId: 'color',
-  operator: access('persona.color', '#696969')
+  operator: access('persona.color', '#bdbdbd')
 });
 
+// Not in use right now
 export const gender = prePostMultiField({
   id: 'persona.gender',
   label: 'Gender',
@@ -61,6 +60,7 @@ export const gender = prePostMultiField({
   }, 'label')
 });
 
+// Not in use right now
 export const handedness = prePostMultiField({
   id: 'persona.handedness',
   label: 'Handedness',
@@ -80,6 +80,7 @@ export const handedness = prePostMultiField({
   }, 'label')
 });
 
+// Not in use right now
 export const state = simpleField<string>({
   id: 'persona.state',
   label: 'State',
@@ -97,7 +98,7 @@ export const location = simpleField<number[]>({
   ])
 });
 
-
+// quantitative property
 export const height = prePostMultiField({
   id: 'persona.height',
   label: 'Height (inches)',
@@ -106,31 +107,11 @@ export const height = prePostMultiField({
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
-    'color': lookup<string>({
-      '07-09': '#7fc97f',
-      '10-12': '#beaed4',
-      '13-18': '#fdc086',
-      '19-30': '#ffff99',
-      '31-40': '#386cb0',
-      '41-50': '#f0027f',
-      '51-60': '#bf5b17',
-      '61-70': '#666666',
-      '70+': '#17becf'
-    }, '#bcbd22'),
-    'size': lookup<number>({
-      '07-09': 66,
-      '10-12': 77,
-      '13-18': 88,
-      '19-30': 99,
-      '31-40': 110,
-      '41-50': 121,
-      '51-60': 132,
-      '61-70': 143,
-      '70+': 155
-    }, 10),
+    'size': sizescale.quantitative([36, 96]), // domain -  36 to 96 inches
   }, 'axis')
 });
 
+// qualitative and quantitative property
 export const siblings = prePostMultiField({
   id: 'persona.siblings',
   label: '# Siblings',
@@ -139,25 +120,41 @@ export const siblings = prePostMultiField({
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
-    'color': lookup<string>({
-      '0': '#7fc97f',
-      '1': '#beaed4',
-      '2': '#fdc086',
-      '3': '#ffff99',
-      '4': '#386cb0',
-      '5': '#f0027f',
-      '6': '#bf5b17',
-      '7': '#666666',
-      '8': '#17becf',
-      '9': '#17becf',
-      '10': '#17becf',
-      '11': '#17becf',
-      '12': '#17becf'
-    }, '#bcbd22'),
+    'color': greyscale.qualitative([
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]),
+    'strokeColor': greyscale.qualitativeStrokeColor([
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]),
     'size': sizescale.quantitative([0, 12]),
   }, 'axis')
 });
 
+// qualitative property
 export const ageGroup = prePostMultiField({
   id: 'persona.age_group',
   label: 'Age Group',
@@ -175,7 +172,8 @@ export const ageGroup = prePostMultiField({
       '41-50',
       '51-60',
       '61-70',
-      '70+']),
+      '70+'
+    ]),
     'strokeColor': greyscale.qualitativeStrokeColor([
       '07-09',
       '10-12',
@@ -185,21 +183,12 @@ export const ageGroup = prePostMultiField({
       '41-50',
       '51-60',
       '61-70',
-      '70+']),
-    'size': lookup<number>({
-      '07-09': 66,
-      '10-12': 77,
-      '13-18': 88,
-      '19-30': 99,
-      '31-40': 110,
-      '41-50': 121,
-      '51-60': 132,
-      '61-70': 143,
-      '70+': 155
-    }, 100),
+      '70+'
+    ]),
   }, 'axis')
 });
 
+// Not in use right now
 export const zipcode = simpleField<string>({
   id: 'persona.zipcode',
   label: 'Zip Code',
