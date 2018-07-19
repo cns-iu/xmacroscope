@@ -41,7 +41,7 @@ export class ChangeTracker {
   }
 
   private accumulate(runs: RunData[]): RawChangeSet<RunData> {
-    const inserted: RunData[] = runs;
+    let inserted: RunData[] = [];
     let removed: RunData[] = [];
     const replaced: [RunData, any][] = [];
 
@@ -53,11 +53,19 @@ export class ChangeTracker {
     let { accumulator } = this;
 
     // Add to/remove from accumulator
-    accumulator = accumulator.concat(runs).toList();
-    const removeCount = Math.max(0, currentCount + addCount - maxCount);
-    if (removeCount > 0) {
-      removed = accumulator.slice(0, removeCount).toArray();
-      accumulator = accumulator.slice(removeCount).toList();
+    if (addCount >= maxCount) {
+      inserted = runs.slice(-maxCount);
+      removed = accumulator.toArray();
+      accumulator = List(inserted);
+    } else {
+      const removeCount = Math.max(0, currentCount + addCount - maxCount);
+
+      inserted = runs;
+      accumulator = accumulator.concat(runs).toList();
+      if (removeCount > 0) {
+        removed = accumulator.slice(0, removeCount).toArray();
+        accumulator = accumulator.slice(removeCount).toList();
+      }
     }
 
     // Update highlights
