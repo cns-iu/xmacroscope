@@ -2,11 +2,11 @@ import { simpleField, prePostMultiField, Field, DataType } from '@ngx-dino/core'
 import {
   access,
   map,
-  lookup,
   identity,
   constant,
   mappingWithDefault,
-  greyscale
+  greyscale,
+  sizescale
 } from './field-utils';
 
 import { AvatarFields } from './avatar-fields';
@@ -26,15 +26,16 @@ export const fixed = new Field<any>({
   mapping: mappingWithDefault({
     'label': constant('Fixed'),
     'shape': constant('circle'),
-    'size': constant(10),
-    'color': constant('#cccccc'),
-    'strokeColor': constant('#bebebe'),
+    'size': constant(50),
+    'color': constant('#bdbdbd'),
+    'strokeColor': constant('#8a8a8a'),
     'stateColor': constant('#ffffff'),
     'pulse': constant(false),
     'undefined': constant(undefined)
   }, 'label')
 });
 
+// Not in use right now
 export const lane = simpleField<number>({
   id: 'lane',
   label: 'Run Lane',
@@ -42,6 +43,7 @@ export const lane = simpleField<number>({
   operator: access('lane', 1)
 });
 
+// quantitative property
 export const timeMillis = prePostMultiField({
   id: 'timeMillis',
   label: 'Time (seconds)',
@@ -50,19 +52,7 @@ export const timeMillis = prePostMultiField({
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
-    'color': greyscale.quantitative([0, 6], 0), // domain = 0 - 6 ms TBD TODO
-    'strokeColor': greyscale.quantitative([0, 6], 10), // domain = 0 - 6 ms TBD TODO
-    'size': lookup<number>({
-      '07-09': 66,
-      '10-12': 77,
-      '13-18': 88,
-      '19-30': 99,
-      '31-40': 110,
-      '41-50': 121,
-      '51-60': 132,
-      '61-70': 143,
-      '70+': 155
-    }, 10),
+    'size': sizescale.quantitative([1, 10]),
   }, 'axis')
 });
 

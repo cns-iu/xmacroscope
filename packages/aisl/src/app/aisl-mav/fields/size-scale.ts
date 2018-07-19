@@ -37,7 +37,11 @@ export class Sizescale {
       case 'linear' : return scaleLinear<number, number>()
         .domain(domain).range([this.start, this.end]);
 
-      case 'log': return scaleLog<number, number>()
+      case 'log':
+        if (domain[0] === 0) {
+          domain[0] = 1e-6;
+        }
+        return scaleLog<number, number>()
         .domain(domain).range([this.start, this.end]);
     }
   }

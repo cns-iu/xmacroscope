@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { RunFields, wrapFieldForShowPersona } from '../fields';
 import { SharedDataService } from '../shared/shared-data.service';
