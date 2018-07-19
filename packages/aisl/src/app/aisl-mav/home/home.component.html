@@ -80,7 +80,11 @@
         <span class="title">Quantitative</span>
         <br>
         <mav-field-dropzone mappingKey="size" [(field)]="sizeField" #sizeEncoding>
-          <span class="subtitle encodingDropZone {{ sizeEncoding.selectionClass }}">Size: {{ sizeEncoding.field?.label }}</span>
+          <span class="subtitle encodingDropZone {{ sizeEncoding.selectionClass }}">
+            Size: {{ sizeEncoding.field?.label }}
+            <!-- <aisl-size-legend [sizeField]="sizeEncoding.field"></aisl-size-legend> -->
+          </span>
+          
         </mav-field-dropzone>
       </div>
 
@@ -88,7 +92,10 @@
         <span class="title">Qualitative</span>
         <br>
         <mav-field-dropzone mappingKey="color" [(field)]="colorField" #colorEncoding>
-          <span class="subtitle encodingDropZone {{ colorEncoding.selectionClass }}">Color: {{ colorEncoding.field?.label }}</span>
+          <span class="subtitle encodingDropZone {{ colorEncoding.selectionClass }}">
+            Color: {{ colorEncoding.field?.label }}
+            <!-- <aisl-color-legend [colorField]="colorEncoding.field"></aisl-color-legend> -->
+          </span>
         </mav-field-dropzone>
       </div>
 

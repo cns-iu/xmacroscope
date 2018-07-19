@@ -22,7 +22,8 @@ import { Colorscale } from './color-scale';
 import { Sizescale } from './size-scale';
 
 export const greyscale = new Colorscale('#bdbdbd', '#000000', '#ffffff', -51);
-export const sizescale = new Sizescale(50, 200, 5, 'linear'); // TBD TODO
+export const sizeRange = [50, 250];
+export const sizescale = new Sizescale(sizeRange[0], sizeRange[1], 5, 'linear'); // TBD TODO
 
 export function mappingWithDefault(mapping: any, defaultKey: string): any {
   mapping[Field.defaultSymbol] = mapping[defaultKey];
