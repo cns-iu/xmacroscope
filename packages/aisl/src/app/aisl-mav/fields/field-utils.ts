@@ -22,7 +22,7 @@ import { Colorscale } from './color-scale';
 import { Sizescale } from './size-scale';
 
 export const greyscale = new Colorscale('#bdbdbd', '#000000', '#ffffff', -51);
-export const sizescale = new Sizescale(50, 250, 5, 'linear'); // TBD TODO
+export const sizescale = new Sizescale(50, 200, 5, 'linear'); // TBD TODO
 
 export function mappingWithDefault(mapping: any, defaultKey: string): any {
   mapping[Field.defaultSymbol] = mapping[defaultKey];
@@ -75,12 +75,12 @@ export const persona = new Field({
     'shape': access('persona.icon'),
     'color': access('persona.color'),
     'strokeColor': access('persona.color'),
-    'size': constant(400),
+    'size': constant(250),
     'label': combine({
       'shape': access('persona.icon'),
       'color': access('persona.color'),
       'strokeColor': access('persona.color'),
-      'size': constant(400),
+      'size': constant(250),
     })
   }
 });
