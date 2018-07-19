@@ -35,5 +35,6 @@ db.performance = Performance;
 // associations.
 //------------------------------------------------------------------------------
 db.person.hasMany(db.run);
+db.run.belongsTo(db.person);
 
 export default db;

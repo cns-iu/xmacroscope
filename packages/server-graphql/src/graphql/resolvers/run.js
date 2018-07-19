@@ -9,7 +9,17 @@ import pubsub from './subscriptions';
 
 // Load x runs starting with the most recent
 const runs = baseResolver
-  .createResolver((root, args) => db.run.findAll({ limit: args.lastX }));
+  .createResolver((root, args) => db.run.findAll({
+    limit: args.lastX,
+    order: [
+      ['start', 'DESC'],
+    ],
+    include: [
+      {
+        model: db.person,
+      },
+    ],
+  }));
 
 //------------------------------------------------------------------------------
 // Mutations
@@ -91,7 +101,7 @@ const runFinish = baseResolver
         'opponentTime',
         'start',
         'end',
-        'personId',
+        'PersonId',
       ],
       where: { id: args.run.id },
       raw: true,
@@ -102,7 +112,7 @@ const runFinish = baseResolver
         const startTime = moment(new Date(completedRun.start));
         const endTime = moment(moment(new Date(completedRun.end)));
 
-        db.person.findOne({ where: { id: completedRun.personId } })
+        db.person.findOne({ where: { id: completedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const publishPayload = {
               raceCompleted: {
