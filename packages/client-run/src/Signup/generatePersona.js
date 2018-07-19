@@ -77,7 +77,7 @@ const generatePersona = () => {
     handedness: fakeHandedness,
     height: fakeHeight,
     siblings: fakeSiblings,
-    zipcode: faker.address.zipCode(),
+    zipcode: faker.address.zipCode('#####'),
     latitude: fakeLat,
     longitude: fakeLong,
     state: faker.address.state(),
