@@ -5,8 +5,8 @@ import { sample } from 'lodash';
 const generatePersona = () => {
   const fakeShape = sample([
     'square',
+    'cross',
     'diamond',
-    'crossbars',
     'triangle-up',
     'star',
   ]);
