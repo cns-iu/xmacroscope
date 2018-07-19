@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { bufferTime, concatMap, filter, map } from 'rxjs/operators';
 
 import { List } from 'immutable';
+import { clone } from 'lodash';
 
 import { RawChangeSet } from '@ngx-dino/core';
 import { RaceCompletedMessage, Message, RunData } from 'aisl-api';
@@ -73,8 +74,9 @@ export class ChangeTracker {
       if (index < highlightCount) {
         run.showPersona = true;
       } else if (run.showPersona) {
-        run.showPersona = false;
-        replaced.push([run, run]);
+        const runClone = clone(run);
+        runClone.showPersona = false;
+        replaced.push([run, runClone]);
       }
     });
 
