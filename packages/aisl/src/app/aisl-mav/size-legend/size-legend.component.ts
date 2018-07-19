@@ -17,7 +17,7 @@ export class SizeLegendComponent {
   @Input() sizeField: Field<any> = RunFields.fixed;
 
   fields = RunFields;
-  sizeRange = sizeRange;
+  sizeRange = sizeRange.map(s => Math.sqrt(s / Math.PI));
 
   constructor(service: SharedDataService) {
     this.dataStream = service.createStream();

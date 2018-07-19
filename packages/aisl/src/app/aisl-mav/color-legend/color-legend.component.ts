@@ -18,8 +18,15 @@ export class ColorLegendComponent {
   @Input() colorField: Field<any> = RunFields.fixed;
 
   labelToColor = Map<string, string>({
-    'Ugh': 'green',
-    'Why?': 'yellow'
+    '07-09': '#bdbdbd',
+    '10-12': '#a5a5a5',
+    '13-18': '#8e8e8e',
+    '19-30': '#767676',
+    '31-40': '#5f5f5f',
+    '41-50': '#474747',
+    '51-60': '#2f2f2f',
+    '61-70': '#181818',
+    '70+': '#000'
   });
 
   fields = RunFields;

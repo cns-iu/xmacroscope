@@ -151,6 +151,7 @@ export const siblings = prePostMultiField({
       12
     ]),
     'size': sizescale.quantitative([0, 12]),
+    'sizeInput': identity()
   }, 'axis')
 });
 

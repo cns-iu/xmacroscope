@@ -77,28 +77,30 @@
       </div>
 
       <div class="quantitative">
-        <span class="title">Quantitative</span>
-        <br>
         <mav-field-dropzone mappingKey="size" [(field)]="sizeField" #sizeEncoding>
-          <span class="subtitle encodingDropZone {{ sizeEncoding.selectionClass }}">
+        <div class="encodingDropZone {{ sizeEncoding.selectionClass }}">
+          <span class="title">Quantitative</span>
+          <br>
+          <span class="subtitle">
             Size: {{ sizeEncoding.field?.label }}
-            <!-- <aisl-size-legend [sizeField]="sizeEncoding.field"></aisl-size-legend> -->
+            <aisl-size-legend [sizeField]="sizeEncoding.field"></aisl-size-legend>
           </span>
-          
+        </div>
         </mav-field-dropzone>
       </div>
 
       <div class="qualitative">
-        <span class="title">Qualitative</span>
-        <br>
         <mav-field-dropzone mappingKey="color" [(field)]="colorField" #colorEncoding>
-          <span class="subtitle encodingDropZone {{ colorEncoding.selectionClass }}">
-            Color: {{ colorEncoding.field?.label }}
-            <!-- <aisl-color-legend [colorField]="colorEncoding.field"></aisl-color-legend> -->
-          </span>
+          <div class="encodingDropZone {{ colorEncoding.selectionClass }}">
+            <span class="title">Qualitative</span>
+            <br>
+            <span class="subtitle">
+              Color: {{ colorEncoding.field?.label }}
+              <aisl-color-legend [colorField]="colorEncoding.field"></aisl-color-legend>
+            </span>
+          </div>
         </mav-field-dropzone>
       </div>
-
     </div>
   </div>
 </div>
