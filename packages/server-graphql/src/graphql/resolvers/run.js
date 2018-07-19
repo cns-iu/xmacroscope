@@ -44,18 +44,7 @@ const runSelect = baseResolver
 
 const runStart = baseResolver
   .createResolver((root, args) => db.person.create({
-    name: args.run.persona.name,
-    icon: args.run.persona.icon,
-    color: args.run.persona.color,
-    gender: args.run.persona.gender,
-    ageGroup: args.run.persona.age_group,
-    handedness: args.run.persona.handedness,
-    height: args.run.persona.height,
-    siblings: args.run.persona.siblings,
-    latitude: args.run.persona.latitude,
-    longitude: args.run.persona.longitude,
-    zipcode: args.run.persona.zipcode,
-    state: args.run.persona.state,
+    ...args.run.persona,
     Runs: {
       start: args.run.start,
       opponent: args.run.opponent,
@@ -127,19 +116,7 @@ const runFinish = baseResolver
                 results: [
                   {
                     lane: 1,
-                    persona: {
-                      id: runnerPerson.id,
-                      name: runnerPerson.name,
-                      icon: runnerPerson.icon,
-                      color: runnerPerson.color,
-                      gender: runnerPerson.gender,
-                      age_group: runnerPerson.ageGroup,
-                      handedness: runnerPerson.handedness,
-                      latitude: runnerPerson.latitude,
-                      longitude: runnerPerson.longitude,
-                      zipcode: runnerPerson.zipcode,
-                      state: runnerPerson.state,
-                    },
+                    persona: runnerPerson,
                     started: true,
 
                     // TODO: Step 1 - generate random false starts on client
