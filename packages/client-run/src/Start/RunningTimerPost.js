@@ -2,6 +2,7 @@ import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Timer from './Timer';
+import generatePersona from '../Signup/generatePersona';
 
 const GET_SETTINGS = gql`
   query settings($location: String!) {
@@ -19,8 +20,36 @@ const GET_SETTINGS = gql`
 `;
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation updateRace($status: String!) {
-    updateRace(status: $status) @client
+  mutation updateRace(
+  $status: String!
+  $name: String!
+  $color: String!
+  $icon: String!
+  $gender: String!
+  $age_group: String!
+  $handedness: String!
+  $height: String!
+  $siblings: String!
+  $zipcode: String!
+  $latitude: String!
+  $longitude: String!
+  $state: String!
+  ) {
+    updateRace(
+      status: $status,
+      name: $name,
+      color: $color,
+      icon: $icon,
+      gender: $gender,
+      age_group: $age_group,
+      handedness: $handedness,
+      height: $height,
+      siblings: $siblings,
+      zipcode: $zipcode,
+      latitude: $latitude,
+      longitude: $longitude,
+      state: $state,
+    ) @client
   }
 `;
 
@@ -30,6 +59,7 @@ class RunningTimerPost extends React.Component {
   }
 
   render() {
+    const persona = generatePersona();
     return (
       <Query
         query={GET_SETTINGS}
@@ -43,8 +73,9 @@ class RunningTimerPost extends React.Component {
             <Mutation
               mutation={UPDATE_RUN_LOCAL}
               variables={{
-              status: 'opponentSelect',
-            }}
+                status: 'opponentSelect',
+                ...persona,
+              }}
             >
               {updateRace => (
                 <div>
@@ -62,7 +93,6 @@ class RunningTimerPost extends React.Component {
                   <Timer
                     completion={() => {
                       updateRace();
-                      console.log('post race timer done');
                     }}
                     direction="down"
                     start={postRaceDelay}
