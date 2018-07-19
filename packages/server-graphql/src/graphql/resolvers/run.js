@@ -23,7 +23,7 @@ const runs = baseResolver
 const runSelect = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
-      raceSelected: {
+      runSelected: {
         type: 'run-selected',
         timestamp: new Date(),
         avatar: {
@@ -33,7 +33,13 @@ const runSelect = baseResolver
         },
       },
     };
-    pubsub.publish('run-selected', publishPayload);
+    const message = pubsub.publish('run-selected', publishPayload);
+    if (message) {
+      console.log('Run selected - Message sent');
+    } else {
+      console.log('Run selected - Message failed');
+    }
+    return message;
   });
 
 const runStart = baseResolver
@@ -44,6 +50,8 @@ const runStart = baseResolver
     gender: args.run.persona.gender,
     ageGroup: args.run.persona.age_group,
     handedness: args.run.persona.handedness,
+    height: args.run.persona.height,
+    siblings: args.run.persona.siblings,
     latitude: args.run.persona.latitude,
     longitude: args.run.persona.longitude,
     zipcode: args.run.persona.zipcode,
@@ -70,7 +78,12 @@ const runStart = baseResolver
           },
         },
       };
-      pubsub.publish('race-initiated', publishPayload);
+      const message = pubsub.publish('race-initiated', publishPayload);
+      if (message) {
+        console.log('Run initiated - Message sent');
+      } else {
+        console.log('Run initiated - Message failed');
+      }
       return createdPerson.Runs[0].id;
     }));
 
@@ -83,7 +96,14 @@ const runFinish = baseResolver
     // We get the raw data object here instead of a Sequelize object
     // so that we can access the personId without worry about the association
     db.run.findOne({
-      attributes: ['opponent', 'opponentName', 'opponentTime', 'start', 'end', 'personId'],
+      attributes: [
+        'opponent',
+        'opponentName',
+        'opponentTime',
+        'start',
+        'end',
+        'personId',
+      ],
       where: { id: args.run.id },
       raw: true,
     })
@@ -131,7 +151,12 @@ const runFinish = baseResolver
                 ],
               },
             };
-            pubsub.publish('race-completed', publishPayload);
+            const message = pubsub.publish('race-completed', publishPayload);
+            if (message) {
+              console.log('Run completed - Message sent');
+            } else {
+              console.log('Run completed - Message failed');
+            }
           });
       });
     // Publish race completion for MAV

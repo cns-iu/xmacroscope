@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DinoGeomapModule } from '@ngx-dino/geomap';
+import { DinoLegendModule } from '@ngx-dino/legend';
 import { DinoScatterplotModule } from '@ngx-dino/scatterplot';
 
 import { SharedModule } from '../shared';
 
+import { SizeLegendComponent } from './size-legend/size-legend.component';
+import { ColorLegendComponent } from './color-legend/color-legend.component';
 import { GeomapComponent } from './geomap/geomap.component';
 import { HomeComponent } from './home/home.component';
 import { ScatterplotComponent } from './scatterplot/scatterplot.component';
@@ -27,6 +30,8 @@ const components: any[] = [
   ScatterplotComponent,
   AttributeSelectorComponent,
   FieldDropzoneComponent,
+  SizeLegendComponent,
+  ColorLegendComponent,
   DraggableDirective,
   DroppableDirective
 ];
@@ -36,6 +41,7 @@ const components: any[] = [
     CommonModule,
     SharedModule,
     DinoGeomapModule,
+    DinoLegendModule,
     DinoScatterplotModule
   ],
   exports: components,
