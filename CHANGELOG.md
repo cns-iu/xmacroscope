@@ -10,6 +10,7 @@ Changelog for the xMacroscope project.
 - Totally redesigned Make-A-Vis screen
 - Overall look and feel is updated
 - The server / client version can now fully talk to one another enabling a physical run exhibit!
+- The demo site is now built automatically on Travis CI when there is a push to master
 
 ### Known Issues in 0.0.6
 
