@@ -1,48 +1,55 @@
 //
 // Opponent select view
 //
+// This includes a temporary implementation of the keypress system
+// We're having to replicate some of the local Mutation code that's also
+// used in the buttons. We should think about how to re-architect this for
+// less repetition.
+//
 import React from 'react';
-import { Row, Col } from 'reactstrap';
-import OpponentSelectButton from './OpponentSelectButton';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import OpponentSelectButtons from './OpponentSelectButtons';
 
-const OpponentSelect = () => {
-  // TODO - Load these from settings
-  const opponents = [
-    { id: 'fast-animal', name: 'Fast animal', raceTime: 1500 },
-    { id: 'slow-animal', name: 'Slow animal', raceTime: 4500 },
-    { id: 'fast-person', name: 'Fast person', raceTime: 2500 },
-    { id: 'slow-person', name: 'Slow person', raceTime: 4000 },
-    { id: 'cartoon-character', name: 'Cartoon character', raceTime: 5000 },
-  ];
-  return (
+const SELECT_RUN = gql`
+  mutation RunSelect(
+  $run: RunSelect!
+  ) {
+    runSelect(
+      run: $run
+    )
+  }
+`;
 
-    <Row>
-      <Col>
-        <Row>
-          <Col>
-            <h1>Select an opponent</h1>
-          </Col>
-        </Row>
-        <Row>
-          {
-            opponents.map(item => (
-              <Col
-                key={item.name}
-                xs={6}
-                className="mb-3"
-              >
-                <OpponentSelectButton
-                  opponent={item.id}
-                  opponentName={item.name}
-                  opponentTime={item.raceTime}
-                />
-              </Col>
-            ))
-          }
-        </Row>
-      </Col>
-    </Row>
-  );
-};
+const OpponentSelect = () => (
+  <Mutation
+    mutation={SELECT_RUN}
+    update={(cache) => {
+      // Fast animal is temporarily encoded for the start keypress.
+      cache.writeData({
+        data: {
+          activeRace: {
+            __typename: 'ActiveRace',
+            status: 'runTimerPre',
+            opponent: 'fast-animal',
+            opponentName: 'Fast animal',
+            opponentTime: 1500,
+          },
+        },
+      });
+    }}
+    variables={{
+      run: {
+        opponent: 'fast-animal',
+        opponentName: 'Fast animal',
+        opponentTime: 1500,
+      },
+    }}
+  >
+    {updateRace => (
+      <OpponentSelectButtons keypress={updateRace} />
+    )}
+  </Mutation>
+);
 
 export default OpponentSelect;
