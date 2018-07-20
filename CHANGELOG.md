@@ -15,6 +15,7 @@ Changelog for the xMacroscope project.
 ### Known Issues in 0.0.6
 
 - The Make-A-Vis is optimized for a 1080p browser window. Other resolutions may not look right.
+- The color legend is not updating with data and field changes
 
 ## 0.0.4 - 2018-03-09
 
