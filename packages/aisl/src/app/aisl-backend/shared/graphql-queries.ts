@@ -78,3 +78,59 @@ export const SEND_MESSAGE = gql`
     })
   }
 `;
+
+export const RECENT_RUNS = gql`
+  query (
+    $lastX: Int!
+  ) {
+    runs(lastX: $lastX){
+    id
+    opponent
+    opponentName
+    opponentTime
+    start
+    end
+    PersonId
+    Person {
+      id
+      name
+      icon
+      color
+      gender
+      age_group
+      handedness
+      height
+      siblings
+      zipcode
+      state
+      latitude
+      longitude
+    }
+  }
+  }
+`;
+
+export interface RecentRunRecord {
+  id: string;
+  opponent: string;
+  opponentName: string;
+  opponentTime: string;
+  start: string;
+  end: string;
+  PersonId: string;
+  Person: {
+    id: string;
+    name: string;
+    icon: string;
+    color: string;
+    gender: string;
+    age_group: string;
+    handedness: string;
+    height: number;
+    siblings: number;
+    zipcode: string;
+    state: string;
+    latitude: number;
+    longitude: number;
+  };
+}

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import { Apollo } from 'apollo-angular';
 
-import { RUN_SELECTED, RACE_INITIATED, RACE_COMPLETED, SEND_MESSAGE} from './graphql-queries';
+import { RUN_SELECTED, RACE_INITIATED, RACE_COMPLETED, SEND_MESSAGE, RECENT_RUNS, RecentRunRecord } from './graphql-queries';
 import { MessageService } from './message.service';
 
 import {
@@ -12,8 +12,11 @@ import {
   RaceInitiatedMessage, RaceCompletedMessage, RaceResult
 } from 'aisl-api';
 
+import { environment } from '../../shared';
+
 @Injectable()
 export class GraphQLMessageService {
+  initialRunCount = 50;
   runSelected: Observable<RunSelectedMessage>;
   raceInitiated: Observable<RaceInitiatedMessage>;
   raceCompleted: Observable<RaceCompletedMessage>;
@@ -21,7 +24,13 @@ export class GraphQLMessageService {
   constructor(private messageService: MessageService, private apollo: Apollo) {
     this.listenForRunSelected();
     this.listenForRaceInitiated();
-    this.listenForRaceCompleted();
+    if (environment.graphqlEndpoint === 'clientdb') {
+      this.listenForRaceCompleted();
+    } else {
+      this.getRecentRuns(this.initialRunCount).subscribe((d) => {
+        this.listenForRaceCompleted();
+      });
+    }
   }
 
   send(message: Message) {
@@ -51,6 +60,31 @@ export class GraphQLMessageService {
       return new RaceInitiatedMessage(this.convertTimestamp(data.data.raceInitiated));
     });
     this.listenForMessage(this.raceInitiated);
+  }
+  getRecentRuns(lastX: number): Observable<RaceCompletedMessage[]> {
+    return this.apollo.watchQuery<{runs: RecentRunRecord[]}>({ query: RECENT_RUNS, variables: {lastX} }).valueChanges.map((data) => {
+      return data.data.runs.map(this.runToRaceCompleted);
+    }).do((d) => d.forEach((m) => this.messageService.send(m)));
+  }
+  private runToRaceCompleted(run: RecentRunRecord): RaceCompletedMessage {
+    const start = moment(run.start).local().toDate(), end = moment(run.end).local().toDate();
+    return new RaceCompletedMessage({
+      timestamp: end,
+      avatar: {
+        id: run.opponent,
+        name: run.opponentName,
+        runMillis: parseInt(run.opponentTime, 10)
+      },
+      results: [
+        {
+          lane: 1,
+          persona: run.Person,
+          started: true,
+          falseStart: false,
+          timeMillis: end.getTime() - start.getTime()
+        }
+      ]
+    });
   }
   listenForRaceCompleted() {
     this.raceCompleted = this.apollo.subscribe({ query: RACE_COMPLETED }).map((data) => {

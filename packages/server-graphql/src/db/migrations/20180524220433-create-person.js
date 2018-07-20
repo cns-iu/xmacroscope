@@ -18,7 +18,7 @@ module.exports = {
     gender: {
       type: Sequelize.STRING,
     },
-    ageGroup: {
+    age_group: {
       type: Sequelize.STRING,
     },
     handedness: {

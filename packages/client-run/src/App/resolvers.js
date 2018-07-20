@@ -1,6 +1,8 @@
+import generatePersona from '../Signup/generatePersona';
 //
 // Defaults for local state
 //
+const persona = generatePersona();
 export const defaults = {
   activeRace: {
     __typename: 'ActiveRace',
@@ -9,6 +11,7 @@ export const defaults = {
     opponentTime: 0,
     raceId: null,
     status: 'opponentSelect',
+    ...persona,
   },
 };
 
@@ -18,7 +21,9 @@ export const defaults = {
 export const resolvers = {
   Mutation: {
     updateRace: (_, {
-      status, opponent, opponentName, opponentTime, raceId,
+      status, opponent, opponentName, opponentTime, raceId, name, icon, color,
+      gender, age_group, handedness, height, siblings, zipcode, latitude,
+      longitude, state,
     },
     { cache }) => {
       const data = {
@@ -29,6 +34,18 @@ export const resolvers = {
           opponentTime,
           raceId,
           status,
+          name,
+          icon,
+          gender,
+          age_group,
+          handedness,
+          height,
+          siblings,
+          zipcode,
+          latitude,
+          longitude,
+          state,
+          color,
         },
       };
       cache.writeData({ data });

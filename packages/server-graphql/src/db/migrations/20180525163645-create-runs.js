@@ -21,7 +21,7 @@ module.exports = {
     end: {
       type: Sequelize.DATE,
     },
-    personId: {
+    PersonId: {
       type: Sequelize.INTEGER,
       references: {
         model: 'People',

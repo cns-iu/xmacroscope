@@ -49,8 +49,12 @@ type RunRecordOld {
 type RunRecord {
   id: ID
   opponent: String
+  opponentName: String
+  opponentTime: String
   start: Date
   end: Date
+  PersonId: ID
+  Person: Persona
 }
 
 interface Message {

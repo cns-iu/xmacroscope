@@ -12,7 +12,7 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   watch: true,
-  entry: ['webpack/hot/poll?1000', './src/index'],
+  entry: ['./src/index'],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './build',

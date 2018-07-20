@@ -1,0 +1,33 @@
+language: node_js
+
+node_js:
+  - "9"
+
+sudo: false
+
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
+
+branches:
+  only:
+    - master
+
+install:
+  - npm install -g lerna "@angular/cli@^1.7.2"
+  - lerna bootstrap
+  - lerna link
+
+script:
+  - cd packages/aisl
+  - yarn build-release
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: false
+  local-dir: packages/aisl/dist
+  on:
+    branch: master
