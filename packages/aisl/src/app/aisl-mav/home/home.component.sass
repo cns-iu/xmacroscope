@@ -8,10 +8,11 @@
   height: 89vh
   align-items: stretch
   font-family: $lato
+  overflow: hidden
 
   .first-column
     width: 35%
-    padding: 1vh 5px 1vh 10px
+    padding: 1vh .25vw 1vh 1vw
     
     .restart-button
       margin-bottom: 1vh
@@ -27,15 +28,12 @@
     width: 65%
     flex-direction: column
     background: #000000
-    padding: 1vh 10px 1vh 5px
+    padding: 1vh 1vw 1vh .25vw
 
     .visualization-box
       background: #ffffff
       margin-bottom: 1vh
       height: 65vh
-
-    // .visualization-tabs // TODO ?
-    //   height: 7vh
 
     .legend-description-box
       display: flex
@@ -43,7 +41,7 @@
       height: 21vh
 
       .description
-        padding: 10px
+        padding: 0.8%
         width: 50%
 
         .title
@@ -72,16 +70,6 @@
         .subtitle
           white-space: nowrap
           font-size: 12px
-        
-        .encodingDropZone
-          display: table-cell
-          width: 100%
-          height: 16vh
-          padding: 5px
-
-        .selectable
-          background-color: rgba(235,237,79,0.5)
-          border: 1px solid rgb(235,237,79)
 
       .quantitative
         border-right: 1px solid #afafaa
@@ -98,3 +86,33 @@
 
   .partial-disabled-tab-label
     text-align: left
+
+  .encodingDropZone
+    display: table-cell
+    height: 20vh
+
+  .selectable
+    background-color: rgba(235,237,79,0.5)
+    border: 1px solid rgb(235,237,79)
+  
+  .x-dropzone
+    position: absolute
+    left: 15%
+    height: 5vh
+    width: 40% 
+    top: 46vh
+    color: #000000
+    padding-left: 30%
+    padding-top: 2%
+
+  .y-dropzone
+    position: absolute
+    width: 20%
+    top: 20vh
+    right: 83%
+    height: 5vh
+    padding-top: 1%
+    padding-left: 8%
+    color: #000000
+    transform: rotate(-90deg)
+
