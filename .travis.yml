@@ -16,6 +16,8 @@ branches:
 
 install:
   - npm install -g lerna "@angular/cli@^1.7.2"
+  - lerna bootstrap
+  - lerna link
 
 script:
   - cd packages/aisl
