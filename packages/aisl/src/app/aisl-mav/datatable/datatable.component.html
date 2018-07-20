@@ -1,7 +1,7 @@
 <div class="datatable">
   <mat-table [dataSource]="dataSource" class="table">
     <ng-container *ngFor="let field of fields; index as i" [matColumnDef]="field.label" class="container">
-      <mat-header-cell class="draggable-header" [mavDraggable]="field" *matHeaderCellDef>{{field.label}}</mat-header-cell>
+      <mat-header-cell class="draggable-header" [class.mav-header-persona]="field.id === 'persona'" [mavDraggable]="field" *matHeaderCellDef>{{field.label}}</mat-header-cell>
       <mat-cell *matCellDef="let item" [mavDraggable]="field" [ngSwitch]="field.id">
 
         <div *ngSwitchCase="'persona'" class="draggable mav-field-{{ field.id }}">
