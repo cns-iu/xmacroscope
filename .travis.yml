@@ -18,7 +18,8 @@ install:
   - npm install -g lerna "@angular/cli@^1.7.2"
 
 script:
-  - cd packages/aisl && yarn build-release
+  - cd packages/aisl
+  - yarn build-release
 
 deploy:
   provider: pages
