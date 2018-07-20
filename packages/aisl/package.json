@@ -9,7 +9,7 @@
     "start-prod": "ng serve --prod --aot --sourcemaps",
     "build": "ng build --prod --aot --sourcemaps",
     "build-worker": "webpack --config webpack.worker.config.js",
-    "build-release": "yarn build --base-href /xmacroscope/",
+    "build-release": "ng build --prod --aot --base-href /xmacroscope/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
