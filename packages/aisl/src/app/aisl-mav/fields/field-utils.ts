@@ -1,6 +1,7 @@
 import { BoundField, Field, simpleField, DataType, Operator } from '@ngx-dino/core';
 import { access } from '@ngx-dino/core/src/operators/methods/extracting/access';
 import { map } from '@ngx-dino/core/src/operators/methods/transforming/map';
+import { identity } from '@ngx-dino/core/src/operators/methods/extracting/identity';
 import { constant } from '@ngx-dino/core/src/operators/methods/generating/constant';
 import { combine } from '@ngx-dino/core/src/operators/methods/grouping/combine';
 import { chain } from '@ngx-dino/core/src/operators/methods/grouping/chain';
@@ -77,6 +78,7 @@ export const persona = new Field({
     'color': access('persona.color'),
     'strokeColor': access('persona.color'),
     'size': constant(250),
+    'sizeInput': identity(),
     'label': combine({
       'shape': access('persona.icon'),
       'color': access('persona.color'),
