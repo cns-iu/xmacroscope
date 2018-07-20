@@ -13,7 +13,7 @@
   .first-column
     width: 35%
     padding: 1vh .25vw 1vh 1vw
-    
+
     .restart-button
       margin-bottom: 1vh
       border-radius: 8px
@@ -34,6 +34,9 @@
       background: #ffffff
       margin-bottom: 1vh
       height: 65vh
+
+    ::ng-deep dino-geomap > div
+      height: 55vh
 
     .legend-description-box
       display: flex
@@ -94,12 +97,12 @@
   .selectable
     background-color: rgba(235,237,79,0.5)
     border: 1px solid rgb(235,237,79)
-  
+
   .x-dropzone
     position: absolute
     left: 15%
     height: 5vh
-    width: 40% 
+    width: 40%
     top: 46vh
     color: #000000
     padding-left: 30%
@@ -115,5 +118,3 @@
     padding-left: 8%
     color: #000000
     transform: rotate(-90deg)
-
-
