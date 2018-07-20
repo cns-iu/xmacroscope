@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import Timer from './Timer';
+import RunFinishButton from './RunFInishButton';
 
 const GET_RACE_ID = gql`
   query {
@@ -76,23 +77,11 @@ class RunnerTimer extends React.Component {
 
                   <Row>
                     <Col>
-                      <Button
-                        disabled={timerStopped}
-                        color="primary"
-                        onClick={() => {
-                          this.setState({ timerStopped: true });
-                          runFinish({
-                            variables: {
-                              run: {
-                                id: raceId,
-                                finish: moment(),
-                              },
-                            },
-                          });
-                        }}
-                      >
-                        Lane {lane} finish
-                      </Button>
+                      <RunFinishButton
+                        lan={lane}
+                        raceId={raceId}
+                        runFinish={runFinish}
+                      />
                     </Col>
                   </Row>
 
