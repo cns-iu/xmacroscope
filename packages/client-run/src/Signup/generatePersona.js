@@ -31,22 +31,20 @@ const generatePersona = () => {
   ]);
 
   const fakeAgeGroup = sample([
-    '0-6',
-    '6-14',
-    '15-24',
-    '25-34',
-    '35-44',
-    '45-54',
-    '55-64',
-    '65-74',
-    '75-85',
-    '85+',
+    '07-09',
+    '10-12',
+    '13-18',
+    '19-30',
+    '31-40',
+    '41-50',
+    '51-60',
+    '61-70',
+    '71+',
   ]);
 
   const fakeHandedness = sample([
     'left',
     'right',
-    'ambidextrous',
   ]);
 
   // South Lat
