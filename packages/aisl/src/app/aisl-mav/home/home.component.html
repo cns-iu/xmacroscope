@@ -42,21 +42,21 @@
             [pointSizeField]="sizeField">
           </aisl-scatterplot>
 
-          <div class="encodingDropZone {{ xEncoding.selectionClass }} x-dropzone">
-            <mav-field-dropzone mappingKey="axis" [(field)]="scatterPlotX" #xEncoding>
-                <span class="subtitle">
-                 {{ xEncoding.field?.label }}
-                </span>
-            </mav-field-dropzone>
-          </div>
+          <mav-field-dropzone mappingKey="axis" [(field)]="scatterPlotX" #xEncoding>
+            <div class="encodingDropZone {{ xEncoding.selectionClass }} x-dropzone">
+              <span class="subtitle">
+                {{ xEncoding.field?.label }}
+              </span>
+            </div>
+          </mav-field-dropzone>
 
-          <div class="encodingDropZone {{ yEncoding.selectionClass }} y-dropzone">
-              <mav-field-dropzone mappingKey="axis" [(field)]="scatterPlotY" #yEncoding>
-                  <span class="subtitle">
-                   {{ yEncoding.field?.label }}
-                  </span>
-              </mav-field-dropzone>
-          </div>
+          <mav-field-dropzone mappingKey="axis" [(field)]="scatterPlotY" #yEncoding>
+            <div class="encodingDropZone {{ yEncoding.selectionClass }} y-dropzone">
+                <span class="subtitle">
+                  {{ yEncoding.field?.label }}
+                </span>
+            </div>
+          </mav-field-dropzone>
         </mat-tab>
 
         <mat-tab>
