@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   mockMessages: true,
+  useHashStrategy: false,
   graphqlEndpoint: 'clientdb'
 };

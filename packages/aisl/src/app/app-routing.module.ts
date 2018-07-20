@@ -6,6 +6,8 @@ import { HomeComponent as backend } from './aisl-backend/home/home.component';
 import { HomeComponent as mav } from './aisl-mav/home/home.component';
 import { HomeComponent as endline } from './aisl-endline/home/home.component';
 
+import { environment } from './shared';
+
 const routes: Routes = [
   { path: 'home', pathMatch: 'full', component: home },
   { path: 'backend', component: backend },
@@ -15,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: environment.useHashStrategy})],
   exports: [RouterModule]
 })
 
