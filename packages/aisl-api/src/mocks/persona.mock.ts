@@ -24,10 +24,12 @@ function nullable<T>(value: T, nullProb = .1): T | null {
 export function mockUSLatLng(): [number, number] {
   return [casual.integer(MIN_LAT, MAX_LAT), casual.integer(MIN_LNG, MAX_LNG)];
 }
+const usZipCodes = Object.keys(zipcodes.codes)
+  .map((c) => parseInt(c, 10))
+  .filter(c => (zipcodes.lookup(c) || {}).country === 'US');
 
-const codes = Object.keys(zipcodes.codes).map((c) => parseInt(c, 10)).filter(c => !isNaN(c));
 export function mockUSLocation(): {state: string, latitude: number, longitude: number, zip: string} {
-  return zipcodes.lookup(casual.random_element(codes)) || mockUSLocation() /* keep looking until we find a valid location */;
+  return zipcodes.lookup(casual.random_element(usZipCodes)) || mockUSLocation() /* keep looking until we find a valid location */;
 }
 
 export class GeneratedPersona implements Persona {

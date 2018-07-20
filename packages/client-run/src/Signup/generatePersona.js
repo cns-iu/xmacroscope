@@ -2,9 +2,12 @@ import faker from 'faker';
 import { sample } from 'lodash';
 import * as zipcodes from 'zipcodes';
 
-const codes = Object.keys(zipcodes.codes).map((c) => parseInt(c, 10)).filter(c => !isNaN(c));
+const usZipCodes = Object.keys(zipcodes.codes)
+  .map((c) => parseInt(c, 10))
+  .filter(c => (zipcodes.lookup(c) || {}).country === 'US');
+
 function fakeUSLocation() {
-  return zipcodes.lookup(sample(codes)) || fakeUSLocation() /* keep looking until we find a valid location */;
+  return zipcodes.lookup(sample(usZipCodes)) || fakeUSLocation() /* keep looking until we find a valid location */;
 }
 
 // Generate persona
