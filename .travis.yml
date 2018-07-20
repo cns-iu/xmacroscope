@@ -15,7 +15,7 @@ branches:
     - master
 
 install:
-  - npm install -g lerna yarn @angular/cli
+  - npm install -g lerna "@angular/cli@^1.7.2"
 
 script:
   - cd packages/aisl && yarn build-release
