@@ -53,6 +53,7 @@ export const timeMillis = prePostMultiField({
   mapping: mappingWithDefault({
     'axis': identity(),
     'size': sizescale.quantitative([1, 10]),
+    'sizeInput': identity()
   }, 'axis')
 });
 

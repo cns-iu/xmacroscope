@@ -108,6 +108,7 @@ export const height = prePostMultiField({
   mapping: mappingWithDefault({
     'axis': identity(),
     'size': sizescale.quantitative([36, 96]), // domain -  36 to 96 inches
+    'sizeInput': identity()
   }, 'axis')
 });
 
