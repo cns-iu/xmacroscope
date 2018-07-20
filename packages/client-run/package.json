@@ -44,7 +44,7 @@
     "jest": "20.0.4",
     "lodash": "^4.17.4",
     "moment": "^2.22.2",
-    "mousetrap": "^1.6.1",
+    "mousetrap": "^1.6.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
