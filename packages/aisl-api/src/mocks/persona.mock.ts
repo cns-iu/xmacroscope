@@ -1,4 +1,5 @@
 import * as casual from 'casual-browserify';
+import * as zipcodes from 'zipcodes';
 
 import { Persona } from '../models/persona';
 
@@ -22,6 +23,11 @@ function nullable<T>(value: T, nullProb = .1): T | null {
 
 export function mockUSLatLng(): [number, number] {
   return [casual.integer(MIN_LAT, MAX_LAT), casual.integer(MIN_LNG, MAX_LNG)];
+}
+
+const codes = Object.keys(zipcodes.codes).map((c) => parseInt(c, 10)).filter(c => !isNaN(c));
+export function mockUSLocation(): {state: string, latitude: number, longitude: number, zip: string} {
+  return zipcodes.lookup(casual.random_element(codes)) || mockUSLocation() /* keep looking until we find a valid location */;
 }
 
 export class GeneratedPersona implements Persona {
@@ -49,9 +55,11 @@ export class GeneratedPersona implements Persona {
     this.handedness = nullable(casual.random > 0.1 ? 'right' : 'left');
     this.height = nullable(casual.integer(36, 96));
     this.siblings = nullable(casual.integer(0, 12));
-    this.zipcode = nullable(casual.zip(5));
-    this.state = nullable(casual.state);
-    [this.latitude, this.longitude] = nullable(mockUSLatLng()) || [null, null];
+
+    const location = mockUSLocation();
+    this.zipcode = nullable(location.zip);
+    this.state = nullable(location.state);
+    [this.latitude, this.longitude] = nullable([location.latitude, location.longitude]) || [null, null];
   }
 }
 
