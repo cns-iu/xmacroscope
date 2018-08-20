@@ -5,6 +5,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
 import gql from 'graphql-tag';
+import PersonaIcon from '../Signup/PersonaIcon';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -35,7 +36,7 @@ const GET_RACE_STATE_LOCAL = gql`
   }
 `;
 
-class StartPage extends React.Component {
+class StartPageDev extends React.Component {
 
   render() {
     return (
@@ -63,11 +64,18 @@ class StartPage extends React.Component {
               <Col xs={3}>
                 <Row>
                   <Col>
-                    <h1>Signup details placeholder</h1>
+                    <h1>Remember your shape!</h1>
+                    <PersonaIcon
+                      color={activeRace.color}
+                      shape={activeRace.icon}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <h2>Signup</h2>
                     <p>
-                      The signup screen is still in development. Currently, we
-                      generate fake runner information each time the opponent
-                      select screen is generated.
+                      Enter your details:
                     </p>
                   </Col>
                 </Row>
@@ -76,8 +84,6 @@ class StartPage extends React.Component {
                     <dl className="row">
                       <dt className="col-sm-4">Name</dt>
                       <dd className="col-sm-8">{persona.name}</dd>
-                      <dt className="col-sm-4">Color</dt>
-                      <dd className="col-sm-8">{persona.color}</dd>
                       <dt className="col-sm-4">Icon</dt>
                       <dd className="col-sm-8">{persona.icon}</dd>
                       <dt className="col-sm-4">Gender</dt>
@@ -127,4 +133,4 @@ class StartPage extends React.Component {
   }
 }
 
-export default StartPage;
+export default StartPageDev;

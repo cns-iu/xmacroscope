@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import StartPage from '../Start/StartPage';
+import StartPageDev from '../Start/StartPageDev';
+import SignupStartPage from '../Start/SignupStartPage';
 import Admin from '../Admin/AdminPage';
 import Home from '../Pages/Home';
 import NoMatch from '../Pages/NoMatch';
@@ -13,7 +14,8 @@ function AppRoutes() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/admin/start" component={StartPage} />
+          <Route exact path="/admin/start" component={SignupStartPage} />
+          <Route exact path="/admin/start-dev" component={StartPageDev} />
           <Route exact path="/admin/runs" component={Runs} />
           <Route component={NoMatch} />
         </Switch>

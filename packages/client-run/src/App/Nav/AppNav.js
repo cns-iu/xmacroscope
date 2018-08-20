@@ -36,18 +36,23 @@ class AppNav extends React.Component {
           <Nav className="mr-auto" navbar>
             {/* Anonymous user navigation */}
             <NavItem>
-              <Link className="nav-link" to="/admin">Admin</Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/admin/start">Starting line kiosk</Link>
-            </NavItem>
-            <NavItem>
-              <Link className="nav-link" to="/admin/runs">Runs</Link>
+              <Link className="nav-link" to="/admin/start">Signup & Start</Link>
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              Location: {process.env.REACT_APP_LOCATION}
+              <Link className="nav-link" to="/admin">Admin</Link>
+            </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/admin/start-dev">Dev-Start</Link>
+            </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/admin/runs">Runs</Link>
+            </NavItem>
+            <NavItem>
+              Location:
+              <br />
+              {process.env.REACT_APP_LOCATION}
             </NavItem>
           </Nav>
 
