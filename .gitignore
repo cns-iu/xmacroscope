@@ -1,4 +1,9 @@
 
+# Don't exclude .gitkeep files, which are used to track empty directories,
+# or directories of files that we don't track, but whose presence we want
+# to track.
+!.gitkeep
+
 # Env settings (database connections, etc)
 packages/*/.env
 packages/*/pm2-env.json
@@ -8,7 +13,10 @@ packages/*/.env.production
 # Compiled applications
 packages/*/build
 packages/*/dist
-packages/server-graphql/private
+
+# Track the private db directory, but not its contents.
+!packages/server-graphql/private
+packages/server-graphql/private/*
 
 # dependencies
 packages/*/node_modules
