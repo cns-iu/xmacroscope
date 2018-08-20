@@ -42,13 +42,13 @@ lerna link
 ## Setup environment
 ### Client
 ```
-cp client-run/env.development.example client-run/.env.development
+cp packages/client-run/env.development.example packages/client-run/.env.development
 ```
 REACT_APP_GRAPHQL_URL: Leave at the default unless you're running the GraphQL in a unique location.
 REACT_APP_LOCATION: Select a location for your installation. Options can be found in the `packages/server-graphql/src/db/seeders/*-demo-settings.js` file
 ### Server
 ```
-cp graphQLServer/env.example graphQLServer/.env
+cp packages/server-graphql/env.example packages/server-graphql/.env
 ```
 Unless you're deploying this to a server, you should keep all the defaults.
 
