@@ -21,6 +21,13 @@ npm install --global yarn
 npm install --global @angular/cli
 ```
 
+## Initialize [@ngx-dino](https://github.com/cns-iu/ngx-dino) Submodule
+[@ngx-dino](https://github.com/cns-iu/ngx-dino) is CNS' in development visualization framework. As it is not yet on npm, we reference it from a git submodule.
+```
+git submodule init
+git submodule update
+```
+
 ## Bootstrap the project
 Download the latest code and bootstrap the project with Lerna.
 
@@ -30,13 +37,6 @@ git clone git@github.com:cns-iu/xmacroscope.git
 cd xmacroscope
 lerna bootstrap
 lerna link
-```
-
-## Initialize [@ngx-dino](https://github.com/cns-iu/ngx-dino) Submodule
-[@ngx-dino](https://github.com/cns-iu/ngx-dino) is CNS' in development visualization framework. As it is not yet on npm, we reference it from a git submodule.
-```
-git submodule init
-git submodule update
 ```
 
 ## Setup environment
