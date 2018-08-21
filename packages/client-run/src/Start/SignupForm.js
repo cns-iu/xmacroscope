@@ -82,6 +82,14 @@ const SignupForm = ({
         ))}
     </Field>
 
+    <FormField
+      name="zipcode"
+      label="Zip code"
+      errors={errors}
+      touched={touched}
+      value={values.zipcode}
+    />
+
     <Button
       type="submit"
       disabled={isSubmitting}

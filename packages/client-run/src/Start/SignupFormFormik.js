@@ -13,6 +13,7 @@ const UPDATE_RUN_LOCAL = gql`
       age_group: $age_group
       handedness: $handedness
       siblings: $siblings
+      zipcode: $zipcode
     ) @client
   }
 `;
@@ -48,6 +49,7 @@ const SignupFormFormik = withFormik({
         age_group: values.age_group,
         handedness: values.handedness,
         siblings: values.siblings,
+        zipcode: values.zipcode,
       },
     });
   },
