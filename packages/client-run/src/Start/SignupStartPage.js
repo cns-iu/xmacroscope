@@ -114,7 +114,7 @@ class StartPageDev extends React.Component {
                   </Col>
                   : <Fragment>&nbsp;</Fragment>
               }
-              <Col>
+              <Col xs={8}>
                 {{
                   signupForm: <SignupFormFormik />,
                   opponentSelect: <OpponentSelect />,
@@ -128,9 +128,6 @@ class StartPageDev extends React.Component {
                   postRunTimer: <RunningTimerPost />,
                   falseStart: <div>False start</div>,
                 }[activeRace.status]}
-              </Col>
-              <Col xs={3}>
-                <AppState activeRace={activeRace} />
               </Col>
             </Row>
           );
