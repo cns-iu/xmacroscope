@@ -10,7 +10,7 @@ export const defaults = {
     opponentName: 'none',
     opponentTime: 0,
     raceId: null,
-    status: 'opponentSelect',
+    status: 'signupForm',
     ...persona,
   },
 };
