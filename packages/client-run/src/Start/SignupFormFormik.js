@@ -34,6 +34,11 @@ const SignupFormFormik = withFormik({
     if (!/(^\d{5}$)/.test(values.zipcode)) {
       errors.zipcode = 'Please enter 5 numbers for a Zip Code.';
     }
+    // Also do a Zip Code lookup to ensure that it's a valid place.
+    if (!zipcodes.lookup(values.zipcode)) {
+      errors.zipcode = 'Sorry that doesn\'t look like a valid Zip Code for a' +
+        ' place in the US';
+    }
     return errors;
   },
 
