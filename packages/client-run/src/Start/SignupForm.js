@@ -49,7 +49,7 @@ const SignupForm = ({
       required
     >
       {personOptions.ageGroups.map(item => (
-        <option value={item}>{item}</option>
+        <option key={item} value={item}>{item}</option>
       ))}
     </Field>
 
@@ -63,7 +63,7 @@ const SignupForm = ({
       required
     >
       {personOptions.handedness.map(item => (
-        <option value={item}>{item}</option>
+        <option key={item} value={item}>{item}</option>
       ))}
     </Field>
 
@@ -78,7 +78,7 @@ const SignupForm = ({
     >
       {_.range(personOptions.siblings.min, (personOptions.siblings.max + 1))
         .map(item => (
-          <option value={item}>{item}</option>
+          <option key={item} value={item}>{item}</option>
         ))}
     </Field>
 
