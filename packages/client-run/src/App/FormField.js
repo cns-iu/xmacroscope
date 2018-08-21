@@ -21,7 +21,7 @@ const FormField = ({
       type={type}
       component={component}
       disabled={disabled}
-      autocomplete="off"
+      autoComplete="off"
     />
 
     {/* Validation feedback */}
