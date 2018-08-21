@@ -10,7 +10,6 @@ import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
-import AppState from '../App/AppState';
 import SignupFormFormik from './SignupFormFormik';
 
 const GET_RACE_STATE_LOCAL = gql`
