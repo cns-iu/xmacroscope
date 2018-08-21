@@ -1,7 +1,13 @@
 <node-size-legend
   [dataStream]="dataStream"
-  [nodeSizeField]="sizeField?.getBoundField('sizeInput')"
+  
   [nodeIdField]="fields.id.getBoundField('id')"
-  [nodeSizeRange]="sizeRange"
-  [title]="''"
-></node-size-legend>
+  
+  [nodeSizeDomainField]="sizeField?.getBoundField('sizeInput')"
+  [nodeSizeRangeField]="sizeField?.getBoundField('size')"
+
+  [nodeShapeField]="shapeField?.getBoundField('shape')"
+  
+  [encoding]="''"
+  [title]="''">
+</node-size-legend>

@@ -15,13 +15,13 @@ export class HomeComponent implements OnInit {
     RunFields.persona.persona,
     RunFields.timeMillis,
     RunFields.persona.height,
-    RunFields.persona.siblings,
+    RunFields.persona.favoriteActivity,
     RunFields.persona.age_group,
     RunFields.persona.zipcode
   ].map(wrapFieldForShowPersona);
-  sizeField = wrapFieldForShowPersona(RunFields.persona.siblings);
-  colorField = wrapFieldForShowPersona(RunFields.persona.age_group);
-  strokeColorField = wrapFieldForShowPersona(RunFields.persona.age_group);
+  sizeField = wrapFieldForShowPersona(RunFields.persona.age_group);
+  colorField = wrapFieldForShowPersona(RunFields.persona.favoriteActivity);
+  strokeColorField = wrapFieldForShowPersona(RunFields.persona.favoriteActivity);
   shapeField = wrapFieldForShowPersona(RunFields.fixed);
   scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
   scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);

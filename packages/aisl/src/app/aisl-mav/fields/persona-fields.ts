@@ -112,81 +112,35 @@ export const height = prePostMultiField({
   }, 'axis')
 });
 
-// qualitative and quantitative property
-export const siblings = prePostMultiField({
-  id: 'persona.siblings',
-  label: '# Siblings',
-  dataType: DataType.Number,
-  pre: access<number>('persona.siblings', 1),
+// qualitative property
+export const favoriteActivity = prePostMultiField({
+  id: 'persona.favoriteActivity',
+  label: 'Favorite Activity',
+  dataType: DataType.String,
+  pre: access<string>('persona.favoriteActivity', 'Other'),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
     'color': greyscale.qualitative([
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12
+      'Sports', 'Cooking', 'Art', 'Gaming', 'Other'
     ]),
     'strokeColor': greyscale.qualitativeStrokeColor([
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12
-    ]),
-    'size': sizescale.quantitative([0, 12]),
-    'sizeInput': identity()
+      'Sports', 'Cooking', 'Art', 'Gaming', 'Other'
+    ])
   }, 'axis')
 });
 
-// qualitative property
+// quantitative property
 export const ageGroup = prePostMultiField({
   id: 'persona.age_group',
   label: 'Age Group',
   dataType: DataType.String,
-  pre: access<string>('persona.age_group', '51-60'),
+  pre: access<string>('persona.age_group', 'Other'),
   post: identity(),
   mapping: mappingWithDefault({
     'axis': identity(),
-    'color': greyscale.qualitative([
-      '07-09',
-      '10-12',
-      '13-18',
-      '19-30',
-      '31-40',
-      '41-50',
-      '51-60',
-      '61-70',
-      '70+'
-    ]),
-    'strokeColor': greyscale.qualitativeStrokeColor([
-      '07-09',
-      '10-12',
-      '13-18',
-      '19-30',
-      '31-40',
-      '41-50',
-      '51-60',
-      '61-70',
-      '70+'
-    ]),
+    'size': sizescale.qualitative(['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired']),
+    'sizeInput': identity()
   }, 'axis')
 });
 
@@ -199,7 +153,7 @@ export const zipcode = simpleField<string>({
 });
 
 export const PersonaFields = { id, persona, icon, color,
-  siblings, height, zipcode, state, location,
+  favoriteActivity, height, zipcode, state, location,
 
   // Below are doing away
   name, gender, age_group: ageGroup, handedness
