@@ -1,12 +1,6 @@
 const personOptions = {};
 
-personOptions.shapes = [
-  'square',
-  'cross',
-  'diamond',
-  'triangle-up',
-  'star',
-];
+personOptions.shapes = ['square', 'cross', 'diamond', 'triangle-up', 'star'];
 
 personOptions.colors = [
   '#D36E44',
@@ -26,16 +20,9 @@ personOptions.colors = [
 // These were previously number range options.
 personOptions.ageGroups = ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired'];
 
-personOptions.gender = [
-  'female',
-  'male',
-  'other',
-];
+personOptions.gender = ['female', 'male', 'other'];
 
-personOptions.handedness = [
-  'left',
-  'right',
-];
+personOptions.handedness = ['left', 'right'];
 
 personOptions.siblings = { min: 0, max: 12 };
 personOptions.height = { min: 36, max: 96 };
