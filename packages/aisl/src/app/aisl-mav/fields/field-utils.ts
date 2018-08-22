@@ -23,7 +23,7 @@ import { Colorscale } from './color-scale';
 import { Sizescale } from './size-scale';
 
 export const greyscale = new Colorscale('#bdbdbd', '#000000', '#ffffff', -51);
-export const sizeRange = [50, 250];
+export const sizeRange = [100, 500];
 export const sizescale = new Sizescale(sizeRange[0], sizeRange[1], 5, 'linear'); // TBD TODO
 
 export function mappingWithDefault(mapping: any, defaultKey: string): any {
@@ -78,7 +78,7 @@ export const persona = new Field({
     'color': access('persona.color'),
     'strokeColor': access('persona.color'),
     'size': constant(250),
-    'sizeInput': identity(),
+    'sizeInput': constant('Fixed'),
     'label': combine({
       'shape': access('persona.icon'),
       'color': access('persona.color'),

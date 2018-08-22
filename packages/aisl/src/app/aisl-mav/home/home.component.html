@@ -92,14 +92,14 @@
 
       <div class="quantitative">
         <mav-field-dropzone mappingKey="size" [(field)]="sizeField" #sizeEncoding>
-        <div class="encodingDropZone {{ sizeEncoding.selectionClass }}">
-          <span class="title">Quantitative</span>
-          <br>
-          <span class="subtitle">
-            Size: {{ sizeEncoding.field?.label }}
-            <aisl-size-legend [sizeField]="sizeEncoding.field"></aisl-size-legend>
-          </span>
-        </div>
+          <div class="encodingDropZone {{ sizeEncoding.selectionClass }}">
+            <span class="title">Quantitative</span>
+            <br>
+            <span class="subtitle">
+              Size: {{ sizeEncoding.field?.label }}
+              <aisl-size-legend [sizeField]="sizeEncoding.field"></aisl-size-legend>
+            </span>
+          </div>
         </mav-field-dropzone>
       </div>
 
