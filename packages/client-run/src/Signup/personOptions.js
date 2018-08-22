@@ -21,17 +21,10 @@ personOptions.colors = [
   '#D3D406',
 ];
 
-personOptions.ageGroups = [
-  '07-09',
-  '10-12',
-  '13-18',
-  '19-30',
-  '31-40',
-  '41-50',
-  '51-60',
-  '61-70',
-  '71+',
-];
+// We're discussing the best way to categorize these on issue:
+// https://github.com/cns-iu/xmacroscope/issues/180
+// These were previously number range options.
+personOptions.ageGroups = ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired'];
 
 personOptions.gender = [
   'female',
