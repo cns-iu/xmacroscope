@@ -6,10 +6,11 @@
 // used in the buttons. We should think about how to re-architect this for
 // less repetition.
 //
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import OpponentSelectButtons from './OpponentSelectButtons';
+import HomeButton from './HomeButton';
 
 const SELECT_RUN = gql`
   mutation RunSelect(
@@ -47,7 +48,10 @@ const OpponentSelect = () => (
     }}
   >
     {updateRace => (
-      <OpponentSelectButtons keypress={updateRace} />
+      <Fragment>
+        <OpponentSelectButtons keypress={updateRace} />
+        <HomeButton />
+      </Fragment>
     )}
   </Mutation>
 );
