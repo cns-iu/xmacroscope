@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   mockMessages: false,
+  useHashStrategy: false,
   graphqlEndpoint: 'ws://localhost:4000/subscriptions'
 };

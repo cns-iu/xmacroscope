@@ -1,4 +1,5 @@
 import * as casual from 'casual-browserify';
+import * as zipcodes from 'zipcodes';
 
 import { Persona } from '../models/persona';
 
@@ -24,6 +25,13 @@ function nullable<T>(value: T, nullProb = .1): T | null {
 export function mockUSLatLng(): [number, number] {
   return [casual.integer(MIN_LAT, MAX_LAT), casual.integer(MIN_LNG, MAX_LNG)];
 }
+const usZipCodes = Object.keys(zipcodes.codes)
+  .map((c) => parseInt(c, 10))
+  .filter(c => (zipcodes.lookup(c) || {}).country === 'US');
+
+export function mockUSLocation(): {state: string, latitude: number, longitude: number, zip: string} {
+  return zipcodes.lookup(casual.random_element(usZipCodes)) || mockUSLocation() /* keep looking until we find a valid location */;
+}
 
 export class GeneratedPersona implements Persona {
   id: string;
@@ -34,6 +42,7 @@ export class GeneratedPersona implements Persona {
   age_group: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';
   handedness: 'left' | 'right';
   height: number;
+  siblings: number;
   favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
   zipcode: string;
   state: string;
@@ -48,11 +57,14 @@ export class GeneratedPersona implements Persona {
     this.gender = nullable(casual.random_element(GENDERS));
     this.age_group = casual.random_element(AGE_GROUPS);
     this.handedness = nullable(casual.random > 0.1 ? 'right' : 'left');
-    this.height = casual.integer(36, 96);
+    this.height = nullable(casual.integer(36, 96));
     this.favoriteActivity = nullable(casual.random_element(FAVORITE_ACTIVITY));
-    this.zipcode = nullable(casual.zip(5));
-    this.state = nullable(casual.state);
-    [this.latitude, this.longitude] = nullable(mockUSLatLng()) || [null, null];
+    this.siblings = nullable(casual.integer(0, 12));
+
+    const location = mockUSLocation();
+    this.zipcode = nullable(location.zip);
+    this.state = nullable(location.state);
+    [this.latitude, this.longitude] = nullable([location.latitude, location.longitude]) || [null, null];
   }
 }
 
