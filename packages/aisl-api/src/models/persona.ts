@@ -8,7 +8,7 @@ export interface Persona {
   handedness: 'left' | 'right'; // DELETE
   height: number;
   favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
-  // siblings: number;
+  siblings: number;
   // altitude: number; // Feet above sea level?
   // height: number; // Inches?
   // weight: number; // Lbs? - But may be displayed as Blood Volume

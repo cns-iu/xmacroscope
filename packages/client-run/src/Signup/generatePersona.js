@@ -1,5 +1,14 @@
 import faker from 'faker';
 import { sample } from 'lodash';
+import * as zipcodes from 'zipcodes';
+
+const usZipCodes = Object.keys(zipcodes.codes)
+  .map((c) => parseInt(c, 10))
+  .filter(c => (zipcodes.lookup(c) || {}).country === 'US');
+
+function fakeUSLocation() {
+  return zipcodes.lookup(sample(usZipCodes)) || fakeUSLocation() /* keep looking until we find a valid location */;
+}
 
 // Generate persona
 const generatePersona = () => {
@@ -47,15 +56,6 @@ const generatePersona = () => {
     'right',
   ]);
 
-  // South Lat
-  const MIN_LAT = 24.7433195;
-  // North lat
-  const MAX_LAT = 49.3457868;
-  // East long
-  const MIN_LNG = -66.9513812;
-  // West long
-  const MAX_LNG = -124.7844079;
-
   // Height in inches
   const fakeHeight = faker.random.number({ min: 36, max: 96 });
 
@@ -63,8 +63,7 @@ const generatePersona = () => {
   const fakeSiblings = faker.random.number({ min: 0, max: 12 });
 
   // Location
-  const fakeLat = faker.finance.amount(MIN_LAT, MAX_LAT, 9);
-  const fakeLong = faker.finance.amount(MIN_LNG, MAX_LNG, 9);
+  const fakeLocation = fakeUSLocation();
 
   return {
     name: faker.name.findName(),
@@ -75,10 +74,10 @@ const generatePersona = () => {
     handedness: fakeHandedness,
     height: fakeHeight,
     siblings: fakeSiblings,
-    zipcode: faker.address.zipCode('#####'),
-    latitude: fakeLat,
-    longitude: fakeLong,
-    state: faker.address.state(),
+    zipcode: fakeLocation.zip,
+    latitude: fakeLocation.latitude,
+    longitude: fakeLocation.longitude,
+    state: fakeLocation.state,
   };
 };
 

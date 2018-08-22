@@ -8472,13 +8472,13 @@ moment@^2.22.2:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
-mousetrap@1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.2.tgz#caadd9cf886db0986fb2fee59a82f6bd37527587"
-
 mousetrap@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.1.tgz#2a085f5c751294c75e7e81f6ec2545b29cbf42d9"
+
+mousetrap@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/mousetrap/-/mousetrap-1.6.2.tgz#caadd9cf886db0986fb2fee59a82f6bd37527587"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -10139,7 +10139,7 @@ react-icons@^2.2.7:
   dependencies:
     react-icon-base "2.1.0"
 
-react-mousetrap@0.2.0:
+react-mousetrap@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-mousetrap/-/react-mousetrap-0.2.0.tgz#2ba95b31e3f32a6d1072a52e49c62ecd498e0f0a"
   dependencies:
@@ -13642,6 +13642,10 @@ zen-observable@^0.7.0:
 zen-observable@^0.8.0:
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.8.tgz#1ea93995bf098754a58215a1e0a7309e5749ec42"
+
+zipcodes@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/zipcodes/-/zipcodes-6.0.1.tgz#34489935b107cdb0ee4c065866010d1294c20888"
 
 zone.js@^0.8.14:
   version "0.8.20"
