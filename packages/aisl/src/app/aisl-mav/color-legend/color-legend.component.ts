@@ -1,11 +1,10 @@
 import { Observable } from 'rxjs/Observable';
 import { Component, Input } from '@angular/core';
-import { Map } from 'immutable';
 
 import { Field, RawChangeSet } from '@ngx-dino/core';
 
 import { SharedDataService } from '../shared/shared-data.service';
-import { RunFields, sizeRange } from '../fields';
+import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-color-legend',
@@ -17,16 +16,7 @@ export class ColorLegendComponent {
 
   @Input() colorField: Field<any> = RunFields.fixed;
 
-  labelToColor = Map<string, string>({
-    'Sports': '#bdbdbd',
-    'Cooking': '#8e8e8e',
-    'Art': '#5f5f5f',
-    'Gaming': '#2f2f2f',
-    'Other': '#000'
-  });
-
   fields = RunFields;
-  sizeRange = sizeRange;
 
   constructor(service: SharedDataService) {
     this.dataStream = service.createStream();
