@@ -9,8 +9,6 @@ const UPDATE_RUN_LOCAL = gql`
   mutation updateRace($status: String!) {
     updateRace(
       status: $status
-      name: $name
-      gender: $gender
       age_group: $age_group
       favoriteActivity: $favoriteActivity
       handedness: $handedness
@@ -27,9 +25,6 @@ const SignupFormFormik = withFormik({
   // Add a custom validation function (this can be async too!)
   validate: (values, props) => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'Your name is required';
-    }
     // Zip codes are 5 digits
     // We don't accept the extra 4 digits.
     if (!/(^\d{5}$)/.test(values.zipcode)) {
@@ -56,8 +51,6 @@ const SignupFormFormik = withFormik({
     props.updateRace({
       variables: {
         status: 'opponentSelect',
-        name: values.name,
-        gender: values.gender,
         age_group: values.age_group,
         favoriteActivity: values.favoriteActivity,
         handedness: values.handedness,

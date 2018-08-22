@@ -16,29 +16,6 @@ const SignupForm = ({
   isSubmitting,
 }) => (
   <Form onSubmit={handleSubmit}>
-    <FormField
-      name="name"
-      label="Name"
-      errors={errors}
-      touched={touched}
-      value={values.name}
-    />
-
-    <Label>Gender</Label>
-    <Field
-      className="form-control"
-      name="gender"
-      component="select"
-      type="text"
-      value={values.gender}
-      required
-    >
-      <option value="" />
-      <option value="female">Female</option>
-      <option value="male">Male</option>
-      <option value="other">Other</option>
-    </Field>
-
     <Label>Age group</Label>
     <Field
       className="form-control"
@@ -79,21 +56,6 @@ const SignupForm = ({
       {personOptions.handedness.map(item => (
         <option key={item} value={item}>{item}</option>
       ))}
-    </Field>
-
-    <Label>Siblings</Label>
-    <Field
-      className="form-control"
-      name="siblings"
-      component="select"
-      type="text"
-      value={values.siblings}
-      required
-    >
-      {_.range(personOptions.siblings.min, (personOptions.siblings.max + 1))
-        .map(item => (
-          <option key={item} value={item}>{item}</option>
-        ))}
     </Field>
 
     <FormField

@@ -68,7 +68,6 @@ class StartPageDev extends React.Component {
                     <Col xs={6}>
                       <Row>
                         <Col>
-                          <h1 className="text-center">Hi {persona.name}</h1>
                           <PersonaIcon
                             color={activeRace.color}
                             shape={activeRace.icon}
