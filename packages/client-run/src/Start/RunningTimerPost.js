@@ -91,7 +91,7 @@ class RunningTimerPost extends React.Component {
                     direction="down"
                     start={postRaceDelay}
                     end={0}
-                  /> milliseconds
+                  />
                 </div>
               )}
             </Mutation>

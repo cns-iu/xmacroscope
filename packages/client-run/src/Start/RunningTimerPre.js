@@ -72,7 +72,7 @@ function RunningTimerPre({
                   direction="down"
                   start={preRaceDelay}
                   end={0}
-                /> milliseconds
+                />
               </div>
             )}
           </Mutation>

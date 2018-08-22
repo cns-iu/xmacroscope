@@ -71,7 +71,7 @@ class RunnerTimer extends React.Component {
                         direction="up"
                         start={0}
                         end={raceTimeout}
-                      /> milliseconds
+                      />
                     </Col>
                   </Row>
 

@@ -28,7 +28,7 @@ function OpponentRunningTimer() {
                   direction="up"
                   start={0}
                   end={opponentTime}
-                /> milliseconds
+                />
               </Col>
             </Row>
           </Col>
