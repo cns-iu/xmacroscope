@@ -18,6 +18,7 @@ type Persona {
   gender: GENDER
   age_group: String
   handedness: HANDEDNESS
+  favoriteActivity: String
   height: Int
   siblings: Int
   zipcode: String
