@@ -13,7 +13,7 @@ function AppRoutes() {
         <Switch>
           <Route exact path="/" component={SignupStartPage} />
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/admin/start-dev" component={StartPageDev} />
+          <Route exact path="/admin/start" component={StartPageDev} />
           <Route exact path="/admin/runs" component={Runs} />
           <Route component={NoMatch} />
         </Switch>

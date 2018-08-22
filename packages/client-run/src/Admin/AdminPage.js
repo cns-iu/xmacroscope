@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Admin() {
   const links = [
+    { path: '/admin/start', label: 'Run - Dev operations' },
     { path: '/admin/runs', label: 'Runs' },
   ];
   return (
