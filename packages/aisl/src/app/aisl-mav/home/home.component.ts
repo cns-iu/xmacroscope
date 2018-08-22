@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     RunFields.persona.zipcode
   ].map(wrapFieldForShowPersona);
   sizeField = wrapFieldForShowPersona(RunFields.persona.age_group);
-  colorField = wrapFieldForShowPersona(RunFields.persona.favoriteActivity);
+  colorField = wrapFieldForShowPersona(RunFields.fixed);
   strokeColorField = wrapFieldForShowPersona(RunFields.persona.favoriteActivity);
   shapeField = wrapFieldForShowPersona(RunFields.fixed);
   scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
