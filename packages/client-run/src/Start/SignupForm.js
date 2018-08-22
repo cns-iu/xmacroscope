@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaArrowCircleRight } from 'react-icons/fa';
 import { Form, Button, Label } from 'reactstrap';
 import { Field } from 'formik';
 import FormField from '../App/FormField';
@@ -16,7 +17,7 @@ const SignupForm = ({
   isSubmitting,
 }) => (
   <Form onSubmit={handleSubmit}>
-    <Label>Age group</Label>
+    <Label>What&apos;s your age group?</Label>
     <Field
       className="form-control"
       name="age_group"
@@ -25,12 +26,17 @@ const SignupForm = ({
       value={values.age_group}
       required
     >
+      <option value="">&nbsp;</option>
       {personOptions.ageGroups.map(item => (
-        <option key={item} value={item}>{item}</option>
+        <option
+          key={item}
+          value={item}
+        >{item}
+        </option>
       ))}
     </Field>
 
-    <Label>Favorite activity</Label>
+    <Label>What&apos;s your favorite activity</Label>
     <Field
       className="form-control"
       name="favoriteActivity"
@@ -39,12 +45,17 @@ const SignupForm = ({
       value={values.favoriteActivity}
       required
     >
+      <option value="">&nbsp;</option>
       {personOptions.favoriteActivity.map(item => (
-        <option key={item} value={item}>{item}</option>
+        <option
+          key={item}
+          value={item}
+        >{item}
+        </option>
       ))}
     </Field>
 
-    <Label>Handedness</Label>
+    <Label>Are you left or right handed?</Label>
     <Field
       className="form-control"
       name="handedness"
@@ -53,14 +64,19 @@ const SignupForm = ({
       value={values.handedness}
       required
     >
+      <option value="">&nbsp;</option>
       {personOptions.handedness.map(item => (
-        <option key={item} value={item}>{item}</option>
+        <option
+          key={item}
+          value={item}
+        >{item}
+        </option>
       ))}
     </Field>
 
     <FormField
       name="zipcode"
-      label="Zip code"
+      label="What's the zip code where you live?"
       errors={errors}
       touched={touched}
       value={values.zipcode}
@@ -71,7 +87,9 @@ const SignupForm = ({
       disabled={isSubmitting}
       color="primary"
     >
-      Submit
+      Next <FaArrowCircleRight
+        style={{ marginBottom: '-2px' }}
+      />
     </Button>
   </Form>
 );

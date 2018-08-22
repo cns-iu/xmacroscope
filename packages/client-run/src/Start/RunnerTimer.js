@@ -65,7 +65,7 @@ class RunnerTimer extends React.Component {
 
                   <Row>
                     <Col>
-                      <h3>Lane {lane} race time</h3>
+                      <h3>Lane {lane} time</h3>
                       <Timer
                         stop={timerStopped}
                         direction="up"
@@ -78,7 +78,7 @@ class RunnerTimer extends React.Component {
                   <Row>
                     <Col>
                       <RunFinishButton
-                        lan={lane}
+                        lane={lane}
                         raceId={raceId}
                         runFinish={runFinish}
                       />

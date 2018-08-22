@@ -35,7 +35,6 @@ function Running() {
               <Row>
                 <Col>
                   <h1>GO!</h1>
-                  <p>Wait for the current runner to finish.</p>
                 </Col>
               </Row>
 
@@ -51,10 +50,7 @@ function Running() {
               {/* Timeout timer */}
               <Row className="mt-4">
                 <Col>
-                  <h3>Run timeout timer</h3>
-                  <p>Background timer that resets the running experience
-                    if the two runners don&apos;t complete a race.
-                  </p>
+                  <h3>Timeout</h3>
                   <RunningTimerTimeout raceTimeout={raceTimeout} />
                 </Col>
               </Row>
