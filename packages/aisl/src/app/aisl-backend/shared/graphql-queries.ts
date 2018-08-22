@@ -49,6 +49,7 @@ export const RACE_COMPLETED = gql`
           age_group
           handedness
           height
+          favoriteActivity
           siblings
           zipcode
           state
@@ -100,6 +101,7 @@ export const RECENT_RUNS = gql`
       age_group
       handedness
       height
+      favoriteActivity
       siblings
       zipcode
       state
@@ -127,6 +129,7 @@ export interface RecentRunRecord {
     age_group: string;
     handedness: string;
     height: number;
+    favoriteActivity: string;
     siblings: number;
     zipcode: string;
     state: string;
