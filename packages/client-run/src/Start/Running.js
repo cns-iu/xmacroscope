@@ -34,15 +34,8 @@ function Running() {
               {/* Running message */}
               <Row>
                 <Col>
-                  <h1>Running display</h1>
-                  <p>A race has started.</p>
-                  <p>Once both runners cross the finish line the race will
-                    complete.
-                  </p>
-                  <p>If neither runner crosses the finish line by the
-                    timeout,
-                    the race will complete.
-                  </p>
+                  <h1>GO!</h1>
+                  <p>Wait for the current runner to finish.</p>
                 </Col>
               </Row>
 

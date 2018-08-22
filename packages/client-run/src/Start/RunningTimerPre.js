@@ -53,13 +53,8 @@ function RunningTimerPre({
           >
             {runStart => (
               <div>
-                <h1>Pre race delay</h1>
-                <p>The user has selected an opponent on the start line kiosk
-                  and now a timer is running.
-                </p>
-                <p>Once this timer has completed the race will automatically
-                  start.
-                </p>
+                <h1>On your marks...</h1>
+                <p>Start up to the starting line and get ready to run.</p>
                 <Timer
                   completion={() => {
                     runStart({
