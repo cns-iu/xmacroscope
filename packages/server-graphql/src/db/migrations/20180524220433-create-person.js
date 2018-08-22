@@ -21,6 +21,9 @@ module.exports = {
     age_group: {
       type: Sequelize.STRING,
     },
+    favoriteActivity: {
+      type: Sequelize.STRING,
+    },
     handedness: {
       type: Sequelize.STRING,
     },

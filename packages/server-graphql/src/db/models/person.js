@@ -12,6 +12,7 @@ const Person = sequelize.define('Person', {
   color: { type: Sequelize.STRING },
   gender: { type: Sequelize.STRING },
   age_group: { type: Sequelize.STRING },
+  favoriteActivity: { type: Sequelize.STRING },
   handedness: { type: Sequelize.STRING },
   height: { type: Sequelize.INTEGER },
   siblings: { type: Sequelize.INTEGER },

@@ -12,6 +12,7 @@ const UPDATE_RUN_LOCAL = gql`
       name: $name
       gender: $gender
       age_group: $age_group
+      favoriteActivity: $favoriteActivity
       handedness: $handedness
       siblings: $siblings
       zipcode: $zipcode
@@ -23,6 +24,17 @@ const UPDATE_RUN_LOCAL = gql`
 `;
 
 const SignupFormFormik = withFormik({
+  mapPropsToValues: props => {
+    return {
+      name: 'Bryan',
+      gender: 'male',
+      age_group: 'Adult',
+      favoriteActivity: 'Cooking',
+      handedness: 'right',
+      siblings: '1',
+      zipcode: '55104',
+    };
+  },
   // Add a custom validation function (this can be async too!)
   validate: (values, props) => {
     const errors = {};
@@ -58,6 +70,7 @@ const SignupFormFormik = withFormik({
         name: values.name,
         gender: values.gender,
         age_group: values.age_group,
+        favoriteActivity: values.favoriteActivity,
         handedness: values.handedness,
         siblings: values.siblings,
         zipcode: values.zipcode,

@@ -53,6 +53,20 @@ const SignupForm = ({
       ))}
     </Field>
 
+    <Label>Favorite activity</Label>
+    <Field
+      className="form-control"
+      name="favoriteActivity"
+      component="select"
+      type="text"
+      value={values.favoriteActivity}
+      required
+    >
+      {personOptions.favoriteActivity.map(item => (
+        <option key={item} value={item}>{item}</option>
+      ))}
+    </Field>
+
     <Label>Handedness</Label>
     <Field
       className="form-control"

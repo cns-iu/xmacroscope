@@ -21,6 +21,8 @@ const generatePersona = () => {
 
   const fakeAgeGroup = sample(personOptions.ageGroups);
 
+  const fakeFavoriteActivity = sample(personOptions.favoriteActivity);
+
   const fakeHandedness = sample(personOptions.handedness);
 
   // Height in inches
@@ -38,6 +40,7 @@ const generatePersona = () => {
     color: fakeColor,
     gender: fakeGender,
     age_group: fakeAgeGroup,
+    favoriteActivity: fakeFavoriteActivity,
     handedness: fakeHandedness,
     height: fakeHeight,
     siblings: fakeSiblings,

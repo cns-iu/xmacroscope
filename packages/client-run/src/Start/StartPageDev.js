@@ -24,6 +24,7 @@ const GET_RACE_STATE_LOCAL = gql`
       icon
       gender
       age_group
+      favoriteActivity
       handedness
       height
       state
@@ -49,6 +50,7 @@ class StartPageDev extends React.Component {
             icon: activeRace.icon,
             gender: activeRace.gender,
             age_group: activeRace.age_group,
+            favoriteActivity: activeRace.favoriteActivity,
             handedness: activeRace.handedness,
             siblings: activeRace.siblings,
             height: activeRace.height,
@@ -80,6 +82,8 @@ class StartPageDev extends React.Component {
                       <dd className="col-sm-8">{persona.gender}</dd>
                       <dt className="col-sm-4">Age group</dt>
                       <dd className="col-sm-8">{persona.age_group}</dd>
+                      <dt className="col-sm-4">Favorite activity</dt>
+                      <dd className="col-sm-8">{persona.favoriteActivity}</dd>
                       <dt className="col-sm-4">Handedness</dt>
                       <dd className="col-sm-8">{persona.handedness}</dd>
                       <dt className="col-sm-4">Siblings</dt>

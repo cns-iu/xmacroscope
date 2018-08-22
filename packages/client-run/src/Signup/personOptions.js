@@ -22,6 +22,14 @@ personOptions.ageGroups = ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired'];
 
 personOptions.gender = ['female', 'male', 'other'];
 
+personOptions.favoriteActivity = [
+  'Sports',
+  'Cooking',
+  'Art',
+  'Gaming',
+  'Other',
+];
+
 personOptions.handedness = ['left', 'right'];
 
 personOptions.siblings = { min: 0, max: 12 };

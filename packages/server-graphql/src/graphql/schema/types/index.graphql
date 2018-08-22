@@ -175,6 +175,7 @@ type Persona {
   color: String
   gender: GENDER
   age_group: String
+  favoriteActivity: String
   handedness: HANDEDNESS
   height: Int
   siblings: Int
@@ -190,6 +191,7 @@ input NewPersona {
   color: String
   gender: GENDER
   age_group: String
+  favoriteActivity: String
   handedness: HANDEDNESS
   height: Int
   siblings: Int
