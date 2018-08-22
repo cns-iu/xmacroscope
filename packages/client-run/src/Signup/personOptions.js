@@ -2,6 +2,7 @@ const personOptions = {};
 
 personOptions.shapes = ['square', 'cross', 'diamond', 'triangle-up', 'star'];
 
+// TODO: Make this an object that describes the color along with HEX
 personOptions.colors = [
   '#D36E44',
   '#D30706',
