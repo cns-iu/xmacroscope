@@ -37,7 +37,6 @@ const GET_RACE_STATE_LOCAL = gql`
 `;
 
 class StartPageDev extends React.Component {
-
   render() {
     return (
       <Query query={GET_RACE_STATE_LOCAL}>
@@ -63,57 +62,28 @@ class StartPageDev extends React.Component {
             <Row>
               {
                 activeRace.status !== 'signupForm'
-                  ?
-                  <Col xs={3}>
-                    <Row>
-                      <Col>
-                        <h1>Remember your shape!</h1>
-                        <PersonaIcon
-                          color={activeRace.color}
-                          shape={activeRace.icon}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <h2>Signup</h2>
-                        <p>
-                          Enter your details:
-                        </p>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <dl className="row">
-                          <dt className="col-sm-4">Name</dt>
-                          <dd className="col-sm-8">{persona.name}</dd>
-                          <dt className="col-sm-4">Icon</dt>
-                          <dd className="col-sm-8">{persona.icon}</dd>
-                          <dt className="col-sm-4">Gender</dt>
-                          <dd className="col-sm-8">{persona.gender}</dd>
-                          <dt className="col-sm-4">Age group</dt>
-                          <dd className="col-sm-8">{persona.age_group}</dd>
-                          <dt className="col-sm-4">Handedness</dt>
-                          <dd className="col-sm-8">{persona.handedness}</dd>
-                          <dt className="col-sm-4">Siblings</dt>
-                          <dd className="col-sm-8">{persona.siblings}</dd>
-                          <dt className="col-sm-4">Height</dt>
-                          <dd className="col-sm-8">{persona.height}</dd>
-                          <dt className="col-sm-4">State</dt>
-                          <dd className="col-sm-8">{persona.state}</dd>
-                          <dt className="col-sm-4">Zip Code</dt>
-                          <dd className="col-sm-8">{persona.zipcode}</dd>
-                          <dt className="col-sm-4">Latitude</dt>
-                          <dd className="col-sm-8">{persona.latitude}</dd>
-                          <dt className="col-sm-4">Longitude</dt>
-                          <dd className="col-sm-8">{persona.longitude}</dd>
-                        </dl>
-                      </Col>
-                    </Row>
-                  </Col>
+                  ? (
+                    <Col xs={6}>
+                      <Row>
+                        <Col>
+                          <h1 className="text-center">Hi {persona.name}</h1>
+                          <PersonaIcon
+                            color={activeRace.color}
+                            shape={activeRace.icon}
+                          />
+                          <h2 className="text-center">
+                            Remember your shape<br />
+                            and<br />
+                            look for it<br />
+                            on the graph.
+                          </h2>
+                        </Col>
+                      </Row>
+                    </Col>
+                  )
                   : <Fragment>&nbsp;</Fragment>
               }
-              <Col xs={8}>
+              <Col xs={6}>
                 {{
                   signupForm: <SignupFormFormik />,
                   opponentSelect: <OpponentSelect />,

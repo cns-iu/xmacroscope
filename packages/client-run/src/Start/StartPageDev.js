@@ -63,12 +63,8 @@ class StartPageDev extends React.Component {
               <Col xs={3}>
                 <Row>
                   <Col>
-                    <h1>Signup details placeholder</h1>
-                    <p>
-                      The signup screen is still in development. Currently, we
-                      generate fake runner information each time the opponent
-                      select screen is generated.
-                    </p>
+                    <h1>Mocked signup data</h1>
+                    <p>Simulate sign-ups with generated random data</p>
                   </Col>
                 </Row>
                 <Row>
