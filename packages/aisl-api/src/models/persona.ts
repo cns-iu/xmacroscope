@@ -4,9 +4,10 @@ export interface Persona {
   icon: string;
   color: string;
   gender: 'male' | 'female' | 'other';
-  age_group: '07-09' | '10-12' | '13-18' | '19-30' | '31-40' | '41-50' | '51-60' | '61-70' | '71+';
+  age_group: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';
   handedness: 'left' | 'right'; // DELETE
   height: number;
+  favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
   siblings: number;
   // altitude: number; // Feet above sea level?
   // height: number; // Inches?
