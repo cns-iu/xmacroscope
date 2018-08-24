@@ -1,8 +1,8 @@
-<mat-toolbar class="toolbar z-depth-1-half">
+<mat-toolbar class="toolbar z-depth-1-half" [ngClass]="{'no-header': !showAppHeader}">
   <span class="title">AISL xMacroscope</span>
 </mat-toolbar>
 
-<div class="nav-tabs">
+<div class="nav-tabs" [ngClass]="{'no-header': !showAppHeader}">
   <nav mat-tab-nav-bar>
     <a mat-tab-link 
       *ngFor="let routeLink of routeLinks; let i = index;"

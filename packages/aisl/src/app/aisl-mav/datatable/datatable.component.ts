@@ -2,6 +2,7 @@ import {
   Component, Input, Output,
   OnInit, EventEmitter
 } from '@angular/core';
+import {  ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -31,15 +32,25 @@ export class DatatableComponent implements OnInit {
 
   indexField = simpleField<any>({id: 'index', label: ' ', operator: constant<string>('0')});
 
+  showAppHeader = true;
+
   get columns(): string[] {
     return (this.fields || []).map((f) => f.label);
   }
 
   constructor(
     private sharedService: SharedDataService,
-    private datatableService: DatatableService
+    private datatableService: DatatableService,
+    private route: ActivatedRoute
   ) {
       this.dataStream = this.sharedService.createStream();
+      route.queryParams.subscribe((q) => {
+        if ('showAppHeader' in q) {
+          this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+        } else if (Object.keys(q).length === 0) {
+          this.showAppHeader = true;
+        }
+      });
   }
 
   ngOnInit() {

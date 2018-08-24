@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {  ActivatedRoute } from '@angular/router';
 
 import { RunFields, wrapFieldForShowPersona } from '../fields';
 import { SharedDataService } from '../shared/shared-data.service';
@@ -10,6 +11,7 @@ import { SharedDataService } from '../shared/shared-data.service';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
+  showAppHeader = true;
   datatableIdField = RunFields.id;
   encodingFields = [
     RunFields.persona.persona,
@@ -26,7 +28,14 @@ export class HomeComponent implements OnInit {
   scatterPlotX = wrapFieldForShowPersona(RunFields.timeMillis);
   scatterPlotY = wrapFieldForShowPersona(RunFields.persona.height);
 
-  constructor(private service: SharedDataService) {
+  constructor(private service: SharedDataService, private route: ActivatedRoute) {
+    route.queryParams.subscribe((q) => {
+      if ('showAppHeader' in q) {
+        this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+      } else if (Object.keys(q).length === 0) {
+        this.showAppHeader = true;
+      }
+    });
   }
 
   ngOnInit() { }

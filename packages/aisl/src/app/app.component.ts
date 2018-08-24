@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  showAppHeader = true;
+
   routeLinks: any[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.routeLinks = [
       {
         label: 'Home',
@@ -32,5 +34,13 @@ export class AppComponent {
         index: '3'
       }
     ];
+
+    route.queryParams.subscribe((q) => {
+      if ('showAppHeader' in q) {
+        this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+      } else if (Object.keys(q).length === 0) {
+        this.showAppHeader = true;
+      }
+    });
   }
 }
