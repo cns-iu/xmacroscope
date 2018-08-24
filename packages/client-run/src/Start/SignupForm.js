@@ -44,19 +44,13 @@ const SignupForm = ({
       ))}
     </Field>
 
-    <Label>Handedness</Label>
-    <Field
-      className="form-control"
-      name="handedness"
-      component="select"
-      type="text"
-      value={values.handedness}
-      required
-    >
-      {personOptions.handedness.map(item => (
-        <option key={item} value={item}>{item}</option>
-      ))}
-    </Field>
+    <FormField
+      name="height"
+      label="Height"
+      errors={errors}
+      touched={touched}
+      value={values.height}
+    />
 
     <FormField
       name="zipcode"

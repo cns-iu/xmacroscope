@@ -11,7 +11,7 @@ const UPDATE_RUN_LOCAL = gql`
       status: $status
       age_group: $age_group
       favoriteActivity: $favoriteActivity
-      handedness: $handedness
+      height: $height
       siblings: $siblings
       zipcode: $zipcode
       state: $state
@@ -53,7 +53,7 @@ const SignupFormFormik = withFormik({
         status: 'opponentSelect',
         age_group: values.age_group,
         favoriteActivity: values.favoriteActivity,
-        handedness: values.handedness,
+        height: values.height,
         siblings: values.siblings,
         zipcode: values.zipcode,
         state: location.state,
