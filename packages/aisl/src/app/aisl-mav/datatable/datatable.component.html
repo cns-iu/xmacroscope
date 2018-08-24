@@ -1,4 +1,4 @@
-<div class="datatable">
+<div class="datatable" [ngClass]="{'no-header': !showAppHeader}">
   <mat-table [dataSource]="dataSource" class="table">
     <ng-container *ngFor="let field of fields; index as i" [matColumnDef]="field.label" class="container">
       <mat-header-cell class="draggable-header" [class.mav-header-persona]="field.id === 'persona'" [mavDraggable]="field" *matHeaderCellDef>{{field.label}}</mat-header-cell>

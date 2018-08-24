@@ -124,6 +124,7 @@ export const favoriteActivity = prePostMultiField({
     'color': greyscale.qualitative([
       'Sports', 'Cooking', 'Art', 'Gaming', 'Other'
     ]),
+    'colorInput': identity(),
     'strokeColor': greyscale.qualitativeStrokeColor([
       'Sports', 'Cooking', 'Art', 'Gaming', 'Other'
     ])

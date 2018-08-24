@@ -4,7 +4,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Field, RawChangeSet } from '@ngx-dino/core';
 
 import { SharedDataService } from '../shared/shared-data.service';
-import { RunFields, sizeRange } from '../fields';
+import { RunFields } from '../fields';
 
 @Component({
   selector: 'aisl-size-legend',
@@ -18,7 +18,6 @@ export class SizeLegendComponent {
   @Input() shapeField: Field<any> = RunFields.fixed; // not in use currently
 
   fields = RunFields;
-  sizeRange = sizeRange.map(s => Math.sqrt(s / Math.PI));
 
   constructor(service: SharedDataService) {
     this.dataStream = service.createStream();

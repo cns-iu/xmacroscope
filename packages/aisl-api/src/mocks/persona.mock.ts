@@ -55,7 +55,7 @@ export class GeneratedPersona implements Persona {
     this.icon = casual.random_element(SHAPES);
     this.color = casual.random_element(COLORS);
     this.gender = nullable(casual.random_element(GENDERS));
-    this.age_group = casual.random_element(AGE_GROUPS);
+    this.age_group = nullable(casual.random_element(AGE_GROUPS));
     this.handedness = nullable(casual.random > 0.1 ? 'right' : 'left');
     this.height = nullable(casual.integer(36, 96));
     this.favoriteActivity = nullable(casual.random_element(FAVORITE_ACTIVITY));

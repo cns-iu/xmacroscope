@@ -75,7 +75,10 @@ export const persona = new Field({
   dataType: DataType.String,
   mapping: {
     'shape': access('persona.icon'),
+    'color:unwrapped': access('persona.color'),
+    'colorInput:unwrapped': access('persona.color'),
     'color': access('persona.color'),
+    'colorInput': access('persona.color'),
     'strokeColor': access('persona.color'),
     'size': constant(250),
     'sizeInput': constant('Fixed'),
@@ -105,11 +108,13 @@ export function wrapFieldForShowPersona<T>(field: Field<T>): Field<T> {
   for (const key of persona.getBoundFieldIds().toArray()) {
     if (field.mapping.has(key)) {
       mapping[key] = wrap(key);
+      mapping[`${key}:unwrapped`] = field.getBoundField(key).operator;
     }
   }
   for (const key of field.getBoundFieldIds().toArray()) {
     if (!mapping.hasOwnProperty(key)) {
       mapping[key] = field.getBoundField(key).operator;
+      mapping[`${key}:unwrapped`] = field.getBoundField(key).operator;
     }
   }
   if (field.getBoundField()) {
