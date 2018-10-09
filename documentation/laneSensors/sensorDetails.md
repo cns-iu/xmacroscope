@@ -14,9 +14,9 @@
 
     * Select "Manage Libraries..."
 
-    * In the "filter your search..." box, type “Adafruit_VL53L0X”
+    * In the "filter your search..." box, type `Adafruit_VL53L0X`
 
-    * Click on the entry that appears, select "Version 1.0.4", and click install.
+    * Click on the entry that appears, select `Version 1.0.4`, and click install.
 
 5. Open the beam break box to expose the circuit board.
 
@@ -46,6 +46,6 @@
 
     * Plug in the USB FTDI adapter.
 
-    * Re-navigate to the port menu, and select the port which newly appears. On MacOS or linux, the port should be of the format "/dev/cu.usbserial-xxxxxxxx", while on Windows, it will appear as “COMXX” where the X’s are port numbers.
+    * Re-navigate to the port menu, and select the port which newly appears. On MacOS, the port should be of the format `/dev/cu.usbserial-xxxxxxxx`, Linux should appear as `/dev/ttyACMX` while on Windows, it will appear as `COMXX` where the X’s are port numbers.
 
 9. After the board and port have been set, click the upload button in the sketch window or select "Upload" from the sketch menu.
