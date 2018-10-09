@@ -4,17 +4,17 @@
 
 2. Plug in the FTDI USB-to-Serial adapter to the computer.
 
-3. Open the ‘BeamBreaks.ino’ file in the Arduino IDE.
+3. Open the `BeamBreaks.ino` file in the Arduino IDE.
 
-4. Install the "Adafruit_VL53L0X" Library using these instructions:
+4. Install the `Adafruit_VL53L0X` Library using these instructions:
 
-    * Open the "Sketch" menu
+    * Open the `Sketch` menu
 
-    * Navigate to "Include Library"
+    * Navigate to `Include Library`
 
-    * Select "Manage Libraries..."
+    * Select `Manage Libraries...`
 
-    * In the "filter your search..." box, type `Adafruit_VL53L0X`
+    * In the `filter your search...` box, type `Adafruit_VL53L0X`
 
     * Click on the entry that appears, select `Version 1.0.4`, and click install.
 
@@ -26,19 +26,19 @@
 
 7. Select the proper board using these instructions:
 
-    * Open the "Tools" menu
+    * Open the `Tools` menu
 
-    * Navigate to the "Board" submenu
+    * Navigate to the `Board` submenu
 
-    * Select "Arduino Duemilanove/Diecimila"
+    * Select `Arduino Duemilanove/Diecimila`
 
 8. Select the correct USB port:
 
     * Unplug the FTDI adapter
 
-    * Open the "Tools" menu
+    * Open the `Tools` menu
 
-    * Navigate to the Port Submenu
+    * Navigate to the `Port` Submenu
 
     * Make a note of what ports appear, if any
 
