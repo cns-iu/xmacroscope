@@ -1,4 +1,4 @@
-#Beambreak Reprogramming Instructions:
+# Beambreak Reprogramming Instructions:
 
 * Download and install the Arduino IDE.
 
