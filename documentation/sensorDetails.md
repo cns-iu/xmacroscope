@@ -1,10 +1,12 @@
 # Beambreak Reprogramming Instructions:
 
-1. Download and install the Arduino IDE.
+1. Download and install the [Arduino IDE](https://www.arduino.cc/en/Main/Software).
 
-2. Plug in the FTDI USB-to-Serial adapter to the computer.
+2. Plug in a FTDI USB-to-Serial adapter to the computer.
 
-3. Open the `BeamBreaks.ino` file in the Arduino IDE.
+    * [Sparkfun's FTDI Cable 5V](https://www.sparkfun.com/products/9718) is a good option.
+
+3. Open the [`BeamBreaks.ino`](../hardware/laneSensors/Arduino/BeamBreaks/BeamBreaks.ino) file in the Arduino IDE.
 
 4. Install the `Adafruit_VL53L0X` Library using these instructions:
 
@@ -22,7 +24,7 @@
 
 6. Connect the 6 wire connector to the Pro Mini board, as shown below:
 
-![image alt text](images/ftdiConnect.jpg)
+![a hand plugs in a black cable terminal into a white breadboard](./images/ftdi-connect.jpg)
 
 7. Select the proper board using these instructions:
 
