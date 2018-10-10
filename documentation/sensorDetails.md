@@ -24,7 +24,7 @@
 
 6. Connect the 6 wire connector to the Pro Mini board, as shown below:
 
-![image alt text](./images/ftdiConnect.jpg)
+![a hand plugs in a black cable terminal into a white breadboard](./images/ftdi-connect.jpg)
 
 7. Select the proper board using these instructions:
 
