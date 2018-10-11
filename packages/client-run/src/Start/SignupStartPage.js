@@ -3,7 +3,7 @@
 //
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col, Card } from 'reactstrap';
+import { Row, Col, Card, CardBody } from 'reactstrap';
 import gql from 'graphql-tag';
 import PersonaIcon from '../Signup/PersonaIcon';
 import OpponentSelect from './OpponentSelect';
@@ -65,42 +65,42 @@ class StartPageDev extends React.Component {
               {
                 activeRace.status !== 'signupForm'
                   ? (
-                    <Col xs={6}>
-                      <Row>
-                        <Col>
-                          <PersonaIcon
-                            color={activeRace.color}
-                            shape={activeRace.icon}
-                          />
-                          <h2 className="text-center">
+                    <Col xs={12}>
+                      <Card body>
+                        <Row>
+                          <Col xs={6}>
+                            <PersonaIcon
+                              color={activeRace.color}
+                              shape={activeRace.icon}
+                            />
+                            <h2 className="text-center">
                             Remember your shape<br />
                             and<br />
                             look for it<br />
                             on the graph.
-                          </h2>
-                        </Col>
-                      </Row>
+                            </h2>
+                          </Col>
+                          <Col xs={6}>
+                            {{
+                          signupForm: '',
+                          opponentSelect: <OpponentSelect />,
+                          runTimerPre: <RunningTimerPre
+                            persona={persona}
+                            opponent={activeRace.opponent}
+                            opponentName={activeRace.opponentName}
+                            opponentTime={activeRace.opponentTime}
+                          />,
+                          running: <Running />,
+                          postRunTimer: <RunningTimerPost />,
+                          falseStart: <div>False start</div>,
+                        }[activeRace.status]}
+                          </Col>
+                        </Row>
+                      </Card>
                     </Col>
                   )
-                  : <Fragment>&nbsp;</Fragment>
+                  : <SignupFormFormik />
               }
-              <Col xs={12} sm={8} className="mx-auto">
-                <Card body>
-                  {{
-                  signupForm: <SignupFormFormik />,
-                  opponentSelect: <OpponentSelect />,
-                  runTimerPre: <RunningTimerPre
-                    persona={persona}
-                    opponent={activeRace.opponent}
-                    opponentName={activeRace.opponentName}
-                    opponentTime={activeRace.opponentTime}
-                  />,
-                  running: <Running />,
-                  postRunTimer: <RunningTimerPost />,
-                  falseStart: <div>False start</div>,
-                }[activeRace.status]}
-                </Card>
-              </Col>
             </Row>
           );
         }}
