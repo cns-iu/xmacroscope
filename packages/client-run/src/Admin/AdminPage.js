@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Row, Col, Card } from 'reactstrap';
 
 function Admin() {
   const links = [
@@ -7,13 +8,17 @@ function Admin() {
     { path: '/admin/runs', label: 'Runs' },
   ];
   return (
-    <Fragment>
-      <div>Admin page</div>
-      <ul>{links.map(link => (
-        <li><Link to={link.path}>{link.label}</Link></li>
-      ))}
-      </ul>
-    </Fragment>
+    <Row>
+      <Col xs={12} className="mx-auto">
+        <Card body>
+          <div>Admin page</div>
+          <ul>{links.map(link => (
+            <li><Link to={link.path}>{link.label}</Link></li>
+          ))}
+          </ul>
+        </Card>
+      </Col>
+    </Row>
   );
 }
 

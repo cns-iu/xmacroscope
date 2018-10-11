@@ -3,7 +3,7 @@
 //
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Card } from 'reactstrap';
 import gql from 'graphql-tag';
 import PersonaIcon from '../Signup/PersonaIcon';
 import OpponentSelect from './OpponentSelect';
@@ -84,8 +84,9 @@ class StartPageDev extends React.Component {
                   )
                   : <Fragment>&nbsp;</Fragment>
               }
-              <Col xs={6}>
-                {{
+              <Col xs={12} sm={8} className="mx-auto">
+                <Card body>
+                  {{
                   signupForm: <SignupFormFormik />,
                   opponentSelect: <OpponentSelect />,
                   runTimerPre: <RunningTimerPre
@@ -98,6 +99,7 @@ class StartPageDev extends React.Component {
                   postRunTimer: <RunningTimerPost />,
                   falseStart: <div>False start</div>,
                 }[activeRace.status]}
+                </Card>
               </Col>
             </Row>
           );

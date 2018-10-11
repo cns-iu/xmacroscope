@@ -3,7 +3,7 @@
 //
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Card } from 'reactstrap';
 import gql from 'graphql-tag';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
@@ -37,7 +37,6 @@ const GET_RACE_STATE_LOCAL = gql`
 `;
 
 class StartPageDev extends React.Component {
-
   render() {
     return (
       <Query query={GET_RACE_STATE_LOCAL}>
@@ -62,47 +61,53 @@ class StartPageDev extends React.Component {
 
           return (
             <Row>
-              <Col xs={3}>
-                <Row>
-                  <Col>
-                    <h1>Mocked signup data</h1>
-                    <p>Simulate sign-ups with generated random data</p>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <dl className="row">
-                      <dt className="col-sm-4">Name</dt>
-                      <dd className="col-sm-8">{persona.name}</dd>
-                      <dt className="col-sm-4">Color</dt>
-                      <dd className="col-sm-8">{persona.color}</dd>
-                      <dt className="col-sm-4">Icon</dt>
-                      <dd className="col-sm-8">{persona.icon}</dd>
-                      <dt className="col-sm-4">Gender</dt>
-                      <dd className="col-sm-8">{persona.gender}</dd>
-                      <dt className="col-sm-4">Age group</dt>
-                      <dd className="col-sm-8">{persona.age_group}</dd>
-                      <dt className="col-sm-4">Favorite activity</dt>
-                      <dd className="col-sm-8">{persona.favoriteActivity}</dd>
-                      <dt className="col-sm-4">Handedness</dt>
-                      <dd className="col-sm-8">{persona.handedness}</dd>
-                      <dt className="col-sm-4">Siblings</dt>
-                      <dd className="col-sm-8">{persona.siblings}</dd>
-                      <dt className="col-sm-4">Height</dt>
-                      <dd className="col-sm-8">{persona.height}</dd>
-                      <dt className="col-sm-4">State</dt>
-                      <dd className="col-sm-8">{persona.state}</dd>
-                      <dt className="col-sm-4">Zip Code</dt>
-                      <dd className="col-sm-8">{persona.zipcode}</dd>
-                      <dt className="col-sm-4">Latitude</dt>
-                      <dd className="col-sm-8">{persona.latitude}</dd>
-                      <dt className="col-sm-4">Longitude</dt>
-                      <dd className="col-sm-8">{persona.longitude}</dd>
-                    </dl>
-                  </Col>
-                </Row>
+
+              <Col xs={12} sm={6} lg={4}>
+                <Card body>
+                  <Row>
+                    <Col>
+                      <h1>Mocked signup data</h1>
+                      <p>Simulate sign-ups with generated random data</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <dl className="row">
+                        <dt className="col-sm-4">Name</dt>
+                        <dd className="col-sm-8">{persona.name}</dd>
+                        <dt className="col-sm-4">Color</dt>
+                        <dd className="col-sm-8">{persona.color}</dd>
+                        <dt className="col-sm-4">Icon</dt>
+                        <dd className="col-sm-8">{persona.icon}</dd>
+                        <dt className="col-sm-4">Gender</dt>
+                        <dd className="col-sm-8">{persona.gender}</dd>
+                        <dt className="col-sm-4">Age group</dt>
+                        <dd className="col-sm-8">{persona.age_group}</dd>
+                        <dt className="col-sm-4">Favorite activity</dt>
+                        <dd className="col-sm-8">{persona.favoriteActivity}</dd>
+                        <dt className="col-sm-4">Handedness</dt>
+                        <dd className="col-sm-8">{persona.handedness}</dd>
+                        <dt className="col-sm-4">Siblings</dt>
+                        <dd className="col-sm-8">{persona.siblings}</dd>
+                        <dt className="col-sm-4">Height</dt>
+                        <dd className="col-sm-8">{persona.height}</dd>
+                        <dt className="col-sm-4">State</dt>
+                        <dd className="col-sm-8">{persona.state}</dd>
+                        <dt className="col-sm-4">Zip Code</dt>
+                        <dd className="col-sm-8">{persona.zipcode}</dd>
+                        <dt className="col-sm-4">Latitude</dt>
+                        <dd className="col-sm-8">{persona.latitude}</dd>
+                        <dt className="col-sm-4">Longitude</dt>
+                        <dd className="col-sm-8">{persona.longitude}</dd>
+                      </dl>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
-              <Col>
+              <Col xs={12} sm={6} lg={4}>
+                <AppState activeRace={activeRace} />
+              </Col>
+              <Col xs={12} sm={6} lg={4}>
                 {{
                   opponentSelect: <OpponentSelect />,
                   runTimerPre: <RunningTimerPre
@@ -116,9 +121,7 @@ class StartPageDev extends React.Component {
                   falseStart: <div>False start</div>,
                 }[activeRace.status]}
               </Col>
-              <Col xs={3}>
-                <AppState activeRace={activeRace} />
-              </Col>
+
             </Row>
           );
         }}
