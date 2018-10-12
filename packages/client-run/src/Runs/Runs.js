@@ -5,7 +5,7 @@ import React from 'react';
 import ReactTable from 'react-table';
 import moment from 'moment';
 import 'react-table/react-table.css';
-import './Runs.css';
+import '../Styles/Runs.css';
 
 const GET_RUNS = gql`
   query runs($lastX: Int!) {

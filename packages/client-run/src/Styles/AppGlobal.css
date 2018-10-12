@@ -1,0 +1,9 @@
+body{font-size:18px;}
+.signup-header h1{
+  color: orangered;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.signup-form label{
+  font-size: 1.5em;
+}

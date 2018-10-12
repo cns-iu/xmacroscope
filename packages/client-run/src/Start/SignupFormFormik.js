@@ -71,7 +71,7 @@ function WithCreateMutation(props) {
       {updateRace => (
         <Col xs={12} md={6} xl={5} className="mx-auto">
           <Card>
-            <CardHeader className="text-center"><h1>RACE SIGN UP</h1></CardHeader>
+            <CardHeader className="text-center signup-header"><h1>RACE SIGN UP</h1></CardHeader>
             <CardBody>
               <SignupFormFormik updateRace={updateRace} />
             </CardBody>

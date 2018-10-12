@@ -15,7 +15,7 @@ const SignupForm = ({
   handleSubmit,
   isSubmitting,
 }) => (
-  <Form onSubmit={handleSubmit}>
+  <Form onSubmit={handleSubmit} className="signup-form">
     <FormGroup>
       <Label>Age group</Label>
       <Field
