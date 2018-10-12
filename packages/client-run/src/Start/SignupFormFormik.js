@@ -69,9 +69,9 @@ function WithCreateMutation(props) {
   return (
     <Mutation mutation={UPDATE_RUN_LOCAL}>
       {updateRace => (
-        <Col xs={12} sm={6} md={4} className="mx-auto">
+        <Col xs={12} md={6} xl={5} className="mx-auto">
           <Card>
-            <CardHeader><h1>HEADER</h1></CardHeader>
+            <CardHeader className="text-center"><h1>RACE SIGN UP</h1></CardHeader>
             <CardBody>
               <SignupFormFormik updateRace={updateRace} />
             </CardBody>
