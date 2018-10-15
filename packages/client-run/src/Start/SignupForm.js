@@ -93,8 +93,8 @@ const SignupForm = ({
             required
           >
             {personOptions.colors.map(item => (
-              <option key={item} value={item}>
-                {item}
+              <option key={item.hexValue} value={item.hexValue}>
+                {item.name}
               </option>
             ))}
           </Field>

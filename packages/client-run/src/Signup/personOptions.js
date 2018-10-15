@@ -2,18 +2,18 @@ const personOptions = {};
 
 personOptions.shapes = ["square", "cross", "diamond", "triangle-up", "star"];
 
-// TODO: Make this an object that describes the color along with HEX
+
 personOptions.colors = [
-  "#D36E44",
-  "#D30706",
-  "#0707D2",
-  "#8E1BCE",
-  "#D372D2",
-  "#55D4D2",
-  "#9B180F",
-  "#33820D",
-  "#D39827",
-  "#D3D406"
+  {name: "pastel red", hexValue:"#D36E44"},
+  {name: "red", hexValue:"#D30706"},
+  {name: "blue", hexValue:"#0707D2"},
+  {name: "purple", hexValue:"#8E1BCE"},
+  {name: "candy purple", hexValue:"#D372D2"},
+  {name: "teal", hexValue:"#55D4D2"},
+  {name: "crimson red", hexValue:"#9B180F"},
+  {name: "forrest green", hexValue:"#33820D"},
+  {name: "honey brown", hexValue:"#D39827"},
+  {name: "neon yello", hexValue:"#D3D406"}
 ];
 
 // We're discussing the best way to categorize these on issue:
