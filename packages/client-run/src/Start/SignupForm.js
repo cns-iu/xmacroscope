@@ -29,7 +29,7 @@ const SignupForm = ({
         value={values.age_group}
         required
       >
-        <option disabled selected value> -- select an option -- </option>
+        <option disabled defaultValue> -- select an option -- </option>
         {personOptions.ageGroups.map(item => (
           <option key={item} value={item}>
             {item}
@@ -47,7 +47,7 @@ const SignupForm = ({
         value={values.favoriteActivity}
         required
       >
-         <option disabled selected value> -- select an option -- </option>
+         <option disabled defaultValue> -- select an option -- </option>
         {personOptions.favoriteActivity.map(item => (
           <option key={item} value={item}>
             {item}
@@ -94,7 +94,7 @@ const SignupForm = ({
             value={values.colors}
             required
           >
-             <option disabled selected value> -- select an option -- </option>
+             <option disabled defaultValue> -- select an option -- </option>
             {personOptions.colors.map(item => (
               <option key={item.hexValue} value={item.hexValue}>
                 {item.name}
@@ -112,7 +112,7 @@ const SignupForm = ({
             value={values.shapes}
             required
           >
-             <option disabled selected value> -- select an option -- </option>
+             <option disabled defaultValue> -- select an option -- </option>
             {personOptions.shapes.map(item => (
               <option key={item} value={item}>
                 {item}
