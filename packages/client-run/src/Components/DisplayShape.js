@@ -6,11 +6,11 @@ export class DisplayShape extends PureComponent {
     const { color, shape } = this.props;
     const formatShape = shape === "triangle-up" ? "triangle" : shape;
     const shapeStyle = {
-      fill: color
+      fill: color === "none" ? "white" : color
     };
-    const shapeTransform = "translate(50, 50) scale(.6)";
+    const shapeTransform = "translate(50, 50) scale(.75)";
     return (
-      <ShapeWrapper>
+      <ShapeWrapper color={color} shape={formatShape}>
         {
           {
             square: (
