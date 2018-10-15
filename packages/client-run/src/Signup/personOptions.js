@@ -9,11 +9,11 @@ personOptions.colors = [
   {name: "blue", hexValue:"#0707D2"},
   {name: "purple", hexValue:"#8E1BCE"},
   {name: "candy purple", hexValue:"#D372D2"},
-  {name: "teal", hexValue:"#55D4D2"},
+  {name: "aqua", hexValue:"#55D4D2"},
   {name: "crimson red", hexValue:"#9B180F"},
   {name: "forrest green", hexValue:"#33820D"},
   {name: "honey brown", hexValue:"#D39827"},
-  {name: "neon yello", hexValue:"#D3D406"}
+  {name: "neon yellow", hexValue:"#D3D406"}
 ];
 
 // We're discussing the best way to categorize these on issue:
