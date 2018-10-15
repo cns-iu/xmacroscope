@@ -80,7 +80,7 @@ class StartPageDev extends React.Component {
                             on the graph.
                             </h2>
                           </Col>
-                          <Col xs={6}>
+                          <Col xs={6} >
                             {{
                           signupForm: '',
                           opponentSelect: <OpponentSelect />,
