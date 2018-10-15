@@ -1,14 +1,25 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+const getTimerFormatted = (milliseconds) => {
+  const seconds = Math.floor((milliseconds / 1000));
+  const subSeconds = ((milliseconds - (seconds * 1000)) / 10);
+  return `${seconds}:${subSeconds}`;
+};
+
 class Timer extends React.Component {
   constructor(props) {
     super(props);
 
+    const timerMilliseconds = props.direction === 'down'
+      ? (Math.abs(props.start - props.end))
+      : (props.start);
+
+    const timerSeconds = Math.floor((timerMilliseconds / 1000));
+
     this.state = {
-      timer: props.direction === 'down'
-        ? (Math.abs(props.start - props.end))
-        : (props.start),
+      timer: timerMilliseconds,
+      timerFormatted: getTimerFormatted(timerMilliseconds),
     };
     this.incrementTimer = this.incrementTimer.bind(this);
   }
@@ -44,19 +55,22 @@ class Timer extends React.Component {
       this.props.completion();
     } else {
       const newTimer = (this.state.timer + tick);
+      const newTimerMilliseconds = (operators[op](newTimer, this.props.end))
+        ? (newTimer)
+        : this.props.end;
+
       this.setState({
-        timer: (operators[op](newTimer, this.props.end))
-          ? (newTimer)
-          : this.props.end,
+        timer: newTimerMilliseconds,
+        timerFormatted: getTimerFormatted(newTimerMilliseconds),
       });
     }
   }
 
   render() {
     return (
-      <Fragment>
-        {this.state.timer}
-      </Fragment>
+      <div className="text-monospace">
+        {this.state.timerFormatted}
+      </div>
     );
   }
 }
@@ -71,8 +85,9 @@ Timer.propTypes = {
 };
 
 Timer.defaultProps = {
-  completion: () => {},
-  tick: 100,
+  completion: () => {
+  },
+  tick: 10,
   stop: false,
 };
 

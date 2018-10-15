@@ -81,16 +81,8 @@ class RunningTimerPost extends React.Component {
             >
               {updateRace => (
                 <div>
-                  <h1>Post race delay</h1>
-                  <p>All runners and the opponent have finished the race.</p>
-                  <p>The system pauses in this post race state so that people
-                    can see their times on the finish line screen, before the
-                    next runners are allowed to start the race.
-                  </p>
-                  <p>The start kiosk displays a <strong>Please Wait</strong> message</p>
-                  <p>After the timeout the system returns to the main startup
-                    state
-                  </p>
+                  <h1>Please wait...</h1>
+                  <p>The runner is finishing up, you&apos;ll be able to sign up shortly.</p>
                   <h3>Post run timer</h3>
                   <Timer
                     completion={() => {
@@ -99,7 +91,7 @@ class RunningTimerPost extends React.Component {
                     direction="down"
                     start={postRaceDelay}
                     end={0}
-                  /> milliseconds
+                  />
                 </div>
               )}
             </Mutation>

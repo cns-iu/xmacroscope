@@ -23,12 +23,12 @@ function OpponentRunningTimer() {
           <Col>
             <Row>
               <Col>
-                <h3>Opponent race time</h3>
+                <h3>Opponent time</h3>
                 <Timer
                   direction="up"
                   start={0}
                   end={opponentTime}
-                /> milliseconds
+                />
               </Col>
             </Row>
           </Col>

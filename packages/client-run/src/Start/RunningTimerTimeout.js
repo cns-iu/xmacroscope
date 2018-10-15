@@ -28,7 +28,7 @@ function RunningTimerTimeout(props) {
             direction="down"
             start={raceTimeout}
             end={0}
-          /> milliseconds
+          />
         </Fragment>
       )}
     </Mutation>
