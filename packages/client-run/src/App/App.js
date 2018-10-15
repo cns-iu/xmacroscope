@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Card, Container, Navbar, NavbarBrand } from 'reactstrap';
+import { Container, Navbar, NavbarBrand } from 'reactstrap';
+import '../Styles/AppGlobal.css';
 // import 'bootstrap/dist/css/bootstrap.css';
 import 'bootswatch/dist/darkly/bootstrap.css';
 import AppRoutes from './AppRoutes';
@@ -13,9 +14,7 @@ const App = () => (
       </Navbar>
       <br />
       <Container fluid>
-        <Card body>
-          <AppRoutes />
-        </Card>
+        <AppRoutes />
       </Container>
     </div>
   </BrowserRouter>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaArrowCircleRight } from 'react-icons/fa';
-import { Form, Button, Label } from 'reactstrap';
+import { Form, Button, Label, FormGroup } from 'reactstrap';
 import { Field } from 'formik';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
@@ -16,88 +15,65 @@ const SignupForm = ({
   handleSubmit,
   isSubmitting,
 }) => (
-  <Form onSubmit={handleSubmit}>
-    <Label>What&apos;s your age group?</Label>
-    <Field
-      className="form-control"
-      name="age_group"
-      component="select"
-      type="text"
-      value={values.age_group}
-      required
-    >
-      <option value="">&nbsp;</option>
-      {personOptions.ageGroups.map(item => (
-        <option
-          key={item}
-          value={item}
-        >{item}
-        </option>
-      ))}
-    </Field>
-
-    <Label>What&apos;s your favorite activity</Label>
-    <Field
-      className="form-control"
-      name="favoriteActivity"
-      component="select"
-      type="text"
-      value={values.favoriteActivity}
-      required
-    >
-      <option value="">&nbsp;</option>
-      {personOptions.favoriteActivity.map(item => (
-        <option
-          key={item}
-          value={item}
-        >{item}
-        </option>
-      ))}
-    </Field>
+  <Form onSubmit={handleSubmit} className="signup-form">
+    <FormGroup>
+      <Label>Age group</Label>
+      <Field
+        className="form-control form-control-lg"
+        name="age_group"
+        component="select"
+        type="text"
+        value={values.age_group}
+        required
+      >
+        {personOptions.ageGroups.map(item => (
+          <option key={item} value={item}>{item}</option>
+        ))}
+      </Field>
+    </FormGroup>
+    <FormGroup>
+      <Label>Favorite activity</Label>
+      <Field
+        className="form-control form-control-lg"
+        name="favoriteActivity"
+        component="select"
+        type="text"
+        value={values.favoriteActivity}
+        required
+      >
+        {personOptions.favoriteActivity.map(item => (
+          <option key={item} value={item}>{item}</option>
+        ))}
+      </Field>
+    </FormGroup>
 
     <FormField
+      className="form-control form-control-lg"
       name="height"
       label="Height"
       errors={errors}
       touched={touched}
       value={values.height}
     />
-    <Label>Are you left or right handed?</Label>
-    <Field
-      className="form-control"
-      name="handedness"
-      component="select"
-      type="text"
-      value={values.handedness}
-      required
-    >
-      <option value="">&nbsp;</option>
-      {personOptions.handedness.map(item => (
-        <option
-          key={item}
-          value={item}
-        >{item}
-        </option>
-      ))}
-    </Field>
 
     <FormField
+      className="form-control form-control-lg"
       name="zipcode"
-      label="What's the zip code where you live?"
+      label="Zip code"
       errors={errors}
       touched={touched}
       value={values.zipcode}
     />
-
-    <Button
-      type="submit"
-      disabled={isSubmitting}
-      color="primary"
-    >
-      Next <FaArrowCircleRight
-        style={{ marginBottom: '-2px' }}
-      />
-    </Button>
+    <div className="col-12 px-0 pt-5">
+      <Button
+        className="btn-lg btn-block"
+        type="submit"
+        disabled={isSubmitting}
+        color="primary"
+      >
+      Submit
+      </Button>
+    </div>
   </Form>
 );
 

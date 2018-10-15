@@ -1,5 +1,6 @@
 import React from 'react';
 import { withFormik } from 'formik';
+import { Row, Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import zipcodes from 'zipcodes';
 import SignupForm from './SignupForm';
@@ -68,7 +69,14 @@ function WithCreateMutation(props) {
   return (
     <Mutation mutation={UPDATE_RUN_LOCAL}>
       {updateRace => (
-        <SignupFormFormik updateRace={updateRace} />
+        <Col xs={12} md={6} xl={5} className="mx-auto">
+          <Card>
+            <CardHeader className="text-center signup-header"><h1>RACE SIGN UP</h1></CardHeader>
+            <CardBody>
+              <SignupFormFormik updateRace={updateRace} />
+            </CardBody>
+          </Card>
+        </Col>
       )}
     </Mutation>
   );

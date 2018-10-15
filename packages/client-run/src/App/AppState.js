@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { Card, CardTitle } from 'reactstrap';
-import './AppState.css';
+import '../Styles/AppState.css';
 
 function AppState({ activeRace }) {
   const raceState = Object.entries(activeRace).map(([key, value]) => (
