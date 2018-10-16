@@ -23,7 +23,7 @@ export class GeneratedPersona {
   name; // string;
   icon; // string;
   color; // string;
-  gender; // 'male' | 'female' | 'other';
+  gender;
   ageGroup;
   handedness; // 'left' | 'right';
   zipcode; // string;
