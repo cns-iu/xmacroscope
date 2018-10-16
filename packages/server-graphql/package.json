@@ -41,8 +41,6 @@
     "apollo-errors": "^1.5.1",
     "apollo-resolvers": "^1.0.3",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "bcrypt": "^1.0.3",
-    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.17.1",
     "chalk": "^2.3.1",
     "cors": "^2.8.4",
@@ -69,7 +67,7 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.23.2",
     "sequelize-cli": "^4.0.0",
-    "sqlite3": "^3.1.13",
+    "sqlite3": "^4.0.2",
     "subscriptions-transport-ws": "^0.9.5"
   }
 }
