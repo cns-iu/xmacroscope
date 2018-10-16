@@ -10,7 +10,8 @@ const ShapeWrapper = styled.div`
   background: ${props => (props.color === "none" || props.shape === "none" ? "none" : "white")};
   color: ${props => props.color};
   text-align: center;
-  margin: 25px;
+  margin: ${props => props.margin};
+  width: ${props => props.width};
   border-radius: 50%;
   ${props =>
     (props.color === "none" ? `${dashedOutline}` : `${solidOutline}`)};

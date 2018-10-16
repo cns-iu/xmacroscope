@@ -140,6 +140,7 @@ const SignupForm = ({
               ? values.shape
               : "none"
           }
+          shapeTransform={"translate(50, 50) scale(.75)"}
         />
       </Col>
     </Row>
