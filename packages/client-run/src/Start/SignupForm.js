@@ -36,7 +36,14 @@ const SignupForm = ({
           </option>
         ))}
       </Field>
-    </FormGroup>
+        {/* Validation feedback */}
+        {
+          touched[name] && errors[name] &&
+          <div>
+            {errors[name]}
+          </div>
+        }
+      </FormGroup>
     <FormGroup>
       <Label>Favorite activity</Label>
       <Field
@@ -110,7 +117,6 @@ const SignupForm = ({
             component="select"
             type="text"
             value={values.shapes}
-            placeholder={"hold place"}
             required
           >
              <option className={Object.prototype.hasOwnProperty.call(values, "shape") ? "d-none" : ""} value="none"> -- select an option -- </option>

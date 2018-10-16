@@ -2,9 +2,16 @@ import React from "react";
 import { withFormik } from "formik";
 import { Row, Col, Card, CardBody, CardHeader } from "reactstrap";
 import { Mutation } from "react-apollo";
+import * as Yup from "yup";
 import zipcodes from "zipcodes";
 import SignupForm from "./SignupForm";
 import gql from "graphql-tag";
+
+Yup.setLocale({
+  number: {
+    default: 'Deve ser maior que',
+  },
+});
 
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRace($status: String!) {
@@ -21,24 +28,22 @@ const UPDATE_RUN_LOCAL = gql`
     ) @client
   }
 `;
-
 const SignupFormFormik = withFormik({
-  // Add a custom validation function (this can be async too!)
-  validate: (values, props) => {
-    const errors = {};
-    // Zip codes are 5 digits
-    // We don't accept the extra 4 digits.
-    if (!/(^\d{5}$)/.test(values.zipcode)) {
-      errors.zipcode = "Please enter 5 numbers for a Zip Code.";
-    }
-    // Also do a Zip Code lookup to ensure that it's a valid place.
-    if (!zipcodes.lookup(values.zipcode)) {
-      errors.zipcode =
-        "Sorry that doesn't look like a valid Zip Code for a" +
-        " place in the US";
-    }
-    return errors;
-  },
+  validationSchema: Yup.object().shape({
+    height: Yup.number()
+      .typeError('height must be a number')
+      .min(36)
+      .max(96)
+      .integer("Please enter a valid number"),
+    zipcode: Yup.string()
+      .matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/, "Please enter 5 numbers for a Zip Code.")
+      .test("test-name", "enter a valid US zip code", function (value) {
+        const { path, createError } = this;
+        if (typeof value !== 'undefined' && !zipcodes.lookup(value)) {
+          return createError({ path, message: 'enter a valid US Zip Code' });
+        } return true;
+      })
+  }),
 
   // Submission handler
   handleSubmit: (
@@ -76,7 +81,9 @@ function WithCreateMutation(props) {
               <h1>RACE SIGN UP</h1>
             </CardHeader>
             <CardBody>
-              <SignupFormFormik updateRace={updateRace} />
+              <SignupFormFormik
+                updateRace={updateRace}
+              />
             </CardBody>
           </Card>
         </Col>
