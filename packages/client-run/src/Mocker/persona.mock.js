@@ -1,13 +1,22 @@
 import { casual } from './casual';
 
 const GENDERS = ['male', 'female', 'other'];
-const AGE_GROUPS = ['07-09', '10-12', '13-18', '19-30', '31-40', '41-50', '51-60', '61-70', '71+'];
+const AGE_GROUPS = [
+  '07-09',
+  '10-12',
+  '13-18',
+  '19-30',
+  '31-40',
+  '41-50',
+  '51-60',
+  '61-70',
+  '71+',
+];
 
 const MAX_LAT = 49.3457868; // north lat
 const MIN_LAT = 24.7433195; // south lat
 const MAX_LNG = -124.7844079; // west long
 const MIN_LNG = -66.9513812; // east long
-
 
 export class GeneratedPersona {
   id; // string;
@@ -15,7 +24,7 @@ export class GeneratedPersona {
   icon; // string;
   color; // string;
   gender; // 'male' | 'female' | 'other';
-  ageGroup; // '07-09' | '10-12' | '13-18' | '19-30' | '31-40' | '41-50' | '51-60' | '61-70' | '71+';
+  ageGroup;
   handedness; // 'left' | 'right';
   zipcode; // string;
   state; // string;
@@ -38,5 +47,5 @@ export class GeneratedPersona {
 }
 
 export function MockPersona() {
-    return new GeneratedPersona();
+  return new GeneratedPersona();
 }
