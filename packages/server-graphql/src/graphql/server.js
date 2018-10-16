@@ -1,19 +1,16 @@
 /* eslint-disable global-require,no-console,no-new */
 import express from 'express';
-import {
-  graphqlExpress,
-  graphiqlExpress,
-} from 'graphql-server-express';
-import bodyParser from 'body-parser';
+import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
 import cors from 'cors';
-import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { createServer } from 'http';
-import { GraphQLError, execute, subscribe } from 'graphql';
-import { formatError as apolloFormatError, createError } from 'apollo-errors';
 import fs from 'fs';
 import chalk from 'chalk';
-import schema from './schema/schema';
+import resolvers from './resolvers';
+import TYPES from './schema/types/index.graphql';
+import QUERIES from './schema/queries/index.graphql';
+import MUTATIONS from './schema/mutations/index.graphql';
+import SUBSCRIPTIONS from './schema/subscriptions/index.graphql';
 
 //
 // Environment setup
@@ -61,17 +58,6 @@ if (process.env.DB_DIALECT === 'sqlite') {
 const DEFAULT_PORT = 4000;
 const PORT = process.env.PORT || DEFAULT_PORT;
 
-// GraphQL endpoint
-//
-// Custom URL for the graphql endpoint once it's setup.
-// On the local system this would just be a path, which would
-// default to constructing the full URL as localhost/path
-// However, in production we want to serve the GraphQL server behind
-// our HTTPS connection, terminated at our AWS Load Balancer
-// before the front end Apache server.
-const DEFAULT_ENDPOINT_URL = '/graphql/';
-const ENDPOINT_URL = process.env.ENDPOINT_URL || DEFAULT_ENDPOINT_URL;
-
 //
 // Setup Express to server the GraphQL API
 //
@@ -89,43 +75,6 @@ const app = express();
 app.use('*', cors({ origin: process.env.CLIENT_ORIGIN }));
 
 //
-// Top level error
-//
-// Unless any other error is matched we will send this for
-// all error conditions.
-//
-const UnknownError = createError('UnknownError', {
-  message: 'An unknown error has occurred.  Please try again later',
-});
-
-const formatError = (error) => {
-  //
-  // Log raw errors to the server console
-  // TODO: set up file logging for the raw logs.
-  // https://github.com/cns-iu/xmacroscope/issues/92
-  //
-  console.log(error);
-  console.log('----^ ^ ^ ^ ^ error ^ ^ ^ ^ ^----');
-
-  //
-  // Prepare a formatted error for the client, so that we
-  // don't expose any internals about the API or database connection
-  // to the client making the GraphQL query.
-  //
-  let formattedError = apolloFormatError(error);
-  if (formattedError instanceof GraphQLError) {
-    formattedError = apolloFormatError(new UnknownError({
-      data: {
-        originalMessage: formattedError.message,
-        originalError: formattedError.name,
-      },
-    }));
-  }
-
-  return formattedError;
-};
-
-//
 // Serve other apps
 //
 // TODO: Break these out into their own servers via a proxy
@@ -138,42 +87,25 @@ app.use('/smm', express.static(path.join(__dirname, '../../../client/build')));
 app.use('/mav', express.static(path.join(__dirname, '../../../aisl/dist')));
 
 //
-// Setup GraphQl endpoint
+// Setup GraphQL endpoint with GUI for development
+// TODO: Only host GUI on dev
 //
-// Use Express to listen for all GraphQL queries at
-// the '/graphql' path.
-//
-// Load the schema and context for each GraphQL request.
-//
-// TODO - test removing unused param, response
-app.use('/graphql', bodyParser.json(), graphqlExpress(() => ({
-  schema,
-  formatError,
-})));
-
-//
-// Setup GraphiQl endpoint
-//
-// Use Express to host an instance of the GraphiQL web GUI
-// development tool.
-//
-// TODO: Only host this on development.
-//
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: ENDPOINT_URL,
-  subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
-}));
-
-// Start the GraphQL server
-const server = createServer(app);
-server.listen(PORT, () => {
-  new SubscriptionServer({
-    execute,
-    subscribe,
-    schema,
-  }, {
-    server,
-    path: '/subscriptions',
-  });
+const server = new ApolloServer({
+  typeDefs: [TYPES, QUERIES, MUTATIONS, SUBSCRIPTIONS],
+  resolvers,
 });
 
+// Add our middlewares
+server.applyMiddleware({ app });
+
+// Start http server for GraphQL
+const httpServer = createServer(app);
+
+// Add subscriptions to our existing GraphQL server
+server.installSubscriptionHandlers(httpServer);
+
+// Add a listener for our server on the correct ports
+httpServer.listen(PORT, () => {
+  console.log(`GraphQL server ready at http://localhost:${PORT}${server.graphqlPath}`);
+  console.log(`Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`);
+});

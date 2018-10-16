@@ -40,23 +40,17 @@
   "dependencies": {
     "apollo-errors": "^1.5.1",
     "apollo-resolvers": "^1.0.3",
+    "apollo-server-express": "^2.1.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "body-parser": "^1.17.1",
     "chalk": "^2.3.1",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "dotenv-webpack": "^1.5.4",
     "express": "^4.15.2",
     "express-jwt": "^5.3.0",
-    "faker": "^4.1.0",
     "graphql": "^0.11.7",
     "graphql-iso-date": "^3.5.0",
-    "graphql-server-core": "1.2.0",
-    "graphql-server-express": "^1.2.0",
-    "graphql-server-module-graphiql": "^0.8.2",
-    "graphql-subscriptions": "^0.5.6",
     "graphql-tag": "^2.6.0",
-    "graphql-tools": "^1.0.0",
     "jsonwebtoken": "^8.1.0",
     "jwks-rsa": "^1.2.1",
     "jwt-decode": "^2.2.0",
@@ -67,7 +61,6 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.23.2",
     "sequelize-cli": "^4.0.0",
-    "sqlite3": "^4.0.2",
-    "subscriptions-transport-ws": "^0.9.5"
+    "sqlite3": "^4.0.2"
   }
 }
