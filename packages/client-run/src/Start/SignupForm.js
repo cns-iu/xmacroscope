@@ -20,10 +20,10 @@ const SignupForm = ({
       <Label>Age group</Label>
       <Field
         className="form-control form-control-lg"
-        name="age_group"
+        name="ageGroup"
         component="select"
         type="text"
-        value={values.age_group}
+        value={values.ageGroup}
         required
       >
         {personOptions.ageGroups.map(item => (

@@ -26,7 +26,7 @@ const UPDATE_RUN_LOCAL = gql`
   $color: String!
   $icon: String!
   $gender: String!
-  $age_group: String!
+  $ageGroup: String!
   $favoriteActivity: String!
   $handedness: String!
   $height: String!
@@ -42,7 +42,7 @@ const UPDATE_RUN_LOCAL = gql`
       color: $color,
       icon: $icon,
       gender: $gender,
-      age_group: $age_group,
+      ageGroup: $ageGroup,
       favoriteActivity: $favoriteActivity,
       handedness: $handedness,
       height: $height,

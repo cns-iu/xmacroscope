@@ -22,7 +22,7 @@ export const resolvers = {
   Mutation: {
     updateRace: (_, {
       status, opponent, opponentName, opponentTime, raceId, name, icon, color,
-      gender, age_group, favoriteActivity, handedness, height, siblings,
+      gender, ageGroup, favoriteActivity, handedness, height, siblings,
       zipcode, latitude, longitude, state,
     },
     { cache }) => {
@@ -37,7 +37,7 @@ export const resolvers = {
           name,
           icon,
           gender,
-          age_group,
+          ageGroup,
           favoriteActivity,
           handedness,
           height,

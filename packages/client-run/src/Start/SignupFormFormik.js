@@ -10,7 +10,7 @@ const UPDATE_RUN_LOCAL = gql`
   mutation updateRace($status: String!) {
     updateRace(
       status: $status
-      age_group: $age_group
+      ageGroup: $ageGroup
       favoriteActivity: $favoriteActivity
       height: $height
       siblings: $siblings
@@ -52,7 +52,7 @@ const SignupFormFormik = withFormik({
     props.updateRace({
       variables: {
         status: 'opponentSelect',
-        age_group: values.age_group,
+        ageGroup: values.ageGroup,
         favoriteActivity: values.favoriteActivity,
         height: values.height,
         siblings: values.siblings,

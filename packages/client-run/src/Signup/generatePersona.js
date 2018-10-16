@@ -39,7 +39,7 @@ const generatePersona = () => {
     icon: fakeShape,
     color: fakeColor,
     gender: fakeGender,
-    age_group: fakeAgeGroup,
+    ageGroup: fakeAgeGroup,
     favoriteActivity: fakeFavoriteActivity,
     handedness: fakeHandedness,
     height: fakeHeight,

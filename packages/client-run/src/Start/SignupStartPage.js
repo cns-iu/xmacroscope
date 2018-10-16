@@ -24,7 +24,7 @@ const GET_RACE_STATE_LOCAL = gql`
       color
       icon
       gender
-      age_group
+      ageGroup
       favoriteActivity
       handedness
       height
@@ -49,7 +49,7 @@ class StartPageDev extends React.Component {
             color: activeRace.color,
             icon: activeRace.icon,
             gender: activeRace.gender,
-            age_group: activeRace.age_group,
+            ageGroup: activeRace.ageGroup,
             favoriteActivity: activeRace.favoriteActivity,
             handedness: activeRace.handedness,
             siblings: activeRace.siblings,
