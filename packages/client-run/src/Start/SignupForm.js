@@ -141,6 +141,8 @@ const SignupForm = ({
               : "none"
           }
           shapeTransform={"translate(50, 50) scale(.75)"}
+          width="70%"
+          margin="auto"
         />
       </Col>
     </Row>

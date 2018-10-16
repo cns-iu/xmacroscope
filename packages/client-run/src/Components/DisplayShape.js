@@ -3,7 +3,7 @@ import { ShapeWrapper } from "../Primatives/ShapePrimatives";
 
 export class DisplayShape extends PureComponent {
   render() {
-    const { color, shape, shapeTransform } = this.props;
+    const { color, shape, shapeTransform, margin, width } = this.props;
     const formatShape = shape === "triangle-up" ? "triangle" : shape;
     const shapeStyle = {
       fill: color === "none" ? "white" : color
@@ -12,8 +12,8 @@ export class DisplayShape extends PureComponent {
       <ShapeWrapper
         color={color}
         shape={formatShape}
-        margin="auto"
-        width="70%"
+        margin={margin}
+        width={width}
       >
         {
           {

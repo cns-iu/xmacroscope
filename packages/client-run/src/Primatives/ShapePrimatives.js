@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const dashedOutline = `
-border: 5px dashed white;
+border: 10px dashed white;
 `;
 const solidOutline = `
-border: 10px solid;
+border: 20px solid;
 `;
 const ShapeWrapper = styled.div`
   background: ${props => (props.color === "none" || props.shape === "none" ? "none" : "white")};

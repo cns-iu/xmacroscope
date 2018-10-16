@@ -5,7 +5,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 import gql from 'graphql-tag';
-import PersonaIcon from '../Signup/PersonaIcon';
+import DisplayShape from '../Components/DisplayShape';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -69,16 +69,18 @@ class StartPageDev extends React.Component {
                       <Card body>
                         <Row>
                           <Col xs={6}>
-                            <PersonaIcon
-                              color={activeRace.color}
+                            <DisplayShape
+                              color={activeRace.color.hexValue}
                               shape={activeRace.icon}
+                              shapeTransform={"translate(50, 50) scale(.75)"}
+                              width="50%"
+                              margin="auto"
                             />
-                            <h2 className="text-center">
-                            Remember your shape<br />
-                            and<br />
-                            look for it<br />
-                            on the graph.
-                            </h2>
+                            <div className="pt-5">
+                              <h1 className="text-center">
+                                Remember your shape and look for it on the graph.
+                              </h1>
+                            </div>
                           </Col>
                           <Col xs={6} >
                             {{
