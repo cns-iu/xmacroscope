@@ -54,7 +54,7 @@ class Timer extends React.Component {
       <Fragment>
         {this.state.timer}
         {this.state.countDownSound ? (
-          <ReactHowler src={CountDown} playing={this.state.timer <= 12000} />
+          <ReactHowler src={CountDown} playing={this.state.timer <= 8500} />
         ) : (
           ""
         )}

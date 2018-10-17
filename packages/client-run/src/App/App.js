@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Container, Navbar, NavbarBrand } from 'reactstrap';
-import '../Styles/AppGlobal.css';
 // import 'bootstrap/dist/css/bootstrap.css';
 import 'bootswatch/dist/darkly/bootstrap.css';
 import AppRoutes from './AppRoutes';
