@@ -179,7 +179,7 @@ type Persona {
   handedness: HANDEDNESS
   height: Int
   siblings: Int
-  zipcode: String
+  zipCode: String
   state: String
   latitude: Float
   longitude: Float
@@ -195,7 +195,7 @@ input NewPersona {
   handedness: HANDEDNESS
   height: Int
   siblings: Int
-  zipcode: String
+  zipCode: String
   state: String
   latitude: Float
   longitude: Float

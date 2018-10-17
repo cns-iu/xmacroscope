@@ -26,7 +26,7 @@ export class GeneratedPersona {
   gender;
   ageGroup;
   handedness; // 'left' | 'right';
-  zipcode; // string;
+  zipCode; // string;
   state; // string;
   latitude; // number;
   longitude; // number;
@@ -39,7 +39,7 @@ export class GeneratedPersona {
     this.gender = casual.random_element(GENDERS);
     this.ageGroup = casual.random_element(AGE_GROUPS);
     this.handedness = casual.random > 0.1 ? 'right' : 'left';
-    this.zipcode = casual.zip(5);
+    this.zipCode = casual.zip(5);
     this.state = casual.state;
     this.latitude = casual.integer(MIN_LAT, MAX_LAT);
     this.longitude = casual.integer(MIN_LNG, MAX_LNG);

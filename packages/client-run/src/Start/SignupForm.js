@@ -58,11 +58,11 @@ const SignupForm = ({
 
     <FormField
       className="form-control form-control-lg"
-      name="zipcode"
+      name="zipCode"
       label="Zip code"
       errors={errors}
       touched={touched}
-      value={values.zipcode}
+      value={values.zipCode}
     />
     <div className="col-12 px-0 pt-5">
       <Button

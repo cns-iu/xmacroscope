@@ -33,7 +33,7 @@ module.exports = {
     siblings: {
       type: Sequelize.INTEGER,
     },
-    zipcode: {
+    zipCode: {
       type: Sequelize.STRING,
     },
     latitude: {

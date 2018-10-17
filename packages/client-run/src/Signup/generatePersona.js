@@ -44,7 +44,7 @@ const generatePersona = () => {
     handedness: fakeHandedness,
     height: fakeHeight,
     siblings: fakeSiblings,
-    zipcode: fakeLocation.zip,
+    zipCode: fakeLocation.zip,
     latitude: fakeLocation.latitude,
     longitude: fakeLocation.longitude,
     state: fakeLocation.state,

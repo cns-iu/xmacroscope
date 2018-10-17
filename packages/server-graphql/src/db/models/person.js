@@ -16,7 +16,7 @@ const Person = sequelize.define('Person', {
   handedness: { type: Sequelize.STRING },
   height: { type: Sequelize.INTEGER },
   siblings: { type: Sequelize.INTEGER },
-  zipcode: { type: Sequelize.STRING },
+  zipCode: { type: Sequelize.STRING },
   latitude: { type: Sequelize.FLOAT(9, 6) },
   longitude: { type: Sequelize.FLOAT(9, 6) },
   state: { type: Sequelize.STRING },
@@ -25,4 +25,3 @@ const Person = sequelize.define('Person', {
 });
 
 export default Person;
-

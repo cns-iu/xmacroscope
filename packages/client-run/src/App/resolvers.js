@@ -23,7 +23,7 @@ export const resolvers = {
     updateRace: (_, {
       status, opponent, opponentName, opponentTime, raceId, name, icon, color,
       gender, ageGroup, favoriteActivity, handedness, height, siblings,
-      zipcode, latitude, longitude, state,
+      zipCode, latitude, longitude, state,
     },
     { cache }) => {
       const data = {
@@ -42,7 +42,7 @@ export const resolvers = {
           handedness,
           height,
           siblings,
-          zipcode,
+          zipCode,
           latitude,
           longitude,
           state,

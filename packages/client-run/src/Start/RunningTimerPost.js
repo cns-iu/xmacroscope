@@ -31,7 +31,7 @@ const UPDATE_RUN_LOCAL = gql`
   $handedness: String!
   $height: String!
   $siblings: String!
-  $zipcode: String!
+  $zipCode: String!
   $latitude: String!
   $longitude: String!
   $state: String!
@@ -47,7 +47,7 @@ const UPDATE_RUN_LOCAL = gql`
       handedness: $handedness,
       height: $height,
       siblings: $siblings,
-      zipcode: $zipcode,
+      zipCode: $zipCode,
       latitude: $latitude,
       longitude: $longitude,
       state: $state,

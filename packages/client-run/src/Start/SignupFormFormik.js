@@ -14,7 +14,7 @@ const UPDATE_RUN_LOCAL = gql`
       favoriteActivity: $favoriteActivity
       height: $height
       siblings: $siblings
-      zipcode: $zipcode
+      zipCode: $zipCode
       state: $state
       latitude: $latitude
       longitude: $longitude
@@ -28,12 +28,12 @@ const SignupFormFormik = withFormik({
     const errors = {};
     // Zip codes are 5 digits
     // We don't accept the extra 4 digits.
-    if (!/(^\d{5}$)/.test(values.zipcode)) {
-      errors.zipcode = 'Please enter 5 numbers for a Zip Code.';
+    if (!/(^\d{5}$)/.test(values.zipCode)) {
+      errors.zipCode = 'Please enter 5 numbers for a Zip Code.';
     }
     // Also do a Zip Code lookup to ensure that it's a valid place.
-    if (!zipcodes.lookup(values.zipcode)) {
-      errors.zipcode = 'Sorry that doesn\'t look like a valid Zip Code for a' +
+    if (!zipcodes.lookup(values.zipCode)) {
+      errors.zipCode = 'Sorry that doesn\'t look like a valid Zip Code for a' +
         ' place in the US';
     }
     return errors;
@@ -48,7 +48,7 @@ const SignupFormFormik = withFormik({
       setErrors /* setValues, setStatus, and other goodies */,
     },
   ) => {
-    const location = zipcodes.lookup(values.zipcode);
+    const location = zipcodes.lookup(values.zipCode);
     props.updateRace({
       variables: {
         status: 'opponentSelect',
@@ -56,7 +56,7 @@ const SignupFormFormik = withFormik({
         favoriteActivity: values.favoriteActivity,
         height: values.height,
         siblings: values.siblings,
-        zipcode: values.zipcode,
+        zipCode: values.zipCode,
         state: location.state,
         latitude: location.latitude,
         longitude: location.longitude,

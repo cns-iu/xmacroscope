@@ -29,7 +29,7 @@ const GET_RACE_STATE_LOCAL = gql`
       handedness
       height
       state
-      zipcode
+      zipCode
       latitude
       longitude
       siblings
@@ -55,7 +55,7 @@ class StartPageDev extends React.Component {
             siblings: activeRace.siblings,
             height: activeRace.height,
             state: activeRace.state,
-            zipcode: activeRace.zipcode,
+            zipCode: activeRace.zipCode,
             latitude: activeRace.latitude,
             longitude: activeRace.longitude,
           };
