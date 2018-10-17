@@ -1,23 +1,18 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import ReactHowler from "react-howler";
+import CountDown from "../Media/countDown.wav";
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      timer: props.direction === 'down'
-        ? (Math.abs(props.start - props.end))
-        : (props.start),
-    };
+    const { countDownSound, direction, start, end } = this.props;
+    this.state = { countDownSound, timer: direction === "down" ? Math.abs(start - end) : start };
     this.incrementTimer = this.incrementTimer.bind(this);
   }
 
   componentWillMount() {
-    this.timer = setInterval(
-      this.incrementTimer,
-      this.props.tick,
-    );
+    this.timer = setInterval(this.incrementTimer, this.props.tick);
   }
 
   componentWillUnmount() {
@@ -27,53 +22,62 @@ class Timer extends React.Component {
   incrementTimer() {
     const { direction, stop } = this.props;
     // Pick the appropriate operator for check when the timer is done
-    const op = direction === 'down' ? 'gt' : 'lt';
+    const op = direction === "down" ? "gt" : "lt";
     const operators = {
       gt(a, b) {
         return a > b;
       },
       lt(a, b) {
         return a < b;
-      },
+      }
     };
 
     // Increment the timer in the correct direction
-    const tick = direction === 'down' ? this.props.tick * -1 : this.props.tick;
+    const tick = direction === "down" ? this.props.tick * -1 : this.props.tick;
     if (this.state.timer === this.props.end || stop) {
       clearInterval(this.timer);
       this.props.completion();
     } else {
-      const newTimer = (this.state.timer + tick);
+      const newTimer = this.state.timer + tick;
       this.setState({
-        timer: (operators[op](newTimer, this.props.end))
-          ? (newTimer)
+        timer: operators[op](newTimer, this.props.end)
+          ? newTimer
           : this.props.end,
       });
     }
   }
 
+  /* add 2 seconds to playing conditonal to factor in clip delay */
+
   render() {
     return (
       <Fragment>
         {this.state.timer}
+        {this.state.countDownSound ? (
+          <ReactHowler src={CountDown} playing={this.state.timer <= 12000} />
+        ) : (
+          ""
+        )}
       </Fragment>
     );
   }
 }
 
 Timer.propTypes = {
-  direction: PropTypes.oneOf(['up', 'down']).isRequired,
+  direction: PropTypes.oneOf(["up", "down"]).isRequired,
+  countDownSound: PropTypes.bool,
   end: PropTypes.number.isRequired,
   start: PropTypes.number.isRequired,
   completion: PropTypes.func,
   tick: PropTypes.number,
-  stop: PropTypes.bool,
+  stop: PropTypes.bool
 };
 
 Timer.defaultProps = {
   completion: () => {},
   tick: 100,
   stop: false,
+  countDownSound: false
 };
 
 export default Timer;
