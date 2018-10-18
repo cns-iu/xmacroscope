@@ -1,9 +1,9 @@
 import { combineResolvers } from 'apollo-resolvers';
+import { GraphQLDateTime } from 'graphql-iso-date';
 import pubsub from './subscriptions';
 import MessageResolver from './message';
 import RunResolver from './run';
 import SettingResolver from './setting';
-import { GraphQLDateTime } from 'graphql-iso-date';
 
 const scalarResolvers = {
   Date: GraphQLDateTime,
