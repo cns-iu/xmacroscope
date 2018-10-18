@@ -156,6 +156,11 @@ input RunResultInput {
   timeMillis: Int
 }
 
+input RunRecordFinishInput {
+  id: ID!
+  finish: Date!
+}
+
 input RunRecordInput {
   start: Date!
   opponent: String
@@ -168,11 +173,6 @@ input RunSelectInput {
   opponent: String
   opponentName: String
   opponentTime: Int
-}
-
-input FinishRunRecord {
-  id: ID!
-  finish: Date!
 }
 
 input NewPersona {
