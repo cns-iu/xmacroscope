@@ -9,7 +9,7 @@ type Mutation {
   # Run select is a message operation that sends out Avatar message
   # Returns null, but GQL requires a return definition. We just allow
   # it to be nullable here by excluding !
-  selectRun(run: SelectRun!): Boolean
+  selectRun(run: RunSelectInput!): Boolean
 
   # Start run is a create operation and returns the created run's ID
   startRun(run: NewRunRecord!): ID!

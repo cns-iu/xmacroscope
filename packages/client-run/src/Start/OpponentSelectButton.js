@@ -9,7 +9,7 @@ import { Button } from 'reactstrap';
 
 const SELECT_RUN = gql`
   mutation SelectRun(
-  $run: SelectRun!
+  $run: RunSelectInput!
   ) {
     selectRun(
       run: $run
