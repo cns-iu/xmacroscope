@@ -3,7 +3,7 @@
 type Mutation {
   registerAvatar(avatar: NewAvatar): ID
   registerPersona(persona: NewPersona): ID
-  raceCompleted(runs: [NewRunRecord!]!): [ID!]!
+  runCompleted(runs: [NewRunRecord!]!): [ID!]!
 
   # Run select is a message operation that sends out Avatar message
   # Returns null, but GQL requires a return definition. We just allow

@@ -65,10 +65,10 @@ const runStart = baseResolver
     include: [db.run],
   })
     .then((createdPerson) => {
-      // Publish race initiation for MAV
+      // Publish run initiation for MAV
       const publishPayload = {
-        raceInitiated: {
-          type: 'race-initiated',
+        runInitiated: {
+          type: 'run-initiated',
           timestamp: args.run.start,
           avatar: {
             id: args.run.opponent,
@@ -77,7 +77,7 @@ const runStart = baseResolver
           },
         },
       };
-      const message = pubsub.publish('race-initiated', publishPayload);
+      const message = pubsub.publish('run-initiated', publishPayload);
       if (message) {
         console.log('Run initiated - Message sent');
       } else {
@@ -115,9 +115,9 @@ const runFinish = baseResolver
         db.person.findOne({ where: { id: completedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const publishPayload = {
-              raceCompleted: {
+              runCompleted: {
                 timestamp: endTime,
-                type: 'race-completed',
+                type: 'run-completed',
                 avatar: {
                   id: completedRun.opponent,
                   name: completedRun.opponentName,
@@ -138,7 +138,7 @@ const runFinish = baseResolver
                 ],
               },
             };
-            const message = pubsub.publish('race-completed', publishPayload);
+            const message = pubsub.publish('run-completed', publishPayload);
             if (message) {
               console.log('Run completed - Message sent');
             } else {
@@ -146,7 +146,7 @@ const runFinish = baseResolver
             }
           });
       });
-    // Publish race completion for MAV
+    // Publish run completion for MAV
     return updatedRuns;
   }));
 

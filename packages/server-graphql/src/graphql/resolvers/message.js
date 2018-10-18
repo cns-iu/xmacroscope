@@ -10,11 +10,11 @@ const sendMessage = baseResolver
         case 'run-selected':
           pubsub.publish(savedMessage.type, { runSelected: savedMessage });
           break;
-        case 'race-initiated':
-          pubsub.publish(savedMessage.type, { raceInitiated: savedMessage });
+        case 'run-initiated':
+          pubsub.publish(savedMessage.type, { runInitiated: savedMessage });
           break;
-        case 'race-completed':
-          pubsub.publish(savedMessage.type, { raceCompleted: savedMessage });
+        case 'run-completed':
+          pubsub.publish(savedMessage.type, { runCompleted: savedMessage });
           break;
         default:
           console.log('Message error');

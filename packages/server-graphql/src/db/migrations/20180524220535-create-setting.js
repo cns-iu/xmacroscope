@@ -10,10 +10,10 @@ module.exports = {
       type: Sequelize.STRING,
       unique: true,
     },
-    preRaceDelay: {
+    preRunDelay: {
       type: Sequelize.INTEGER,
     },
-    postRaceDelay: {
+    postRunDelay: {
       type: Sequelize.INTEGER,
     },
     startLineTimeout: {
@@ -25,7 +25,7 @@ module.exports = {
     longitude: {
       type: Sequelize.INTEGER,
     },
-    raceTimeout: {
+    runTimeout: {
       type: Sequelize.INTEGER,
     },
     attractDelay: {

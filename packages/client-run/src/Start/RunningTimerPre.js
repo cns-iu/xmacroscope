@@ -5,9 +5,9 @@ import moment from 'moment';
 import Timer from './Timer';
 
 const GET_PRE_RACE_DELAY = gql`
-  query getPreRaceDelay($location: String!) {
+  query getPreRunDelay($location: String!) {
     settings(location: $location){
-      preRaceDelay
+      preRunDelay
     }
   }
 `;
@@ -33,7 +33,7 @@ function RunningTimerPre({
       {({ loading, error, data: { settings } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-        const { preRaceDelay } = settings;
+        const { preRunDelay } = settings;
 
         return (
           <Mutation
@@ -42,9 +42,9 @@ function RunningTimerPre({
               const createdRunID = data.runStart;
               cache.writeData({
                 data: {
-                  activeRace: {
-                    __typename: 'ActiveRace',
-                    raceId: createdRunID,
+                  activeRun: {
+                    __typename: 'ActiveRun',
+                    runId: createdRunID,
                     status: 'running',
                   },
                 },
@@ -70,7 +70,7 @@ function RunningTimerPre({
                     });
                   }}
                   direction="down"
-                  start={preRaceDelay}
+                  start={preRunDelay}
                   end={0}
                 />
               </div>

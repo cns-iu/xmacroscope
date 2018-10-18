@@ -2,8 +2,8 @@ type Subscription {
   messageStream: AnyMessage
 
   runSelected: RunSelectedMessage
-  raceInitiated: RaceInitiatedMessage
-  raceCompleted: RaceCompletedMessage
+  runInitiated: RunInitiatedMessage
+  runCompleted: RunCompletedMessage
   runCompletedRecords: [RunRecord]!
   runCompleted: [Run]!
 }

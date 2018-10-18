@@ -29,8 +29,8 @@ const OpponentSelect = () => (
       // Fast animal is temporarily encoded for the start keypress.
       cache.writeData({
         data: {
-          activeRace: {
-            __typename: 'ActiveRace',
+          activeRun: {
+            __typename: 'ActiveRun',
             status: 'runTimerPre',
             opponent: 'fast-animal',
             opponentName: 'Fast animal',
@@ -47,9 +47,9 @@ const OpponentSelect = () => (
       },
     }}
   >
-    {updateRace => (
+    {updateRun => (
       <Fragment>
-        <OpponentSelectButtons keypress={updateRace} />
+        <OpponentSelectButtons keypress={updateRun} />
         <HomeButton />
       </Fragment>
     )}

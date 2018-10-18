@@ -1,5 +1,5 @@
 //
-// Active race timers
+// Active run timers
 //
 import React from 'react';
 import { Query } from 'react-apollo';
@@ -12,7 +12,7 @@ import RunningTimerTimeout from './RunningTimerTimeout';
 const GET_RACE_TIMEOUT = gql`
   query settings($location: String!) {
     settings(location: $location){
-      raceTimeout
+      runTimeout
     }
   }
 `;
@@ -26,7 +26,7 @@ function Running() {
       {({ loading, error, data: { settings } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-        const { raceTimeout } = settings;
+        const { runTimeout } = settings;
         return (
           <Row>
             <Col>
@@ -42,7 +42,7 @@ function Running() {
               <Row>
                 <OpponentRunningTimer />
                 <RunnerTimer
-                  raceTimeout={raceTimeout}
+                  runTimeout={runTimeout}
                   lane="1"
                 />
               </Row>
@@ -51,7 +51,7 @@ function Running() {
               <Row className="mt-4">
                 <Col>
                   <h3>Timeout</h3>
-                  <RunningTimerTimeout raceTimeout={raceTimeout} />
+                  <RunningTimerTimeout runTimeout={runTimeout} />
                 </Col>
               </Row>
 

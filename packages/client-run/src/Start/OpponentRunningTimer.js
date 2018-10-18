@@ -6,7 +6,7 @@ import Timer from './Timer';
 
 const GET_OPPONENT_TIME = gql`
   query {
-    activeRace @client {
+    activeRun @client {
       opponentTime
     }
   }
@@ -15,10 +15,10 @@ const GET_OPPONENT_TIME = gql`
 function OpponentRunningTimer() {
   return (
     <Query query={GET_OPPONENT_TIME}>
-      {({ loading, error, data: { activeRace } }) => {
+      {({ loading, error, data: { activeRun } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-        const { opponentTime } = activeRace;
+        const { opponentTime } = activeRun;
         return (
           <Col>
             <Row>

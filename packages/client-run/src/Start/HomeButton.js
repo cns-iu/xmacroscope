@@ -5,8 +5,8 @@ import { Button } from 'reactstrap';
 import gql from 'graphql-tag';
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation updateRace($status: String!) {
-    updateRace(
+  mutation updateRun($status: String!) {
+    updateRun(
       status: $status
     ) @client
   }
@@ -19,8 +19,8 @@ const HomeButton = () => (
       status: 'signupForm',
     }}
   >
-    {updateRace => (
-      <Button onClick={updateRace}>
+    {updateRun => (
+      <Button onClick={updateRun}>
         <FaArrowCircleLeft
           style={{ marginBottom: '-2px' }}
         /> Start over

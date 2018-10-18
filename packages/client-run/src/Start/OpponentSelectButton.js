@@ -1,5 +1,5 @@
 //
-// Mutate local state, changing race state to preRun and define opponent details
+// Mutate local state, changing run state to preRun and define opponent details
 //
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -23,8 +23,8 @@ const OpponentSelectButton = ({ opponent, opponentName, opponentTime }) => (
     update={(cache) => {
       cache.writeData({
         data: {
-          activeRace: {
-            __typename: 'ActiveRace',
+          activeRun: {
+            __typename: 'ActiveRun',
             status: 'runTimerPre',
             opponent,
             opponentName,
@@ -41,10 +41,10 @@ const OpponentSelectButton = ({ opponent, opponentName, opponentTime }) => (
       },
     }}
   >
-    {updateRace => (
+    {updateRun => (
       <Button
         color="primary"
-        onClick={updateRace}
+        onClick={updateRun}
       >{opponentName}
       </Button>
     )}

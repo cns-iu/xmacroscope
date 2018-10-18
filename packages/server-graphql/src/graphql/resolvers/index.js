@@ -15,11 +15,11 @@ const Subscription = {
     runSelected: {
       subscribe: () => pubsub.asyncIterator('run-selected'),
     },
-    raceInitiated: {
-      subscribe: () => pubsub.asyncIterator('race-initiated'),
+    runInitiated: {
+      subscribe: () => pubsub.asyncIterator('run-initiated'),
     },
-    raceCompleted: {
-      subscribe: () => pubsub.asyncIterator('race-completed'),
+    runCompleted: {
+      subscribe: () => pubsub.asyncIterator('run-completed'),
     },
     runCompletedRecords: {
       subscribe: () => pubsub.asyncIterator('run-completed-records'),

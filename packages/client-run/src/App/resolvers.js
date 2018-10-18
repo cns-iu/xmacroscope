@@ -4,12 +4,12 @@ import generatePersona from '../Signup/generatePersona';
 //
 const persona = generatePersona();
 export const defaults = {
-  activeRace: {
-    __typename: 'ActiveRace',
+  activeRun: {
+    __typename: 'ActiveRun',
     opponent: 'none',
     opponentName: 'none',
     opponentTime: 0,
-    raceId: null,
+    runId: null,
     status: 'signupForm',
     ...persona,
   },
@@ -20,19 +20,19 @@ export const defaults = {
 //
 export const resolvers = {
   Mutation: {
-    updateRace: (_, {
-      status, opponent, opponentName, opponentTime, raceId, name, icon, color,
+    updateRun: (_, {
+      status, opponent, opponentName, opponentTime, runId, name, icon, color,
       gender, ageGroup, favoriteActivity, handedness, height, siblings,
       zipCode, latitude, longitude, state,
     },
     { cache }) => {
       const data = {
-        activeRace: {
-          __typename: 'ActiveRace',
+        activeRun: {
+          __typename: 'ActiveRun',
           opponent,
           opponentName,
           opponentTime,
-          raceId,
+          runId,
           status,
           name,
           icon,

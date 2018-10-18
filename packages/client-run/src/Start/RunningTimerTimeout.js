@@ -5,13 +5,13 @@ import gql from 'graphql-tag';
 import Timer from './Timer';
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation updateRace($status: String!) {
-    updateRace(status: $status) @client
+  mutation updateRun($status: String!) {
+    updateRun(status: $status) @client
   }
 `;
 
 function RunningTimerTimeout(props) {
-  const { raceTimeout } = props;
+  const { runTimeout } = props;
   return (
     <Mutation
       mutation={UPDATE_RUN_LOCAL}
@@ -19,14 +19,14 @@ function RunningTimerTimeout(props) {
         status: 'postRunTimer',
       }}
     >
-      {updateRace => (
+      {updateRun => (
         <Fragment>
           <Timer
             completion={() => {
-              updateRace();
+              updateRun();
             }}
             direction="down"
-            start={raceTimeout}
+            start={runTimeout}
             end={0}
           />
         </Fragment>
@@ -36,7 +36,7 @@ function RunningTimerTimeout(props) {
 }
 
 RunningTimerTimeout.propTypes = {
-  raceTimeout: PropTypes.number.isRequired,
+  runTimeout: PropTypes.number.isRequired,
 };
 
 export default RunningTimerTimeout;

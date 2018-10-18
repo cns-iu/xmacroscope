@@ -7,8 +7,8 @@ import SignupForm from './SignupForm';
 import gql from 'graphql-tag';
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation updateRace($status: String!) {
-    updateRace(
+  mutation updateRun($status: String!) {
+    updateRun(
       status: $status
       ageGroup: $ageGroup
       favoriteActivity: $favoriteActivity
@@ -49,7 +49,7 @@ const SignupFormFormik = withFormik({
     },
   ) => {
     const location = zipcodes.lookup(values.zipCode);
-    props.updateRace({
+    props.updateRun({
       variables: {
         status: 'opponentSelect',
         ageGroup: values.ageGroup,
@@ -68,12 +68,12 @@ const SignupFormFormik = withFormik({
 function WithCreateMutation(props) {
   return (
     <Mutation mutation={UPDATE_RUN_LOCAL}>
-      {updateRace => (
+      {updateRun => (
         <Col xs={12} md={6} xl={5} className="mx-auto">
           <Card>
             <CardHeader className="text-center signup-header"><h1>RACE SIGN UP</h1></CardHeader>
             <CardBody>
-              <SignupFormFormik updateRace={updateRace} />
+              <SignupFormFormik updateRun={updateRun} />
             </CardBody>
           </Card>
         </Col>

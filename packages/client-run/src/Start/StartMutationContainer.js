@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { graphql, Query } from 'react-apollo';
 import SEND_MESSAGE from './graphql/SendMessage.graphql';
 import Start from './StartAvatar';
-import RaceManager from '../RaceManager/Manager';
+import RunManager from '../RunManager/Manager';
 
 class StartContainer extends React.Component {
 
@@ -26,7 +26,7 @@ class StartContainer extends React.Component {
   dispatchStartSignal = () => {
     console.log('StartMutationContainer.dispatchStartSignal');
 
-    // RaceManager.initiateNewRace(name);
+    // RunManager.initiateNewRun(name);
 
     // TODO - set lane is occupied
 
@@ -36,14 +36,14 @@ class StartContainer extends React.Component {
     console.log('StartMutationContainer.dispatchEndSignal x');
 
     setInterval(()=> {
-      console.log(RaceManager.getRaceState());
+      console.log(RunManager.getRunState());
     }, 3000);
 
   };
 
   dispatchAvatarSelection = (name) => {
     console.log('StartMutationContainer.dispatchAvatarSelection', name);
-    RaceManager.initiateNewRace(name);
+    RunManager.initiateNewRun(name);
 
   };
 
@@ -54,7 +54,7 @@ class StartContainer extends React.Component {
         handleStartSignal={this.dispatchStartSignal}
         handleEndSignal={this.dispatchEndSignal}
         handleAvatarSelection={this.dispatchAvatarSelection}
-        raceState={RaceManager.getRaceState()}
+        runState={RunManager.getRunState()}
       />
     );
   }

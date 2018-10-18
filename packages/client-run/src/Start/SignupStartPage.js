@@ -14,11 +14,11 @@ import SignupFormFormik from './SignupFormFormik';
 
 const GET_RACE_STATE_LOCAL = gql`
   query {
-    activeRace @client {
+    activeRun @client {
       opponent
       opponentName
       opponentTime
-      raceId
+      runId
       status
       name
       color
@@ -41,37 +41,37 @@ class StartPageDev extends React.Component {
   render() {
     return (
       <Query query={GET_RACE_STATE_LOCAL}>
-        {({ loading, error, data: { activeRace } }) => {
+        {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           const persona = {
-            name: activeRace.name,
-            color: activeRace.color,
-            icon: activeRace.icon,
-            gender: activeRace.gender,
-            ageGroup: activeRace.ageGroup,
-            favoriteActivity: activeRace.favoriteActivity,
-            handedness: activeRace.handedness,
-            siblings: activeRace.siblings,
-            height: activeRace.height,
-            state: activeRace.state,
-            zipCode: activeRace.zipCode,
-            latitude: activeRace.latitude,
-            longitude: activeRace.longitude,
+            name: activeRun.name,
+            color: activeRun.color,
+            icon: activeRun.icon,
+            gender: activeRun.gender,
+            ageGroup: activeRun.ageGroup,
+            favoriteActivity: activeRun.favoriteActivity,
+            handedness: activeRun.handedness,
+            siblings: activeRun.siblings,
+            height: activeRun.height,
+            state: activeRun.state,
+            zipCode: activeRun.zipCode,
+            latitude: activeRun.latitude,
+            longitude: activeRun.longitude,
           };
 
           return (
             <Row>
               {
-                activeRace.status !== 'signupForm'
+                activeRun.status !== 'signupForm'
                   ? (
                     <Col xs={12}>
                       <Card body>
                         <Row>
                           <Col xs={6}>
                             <PersonaIcon
-                              color={activeRace.color}
-                              shape={activeRace.icon}
+                              color={activeRun.color}
+                              shape={activeRun.icon}
                             />
                             <h2 className="text-center">
                             Remember your shape<br />
@@ -86,14 +86,14 @@ class StartPageDev extends React.Component {
                           opponentSelect: <OpponentSelect />,
                           runTimerPre: <RunningTimerPre
                             persona={persona}
-                            opponent={activeRace.opponent}
-                            opponentName={activeRace.opponentName}
-                            opponentTime={activeRace.opponentTime}
+                            opponent={activeRun.opponent}
+                            opponentName={activeRun.opponentName}
+                            opponentTime={activeRun.opponentTime}
                           />,
                           running: <Running />,
                           postRunTimer: <RunningTimerPost />,
                           falseStart: <div>False start</div>,
-                        }[activeRace.status]}
+                        }[activeRun.status]}
                           </Col>
                         </Row>
                       </Card>

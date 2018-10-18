@@ -18,11 +18,11 @@ class OpponentSelect extends React.Component {
   render() {
     // TODO - Load these from settings
     const opponents = [
-      { id: 'fast-animal', name: 'Fast animal', raceTime: 1500 },
-      { id: 'slow-animal', name: 'Slow animal', raceTime: 4500 },
-      { id: 'fast-person', name: 'Fast person', raceTime: 2500 },
-      { id: 'slow-person', name: 'Slow person', raceTime: 4000 },
-      { id: 'cartoon-character', name: 'Cartoon character', raceTime: 5000 },
+      { id: 'fast-animal', name: 'Fast animal', runTime: 1500 },
+      { id: 'slow-animal', name: 'Slow animal', runTime: 4500 },
+      { id: 'fast-person', name: 'Fast person', runTime: 2500 },
+      { id: 'slow-person', name: 'Slow person', runTime: 4000 },
+      { id: 'cartoon-character', name: 'Cartoon character', runTime: 5000 },
     ];
     return (
 
@@ -44,7 +44,7 @@ class OpponentSelect extends React.Component {
                   <OpponentSelectButton
                     opponent={item.id}
                     opponentName={item.name}
-                    opponentTime={item.raceTime}
+                    opponentTime={item.runTime}
                   />
                 </Col>
               ))

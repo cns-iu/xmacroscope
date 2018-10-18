@@ -68,13 +68,13 @@ type RunSelectedMessage implements Message {
   avatar: Avatar
 }
 
-type RaceInitiatedMessage implements Message {
+type RunInitiatedMessage implements Message {
   type: String
   timestamp: String
   avatar: Avatar
 }
 
-type RaceResult {
+type RunResult {
   lane: Int
   persona: Persona
   started: Boolean
@@ -82,32 +82,32 @@ type RaceResult {
   timeMillis: Int
 }
 
-type RaceCompletedMessage implements Message {
+type RunCompletedMessage implements Message {
   type: String
   timestamp: String
   avatar: Avatar
-  results: [RaceResult]!
+  results: [RunResult]!
 }
 
 type AnyMessage implements Message {
   type: String!
   timestamp: String!
   avatar: Avatar
-  results: [RaceResult]
+  results: [RunResult]
 }
 
 type Setting {
   location: String
   latitude: Float
   longitude: Float
-  preRaceDelay: Int
-  postRaceDelay: Int
+  preRunDelay: Int
+  postRunDelay: Int
   startLineTimeout: Int
-  raceTimeout: Int
+  runTimeout: Int
   attractDelay: Int
 }
 
-input NewRaceResult {
+input NewRunResult {
   lane: Int
   persona: NewPersona
   started: Boolean
@@ -119,7 +119,7 @@ input NewAnyMessage {
   type: String!
   timestamp: String!
   avatar: NewAvatar
-  results: [NewRaceResult]
+  results: [NewRunResult]
 }
 
 input NewAvatar {

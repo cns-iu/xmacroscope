@@ -11,19 +11,19 @@ class RunFinishButton extends React.Component {
       timerStopped: false,
     };
 
-    this.finishRace = this.finishRace.bind(this);
+    this.finishRun = this.finishRun.bind(this);
   }
 
   componentWillMount() {
-    this.props.bindShortcut('e', this.finishRace);
+    this.props.bindShortcut('e', this.finishRun);
   }
 
-  finishRace() {
+  finishRun() {
     this.setState({ timerStopped: true });
     this.props.runFinish({
       variables: {
         run: {
-          id: this.props.raceId,
+          id: this.props.runId,
           finish: moment(),
         },
       },
@@ -36,7 +36,7 @@ class RunFinishButton extends React.Component {
       <Button
         disabled={timerStopped}
         color="primary"
-        onClick={this.finishRace}
+        onClick={this.finishRun}
       >
         Lane {this.props.lane} finish
       </Button>

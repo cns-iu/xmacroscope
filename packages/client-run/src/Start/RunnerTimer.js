@@ -9,8 +9,8 @@ import RunFinishButton from './RunFInishButton';
 
 const GET_RACE_ID = gql`
   query {
-    activeRace @client {
-      raceId
+    activeRun @client {
+      runId
     }
   }
 `;
@@ -35,14 +35,14 @@ class RunnerTimer extends React.Component {
   }
 
   render() {
-    const { lane, raceTimeout } = this.props;
+    const { lane, runTimeout } = this.props;
     const { timerStopped } = this.state;
     return (
       <Query query={GET_RACE_ID}>
-        {({ loading, error, data: { activeRace } }) => {
+        {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const { raceId } = activeRace;
+          const { runId } = activeRun;
 
           return (
             <Mutation
@@ -51,8 +51,8 @@ class RunnerTimer extends React.Component {
               update={(cache) => {
                 cache.writeData({
                   data: {
-                    activeRace: {
-                      __typename: 'ActiveRace',
+                    activeRun: {
+                      __typename: 'ActiveRun',
                       status: 'postRunTimer',
                     },
                   },
@@ -70,7 +70,7 @@ class RunnerTimer extends React.Component {
                         stop={timerStopped}
                         direction="up"
                         start={0}
-                        end={raceTimeout}
+                        end={runTimeout}
                       />
                     </Col>
                   </Row>
@@ -79,7 +79,7 @@ class RunnerTimer extends React.Component {
                     <Col>
                       <RunFinishButton
                         lane={lane}
-                        raceId={raceId}
+                        runId={runId}
                         runFinish={runFinish}
                       />
                     </Col>
@@ -96,7 +96,7 @@ class RunnerTimer extends React.Component {
 }
 
 RunnerTimer.propTypes = {
-  raceTimeout: PropTypes.number.isRequired,
+  runTimeout: PropTypes.number.isRequired,
   lane: PropTypes.string.isRequired,
 };
 

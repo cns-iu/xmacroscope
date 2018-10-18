@@ -10,17 +10,17 @@ const GET_SETTINGS = gql`
       location
       latitude
       longitude
-      preRaceDelay
-      postRaceDelay
+      preRunDelay
+      postRunDelay
       startLineTimeout
-      raceTimeout
+      runTimeout
       attractDelay
     }
   }
 `;
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation updateRace(
+  mutation updateRun(
   $status: String!
   $name: String!
   $color: String!
@@ -36,7 +36,7 @@ const UPDATE_RUN_LOCAL = gql`
   $longitude: String!
   $state: String!
   ) {
-    updateRace(
+    updateRun(
       status: $status,
       name: $name,
       color: $color,
@@ -70,7 +70,7 @@ class RunningTimerPost extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const { postRaceDelay } = data.settings;
+          const { postRunDelay } = data.settings;
           return (
             <Mutation
               mutation={UPDATE_RUN_LOCAL}
@@ -79,17 +79,17 @@ class RunningTimerPost extends React.Component {
                 ...persona,
               }}
             >
-              {updateRace => (
+              {updateRun => (
                 <div>
                   <h1>Please wait...</h1>
                   <p>The runner is finishing up, you&apos;ll be able to sign up shortly.</p>
                   <h3>Post run timer</h3>
                   <Timer
                     completion={() => {
-                      updateRace();
+                      updateRun();
                     }}
                     direction="down"
-                    start={postRaceDelay}
+                    start={postRunDelay}
                     end={0}
                   />
                 </div>

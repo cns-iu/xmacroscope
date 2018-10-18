@@ -2,7 +2,7 @@ import { MockAvatar } from './avatar.mock';
 import { MockPersona } from './persona.mock';
 import { casual } from './casual';
 
-export class RaceMocker {
+export class RunMocker {
   _mocking = false;
 
   constructor(messageService /* private messageService: { send: (message: Message) => void } */) {
@@ -20,30 +20,30 @@ export class RaceMocker {
   startMocking() {
     if (!this.mocking()) {
       this._mocking = true;
-      this.mockRace();
+      this.mockRun();
     }
   }
   stopMocking() {
     this._mocking = false;
   }
 
-  mockRace() {
+  mockRun() {
     const runSelectedTime = casual.integer(100, 500),
-      raceInitiatedTime = casual.integer(500, 1500),
-      raceCompletedTime = casual.integer(1000, 4000);
+      runInitiatedTime = casual.integer(500, 1500),
+      runCompletedTime = casual.integer(1000, 4000);
 
     setTimeout(() => {
       const runSelectedMessage = this.runSelected();
       setTimeout(() => {
-        this.raceInitiated(runSelectedMessage.avatar);
+        this.runInitiated(runSelectedMessage.avatar);
         setTimeout(() => {
-          this.raceCompleted(runSelectedMessage.avatar, raceCompletedTime);
+          this.runCompleted(runSelectedMessage.avatar, runCompletedTime);
 
           if (this.mocking()) {
-            this.mockRace();
+            this.mockRun();
           }
-        }, raceCompletedTime);
-      }, raceInitiatedTime);
+        }, runCompletedTime);
+      }, runInitiatedTime);
     }, runSelectedTime);
   }
 
@@ -56,29 +56,29 @@ export class RaceMocker {
     this.send(message);
     return message;
   }
-  raceInitiated(avatar) {
+  runInitiated(avatar) {
     const message = {
-      type: 'race-initiated',
+      type: 'run-initiated',
       timestamp: new Date().toISOString(),
       avatar
     };
     this.send(message);
     return message;
   }
-  raceCompleted(avatar, maxTime) {
+  runCompleted(avatar, maxTime) {
     const message = {
-      type: 'race-completed',
+      type: 'run-completed',
       timestamp: new Date().toISOString(),
       avatar,
-      results: [this.raceResults(maxTime, 1)]
+      results: [this.runResults(maxTime, 1)]
     };
     if (casual.coin_flip) {
-      message.results.push(this.raceResults(casual.integer(2000, maxTime), 2));
+      message.results.push(this.runResults(casual.integer(2000, maxTime), 2));
     }
     this.send(message);
     return message;
   }
-  raceResults(time, lane) {
+  runResults(time, lane) {
     return {
       lane,
       persona: MockPersona(),
