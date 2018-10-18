@@ -24,9 +24,6 @@ const Subscription = {
     runCompletedRecords: {
       subscribe: () => pubsub.asyncIterator('run-completed-records'),
     },
-    runCompleted: {
-      subscribe: () => pubsub.asyncIterator('run-completed'),
-    },
   },
 };
 
