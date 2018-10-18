@@ -189,7 +189,7 @@ input NewPersona {
   name: String
   icon: String
   color: String
-  gender: GENDER
+  gender: Gender
   ageGroup: String
   favoriteActivity: String
   handedness: Handedness
