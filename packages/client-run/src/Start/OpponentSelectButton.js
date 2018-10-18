@@ -8,10 +8,10 @@ import { Mutation } from 'react-apollo';
 import { Button } from 'reactstrap';
 
 const SELECT_RUN = gql`
-  mutation RunSelect(
-  $run: RunSelect!
+  mutation SelectRun(
+  $run: SelectRun!
   ) {
-    runSelect(
+    selectRun(
       run: $run
     )
   }

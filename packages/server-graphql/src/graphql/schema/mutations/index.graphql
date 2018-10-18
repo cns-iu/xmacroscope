@@ -1,6 +1,7 @@
 # Define GraphQL mutations
 
 type Mutation {
+  # TODO: Are these in use?
   registerAvatar(avatar: NewAvatar): ID
   registerPersona(persona: NewPersona): ID
   runCompleted(runs: [NewRunRecord!]!): [ID!]!
@@ -8,13 +9,13 @@ type Mutation {
   # Run select is a message operation that sends out Avatar message
   # Returns null, but GQL requires a return definition. We just allow
   # it to be nullable here by excluding !
-  runSelect(run: RunSelect!): Boolean
+  selectRun(run: SelectRun!): Boolean
 
-  # Run start is a create operation and returns the create Run's ID
-  runStart(run: NewRunRecord!): ID!
+  # Start run is a create operation and returns the created run's ID
+  startRun(run: NewRunRecord!): ID!
 
   # Run finish is an update operation and simply returns the number of rows affected.
-  runFinish(run: FinishRunRecord!): [Int]
+  finishRun(run: FinishRunRecord!): [Int]
 
   sendMessage(message: NewAnyMessage): Boolean
 }

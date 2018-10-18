@@ -127,7 +127,7 @@ input NewAvatar {
   runMillis: Int
 }
 
-input RunSelect {
+input SelectRun {
   opponent: String
   opponentName: String
   opponentTime: Int

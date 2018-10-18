@@ -13,10 +13,10 @@ import OpponentSelectButtons from './OpponentSelectButtons';
 import HomeButton from './HomeButton';
 
 const SELECT_RUN = gql`
-  mutation RunSelect(
-  $run: RunSelect!
+  mutation SelectRun(
+  $run: SelectRun!
   ) {
-    runSelect(
+    selectRun(
       run: $run
     )
   }
