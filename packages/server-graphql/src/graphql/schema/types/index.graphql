@@ -136,11 +136,16 @@ type User {
 #
 # Inputs
 #
+input AvatarInput {
+  name: String
+  runMillis: Int
+}
+
 input MessageAnyInput {
   type: String!
   timestamp: String!
-  avatar: NewAvatar
-  results: [NewRunResult]
+  avatar: AvatarInput
+  results: [RunResultInput]
 }
 
 input RunResultInput {
