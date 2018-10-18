@@ -23,6 +23,7 @@ will provide a novel platform for conducting research on the efficacy of differe
 - [Installation](documentation/installation.md)
 - [Project structure](documentation/structure.md)
 - [Database development](documentation/database.md)
+- [Naming conventions](documentation/namingConventions.md)
 - [Troubleshooting](documentation/troubleshooting.md)
 
 # Credits
