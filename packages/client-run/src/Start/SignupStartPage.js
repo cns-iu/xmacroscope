@@ -68,12 +68,13 @@ class StartPageDev extends React.Component {
                     <Col xs={12}>
                       <Card body>
                         <Row>
-                          <Col xs={6}>
+                          <Col xs={12} className="p-5">
+                          <Card body>
                             <DisplayShape
                               color={activeRace.color.hexValue}
                               shape={activeRace.icon}
                               shapeTransform={"translate(50, 50) scale(.75)"}
-                              width="50%"
+                              width="30%"
                               margin="auto"
                             />
                             <div className="pt-5">
@@ -81,11 +82,11 @@ class StartPageDev extends React.Component {
                                 Remember your shape and look for it on the graph.
                               </h1>
                             </div>
+                            </Card>
                           </Col>
-                          <Col xs={6} >
+                          <Col xs={12} className="p-5">
                             {{
-                          signupForm: '',
-                          opponentSelect: <OpponentSelect />,
+                          opponentSelect: <OpponentSelect />,    
                           runTimerPre: <RunningTimerPre
                             persona={persona}
                             opponent={activeRace.opponent}
