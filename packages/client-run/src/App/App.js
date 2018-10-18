@@ -7,12 +7,11 @@ import AppRoutes from './AppRoutes';
 
 const App = () => (
   <BrowserRouter>
-    <div>
+    <div className="h-100">
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">AISL / xMacroscope</NavbarBrand>
       </Navbar>
-      <br />
-      <Container fluid>
+      <Container fluid className="h-100 p-5">
         <AppRoutes />
       </Container>
     </div>

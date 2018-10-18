@@ -10,17 +10,22 @@
   font-weight: 900;
   font-style: normal;
 }
-
-
-
+html{
+  height: 100%;
+}
+#root{
+  height: 100%;
+}
 body{
+  height: 100%;
   font-size:18px; 
   font-family: "Avenir Next Condensed";
 }
-.signup-header h1{
-  color: orangered;
-  font-weight: bold;
-  letter-spacing: 2px;
+.container-fluid{
+  background-image: url('./images/selection_bg.png');
+  background-size: cover; 
+  background-repeat:  no-repeat;
+  background-position: center center;
 }
 .signup-form label{
   font-size: 1.5em;
