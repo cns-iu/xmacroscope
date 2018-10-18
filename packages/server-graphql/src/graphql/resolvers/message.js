@@ -8,10 +8,10 @@ const sendMessage = baseResolver
     .then((savedMessage) => {
       switch (savedMessage.type) {
         case 'run-selected':
-          pubsub.publish(savedMessage.type, { runSelected: savedMessage });
+          pubsub.publish(savedMessage.type, { runSelectedSubscription: savedMessage });
           break;
         case 'run-initiated':
-          pubsub.publish(savedMessage.type, { runInitiated: savedMessage });
+          pubsub.publish(savedMessage.type, { runInitiatedSubscription: savedMessage });
           break;
         case 'run-completed':
           pubsub.publish(savedMessage.type, { runCompleted: savedMessage });

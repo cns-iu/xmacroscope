@@ -50,7 +50,7 @@ _Examples:_
 The db model for the Run type should be called Run, with a database table called Runs.
 
 #### Inputs
-##### Name inputs with Type + Input
+##### Name inputs with Type + `Input`
 Inputs should be named to match the Type that they align with followed by the word `Input`
 
 _Examples:_
@@ -59,6 +59,16 @@ _Examples:_
  - PersonInput
 
 This is based upon the naming patterns seen in the GraphQL.org documentation and other articles mentioned below.
+
+#### Subscriptions
+##### Name subscriptions with descriptor + `Subscription`
+This prevents name collisions with similarly named descriptors.
+
+_Examples:_
+ - runSelectedSubscription
+ - runInitiatedSubscription
+
+This is based upon the [ naming patterns seen in the GraphQL.org documentation. ](https://graphql.org/blog/subscriptions-in-graphql-and-relay/)
 
 #### Mutations
 Mutations should be named verbNoun

@@ -33,7 +33,7 @@ const runs = baseResolver
 const selectRun = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
-      runSelected: {
+      runSelectedSubscription: {
         type: 'run-selected',
         timestamp: new Date(),
         avatar: {
@@ -67,7 +67,7 @@ const startRun = baseResolver
     .then((createdPerson) => {
       // Publish run initiation for MAV
       const publishPayload = {
-        runInitiated: {
+        runInitiatedSubscription: {
           type: 'run-initiated',
           timestamp: args.run.start,
           avatar: {

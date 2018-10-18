@@ -12,16 +12,16 @@ const scalarResolvers = {
 // TODO - Break these out into a subscription file
 const Subscription = {
   Subscription: {
-    runSelected: {
+    runSelectedSubscription: {
       subscribe: () => pubsub.asyncIterator('run-selected'),
     },
-    runInitiated: {
+    runInitiatedSubscription: {
       subscribe: () => pubsub.asyncIterator('run-initiated'),
     },
     runCompleted: {
       subscribe: () => pubsub.asyncIterator('run-completed'),
     },
-    runCompletedRecords: {
+    runCompletedRecordsSubscription: {
       subscribe: () => pubsub.asyncIterator('run-completed-records'),
     },
   },

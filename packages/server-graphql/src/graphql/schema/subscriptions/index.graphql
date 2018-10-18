@@ -1,9 +1,12 @@
 type Subscription {
-  messageStream: AnyMessage
 
-  runSelected: RunSelectedMessage
-  runInitiated: RunInitiatedMessage
-  runCompleted: RunCompletedMessage
-  runCompletedRecords: [RunRecord]!
+  # TODO: Document the purpose of these in MAV
+  messageStreamSubscription: AnyMessage
+  runSelectedSubscription: RunSelectedMessage
+  runInitiatedSubscription: RunInitiatedMessage
+  runCompletedRecordsSubscription: [RunRecord]!
+
+  # TODO, figure out which of these is the right one
   runCompleted: [Run]!
+  runCompleted: RunCompletedMessage
 }
