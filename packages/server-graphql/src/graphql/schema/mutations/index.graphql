@@ -4,7 +4,7 @@ type Mutation {
   # TODO: Are these in use?
   registerAvatar(avatar: AvatarInput): ID
   registerPersona(persona: NewPersona): ID
-  runCompleted(runs: [NewRunRecord!]!): [ID!]!
+  runCompleted(runs: [RunRecordInput!]!): [ID!]!
 
   # Run select is a message operation that sends out Avatar message
   # Returns null, but GQL requires a return definition. We just allow
@@ -12,7 +12,7 @@ type Mutation {
   selectRun(run: RunSelectInput!): Boolean
 
   # Start run is a create operation and returns the created run's ID
-  startRun(run: NewRunRecord!): ID!
+  startRun(run: RunRecordInput!): ID!
 
   # Run finish is an update operation and simply returns the number of rows affected.
   finishRun(run: FinishRunRecord!): [Int]

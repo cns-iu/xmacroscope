@@ -14,7 +14,7 @@ const GET_PRE_RACE_DELAY = gql`
 
 const START_RUN = gql`
   mutation RunStart(
-  $run: NewRunRecord!
+  $run: RunRecordInput!
   ) {
     startRun(
       run: $run
