@@ -1,6 +1,20 @@
-# Define GraphQL types
-
+#
+# Custom scalar & enumeration types
+#
+# Define an ISO-8601 date object for use in types
 scalar Date
+
+enum Gender {
+  male
+  female
+  other
+}
+
+enum Handedness {
+  left
+  right
+  ambidextrous
+}
 
 type User {
   id: String
@@ -156,27 +170,15 @@ input UpdateRunRecord {
   timeMillis: Int
 }
 
-enum GENDER {
-  male
-  female
-  other
-}
-
-enum HANDEDNESS {
-  left
-  right
-  ambidextrous
-}
-
 type Persona {
   id: ID!
   name: String
   icon: String
   color: String
-  gender: GENDER
+  gender: Gender
   ageGroup: String
   favoriteActivity: String
-  handedness: HANDEDNESS
+  handedness: Handedness
   height: Int
   siblings: Int
   zipCode: String
@@ -192,7 +194,7 @@ input NewPersona {
   gender: GENDER
   ageGroup: String
   favoriteActivity: String
-  handedness: HANDEDNESS
+  handedness: Handedness
   height: Int
   siblings: Int
   zipCode: String
