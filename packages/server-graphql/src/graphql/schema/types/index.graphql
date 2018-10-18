@@ -164,14 +164,6 @@ input PersonaInput {
   longitude: Float
 }
 
-input RunResultInput {
-  lane: Int
-  persona: PersonaInput
-  started: Boolean
-  falseStart: Boolean
-  timeMillis: Int
-}
-
 input RunRecordFinishInput {
   id: ID!
   finish: Date!
@@ -183,6 +175,14 @@ input RunRecordInput {
   opponentName: String
   opponentTime: Int
   persona: PersonaInput
+}
+
+input RunResultInput {
+  lane: Int
+  persona: PersonaInput
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
 }
 
 input RunSelectInput {
