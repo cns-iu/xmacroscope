@@ -66,10 +66,8 @@ class StartPageDev extends React.Component {
                 activeRace.status !== 'signupForm'
                   ? (
                     <Col xs={12}>
-                      <Card body>
                         <Row>
                           <Col xs={12} className="p-5">
-                          <Card body>
                             <DisplayShape
                               color={activeRace.color.hexValue}
                               shape={activeRace.icon}
@@ -82,7 +80,6 @@ class StartPageDev extends React.Component {
                                 Remember your shape and look for it on the graph.
                               </h1>
                             </div>
-                            </Card>
                           </Col>
                           <Col xs={12} className="p-5">
                             {{
@@ -99,7 +96,6 @@ class StartPageDev extends React.Component {
                         }[activeRace.status]}
                           </Col>
                         </Row>
-                      </Card>
                     </Col>
                   )
                   : <SignupFormFormik />

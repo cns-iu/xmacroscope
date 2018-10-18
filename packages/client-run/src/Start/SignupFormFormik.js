@@ -79,7 +79,7 @@ function WithCreateMutation(props) {
         <Col xs={12} md={8} xl={8} className="mx-auto">
           <Card>
             <CardHeader className="text-center">
-              <BaseHeader>RACE SIGN UP</BaseHeader>
+              <BaseHeader>RUN SIGN UP</BaseHeader>
             </CardHeader>
             <CardBody>
               <SignupFormFormik
