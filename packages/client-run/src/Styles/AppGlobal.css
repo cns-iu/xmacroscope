@@ -1,15 +1,24 @@
-
 @font-face {
   font-family: 'Avenir Next Condensed';
-  src: url('/public/fonts/AvenirNextCondensed-Regular.otf') format('otf'),
-    url('/public/fonts/AvenirNextCondensed-Regular.woff') format('woff'),
-    url('/public/fonts/AvenirNextCondensed-Regular.ttf') format('truetype'),;
+  src: url('./fonts/AvenirNextCondensed-Regular.woff');
   font-weight: normal;
   font-style: normal;
 }
-body{font-size:18px; font-family: "Avenir Next Condensed";}
+@font-face {
+  font-family: 'Avenir Next Condensed';
+  src: url('./fonts/AvenirNextCondensed-Heavy.woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+
+body{
+  font-size:18px; 
+  font-family: "Avenir Next Condensed";
+}
 .signup-header h1{
-  color: #fa5423;
+  color: orangered;
   font-weight: bold;
   letter-spacing: 2px;
 }

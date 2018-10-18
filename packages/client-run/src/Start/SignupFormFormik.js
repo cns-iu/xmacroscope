@@ -1,6 +1,7 @@
 import React from "react";
 import { withFormik } from "formik";
 import { Row, Col, Card, CardBody, CardHeader } from "reactstrap";
+import {BaseHeader} from "../Primatives/BasePrimatives";
 import { Mutation } from "react-apollo";
 import * as Yup from "yup";
 import zipcodes from "zipcodes";
@@ -77,8 +78,8 @@ function WithCreateMutation(props) {
       {updateRace => (
         <Col xs={12} md={8} xl={8} className="mx-auto">
           <Card>
-            <CardHeader className="text-center signup-header">
-              <h1>RACE SIGN UP</h1>
+            <CardHeader className="text-center">
+              <BaseHeader>RACE SIGN UP</BaseHeader>
             </CardHeader>
             <CardBody>
               <SignupFormFormik
