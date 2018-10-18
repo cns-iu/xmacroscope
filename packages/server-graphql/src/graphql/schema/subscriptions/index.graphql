@@ -1,7 +1,7 @@
 type Subscription {
 
   # TODO: Document the purpose of these in MAV
-  messageStreamSubscription: AnyMessage
+  messageStreamSubscription: MessageAny
   runSelectedSubscription: RunSelectedMessage
   runInitiatedSubscription: RunInitiatedMessage
   runCompletedRecordsSubscription: [RunRecord]!

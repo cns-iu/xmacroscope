@@ -33,7 +33,7 @@ type Avatar {
   runMillis: Int
 }
 
-type AnyMessage implements Message {
+type MessageAny implements Message {
   type: String!
   timestamp: String!
   avatar: Avatar
@@ -147,19 +147,19 @@ type User {
 #
 # Inputs
 #
+input MessageAnyInput {
+  type: String!
+  timestamp: String!
+  avatar: NewAvatar
+  results: [NewRunResult]
+}
+
 input NewRunResult {
   lane: Int
   persona: NewPersona
   started: Boolean
   falseStart: Boolean
   timeMillis: Int
-}
-
-input NewAnyMessage {
-  type: String!
-  timestamp: String!
-  avatar: NewAvatar
-  results: [NewRunResult]
 }
 
 input NewAvatar {

@@ -17,5 +17,5 @@ type Mutation {
   # Run finish is an update operation and simply returns the number of rows affected.
   finishRun(run: FinishRunRecord!): [Int]
 
-  sendMessage(message: NewAnyMessage): Boolean
+  sendMessage(message: MessageAnyInput): Boolean
 }

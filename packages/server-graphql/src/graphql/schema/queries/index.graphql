@@ -6,7 +6,7 @@ type Query {
   personas(limit: Int = 20): [Persona!]!
   runRecords(lastX: Int): [RunRecord!]!
   runs(lastX: Int): [RunRecord!]!
-  messages(lastX: Int): AnyMessage
+  messages(lastX: Int): MessageAny
   settings(location: String!): Setting
 }
 
