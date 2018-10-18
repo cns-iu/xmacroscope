@@ -40,6 +40,25 @@ type MessageAny implements Message {
   results: [RunResult]
 }
 
+type MessageRunCompleted implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+  results: [RunResult]!
+}
+
+type MessageRunInitiated implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+}
+
+type MessageRunSelected implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
+}
+
 type Person {
   id: ID!
   firstName: String
@@ -78,19 +97,6 @@ type Run {
   timeMillis: Int
 }
 
-type RunCompletedMessage implements Message {
-  type: String
-  timestamp: String
-  avatar: Avatar
-  results: [RunResult]!
-}
-
-type RunInitiatedMessage implements Message {
-  type: String
-  timestamp: String
-  avatar: Avatar
-}
-
 type RunRecord {
   id: ID
   opponent: String
@@ -119,12 +125,6 @@ type RunResult {
   started: Boolean
   falseStart: Boolean
   timeMillis: Int
-}
-
-type RunSelectedMessage implements Message {
-  type: String
-  timestamp: String
-  avatar: Avatar
 }
 
 type Setting {
