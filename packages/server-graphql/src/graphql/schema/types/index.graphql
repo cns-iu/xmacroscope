@@ -148,34 +148,7 @@ input MessageAnyInput {
   results: [RunResultInput]
 }
 
-input RunResultInput {
-  lane: Int
-  persona: NewPersona
-  started: Boolean
-  falseStart: Boolean
-  timeMillis: Int
-}
-
-input RunRecordFinishInput {
-  id: ID!
-  finish: Date!
-}
-
-input RunRecordInput {
-  start: Date!
-  opponent: String
-  opponentName: String
-  opponentTime: Int
-  persona: NewPersona
-}
-
-input RunSelectInput {
-  opponent: String
-  opponentName: String
-  opponentTime: Int
-}
-
-input NewPersona {
+input PersonaInput {
   name: String
   icon: String
   color: String
@@ -191,3 +164,29 @@ input NewPersona {
   longitude: Float
 }
 
+input RunResultInput {
+  lane: Int
+  persona: PersonaInput
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+}
+
+input RunRecordFinishInput {
+  id: ID!
+  finish: Date!
+}
+
+input RunRecordInput {
+  start: Date!
+  opponent: String
+  opponentName: String
+  opponentTime: Int
+  persona: PersonaInput
+}
+
+input RunSelectInput {
+  opponent: String
+  opponentName: String
+  opponentTime: Int
+}
