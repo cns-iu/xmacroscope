@@ -16,10 +16,28 @@ enum Handedness {
   ambidextrous
 }
 
-type User {
-  id: String
-  sub: String
-  email: String
+#
+# Interfaces
+#
+interface Message {
+  type: String
+  timestamp: String
+}
+
+#
+# Types
+#
+type Avatar {
+  id: ID!
+  name: String
+  runMillis: Int
+}
+
+type AnyMessage implements Message {
+  type: String!
+  timestamp: String!
+  avatar: Avatar
+  results: [RunResult]
 }
 
 type Person {
@@ -33,10 +51,21 @@ type Person {
   updatedAt: String
 }
 
-type Avatar {
+type Persona {
   id: ID!
   name: String
-  runMillis: Int
+  icon: String
+  color: String
+  gender: Gender
+  ageGroup: String
+  favoriteActivity: String
+  handedness: Handedness
+  height: Int
+  siblings: Int
+  zipCode: String
+  state: String
+  latitude: Float
+  longitude: Float
 }
 
 type Run {
@@ -49,15 +78,17 @@ type Run {
   timeMillis: Int
 }
 
-type RunRecordOld {
-  avatar: ID!
-  persona: ID!
+type RunCompletedMessage implements Message {
+  type: String
   timestamp: String
-  lane: Int
-  started: Boolean
-  falseStart: Boolean
-  timeMillis: Int
-  asRun: Run
+  avatar: Avatar
+  results: [RunResult]!
+}
+
+type RunInitiatedMessage implements Message {
+  type: String
+  timestamp: String
+  avatar: Avatar
 }
 
 type RunRecord {
@@ -71,21 +102,15 @@ type RunRecord {
   Person: Persona
 }
 
-interface Message {
-  type: String
+type RunRecordOld {
+  avatar: ID!
+  persona: ID!
   timestamp: String
-}
-
-type RunSelectedMessage implements Message {
-  type: String
-  timestamp: String
-  avatar: Avatar
-}
-
-type RunInitiatedMessage implements Message {
-  type: String
-  timestamp: String
-  avatar: Avatar
+  lane: Int
+  started: Boolean
+  falseStart: Boolean
+  timeMillis: Int
+  asRun: Run
 }
 
 type RunResult {
@@ -96,18 +121,10 @@ type RunResult {
   timeMillis: Int
 }
 
-type RunCompletedMessage implements Message {
+type RunSelectedMessage implements Message {
   type: String
   timestamp: String
   avatar: Avatar
-  results: [RunResult]!
-}
-
-type AnyMessage implements Message {
-  type: String!
-  timestamp: String!
-  avatar: Avatar
-  results: [RunResult]
 }
 
 type Setting {
@@ -121,6 +138,15 @@ type Setting {
   attractDelay: Int
 }
 
+type User {
+  id: String
+  sub: String
+  email: String
+}
+
+#
+# Inputs
+#
 input NewRunResult {
   lane: Int
   persona: NewPersona
@@ -168,23 +194,6 @@ input UpdateRunRecord {
   started: Boolean
   falseStart: Boolean
   timeMillis: Int
-}
-
-type Persona {
-  id: ID!
-  name: String
-  icon: String
-  color: String
-  gender: Gender
-  ageGroup: String
-  favoriteActivity: String
-  handedness: Handedness
-  height: Int
-  siblings: Int
-  zipCode: String
-  state: String
-  latitude: Float
-  longitude: Float
 }
 
 input NewPersona {
