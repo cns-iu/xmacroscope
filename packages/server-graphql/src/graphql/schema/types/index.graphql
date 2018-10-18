@@ -175,16 +175,6 @@ input FinishRunRecord {
   finish: Date!
 }
 
-input UpdateRunRecord {
-  avatar: ID!
-  persona: ID!
-  timestamp: String
-  lane: Int
-  started: Boolean
-  falseStart: Boolean
-  timeMillis: Int
-}
-
 input NewPersona {
   name: String
   icon: String
