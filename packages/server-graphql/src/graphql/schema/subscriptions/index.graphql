@@ -3,10 +3,7 @@ type Subscription {
   # TODO: Document the purpose of these in MAV
   messageStreamSubscription: MessageAny
 
-  # TODO, figure out which of these is the right one
-  runCompleted: [Run]!
   runCompleted: MessageRunCompleted
-
   runCompletedRecordsSubscription: [RunRecord]!
   runInitiatedSubscription: MessageRunInitiated
   runSelectedSubscription: MessageRunSelected
