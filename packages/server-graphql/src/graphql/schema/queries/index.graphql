@@ -1,7 +1,5 @@
 # Define GraphQL queries
 type Query {
-  Avatar(id: ID): Avatar
-  Avatars(limit: Int = 20): [Avatar!]!
   Person(id: ID): Person
   People(limit: Int = 20): [Person!]!
   RunRecords(lastX: Int): [RunRecord!]!

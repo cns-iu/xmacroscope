@@ -36,11 +36,6 @@ const selectRun = baseResolver
       runSelectedSubscription: {
         type: 'run-selected',
         timestamp: new Date(),
-        avatar: {
-          id: args.run.opponent,
-          name: args.run.opponentName,
-          runMillis: args.run.opponentTime,
-        },
       },
     };
     const message = pubsub.publish('run-selected', publishPayload);
@@ -70,11 +65,6 @@ const startRun = baseResolver
         runInitiatedSubscription: {
           type: 'run-initiated',
           timestamp: args.run.start,
-          avatar: {
-            id: args.run.opponent,
-            name: args.run.opponentName,
-            runMillis: args.run.opponentTime,
-          },
         },
       };
       const message = pubsub.publish('run-initiated', publishPayload);
@@ -118,11 +108,6 @@ const finishRun = baseResolver
               runCompleted: {
                 timestamp: endTime,
                 type: 'run-completed',
-                avatar: {
-                  id: completedRun.opponent,
-                  name: completedRun.opponentName,
-                  runMillis: completedRun.opponentTime,
-                },
                 results: [
                   {
                     lane: 1,

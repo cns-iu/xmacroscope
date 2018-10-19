@@ -27,36 +27,26 @@ interface Message {
 #
 # Types
 #
-type Avatar {
-  id: ID!
-  name: String
-  runMillis: Int
-}
-
 type MessageAny implements Message {
   type: String!
   timestamp: String!
-  avatar: Avatar
   results: [RunResult]
 }
 
 type MessageRunCompleted implements Message {
   type: String
   timestamp: String
-  avatar: Avatar
   results: [RunResult]!
 }
 
 type MessageRunInitiated implements Message {
   type: String
   timestamp: String
-  avatar: Avatar
 }
 
 type MessageRunSelected implements Message {
   type: String
   timestamp: String
-  avatar: Avatar
 }
 
 type Person {
@@ -77,7 +67,6 @@ type Person {
 }
 
 type Run {
-  avatar: Avatar!
   person: Person!
   timestamp: String
   lane: Int

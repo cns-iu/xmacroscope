@@ -4,9 +4,9 @@ type Mutation {
   # TODO: Are these in use?
   runCompleted(runs: [RunRecordInput!]!): [ID!]!
 
-  # Run select is a message operation that sends out Avatar message
-  # Returns null, but GQL requires a return definition. We just allow
-  # it to be nullable here by excluding !
+  # Run select is a message operation
+  # Since it just triggers a message it returns null, but GQL requires return
+  # datad. To deal with this we just allow it to be nullable here by excluding !
   selectRun(run: RunSelectInput!): Boolean
 
   # Start run is a create operation and returns the created run's ID
