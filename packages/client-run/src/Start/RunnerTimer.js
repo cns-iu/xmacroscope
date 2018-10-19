@@ -7,7 +7,7 @@ import moment from 'moment';
 import Timer from './Timer';
 import RunFinishButton from './RunFInishButton';
 
-const GET_RACE_ID = gql`
+const GET_RUN_ID = gql`
   query {
     activeRun @client {
       runId
@@ -38,7 +38,7 @@ class RunnerTimer extends React.Component {
     const { lane, runTimeout } = this.props;
     const { timerStopped } = this.state;
     return (
-      <Query query={GET_RACE_ID}>
+      <Query query={GET_RUN_ID}>
         {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;

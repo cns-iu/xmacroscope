@@ -9,13 +9,13 @@ import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
 import AppState from '../App/AppState';
-import GET_RACE_STATE_LOCAL from './graphql/GetRaceStateLocal.graphql';
+import GET_RUN_STATE_LOCAL from './graphql/GetRaceStateLocal.graphql';
 import personActive from './personActive';
 
 class StartPageDev extends React.Component {
   render() {
     return (
-      <Query query={GET_RACE_STATE_LOCAL}>
+      <Query query={GET_RUN_STATE_LOCAL}>
         {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;

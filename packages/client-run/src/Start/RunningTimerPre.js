@@ -27,7 +27,7 @@ function RunningTimerPre({
 }) {
   return (
     <Query
-      query={GET_PRE_RACE_DELAY}
+      query={GET_PRE_RUN_DELAY}
       variables={{ location: process.env.REACT_APP_LOCATION }}
     >
       {({ loading, error, data: { Settings } }) => {
