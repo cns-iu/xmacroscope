@@ -4,9 +4,9 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 import Timer from './Timer';
 
-const GET_PRE_RACE_DELAY = gql`
-  query getPreRunDelay($location: String!) {
-    settings(location: $location){
+const GET_PRE_RUN_DELAY = gql`
+  query GetPreRunDelay($location: String!) {
+    Settings(location: $location){
       preRunDelay
     }
   }
@@ -30,10 +30,10 @@ function RunningTimerPre({
       query={GET_PRE_RACE_DELAY}
       variables={{ location: process.env.REACT_APP_LOCATION }}
     >
-      {({ loading, error, data: { settings } }) => {
+      {({ loading, error, data: { Settings } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-        const { preRunDelay } = settings;
+        const { preRunDelay } = Settings;
 
         return (
           <Mutation

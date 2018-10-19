@@ -8,7 +8,7 @@ import db from '../../db/models/index';
 //
 // A setting for a specific location
 //
-const settings = baseResolver
+const Settings = baseResolver
   .createResolver((root, args) => db.setting.findOne({
     where: {
       location: args.location,
@@ -17,7 +17,7 @@ const settings = baseResolver
 
 const SettingResolver = {
   Query: {
-    settings,
+    Settings,
   },
 };
 

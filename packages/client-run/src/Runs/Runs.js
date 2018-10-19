@@ -8,8 +8,8 @@ import 'react-table/react-table.css';
 import '../Styles/Runs.css';
 
 const GET_RUNS = gql`
-  query runs($lastX: Int!) {
-    runs(lastX: $lastX){
+  query Runs($lastX: Int!) {
+    Runs(lastX: $lastX){
       id
       start
       end

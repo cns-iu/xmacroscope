@@ -47,7 +47,7 @@ class RunnerTimer extends React.Component {
           return (
             <Mutation
               mutation={FINISH_RUN}
-              refetchQueries={['runs']}
+              refetchQueries={['Runs']}
               update={(cache) => {
                 cache.writeData({
                   data: {

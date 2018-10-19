@@ -4,17 +4,10 @@ import gql from 'graphql-tag';
 import Timer from './Timer';
 import generatePerson from '../Signup/generatePerson';
 
-const GET_SETTINGS = gql`
-  query settings($location: String!) {
-    settings(location: $location){
-      location
-      latitude
-      longitude
-      preRunDelay
+const GET_POST_RUN_DELAY = gql`
+  query GetPostRunDelay($location: String!) {
+    Settings(location: $location){
       postRunDelay
-      startLineTimeout
-      runTimeout
-      attractDelay
     }
   }
 `;
@@ -64,13 +57,14 @@ class RunningTimerPost extends React.Component {
     const person = generatePerson();
     return (
       <Query
-        query={GET_SETTINGS}
+        query={GET_POST_RUN_DELAY}
         variables={{ location: process.env.REACT_APP_LOCATION }}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data: { Settings } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const { postRunDelay } = data.settings;
+          const { postRunDelay } = Settings;
+
           return (
             <Mutation
               mutation={UPDATE_RUN_LOCAL}

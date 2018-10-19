@@ -1,10 +1,9 @@
 //
 // Start kiosk page
 //
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col, Card, CardBody } from 'reactstrap';
-import gql from 'graphql-tag';
+import { Row, Col, Card } from 'reactstrap';
 import PersonIcon from '../Signup/PersonIcon';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';

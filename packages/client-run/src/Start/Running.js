@@ -9,9 +9,9 @@ import OpponentRunningTimer from './OpponentRunningTimer';
 import RunnerTimer from './RunnerTimer';
 import RunningTimerTimeout from './RunningTimerTimeout';
 
-const GET_RACE_TIMEOUT = gql`
-  query settings($location: String!) {
-    settings(location: $location){
+const GET_RUN_TIMEOUT = gql`
+  query GetRunTimeout($location: String!) {
+    Settings(location: $location){
       runTimeout
     }
   }
@@ -20,13 +20,13 @@ const GET_RACE_TIMEOUT = gql`
 function Running() {
   return (
     <Query
-      query={GET_RACE_TIMEOUT}
+      query={GET_RUN_TIMEOUT}
       variables={{ location: process.env.REACT_APP_LOCATION }}
     >
-      {({ loading, error, data: { settings } }) => {
+      {({ loading, error, data: { Settings } }) => {
         if (loading) return 'Loading...';
         if (error) return `Error! ${error.message}`;
-        const { runTimeout } = settings;
+        const { runTimeout } = Settings;
         return (
           <Row>
             <Col>

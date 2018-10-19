@@ -7,8 +7,8 @@ import pubsub from './subscriptions';
 // Queries
 //------------------------------------------------------------------------------
 
-// Load x runs starting with the most recent
-const runs = baseResolver
+// Load n runs starting with the most recent
+const Runs = baseResolver
   .createResolver((root, args) => db.run.findAll({
     limit: args.lastX,
     order: [
@@ -152,7 +152,7 @@ const finishRun = baseResolver
 
 const RunResolver = {
   Query: {
-    runs,
+    Runs,
   },
   Mutation: {
     selectRun,

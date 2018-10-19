@@ -1,12 +1,12 @@
 # Define GraphQL queries
 type Query {
-  avatar(id: ID): Avatar
-  avatars(limit: Int = 20): [Avatar!]!
-  person(id: ID): Person
-  people(limit: Int = 20): [Person!]!
-  runRecords(lastX: Int): [RunRecord!]!
-  runs(lastX: Int): [RunRecord!]!
-  messages(lastX: Int): MessageAny
-  settings(location: String!): Setting
+  Avatar(id: ID): Avatar
+  Avatars(limit: Int = 20): [Avatar!]!
+  Person(id: ID): Person
+  People(limit: Int = 20): [Person!]!
+  RunRecords(lastX: Int): [RunRecord!]!
+  Runs(lastX: Int): [RunRecord!]!
+  Messages(lastX: Int): MessageAny
+  Settings(location: String!): Setting
 }
 
