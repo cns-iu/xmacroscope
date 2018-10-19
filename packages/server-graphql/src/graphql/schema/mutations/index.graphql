@@ -2,7 +2,6 @@
 
 type Mutation {
   # TODO: Are these in use?
-  registerAvatar(avatar: AvatarInput): ID
   runCompleted(runs: [RunRecordInput!]!): [ID!]!
 
   # Run select is a message operation that sends out Avatar message
