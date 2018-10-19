@@ -11,7 +11,7 @@ const SELECT_RUN = gql`
   mutation SelectRun(
   $run: RunSelectInput!
   ) {
-    selectRun(
+    SelectRun(
       run: $run
     )
   }

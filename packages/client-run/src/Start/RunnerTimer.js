@@ -19,7 +19,7 @@ const FINISH_RUN = gql`
   mutation RunUpdate(
   $run: RunRecordFinishInput!
   ) {
-    finishRun(
+    FinishRun(
       run: $run
     )
   }
@@ -59,7 +59,7 @@ class RunnerTimer extends React.Component {
                 });
               }}
             >
-              {finishRun => (
+              {FinishRun => (
 
                 <Col>
 
@@ -80,7 +80,7 @@ class RunnerTimer extends React.Component {
                       <RunFinishButton
                         lane={lane}
                         runId={runId}
-                        finishRun={finishRun}
+                        finishRun={FinishRun}
                       />
                     </Col>
                   </Row>

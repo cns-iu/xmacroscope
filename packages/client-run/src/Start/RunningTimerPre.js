@@ -16,7 +16,7 @@ const START_RUN = gql`
   mutation RunStart(
   $run: RunRecordInput!
   ) {
-    startRun(
+    StartRun(
       run: $run
     )
   }
@@ -39,7 +39,7 @@ function RunningTimerPre({
           <Mutation
             mutation={START_RUN}
             update={(cache, { data }) => {
-              const createdRunID = data.startRun;
+              const createdRunID = data.StartRun;
               cache.writeData({
                 data: {
                   activeRun: {
@@ -51,13 +51,13 @@ function RunningTimerPre({
               });
             }}
           >
-            {startRun => (
+            {StartRun => (
               <div>
                 <h1>On your marks...</h1>
                 <p>Start up to the starting line and get ready to run.</p>
                 <Timer
                   completion={() => {
-                    startRun({
+                    StartRun({
                       variables: {
                         run: {
                           start: moment(),

@@ -20,6 +20,10 @@ Run and Race mean the same thing, so don’t vary the name for no reason.
 
 ### GraphQL
 
+GraphQL Types, Inputs, and Mutations should be in PascalCase
+
+GraphQL fields and db model fields should be in camelCase.
+
 #### Types
 
 ##### Types should be single nouns
@@ -71,14 +75,14 @@ _Examples:_
 This is based upon the [ naming patterns seen in the GraphQL.org documentation. ](https://graphql.org/blog/subscriptions-in-graphql-and-relay/)
 
 #### Mutations
-Mutations should be named verbNoun
+Mutations should be named VerbNoun
 
 _Examples:_
 
 | Good           | Bad |
 |----------------|-----|
-| completeRun | runCompleted |
-| sendMessage | messageFinish |
+| CompleteRun | runCompleted |
+| SendMessage | MessageFinish |
 
 This is based on the advice in the [Designing GraphQL Mutations](https://blog.apollographql.com/designing-graphql-mutations-e09de826ed97) article.
 
@@ -88,8 +92,8 @@ Don’t write catch all mutations that can be used for multiple purposes. Write 
 _Examples:_
 
 Don’t write a single updateRun mutation. Instead, write a mutation for each run change:
- - startRun
- - finishRun
+ - StartRun
+ - FinishRun
 
 This paragraph especially highlights the importance of this approach:
 > “Don’t be afraid of super specific mutations that correspond exactly to an update that your UI can make. Specific mutations that correspond to semantic user actions are more powerful than general mutations. This is because specific mutations are easier for a UI developer to write, they can be optimized by a backend developer, and only providing a specific subset of mutations makes it much harder for an attacker to exploit your API.”

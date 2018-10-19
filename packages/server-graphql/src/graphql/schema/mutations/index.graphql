@@ -7,13 +7,13 @@ type Mutation {
   # Run select is a message operation
   # Since it just triggers a message it returns null, but GQL requires return
   # datad. To deal with this we just allow it to be nullable here by excluding !
-  selectRun(run: RunSelectInput!): Boolean
+  SelectRun(run: RunSelectInput!): Boolean
 
   # Start run is a create operation and returns the created run's ID
-  startRun(run: RunRecordInput!): ID!
+  StartRun(run: RunRecordInput!): ID!
 
   # Run finish is an update operation and simply returns the number of rows affected.
-  finishRun(run: RunRecordFinishInput!): [Int]
+  FinishRun(run: RunRecordFinishInput!): [Int]
 
-  sendMessage(message: MessageAnyInput): Boolean
+  SendMessage(message: MessageAnyInput): Boolean
 }

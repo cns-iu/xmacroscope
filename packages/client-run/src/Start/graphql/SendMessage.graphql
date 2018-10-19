@@ -2,7 +2,7 @@ mutation (
   $type: String!
   $timestamp: String!
 ) {
-  sendMessage(message: {
+  SendMessage(message: {
     type: $type
     timestamp: $timestamp
   })

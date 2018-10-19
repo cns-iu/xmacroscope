@@ -30,7 +30,7 @@ const Runs = baseResolver
 
 // Send a run selection message
 // No database operations
-const selectRun = baseResolver
+const SelectRun = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
       runSelectedSubscription: {
@@ -47,7 +47,7 @@ const selectRun = baseResolver
     return message;
   });
 
-const startRun = baseResolver
+const StartRun = baseResolver
   .createResolver((root, args) => db.person.create({
     ...args.run.person,
     Runs: {
@@ -77,7 +77,7 @@ const startRun = baseResolver
     }));
 
 // Update an existing run record with a finish time, return the ID
-const finishRun = baseResolver
+const FinishRun = baseResolver
   .createResolver((root, args) => db.run.update(
     { end: args.run.finish },
     { where: { id: args.run.id } },
@@ -140,9 +140,9 @@ const RunResolver = {
     Runs,
   },
   Mutation: {
-    selectRun,
-    startRun,
-    finishRun,
+    SelectRun,
+    StartRun,
+    FinishRun,
   },
 };
 

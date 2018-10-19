@@ -3,7 +3,7 @@ import db from '../../db/models/index';
 import pubsub from './subscriptions';
 
 // Mutations
-const sendMessage = baseResolver
+const SendMessage = baseResolver
   .createResolver((root, args) => db.message.create(args.message)
     .then((savedMessage) => {
       switch (savedMessage.type) {
@@ -25,7 +25,7 @@ const sendMessage = baseResolver
 
 const MessageResolvers = {
   Mutation: {
-    sendMessage,
+    SendMessage,
   },
 };
 
