@@ -4,37 +4,13 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col, Card } from 'reactstrap';
-import gql from 'graphql-tag';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
 import AppState from '../App/AppState';
-
-const GET_RACE_STATE_LOCAL = gql`
-  query {
-    activeRun @client {
-      opponent
-      opponentName
-      opponentTime
-      runId
-      status
-      name
-      color
-      icon
-      gender
-      ageGroup
-      favoriteActivity
-      handedness
-      height
-      state
-      zipCode
-      latitude
-      longitude
-      siblings
-    }
-  }
-`;
+import GET_RACE_STATE_LOCAL from './graphql/GetRaceStateLocal.graphql';
+import personActive from './personActive';
 
 class StartPageDev extends React.Component {
   render() {
@@ -43,21 +19,7 @@ class StartPageDev extends React.Component {
         {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const person = {
-            name: activeRun.name,
-            color: activeRun.color,
-            icon: activeRun.icon,
-            gender: activeRun.gender,
-            ageGroup: activeRun.ageGroup,
-            favoriteActivity: activeRun.favoriteActivity,
-            handedness: activeRun.handedness,
-            siblings: activeRun.siblings,
-            height: activeRun.height,
-            state: activeRun.state,
-            zipCode: activeRun.zipCode,
-            latitude: activeRun.latitude,
-            longitude: activeRun.longitude,
-          };
+          const person = personActive(activeRun);
 
           return (
             <Row>

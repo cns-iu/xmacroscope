@@ -1,0 +1,22 @@
+query {
+  activeRun @client {
+    opponent
+    opponentName
+    opponentTime
+    runId
+    status
+    name
+    color
+    icon
+    gender
+    ageGroup
+    favoriteActivity
+    handedness
+    height
+    state
+    zipCode
+    latitude
+    longitude
+    siblings
+  }
+}
