@@ -127,12 +127,6 @@ type Setting {
   attractDelay: Int
 }
 
-type User {
-  id: String
-  sub: String
-  email: String
-}
-
 #
 # Inputs
 #
