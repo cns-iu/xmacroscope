@@ -18,7 +18,7 @@ const MIN_LAT = 24.7433195; // south lat
 const MAX_LNG = -124.7844079; // west long
 const MIN_LNG = -66.9513812; // east long
 
-export class GeneratedPersona {
+export class GeneratedPerson {
   id; // string;
   name; // string;
   icon; // string;
@@ -46,6 +46,6 @@ export class GeneratedPersona {
   }
 }
 
-export function MockPersona() {
-  return new GeneratedPersona();
+export function MockPerson() {
+  return new GeneratedPerson();
 }

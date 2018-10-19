@@ -2,7 +2,7 @@ import generatePerson from '../Signup/generatePerson';
 //
 // Defaults for local state
 //
-const persona = generatePerson();
+const person = generatePerson();
 export const defaults = {
   activeRun: {
     __typename: 'ActiveRun',
@@ -11,7 +11,7 @@ export const defaults = {
     opponentTime: 0,
     runId: null,
     status: 'signupForm',
-    ...persona,
+    ...person,
   },
 };
 

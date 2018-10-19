@@ -54,7 +54,7 @@ const selectRun = baseResolver
 
 const startRun = baseResolver
   .createResolver((root, args) => db.person.create({
-    ...args.run.persona,
+    ...args.run.person,
     Runs: {
       start: args.run.start,
       opponent: args.run.opponent,
@@ -126,7 +126,7 @@ const finishRun = baseResolver
                 results: [
                   {
                     lane: 1,
-                    persona: runnerPerson,
+                    person: runnerPerson,
                     started: true,
 
                     // TODO: Step 1 - generate random false starts on client

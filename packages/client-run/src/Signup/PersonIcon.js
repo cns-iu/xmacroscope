@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-class PersonaIcon extends React.Component {
+class PersonIcon extends React.Component {
   render() {
     const { color, shape } = this.props;
     const formatShape = shape === 'triangle-up' ? 'triangle' : shape;
@@ -61,9 +61,9 @@ class PersonaIcon extends React.Component {
   }
 }
 
-PersonaIcon.propTypes = {
+PersonIcon.propTypes = {
   color: PropTypes.string.isRequired,
   shape: PropTypes.string.isRequired,
 };
 
-export default PersonaIcon;
+export default PersonIcon;

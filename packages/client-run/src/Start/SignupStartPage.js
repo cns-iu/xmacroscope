@@ -5,7 +5,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col, Card, CardBody } from 'reactstrap';
 import gql from 'graphql-tag';
-import PersonaIcon from '../Signup/PersonaIcon';
+import PersonIcon from '../Signup/PersonIcon';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -44,7 +44,7 @@ class StartPageDev extends React.Component {
         {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const persona = {
+          const person = {
             name: activeRun.name,
             color: activeRun.color,
             icon: activeRun.icon,
@@ -69,7 +69,7 @@ class StartPageDev extends React.Component {
                       <Card body>
                         <Row>
                           <Col xs={6}>
-                            <PersonaIcon
+                            <PersonIcon
                               color={activeRun.color}
                               shape={activeRun.icon}
                             />
@@ -85,7 +85,7 @@ class StartPageDev extends React.Component {
                           signupForm: '',
                           opponentSelect: <OpponentSelect />,
                           runTimerPre: <RunningTimerPre
-                            persona={persona}
+                            person={person}
                             opponent={activeRun.opponent}
                             opponentName={activeRun.opponentName}
                             opponentTime={activeRun.opponentTime}

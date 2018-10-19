@@ -1,5 +1,5 @@
 import { MockAvatar } from './avatar.mock';
-import { MockPersona } from './persona.mock';
+import { MockPerson } from './person.mock';
 import { casual } from './casual';
 
 export class RunMocker {
@@ -81,7 +81,7 @@ export class RunMocker {
   runResults(time, lane) {
     return {
       lane,
-      persona: MockPersona(),
+      person: MockPerson(),
       started: casual.coin_flip,
       falseStart: casual.coin_flip,
       timeMillis: time

@@ -61,17 +61,6 @@ type MessageRunSelected implements Message {
 
 type Person {
   id: ID!
-  firstName: String
-  middleName: String
-  lastName: String
-  preferedName: String
-  preferedPronouns: String
-  createdAt: String
-  updatedAt: String
-}
-
-type Persona {
-  id: ID!
   name: String
   icon: String
   color: String
@@ -89,7 +78,7 @@ type Persona {
 
 type Run {
   avatar: Avatar!
-  persona: Persona!
+  person: Person!
   timestamp: String
   lane: Int
   started: Boolean
@@ -105,12 +94,12 @@ type RunRecord {
   start: Date
   end: Date
   PersonId: ID
-  Person: Persona
+  Person: Person
 }
 
 type RunResult {
   lane: Int
-  persona: Persona
+  person: Person
   started: Boolean
   falseStart: Boolean
   timeMillis: Int
@@ -142,7 +131,7 @@ input MessageAnyInput {
   results: [RunResultInput]
 }
 
-input PersonaInput {
+input PersonInput {
   name: String
   icon: String
   color: String
@@ -168,12 +157,12 @@ input RunRecordInput {
   opponent: String
   opponentName: String
   opponentTime: Int
-  persona: PersonaInput
+  person: PersonInput
 }
 
 input RunResultInput {
   lane: Int
-  persona: PersonaInput
+  person: PersonInput
   started: Boolean
   falseStart: Boolean
   timeMillis: Int

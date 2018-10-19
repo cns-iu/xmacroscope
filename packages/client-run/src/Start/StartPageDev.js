@@ -43,7 +43,7 @@ class StartPageDev extends React.Component {
         {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const persona = {
+          const person = {
             name: activeRun.name,
             color: activeRun.color,
             icon: activeRun.icon,
@@ -74,31 +74,31 @@ class StartPageDev extends React.Component {
                     <Col>
                       <dl className="row">
                         <dt className="col-sm-4">Name</dt>
-                        <dd className="col-sm-8">{persona.name}</dd>
+                        <dd className="col-sm-8">{person.name}</dd>
                         <dt className="col-sm-4">Color</dt>
-                        <dd className="col-sm-8">{persona.color}</dd>
+                        <dd className="col-sm-8">{person.color}</dd>
                         <dt className="col-sm-4">Icon</dt>
-                        <dd className="col-sm-8">{persona.icon}</dd>
+                        <dd className="col-sm-8">{person.icon}</dd>
                         <dt className="col-sm-4">Gender</dt>
-                        <dd className="col-sm-8">{persona.gender}</dd>
+                        <dd className="col-sm-8">{person.gender}</dd>
                         <dt className="col-sm-4">Age group</dt>
-                        <dd className="col-sm-8">{persona.ageGroup}</dd>
+                        <dd className="col-sm-8">{person.ageGroup}</dd>
                         <dt className="col-sm-4">Favorite activity</dt>
-                        <dd className="col-sm-8">{persona.favoriteActivity}</dd>
+                        <dd className="col-sm-8">{person.favoriteActivity}</dd>
                         <dt className="col-sm-4">Handedness</dt>
-                        <dd className="col-sm-8">{persona.handedness}</dd>
+                        <dd className="col-sm-8">{person.handedness}</dd>
                         <dt className="col-sm-4">Siblings</dt>
-                        <dd className="col-sm-8">{persona.siblings}</dd>
+                        <dd className="col-sm-8">{person.siblings}</dd>
                         <dt className="col-sm-4">Height</dt>
-                        <dd className="col-sm-8">{persona.height}</dd>
+                        <dd className="col-sm-8">{person.height}</dd>
                         <dt className="col-sm-4">State</dt>
-                        <dd className="col-sm-8">{persona.state}</dd>
+                        <dd className="col-sm-8">{person.state}</dd>
                         <dt className="col-sm-4">Zip Code</dt>
-                        <dd className="col-sm-8">{persona.zipCode}</dd>
+                        <dd className="col-sm-8">{person.zipCode}</dd>
                         <dt className="col-sm-4">Latitude</dt>
-                        <dd className="col-sm-8">{persona.latitude}</dd>
+                        <dd className="col-sm-8">{person.latitude}</dd>
                         <dt className="col-sm-4">Longitude</dt>
-                        <dd className="col-sm-8">{persona.longitude}</dd>
+                        <dd className="col-sm-8">{person.longitude}</dd>
                       </dl>
                     </Col>
                   </Row>
@@ -111,7 +111,7 @@ class StartPageDev extends React.Component {
                 {{
                   opponentSelect: <OpponentSelect />,
                   runTimerPre: <RunningTimerPre
-                    persona={persona}
+                    person={person}
                     opponent={activeRun.opponent}
                     opponentName={activeRun.opponentName}
                     opponentTime={activeRun.opponentTime}

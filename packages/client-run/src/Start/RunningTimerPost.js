@@ -61,7 +61,7 @@ class RunningTimerPost extends React.Component {
   }
 
   render() {
-    const persona = generatePerson();
+    const person = generatePerson();
     return (
       <Query
         query={GET_SETTINGS}
@@ -76,7 +76,7 @@ class RunningTimerPost extends React.Component {
               mutation={UPDATE_RUN_LOCAL}
               variables={{
                 status: 'signupForm',
-                ...persona,
+                ...person,
               }}
             >
               {updateRun => (

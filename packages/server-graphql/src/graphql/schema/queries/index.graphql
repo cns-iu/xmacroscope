@@ -2,8 +2,8 @@
 type Query {
   avatar(id: ID): Avatar
   avatars(limit: Int = 20): [Avatar!]!
-  persona(id: ID): Persona
-  personas(limit: Int = 20): [Persona!]!
+  person(id: ID): Person
+  people(limit: Int = 20): [Person!]!
   runRecords(lastX: Int): [RunRecord!]!
   runs(lastX: Int): [RunRecord!]!
   messages(lastX: Int): MessageAny

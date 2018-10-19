@@ -23,7 +23,7 @@ const START_RUN = gql`
 `;
 
 function RunningTimerPre({
-  persona, opponent, opponentName, opponentTime,
+  person, opponent, opponentName, opponentTime,
 }) {
   return (
     <Query
@@ -64,7 +64,7 @@ function RunningTimerPre({
                           opponent,
                           opponentName,
                           opponentTime,
-                          persona,
+                          person,
                         },
                       },
                     });
