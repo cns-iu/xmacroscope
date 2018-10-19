@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
+import { Col } from "reactstrap";
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Timer from './Timer';
@@ -20,16 +21,15 @@ function RunningTimerTimeout(props) {
       }}
     >
       {updateRace => (
-        <Fragment>
-          <Timer
+        <Col xs={12} className="p-5 text-center">
             completion={() => {
               updateRace();
             }}
             direction="down"
             start={raceTimeout}
             end={0}
-          /> milliseconds
-        </Fragment>
+          />
+        </Col>
       )}
     </Mutation>
   );

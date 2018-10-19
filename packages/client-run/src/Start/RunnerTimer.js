@@ -64,19 +64,20 @@ class RunnerTimer extends React.Component {
                 <Col>
 
                   <Row>
-                    <Col>
+                    <Col className="text-center">
                       <h3>Lane {lane} race time</h3>
                       <Timer
                         stop={timerStopped}
                         direction="up"
                         start={0}
                         end={raceTimeout}
-                      /> milliseconds
+                        displayTimer
+                      />
                     </Col>
                   </Row>
 
                   <Row>
-                    <Col>
+                    <Col className="text-center">
                       <RunFinishButton
                         lan={lane}
                         raceId={raceId}

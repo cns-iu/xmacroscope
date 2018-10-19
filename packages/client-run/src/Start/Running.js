@@ -33,15 +33,14 @@ function Running() {
 
               {/* Running message */}
               <Row>
-                <Col>
-                  <h1>GO!</h1>
+                <Col className="text-center">
+                  <h1 className="font-weight-bold">GO!</h1>
                   <p>Wait for the current runner to finish.</p>
                 </Col>
               </Row>
 
               {/* Runner timers */}
-              <Row>
-                <OpponentRunningTimer />
+              <Row className="text-center">
                 <RunnerTimer
                   raceTimeout={raceTimeout}
                   lane="1"
@@ -50,7 +49,7 @@ function Running() {
 
               {/* Timeout timer */}
               <Row className="mt-4">
-                <Col>
+                <Col className="text-center">
                   <h3>Run timeout timer</h3>
                   <p>Background timer that resets the running experience
                     if the two runners don&apos;t complete a race.

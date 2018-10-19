@@ -75,13 +75,13 @@ class StartPageDev extends React.Component {
                               width="30%"
                               margin="auto"
                             />
-                            <div className="pt-5">
+                            <Col xs={6} className="p-5 mx-auto">
                               <h1 className="text-center">
                                 Remember your shape and look for it on the graph.
                               </h1>
-                            </div>
+                            </Col>
                           </Col>
-                          <Col xs={12} className="p-5">
+                          <Col xs={12} className="p-5 text-center">
                             {{
                           opponentSelect: <OpponentSelect />,    
                           runTimerPre: <RunningTimerPre

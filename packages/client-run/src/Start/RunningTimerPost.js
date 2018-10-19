@@ -1,5 +1,6 @@
 import React from "react";
 import { Query, Mutation } from "react-apollo";
+import { Col } from 'reactstrap';
 import gql from "graphql-tag";
 import Timer from "./Timer";
 import generatePersona from "../Signup/generatePersona";
@@ -80,33 +81,35 @@ class RunningTimerPost extends React.Component {
               }}
             >
               {updateRace => (
-                <div>
-                  <h1>Post race delay</h1>
-                  <p>All runners and the opponent have finished the race.</p>
-                  <p>
-                    The system pauses in this post race state so that people can
-                    see their times on the finish line screen, before the next
-                    runners are allowed to start the race.
-                  </p>
-                  <p>
-                    The start kiosk displays a <strong>Please Wait</strong>{" "}
-                    message
-                  </p>
-                  <p>
-                    After the timeout the system returns to the main startup
-                    state
-                  </p>
-                  <h3>Post run timer</h3>
-                  <Timer
-                    completion={() => {
-                      updateRace();
-                    }}
-                    direction="down"
-                    start={postRaceDelay}
-                    end={0}
-                  />{" "}
-                  milliseconds
-                </div>
+                 <Col xs={6} className="p-5 mx-auto">
+                  <div className="displayTimer">
+                    <h1>Post race delay</h1>
+                    <p className="pb-2">All runners and the opponent have finished the race.</p>
+                    <p className="pb-2">
+                      The system pauses in this post race state so that people can
+                      see their times on the finish line screen, before the next
+                      runners are allowed to start the race.
+                    </p>
+                    <p className="pb-2">
+                      The start kiosk displays a <strong>Please Wait</strong>{" "}
+                      message
+                    </p>
+                    <p className="pb-2">
+                      After the timeout the system returns to the main startup
+                      state
+                    </p>
+                    <h3>Post run timer</h3>
+                    <Timer
+                      completion={() => {
+                        updateRace();
+                      }}
+                      direction="down"
+                      start={postRaceDelay}
+                      end={0}
+                      displayTimer={true}
+                    />
+                  </div>
+                </Col>
               )}
             </Mutation>
           );
