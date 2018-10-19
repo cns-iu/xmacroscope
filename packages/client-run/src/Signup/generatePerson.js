@@ -11,8 +11,8 @@ function fakeUSLocation() {
   return zipcodes.lookup(sample(usZipCodes)) || fakeUSLocation();
 }
 
-// Generate persona
-const generatePersona = () => {
+// Generate person
+const generatePerson = () => {
   const fakeShape = sample(personOptions.shapes);
 
   const fakeColor = sample(personOptions.colors);
@@ -51,4 +51,4 @@ const generatePersona = () => {
   };
 };
 
-export default generatePersona;
+export default generatePerson;

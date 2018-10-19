@@ -1,8 +1,8 @@
-import generatePersona from '../Signup/generatePersona';
+import generatePerson from '../Signup/generatePerson';
 //
 // Defaults for local state
 //
-const persona = generatePersona();
+const persona = generatePerson();
 export const defaults = {
   activeRun: {
     __typename: 'ActiveRun',

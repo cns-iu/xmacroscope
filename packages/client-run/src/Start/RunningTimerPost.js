@@ -2,7 +2,7 @@ import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Timer from './Timer';
-import generatePersona from '../Signup/generatePersona';
+import generatePerson from '../Signup/generatePerson';
 
 const GET_SETTINGS = gql`
   query settings($location: String!) {
@@ -61,7 +61,7 @@ class RunningTimerPost extends React.Component {
   }
 
   render() {
-    const persona = generatePersona();
+    const persona = generatePerson();
     return (
       <Query
         query={GET_SETTINGS}
