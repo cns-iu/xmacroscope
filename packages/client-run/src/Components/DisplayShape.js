@@ -1,12 +1,14 @@
-import React, { PureComponent } from "react";
-import { ShapeWrapper } from "../Primatives/ShapePrimatives";
+import React, { PureComponent } from 'react';
+import ShapeWrapper from '../Primatives/ShapePrimatives';
 
 class DisplayShape extends PureComponent {
   render() {
-    const { color, shape, shapeTransform, margin, width } = this.props;
-    const formatShape = shape === "triangle-up" ? "triangle" : shape;
+    const {
+      color, shape, shapeTransform, margin, width,
+    } = this.props;
+    const formatShape = shape === 'triangle-up' ? 'triangle' : shape;
     const shapeStyle = {
-      fill: color === "none" ? "white" : color
+      fill: color === 'none' ? 'white' : color,
     };
     return (
       <ShapeWrapper
@@ -106,7 +108,7 @@ class DisplayShape extends PureComponent {
                   />
                 </g>
               </svg>
-            )
+            ),
           }[formatShape]
         }
       </ShapeWrapper>

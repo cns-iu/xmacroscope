@@ -1,24 +1,21 @@
-import React, { Component } from 'react'
-import { ShapeWrapper } from '../Primatives/ShapePrimatives';
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import ShapeWrapper from '../Primatives/ShapePrimatives';
 
 export class shapePicker extends Component {
-  static propTypes = {
+  static propTypes = {};
 
-  }
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       selectedShape: ''
-    }
+      selectedShape: '',
+    };
   }
-  
 
   render() {
     return (
       <ShapeWrapper>
-       hi
+        hi
       </ShapeWrapper>
     );
   }

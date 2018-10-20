@@ -1,12 +1,12 @@
 import React from 'react';
 import { withFormik } from 'formik';
-import { Row, Col, Card, CardBody, CardHeader } from 'reactstrap';
-import { BaseHeader } from '../Primatives/BasePrimatives';
+import { Col, Card, CardBody, CardHeader } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
-import SignupForm from './SignupForm';
 import gql from 'graphql-tag';
+import BaseHeader from '../Primatives/BasePrimatives';
+import SignupForm from './SignupForm';
 
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRun($status: String!) {

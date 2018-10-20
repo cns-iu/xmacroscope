@@ -22,7 +22,7 @@ function Runs() {
   return (
     <Query
       query={GET_RUNS}
-      variables={{ lastX: parseInt(10) }}
+      variables={{ lastX: parseInt('10', 10) }}
     >
       {({ loading, error, data }) => {
         if (loading) return 'Loading...';
