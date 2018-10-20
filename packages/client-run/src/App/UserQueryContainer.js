@@ -30,7 +30,7 @@ class UserLoader extends React.Component {
      *
      * Double check a user's roles by checking for the access_token
      * This handles a situation where we've deleted the access_token
-     * during a logout operation. The user won't be requeried yet and without
+     * during a logout operation. The user won't be required yet and without
      * checking for an empty access_token the system can initially think that
      * the user still has the previous roles.
      */
