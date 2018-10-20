@@ -17,6 +17,8 @@ const UPDATE_RUN_LOCAL = gql`
       height: $height
       siblings: $siblings
       zipCode: $zipCode
+      color: $color
+      icon: $icon
       state: $state
       latitude: $latitude
       longitude: $longitude
@@ -61,6 +63,8 @@ const SignupFormFormik = withFormik({
         height: values.height,
         siblings: values.siblings,
         zipCode: values.zipCode,
+        color: values.color,
+        icon: values.shape,
         state: location.state,
         latitude: location.latitude,
         longitude: location.longitude,

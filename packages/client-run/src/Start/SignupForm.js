@@ -119,14 +119,15 @@ const SignupForm = ({
             name="color"
             component="select"
             type="text"
-            value={values.colors}
             required
           >
             <option
-              className={Object.prototype.hasOwnProperty.call(
-                values,
-                'color',
-              ) ? 'd-none' : ''}
+              className={
+                Object.prototype.hasOwnProperty.call(
+                  values,
+                  'color',
+                ) ? 'd-none' : ''
+              }
               value="none"
             >-- select an option --
             </option>
