@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import * as Base from "./BaseConfigsVariables.js";
+import styled from 'styled-components';
+import { sportsOrange } from './BaseConfigsVariables';
 
 const BaseHeader = styled.h1`
-  color: ${Base.orangeSports};
+  color: ${sportsOrange};
   font-weight: 900;
   letter-spacing: 2px;
-`
+`;
 
-
-export { BaseHeader };
+export default BaseHeader;

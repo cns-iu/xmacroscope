@@ -1,5 +1,5 @@
-const yellowSports = '#fdff5f';
-const orangeSports = '#fa5423';
-const graySports = '#fa5423';
+const sportsYellow = '#fdff5f';
+const sportsOrange = '#fa5423';
+const sportsGray = '#fa5423';
 
-export { yellowSports, orangeSports, graySports };
+export { sportsYellow, sportsOrange, sportsGray };
