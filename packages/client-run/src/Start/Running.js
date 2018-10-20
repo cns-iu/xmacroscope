@@ -5,7 +5,6 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
 import gql from 'graphql-tag';
-import OpponentRunningTimer from './OpponentRunningTimer';
 import RunnerTimer from './RunnerTimer';
 import RunningTimerTimeout from './RunningTimerTimeout';
 

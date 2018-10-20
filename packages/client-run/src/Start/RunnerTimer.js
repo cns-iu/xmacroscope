@@ -1,11 +1,10 @@
-import React, { Fragment } from 'react';
-import { Row, Col, Button } from 'reactstrap';
+import React from 'react';
+import { Row, Col } from 'reactstrap';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import Timer from './Timer';
-import RunFinishButton from './RunFInishButton';
+import RunFinishButton from './RunFinishButton';
 
 const GET_RUN_ID = gql`
   query {

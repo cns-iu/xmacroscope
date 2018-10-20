@@ -3,9 +3,7 @@ import { Form, Button, Label, FormGroup, Row, Col } from 'reactstrap';
 import { Field } from 'formik';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
-import ShapePicker from '../Components/ShapePicker';
 import DisplayShape from '../Components/DisplayShape';
-import { CirclePicker } from 'react-color';
 
 // Our inner form component which receives our form's state and updater methods
 // as props
