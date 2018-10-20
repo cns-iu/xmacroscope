@@ -52,7 +52,7 @@ function RunningTimerPre({
             }}
           >
             {StartRun => (
-              <div>
+              <div className="text-center">
                 <h1>On your marks...</h1>
                 <p>Start up to the starting line and get ready to run.</p>
                 <Timer
@@ -69,9 +69,11 @@ function RunningTimerPre({
                       },
                     });
                   }}
+                  displayTimer={false}
                   direction="down"
                   start={preRunDelay}
                   end={0}
+                  countDownSound
                 />
               </div>
             )}

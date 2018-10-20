@@ -1,9 +1,35 @@
-body{font-size:18px;}
-.signup-header h1{
-  color: orangered;
-  font-weight: bold;
-  letter-spacing: 2px;
+@font-face {
+  font-family: 'Avenir Next Condensed';
+  src: url('./fonts/AvenirNextCondensed-Regular.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Avenir Next Condensed';
+  src: url('./fonts/AvenirNextCondensed-Heavy.woff');
+  font-weight: 900;
+  font-style: normal;
+}
+html{
+  height: 100%;
+}
+#root{
+  height: 100%;
+}
+body{
+  height: 100%;
+  font-size:26px; 
+  font-family: "Avenir Next Condensed";
+}
+.container-fluid{
+  background-image: url('./images/selection_bg.png');
+  background-size: cover; 
+  background-repeat:  no-repeat;
+  background-position: center center;
 }
 .signup-form label{
   font-size: 1.5em;
+}
+h1{
+  font-size: 64px !important;
 }

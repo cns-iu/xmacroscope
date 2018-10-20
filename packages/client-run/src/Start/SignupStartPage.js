@@ -3,8 +3,8 @@
 //
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col, Card } from 'reactstrap';
-import PersonIcon from '../Signup/PersonIcon';
+import { Row, Col } from 'reactstrap';
+import DisplayShape from '../Components/DisplayShape';
 import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -28,37 +28,45 @@ class StartPageDev extends React.Component {
                 activeRun.status !== 'signupForm'
                   ? (
                     <Col xs={12}>
-                      <Card body>
-                        <Row>
-                          <Col xs={6}>
-                            <PersonIcon
-                              color={activeRun.color}
-                              shape={activeRun.icon}
-                            />
-                            <h2 className="text-center">
-                            Remember your shape<br />
-                            and<br />
-                            look for it<br />
-                            on the graph.
-                            </h2>
+                      <Row>
+                        <Col
+                          xs={12}
+                          className="p-5"
+                        >
+                          <DisplayShape
+                            color={activeRun.color.hexValue}
+                            shape={activeRun.icon}
+                            shapeTransform="translate(50, 50) scale(.75)"
+                            width="30%"
+                            margin="auto"
+                          />
+                          <Col
+                            xs={6}
+                            className="p-5 mx-auto"
+                          >
+                            <h1 className="text-center">
+                              Remember your shape and look for it on the graph.
+                            </h1>
                           </Col>
-                          <Col xs={6}>
-                            {{
-                          signupForm: '',
-                          opponentSelect: <OpponentSelect />,
-                          runTimerPre: <RunningTimerPre
-                            person={person}
-                            opponent={activeRun.opponent}
-                            opponentName={activeRun.opponentName}
-                            opponentTime={activeRun.opponentTime}
-                          />,
-                          running: <Running />,
-                          postRunTimer: <RunningTimerPost />,
-                          falseStart: <div>False start</div>,
-                        }[activeRun.status]}
-                          </Col>
-                        </Row>
-                      </Card>
+                        </Col>
+                        <Col
+                          xs={12}
+                          className="p-5 text-center"
+                        >
+                          {{
+                            opponentSelect: <OpponentSelect />,
+                            runTimerPre: <RunningTimerPre
+                              person={person}
+                              opponent={activeRun.opponent}
+                              opponentName={activeRun.opponentName}
+                              opponentTime={activeRun.opponentTime}
+                            />,
+                            running: <Running />,
+                            postRunTimer: <RunningTimerPost />,
+                            falseStart: <div>False start</div>,
+                          }[activeRun.status]}
+                        </Col>
+                      </Row>
                     </Col>
                   )
                   : <SignupFormFormik />

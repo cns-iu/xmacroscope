@@ -71,12 +71,13 @@ class RunnerTimer extends React.Component {
                         direction="up"
                         start={0}
                         end={runTimeout}
+                        displayTimer
                       />
                     </Col>
                   </Row>
 
                   <Row>
-                    <Col>
+                    <Col className="text-center">
                       <RunFinishButton
                         lane={lane}
                         runId={runId}

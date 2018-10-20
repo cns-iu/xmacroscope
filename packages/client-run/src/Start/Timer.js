@@ -1,34 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-const getTimerFormatted = (milliseconds) => {
-  const seconds = Math.floor((milliseconds / 1000));
-  const subSeconds = ((milliseconds - (seconds * 1000)) / 10);
-  return `${seconds}:${subSeconds}`;
-};
+import ReactHowler from 'react-howler';
+import prettyMs from 'pretty-ms';
+import TimerWrapper from '../Primatives/TimerPrimatives';
+import CountDown from '../Media/countDown.wav';
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-
-    const timerMilliseconds = props.direction === 'down'
-      ? (Math.abs(props.start - props.end))
-      : (props.start);
-
-    const timerSeconds = Math.floor((timerMilliseconds / 1000));
-
+    const {
+      countDownSound, direction, start, end,
+    } = this.props;
     this.state = {
-      timer: timerMilliseconds,
-      timerFormatted: getTimerFormatted(timerMilliseconds),
+      countDownSound,
+      timer: direction === 'down' ? Math.abs(start - end) : start,
     };
     this.incrementTimer = this.incrementTimer.bind(this);
   }
 
   componentWillMount() {
-    this.timer = setInterval(
-      this.incrementTimer,
-      this.props.tick,
-    );
+    this.timer = setInterval(this.incrementTimer, this.props.tick);
   }
 
   componentWillUnmount() {
@@ -54,29 +45,39 @@ class Timer extends React.Component {
       clearInterval(this.timer);
       this.props.completion();
     } else {
-      const newTimer = (this.state.timer + tick);
-      const newTimerMilliseconds = (operators[op](newTimer, this.props.end))
-        ? (newTimer)
-        : this.props.end;
-
+      const newTimer = this.state.timer + tick;
       this.setState({
-        timer: newTimerMilliseconds,
-        timerFormatted: getTimerFormatted(newTimerMilliseconds),
+        timer: operators[op](newTimer, this.props.end)
+          ? newTimer
+          : this.props.end,
       });
     }
   }
 
+  // Add two seconds to playing conditional to
+  // handle clip delay
+
   render() {
     return (
-      <div className="text-monospace">
-        {this.state.timerFormatted}
-      </div>
+      <TimerWrapper displayTimer={this.props.displayTimer}>
+        {prettyMs(this.state.timer)}
+        {this.state.countDownSound ? (
+          <ReactHowler
+            src={CountDown}
+            playing={this.state.timer <= 8500}
+          />
+        ) : (
+          ''
+        )}
+      </TimerWrapper>
     );
   }
 }
 
 Timer.propTypes = {
+  displayTimer: PropTypes.bool.isRequired,
   direction: PropTypes.oneOf(['up', 'down']).isRequired,
+  countDownSound: PropTypes.bool,
   end: PropTypes.number.isRequired,
   start: PropTypes.number.isRequired,
   completion: PropTypes.func,
@@ -87,8 +88,9 @@ Timer.propTypes = {
 Timer.defaultProps = {
   completion: () => {
   },
-  tick: 10,
+  tick: 100,
   stop: false,
+  countDownSound: false,
 };
 
 export default Timer;
