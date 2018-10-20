@@ -24,6 +24,14 @@ const UPDATE_RUN_LOCAL = gql`
   }
 `;
 
+function zipCodeLookup(value) {
+  const { path, createError } = this;
+  if (typeof value !== 'undefined' && !zipcodes.lookup(value)) {
+    return createError({ path, message: 'enter a valid US Zip Code' });
+  }
+  return true;
+}
+
 const SignupFormFormik = withFormik({
   validationSchema: Yup.object().shape({
     height: Yup.number()
@@ -39,24 +47,11 @@ const SignupFormFormik = withFormik({
         'Please enter 5 numbers for a Zip Code.',
       )
       // Also do a Zip Code lookup to ensure that it's a valid place.
-      .test('test-name', 'enter a valid US Zip Code', function (value) {
-        const { path, createError } = this;
-        if (typeof value !== 'undefined' && !zipcodes.lookup(value)) {
-          return createError({ path, message: 'enter a valid US Zip Code' });
-        }
-        return true;
-      }),
+      .test('test-name', 'enter a valid US Zip Code', zipCodeLookup),
   }),
 
   // Submission handler
-  handleSubmit: (
-    values,
-    {
-      props,
-      setSubmitting,
-      setErrors /* setValues, setStatus, and other goodies */,
-    },
-  ) => {
+  handleSubmit: (values, { props }) => {
     const location = zipcodes.lookup(values.zipCode);
     props.updateRun({
       variables: {
@@ -74,7 +69,7 @@ const SignupFormFormik = withFormik({
   },
 })(SignupForm);
 
-function WithCreateMutation(props) {
+function WithCreateMutation() {
   return (
     <Mutation mutation={UPDATE_RUN_LOCAL}>
       {updateRun => (
