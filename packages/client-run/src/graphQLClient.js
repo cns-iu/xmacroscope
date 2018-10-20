@@ -17,7 +17,6 @@ const typeDefs = `
   type ActiveRun {
     opponent: String!
     opponentName: String!
-    secondthing: String!
     status: String!
   }
 `;

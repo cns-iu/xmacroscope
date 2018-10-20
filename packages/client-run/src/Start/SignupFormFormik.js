@@ -8,12 +8,6 @@ import zipcodes from 'zipcodes';
 import SignupForm from './SignupForm';
 import gql from 'graphql-tag';
 
-Yup.setLocale({
-  number: {
-    default: 'Deve ser maior que',
-  },
-});
-
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRun($status: String!) {
     updateRun(
