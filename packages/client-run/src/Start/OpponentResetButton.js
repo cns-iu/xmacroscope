@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { ApolloConsumer } from 'react-apollo';
 import { Button } from 'reactstrap';
