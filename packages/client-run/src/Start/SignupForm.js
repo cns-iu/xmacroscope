@@ -21,7 +21,7 @@ const SignupForm = ({
     className="signup-form"
   >
     <FormGroup>
-      <Label>Age group</Label>
+      <Label>What age group are you in?</Label>
       <Field
         className="form-control form-control-lg"
         name="ageGroup"
@@ -56,7 +56,7 @@ const SignupForm = ({
       }
     </FormGroup>
     <FormGroup>
-      <Label>Favorite activity</Label>
+      <Label>What&apos;s your favorite activity?</Label>
       <Field
         className="form-control form-control-lg"
         name="favoriteActivity"
@@ -87,7 +87,7 @@ const SignupForm = ({
     <FormField
       className="form-control form-control-lg"
       name="height"
-      label="Height"
+      label="How many inches tall are you?"
       errors={errors}
       touched={touched}
       value={values.height}
@@ -96,18 +96,14 @@ const SignupForm = ({
     <FormField
       className="form-control form-control-lg"
       name="zipCode"
-      label="Zip code"
+      label="What's your Zip Code"
       errors={errors}
       touched={touched}
       value={values.zipCode}
     />
     <Row>
       <Col className="pt-3">
-        <FormGroup>
-          <Label>
-            <h3>Create a Shape</h3>
-          </Label>
-        </FormGroup>
+        <h1 className="text-center">Create your icon</h1>
       </Col>
     </Row>
     <Row>
