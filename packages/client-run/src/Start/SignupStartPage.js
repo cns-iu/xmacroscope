@@ -4,7 +4,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
-import OpponentSelect from './OpponentSelect';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
@@ -38,13 +37,7 @@ class SignupStartPage extends React.Component {
                           className="p-5 text-center"
                         >
                           {{
-                            opponentSelect: <OpponentSelect />,
-                            runTimerPre: <RunningTimerPre
-                              person={person}
-                              opponent={activeRun.opponent}
-                              opponentName={activeRun.opponentName}
-                              opponentTime={activeRun.opponentTime}
-                            />,
+                            runTimerPre: <RunningTimerPre person={person} />,
                             running: <Running />,
                             postRunTimer: <RunningTimerPost />,
                             falseStart: <div>False start</div>,

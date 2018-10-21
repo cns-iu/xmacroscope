@@ -57,7 +57,7 @@ const SignupFormFormik = withFormik({
     const location = zipcodes.lookup(values.zipCode);
     props.updateRun({
       variables: {
-        status: 'opponentSelect',
+        status: 'runTimerPre',
         ageGroup: values.ageGroup,
         favoriteActivity: values.favoriteActivity,
         height: values.height,
