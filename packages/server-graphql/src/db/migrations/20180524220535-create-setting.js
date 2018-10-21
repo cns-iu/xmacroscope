@@ -12,7 +12,6 @@ module.exports = {
     },
     usState: {
       type: Sequelize.STRING,
-      unique: true,
     },
     preRunDelay: {
       type: Sequelize.INTEGER,
