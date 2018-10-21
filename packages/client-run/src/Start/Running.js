@@ -33,8 +33,7 @@ function Running() {
               {/* Running message */}
               <Row>
                 <Col className="text-center">
-                  <h1 className="font-weight-bold">GO!</h1>
-                  <p>Wait for the current runner to finish.</p>
+                  <h1 className="go font-weight-bold">GO!</h1>
                 </Col>
               </Row>
 

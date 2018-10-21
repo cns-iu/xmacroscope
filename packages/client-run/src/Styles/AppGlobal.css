@@ -33,3 +33,6 @@ body{
 h1{
   font-size: 64px !important;
 }
+h1.go {
+  font-size: 400px !important;
+}
