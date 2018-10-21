@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import Timer from './Timer';
 import RunFinishButton from './RunFinishButton';
+import RunFinishKeypress from './RunFinishKeypress';
 
 const GET_RUN_ID = gql`
   query {
@@ -61,24 +62,21 @@ class RunnerTimer extends React.Component {
               {FinishRun => (
 
                 <Col>
-
                   <Row>
                     <Col>
-                      <h3>Lane {lane} time</h3>
                       <Timer
                         stop={timerStopped}
                         direction="up"
                         start={0}
                         end={runTimeout}
-                        displayTimer
+                        displayTimer={false}
                       />
                     </Col>
                   </Row>
 
                   <Row>
                     <Col className="text-center">
-                      <RunFinishButton
-                        lane={lane}
+                      <RunFinishKeypress
                         runId={runId}
                         finishRun={FinishRun}
                       />

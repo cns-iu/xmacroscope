@@ -32,7 +32,7 @@ function RunningTimerTimeout(props) {
             direction="down"
             start={runTimeout}
             end={0}
-            displayTimer
+            displayTimer={false}
           />
         </Col>
       )}

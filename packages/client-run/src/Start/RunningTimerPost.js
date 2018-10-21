@@ -77,25 +77,10 @@ class RunningTimerPost extends React.Component {
               {updateRace => (
                 <Col
                   xs={6}
-                  className="p-5 mx-auto"
+                  className="p-5 mx-auto text-center"
                 >
                   <div className="displayTimer">
-                    <h1>Post race delay</h1>
-                    <p className="pb-2">All runners and the opponent have finished the race.</p>
-                    <p className="pb-2">
-                      The system pauses in this post race state so that people can
-                      see their times on the finish line screen, before the next
-                      runners are allowed to start the race.
-                    </p>
-                    <p className="pb-2">
-                      The start kiosk displays a <strong>Please Wait</strong>{' '}
-                      message
-                    </p>
-                    <p className="pb-2">
-                      After the timeout the system returns to the main startup
-                      state
-                    </p>
-                    <h3>Post run timer</h3>
+                    <h1>Wait for the current runner to finish.</h1>
                     <Timer
                       completion={() => {
                         updateRace();
@@ -103,7 +88,7 @@ class RunningTimerPost extends React.Component {
                       direction="down"
                       start={postRunDelay}
                       end={0}
-                      displayTimer
+                      displayTimer={false}
                     />
                   </div>
                 </Col>

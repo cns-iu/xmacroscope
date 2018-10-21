@@ -4,6 +4,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
+import { includes } from 'lodash';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
@@ -24,29 +25,34 @@ class SignupStartPage extends React.Component {
           return (
             <Row>
               {
-                activeRun.status !== 'signupForm'
-                  ? (
-                    <Col xs={12}>
-                      <Row>
-                        <RunnerIcon
-                          color={activeRun.color}
-                          shape={activeRun.icon}
-                        />
-                        <Col
-                          xs={12}
-                          className="p-5 text-center"
-                        >
-                          {{
-                            runTimerPre: <RunningTimerPre person={person} />,
-                            running: <Running />,
-                            postRunTimer: <RunningTimerPost />,
-                            falseStart: <div>False start</div>,
-                          }[activeRun.status]}
-                        </Col>
-                      </Row>
+                <Col xs={12}>
+                  <Row>
+                    <Col
+                      xs={12}
+                      className="p-5"
+                    >
+                      {
+                        _.includes(['runTimerPre', 'running'], activeRun.status)
+                          ? (
+                            <RunnerIcon
+                              color={activeRun.color}
+                              shape={activeRun.icon}
+                            />
+                          )
+                          : ''
+                      }
                     </Col>
-                  )
-                  : <SignupFormFormik />
+                    <Col xs={12}>
+                      {{
+                        signupForm: <SignupFormFormik />,
+                        runTimerPre: <RunningTimerPre person={person} />,
+                        running: <Running />,
+                        postRunTimer: <RunningTimerPost />,
+                        falseStart: <div>False start</div>,
+                      }[activeRun.status]}
+                    </Col>
+                  </Row>
+                </Col>
               }
             </Row>
           );

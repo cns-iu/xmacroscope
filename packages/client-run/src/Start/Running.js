@@ -38,20 +38,9 @@ function Running() {
                 </Col>
               </Row>
 
-              {/* Runner timers */}
               <Row className="text-center">
-                <RunnerTimer
-                  runTimeout={runTimeout}
-                  lane="1"
-                />
-              </Row>
-
-              {/* Timeout timer */}
-              <Row className="mt-4">
-                <Col className="text-center">
-                  <h3>Timeout</h3>
-                  <RunningTimerTimeout runTimeout={runTimeout} />
-                </Col>
+                <RunnerTimer runTimeout={runTimeout} lane="1" />
+                <RunningTimerTimeout runTimeout={runTimeout} />
               </Row>
 
             </Col>
