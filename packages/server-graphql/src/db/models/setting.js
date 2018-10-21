@@ -11,6 +11,7 @@ import sequelize from '../config/sequelize';
 
 const Setting = sequelize.define('Setting', {
   location: { type: Sequelize.STRING, unique: true },
+  usState: { type: Sequelize.STRING, unique: true },
 
   // Physical location of the installation
   latitude: { type: Sequelize.INTEGER },

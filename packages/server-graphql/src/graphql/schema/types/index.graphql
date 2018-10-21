@@ -96,6 +96,7 @@ type RunResult {
 
 type Setting {
   location: String
+  usState: String
   latitude: Float
   longitude: Float
   preRunDelay: Int

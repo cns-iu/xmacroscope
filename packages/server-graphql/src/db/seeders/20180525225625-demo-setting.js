@@ -4,6 +4,7 @@ module.exports = {
     [
       {
         location: 'smm',
+        usState: 'MN',
         preRunDelay: 15540,
         postRunDelay: 7500,
         startLineTimeout: 10000,
@@ -17,6 +18,7 @@ module.exports = {
       },
       {
         location: 'cns-iu',
+        usState: 'IN',
         preRunDelay: 15540,
         postRunDelay: 7500,
         startLineTimeout: 10000,
@@ -30,6 +32,7 @@ module.exports = {
       },
       {
         location: 'cosi',
+        usState: 'OH',
         preRunDelay: 15540,
         postRunDelay: 7500,
         startLineTimeout: 10000,
@@ -43,6 +46,7 @@ module.exports = {
       },
       {
         location: 'dev',
+        usState: 'MN',
         preRunDelay: 2000,
         runTimeout: 6000,
         postRunDelay: 2000,
@@ -56,6 +60,7 @@ module.exports = {
       },
       {
         location: 'demo',
+        usState: 'IN',
         preRunDelay: 0,
         runTimeout: 6000,
         postRunDelay: 500,
