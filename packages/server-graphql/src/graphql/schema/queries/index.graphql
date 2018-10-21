@@ -2,8 +2,7 @@
 type Query {
   Person(id: ID): Person
   People(limit: Int = 20): [Person!]!
-  RunRecords(lastX: Int): [RunRecord!]!
-  Runs(lastX: Int): [RunRecord!]!
+  Runs(lastX: Int): [Run!]!
   Messages(lastX: Int): MessageAny
   Settings(location: String!): Setting
 }

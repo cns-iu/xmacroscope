@@ -12,9 +12,8 @@ Examples:
 
 | Good           | Bad |
 |----------------|-----|
-| type Run       | type Run |
-| type RunRecord | type RaceRecord |
-
+| type Run       | type Race |
+| input RunInput | input RaceInput |
 
 Run and Race mean the same thing, so don’t vary the name for no reason.
 

@@ -4,7 +4,7 @@ type Subscription {
   messageStreamSubscription: MessageAny
 
   runCompleted: MessageRunCompleted
-  runCompletedRecordsSubscription: [RunRecord]!
+  runCompletedRecordsSubscription: [Run]!
   runInitiatedSubscription: MessageRunInitiated
   runSelectedSubscription: MessageRunSelected
 

@@ -2,7 +2,7 @@
 
 type Mutation {
   # TODO: Are these in use?
-  runCompleted(runs: [RunRecordInput!]!): [ID!]!
+  runCompleted(runs: [RunInput!]!): [ID!]!
 
   # Run select is a message operation
   # Since it just triggers a message it returns null, but GQL requires return
@@ -10,7 +10,7 @@ type Mutation {
   SelectRun(run: RunSelectInput!): Boolean
 
   # Start run is a create operation and returns the created run's ID
-  StartRun(run: RunRecordInput!): ID!
+  StartRun(run: RunInput!): ID!
 
   # Run finish is an update operation and simply returns the number of rows affected.
   FinishRun(run: RunRecordFinishInput!): [Int]

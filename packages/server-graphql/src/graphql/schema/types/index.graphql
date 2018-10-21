@@ -67,15 +67,6 @@ type Person {
 }
 
 type Run {
-  person: Person!
-  timestamp: String
-  lane: Int
-  started: Boolean
-  falseStart: Boolean
-  timeMillis: Int
-}
-
-type RunRecord {
   id: ID
   opponent: String
   opponentName: String
@@ -131,17 +122,17 @@ input PersonInput {
   longitude: Float
 }
 
-input RunRecordFinishInput {
-  id: ID!
-  finish: Date!
-}
-
-input RunRecordInput {
+input RunInput {
   start: Date!
   opponent: String
   opponentName: String
   opponentTime: Int
   person: PersonInput
+}
+
+input RunRecordFinishInput {
+  id: ID!
+  finish: Date!
 }
 
 input RunResultInput {
