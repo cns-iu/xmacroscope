@@ -54,7 +54,7 @@ function RunningTimerPre({
             {StartRun => (
               <div className="text-center">
                 <h1>On your marks...</h1>
-                <p>Start up to the starting line and get ready to run.</p>
+                <h2>Step up to the starting line and<br />get ready to run.</h2>
                 <Timer
                   completion={() => {
                     StartRun({
