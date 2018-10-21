@@ -4,35 +4,43 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Avenir Next Condensed';
   src: url('./fonts/AvenirNextCondensed-Heavy.woff');
   font-weight: 900;
   font-style: normal;
 }
-html{
+
+html {
   height: 100%;
 }
-#root{
+
+#root {
   height: 100%;
 }
-body{
+
+body {
   height: 100%;
-  font-size:26px; 
-  font-family: "Avenir Next Condensed";
+  font-family: 'Avenir Next Condensed', sans-serif;
+  font-size: 26px;
 }
-.container-fluid{
+
+.container-fluid {
   background-image: url('./images/selection_bg.png');
-  background-size: cover; 
-  background-repeat:  no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
 }
-.signup-form label{
+
+.signup-form label {
   font-size: 1.5em;
 }
-h1{
+
+h1 {
   font-size: 64px !important;
 }
+
 h1.go {
   font-size: 400px !important;
 }
