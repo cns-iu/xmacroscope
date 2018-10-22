@@ -5,10 +5,10 @@ module.exports = {
       {
         location: 'smm',
         usState: 'MN',
-        preRunDelay: 15540,
+        preRunDelay: 11540,
         postRunDelay: 7500,
         startLineTimeout: 10000,
-        runTimeout: 7500,
+        runTimeout: 17500,
         attractDelay: 120000,
         latitude: 44.94258,
         longitude: -93.0999668,
