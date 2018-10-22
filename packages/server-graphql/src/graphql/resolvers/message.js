@@ -14,7 +14,7 @@ const SendMessage = baseResolver
           pubsub.publish(savedMessage.type, { runInitiatedSubscription: savedMessage });
           break;
         case 'run-completed':
-          pubsub.publish(savedMessage.type, { runCompleted: savedMessage });
+          pubsub.publish(savedMessage.type, { runCompletedSubscription: savedMessage });
           break;
         default:
           console.log('Message error');

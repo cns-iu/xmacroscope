@@ -3,7 +3,7 @@ type Subscription {
   runCompletedRecordsSubscription: [Run]!
 
   # Subscriptions for an individual run in various states
-  runCompleted: MessageRun
+  runCompletedSubscription: MessageRun
   runInitiatedSubscription: MessageRun
   runSelectedSubscription: MessageRun
 }

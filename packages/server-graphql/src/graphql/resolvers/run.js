@@ -121,7 +121,7 @@ const FinishRun = baseResolver
             );
 
             const publishPayload = {
-              runCompleted: {
+              runCompletedSubscription: {
                 timestamp: endTime,
                 type: 'run-completed',
                 run: runWithPerson,

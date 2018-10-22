@@ -8,7 +8,7 @@ const Subscription = {
     runInitiatedSubscription: {
       subscribe: () => pubsub.asyncIterator('run-initiated'),
     },
-    runCompleted: {
+    runCompletedSubscription: {
       subscribe: () => pubsub.asyncIterator('run-completed'),
     },
     runCompletedRecordsSubscription: {
