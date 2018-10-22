@@ -30,36 +30,27 @@ interface Message {
 type MessageAny implements Message {
   type: String!
   timestamp: String!
-  results: [RunResult]
 }
 
-type MessageRunCompleted implements Message {
+type MessageRun implements Message {
   type: String
   timestamp: String
-  results: [RunResult]!
-}
-
-type MessageRunInitiated implements Message {
-  type: String
-  timestamp: String
-}
-
-type MessageRunSelected implements Message {
-  type: String
-  timestamp: String
+  run: Run
 }
 
 type Person {
   id: ID!
+  # Unused
   name: String
+  gender: Gender
+  handedness: Handedness
+  siblings: Int
+  # Used
   icon: String
   color: String
-  gender: Gender
   ageGroup: String
   favoriteActivity: String
-  handedness: Handedness
   height: Int
-  siblings: Int
   zipCode: String
   state: String
   latitude: Float
@@ -73,12 +64,11 @@ type Run {
   opponentTime: String
   start: Date
   end: Date
-  PersonId: ID
-  Person: Person
+  personId: ID
+  person: Person
 }
 
 type RunResult {
-  lane: Int
   person: Person
   started: Boolean
   falseStart: Boolean

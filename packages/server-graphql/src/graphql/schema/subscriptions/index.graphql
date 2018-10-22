@@ -1,11 +1,9 @@
 type Subscription {
-
-  # TODO: Document the purpose of these in MAV
-  messageStreamSubscription: MessageAny
-
-  runCompleted: MessageRunCompleted
+  # Subscription for a list of runs
   runCompletedRecordsSubscription: [Run]!
-  runInitiatedSubscription: MessageRunInitiated
-  runSelectedSubscription: MessageRunSelected
 
+  # Subscriptions for an individual run in various states
+  runCompleted: MessageRun
+  runInitiatedSubscription: MessageRun
+  runSelectedSubscription: MessageRun
 }

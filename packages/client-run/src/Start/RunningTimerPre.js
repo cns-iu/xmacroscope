@@ -13,7 +13,7 @@ const GET_PRE_RUN_DELAY = gql`
 `;
 
 const START_RUN = gql`
-  mutation RunStart(
+  mutation StartRun(
   $run: RunInput!
   ) {
     StartRun(

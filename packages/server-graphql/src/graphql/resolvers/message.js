@@ -1,6 +1,6 @@
 import baseResolver from './baseResolver';
 import db from '../../db/models/index';
-import pubsub from './subscriptions';
+import pubsub from './pubsub';
 
 // Mutations
 const SendMessage = baseResolver

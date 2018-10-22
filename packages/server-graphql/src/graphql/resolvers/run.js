@@ -1,7 +1,8 @@
 import moment from 'moment';
+import { omit } from 'lodash';
 import baseResolver from './baseResolver';
 import db from '../../db/models/index';
-import pubsub from './subscriptions';
+import pubsub from './pubsub';
 
 //------------------------------------------------------------------------------
 // Queries
@@ -60,11 +61,17 @@ const StartRun = baseResolver
     include: [db.run],
   })
     .then((createdPerson) => {
+      // Reshape data object to match message schema
+      const runWithPerson = Object.assign(
+        { person: createdPerson },
+        createdPerson.toJSON().Runs[0],
+      );
       // Publish run initiation for MAV
       const publishPayload = {
         runInitiatedSubscription: {
           type: 'run-initiated',
           timestamp: args.run.start,
+          run: runWithPerson,
         },
       };
       const message = pubsub.publish('run-initiated', publishPayload);
@@ -104,23 +111,20 @@ const FinishRun = baseResolver
 
         db.person.findOne({ where: { id: completedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
+          // Milliseconds that the run took
+          // TODO: Figure out if this is needed for MAV
+            const timeMillis = endTime.diff(startTime);
+
+            const runWithPerson = Object.assign(
+              { person: runnerPerson },
+              runnerPerson,
+            );
+
             const publishPayload = {
               runCompleted: {
                 timestamp: endTime,
                 type: 'run-completed',
-                results: [
-                  {
-                    lane: 1,
-                    person: runnerPerson,
-                    started: true,
-
-                    // TODO: Step 1 - generate random false starts on client
-                    // TODO: Step 2 - generate false start from sensor
-                    falseStart: false,
-
-                    timeMillis: endTime.diff(startTime),
-                  },
-                ],
+                run: runWithPerson,
               },
             };
             const message = pubsub.publish('run-completed', publishPayload);
