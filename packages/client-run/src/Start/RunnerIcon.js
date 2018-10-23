@@ -16,7 +16,7 @@ function RunnerIcon(props) {
             color={color}
             shape={shape}
             shapeTransform="translate(50, 50) scale(.75)"
-            width="50%"
+            width="45%"
             margin="auto"
           />
         </div>

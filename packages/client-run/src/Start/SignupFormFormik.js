@@ -1,11 +1,11 @@
 import React from 'react';
 import { withFormik } from 'formik';
-import { Row, Col, Card, CardBody, CardHeader } from 'reactstrap';
+import { Row, Col, CardBody } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
 import gql from 'graphql-tag';
-import { BaseHeader } from '../Primatives/BasePrimatives';
+import { BaseHeader, StyledCardHeader, StyledCard } from '../Primatives/BasePrimatives';
 import SignupForm from './SignupForm';
 
 const UPDATE_RUN_LOCAL = gql`
@@ -83,16 +83,16 @@ function WithCreateMutation() {
             xl={8}
             className="mx-auto"
           >
-            <Card>
-              <CardHeader className="text-center">
+            <StyledCard>
+              <StyledCardHeader className="text-center">
                 <BaseHeader>RUN SIGN UP</BaseHeader>
-              </CardHeader>
+              </StyledCardHeader>
               <CardBody>
                 <SignupFormFormik
                   updateRun={updateRun}
                 />
               </CardBody>
-            </Card>
+            </StyledCard>
           </Col>
         </Row>
       )}

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Form, Button, Label, FormGroup, Row, Col } from 'reactstrap';
+import { Form, Label, FormGroup, Row, Col } from 'reactstrap';
 import { Field } from 'formik';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
+import { StyledButton } from '../Primatives/BasePrimatives';
 
 // Our inner form component which receives our form's state and updater methods
 // as props
@@ -198,14 +199,14 @@ const SignupForm = ({
       sm={12}
       className="px-0 pt-5"
     >
-      <Button
+      <StyledButton
         className="btn-lg btn-block"
         type="submit"
         disabled={isSubmitting}
         color="primary"
       >
-        Submit
-      </Button>
+        RUN
+      </StyledButton>
     </Col>
   </Form>
 );

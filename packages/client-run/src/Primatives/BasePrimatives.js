@@ -1,10 +1,13 @@
 import styled from 'styled-components';
-import { sportsOrange } from './BaseConfigsVariables';
+import { Button, CardHeader, Card } from 'reactstrap';
+import { sportsGray, sportsOrange, sportsTransGray } from './BaseConfigsVariables';
+
 
 const BaseHeader = styled.h1`
-  color: ${sportsOrange};
+  color: white;
   font-weight: 900;
   letter-spacing: 2px;
+  font-size: 65px;
 `;
 
 const BigHeader = styled.h1`
@@ -15,5 +18,20 @@ const BigHeader = styled.h1`
   }
 `;
 
+const StyledButton = styled(Button)`
+  background-color: white;
+  color: ${sportsOrange};
+  letter-spacing: 1px;
+  border: none;
+  font-weight: bold;
+  font-size: 50px;
+`;
+const StyledCardHeader = styled(CardHeader)`
+  background-color: ${sportsOrange};
+`;
+const StyledCard = styled(Card)`
+  background-color: ${sportsTransGray};
+`;
 
-export { BaseHeader, BigHeader };
+
+export { BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard };
