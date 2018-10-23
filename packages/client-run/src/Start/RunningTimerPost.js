@@ -77,9 +77,9 @@ class RunningTimerPost extends React.Component {
               {updateRace => (
                 <Col
                   xs={6}
-                  className="pt-3 mx-auto text-center d-flex h-100 align-items-center"
+                  className="pt-3 mx-auto d-flex h-100 align-items-center"
                 >
-                  <div className="displayTimer text-center">
+                  <div className="displayTimer w-100 text-center">
                     <h1>Wait for the current runner to finish.</h1>
                     <Timer
                       completion={() => {
