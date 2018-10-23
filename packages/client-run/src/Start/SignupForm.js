@@ -20,89 +20,99 @@ const SignupForm = ({
     onSubmit={handleSubmit}
     className="signup-form"
   >
-    <FormGroup>
-      <Label>What age group are you in?</Label>
-      <Field
-        className="form-control form-control-lg"
-        name="ageGroup"
-        component="select"
-        type="text"
-        value={values.ageGroup}
-        required
-      >
-        <option
-          className={Object.prototype.hasOwnProperty.call(
+    <Row>
+      <Col lg={6}>
+        <FormGroup>
+          <Label>What age group are you in?</Label>
+          <Field
+            className="form-control form-control-lg"
+            name="ageGroup"
+            component="select"
+            type="text"
+            value={values.ageGroup}
+            required
+          >
+            <option
+              className={Object.prototype.hasOwnProperty.call(
             values,
             'age_group',
           ) ? 'd-none' : ''}
-          value="none"
-        > -- select an option --
-        </option>
-        {personOptions.ageGroups.map(item => (
-          <option
-            key={item}
-            value={item}
-          >
-            {item}
-          </option>
+              value="none"
+            > -- select an option --
+            </option>
+            {personOptions.ageGroups.map(item => (
+              <option
+                key={item}
+                value={item}
+              >
+                {item}
+              </option>
         ))}
-      </Field>
-      {/* Validation feedback */}
-      {
+          </Field>
+          {/* Validation feedback */}
+          {
         touched[name] && errors[name] &&
         <div>
             {errors[name]}
         </div>
       }
-    </FormGroup>
-    <FormGroup>
-      <Label>What&apos;s your favorite activity?</Label>
-      <Field
-        className="form-control form-control-lg"
-        name="favoriteActivity"
-        component="select"
-        type="text"
-        value={values.favoriteActivity}
-        required
-      >
-        <option
-          className={Object.prototype.hasOwnProperty.call(
+        </FormGroup>
+      </Col>
+      <Col lg={6}>
+        <FormGroup>
+          <Label>What&apos;s your favorite activity?</Label>
+          <Field
+            className="form-control form-control-lg"
+            name="favoriteActivity"
+            component="select"
+            type="text"
+            value={values.favoriteActivity}
+            required
+          >
+            <option
+              className={Object.prototype.hasOwnProperty.call(
             values,
             'favoriteActivity',
           ) ? 'd-none' : ''}
-          value="none"
-        > -- select an option --
-        </option>
-        {personOptions.favoriteActivity.map(item => (
-          <option
-            key={item}
-            value={item}
-          >
-            {item}
-          </option>
+              value="none"
+            > -- select an option --
+            </option>
+            {personOptions.favoriteActivity.map(item => (
+              <option
+                key={item}
+                value={item}
+              >
+                {item}
+              </option>
         ))}
-      </Field>
-    </FormGroup>
-
-    <FormField
-      className="form-control form-control-lg"
-      name="height"
-      label="How many inches tall are you?"
-      errors={errors}
-      touched={touched}
-      value={values.height}
-    />
-
-    <FormField
-      className="form-control form-control-lg"
-      name="zipCode"
-      label="What's your Zip Code"
-      errors={errors}
-      touched={touched}
-      value={values.zipCode}
-    />
+          </Field>
+        </FormGroup>
+      </Col>
+    </Row>
     <Row>
-      <Col className="pt-3">
+      <Col lg={6}>
+        <FormField
+          className="form-control form-control-lg"
+          name="height"
+          label="How many inches tall are you?"
+          errors={errors}
+          touched={touched}
+          value={values.height}
+        />
+      </Col>
+      <Col lg={6}>
+        <FormField
+          className="form-control form-control-lg"
+          name="zipCode"
+          label="What's your Zip Code"
+          errors={errors}
+          touched={touched}
+          value={values.zipCode}
+        />
+      </Col>
+    </Row>
+    <Row>
+      <Col className="pt-3 pb-2">
         <h1 className="text-center">Create your icon</h1>
       </Col>
     </Row>
@@ -166,7 +176,7 @@ const SignupForm = ({
           </Field>
         </FormGroup>
       </Col>
-      <Col md={6}>
+      <Col md={6} className="align-self-center">
         <DisplayShape
           color={
             Object.prototype.hasOwnProperty.call(values, 'color')
@@ -179,7 +189,7 @@ const SignupForm = ({
               : 'none'
           }
           shapeTransform="translate(50, 50) scale(.75)"
-          width="70%"
+          width="50%"
           margin="auto"
         />
       </Col>

@@ -7,4 +7,13 @@ const BaseHeader = styled.h1`
   letter-spacing: 2px;
 `;
 
-export default BaseHeader;
+const BigHeader = styled.h1`
+  font-size: 350px !important;
+  letter-spacing: 1px;
+  @media (max-height: 1199px) {
+    font-size: 150px !important;
+  }
+`;
+
+
+export { BaseHeader, BigHeader };

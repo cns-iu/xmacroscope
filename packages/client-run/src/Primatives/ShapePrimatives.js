@@ -19,10 +19,16 @@ const ShapeWrapper = styled.div`
     (props.color === 'none' ? `${dashedOutline}` : `${solidOutline}`)};
   transition: all 1s ease-in-out;
   svg {
-    padding: 40px;
+    padding: 20px;
   }
   path {
     transition: all 1s ease-in-out;
+  }
+  @media (max-height: 1199px) {
+    width: 40%;
+    svg {
+    padding: 10px;
+    }
   }
 `;
 

@@ -19,26 +19,28 @@ class DisplayShape extends PureComponent {
       star: 'M0,-66.73878525749795L14.983790851776883,-20.623418828507067L63.472356608766354,-20.62341882850707L24.244282878494737,7.87744502826516L39.228073730271625,53.99281145725604L1.7763568394002505e-15,25.49194760048381L-39.22807373027161,53.992811457256046L-24.244282878494733,7.877445028265164L-63.47235660876636,-20.623418828507056L-14.983790851776886,-20.623418828507063Z',
     };
     return (
-      <ShapeWrapper
-        color={color}
-        shape={formatShape}
-        margin={margin}
-        width={width}
-      >
-        <svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
+      <div className="d-flex">
+        <ShapeWrapper
+          color={color}
+          shape={formatShape}
+          margin={margin}
+          width={width}
         >
-          <g transform={shapeTransform}>
-            <path
-              d={shapeSVGPaths[formatShape]}
-              style={shapeStyle}
-            />
-          </g>
-        </svg>
-      </ShapeWrapper>
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+          >
+            <g transform={shapeTransform}>
+              <path
+                d={shapeSVGPaths[formatShape]}
+                style={shapeStyle}
+              />
+            </g>
+          </svg>
+        </ShapeWrapper>
+      </div>
     );
   }
 }

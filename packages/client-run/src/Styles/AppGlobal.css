@@ -23,24 +23,19 @@ html {
 body {
   height: 100%;
   font-family: 'Avenir Next Condensed', sans-serif;
-  font-size: 26px;
+  font-size: 20px;
 }
 
-.container-fluid {
+.base-container{
   background-image: url('./images/selection_bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .signup-form label {
   font-size: 1.5em;
 }
 
-h1 {
-  font-size: 64px !important;
-}
-
-h1.go {
-  font-size: 400px !important;
-}
