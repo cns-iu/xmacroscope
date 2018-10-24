@@ -4,7 +4,12 @@ import { Field } from 'formik';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
+import CustomInputHOC from '../Components/CustomInputHOC';
+import ButtonsInput from '../Components/ButtonsInput';
 import { StyledButton } from '../Primatives/BasePrimatives';
+
+
+const AgeInput = CustomInputHOC(FormField, ButtonsInput);
 
 // Our inner form component which receives our form's state and updater methods
 // as props
@@ -23,41 +28,14 @@ const SignupForm = ({
   >
     <Row>
       <Col lg={6}>
-        <FormGroup>
-          <Label>What age group are you in?</Label>
-          <Field
-            className="form-control form-control-lg"
-            name="ageGroup"
-            component="select"
-            type="text"
-            value={values.ageGroup}
-            required
-          >
-            <option
-              className={Object.prototype.hasOwnProperty.call(
-            values,
-            'age_group',
-          ) ? 'd-none' : ''}
-              value="none"
-            > -- select an option --
-            </option>
-            {personOptions.ageGroups.map(item => (
-              <option
-                key={item}
-                value={item}
-              >
-                {item}
-              </option>
-        ))}
-          </Field>
-          {/* Validation feedback */}
-          {
-        touched[name] && errors[name] &&
-        <div>
-            {errors[name]}
-        </div>
-      }
-        </FormGroup>
+        <AgeInput
+          className="form-control form-control-lg"
+          name="ageGroup"
+          label="What age group are you in?"
+          errors={errors}
+          touched={touched}
+          value={values.ageGroup}
+        />
       </Col>
       <Col lg={6}>
         <FormGroup>
