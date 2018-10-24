@@ -5,11 +5,11 @@ import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
-import ButtonsInput from '../Components/ButtonsInput';
+import ControlGroupBtns from '../Components/ControlGroupBtns';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
 
-const AgeInput = CustomInputHOC(FormField, ButtonsInput);
+const AgeInput = CustomInputHOC(FormField, ControlGroupBtns);
 
 // Our inner form component which receives our form's state and updater methods
 // as props
@@ -35,6 +35,7 @@ const SignupForm = ({
           errors={errors}
           touched={touched}
           value={values.ageGroup}
+          options={personOptions.ageGroups}
         />
       </Col>
       <Col lg={6}>

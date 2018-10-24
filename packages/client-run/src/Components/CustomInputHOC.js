@@ -7,6 +7,7 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz) => {
       inputValue: '',
     }
     updateInputValue = (value) => {
+      console.log(value);
       this.setState = ({ inputValue: value });
     }
     render() {
