@@ -13,6 +13,7 @@ import { StyledButton } from '../Primatives/BasePrimatives';
 // as props
 
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns);
+const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns);
 
 const SignupForm = ({
   values,
@@ -39,34 +40,16 @@ const SignupForm = ({
         />
       </Col>
       <Col lg={6}>
-        <FormGroup>
-          <Label>What&apos;s your favorite activity?</Label>
-          <Field
-            className="form-control form-control-lg"
-            name="favoriteActivity"
-            component="select"
-            type="text"
-            value={values.favoriteActivity}
-            required
-          >
-            <option
-              className={
-                Object.prototype.hasOwnProperty.call(values, 'favoriteActivity')
-                  ? 'd-none'
-                  : ''
-              }
-              value="none"
-            >
-              {' '}
-              -- select an option --
-            </option>
-            {personOptions.favoriteActivity.map(item => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </Field>
-        </FormGroup>
+        <ActivityInput
+          className="form-control form-control-lg"
+          name="favoriteActivity"
+          label="What's your favorite activity?"
+          errors={errors}
+          touched={touched}
+          type="hidden"
+          options={personOptions.favoriteActivity}
+          setInput={setFieldValue}
+        />
       </Col>
     </Row>
     <Row>

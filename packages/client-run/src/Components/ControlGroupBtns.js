@@ -4,7 +4,7 @@ import { Button, ButtonGroup } from 'reactstrap';
 import { StyledBTN } from '../Primatives/BasePrimatives';
 
 const ControlGroupBtns = props => (
-  <ButtonGroup size="lg">
+  <ButtonGroup size="lg pb-4">
     {
       props.options.map(opt => (
         <StyledBTN
