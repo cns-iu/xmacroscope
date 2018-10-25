@@ -24,7 +24,6 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz) => {
         <Fragment>
           <WrappedComponentUno
             value={value}
-            ref={this.textInput}
             {...this.props}
           />
           <WrappedComponentDoz

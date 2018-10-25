@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { Button, CardHeader, Card } from 'reactstrap';
-import { sportsGray, sportsOrange, sportsTransGray } from './BaseConfigsVariables';
+import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
 
 
+const selected = `
+color: ${sportsGray};
+background: ${sportsYellow};
+border-color: ${sportsYellow};
+`;
 const BaseHeader = styled.h1`
   color: white;
   font-weight: 900;
@@ -29,9 +34,19 @@ const StyledButton = styled(Button)`
 const StyledCardHeader = styled(CardHeader)`
   background-color: ${sportsOrange};
 `;
+
+const StyledBTN = styled(Button)`
+  color: ${sportsYellow};
+  border-color: ${sportsYellow};
+  background: none;
+  ${props => (props.selected ? `${selected}` : '')}
+  &:hover{
+   ${selected}
+  }
+`;
 const StyledCard = styled(Card)`
   background-color: ${sportsTransGray};
 `;
 
 
-export { BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard };
+export { BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard, StyledBTN };

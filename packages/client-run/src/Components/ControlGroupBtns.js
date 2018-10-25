@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, ButtonGroup } from 'reactstrap';
+import { StyledBTN } from '../Primatives/BasePrimatives';
 
 const ControlGroupBtns = props => (
   <ButtonGroup size="lg">
     {
       props.options.map(opt => (
-        <Button key={opt} onClick={() => { props.updateInputValue(opt); }} outline color="success">
+        <StyledBTN
+          selected={opt === props.value}
+          key={opt}
+          onClick={() => { props.updateInputValue(opt); }}
+        >
           {opt}
-        </Button>
+        </StyledBTN>
       ))
     }
   </ButtonGroup>
@@ -16,6 +21,7 @@ const ControlGroupBtns = props => (
 
 ControlGroupBtns.propTypes = {
   options: PropTypes.array.isRequired,
+  value: PropTypes.string,
 };
 
 
