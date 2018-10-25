@@ -9,10 +9,11 @@ import ControlGroupBtns from '../Components/ControlGroupBtns';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
 
-const AgeInput = CustomInputHOC(FormField, ControlGroupBtns);
-
 // Our inner form component which receives our form's state and updater methods
 // as props
+
+const AgeInput = CustomInputHOC(FormField, ControlGroupBtns);
+
 const SignupForm = ({
   values,
   errors,
@@ -21,11 +22,9 @@ const SignupForm = ({
   handleBlur,
   handleSubmit,
   isSubmitting,
+  setFieldValue,
 }) => (
-  <Form
-    onSubmit={handleSubmit}
-    className="signup-form"
-  >
+  <Form onSubmit={handleSubmit} className="signup-form">
     <Row>
       <Col lg={6}>
         <AgeInput
@@ -34,8 +33,9 @@ const SignupForm = ({
           label="What age group are you in?"
           errors={errors}
           touched={touched}
-          value={values.ageGroup}
+          type="hidden"
           options={personOptions.ageGroups}
+          setInput={setFieldValue}
         />
       </Col>
       <Col lg={6}>
@@ -50,21 +50,21 @@ const SignupForm = ({
             required
           >
             <option
-              className={Object.prototype.hasOwnProperty.call(
-            values,
-            'favoriteActivity',
-          ) ? 'd-none' : ''}
+              className={
+                Object.prototype.hasOwnProperty.call(values, 'favoriteActivity')
+                  ? 'd-none'
+                  : ''
+              }
               value="none"
-            > -- select an option --
+            >
+              {' '}
+              -- select an option --
             </option>
             {personOptions.favoriteActivity.map(item => (
-              <option
-                key={item}
-                value={item}
-              >
+              <option key={item} value={item}>
                 {item}
               </option>
-        ))}
+            ))}
           </Field>
         </FormGroup>
       </Col>
@@ -109,19 +109,16 @@ const SignupForm = ({
           >
             <option
               className={
-                Object.prototype.hasOwnProperty.call(
-                  values,
-                  'color',
-                ) ? 'd-none' : ''
+                Object.prototype.hasOwnProperty.call(values, 'color')
+                  ? 'd-none'
+                  : ''
               }
               value="none"
-            >-- select an option --
+            >
+              -- select an option --
             </option>
             {personOptions.colors.map(item => (
-              <option
-                key={item.hexValue}
-                value={item.hexValue}
-              >
+              <option key={item.hexValue} value={item.hexValue}>
                 {item.name}
               </option>
             ))}
@@ -138,18 +135,18 @@ const SignupForm = ({
             required
           >
             <option
-              className={Object.prototype.hasOwnProperty.call(
-                values,
-                'shape',
-              ) ? 'd-none' : ''}
+              className={
+                Object.prototype.hasOwnProperty.call(values, 'shape')
+                  ? 'd-none'
+                  : ''
+              }
               value="none"
-            > -- select an option --
+            >
+              {' '}
+              -- select an option --
             </option>
             {personOptions.shapes.map(item => (
-              <option
-                key={item}
-                value={item}
-              >
+              <option key={item} value={item}>
                 {item}
               </option>
             ))}
@@ -174,10 +171,7 @@ const SignupForm = ({
         />
       </Col>
     </Row>
-    <Col
-      sm={12}
-      className="px-0 pt-5"
-    >
+    <Col sm={12} className="px-0 pt-5">
       <StyledButton
         className="btn-lg btn-block"
         type="submit"

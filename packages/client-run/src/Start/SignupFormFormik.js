@@ -35,6 +35,7 @@ function zipCodeLookup(value) {
 }
 
 const SignupFormFormik = withFormik({
+
   validationSchema: Yup.object().shape({
     height: Yup.number()
       .typeError('height must be a number')
