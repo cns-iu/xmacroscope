@@ -18,6 +18,7 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz) => {
       this.setState({ value });
       this.props.setInput(`${this.props.name}`, value);
     }
+
     render() {
       const { value } = this.state;
       return (

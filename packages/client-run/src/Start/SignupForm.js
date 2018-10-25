@@ -1,11 +1,14 @@
 import React from 'react';
-import { Form, Label, FormGroup, Row, Col } from 'reactstrap';
+import {
+  Form, Label, FormGroup, Row, Col,
+} from 'reactstrap';
 import { Field } from 'formik';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
 import ControlGroupBtns from '../Components/ControlGroupBtns';
+import ControlSlider from '../Components/ControlSlider';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
 
@@ -14,6 +17,7 @@ import { StyledButton } from '../Primatives/BasePrimatives';
 
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns);
+const HeightInput = CustomInputHOC(FormField, ControlSlider);
 
 const SignupForm = ({
   values,
@@ -54,13 +58,14 @@ const SignupForm = ({
     </Row>
     <Row>
       <Col lg={6}>
-        <FormField
+        <HeightInput
           className="form-control form-control-lg"
-          name="height"
-          label="How many inches tall are you?"
+          name="favoriteActivity"
+          label="What's your height?"
           errors={errors}
           touched={touched}
-          value={values.height}
+          type="hidden"
+          setInput={setFieldValue}
         />
       </Col>
       <Col lg={6}>
