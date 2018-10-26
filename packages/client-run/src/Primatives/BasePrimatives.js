@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Button, CardHeader, Card } from 'reactstrap';
-import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
+import {
+  sportsGray, sportsOrange, sportsTransGray, sportsYellow,
+} from './BaseConfigsVariables';
 
 
 const selected = `
@@ -49,4 +51,6 @@ const StyledCard = styled(Card)`
 `;
 
 
-export { BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard, StyledBTN };
+export {
+  BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard, StyledBTN,
+};

@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ShapeWrapper from '../Primatives/ShapePrimatives';
+import { ShapeWrapper, ShapeWrapperControl } from '../Primatives/ShapePrimatives';
 
 class DisplayShape extends PureComponent {
   render() {
     const {
-      color, shape, shapeTransform, margin, width,
+      color, shape, shapeTransform, margin, width, type,
+      value, selected, updateInputValue,
     } = this.props;
     const formatShape = shape === 'triangle-up' ? 'triangle' : shape;
     const shapeStyle = {
@@ -20,26 +21,56 @@ class DisplayShape extends PureComponent {
     };
     return (
       <div className="d-flex">
-        <ShapeWrapper
-          color={color}
-          shape={formatShape}
-          margin={margin}
-          width={width}
-        >
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            <g transform={shapeTransform}>
-              <path
-                d={shapeSVGPaths[formatShape]}
-                style={shapeStyle}
-              />
-            </g>
-          </svg>
-        </ShapeWrapper>
+        {
+          type === 'controlDisplay'
+            ? (
+              <ShapeWrapperControl
+                selected={selected}
+                onClick={() => { updateInputValue(value); }}
+                color={color}
+                shape={formatShape}
+                margin={margin}
+                width={width}
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <g transform={shapeTransform}>
+                    <path
+                      d={shapeSVGPaths[formatShape]}
+                      style={shapeStyle}
+                    />
+                  </g>
+                </svg>
+              </ShapeWrapperControl>
+            )
+            : (
+              <ShapeWrapper
+                type
+                color={color}
+                shape={formatShape}
+                margin={margin}
+                width={width}
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <g transform={shapeTransform}>
+                    <path
+                      d={shapeSVGPaths[formatShape]}
+                      style={shapeStyle}
+                    />
+                  </g>
+                </svg>
+              </ShapeWrapper>
+            )
+        }
       </div>
     );
   }
@@ -52,6 +83,9 @@ DisplayShape.propTypes = {
   shapeTransform: PropTypes.string.isRequired,
   margin: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
+  updateInputValue: PropTypes.func,
+  value: PropTypes.string,
+  selected: PropTypes.bool,
 };
 
 export default DisplayShape;

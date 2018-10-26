@@ -9,6 +9,7 @@ import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
 import ControlGroupBtns from '../Components/ControlGroupBtns';
 import ControlSlider from '../Components/ControlSlider';
+import ControlShape from '../Components/ControlShape';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
@@ -19,6 +20,7 @@ import { StyledButton } from '../Primatives/BasePrimatives';
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
+const ShapeInput = CustomInputHOC(FormField, ControlShape, ErrorFeedBack);
 
 const SignupForm = ({
   values,
@@ -114,34 +116,16 @@ const SignupForm = ({
             ))}
           </Field>
         </FormGroup>
-        <FormGroup>
-          <Label>Select Shape</Label>
-          <Field
-            className="form-control form-control-lg"
-            name="shape"
-            component="select"
-            type="text"
-            value={values.shapes}
-            required
-          >
-            <option
-              className={
-                Object.prototype.hasOwnProperty.call(values, 'shape')
-                  ? 'd-none'
-                  : ''
-              }
-              value="none"
-            >
-              {' '}
-              -- select an option --
-            </option>
-            {personOptions.shapes.map(item => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </Field>
-        </FormGroup>
+        <ShapeInput
+          className="form-control form-control-lg"
+          name="shape"
+          label="Select Shape"
+          errors={errors}
+          touched={touched}
+          type="hidden"
+          options={personOptions.shapes}
+          setInput={setFieldValue}
+        />
       </Col>
       <Col md={6} className="align-self-center">
         <DisplayShape
@@ -158,6 +142,7 @@ const SignupForm = ({
           shapeTransform="translate(50, 50) scale(.75)"
           width="50%"
           margin="auto"
+          type="viewDisplay"
         />
       </Col>
     </Row>
