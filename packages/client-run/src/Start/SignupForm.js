@@ -9,15 +9,16 @@ import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
 import ControlGroupBtns from '../Components/ControlGroupBtns';
 import ControlSlider from '../Components/ControlSlider';
+import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
 
 // Our inner form component which receives our form's state and updater methods
 // as props
 
-const AgeInput = CustomInputHOC(FormField, ControlGroupBtns);
-const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns);
-const HeightInput = CustomInputHOC(FormField, ControlSlider);
+const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
+const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
+const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
 
 const SignupForm = ({
   values,
@@ -53,6 +54,7 @@ const SignupForm = ({
           type="hidden"
           options={personOptions.favoriteActivity}
           setInput={setFieldValue}
+          visible
         />
       </Col>
     </Row>
@@ -60,7 +62,7 @@ const SignupForm = ({
       <Col lg={6}>
         <HeightInput
           className="form-control form-control-lg"
-          name="favoriteActivity"
+          name="height"
           label="What's your height?"
           errors={errors}
           touched={touched}
