@@ -13,6 +13,23 @@ border: 2px dashed;
 const solidOutlineControl = `
 border: 3px solid;
 `;
+const ControlColorsContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1em;
+`;
+const ControlColor = styled.div`
+  margin: auto;
+  display: flex;
+  color: ${props => props.color};
+  justify-content: space-around;
+  width: ${props => props.width};
+  height: ${props => props.width};
+  ${props => (props.selected ? 'background: none' : `background: ${props.color}`)};
+  ${props => (props.selected ? `${solidOutlineControl}` : '')};
+  border-radius: 50%;
+  transition: all 1s ease-in-out;
+`;
 const ControlShapesContainer = styled.div`
   display: flex;
   justify-content: space-around;
@@ -61,5 +78,5 @@ const ShapeWrapper = styled.div`
 `;
 
 export {
-  ShapeWrapper, ControlShapesContainer, ShapeWrapperControl,
+  ShapeWrapper, ControlShapesContainer, ShapeWrapperControl, ControlColorsContainer, ControlColor,
 };

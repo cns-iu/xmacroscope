@@ -9,7 +9,8 @@ import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
 import ControlGroupBtns from '../Components/ControlGroupBtns';
 import ControlSlider from '../Components/ControlSlider';
-import ControlShape from '../Components/ControlShape';
+import ControlShapes from '../Components/ControlShapes';
+import ControlColors from '../Components/ControlColors';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
@@ -20,7 +21,8 @@ import { StyledButton } from '../Primatives/BasePrimatives';
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
-const ShapeInput = CustomInputHOC(FormField, ControlShape, ErrorFeedBack);
+const ShapeInput = CustomInputHOC(FormField, ControlShapes, ErrorFeedBack);
+const ColorInput = CustomInputHOC(FormField, ControlColors, ErrorFeedBack);
 
 const SignupForm = ({
   values,
@@ -90,32 +92,16 @@ const SignupForm = ({
     </Row>
     <Row>
       <Col md={6}>
-        <FormGroup>
-          <Label>Select Color</Label>
-          <Field
-            className="form-control form-control-lg"
-            name="color"
-            component="select"
-            type="text"
-            required
-          >
-            <option
-              className={
-                Object.prototype.hasOwnProperty.call(values, 'color')
-                  ? 'd-none'
-                  : ''
-              }
-              value="none"
-            >
-              -- select an option --
-            </option>
-            {personOptions.colors.map(item => (
-              <option key={item.hexValue} value={item.hexValue}>
-                {item.name}
-              </option>
-            ))}
-          </Field>
-        </FormGroup>
+        <ColorInput
+          className="form-control form-control-lg"
+          name="color"
+          label="Select Color"
+          errors={errors}
+          touched={touched}
+          type="hidden"
+          options={personOptions.colors}
+          setInput={setFieldValue}
+        />
         <ShapeInput
           className="form-control form-control-lg"
           name="shape"
