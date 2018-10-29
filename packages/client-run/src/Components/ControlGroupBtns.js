@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup } from 'reactstrap';
+import { ButtonGroup } from 'reactstrap';
 import { StyledBTN } from '../Primatives/BasePrimatives';
 
 const ControlGroupBtns = props => (
@@ -20,8 +20,12 @@ const ControlGroupBtns = props => (
 );
 
 ControlGroupBtns.propTypes = {
-  options: PropTypes.array.isRequired,
-  value: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  value: PropTypes.string,
+};
+ControlGroupBtns.defaultProps = {
+  options: ['ss'],
+  value: '',
 };
 
 

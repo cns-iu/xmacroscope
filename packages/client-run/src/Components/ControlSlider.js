@@ -40,7 +40,6 @@ const ControlGroupBtns = (props) => {
 };
 
 ControlGroupBtns.propTypes = {
-  options: PropTypes.array.isRequired,
   value: PropTypes.string,
 };
 

@@ -8,7 +8,7 @@ const ControlShapes = props => (
     {
       props.options.map(opt => (
         <DisplayShape
-          type="controlDisplay"
+          typeDisplay="controlDisplay"
           selected={opt === props.value}
           key={opt}
           value={opt}
@@ -25,9 +25,9 @@ const ControlShapes = props => (
 );
 
 ControlShapes.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
   value: PropTypes.string.isRequired,
-  updateInputValue: PropTypes.updateInputValue,
+  updateInputValue: PropTypes.func.isRequired,
 };
 
 

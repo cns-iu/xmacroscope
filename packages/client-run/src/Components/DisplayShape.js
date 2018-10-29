@@ -5,7 +5,7 @@ import { ShapeWrapper, ShapeWrapperControl } from '../Primatives/ControlPrimativ
 class DisplayShape extends PureComponent {
   render() {
     const {
-      color, shape, shapeTransform, margin, width, type,
+      color, shape, shapeTransform, margin, width, typeDisplay,
       value, selected, updateInputValue,
     } = this.props;
     const formatShape = shape === 'triangle-up' ? 'triangle' : shape;
@@ -22,54 +22,53 @@ class DisplayShape extends PureComponent {
     return (
       <div className="d-flex">
         {
-          type === 'controlDisplay'
-            ? (
-              <ShapeWrapperControl
-                selected={selected}
-                onClick={() => { updateInputValue(value); }}
-                color={color}
-                shape={formatShape}
-                margin={margin}
-                width={width}
-              >
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <g transform={shapeTransform}>
-                    <path
-                      d={shapeSVGPaths[formatShape]}
-                      style={shapeStyle}
-                    />
-                  </g>
-                </svg>
-              </ShapeWrapperControl>
-            )
-            : (
-              <ShapeWrapper
-                type
-                color={color}
-                shape={formatShape}
-                margin={margin}
-                width={width}
-              >
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <g transform={shapeTransform}>
-                    <path
-                      d={shapeSVGPaths[formatShape]}
-                      style={shapeStyle}
-                    />
-                  </g>
-                </svg>
-              </ShapeWrapper>
-            )
+           typeDisplay === 'controlDisplay'
+             ? (
+               <ShapeWrapperControl
+                 selected={selected}
+                 onClick={() => { updateInputValue(value); }}
+                 color={color}
+                 shape={formatShape}
+                 margin={margin}
+                 width={width}
+               >
+                 <svg
+                   width="100%"
+                   height="100%"
+                   viewBox="0 0 100 100"
+                   preserveAspectRatio="none"
+                 >
+                   <g transform={shapeTransform}>
+                     <path
+                       d={shapeSVGPaths[formatShape]}
+                       style={shapeStyle}
+                     />
+                   </g>
+                 </svg>
+               </ShapeWrapperControl>
+             )
+             : (
+               <ShapeWrapper
+                 color={color}
+                 shape={formatShape}
+                 margin={margin}
+                 width={width}
+               >
+                 <svg
+                   width="100%"
+                   height="100%"
+                   viewBox="0 0 100 100"
+                   preserveAspectRatio="none"
+                 >
+                   <g transform={shapeTransform}>
+                     <path
+                       d={shapeSVGPaths[formatShape]}
+                       style={shapeStyle}
+                     />
+                   </g>
+                 </svg>
+               </ShapeWrapper>
+             )
         }
       </div>
     );
@@ -86,6 +85,14 @@ DisplayShape.propTypes = {
   updateInputValue: PropTypes.func,
   value: PropTypes.string,
   selected: PropTypes.bool,
+  typeDisplay: PropTypes.string.isRequired,
+};
+
+DisplayShape.defaultProps = {
+  updateInputValue: () => {
+  },
+  value: '',
+  selected: false,
 };
 
 export default DisplayShape;

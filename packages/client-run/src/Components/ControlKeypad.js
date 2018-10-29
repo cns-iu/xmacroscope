@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup } from 'reactstrap';
-import { StyledBTN } from '../Primatives/BasePrimatives';
 import { ControlKeypadContainer, KeyInput } from '../Primatives/ControlPrimatives';
 
 const ControlKeypad = props => (
@@ -9,7 +7,7 @@ const ControlKeypad = props => (
     {
       props.options.map((opt, index) => (
         <KeyInput
-          hide={opt === '.'}
+          hide={opt === '.' ? 'hide' : 'show'}
           dimension="50px"
           key={opt + index}
           onClick={() => { opt === 'DEL' ? props.clearInput() : props.updateInputValueConcat(opt); }}
@@ -22,8 +20,8 @@ const ControlKeypad = props => (
 );
 
 ControlKeypad.propTypes = {
-  options: PropTypes.array.isRequired,
-  value: PropTypes.string.isRequired,
+  options: PropTypes.array,
+  value: PropTypes.string,
 };
 
 

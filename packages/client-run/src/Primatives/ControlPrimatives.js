@@ -26,7 +26,7 @@ const ControlKeypadContainer = styled.div`
   margin: auto;
 `;
 const KeyInput = styled(Button)`
-  ${props => (props.hide ? 'visibility: hidden' : '')};
+  ${props => (props.hide === 'hide' ? 'visibility: hidden' : '')};
   color: ${sportsYellow};
   border-color: ${sportsYellow};
   background: none;
