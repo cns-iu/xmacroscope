@@ -60,7 +60,7 @@ const ControlShapesContainer = styled.div`
 `;
 const ShapeWrapperControl = styled.div`
   background: none;
-  color: ${props => props.color};
+  color: ${sportsYellow};
   ${props => (props.selected ? `${solidOutlineControl}` : `${dashedOutlineControl}`)};
   text-align: center;
   margin: ${props => props.margin};

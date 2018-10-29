@@ -13,7 +13,7 @@ const ControlShapes = props => (
           key={opt}
           value={opt}
           updateInputValue={props.updateInputValue}
-          color="black"
+          color="#fdff5f"
           shape={opt}
           shapeTransform="translate(50, 50) scale(.75)"
           width="60px"
