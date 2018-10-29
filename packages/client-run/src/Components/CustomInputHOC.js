@@ -10,8 +10,9 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
       this.state = {
         value: '',
       };
-
       this.updateInputValue = this.updateInputValue.bind(this);
+      this.updateInputValueConcat = this.updateInputValueConcat.bind(this);
+      this.clearInput = this.clearInput.bind(this);
     }
 
     updateInputValue = (value) => {
@@ -19,6 +20,21 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
       this.setState({ value });
       setInput(`${name}`, value);
     }
+
+    updateInputValueConcat = (value) => {
+      const { setInput, name } = this.props;
+      const valueCurrent = this.state.value;
+      const updatedValue = valueCurrent + value;
+      this.setState({ value: updatedValue });
+      setInput(`${name}`, updatedValue);
+    }
+
+    clearInput = () => {
+      const { setInput, name } = this.props;
+      this.setState({ value: '' });
+      setInput(`${name}`, '');
+    }
+
 
     render() {
       const { value } = this.state;
@@ -30,7 +46,9 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
           />
           <WrappedComponentDoz
             value={value}
+            updateInputValueConcat={this.updateInputValueConcat}
             updateInputValue={this.updateInputValue}
+            clearInput={this.clearInput}
             {...this.props}
           />
           <WrappedComponentTre

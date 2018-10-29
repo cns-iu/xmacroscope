@@ -79,12 +79,12 @@ const SignupForm = ({
       <Col lg={6}>
         <ZipCodeInput
           className="form-control form-control-lg"
-          name="zipcode"
-          label="What's your Zip Code"
+          name="zipCode"
+          label="What's your Zip Code?"
           errors={errors}
           touched={touched}
-          options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '.']}
-          type="text"
+          options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'DEL']}
+          type="hidden"
           setInput={setFieldValue}
         />
       </Col>

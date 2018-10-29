@@ -7,12 +7,12 @@ import { ControlKeypadContainer, KeyInput } from '../Primatives/ControlPrimative
 const ControlKeypad = props => (
   <ControlKeypadContainer>
     {
-      props.options.map(opt => (
+      props.options.map((opt, index) => (
         <KeyInput
           hide={opt === '.'}
           dimension="50px"
-          key={opt}
-          onClick={() => { props.updateInputValue(opt); }}
+          key={opt + index}
+          onClick={() => { opt === 'DEL' ? props.clearInput() : props.updateInputValueConcat(opt); }}
         >
           {opt}
         </KeyInput>
