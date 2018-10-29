@@ -58,5 +58,11 @@ body {
   .signup-form label {
     font-size: 1.25em;
   }
+  .displayTimer{
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 }
 
