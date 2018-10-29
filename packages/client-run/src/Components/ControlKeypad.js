@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { ControlKeypadContainer, KeyInput } from '../Primatives/ControlPrimatives';
 
 const ControlKeypad = props => (
-  <ControlKeypadContainer>
-    {
+  <Fragment>
+    <ControlKeypadContainer>
+      {
       props.options.map((opt, index) => (
         <KeyInput
           hide={opt === '.' ? 'hide' : 'show'}
@@ -16,7 +18,11 @@ const ControlKeypad = props => (
         </KeyInput>
       ))
     }
-  </ControlKeypadContainer>
+    </ControlKeypadContainer>
+    <Col sm={12} className="pt-3">
+      <h4>{props.value.length ? `Zip Code: ${props.value}` : ''}</h4>
+    </Col>
+  </Fragment>
 );
 
 ControlKeypad.propTypes = {
