@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ShapeWrapper, ShapeWrapperControl } from '../Primatives/ShapePrimatives';
+import { ShapeWrapper, ShapeWrapperControl } from '../Primatives/ControlPrimatives';
 
 class DisplayShape extends PureComponent {
   render() {

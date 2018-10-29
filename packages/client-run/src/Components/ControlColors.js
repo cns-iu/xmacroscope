@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ControlColor, ControlColorsContainer } from '../Primatives/ShapePrimatives';
+import { ControlColor, ControlColorsContainer } from '../Primatives/ControlPrimatives';
 
 const ControlColors = props => (
   <ControlColorsContainer className="pb-4">

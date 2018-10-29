@@ -42,12 +42,12 @@ class SignupStartPage extends React.Component {
                       }
 
                   {{
-                        signupForm: <SignupFormFormik />,
-                        runTimerPre: <RunningTimerPre person={person} />,
-                        running: <Running />,
-                        postRunTimer: <RunningTimerPost />,
-                        falseStart: <div>False start</div>,
-                      }[activeRun.status]}
+                    signupForm: <SignupFormFormik />,
+                    runTimerPre: <RunningTimerPre person={person} />,
+                    running: <Running />,
+                    postRunTimer: <RunningTimerPost />,
+                    falseStart: <div>False start</div>,
+                  }[activeRun.status]}
 
                 </Fragment>
               }

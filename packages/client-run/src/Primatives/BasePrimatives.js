@@ -15,12 +15,15 @@ const BaseHeader = styled.h1`
   font-weight: 900;
   letter-spacing: 2px;
   font-size: 65px;
+  @media (max-height: 950px) {
+    font-size: 40px !important;
+  }
 `;
 
 const BigHeader = styled.h1`
   font-size: 350px !important;
   letter-spacing: 1px;
-  @media (max-height: 1199px) {
+  @media (max-height: 950px) {
     font-size: 150px !important;
   }
 `;
@@ -32,6 +35,9 @@ const StyledButton = styled(Button)`
   border: none;
   font-weight: bold;
   font-size: 50px;
+  @media (max-height: 950px) {
+    font-size: 30px !important;
+  }
 `;
 const StyledCardHeader = styled(CardHeader)`
   background-color: ${sportsOrange};
@@ -53,4 +59,5 @@ const StyledCard = styled(Card)`
 
 export {
   BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard, StyledBTN,
+  selected,
 };

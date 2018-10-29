@@ -6,7 +6,7 @@ import AppRoutes from './AppRoutes';
 
 const App = () => (
   <BrowserRouter>
-    <div className="base-container h-100">
+    <div className="base-container">
       <Container fluid>
         <AppRoutes />
       </Container>

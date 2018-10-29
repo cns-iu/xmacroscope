@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import { Button, CardHeader, Card } from 'reactstrap';
+import { selected } from './BasePrimatives';
+import {
+  sportsGray, sportsOrange, sportsTransGray, sportsYellow,
+} from './BaseConfigsVariables';
 
 const dashedOutline = `
 border: 8px dashed white;
@@ -12,6 +17,25 @@ border: 2px dashed;
 `;
 const solidOutlineControl = `
 border: 3px solid;
+`;
+const ControlKeypadContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  max-width: 250px;
+  margin: auto;
+`;
+const KeyInput = styled(Button)`
+  ${props => (props.hide ? 'visibility: hidden' : '')};
+  color: ${sportsYellow};
+  border-color: ${sportsYellow};
+  background: none;
+  width: ${props => props.dimension};
+  height: ${props => props.dimension};
+  margin: auto;
+  &:hover{
+   ${selected}
+  }
 `;
 const ControlColorsContainer = styled.div`
   display: grid;
@@ -68,7 +92,7 @@ const ShapeWrapper = styled.div`
   path {
     transition: all 1s ease-in-out;
   }
-  @media (max-height: 1199px) {
+  @media (max-height: 950px) {
     width: ${props => props.width};
     max-width: 300px;
     svg {
@@ -78,5 +102,6 @@ const ShapeWrapper = styled.div`
 `;
 
 export {
-  ShapeWrapper, ControlShapesContainer, ShapeWrapperControl, ControlColorsContainer, ControlColor,
+  ShapeWrapper, ControlShapesContainer, ShapeWrapperControl,
+  ControlColorsContainer, ControlColor, ControlKeypadContainer, KeyInput,
 };

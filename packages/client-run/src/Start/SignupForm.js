@@ -11,6 +11,7 @@ import ControlGroupBtns from '../Components/ControlGroupBtns';
 import ControlSlider from '../Components/ControlSlider';
 import ControlShapes from '../Components/ControlShapes';
 import ControlColors from '../Components/ControlColors';
+import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
@@ -20,6 +21,7 @@ import { StyledButton } from '../Primatives/BasePrimatives';
 
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
+const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
 const ShapeInput = CustomInputHOC(FormField, ControlShapes, ErrorFeedBack);
 const ColorInput = CustomInputHOC(FormField, ControlColors, ErrorFeedBack);
@@ -75,13 +77,15 @@ const SignupForm = ({
         />
       </Col>
       <Col lg={6}>
-        <FormField
+        <ZipCodeInput
           className="form-control form-control-lg"
-          name="zipCode"
+          name="zipcode"
           label="What's your Zip Code"
           errors={errors}
           touched={touched}
-          value={values.zipCode}
+          options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '.']}
+          type="text"
+          setInput={setFieldValue}
         />
       </Col>
     </Row>
