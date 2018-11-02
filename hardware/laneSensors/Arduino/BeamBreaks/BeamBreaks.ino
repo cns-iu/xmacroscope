@@ -81,6 +81,7 @@ void loop() {
     // set the flag to say that we have triggered, and delay for 100ms to make
     // sure the keyboard encoder has time to see the activation.
     fired = true;
-    delay(100);
+    //delay(100);
+	delay(0); //changed delay to 0 because the sensors are not seeing activations when they are expected
   }
 }
