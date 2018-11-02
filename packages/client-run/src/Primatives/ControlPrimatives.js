@@ -92,7 +92,7 @@ const ShapeWrapper = styled.div`
   path {
     transition: all 1s ease-in-out;
   }
-  @media (max-height: 900px) {
+  @media (max-height: 960px) {
     width: ${props => props.width};
     max-width: 300px;
     svg {

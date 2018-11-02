@@ -15,7 +15,7 @@ const BaseHeader = styled.h1`
   font-weight: 900;
   letter-spacing: 2px;
   font-size: 65px;
-  @media (max-height: 900px) {
+  @media (max-height: 960px) {
     font-size: 40px !important;
   }
 `;
@@ -23,7 +23,7 @@ const BaseHeader = styled.h1`
 const BigHeader = styled.h1`
   font-size: 350px !important;
   letter-spacing: 1px;
-  @media (max-height: 900px) {
+  @media (max-height: 960px) {
     font-size: 150px !important;
   }
 `;
@@ -35,7 +35,7 @@ const StyledButton = styled(Button)`
   border: none;
   font-weight: bold;
   font-size: 50px;
-  @media (max-height: 900px) {
+  @media (max-height: 960px) {
     font-size: 30px !important;
   }
 `;
