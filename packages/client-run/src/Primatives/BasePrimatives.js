@@ -16,7 +16,7 @@ const BaseHeader = styled.h1`
   letter-spacing: 2px;
   font-size: 65px;
   @media (max-height: 1080px) {
-    font-size: 40px !important;
+    font-size: 30px !important;
   }
 `;
 
@@ -50,6 +50,9 @@ const StyledBTN = styled(Button)`
   ${props => (props.selected ? `${selected}` : '')}
   &:hover{
    ${selected}
+  }
+  @media (max-height: 1080px) {
+    max-height: 40px;
   }
 `;
 const StyledCard = styled(Card)`

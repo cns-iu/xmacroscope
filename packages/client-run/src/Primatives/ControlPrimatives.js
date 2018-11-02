@@ -33,6 +33,10 @@ const KeyInput = styled(Button)`
   width: ${props => props.dimension};
   height: ${props => props.dimension};
   margin: auto;
+  @media (max-height: 1080px) {
+    max-height: 40px;
+    max-width: 40px;
+  }
   &:hover{
    ${selected}
   }
@@ -53,6 +57,10 @@ const ControlColor = styled.div`
   ${props => (props.selected ? `${solidOutlineControl}` : '')};
   border-radius: 50%;
   transition: all 1s ease-in-out;
+  @media (max-height: 1080px) {
+    max-height: 40px;
+    max-width: 40px;
+  }
 `;
 const ControlShapesContainer = styled.div`
   display: flex;
@@ -94,7 +102,7 @@ const ShapeWrapper = styled.div`
   }
   @media (max-height: 1080px) {
     width: ${props => props.width};
-    max-width: 300px;
+    max-height: 200px;
     svg {
     padding: 10px;
     }
