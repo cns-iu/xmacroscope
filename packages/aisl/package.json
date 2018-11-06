@@ -28,7 +28,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
-    "@ngx-dino/core": "^0.0.0",
+    "@ngx-dino/core": "^0.9.0",
     "aisl-api": "^0.0.0",
     "apollo-angular": "^1.0.1",
     "apollo-cache-inmemory": "^1.1.5",

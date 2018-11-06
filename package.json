@@ -8,6 +8,7 @@
     "lerna": "^2.8.0"
   },
   "dependencies": {
+    "@angular/cli": "^7.0.3",
     "bootstrap": "^4.0.0"
   },
   "workspaces": [

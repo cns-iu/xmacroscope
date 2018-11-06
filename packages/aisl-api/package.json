@@ -12,7 +12,11 @@
   "ngPackage": {
     "lib": {
       "entryFile": "index.ts",
-      "languageLevel": ["es2017", "dom", "esnext"]
+      "languageLevel": [
+        "es2017",
+        "dom",
+        "esnext"
+      ]
     }
   },
   "dependencies": {
