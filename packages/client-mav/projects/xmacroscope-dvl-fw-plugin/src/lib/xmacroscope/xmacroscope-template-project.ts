@@ -129,31 +129,31 @@ export class XMacroscopeTemplateProject extends DefaultProject {
         recordStream: 'runs',
         graphicVariables: {
           identifier: {
-            recordSet: 'runs',
+            recordSet: 'run',
             dataVariable: 'person.id',
             graphicVariableType: 'identifier',
             graphicVariableId: 'identifier'
           },
           color: {
-            recordSet: 'runs',
+            recordSet: 'run',
             dataVariable: 'person.fixed',
             graphicVariableType: 'color',
             graphicVariableId: 'color'
           },
           x: {
-            recordSet: 'runs',
+            recordSet: 'run',
             dataVariable: 'person.time',
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
           },
           y: {
-            recordSet: 'runs',
+            recordSet: 'run',
             dataVariable: 'person.height',
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
           },
           areaSize: {
-            recordSet: 'runs',
+            recordSet: 'run',
             dataVariable: 'person.ageGroup',
             graphicVariableType: 'areaSize',
             graphicVariableId: 'areaSize'

@@ -32,16 +32,16 @@ export class MockPerson extends Person {
   @Operand(map(name => nullable(casual.first_name)))
   name: string;
 
-  @Operand(map(casual.random_element(shapes)))
+  @Operand(map(icon => casual.random_element(shapes)))
   icon: string;
 
-  @Operand(map(casual.random_element(colors)))
+  @Operand(map(color => casual.random_element(colors)))
   color: string;
 
-  @Operand(map(nullable(casual.random_element(genders))))
+  @Operand(map(gender => nullable(casual.random_element(genders))))
   gender: 'male' | 'female' | 'other';
 
-  @Operand(map(nullable(casual.random_element(ageGroups))))
+  @Operand(map(ageGroup => nullable(casual.random_element(ageGroups))))
   ageGroup: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';
 
   @Operand(map(handedness => nullable(casual.random > 0.1 ? 'right' : 'left')))
@@ -53,7 +53,7 @@ export class MockPerson extends Person {
   @Operand(map(siblings => nullable(casual.integer(0, 12))))
   siblings: number;
 
-  @Operand(map(nullable(casual.random_element(favoriteActivities))))
+  @Operand(map(favoriteActivity => nullable(casual.random_element(favoriteActivities))))
   favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
 
   constructor() {

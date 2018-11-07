@@ -35,14 +35,6 @@
       ],
       "@dvl-fw/core/*": [
         "../../../make-a-vis/dist/dvl-fw/*"
-      ],
-      "xmacroscope-dvl-fw-plugin": [
-        "dist/xmacroscope-dvl-fw-plugin",
-        "dist/xmacroscope-dvl-fw-plugin"
-      ],
-      "xmacroscope-dvl-fw-plugin/*": [
-        "dist/xmacroscope-dvl-fw-plugin/*",
-        "dist/xmacroscope-dvl-fw-plugin/*"
       ]
     }
   }
