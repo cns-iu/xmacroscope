@@ -39,10 +39,10 @@ export class Person {
   @Operand(chain(access('height'), areaSizeScale.quantitative([36, 96])))
   heightAreaSize: number;
 
-  @Operand(chain(access('ageGroup'), greyScale.qualitative(ageGroups)))
+  //@Operand(chain(access('ageGroup'), greyScale.qualitative(ageGroups)))
   ageGroupAreaSize: number;
 
-  @Operand(chain(access('favoriteActivity'), greyScale.qualitative(favoriteActivities)))
+  //@Operand(chain(access('favoriteActivity'), greyScale.qualitative(favoriteActivities)))
   favoriteActivityColor: string;
 
   @Operand(chain(access('time'), map((t: number) => t ? t / 1000.0 : 0), areaSizeScale.quantitative([1, 10])))

@@ -11,6 +11,5 @@ async function exportProject(outYAML) {
 
 const args = process.argv.slice(2);
 exportProject(args[0]).then(() => {
-  console.log("YO");
   process.exit();
 });

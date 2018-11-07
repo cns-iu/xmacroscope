@@ -54,8 +54,8 @@ export class XMacroscopeTemplateProject extends DefaultProject {
         defaultRecordStream: 'runs',
         dataVariables: [
           {id: 'selectRunner', label: 'Select Runner', dataType: 'string', scaleType: 'nominal'},
-          {id: 'time', label: 'Time', dataType: 'number', scaleType: 'linear'},
-          {id: 'height', label: 'Height', dataType: 'number', scaleType: 'linear'},
+          {id: 'time', label: 'Time (seconds)', dataType: 'number', scaleType: 'linear'},
+          {id: 'height', label: 'Height (inches)', dataType: 'number', scaleType: 'linear'},
           {id: 'favoriteActivity', label: 'Favorite Activity', dataType: 'string', scaleType: 'nominal'},
           {id: 'ageGroup', label: 'Age Group', dataType: 'string', scaleType: 'nominal'},
           {id: 'zipCode', label: 'Zip Code', dataType: 'number', scaleType: 'nominal'}
@@ -71,6 +71,9 @@ export class XMacroscopeTemplateProject extends DefaultProject {
         mappings: {
           run: {
             selectRunner: {
+              identifier: [
+                {selector: 'time'}
+              ],
               areaSize: [
                 {selector: 'showPersona'}
               ],
@@ -130,31 +133,31 @@ export class XMacroscopeTemplateProject extends DefaultProject {
         graphicVariables: {
           identifier: {
             recordSet: 'run',
-            dataVariable: 'person.id',
+            dataVariable: 'selectRunner',
             graphicVariableType: 'identifier',
             graphicVariableId: 'identifier'
           },
           color: {
             recordSet: 'run',
-            dataVariable: 'person.fixed',
+            dataVariable: 'favoriteActivity',
             graphicVariableType: 'color',
             graphicVariableId: 'color'
           },
           x: {
             recordSet: 'run',
-            dataVariable: 'person.time',
+            dataVariable: 'time',
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
           },
           y: {
             recordSet: 'run',
-            dataVariable: 'person.height',
+            dataVariable: 'height',
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
           },
           areaSize: {
             recordSet: 'run',
-            dataVariable: 'person.ageGroup',
+            dataVariable: 'ageGroup',
             graphicVariableType: 'areaSize',
             graphicVariableId: 'areaSize'
           }
