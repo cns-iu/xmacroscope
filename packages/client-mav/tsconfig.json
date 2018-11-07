@@ -15,7 +15,8 @@
     ],
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "esnext"
     ],
     "paths": {
       "@angular": [
@@ -30,11 +31,11 @@
       "rxjs/*": [
         "node_modules/rxjs/*"
       ],
-      "@dvl-fw/core": [
-        "../../../make-a-vis/dist/dvl-fw/"
+      "xmacroscope-dvl-fw-plugin": [
+        "dist/xmacroscope-dvl-fw-plugin"
       ],
-      "@dvl-fw/core/*": [
-        "../../../make-a-vis/dist/dvl-fw/*"
+      "xmacroscope-dvl-fw-plugin/*": [
+        "dist/xmacroscope-dvl-fw-plugin/*"
       ]
     }
   }
