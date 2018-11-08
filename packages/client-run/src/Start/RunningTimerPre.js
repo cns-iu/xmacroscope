@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import { Col } from 'reactstrap';
@@ -82,4 +83,9 @@ function RunningTimerPre({ person }) {
   );
 }
 
+RunningTimerPre.propTypes = {
+  person: PropTypes.object.isRequired,
+};
+
 export default RunningTimerPre;
+
