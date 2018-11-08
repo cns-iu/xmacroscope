@@ -1,17 +1,14 @@
-import { identity, Operand } from '@ngx-dino/core';
 import { Person } from './person';
 
 // @dynamic
 export class Run {
-  person: Person;
+  id: string;
   start: Date;
   end: Date;
-  // personId: ID // TODO
-  falseStart: boolean; // TODO
-  @Operand<boolean>(identity())
-  showPersona?: boolean;
+  person: Person;
 
-  constructor(data: any) {
+  constructor(data: any = {}) {
+    data.person = new Person(data.person || {});
     Object.assign(this, data);
   }
 }

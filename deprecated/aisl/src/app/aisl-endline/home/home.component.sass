@@ -1,0 +1,56 @@
+@import '~typography.sass'
+@import '~styles.sass'
+
+.divider
+  height: 10px
+
+.home-content
+  display: flex
+  flex-direction: column
+  height: 100vh
+  overflow-y: hidden
+  background-color: white
+  color: black
+
+.timer
+  height: 60vh
+  display: flex
+  justify-content: center
+  font-family: $r-mono
+  font-weight: 700
+  font-size: 400px
+  padding: 20px 0
+
+.lanes
+  height: 50vh
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  font-family: $r-mono
+  font-weight: 700
+  font-size: 150px
+  border-top: 6px solid $spring-green
+  margin-top: 40px
+
+.lane-indiv
+  flex-basis: 50%
+  background: #fefefe
+  text-align: center
+
+.lane-indiv h4
+  font-size: 40px
+  text-transform: uppercase
+  letter-spacing: 2px
+  background: #00E676
+  padding: 10px
+  color: #fff
+
+.lane-indiv:nth-of-type(2n+1)
+  border-right: 6px solid $spring-green
+
+h3
+  font-family: $r-normal
+  font-weight: 400
+
+body
+  font-family: $r-normal

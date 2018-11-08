@@ -1,5 +1,5 @@
 import { areaSizeScale, greyScale } from '@dvl-fw/core';
-import { access, chain, constant, map, Operand } from '@ngx-dino/core';
+import { access, chain, combine, constant, map, Operand } from '@ngx-dino/core';
 
 export const allShapes: string[] = ['circle', 'square', 'cross', 'diamond',
   'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star'
@@ -21,31 +21,39 @@ export const minLng = -66.9513812; // east long
 // @dynamic
 export class Person {
   id: string;
-  name: string; // DELETE
+  // Unused
+  name: string;
+  gender: 'male' | 'female' | 'other';
+  handedness: 'left' | 'right' | 'ambidextrous';
+  siblings: number;
+  // Used
   icon: string;
   color: string;
-  height: number;
-  siblings: number;
-  gender: 'male' | 'female' | 'other';
   ageGroup: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';
-  handedness: 'left' | 'right';
   favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
-  zipcode: string;
+  height: number;
+  zipCode: string;
+  state: string; // Derived from zipCode
+  latitude: number;
+  longitude: number;
 
-  // Keep, but generated from Zip Code
-  state: string;
-  latlng: number[];
+  constructor(data: any = {}) {
+    Object.assign(this, data);
+  }
+
+  @Operand(combine([access('latitude'), access('longitude')]))
+  latlng: number[]; // Derived from zipCode
 
   @Operand(chain(access('height'), areaSizeScale.quantitative([36, 96])))
   heightAreaSize: number;
 
-  //@Operand(chain(access('ageGroup'), greyScale.qualitative(ageGroups)))
+  @Operand(chain(access('ageGroup'), areaSizeScale.qualitative(ageGroups)))
   ageGroupAreaSize: number;
 
-  //@Operand(chain(access('favoriteActivity'), greyScale.qualitative(favoriteActivities)))
+  @Operand(chain(access('favoriteActivity'), greyScale.qualitative(favoriteActivities)))
   favoriteActivityColor: string;
 
-  @Operand(chain(access('time'), map((t: number) => t ? t / 1000.0 : 0), areaSizeScale.quantitative([1, 10])))
+  @Operand(chain(access<number>('time'), map(t => t ? Math.min(t / 1000.0, 10) : 0), areaSizeScale.quantitative([1, 10])))
   timeAreaSize: number;
 
   // @Operand(blahif(access('showPersona'), access('color'), constant('grey')), false)

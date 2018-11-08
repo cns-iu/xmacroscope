@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+// @import '~@angular/material/theming'
+@import '~custom-theme.sass'
+@import '~typography.sass'
+
+// Colors used throughout the screens
+$spring-green: rgb(0,230,118)
+$deep-purple: rgb(103,58,183)
+$white: rgb(255,255,255)
+
+// General Styles
+// We may not need this card style soon
+.card
+   cursor: grab
+
+h2
+  font-size: 20px
+
+h3
+  font-family: $lato // $r-normal
+  font-weight: 400
+
+body
+  font-family: $lato // $r-normal
+
+.z-depth-1-half
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2)
+
+
+// Eric Meyer CSS Reset
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+  margin: 0
+  padding: 0
+  border: 0
+  font-size: 100%
+  vertical-align: baseline
+
+/* HTML5 display-role reset for older browsers
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+  display: block
+
+body
+  line-height: 1
+  background: #000000
+  color: #FFFFFF
+
+ol, ul
+  list-style: none
+
+blockquote, q
+  quotes: none
+
+blockquote
+  &:before, &:after
+    content: ''
+    content: none
+
+q
+  &:before, &:after
+    content: ''
+    content: none
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+.mat-tab-label.mat-tab-disabled
+  color: #FFB100
+  font-weight: bold
+
+.mat-tab-nav-bar, .mat-tab-header
+  border-bottom: 0
+
+.mat-tab-label
+  height: 10vh !important
+
+/* focus style */
+.mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus,
+.mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus
+  background: none
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar
+  background: #000000
+  height: 3px

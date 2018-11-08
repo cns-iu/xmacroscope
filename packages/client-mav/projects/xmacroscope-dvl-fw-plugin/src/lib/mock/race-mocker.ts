@@ -76,8 +76,8 @@ export class RaceMocker {
     return <RaceResult>{
       lane,
       persona: new MockPerson(),
-      started: casual.coin_flip,
-      falseStart: casual.coin_flip,
+      started: !!casual.coin_flip,
+      falseStart: !!casual.coin_flip,
       timeMillis: time
     };
   }
@@ -102,17 +102,8 @@ export class RaceMocker {
 
   private sendFullRace(): void {
     const raceCompletedTime = casual.integer(1000, 4000);
-    const runSelectedMessage = this.runSelected();
+    this.runSelected();
     this.raceInitiated();
     this.raceCompleted(raceCompletedTime);
   }
-
-
-  asObservable(): Observable<RawChangeSet<Run>> {
-    throw new Error('Method not implemented.');
-  }
-  toJSON(): any {
-    return pick(this, ['id', 'label']);
-  }
 }
-

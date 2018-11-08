@@ -1,0 +1,15 @@
+<dino-color-legend 
+  [dataStream]="dataStream"
+
+  [idField]="fields.id.getBoundField('id')"
+  
+  [colorField]="colorField?.getBoundField('color:unwrapped')"
+  [categoryField]="colorField?.getBoundField('colorInput:unwrapped')"
+
+  [encoding]="''"
+  [title]="''"
+
+  [legendType]="'qualitative'"
+  
+  [margin]="'20px 0px 10px 8px'"> 
+</dino-color-legend>

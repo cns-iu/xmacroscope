@@ -11,8 +11,8 @@ export interface XMacroscopeDataSourceOptions extends DataSourceOptions {
 
 export class XMacroscopeDataSource implements DataSource {
   id: string;
-  template = 'xmacroscope'; // TODO - check
-  recordStreams: RecordStream<any>[]; // TODO - type
+  template = 'xmacroscope';
+  recordStreams: RecordStream[];
   properties: XMacroscopeDataSourceOptions;
 
   constructor(data: any, private project: Project) {
