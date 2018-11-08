@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import DisplayShape from '../Components/DisplayShape';
 
 function RunnerIcon(props) {

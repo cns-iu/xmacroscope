@@ -3,7 +3,7 @@
 //
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import { includes } from 'lodash';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
