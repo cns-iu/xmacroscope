@@ -15,10 +15,8 @@ import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
-
 // Our inner form component which receives our form's state and updater methods
 // as props
-
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);

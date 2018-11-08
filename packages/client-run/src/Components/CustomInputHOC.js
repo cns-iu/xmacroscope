@@ -19,7 +19,7 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
       const { setInput, name } = this.props;
       this.setState({ value });
       setInput(`${name}`, value);
-    }
+    };
 
     updateInputValueConcat = (value) => {
       const { setInput, name } = this.props;
@@ -27,14 +27,13 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
       const updatedValue = valueCurrent + value;
       this.setState({ value: updatedValue });
       setInput(`${name}`, updatedValue);
-    }
+    };
 
     clearInput = () => {
       const { setInput, name } = this.props;
       this.setState({ value: '' });
       setInput(`${name}`, '');
-    }
-
+    };
 
     render() {
       const { value } = this.state;
@@ -67,6 +66,5 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
 
   return HOC;
 };
-
 
 export default CustomInputHOC;
