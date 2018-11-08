@@ -1,10 +1,66 @@
 import styled from 'styled-components';
-import { sportsOrange } from './BaseConfigsVariables';
+import { Button, CardHeader, Card } from 'reactstrap';
+import {
+  sportsGray, sportsOrange, sportsTransGray, sportsYellow,
+} from './BaseConfigsVariables';
 
+
+const selected = `
+color: ${sportsGray};
+background: ${sportsYellow};
+border-color: ${sportsYellow};
+`;
 const BaseHeader = styled.h1`
-  color: ${sportsOrange};
+  color: white;
   font-weight: 900;
   letter-spacing: 2px;
+  font-size: 65px;
+  @media (max-height: 1080px) {
+    font-size: 30px !important;
+  }
 `;
 
-export default BaseHeader;
+const BigHeader = styled.h1`
+  font-size: 350px !important;
+  letter-spacing: 1px;
+  @media (max-height: 1080px) {
+    font-size: 150px !important;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  background-color: white;
+  color: ${sportsOrange};
+  letter-spacing: 1px;
+  border: none;
+  font-weight: bold;
+  font-size: 50px;
+  @media (max-height: 1080px) {
+    font-size: 30px !important;
+  }
+`;
+const StyledCardHeader = styled(CardHeader)`
+  background-color: ${sportsOrange};
+`;
+
+const StyledBTN = styled(Button)`
+  color: ${sportsYellow};
+  border-color: ${sportsYellow};
+  background: none;
+  ${props => (props.selected ? `${selected}` : '')}
+  &:hover{
+   ${selected}
+  }
+  @media (max-height: 1080px) {
+    max-height: 40px;
+  }
+`;
+const StyledCard = styled(Card)`
+  background-color: ${sportsTransGray};
+`;
+
+
+export {
+  BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard, StyledBTN,
+  selected,
+};

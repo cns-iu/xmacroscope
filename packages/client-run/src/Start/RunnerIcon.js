@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import DisplayShape from '../Components/DisplayShape';
@@ -6,28 +6,31 @@ import DisplayShape from '../Components/DisplayShape';
 function RunnerIcon(props) {
   const { color, shape } = props;
   return (
-    <Row>
+    <div className="d-flex align-items-center flex-wrap align-self-end">
       <Col
-        xs={12}
-        className="p-5"
+        sm={12}
+        className="align-self-end mx-auto"
       >
-        <DisplayShape
-          color={color}
-          shape={shape}
-          shapeTransform="translate(50, 50) scale(.75)"
-          width="30%"
-          margin="auto"
-        />
-        <Col
-          xs={6}
-          className="p-5 mx-auto"
-        >
-          <h1 className="text-center">
-            Remember your shape and look for it on the graph.
-          </h1>
-        </Col>
+        <div className="pt-3 pb-3">
+          <DisplayShape
+            color={color}
+            shape={shape}
+            shapeTransform="translate(50, 50) scale(.75)"
+            width="45%"
+            margin="auto"
+            type="viewDisplay"
+          />
+        </div>
       </Col>
-    </Row>
+      <Col
+        sm={12}
+        className="align-self-start mx-auto"
+      >
+        <h1 className="text-center pt-2">
+            Remember your shape and look for it on the graph.
+        </h1>
+      </Col>
+    </div>
   );
 }
 

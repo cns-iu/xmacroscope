@@ -1,7 +1,7 @@
 //
 // Start kiosk page
 //
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { Row, Col } from 'reactstrap';
 import { includes } from 'lodash';
@@ -23,38 +23,35 @@ class SignupStartPage extends React.Component {
           const person = personActive(activeRun);
 
           return (
-            <Row>
+            <Fragment>
               {
-                <Col xs={12}>
-                  <Row>
-                    <Col
-                      xs={12}
-                      className="p-5"
-                    >
-                      {
+                <Fragment>
+
+                  {
                         _.includes(['runTimerPre', 'running'], activeRun.status)
+
                           ? (
-                            <RunnerIcon
-                              color={activeRun.color}
-                              shape={activeRun.icon}
-                            />
+                            <Col md={10} xl={6} className="mx-auto d-flex h-50 align-self-end">
+                              <RunnerIcon
+                                color={activeRun.color}
+                                shape={activeRun.icon}
+                              />
+                            </Col>
                           )
                           : ''
                       }
-                    </Col>
-                    <Col xs={12}>
-                      {{
-                        signupForm: <SignupFormFormik />,
-                        runTimerPre: <RunningTimerPre person={person} />,
-                        running: <Running />,
-                        postRunTimer: <RunningTimerPost />,
-                        falseStart: <div>False start</div>,
-                      }[activeRun.status]}
-                    </Col>
-                  </Row>
-                </Col>
+
+                  {{
+                    signupForm: <SignupFormFormik />,
+                    runTimerPre: <RunningTimerPre person={person} />,
+                    running: <Running />,
+                    postRunTimer: <RunningTimerPost />,
+                    falseStart: <div>False start</div>,
+                  }[activeRun.status]}
+
+                </Fragment>
               }
-            </Row>
+            </Fragment>
           );
         }}
       </Query>

@@ -23,24 +23,46 @@ html {
 body {
   height: 100%;
   font-family: 'Avenir Next Condensed', sans-serif;
-  font-size: 26px;
-}
-
-.container-fluid {
+  font-size: 20px;
   background-image: url('./images/selection_bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
+.base-container{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
 .signup-form label {
   font-size: 1.5em;
 }
 
-h1 {
-  font-size: 64px !important;
+@media screen and (max-height: 1080px) {
+  body{
+    font-size: 16px;
+  }
+  .base-container{
+    display: inherit;
+    height: auto;
+    padding: 20px 0;
+  }
+  .signup-form{
+    display: inherit;
+  }
+  .form-container{
+    padding: 20px 0 ;
+  }
+  .signup-form label {
+    font-size: 1.25em;
+  }
+  .displayTimer{
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 }
 
-h1.go {
-  font-size: 400px !important;
-}
