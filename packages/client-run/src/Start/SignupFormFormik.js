@@ -11,6 +11,7 @@ import SignupForm from './SignupForm';
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRun($status: String!) {
     updateRun(
+      runId: null
       status: $status
       ageGroup: $ageGroup
       favoriteActivity: $favoriteActivity

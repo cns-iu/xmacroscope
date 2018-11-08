@@ -1,9 +1,8 @@
 import React from 'react';
-import { Query, Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import { Col } from 'reactstrap';
 import gql from 'graphql-tag';
 import Timer from './Timer';
-import generatePerson from '../Signup/generatePerson';
 
 const GET_POST_RUN_DELAY = gql`
   query GetPostRunDelay($location: String!) {
@@ -16,83 +15,66 @@ const GET_POST_RUN_DELAY = gql`
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRun(
   $status: String!
-  $name: String!
-  $color: String!
-  $icon: String!
-  $ageGroup: String!
-  $favoriteActivity: String!
-  $height: String!
-  $zipCode: String!
-  $latitude: String!
-  $longitude: String!
-  $state: String!
   ) {
     updateRun(
+      runId: null,
       status: $status,
-      name: $name,
-      color: $color,
-      icon: $icon,
-      ageGroup: $ageGroup,
-      favoriteActivity: $favoriteActivity,
-      height: $height,
-      zipCode: $zipCode,
-      latitude: $latitude,
-      longitude: $longitude,
-      state: $state,
+      name: null,
+      color: null,
+      icon: null,
+      ageGroup: null,
+      favoriteActivity: null,
+      height: null,
+      zipCode: null,
+      latitude: null,
+      longitude: null,
+      state: null,
     ) @client
   }
 `;
 
-class RunningTimerPost extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const person = generatePerson();
-    return (
-      <Query
-        query={GET_POST_RUN_DELAY}
-        variables={{ location: process.env.REACT_APP_LOCATION }}
-      >
-        {({ loading, error, data: { Settings } }) => {
-          if (loading) return 'Loading...';
-          if (error) return `Error! ${error.message}`;
+function RunningTimerPost() {
+  return (
+    <Query
+      query={GET_POST_RUN_DELAY}
+      variables={{ location: process.env.REACT_APP_LOCATION }}
+    >
+      {({ loading, error, data: { Settings } }) => {
+        if (loading) return 'Loading...';
+        if (error) return `Error! ${error.message}`;
         const { postRunDelay } = Settings;
 
-          return (
-            <Mutation
-              mutation={UPDATE_RUN_LOCAL}
-              variables={{
-                status: 'signupForm',
-                ...person,
-              }}
-            >
-              {updateRace => (
-                <Col
-                  xs={12}
-                  className="pt-3 mx-auto d-flex h-100 align-items-center"
-                >
-                  <div className="displayTimer w-100 text-center">
-                    <h1>Wait for the current runner to finish.</h1>
-                    <Timer
-                      completion={() => {
+        return (
+          <Mutation
+            mutation={UPDATE_RUN_LOCAL}
+            variables={{
+              status: 'signupForm',
+            }}
+          >
+            {updateRace => (
+              <Col
+                xs={12}
+                className="pt-3 mx-auto d-flex h-100 align-items-center"
+              >
+                <div className="displayTimer w-100 text-center">
+                  <h1>Wait for the current runner to finish.</h1>
+                  <Timer
+                    completion={() => {
                         updateRace();
                       }}
-                      direction="down"
-                      start={postRunDelay}
-                      end={0}
-                      displayTimer={false}
-                    />
-                  </div>
-                </Col>
-              )}
-            </Mutation>
-          );
-        }}
-      </Query>
-    );
-  }
+                    direction="down"
+                    start={postRunDelay}
+                    end={0}
+                    displayTimer={false}
+                  />
+                </div>
+              </Col>
+            )}
+          </Mutation>
+        );
+      }}
+    </Query>
+  );
 }
 
 export default RunningTimerPost;

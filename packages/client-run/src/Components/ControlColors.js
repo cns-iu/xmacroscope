@@ -21,7 +21,7 @@ const ControlColors = props => (
 ControlColors.propTypes = {
   options: PropTypes.array.isRequired,
   value: PropTypes.string.isRequired,
+  updateInputValue: PropTypes.func.isRequired,
 };
-
 
 export default ControlColors;
