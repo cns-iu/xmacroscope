@@ -59,9 +59,6 @@ type Person {
 
 type Run {
   id: ID
-  opponent: String
-  opponentName: String
-  opponentTime: String
   start: Date
   end: Date
   personId: ID
@@ -114,9 +111,6 @@ input PersonInput {
 
 input RunInput {
   start: Date!
-  opponent: String
-  opponentName: String
-  opponentTime: Int
   person: PersonInput
 }
 
@@ -131,10 +125,4 @@ input RunResultInput {
   started: Boolean
   falseStart: Boolean
   timeMillis: Int
-}
-
-input RunSelectInput {
-  opponent: String
-  opponentName: String
-  opponentTime: Int
 }

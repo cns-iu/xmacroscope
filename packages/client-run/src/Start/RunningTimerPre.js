@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
 import { Col } from 'reactstrap';
@@ -23,9 +24,7 @@ const START_RUN = gql`
   }
 `;
 
-function RunningTimerPre({
-  person, opponent, opponentName, opponentTime,
-}) {
+function RunningTimerPre({ person }) {
   return (
     <Query
       query={GET_PRE_RUN_DELAY}
@@ -63,9 +62,6 @@ function RunningTimerPre({
                         variables: {
                           run: {
                             start: moment(),
-                            opponent,
-                            opponentName,
-                            opponentTime,
                             person,
                           },
                         },
@@ -87,4 +83,9 @@ function RunningTimerPre({
   );
 }
 
+RunningTimerPre.propTypes = {
+  person: PropTypes.object.isRequired,
+};
+
 export default RunningTimerPre;
+

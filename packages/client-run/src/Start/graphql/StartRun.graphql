@@ -1,9 +1,7 @@
 mutation (
   $start: String!
-  $opponent: String
 ) {
   StartRun(run: {
     start: $start
-    opponent: $opponent
   })
 }
