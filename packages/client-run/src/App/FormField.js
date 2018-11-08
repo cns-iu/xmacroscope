@@ -1,6 +1,6 @@
-/**
- * Reusable form field
- */
+//
+// Reusable form field
+//
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Label } from 'reactstrap';
