@@ -90,7 +90,6 @@ type Setting {
 input MessageAnyInput {
   type: String!
   timestamp: String!
-  results: [RunResultInput]
 }
 
 input PersonInput {
@@ -117,12 +116,4 @@ input RunInput {
 input RunRecordFinishInput {
   id: ID!
   finish: Date!
-}
-
-input RunResultInput {
-  lane: Int
-  person: PersonInput
-  started: Boolean
-  falseStart: Boolean
-  timeMillis: Int
 }

@@ -39,7 +39,7 @@ function Running() {
               </Row>
 
               <Row className="text-center">
-                <RunnerTimer runTimeout={runTimeout} lane="1" />
+                <RunnerTimer runTimeout={runTimeout} />
                 <RunningTimerTimeout runTimeout={runTimeout} />
               </Row>
 
