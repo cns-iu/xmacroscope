@@ -13,6 +13,7 @@ function RunnerIcon(props) {
       >
         <div className="pt-3 pb-3">
           <DisplayShape
+            typeDisplay="viewDisplay"
             color={color}
             shape={shape}
             shapeTransform="translate(50, 50) scale(.75)"
