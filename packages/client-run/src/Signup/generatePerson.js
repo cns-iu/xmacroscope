@@ -23,13 +23,8 @@ const generatePerson = () => {
 
   const fakeFavoriteActivity = sample(personOptions.favoriteActivity);
 
-  const fakeHandedness = sample(personOptions.handedness);
-
   // Height in inches
   const fakeHeight = faker.random.number(personOptions.height);
-
-  // Number of siblings
-  const fakeSiblings = faker.random.number(personOptions.siblings);
 
   // Location
   const fakeLocation = fakeUSLocation();
@@ -41,9 +36,7 @@ const generatePerson = () => {
     gender: fakeGender,
     ageGroup: fakeAgeGroup,
     favoriteActivity: fakeFavoriteActivity,
-    handedness: fakeHandedness,
     height: fakeHeight,
-    siblings: fakeSiblings,
     zipCode: fakeLocation.zip,
     latitude: fakeLocation.latitude,
     longitude: fakeLocation.longitude,

@@ -24,13 +24,7 @@ module.exports = {
     favoriteActivity: {
       type: Sequelize.STRING,
     },
-    handedness: {
-      type: Sequelize.STRING,
-    },
     height: {
-      type: Sequelize.INTEGER,
-    },
-    siblings: {
       type: Sequelize.INTEGER,
     },
     zipCode: {

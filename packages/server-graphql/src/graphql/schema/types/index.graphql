@@ -4,18 +4,6 @@
 # Define an ISO-8601 date object for use in types
 scalar Date
 
-enum Gender {
-  male
-  female
-  other
-}
-
-enum Handedness {
-  left
-  right
-  ambidextrous
-}
-
 #
 # Interfaces
 #
@@ -40,12 +28,6 @@ type MessageRun implements Message {
 
 type Person {
   id: ID!
-  # Unused
-  name: String
-  gender: Gender
-  handedness: Handedness
-  siblings: Int
-  # Used
   icon: String
   color: String
   ageGroup: String
@@ -96,12 +78,9 @@ input PersonInput {
   name: String
   icon: String
   color: String
-  gender: Gender
   ageGroup: String
   favoriteActivity: String
-  handedness: Handedness
   height: Int
-  siblings: Int
   zipCode: String
   state: String
   latitude: Float

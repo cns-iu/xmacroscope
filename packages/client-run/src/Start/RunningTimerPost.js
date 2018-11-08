@@ -19,12 +19,9 @@ const UPDATE_RUN_LOCAL = gql`
   $name: String!
   $color: String!
   $icon: String!
-  $gender: String!
   $ageGroup: String!
   $favoriteActivity: String!
-  $handedness: String!
   $height: String!
-  $siblings: String!
   $zipCode: String!
   $latitude: String!
   $longitude: String!
@@ -35,12 +32,9 @@ const UPDATE_RUN_LOCAL = gql`
       name: $name,
       color: $color,
       icon: $icon,
-      gender: $gender,
       ageGroup: $ageGroup,
       favoriteActivity: $favoriteActivity,
-      handedness: $handedness,
       height: $height,
-      siblings: $siblings,
       zipCode: $zipCode,
       latitude: $latitude,
       longitude: $longitude,
