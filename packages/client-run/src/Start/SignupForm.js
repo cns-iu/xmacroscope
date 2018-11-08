@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Form, Label, FormGroup, Row, Col,
-} from 'reactstrap';
-import { Field } from 'formik';
+import { Form, Row, Col } from 'reactstrap';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
@@ -15,10 +12,8 @@ import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
 
-
 // Our inner form component which receives our form's state and updater methods
 // as props
-
 const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
