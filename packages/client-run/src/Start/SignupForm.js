@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Form, Label, FormGroup, Row, Col,
-} from 'reactstrap';
-import { Field } from 'formik';
+import { Form, Row, Col } from 'reactstrap';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
