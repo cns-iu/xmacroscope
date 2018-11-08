@@ -59,18 +59,18 @@ function RunningTimerPre({
                   <h2>Step up to the starting line and<br />get ready to run.</h2>
                   <Timer
                     completion={() => {
-                    StartRun({
-                      variables: {
-                        run: {
-                          start: moment(),
-                          opponent,
-                          opponentName,
-                          opponentTime,
-                          person,
+                      StartRun({
+                        variables: {
+                          run: {
+                            start: moment(),
+                            opponent,
+                            opponentName,
+                            opponentTime,
+                            person,
+                          },
                         },
-                      },
-                    });
-                  }}
+                      });
+                    }}
                     displayTimer={false}
                     direction="down"
                     start={preRunDelay}

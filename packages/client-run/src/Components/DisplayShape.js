@@ -22,59 +22,60 @@ class DisplayShape extends PureComponent {
     return (
       <div className="d-flex">
         {
-           typeDisplay === 'controlDisplay'
-             ? (
-               <ShapeWrapperControl
-                 selected={selected}
-                 onClick={() => { updateInputValue(value); }}
-                 color={color}
-                 shape={formatShape}
-                 margin={margin}
-                 width={width}
-               >
-                 <svg
-                   width="100%"
-                   height="100%"
-                   viewBox="0 0 100 100"
-                   preserveAspectRatio="none"
-                 >
-                   <g transform={shapeTransform}>
-                     <path
-                       d={shapeSVGPaths[formatShape]}
-                       style={shapeStyle}
-                     />
-                   </g>
-                 </svg>
-               </ShapeWrapperControl>
-             )
-             : (
-               <ShapeWrapper
-                 color={color}
-                 shape={formatShape}
-                 margin={margin}
-                 width={width}
-               >
-                 <svg
-                   width="100%"
-                   height="100%"
-                   viewBox="0 0 100 100"
-                   preserveAspectRatio="none"
-                 >
-                   <g transform={shapeTransform}>
-                     <path
-                       d={shapeSVGPaths[formatShape]}
-                       style={shapeStyle}
-                     />
-                   </g>
-                 </svg>
-               </ShapeWrapper>
-             )
+          typeDisplay === 'controlDisplay'
+            ? (
+              <ShapeWrapperControl
+                selected={selected}
+                onClick={() => {
+                  updateInputValue(value);
+                }}
+                color={color}
+                shape={formatShape}
+                margin={margin}
+                width={width}
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <g transform={shapeTransform}>
+                    <path
+                      d={shapeSVGPaths[formatShape]}
+                      style={shapeStyle}
+                    />
+                  </g>
+                </svg>
+              </ShapeWrapperControl>
+            )
+            : (
+              <ShapeWrapper
+                color={color}
+                shape={formatShape}
+                margin={margin}
+                width={width}
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  <g transform={shapeTransform}>
+                    <path
+                      d={shapeSVGPaths[formatShape]}
+                      style={shapeStyle}
+                    />
+                  </g>
+                </svg>
+              </ShapeWrapper>
+            )
         }
       </div>
     );
   }
 }
-
 
 DisplayShape.propTypes = {
   color: PropTypes.string.isRequired,
