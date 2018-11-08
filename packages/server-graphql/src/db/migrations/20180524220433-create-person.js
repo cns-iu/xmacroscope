@@ -6,16 +6,10 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    name: {
-      type: Sequelize.STRING,
-    },
     icon: {
       type: Sequelize.STRING,
     },
     color: {
-      type: Sequelize.STRING,
-    },
-    gender: {
       type: Sequelize.STRING,
     },
     ageGroup: {
