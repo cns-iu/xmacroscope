@@ -1,5 +1,6 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
+import { Col } from 'reactstrap';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import Timer from './Timer';
@@ -52,30 +53,32 @@ function RunningTimerPre({
             }}
           >
             {StartRun => (
-              <div className="text-center">
-                <h1>On your marks...</h1>
-                <h2>Step up to the starting line and<br />get ready to run.</h2>
-                <Timer
-                  completion={() => {
-                    StartRun({
-                      variables: {
-                        run: {
-                          start: moment(),
-                          opponent,
-                          opponentName,
-                          opponentTime,
-                          person,
+              <Col className="col-sm-12">
+                <div className="text-center pt-5">
+                  <h1>On your marks...</h1>
+                  <h2>Step up to the starting line and<br />get ready to run.</h2>
+                  <Timer
+                    completion={() => {
+                      StartRun({
+                        variables: {
+                          run: {
+                            start: moment(),
+                            opponent,
+                            opponentName,
+                            opponentTime,
+                            person,
+                          },
                         },
-                      },
-                    });
-                  }}
-                  displayTimer={false}
-                  direction="down"
-                  start={preRunDelay}
-                  end={0}
-                  countDownSound
-                />
-              </div>
+                      });
+                    }}
+                    displayTimer={false}
+                    direction="down"
+                    start={preRunDelay}
+                    end={0}
+                    countDownSound
+                  />
+                </div>
+              </Col>
             )}
           </Mutation>
         );

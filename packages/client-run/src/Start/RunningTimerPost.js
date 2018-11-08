@@ -64,7 +64,7 @@ class RunningTimerPost extends React.Component {
         {({ loading, error, data: { Settings } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const { postRunDelay } = Settings;
+        const { postRunDelay } = Settings;
 
           return (
             <Mutation
@@ -76,10 +76,10 @@ class RunningTimerPost extends React.Component {
             >
               {updateRace => (
                 <Col
-                  xs={6}
-                  className="p-5 mx-auto text-center"
+                  xs={12}
+                  className="pt-3 mx-auto d-flex h-100 align-items-center"
                 >
-                  <div className="displayTimer">
+                  <div className="displayTimer w-100 text-center">
                     <h1>Wait for the current runner to finish.</h1>
                     <Timer
                       completion={() => {
