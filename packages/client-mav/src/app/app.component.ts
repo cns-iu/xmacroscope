@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 
-import { XMacroscopeTemplateProject } from 'xmacroscope-dvl-fw-plugin';
+import { XMacroscopeTemplateProject } from 'xmacroscope-dvl-fw-plugin'; // TODO
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,42 @@ import { XMacroscopeTemplateProject } from 'xmacroscope-dvl-fw-plugin';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'client-mav';
-  constructor() {
-    from(XMacroscopeTemplateProject.create(true)).subscribe(console.log);
+  title = 'AISL xMacroscope';
+  routeLinks: any[];
+  showAppHeader = true;
+
+  constructor(private router: Router, private route: ActivatedRoute) {
+    from(XMacroscopeTemplateProject.create(true)).subscribe(console.log); // TODO
+    this.routeLinks = [
+      {
+        label: 'Home',
+        route: '/home',
+        index: '0'
+      },
+      {
+        label: 'Backend',
+        route: '/backend',
+        index: '1'
+      },
+      {
+        label: 'Make A Vis',
+        route: '/mav',
+        index: '2'
+      },
+      {
+        label: 'Endline',
+        route: '/endline',
+        index: '3'
+      }
+    ];
+
+    route.queryParams.subscribe((q) => {
+      if ('showAppHeader' in q) {
+        this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+      } else if (Object.keys(q).length === 0) {
+        this.showAppHeader = true;
+      }
+    });
   }
 }
+
