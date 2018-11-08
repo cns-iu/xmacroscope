@@ -9,7 +9,7 @@ const ControlColors = props => (
         <ControlColor
           width="50px"
           color={opt.hexValue}
-          selected={opt.hexValue == props.value}
+          selected={opt.hexValue === props.value}
           key={opt.hexValue}
           onClick={() => { props.updateInputValue(opt.hexValue); }}
         />
