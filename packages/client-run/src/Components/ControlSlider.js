@@ -8,8 +8,7 @@ const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 const ControlGroupBtns = (props) => {
   const onSliderChange = (value) => {
-    console.log(value);
-    props.updateInputValue(value);
+    props.updateInputValue(String(value));
   };
   return (
     <Row>
