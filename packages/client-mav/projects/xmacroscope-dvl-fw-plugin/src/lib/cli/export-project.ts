@@ -1,10 +1,10 @@
 const fs = require('fs');
 
 import { ProjectSerializer } from '@dvl-fw/core';
-import { XMacroscopeTemplateProject } from '../xmacroscope-template-project';
+import { XMacroscopeProject } from '../xmacroscope-project';
 
 async function exportProject(outYAML) {
-  const project = await XMacroscopeTemplateProject.create(true);
+  const project = await XMacroscopeProject.create(true, true);
   const yamlString = await ProjectSerializer.toYAML(project);
   fs.writeFileSync(outYAML, yamlString, 'utf8');
 }

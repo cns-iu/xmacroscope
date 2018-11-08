@@ -1,9 +1,9 @@
 import { pick } from 'lodash';
 import { Observable } from 'rxjs';
-
 import { RecordStream } from '@dvl-fw/core';
 import { RawChangeSet } from '@ngx-dino/core';
-import { Run } from './data-model/run';
+
+import { Run } from '../data-model/run';
 
 
 export class GraphQLRunDataStream implements RecordStream<Run> {

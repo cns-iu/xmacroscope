@@ -1,11 +1,8 @@
 // refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import * as casual from 'casual-browserify';
-import { pick } from 'lodash';
-import { Observable } from 'rxjs';
 
-import { RawChangeSet } from '@ngx-dino/core';
 import { Run } from '../data-model/run';
-import { Message, RaceInitiatedMessage, RaceCompletedMessage, RaceResult, RunSelectedMessage } from './message';
+import { Message, RunSignupMessage, RunPressedMessage, RunInitiatedMessage, RunCompletedMessage } from '../data-model/message';
 import { MockPerson } from './mock-person';
 
 export class RaceMocker {
@@ -33,56 +30,71 @@ export class RaceMocker {
   }
 
   protected mockRace() {
-    const runSelectedTime = casual.integer(100, 500);
-    const raceInitiatedTime = casual.integer(500, 1500);
-    const raceCompletedTime = casual.integer(1000, 4000);
+    const runSignupTime = casual.integer(100, 300);
+    const runPressedTime = casual.integer(100, 400);
+    const runInitiatedTime = casual.integer(500, 1500);
+    const runCompletedTime = casual.integer(1000, 4000);
 
     setTimeout(() => {
-      const runSelectedMessage = this.runSelected();
+      this.runSignup();
       setTimeout(() => {
-        this.raceInitiated();
+        this.runPressed();
         setTimeout(() => {
-          this.raceCompleted(raceCompletedTime);
-
-          if (this.mocking) {
-            this.mockRace();
-          }
-        }, raceCompletedTime);
-      }, raceInitiatedTime);
-    }, runSelectedTime);
+          this.runInitiated();
+          setTimeout(() => {
+            this.runCompleted(runCompletedTime);
+            if (this.mocking) {
+              this.mockRace();
+            }
+          }, runCompletedTime);
+        }, runInitiatedTime);
+      }, runPressedTime);
+    }, runSignupTime);
   }
 
-  runSelected(): RunSelectedMessage {
-    const message = new RunSelectedMessage();
+  runSignup(timestamp?: Date): RunSignupMessage {
+    timestamp = timestamp || new Date();
+    const message = new RunSignupMessage({timestamp});
     this.send(message);
     return message;
   }
-  raceInitiated(): RaceInitiatedMessage {
-    const message = new RaceInitiatedMessage();
-    this.send(message);
-    return message;
-  }
-  raceCompleted(maxTime: number): RaceCompletedMessage {
-    const message = new RaceCompletedMessage({
-      results: [this.raceResults(maxTime, 1)]
+  runPressed(timestamp?: Date): RunPressedMessage {
+    timestamp = timestamp || new Date();
+    const message = new RunPressedMessage({
+      timestamp,
+      run: this.runResults(0, timestamp)
     });
-    if (casual.coin_flip) {
-      message.results.push(this.raceResults(casual.integer(2000, maxTime), 2));
-    }
     this.send(message);
     return message;
   }
-  raceResults(time: number, lane: number): RaceResult {
-    return <RaceResult>{
-      lane,
-      persona: new MockPerson(),
-      started: !!casual.coin_flip,
-      falseStart: !!casual.coin_flip,
-      timeMillis: time
-    };
+  runInitiated(timestamp?: Date): RunInitiatedMessage {
+    timestamp = timestamp || new Date();
+    const message = new RunInitiatedMessage({
+      timestamp,
+      run: this.runResults(0, timestamp)
+    });
+    this.send(message);
+    return message;
+  }
+  runCompleted(timeMillis: number, timestamp?: Date): RunCompletedMessage {
+    timestamp = timestamp || new Date();
+    const message = new RunCompletedMessage({
+      timestamp,
+      run: this.runResults(timeMillis, timestamp)
+    });
+    this.send(message);
+    return message;
+  }
+  runResults(timeMillis: number, start: Date): Run {
+    const end = new Date(start.getTime() + timeMillis);
+    return new Run({
+      start,
+      end,
+      person: new MockPerson()
+    });
   }
 
-  private sendPastRuns(count: number): void {
+  sendPastRuns(count: number): void {
     let i = 0;
 
     // Evil! Hijack send method
@@ -102,8 +114,9 @@ export class RaceMocker {
 
   private sendFullRace(): void {
     const raceCompletedTime = casual.integer(1000, 4000);
-    this.runSelected();
-    this.raceInitiated();
-    this.raceCompleted(raceCompletedTime);
+    this.runSignup();
+    this.runPressed();
+    this.runInitiated();
+    this.runCompleted(raceCompletedTime, new Date());
   }
 }

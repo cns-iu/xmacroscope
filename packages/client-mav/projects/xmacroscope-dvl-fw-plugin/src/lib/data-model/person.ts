@@ -1,5 +1,6 @@
 import { areaSizeScale, greyScale } from '@dvl-fw/core';
 import { access, chain, combine, constant, map, Operand } from '@ngx-dino/core';
+import { pick } from 'lodash';
 
 export const allShapes: string[] = ['circle', 'square', 'cross', 'diamond',
   'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star'
@@ -13,10 +14,6 @@ export const genders: string[] = ['male', 'female', 'other'];
 export const ageGroups: string[] = ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired'];
 export const favoriteActivities: string[] = ['Sports', 'Cooking', 'Art', 'Gaming', 'Other'];
 
-export const maxLat = 49.3457868; // north lat
-export const minLat = 24.7433195; // south lat
-export const maxLng = -124.7844079; // west long
-export const minLng = -66.9513812; // east long
 
 // @dynamic
 export class Person {
@@ -53,10 +50,18 @@ export class Person {
   @Operand(chain(access('favoriteActivity'), greyScale.qualitative(favoriteActivities)))
   favoriteActivityColor: string;
 
-  @Operand(chain(access<number>('time'), map(t => t ? Math.min(t / 1000.0, 10) : 0), areaSizeScale.quantitative([1, 10])))
-  timeAreaSize: number;
-
   // @Operand(blahif(access('showPersona'), access('color'), constant('grey')), false)
   // fixed: string;
+
+  toJSON(): any {
+    return pick(this, [
+      'id', 'name', 'gender', 'handedness', 'siblings', 'icon', 'color',
+      'ageGroup', 'favoriteActivity', 'height', 'zipCode', 'state',
+
+      // Derived graphic variable data
+      'latlng', 'heightAreaSize', 'ageGroupAreaSize', 'favoriteActivityColor',
+      'timeAreaSize'
+    ]);
+  }
 }
 

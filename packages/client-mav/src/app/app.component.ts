@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 
-import { XMacroscopeTemplateProject } from 'xmacroscope-dvl-fw-plugin'; // TODO
+import { XMacroscopeProject } from 'xmacroscope-dvl-fw-plugin'; // TODO
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent {
   showAppHeader = true;
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    from(XMacroscopeTemplateProject.create(true)).subscribe(console.log); // TODO
+    from(XMacroscopeProject.create(true)).subscribe(console.log); // TODO
     this.routeLinks = [
       {
         label: 'Home',

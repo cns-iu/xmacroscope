@@ -1,8 +1,10 @@
 // refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import { DataSource, DataSourceOptions, ObjectFactory, ObjectFactoryRegistry, Project, RecordStream } from '@dvl-fw/core';
+
+import { GraphQLRunDataStream } from './graphql/graphql-run-data-stream';
+import { MockRunDataStream } from './mock/mock-run-data-stream';
 import { Run } from './data-model/run';
-import { GraphQLRunDataStream } from './graphql-run-data-stream';
-import { MockRunDataStream } from './mock/mock-data-stream';
+
 
 export interface XMacroscopeDataSourceOptions extends DataSourceOptions {
   mockData: boolean;

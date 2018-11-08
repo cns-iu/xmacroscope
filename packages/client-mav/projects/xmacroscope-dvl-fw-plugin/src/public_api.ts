@@ -3,4 +3,4 @@
  */
 
 export * from './lib/xmacroscope-plugin';
-export * from './lib/xmacroscope-template-project';
+export * from './lib/xmacroscope-project';

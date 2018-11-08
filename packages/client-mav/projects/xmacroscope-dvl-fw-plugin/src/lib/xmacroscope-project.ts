@@ -1,34 +1,30 @@
-import {
-  DataSource,
-  DefaultGraphicSymbol,
-  DefaultGraphicVariableMapping,
-  DefaultProject,
-  DefaultRecordSet,
-  GeomapVisualization,
-  GraphicSymbol,
-  GraphicVariable,
-  Project,
-  RecordSet,
-  ScatterplotVisualization,
-  Visualization
-} from '@dvl-fw/core';
-import { XMacroscopeDataSource } from './xmacroscope-data-source';
+import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
+  DefaultRecordSet, GeomapVisualization, GraphicSymbol, GraphicVariable, Project, RecordSet,
+  ScatterplotVisualization, Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
 
-export class XMacroscopeTemplateProject extends DefaultProject {
+import { XMacroscopeDataSource } from './xmacroscope-data-source';
+import { MockRunRawData } from './mock/mock-run-raw-data';
+
+
+export class XMacroscopeProject extends DefaultProject {
   dataSources: DataSource[];
   recordSets: RecordSet[];
   graphicVariables: GraphicVariable[];
   graphicSymbols: GraphicSymbol[];
   visualizations: Visualization[];
 
-  static async create(mockData: boolean, endpoint?: string): Promise<Project> {
-    const project = new XMacroscopeTemplateProject(mockData, endpoint);
+  static async create(mockData: boolean, staticMockData?: boolean, endpoint?: string): Promise<Project> {
+    const project = new XMacroscopeProject(mockData, staticMockData, endpoint);
     return project;
   }
 
-  constructor(mockData: boolean, endpoint?: string) {
+  constructor(mockData: boolean, staticMockData?: boolean, endpoint?: string) {
     super();
-    this.dataSources = this.getDataSources(mockData, endpoint);
+    if (staticMockData) {
+      this.dataSources = this.getStaticMockDataSources();
+    } else {
+      this.dataSources = this.getDataSources(mockData, endpoint);
+    }
     this.recordSets = this.getRecordSets();
     this.graphicVariables = this.getGraphicVariables();
     this.graphicSymbols = this.getGraphicSymbols();
@@ -42,6 +38,26 @@ export class XMacroscopeTemplateProject extends DefaultProject {
         properties: { mockData, endpoint },
         recordStreams: [{id: 'runs', label: 'Runs'}]
       }, this),
+    ];
+  }
+
+  getStaticMockDataSources(): DataSource[] {
+    this.rawData.push(new MockRunRawData({
+      id: 'runs', template: 'json',
+      data: { 'runs': [] }
+    }));
+    // TODO: fix associated bug in MAV
+    this.rawData.push(new DefaultRawData({
+      id: 'activityLog', template: 'activityLog',
+      data: { 'activityLog': [] }
+    }));
+
+    return [
+      new DefaultDataSource({
+        id: 'runDataSource', template: 'defaultDataSource', // TODO: fix associated bug in MAV
+        properties: {rawData: 'runs'},
+        recordStreams: [{id: 'runs', label: 'Runs'}]
+      }, this)
     ];
   }
 
