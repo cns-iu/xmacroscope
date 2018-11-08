@@ -3,7 +3,7 @@
 //
 import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
-import { Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 import { includes } from 'lodash';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -21,36 +21,31 @@ class SignupStartPage extends React.Component {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           const person = personActive(activeRun);
-
           return (
             <Fragment>
               {
-                <Fragment>
-
-                  {
-                        _.includes(['runTimerPre', 'running'], activeRun.status)
-
-                          ? (
-                            <Col md={10} xl={6} className="mx-auto d-flex h-50 align-self-end">
-                              <RunnerIcon
-                                color={activeRun.color}
-                                shape={activeRun.icon}
-                              />
-                            </Col>
-                          )
-                          : ''
-                      }
-
-                  {{
-                    signupForm: <SignupFormFormik />,
-                    runTimerPre: <RunningTimerPre person={person} />,
-                    running: <Running />,
-                    postRunTimer: <RunningTimerPost />,
-                    falseStart: <div>False start</div>,
-                  }[activeRun.status]}
-
-                </Fragment>
+                includes(['runTimerPre', 'running'], activeRun.status)
+                  ? (
+                    <Col
+                      md={10}
+                      xl={6}
+                      className="mx-auto d-flex h-50 align-self-end"
+                    >
+                      <RunnerIcon
+                        color={activeRun.color}
+                        shape={activeRun.icon}
+                      />
+                    </Col>
+                  )
+                  : ''
               }
+              {{
+                signupForm: <SignupFormFormik />,
+                runTimerPre: <RunningTimerPre person={person} />,
+                running: <Running />,
+                postRunTimer: <RunningTimerPost />,
+                falseStart: <div>False start</div>,
+              }[activeRun.status]}
             </Fragment>
           );
         }}
