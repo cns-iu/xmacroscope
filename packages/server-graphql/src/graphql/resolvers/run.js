@@ -31,6 +31,8 @@ const Runs = baseResolver
 
 // Send a run selection message
 // No database operations
+// This is no longer used.
+// We'll rename this for the singup form start message
 const SelectRun = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
@@ -53,9 +55,6 @@ const StartRun = baseResolver
     ...args.run.person,
     Runs: {
       start: args.run.start,
-      opponent: args.run.opponent,
-      opponentName: args.run.opponentName,
-      opponentTime: args.run.opponentTime,
     },
   }, {
     include: [db.run],
@@ -93,9 +92,6 @@ const FinishRun = baseResolver
     // so that we can access the personId without worry about the association
     db.run.findOne({
       attributes: [
-        'opponent',
-        'opponentName',
-        'opponentTime',
         'start',
         'end',
         'PersonId',
@@ -144,7 +140,7 @@ const RunResolver = {
     Runs,
   },
   Mutation: {
-    SelectRun,
+    // SelectRun,
     StartRun,
     FinishRun,
   },
