@@ -5,27 +5,24 @@ import { RawChangeSet } from '@ngx-dino/core';
 
 import { Run } from '../shared/run';
 import { RunMocker } from './run-mocker';
-import { RunCompletedMessage } from '../shared/message';
+import { RunCompletedMessage, Message } from '../shared/message';
+import { RunStreamController } from '../shared/run-stream-controller';
 
 
 export class MockRunDataStream implements RecordStream<Run> {
   id = 'runs';
   label = 'Runs';
-  numInitialRuns = 50;
+  private mocker: RunMocker;
 
-  constructor() {
-    
+  constructor(private runStreamController: RunStreamController) {
+    this.mocker = new RunMocker({
+      next: runStreamController.sendMessage.bind(runStreamController)
+    }, this.runStreamController.historySize);
   }
 
-  asObservable(): Observable<RawChangeSet<any>> {
-    const messages = new Subject<any>();
-    const mocker = new RunMocker({ send: (message) => {
-      if (message instanceof RunCompletedMessage) {
-        messages.next(RawChangeSet.fromArray([message]));
-      }
-    }}, this.numInitialRuns);
-    mocker.startMocking();
-    return messages.asObservable();
+  asObservable(): Observable<RawChangeSet<Run>> {
+    this.mocker.startMocking();
+    return this.runStreamController.runStream;
   }
 
   toJSON(): any {

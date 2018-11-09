@@ -19,7 +19,7 @@ export class Run {
     if (!(data.person instanceof Person)) {
       data.person = new Person(data.person || {});
     }
-    Object.assign(this, pick(data, ['id', 'start', 'end', 'person']));
+    Object.assign(this, pick(data, ['id', 'start', 'end', 'person', 'showPersona']));
   }
 
   @Operand(map(s => s.end && s.start ? s.end.getTime() - s.start.getTime() : undefined))

@@ -1,42 +1,41 @@
-import { Injectable } from '@angular/core';
 import { RawChangeSet } from '@ngx-dino/core';
 import { Observable, Subject } from 'rxjs';
 import { merge, mergeAll, share, windowToggle } from 'rxjs/operators';
 import { List } from 'immutable';
 
 import { ChangeTracker } from './change-tracker';
-import { MessageService } from './message.service';
 import { Run } from './run';
+import { Message } from './message';
 
 
-@Injectable()
-export class SharedDataService {
+export class RunStreamController {
+  private messages = new Subject<Message>();
+  public readonly messageStream = this.messages.asObservable().pipe(share());
+  public readonly runStream: Observable<RawChangeSet<Run>>;
+
   private readonly changeTracker: ChangeTracker;
   private readonly emitter = new Subject<RawChangeSet<Run>>();
   private readonly starter = new Subject<any>();
   private readonly stopper = new Subject<any>();
-  private readonly stream: Observable<RawChangeSet<Run>>;
   private running = true;
   private snapshot = List<Run>();
 
-  constructor(messageService: MessageService, private historySize = 50, private highlightCount = 4) {
-    this.changeTracker = new ChangeTracker(
-      messageService.asObservable(), this.historySize, this.highlightCount
-    );
-    this.stream = this.changeTracker.asObservable().pipe(
+  constructor(public historySize = 50, public highlightCount = 4) {
+    this.changeTracker = new ChangeTracker(this.messageStream, this.historySize, this.highlightCount);
+    this.runStream = this.changeTracker.asObservable().pipe(
       windowToggle(this.starter, () => this.stopper),
-      mergeAll() as (s: any) => Observable<RawChangeSet>,
+      mergeAll() as (s: any) => Observable<RawChangeSet<Run>>,
       merge(this.emitter),
       share()
     );
     setTimeout(() => this.starter.next(), 0);
   }
 
-  createStream(): Observable<RawChangeSet<Run>> {
-    return this.stream;
+  sendMessage(message: Message) {
+    this.messages.next(message);
   }
 
-  emit(change: RawChangeSet): void {
+  sendRunChange(change: RawChangeSet<Run>): void {
     this.emitter.next(change);
   }
 

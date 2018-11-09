@@ -10,10 +10,10 @@ import { MockPerson } from './mock-person';
 export class RunMocker {
   private _mocking = false;
 
-  constructor(private messageService: { send: (message: Message) => void }, private initialFakes = 0) {}
+  constructor(private messages: { next: (message: Message) => void }, private initialFakes = 0) {}
 
   send(message: Message) {
-    this.messageService.send(message);
+    this.messages.next(message);
   }
 
   get mocking(): boolean {

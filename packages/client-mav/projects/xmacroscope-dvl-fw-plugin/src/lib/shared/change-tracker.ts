@@ -2,7 +2,6 @@ import { RawChangeSet } from '@ngx-dino/core';
 import { Observable } from 'rxjs';
 import { bufferTime, concatMap, filter, map } from 'rxjs/operators';
 import { List } from 'immutable';
-import { clone } from 'lodash';
 import { Run } from './run';
 import { RunCompletedMessage, Message } from './message';
 
@@ -18,7 +17,7 @@ export class ChangeTracker {
     public readonly bufferInterval = 100
   ) {
     this.changeStream = stream.pipe(
-      filter((message) => message instanceof RunCompletedMessage),
+      filter(message => message instanceof RunCompletedMessage),
       map<RunCompletedMessage, Run>(message => message.run),
       bufferTime(bufferInterval),
       map(runs => this.accumulate(runs))
@@ -66,7 +65,7 @@ export class ChangeTracker {
       if (index < highlightCount) {
         run.showPersona = true;
       } else if (run.showPersona) {
-        const runClone = clone(run);
+        const runClone = new Run(run);
         runClone.showPersona = false;
         replaced.push([run, runClone]);
       }

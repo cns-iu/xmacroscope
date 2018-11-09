@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 import { ProjectSerializer } from '@dvl-fw/core';
-import { XMacroscopeProject } from '../xmacroscope-project';
+import { XMacroscopeProject } from '../shared/xmacroscope-project';
 
 async function exportProject(outYAML) {
   const project = await XMacroscopeProject.create(true, true);

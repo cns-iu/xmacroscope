@@ -11,7 +11,7 @@ export class MockRunRawData extends DefaultRawData {
 
   public static generateMockRunData(numMocks = 50): any[] {
     const runs = [];
-    const mocker = new RunMocker({ send: (message) => {
+    const mocker = new RunMocker({ next: (message) => {
       if (message instanceof RunCompletedMessage) {
         const run = (message as RunCompletedMessage).run;
         runs.push(run.toJSON());

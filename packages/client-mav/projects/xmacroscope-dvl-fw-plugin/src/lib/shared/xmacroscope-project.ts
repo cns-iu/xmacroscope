@@ -3,10 +3,13 @@ import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, Defaul
   ScatterplotVisualization, Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
 
 import { XMacroscopeDataSource } from './xmacroscope-data-source';
-import { MockRunRawData } from './mock/mock-run-raw-data';
+import { MockRunRawData } from '../mock/mock-run-raw-data';
+import { RunStreamController } from './run-stream-controller';
 
 
 export class XMacroscopeProject extends DefaultProject {
+  runStreamController: RunStreamController;
+
   dataSources: DataSource[];
   recordSets: RecordSet[];
   graphicVariables: GraphicVariable[];
@@ -32,13 +35,13 @@ export class XMacroscopeProject extends DefaultProject {
   }
 
   getDataSources(mockData: boolean, endpoint?: string): DataSource[] {
-    return [
-      new XMacroscopeDataSource({
-        id: 'runDataSource',
-        properties: { mockData, endpoint },
-        recordStreams: [{id: 'runs', label: 'Runs'}]
-      }, this),
-    ];
+    const ds = new XMacroscopeDataSource({
+      id: 'runDataSource',
+      properties: { mockData, endpoint },
+      recordStreams: [{id: 'runs', label: 'Runs'}]
+    }, this);
+    this.runStreamController = ds.runStreamController;
+    return [ ds ];
   }
 
   getStaticMockDataSources(): DataSource[] {

@@ -1,9 +1,10 @@
 // refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import { DataSource, DataSourceOptions, ObjectFactory, ObjectFactoryRegistry, Project, RecordStream } from '@dvl-fw/core';
 
-import { GraphQLRunDataStream } from './graphql/graphql-run-data-stream';
-import { MockRunDataStream } from './mock/mock-run-data-stream';
-import { Run } from './shared/run';
+import { GraphQLRunDataStream } from '../graphql/graphql-run-data-stream';
+import { MockRunDataStream } from '../mock/mock-run-data-stream';
+import { Run } from './run';
+import { RunStreamController } from './run-stream-controller';
 
 
 export interface XMacroscopeDataSourceOptions extends DataSourceOptions {
@@ -16,15 +17,17 @@ export class XMacroscopeDataSource implements DataSource {
   template = 'xmacroscope';
   recordStreams: RecordStream[];
   properties: XMacroscopeDataSourceOptions;
+  public readonly runStreamController: RunStreamController;
 
   constructor(data: any, private project: Project) {
     Object.assign(this, data);
+    this.runStreamController = new RunStreamController();
 
     let recordStream: RecordStream<Run>;
     if (this.properties.mockData) {
-      recordStream = new MockRunDataStream();
+      recordStream = new MockRunDataStream(this.runStreamController);
     } else if (this.properties.endpoint) {
-      recordStream = new GraphQLRunDataStream(this.properties.endpoint);
+      recordStream = new GraphQLRunDataStream(this.runStreamController, this.properties.endpoint);
     }
     this.recordStreams = recordStream ? [recordStream] : [];
   }
