@@ -11,11 +11,11 @@ import SignupForm from './SignupForm';
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRun($status: String!) {
     updateRun(
+      runId: null
       status: $status
       ageGroup: $ageGroup
       favoriteActivity: $favoriteActivity
       height: $height
-      siblings: $siblings
       zipCode: $zipCode
       color: $color
       icon: $icon
@@ -62,7 +62,6 @@ const SignupFormFormik = withFormik({
         ageGroup: values.ageGroup,
         favoriteActivity: values.favoriteActivity,
         height: values.height,
-        siblings: values.siblings,
         zipCode: values.zipCode,
         color: values.color,
         icon: values.shape,

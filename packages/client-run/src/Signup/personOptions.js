@@ -30,9 +30,6 @@ personOptions.favoriteActivity = [
   'Other',
 ];
 
-personOptions.handedness = ['left', 'right'];
-
-personOptions.siblings = { min: 0, max: 12 };
 personOptions.height = { min: 36, max: 96 };
 
 export default personOptions;

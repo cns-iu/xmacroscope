@@ -9,7 +9,7 @@ const ControlColors = props => (
         <ControlColor
           width="50px"
           color={opt.hexValue}
-          selected={opt.hexValue == props.value}
+          selected={opt.hexValue === props.value}
           key={opt.hexValue}
           onClick={() => { props.updateInputValue(opt.hexValue); }}
         />
@@ -21,7 +21,7 @@ const ControlColors = props => (
 ControlColors.propTypes = {
   options: PropTypes.array.isRequired,
   value: PropTypes.string.isRequired,
+  updateInputValue: PropTypes.func.isRequired,
 };
-
 
 export default ControlColors;

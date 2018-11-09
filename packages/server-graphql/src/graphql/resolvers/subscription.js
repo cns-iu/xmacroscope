@@ -2,6 +2,9 @@ import pubsub from './pubsub';
 
 const Subscription = {
   Subscription: {
+    signupStartSubscription: {
+      subscribe: () => pubsub.asyncIterator('signup-started'),
+    },
     runSelectedSubscription: {
       subscribe: () => pubsub.asyncIterator('run-selected'),
     },

@@ -29,6 +29,25 @@ const Runs = baseResolver
 // Keeping extraneous console statements and return helpers in the code
 // while in active DB development.
 
+// Send a signup message
+// No database operations
+const StartSignup = baseResolver
+  .createResolver(() => {
+    const publishPayload = {
+      signupStartSubscription: {
+        type: 'signup-started',
+        timestamp: new Date(),
+      },
+    };
+    const message = pubsub.publish('signup-started', publishPayload);
+    if (message) {
+      console.log('Signup started - Message sent');
+    } else {
+      console.log('Signup started - Message failed');
+    }
+    return message;
+  });
+
 // Send a run selection message
 // No database operations
 // This is no longer used.
@@ -141,6 +160,7 @@ const RunResolver = {
   },
   Mutation: {
     // SelectRun,
+    StartSignup,
     StartRun,
     FinishRun,
   },

@@ -16,6 +16,16 @@ const typeDefs = `
 
   type ActiveRun {
     status: String!
+    runId: String
+    ageGroup: String
+    color: String
+    favoriteActivity: String
+    height: String
+    icon: String
+    latitude: String
+    longitude: String
+    state: String
+    zipCode: String
   }
 `;
 

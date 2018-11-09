@@ -4,7 +4,6 @@ import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import Timer from './Timer';
-import RunFinishButton from './RunFinishButton';
 import RunFinishKeypress from './RunFinishKeypress';
 
 const GET_RUN_ID = gql`
@@ -35,7 +34,7 @@ class RunnerTimer extends React.Component {
   }
 
   render() {
-    const { lane, runTimeout } = this.props;
+    const { runTimeout } = this.props;
     const { timerStopped } = this.state;
     return (
       <Query query={GET_RUN_ID}>
@@ -95,7 +94,6 @@ class RunnerTimer extends React.Component {
 
 RunnerTimer.propTypes = {
   runTimeout: PropTypes.number.isRequired,
-  lane: PropTypes.string.isRequired,
 };
 
 export default RunnerTimer;
