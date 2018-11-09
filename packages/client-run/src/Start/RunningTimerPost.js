@@ -48,7 +48,7 @@ function RunningTimerPost() {
           <Mutation
             mutation={UPDATE_RUN_LOCAL}
             variables={{
-              status: 'signupForm',
+              status: 'preSignupForm',
             }}
           >
             {updateRace => (

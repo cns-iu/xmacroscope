@@ -5,6 +5,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { Col } from 'reactstrap';
 import { includes } from 'lodash';
+import SignupPreMutation from './SignupStart';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
@@ -40,6 +41,7 @@ class SignupStartPage extends React.Component {
                   : ''
               }
               {{
+                preSignupForm: <SignupPreMutation />,
                 signupForm: <SignupFormFormik />,
                 runTimerPre: <RunningTimerPre person={person} />,
                 running: <Running />,

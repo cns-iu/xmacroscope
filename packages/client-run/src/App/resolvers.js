@@ -5,7 +5,7 @@ export const defaults = {
   activeRun: {
     __typename: 'ActiveRun',
     runId: null,
-    status: 'signupForm',
+    status: 'preSignupForm',
     ageGroup: null,
     color: null,
     favoriteActivity: null,
