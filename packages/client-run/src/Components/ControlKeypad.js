@@ -12,7 +12,7 @@ const ControlKeypad = props => (
           hide={opt === '.' ? 'hide' : 'show'}
           dimension="50px"
           key={opt + index}
-          onClick={() => { opt === 'DEL' ? props.clearInput() : props.updateInputValueConcat(opt); }}
+          onClick={() => { opt === 'CLR' ? props.clearInput() : props.updateInputValueConcat(opt); }}
         >
           {opt}
         </KeyInput>
