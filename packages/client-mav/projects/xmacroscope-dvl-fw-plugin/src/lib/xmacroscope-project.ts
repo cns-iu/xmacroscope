@@ -90,9 +90,6 @@ export class XMacroscopeProject extends DefaultProject {
               identifier: [
                 {selector: 'id'}
               ],
-              axis: [
-                {selector: 'person.icon'}
-              ],
               label: [
                 {selector: 'person.label'}
               ],
@@ -100,7 +97,11 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.icon'}
               ],
               color: [
-                {selector: 'person.color'}
+                {selector: 'person.color'},
+                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
+              ],
+              areaSize: [
+                {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
               ]
             },
             time: {
@@ -151,10 +152,7 @@ export class XMacroscopeProject extends DefaultProject {
               latlng: [
                 {selector: 'person.latlng'}
               ],
-              identifier: [ // Fix in @dvl-fw to stateIdentifier
-                {selector: 'person.state'}
-              ],
-              axis: [
+              identifier: [ // TODO: Fix in @dvl-fw to stateIdentifier
                 {selector: 'person.state'}
               ],
               label: [
@@ -182,9 +180,9 @@ export class XMacroscopeProject extends DefaultProject {
           },
           color: {
             recordSet: 'run',
-            dataVariable: 'favoriteActivity',
+            dataVariable: 'selectRunner',
             graphicVariableType: 'color',
-            graphicVariableId: 'color'
+            graphicVariableId: 'fixed'
           },
           x: {
             recordSet: 'run',
@@ -211,6 +209,19 @@ export class XMacroscopeProject extends DefaultProject {
             graphicVariableId: 'areaSize'
           }
         }
+      }, this),
+      new DefaultGraphicSymbol({
+        id: 'runStates',
+        type: 'area',
+        recordStream: 'runs',
+        graphicVariables: {
+          identifier: {
+            recordSet: 'run',
+            dataVariable: 'zipCode',
+            graphicVariableType: 'identifier',
+            graphicVariableId: 'identifier'
+          }
+        }
       }, this)
     ];
   }
@@ -221,7 +232,9 @@ export class XMacroscopeProject extends DefaultProject {
         id: 'SG01',
         template: 'scattergraph',
         properties: {
-          drawGridLines: true
+          gridlines: true,
+          showAxisLabels: true,
+          showAxisIndicators: true
         },
         graphicSymbols: {
           points: 'runPoints'
@@ -235,8 +248,8 @@ export class XMacroscopeProject extends DefaultProject {
           stateDefaultStrokeColor: '#bebebe'
         },
         graphicSymbols: {
-          points: 'runPoints'
-          // TODO: Add states
+          points: 'runPoints',
+          states: 'runStates'
         }
       }, this),
     ];

@@ -1,5 +1,5 @@
 import { pick } from 'lodash';
-import { Operand, map, chain, access } from '@ngx-dino/core';
+import { Operand, map, constant, chain, access } from '@ngx-dino/core';
 import { areaSizeScale } from '@dvl-fw/core';
 
 import { Person } from './person';
@@ -30,6 +30,12 @@ export class Run {
   @Operand(chain(access<number>('timeSeconds'), areaSizeScale.quantitative([1, 10])))
   timeAreaSize: number;
 
+  @Operand(constant({
+    areaSize: 50,
+    color: '#000000'
+  }))
+  fixed: any;
+
 
   toJSON(): any {
     return Object.assign({
@@ -39,7 +45,7 @@ export class Run {
       person: this.person.toJSON(),
     }, pick(this,
       // Derived graphic variable data
-      ['timeMillis', 'timeSeconds', 'timeLabel', 'timeAreaSize']
+      ['timeMillis', 'timeSeconds', 'timeLabel', 'timeAreaSize', 'fixed']
     ));
   }
 }
