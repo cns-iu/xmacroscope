@@ -9,10 +9,12 @@ import { BackendModule } from './backend/backend.module';
 import { EndlineModule } from './endline/endline.module';
 import { HomeModule } from './home/home.module';
 import { MakeAVisModule } from './make-a-vis/make-a-vis.module';
+import { DarkThemeComponent } from './shared/dark-theme/dark-theme.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DarkThemeComponent
   ],
   imports: [
     BrowserModule,

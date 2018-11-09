@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
 
 import { XMacroscopeTemplateProject } from 'xmacroscope-dvl-fw-plugin'; // TODO
@@ -10,6 +10,7 @@ import { XMacroscopeTemplateProject } from 'xmacroscope-dvl-fw-plugin'; // TODO
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  theme = 'dark-theme';
   title = 'AISL xMacroscope';
   routeLinks: any[];
   showAppHeader = true;

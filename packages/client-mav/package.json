@@ -42,6 +42,7 @@
     "nano-sql": "^1.7.8",
     "papaparse": "^4.4.0",
     "rxjs": "~6.3.3",
+    "typeface-lato": "0.0.54",
     "typescript-logging": "^0.6.2",
     "vega": "^4.2.0",
     "zipcodes": "^7.0.0",
