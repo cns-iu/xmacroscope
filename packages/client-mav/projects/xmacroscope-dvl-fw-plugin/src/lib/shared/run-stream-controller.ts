@@ -1,5 +1,5 @@
 import { RawChangeSet } from '@ngx-dino/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of, merge as mergeObservables } from 'rxjs';
 import { merge, mergeAll, share, windowToggle } from 'rxjs/operators';
 import { List } from 'immutable';
 
@@ -29,6 +29,7 @@ export class RunStreamController {
       share()
     );
     setTimeout(() => this.starter.next(), 0);
+    this.runStream.subscribe();
   }
 
   sendMessage(message: Message) {
@@ -37,6 +38,11 @@ export class RunStreamController {
 
   sendRunChange(change: RawChangeSet<Run>): void {
     this.emitter.next(change);
+  }
+
+  createRunStream(): Observable<RawChangeSet<Run>> {
+    const snapshot = of(RawChangeSet.fromArray(this.changeTracker.snapshot().toArray()));
+    return mergeObservables(snapshot, this.runStream);
   }
 
   start(): void {

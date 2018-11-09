@@ -1,7 +1,8 @@
 import { RawChangeSet } from '@ngx-dino/core';
 import { Observable } from 'rxjs';
-import { bufferTime, concatMap, filter, map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { List } from 'immutable';
+
 import { Run } from './run';
 import { RunCompletedMessage, Message } from './message';
 
@@ -13,14 +14,12 @@ export class ChangeTracker {
   constructor(
     stream: Observable<Message>,
     public readonly count: number,
-    public readonly highlightCount: number,
-    public readonly bufferInterval = 100
+    public readonly highlightCount: number
   ) {
     this.changeStream = stream.pipe(
       filter(message => message instanceof RunCompletedMessage),
       map<RunCompletedMessage, Run>(message => message.run),
-      bufferTime(bufferInterval),
-      map(runs => this.accumulate(runs))
+      map(runs => this.accumulate([runs]))
     );
   }
 

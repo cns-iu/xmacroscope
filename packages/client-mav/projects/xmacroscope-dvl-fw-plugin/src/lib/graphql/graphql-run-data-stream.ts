@@ -16,8 +16,9 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
   }
 
   asObservable(): Observable<RawChangeSet<Run>> {
-    throw new Error('Method not implemented.');
+    return this.runStreamController.createRunStream();
   }
+
   toJSON(): any {
     return pick(this, ['id', 'label']);
   }
