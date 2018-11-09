@@ -23,9 +23,13 @@ export class Run {
 
   @Operand(map(s => s.end && s.start ? s.end.getTime() - s.start.getTime() : undefined))
   timeMillis: number;
+  @Operand(chain(access<number>('timeMillis'), map(t => t ? t / 1000 : undefined)))
+  timeSeconds: number;
+  @Operand(chain(access<number>('timeSeconds'), map(t => t ? Number(t).toFixed(2) : '')))
+  timeLabel: string;
+  @Operand(chain(access<number>('timeSeconds'), areaSizeScale.quantitative([1, 10])))
+  timeAreaSize: number;
 
-  @Operand(chain(access<number>('timeMillis'), map(t => t ? Math.min(t / 1000.0, 10) : 0), areaSizeScale.quantitative([1, 10])))
-  timeMillisAreaSize: number;
 
   toJSON(): any {
     return Object.assign({
@@ -35,7 +39,7 @@ export class Run {
       person: this.person.toJSON(),
     }, pick(this,
       // Derived graphic variable data
-      ['timeMillis', 'timeMillisAreaSize']
+      ['timeMillis', 'timeSeconds', 'timeLabel', 'timeAreaSize']
     ));
   }
 }

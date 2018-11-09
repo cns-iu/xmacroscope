@@ -1,7 +1,7 @@
 import { DefaultRawData } from '@dvl-fw/core';
 
 import { RunCompletedMessage } from '../data-model/message';
-import { RaceMocker } from './race-mocker';
+import { RunMocker } from './run-mocker';
 
 
 export class MockRunRawData extends DefaultRawData {
@@ -11,7 +11,7 @@ export class MockRunRawData extends DefaultRawData {
 
   public static generateMockRunData(numMocks = 50): any[] {
     const runs = [];
-    const mocker = new RaceMocker({ send: (message) => {
+    const mocker = new RunMocker({ send: (message) => {
       if (message instanceof RunCompletedMessage) {
         const run = (message as RunCompletedMessage).run;
         runs.push(run.toJSON());

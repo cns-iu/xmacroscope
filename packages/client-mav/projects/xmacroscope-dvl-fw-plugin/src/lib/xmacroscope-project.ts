@@ -69,7 +69,7 @@ export class XMacroscopeProject extends DefaultProject {
         labelPlural: 'Runs',
         defaultRecordStream: 'runs',
         dataVariables: [
-          {id: 'selectRunner', label: 'Select Runner', dataType: 'string', scaleType: 'nominal'},
+          {id: 'selectRunner', label: 'Select Runner', dataType: 'persona', scaleType: 'nominal'},
           {id: 'time', label: 'Time (seconds)', dataType: 'number', scaleType: 'linear'},
           {id: 'height', label: 'Height (inches)', dataType: 'number', scaleType: 'linear'},
           {id: 'favoriteActivity', label: 'Favorite Activity', dataType: 'string', scaleType: 'nominal'},
@@ -88,25 +88,37 @@ export class XMacroscopeProject extends DefaultProject {
           run: {
             selectRunner: {
               identifier: [
-                {selector: 'time'}
+                {selector: 'id'}
               ],
-              areaSize: [
-                {selector: 'showPersona'}
+              axis: [
+                {selector: 'person.icon'}
+              ],
+              label: [
+                {selector: 'person.label'}
+              ],
+              shape: [
+                {selector: 'person.icon'}
               ],
               color: [
-                {selector: 'showPersonaColor'}
+                {selector: 'person.color'}
               ]
             },
             time: {
               axis: [
-                {selector: 'time'} // TODO
+                {selector: 'timeSeconds'}
+              ],
+              label: [
+                {selector: 'timeLabel'}
               ],
               areaSize: [
-                {selector: 'timeAreaSize'} // TODO
+                {selector: 'timeAreaSize'}
               ]
             },
             height: {
               axis: [
+                {selector: 'person.height'}
+              ],
+              label: [
                 {selector: 'person.height'}
               ],
               areaSize: [
@@ -117,6 +129,9 @@ export class XMacroscopeProject extends DefaultProject {
               axis: [
                 {selector: 'person.favoriteActivity'}
               ],
+              label: [
+                {selector: 'person.favoriteActivity'}
+              ],
               color: [
                 {selector: 'person.favoriteActivityColor'}
               ]
@@ -125,13 +140,25 @@ export class XMacroscopeProject extends DefaultProject {
               axis: [
                 {selector: 'person.ageGroup'}
               ],
+              label: [
+                {selector: 'person.ageGroup'}
+              ],
               areaSize: [
                 {selector: 'person.ageGroupAreaSize'}
               ]
             },
             zipCode: {
-              axis: [
+              latlng: [
                 {selector: 'person.latlng'}
+              ],
+              identifier: [ // Fix in @dvl-fw to stateIdentifier
+                {selector: 'person.state'}
+              ],
+              axis: [
+                {selector: 'person.state'}
+              ],
+              label: [
+                {selector: 'person.zipCode'}
               ]
             },
           }
@@ -170,6 +197,12 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'height',
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
+          },
+          latlng: {
+            recordSet: 'run',
+            dataVariable: 'zipCode',
+            graphicVariableType: 'latlng',
+            graphicVariableId: 'latlng'
           },
           areaSize: {
             recordSet: 'run',

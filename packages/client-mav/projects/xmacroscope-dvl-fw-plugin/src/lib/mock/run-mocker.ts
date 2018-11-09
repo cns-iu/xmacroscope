@@ -1,11 +1,12 @@
 // refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import * as casual from 'casual-browserify';
+import * as moment from 'moment';
 
 import { Run } from '../data-model/run';
 import { Message, RunSignupMessage, RunPressedMessage, RunInitiatedMessage, RunCompletedMessage } from '../data-model/message';
 import { MockPerson } from './mock-person';
 
-export class RaceMocker {
+export class RunMocker {
   private _mocking = false;
 
   constructor(private messageService: { send: (message: Message) => void }, private initialFakes = 0) {}
@@ -53,13 +54,13 @@ export class RaceMocker {
   }
 
   runSignup(timestamp?: Date): RunSignupMessage {
-    timestamp = timestamp || new Date();
+    timestamp = this.getTime(timestamp);
     const message = new RunSignupMessage({timestamp});
     this.send(message);
     return message;
   }
   runPressed(timestamp?: Date): RunPressedMessage {
-    timestamp = timestamp || new Date();
+    timestamp = this.getTime(timestamp);
     const message = new RunPressedMessage({
       timestamp,
       run: this.runResults(0, timestamp)
@@ -68,7 +69,7 @@ export class RaceMocker {
     return message;
   }
   runInitiated(timestamp?: Date): RunInitiatedMessage {
-    timestamp = timestamp || new Date();
+    timestamp = this.getTime(timestamp);
     const message = new RunInitiatedMessage({
       timestamp,
       run: this.runResults(0, timestamp)
@@ -77,7 +78,7 @@ export class RaceMocker {
     return message;
   }
   runCompleted(timeMillis: number, timestamp?: Date): RunCompletedMessage {
-    timestamp = timestamp || new Date();
+    timestamp = this.getTime(timestamp);
     const message = new RunCompletedMessage({
       timestamp,
       run: this.runResults(timeMillis, timestamp)
@@ -86,11 +87,11 @@ export class RaceMocker {
     return message;
   }
   runResults(timeMillis: number, start: Date): Run {
-    const end = new Date(start.getTime() + timeMillis);
+    start = this.getTime(start);
+    const end = moment(start).add(timeMillis, 'milliseconds').local().toDate();
+    const person = new MockPerson();
     return new Run({
-      start,
-      end,
-      person: new MockPerson()
+      id: person.id + start.getTime(), start, end, person
     });
   }
 
@@ -118,5 +119,9 @@ export class RaceMocker {
     this.runPressed();
     this.runInitiated();
     this.runCompleted(raceCompletedTime, new Date());
+  }
+
+  private getTime(timestamp?: Date): Date {
+    return moment(timestamp || new Date()).local().toDate();
   }
 }

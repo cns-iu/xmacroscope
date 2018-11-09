@@ -38,6 +38,9 @@ export class Person {
     Object.assign(this, data);
   }
 
+  @Operand(map<Person, string>(s => `${s.icon}`))
+  label: string;
+
   @Operand(combine([access('latitude'), access('longitude')]))
   latlng: number[]; // Derived from zipCode
 
@@ -59,9 +62,8 @@ export class Person {
       'ageGroup', 'favoriteActivity', 'height', 'zipCode', 'state',
 
       // Derived graphic variable data
-      'latlng', 'heightAreaSize', 'ageGroupAreaSize', 'favoriteActivityColor',
-      'timeAreaSize'
+      'label', 'latlng', 'heightAreaSize', 'ageGroupAreaSize',
+      'favoriteActivityColor', 'timeAreaSize'
     ]);
   }
 }
-
