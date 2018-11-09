@@ -1,6 +1,6 @@
 import { RawChangeSet } from '@ngx-dino/core';
-import { Observable, Subject, of, merge as mergeObservables } from 'rxjs';
-import { merge, mergeAll, share, windowToggle } from 'rxjs/operators';
+import { Observable, Subject, of, merge } from 'rxjs';
+import { mergeAll, share, windowToggle } from 'rxjs/operators';
 import { List } from 'immutable';
 
 import { ChangeTracker } from './change-tracker';
@@ -22,12 +22,10 @@ export class RunStreamController {
 
   constructor(public historySize = 50, public highlightCount = 4) {
     this.changeTracker = new ChangeTracker(this.messageStream, this.historySize, this.highlightCount);
-    this.runStream = this.changeTracker.asObservable().pipe(
+    this.runStream = merge(this.changeTracker.asObservable().pipe(
       windowToggle(this.starter, () => this.stopper),
-      mergeAll() as (s: any) => Observable<RawChangeSet<Run>>,
-      merge(this.emitter),
-      share()
-    );
+      mergeAll() as (s: any) => Observable<RawChangeSet<Run>>
+    ), this.emitter).pipe(share());
     setTimeout(() => this.starter.next(), 0);
     this.runStream.subscribe();
   }
@@ -42,7 +40,7 @@ export class RunStreamController {
 
   createRunStream(): Observable<RawChangeSet<Run>> {
     const snapshot = of(RawChangeSet.fromArray(this.changeTracker.snapshot().toArray()));
-    return mergeObservables(snapshot, this.runStream);
+    return merge(snapshot, this.runStream);
   }
 
   start(): void {
