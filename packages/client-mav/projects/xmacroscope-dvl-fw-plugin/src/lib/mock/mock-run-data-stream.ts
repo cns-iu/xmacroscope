@@ -3,15 +3,19 @@ import { Observable, Subject } from 'rxjs';
 import { RecordStream } from '@dvl-fw/core';
 import { RawChangeSet } from '@ngx-dino/core';
 
-import { Run } from '../data-model/run';
+import { Run } from '../shared/run';
 import { RunMocker } from './run-mocker';
-import { RunCompletedMessage } from '../data-model/message';
+import { RunCompletedMessage } from '../shared/message';
 
 
 export class MockRunDataStream implements RecordStream<Run> {
   id = 'runs';
   label = 'Runs';
   numInitialRuns = 50;
+
+  constructor() {
+    
+  }
 
   asObservable(): Observable<RawChangeSet<any>> {
     const messages = new Subject<any>();

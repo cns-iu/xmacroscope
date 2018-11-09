@@ -1,6 +1,6 @@
 import { DefaultRawData } from '@dvl-fw/core';
 
-import { RunCompletedMessage } from '../data-model/message';
+import { RunCompletedMessage } from '../shared/message';
 import { RunMocker } from './run-mocker';
 
 

@@ -3,7 +3,7 @@ import { access, chain, map, Operand } from '@ngx-dino/core';
 import * as casual from 'casual-browserify';
 import * as zipcodes from 'zipcodes';
 
-import { ageGroups, colors, favoriteActivities, genders, shapes, Person } from '../data-model/person';
+import { ageGroups, colors, favoriteActivities, genders, shapes, Person } from '../shared/person';
 
 
 function nullable<T>(value: T, nullProb = .1): T | null {

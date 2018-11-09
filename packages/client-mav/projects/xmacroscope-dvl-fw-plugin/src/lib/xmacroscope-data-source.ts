@@ -3,7 +3,7 @@ import { DataSource, DataSourceOptions, ObjectFactory, ObjectFactoryRegistry, Pr
 
 import { GraphQLRunDataStream } from './graphql/graphql-run-data-stream';
 import { MockRunDataStream } from './mock/mock-run-data-stream';
-import { Run } from './data-model/run';
+import { Run } from './shared/run';
 
 
 export interface XMacroscopeDataSourceOptions extends DataSourceOptions {

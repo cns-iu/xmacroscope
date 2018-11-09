@@ -3,10 +3,10 @@ import { Observable, Subject } from 'rxjs';
 import { filter, map, share } from 'rxjs/operators';
 import { List } from 'immutable';
 
-import { Message } from '../data-model/message';
+import { Message } from './message';
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class MessageService {
   private subject = new Subject<Message>();
   private observable: Observable<Message> = this.subject.asObservable().pipe(share());
@@ -37,6 +37,4 @@ export class MessageService {
       return messages;
     }));
   }
-
-  constructor() { }
 }

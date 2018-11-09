@@ -11,9 +11,10 @@ export class Run {
   start: Date;
   end: Date;
   person: Person;
+  showPersona = false;
 
   constructor(data: {
-    id?: string, start?: Date, end?: Date, person?: any
+    id?: string, start?: Date, end?: Date, person?: any, showPersona?: boolean
   } = {}) {
     if (!(data.person instanceof Person)) {
       data.person = new Person(data.person || {});
