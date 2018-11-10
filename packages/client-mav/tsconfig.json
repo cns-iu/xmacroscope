@@ -15,8 +15,7 @@
     ],
     "lib": [
       "es2018",
-      "dom",
-      "esnext"
+      "dom"
     ],
     "paths": {
       "@angular": [
@@ -30,6 +29,9 @@
       ],
       "rxjs/*": [
         "node_modules/rxjs/*"
+      ],
+      "stream": [ 
+        "node_modules/readable-stream"
       ],
       "xmacroscope-dvl-fw-plugin": [
         "dist/xmacroscope-dvl-fw-plugin"
