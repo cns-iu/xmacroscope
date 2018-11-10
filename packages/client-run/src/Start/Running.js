@@ -7,6 +7,7 @@ import { Row, Col } from 'reactstrap';
 import gql from 'graphql-tag';
 import RunnerTimer from './RunnerTimer';
 import RunningTimerTimeout from './RunningTimerTimeout';
+import { BigHeader } from '../Primatives/BasePrimatives';
 
 const GET_RUN_TIMEOUT = gql`
   query GetRunTimeout($location: String!) {
@@ -33,12 +34,12 @@ function Running() {
               {/* Running message */}
               <Row>
                 <Col className="text-center">
-                  <h1 className="go font-weight-bold">GO!</h1>
+                  <BigHeader className="font-weight-bold">GO!</BigHeader>
                 </Col>
               </Row>
 
               <Row className="text-center">
-                <RunnerTimer runTimeout={runTimeout} lane="1" />
+                <RunnerTimer runTimeout={runTimeout} />
                 <RunningTimerTimeout runTimeout={runTimeout} />
               </Row>
 

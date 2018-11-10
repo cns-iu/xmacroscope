@@ -15,9 +15,17 @@ const typeDefs = `
   }
 
   type ActiveRun {
-    opponent: String!
-    opponentName: String!
     status: String!
+    runId: String
+    ageGroup: String
+    color: String
+    favoriteActivity: String
+    height: String
+    icon: String
+    latitude: String
+    longitude: String
+    state: String
+    zipCode: String
   }
 `;
 

@@ -6,15 +6,6 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    opponent: {
-      type: Sequelize.STRING,
-    },
-    opponentName: {
-      type: Sequelize.STRING,
-    },
-    opponentTime: {
-      type: Sequelize.INTEGER,
-    },
     start: {
       type: Sequelize.DATE,
     },

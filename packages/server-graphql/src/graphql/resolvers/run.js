@@ -29,8 +29,29 @@ const Runs = baseResolver
 // Keeping extraneous console statements and return helpers in the code
 // while in active DB development.
 
+// Send a signup message
+// No database operations
+const StartSignup = baseResolver
+  .createResolver(() => {
+    const publishPayload = {
+      signupStartSubscription: {
+        type: 'signup-started',
+        timestamp: new Date(),
+      },
+    };
+    const message = pubsub.publish('signup-started', publishPayload);
+    if (message) {
+      console.log('Signup started - Message sent');
+    } else {
+      console.log('Signup started - Message failed');
+    }
+    return message;
+  });
+
 // Send a run selection message
 // No database operations
+// This is no longer used.
+// We'll rename this for the singup form start message
 const SelectRun = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
@@ -53,9 +74,6 @@ const StartRun = baseResolver
     ...args.run.person,
     Runs: {
       start: args.run.start,
-      opponent: args.run.opponent,
-      opponentName: args.run.opponentName,
-      opponentTime: args.run.opponentTime,
     },
   }, {
     include: [db.run],
@@ -93,9 +111,6 @@ const FinishRun = baseResolver
     // so that we can access the personId without worry about the association
     db.run.findOne({
       attributes: [
-        'opponent',
-        'opponentName',
-        'opponentTime',
         'start',
         'end',
         'PersonId',
@@ -144,7 +159,8 @@ const RunResolver = {
     Runs,
   },
   Mutation: {
-    SelectRun,
+    // SelectRun,
+    StartSignup,
     StartRun,
     FinishRun,
   },

@@ -1,21 +1,21 @@
 import React from 'react';
 import { withFormik } from 'formik';
-import { Col, Card, CardBody, CardHeader } from 'reactstrap';
+import { Row, Col, CardBody } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
 import gql from 'graphql-tag';
-import BaseHeader from '../Primatives/BasePrimatives';
+import { BaseHeader, StyledCardHeader, StyledCard } from '../Primatives/BasePrimatives';
 import SignupForm from './SignupForm';
 
 const UPDATE_RUN_LOCAL = gql`
   mutation updateRun($status: String!) {
     updateRun(
+      runId: null
       status: $status
       ageGroup: $ageGroup
       favoriteActivity: $favoriteActivity
       height: $height
-      siblings: $siblings
       zipCode: $zipCode
       color: $color
       icon: $icon
@@ -35,6 +35,7 @@ function zipCodeLookup(value) {
 }
 
 const SignupFormFormik = withFormik({
+
   validationSchema: Yup.object().shape({
     height: Yup.number()
       .typeError('height must be a number')
@@ -61,7 +62,6 @@ const SignupFormFormik = withFormik({
         ageGroup: values.ageGroup,
         favoriteActivity: values.favoriteActivity,
         height: values.height,
-        siblings: values.siblings,
         zipCode: values.zipCode,
         color: values.color,
         icon: values.shape,
@@ -77,23 +77,24 @@ function WithCreateMutation() {
   return (
     <Mutation mutation={UPDATE_RUN_LOCAL}>
       {updateRun => (
-        <Col
-          xs={12}
-          md={8}
-          xl={8}
-          className="mx-auto"
-        >
-          <Card>
-            <CardHeader className="text-center">
-              <BaseHeader>RUN SIGN UP</BaseHeader>
-            </CardHeader>
-            <CardBody>
-              <SignupFormFormik
-                updateRun={updateRun}
-              />
-            </CardBody>
-          </Card>
-        </Col>
+        <Row className="h-100 align-items-center">
+          <Col
+            md={10}
+            xl={8}
+            className="mx-auto"
+          >
+            <StyledCard>
+              <StyledCardHeader className="text-center">
+                <BaseHeader>RUN SIGN UP</BaseHeader>
+              </StyledCardHeader>
+              <CardBody>
+                <SignupFormFormik
+                  updateRun={updateRun}
+                />
+              </CardBody>
+            </StyledCard>
+          </Col>
+        </Row>
       )}
     </Mutation>
   );

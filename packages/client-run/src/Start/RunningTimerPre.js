@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
+import { Col } from 'reactstrap';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import Timer from './Timer';
@@ -22,9 +24,7 @@ const START_RUN = gql`
   }
 `;
 
-function RunningTimerPre({
-  person, opponent, opponentName, opponentTime,
-}) {
+function RunningTimerPre({ person }) {
   return (
     <Query
       query={GET_PRE_RUN_DELAY}
@@ -52,30 +52,29 @@ function RunningTimerPre({
             }}
           >
             {StartRun => (
-              <div className="text-center">
-                <h1>On your marks...</h1>
-                <h2>Step up to the starting line and<br />get ready to run.</h2>
-                <Timer
-                  completion={() => {
-                    StartRun({
-                      variables: {
-                        run: {
-                          start: moment(),
-                          opponent,
-                          opponentName,
-                          opponentTime,
-                          person,
+              <Col className="col-sm-12">
+                <div className="text-center pt-5">
+                  <h1>On your marks...</h1>
+                  <h2>Step up to the starting line and<br />get ready to run.</h2>
+                  <Timer
+                    completion={() => {
+                      StartRun({
+                        variables: {
+                          run: {
+                            start: moment(),
+                            person,
+                          },
                         },
-                      },
-                    });
-                  }}
-                  displayTimer={false}
-                  direction="down"
-                  start={preRunDelay}
-                  end={0}
-                  countDownSound
-                />
-              </div>
+                      });
+                    }}
+                    displayTimer={false}
+                    direction="down"
+                    start={preRunDelay}
+                    end={0}
+                    countDownSound
+                  />
+                </div>
+              </Col>
             )}
           </Mutation>
         );
@@ -84,4 +83,9 @@ function RunningTimerPre({
   );
 }
 
+RunningTimerPre.propTypes = {
+  person: PropTypes.object.isRequired,
+};
+
 export default RunningTimerPre;
+

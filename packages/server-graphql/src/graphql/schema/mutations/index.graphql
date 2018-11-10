@@ -1,13 +1,11 @@
 # Define GraphQL mutations
 
 type Mutation {
+  # Initiate signup message
+  StartSignup: Boolean
+
   # TODO: Are these in use?
   runCompleted(runs: [RunInput!]!): [ID!]!
-
-  # Run select is a message operation
-  # Since it just triggers a message it returns null, but GQL requires return
-  # datad. To deal with this we just allow it to be nullable here by excluding !
-  SelectRun(run: RunSelectInput!): Boolean
 
   # Start run is a create operation and returns the created run's ID
   StartRun(run: RunInput!): ID!

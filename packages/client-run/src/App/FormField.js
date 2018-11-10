@@ -1,13 +1,13 @@
-/**
- * Reusable form field
- */
+//
+// Reusable form field
+//
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormGroup, Label } from 'reactstrap';
 import { Field } from 'formik';
 
 const FormField = ({
-  label, value, name, type, component, className, disabled, errors, touched,
+  label, value, name, type, component, className, disabled,
 }) => (
   <FormGroup>
     {/* Optional label */}
@@ -23,14 +23,6 @@ const FormField = ({
       disabled={disabled}
       autoComplete="off"
     />
-
-    {/* Validation feedback */}
-    {
-      touched[name] && errors[name] &&
-      <div>
-        {errors[name]}
-      </div>
-    }
   </FormGroup>
 );
 
