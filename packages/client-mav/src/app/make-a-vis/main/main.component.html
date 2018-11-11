@@ -1,6 +1,6 @@
-<div class="main-view">
+<div class="main-view" [ngClass]="{'no-header': !showAppHeader}">
   <div class="data-view">
-      <app-data-view-main class="data-view"></app-data-view-main>
+      <app-data-view-main></app-data-view-main>
   </div>
   <div class="visualization-and-legend-view">
       <app-visualization-view-main class="visualization"></app-visualization-view-main>

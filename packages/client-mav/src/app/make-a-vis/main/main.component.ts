@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -6,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
+  showAppHeader = true;
 
-  constructor() { }
+  constructor(route: ActivatedRoute) {
+    route.queryParams.subscribe((q) => {
+      if ('showAppHeader' in q) {
+        this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+      } else if (Object.keys(q).length === 0) {
+        this.showAppHeader = true;
+      }
+    });
+  }
 
   ngOnInit() {
   }
