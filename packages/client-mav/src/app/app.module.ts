@@ -9,13 +9,10 @@ import { BackendModule } from './backend/backend.module';
 import { EndlineModule } from './endline/endline.module';
 import { HomeModule } from './home/home.module';
 import { MakeAVisModule } from './make-a-vis/make-a-vis.module';
-import { DarkThemeComponent } from './shared/dark-theme/dark-theme.component';
+import { ThemesModule } from './themes/themes.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DarkThemeComponent
-  ],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
     MatTabsModule,
@@ -26,8 +23,9 @@ import { DarkThemeComponent } from './shared/dark-theme/dark-theme.component';
     EndlineModule,
     HomeModule,
     MakeAVisModule,
+    ThemesModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
