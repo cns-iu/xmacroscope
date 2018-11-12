@@ -28,19 +28,15 @@ const ErrorFeedBack = ({
 
 ErrorFeedBack.propTypes = {
   name: PropTypes.string.isRequired,
-  component: PropTypes.string,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  className: PropTypes.string,
-  value: PropTypes.string,
+  errors: PropTypes.object,
+  touched: PropTypes.object,
+  disabled: PropTypes.bool,
 };
 
 ErrorFeedBack.defaultProps = {
-  type: 'text',
-  component: 'input',
-  className: 'form-control',
-  label: null,
-  value: '',
+  touched: {},
+  disabled: false,
+  errors: {},
 };
 
 export default ErrorFeedBack;

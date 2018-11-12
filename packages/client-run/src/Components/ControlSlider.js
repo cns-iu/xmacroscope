@@ -1,9 +1,10 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { PlaceHolder } from '../Primatives/ControlPrimatives';
-import Slider, { createSliderWithTooltip } from 'rc-slider';
+
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
@@ -40,7 +41,11 @@ const ControlGroupBtns = (props) => {
 
 ControlGroupBtns.propTypes = {
   value: PropTypes.string,
+  updateInputValue: PropTypes.func.isRequired,
 };
 
+ControlGroupBtns.defaultProps = {
+  value: '',
+};
 
 export default ControlGroupBtns;

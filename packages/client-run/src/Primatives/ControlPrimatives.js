@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
 import { selected } from './BasePrimatives';
-import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
+import { sportsYellow } from './BaseConfigsVariables';
 
 const dashedOutline = `
 border: 8px dashed white;
@@ -42,8 +42,17 @@ const KeyInput = styled(Button)`
     font-size: 12px;
     ${props => (props.hide === 'hide' ? 'display: none' : '')};
   }
+
+  &:active{
+   ${selected}
+  }
   &:hover{
    ${selected}
+  }
+  &:hover{
+    color: ${sportsYellow};
+    border-color: ${sportsYellow};
+    background-color: gray;
   }
 `;
 const PlaceHolder = styled.div`

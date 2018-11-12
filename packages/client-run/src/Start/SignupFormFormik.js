@@ -1,6 +1,6 @@
 import React from 'react';
 import { withFormik } from 'formik';
-import { Row, Col, CardBody } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
