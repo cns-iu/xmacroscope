@@ -4,21 +4,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
+import { ErrorWrapper } from '../Primatives/BasePrimatives';
 
 const ErrorFeedBack = ({
   name, disabled, errors, touched,
 }) => (
   <Row>
     <Col sm={12}>
-      {/* Validation feedback */}
-      {
+      <ErrorWrapper className="pt-2">
+        {/* Validation feedback */}
+        {
       errors[name]
       && (
-      <div>
-        {errors[name]}
-      </div>
+
+        <span>{errors[name]}</span>
+
       )
     }
+      </ErrorWrapper>
     </Col>
   </Row>
 );

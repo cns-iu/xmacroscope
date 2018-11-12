@@ -19,13 +19,14 @@ border: 3px solid;
 const ControlKeypadContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1em;
+  grid-gap: 25px;
   margin: auto;
   max-width: 75%;
+  max-width: 200px;
   @media (max-height: 1080px) {
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 25px;
-    max-width: 500px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    max-width: 280px;
   }
 `;
 const KeyInput = styled(Button)`
@@ -37,16 +38,30 @@ const KeyInput = styled(Button)`
   height: ${props => props.dimension};
   margin: auto;
   @media (max-height: 1080px) {
+    height: 40px;
+    width: 40px;
+    font-size: 12px;
     ${props => (props.hide === 'hide' ? 'display: none' : '')};
   }
   &:hover{
    ${selected}
   }
 `;
+const PlaceHolder = styled.div`
+  min-height: 30px;
+  span{
+    letter-spacing: 4px;
+  }
+`;
 const ControlColorsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-gap: 1em;
+  grid-gap: 25px;
+  @media (max-height: 1080px) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    max-width: 280px;
+  }
 `;
 const ControlColor = styled.div`
   margin: auto;
@@ -112,4 +127,5 @@ const ShapeWrapper = styled.div`
 export {
   ShapeWrapper, ControlShapesContainer, ShapeWrapperControl,
   ControlColorsContainer, ControlColor, ControlKeypadContainer, KeyInput,
+  PlaceHolder,
 };
