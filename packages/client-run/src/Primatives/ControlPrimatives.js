@@ -32,7 +32,7 @@ const KeyInput = styled(Button)`
   ${props => (props.hide === 'hide' ? 'visibility: hidden' : '')};
   color: ${sportsYellow};
   border-color: ${sportsYellow};
-  background-color: rgba(255,255,255,.20);
+  background-color: gray;
   width: ${props => props.dimension};
   height: ${props => props.dimension};
   margin: auto;
@@ -90,7 +90,7 @@ const ShapeWrapperControl = styled.div`
   margin: ${props => props.margin};
   width: ${props => props.width};
   border-radius: 50%;
-  background-color: rgba(255,255,255,.20);
+  background-color: gray;
   transition: all 1s ease-in-out;
   svg {
     padding: 8px;

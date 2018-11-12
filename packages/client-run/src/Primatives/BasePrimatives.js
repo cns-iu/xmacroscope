@@ -54,7 +54,7 @@ const StyledCardHeader = styled(CardHeader)`
 const StyledBTN = styled(Button)`
   color: ${sportsYellow};
   border-color: ${sportsYellow};
-  background-color: rgba(255,255,255,.20);
+  background-color: gray;
   ${props => (props.selected ? `${selected}` : '')}
   &:hover{
    ${selected}
