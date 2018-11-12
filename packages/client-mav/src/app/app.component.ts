@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { from } from 'rxjs';
-import { XMacroscopeProject } from 'xmacroscope-dvl-fw-plugin'; // TODO
+import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,8 @@ export class AppComponent {
   routeLinks: any[];
   showAppHeader = true;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    from(XMacroscopeProject.create(true)).subscribe(console.log); // TODO
+  constructor(private router: Router, private route: ActivatedRoute, public dataService: XMacroscopeDataService) {
+    console.log(dataService);
     this.routeLinks = [
       {
         label: 'Home',
