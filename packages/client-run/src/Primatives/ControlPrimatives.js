@@ -21,8 +21,7 @@ const ControlKeypadContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
   margin: auto;
-  max-width: 75%;
-  max-width: 200px;
+  max-width: 250px;
   @media (max-height: 1080px) {
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
@@ -33,7 +32,7 @@ const KeyInput = styled(Button)`
   ${props => (props.hide === 'hide' ? 'visibility: hidden' : '')};
   color: ${sportsYellow};
   border-color: ${sportsYellow};
-  background: none;
+  background-color: rgba(255,255,255,.20);
   width: ${props => props.dimension};
   height: ${props => props.dimension};
   margin: auto;
@@ -91,9 +90,10 @@ const ShapeWrapperControl = styled.div`
   margin: ${props => props.margin};
   width: ${props => props.width};
   border-radius: 50%;
+  background-color: rgba(255,255,255,.20);
   transition: all 1s ease-in-out;
   svg {
-    padding: 5px;
+    padding: 8px;
   }
   path {
     transition: all 1s ease-in-out;

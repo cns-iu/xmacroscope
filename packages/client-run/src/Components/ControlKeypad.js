@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { ControlKeypadContainer, KeyInput, PlaceHolder } from '../Primatives/ControlPrimatives';
 
 const zipCodeUpdate = (zipCode) => {
-  console.log(zipCode);
   let zipCodeFormatted = '';
   if (!zipCode.length) {
     zipCodeFormatted = '_ _ _ _ _ ';
@@ -18,7 +17,7 @@ const zipCodeUpdate = (zipCode) => {
 const ControlKeypad = props => (
   <Fragment>
     <Col sm={12}>
-      <PlaceHolder className="pb-1 text-center">
+      <PlaceHolder className="pb-2 text-center">
         <h4>Zip Code:<span>&nbsp;&nbsp;{zipCodeUpdate(props.value)}</span></h4>
       </PlaceHolder>
     </Col>

@@ -4,7 +4,7 @@ import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseC
 
 
 const selected = `
-color: ${sportsGray};
+color: black;
 background: ${sportsYellow};
 border-color: ${sportsYellow};
 `;
@@ -39,6 +39,10 @@ const StyledButton = styled(Button)`
   border: none;
   font-weight: bold;
   font-size: 50px;
+  :hover{
+    background-color: ${sportsOrange};
+    color: white;
+  }
   @media (max-height: 1080px) {
     font-size: 30px !important;
   }
@@ -50,7 +54,7 @@ const StyledCardHeader = styled(CardHeader)`
 const StyledBTN = styled(Button)`
   color: ${sportsYellow};
   border-color: ${sportsYellow};
-  background: none;
+  background-color: rgba(255,255,255,.20);
   ${props => (props.selected ? `${selected}` : '')}
   &:hover{
    ${selected}
