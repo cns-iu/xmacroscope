@@ -75,7 +75,6 @@ input MessageAnyInput {
 }
 
 input PersonInput {
-  name: String
   icon: String
   color: String
   ageGroup: String
@@ -88,8 +87,12 @@ input PersonInput {
 }
 
 input RunInput {
-  start: Date!
+  start: Date
   person: PersonInput
+}
+
+input RunStartInput {
+  start: Date!
 }
 
 input RunRecordFinishInput {

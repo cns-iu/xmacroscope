@@ -69,12 +69,15 @@ const SelectRun = baseResolver
     return message;
   });
 
-const StartRun = baseResolver
+//
+// Create a person and run record
+// Send a signup-finished message
+//
+const FinishSignup = baseResolver
   .createResolver((root, args) => db.person.create({
     ...args.run.person,
-    Runs: {
-      start: args.run.start,
-    },
+    // Start is null until the race begins this is updated in another mutation
+    Runs: { start: null },
   }, {
     include: [db.run],
   })
@@ -87,18 +90,18 @@ const StartRun = baseResolver
       // Publish run initiation for MAV
       const publishPayload = {
         runInitiatedSubscription: {
-          type: 'run-initiated',
-          timestamp: args.run.start,
+          type: 'signup-finished',
+          timestamp: new Date(),
           run: runWithPerson,
         },
       };
-      const message = pubsub.publish('run-initiated', publishPayload);
+      const message = pubsub.publish('signup-finished', publishPayload);
       if (message) {
-        console.log('Run initiated - Message sent');
+        console.log('Signup finished - Message sent');
       } else {
-        console.log('Run initiated - Message failed');
+        console.log('Signup finished - Message failed');
       }
-      return createdPerson.Runs[0].id;
+      return runWithPerson;
     }));
 
 // Update an existing run record with a finish time, return the ID
@@ -161,7 +164,8 @@ const RunResolver = {
   Mutation: {
     // SelectRun,
     StartSignup,
-    StartRun,
+    FinishSignup,
+    // StartRun,
     FinishRun,
   },
 };

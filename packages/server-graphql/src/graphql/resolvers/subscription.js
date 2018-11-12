@@ -5,6 +5,9 @@ const Subscription = {
     signupStartSubscription: {
       subscribe: () => pubsub.asyncIterator('signup-started'),
     },
+    signupFinishSubscription: {
+      subscribe: () => pubsub.asyncIterator('signup-finish'),
+    },
     runSelectedSubscription: {
       subscribe: () => pubsub.asyncIterator('run-selected'),
     },

@@ -4,6 +4,10 @@ type Mutation {
   # Initiate signup message
   StartSignup: Boolean
 
+  # Finish signup creastes a run record and associates the person to it.
+  # It returns the created run
+  FinishSignup(run: RunInput): Run
+
   # TODO: Are these in use?
   runCompleted(runs: [RunInput!]!): [ID!]!
 

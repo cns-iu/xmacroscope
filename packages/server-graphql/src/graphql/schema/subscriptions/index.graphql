@@ -4,6 +4,7 @@ type Subscription {
 
   # Subscriptions for an individual run in various states
   signupStartSubscription: MessageAny
+  signupFinishSubscription: MessageAny
   runCompletedSubscription: MessageRun
   runInitiatedSubscription: MessageRun
   runSelectedSubscription: MessageRun
