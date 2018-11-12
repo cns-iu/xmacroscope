@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { Button, CardHeader, Card } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { selected } from './BasePrimatives';
-import {
-  sportsGray, sportsOrange, sportsTransGray, sportsYellow,
-} from './BaseConfigsVariables';
+import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
 
 const dashedOutline = `
 border: 8px dashed white;
@@ -22,8 +20,13 @@ const ControlKeypadContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
-  max-width: 250px;
   margin: auto;
+  max-width: 75%;
+  @media (max-height: 1080px) {
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 25px;
+    max-width: 500px;
+  }
 `;
 const KeyInput = styled(Button)`
   ${props => (props.hide === 'hide' ? 'visibility: hidden' : '')};
@@ -34,8 +37,7 @@ const KeyInput = styled(Button)`
   height: ${props => props.dimension};
   margin: auto;
   @media (max-height: 1080px) {
-    max-height: 40px;
-    max-width: 40px;
+    ${props => (props.hide === 'hide' ? 'display: none' : '')};
   }
   &:hover{
    ${selected}
