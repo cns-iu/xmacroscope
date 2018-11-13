@@ -94,7 +94,6 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
         wsEndpoint = wsUrl.href;
       }
     }
-    console.log(wsEndpoint);
 
     // Create an http link:
     const httpLink = new HttpLink({

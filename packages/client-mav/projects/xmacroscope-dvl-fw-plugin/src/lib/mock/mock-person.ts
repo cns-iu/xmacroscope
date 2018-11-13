@@ -3,7 +3,7 @@ import { access, chain, map, Operand } from '@ngx-dino/core';
 import * as casual from 'casual-browserify';
 import * as zipcodes from 'zipcodes';
 
-import { ageGroups, colors, favoriteActivities, genders, shapes, Person } from '../shared/person';
+import { ageGroups, colors, favoriteActivities, shapes, Person } from '../shared/person';
 
 
 function nullable<T>(value: T, nullProb = .1): T | null {
@@ -39,23 +39,14 @@ export class MockPerson extends Person {
   @Operand(map(() => casual.random_element(colors)))
   color: string;
 
-  @Operand(map(() => nullable(casual.random_element(genders))))
-  gender: 'male' | 'female' | 'other';
-
   @Operand(map(() => nullable(casual.random_element(ageGroups))))
   ageGroup: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';
 
-  @Operand(map(() => nullable(casual.random > 0.1 ? 'right' : 'left') || 'ambidextrous'))
-  handedness: 'left' | 'right' | 'ambidextrous';
+  @Operand(map(() => nullable(casual.random_element(favoriteActivities))))
+  favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
 
   @Operand(map(() => nullable(casual.integer(36, 96))))
   height: number;
-
-  @Operand(map(() => nullable(casual.integer(0, 12))))
-  siblings: number;
-
-  @Operand(map(() => nullable(casual.random_element(favoriteActivities))))
-  favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
 
   @Operand(map(mockUSLocation))
   location: USLocation;
