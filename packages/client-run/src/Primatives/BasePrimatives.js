@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-import { Button, CardHeader, Card } from 'reactstrap';
-import {
-  sportsGray, sportsOrange, sportsTransGray, sportsYellow,
-} from './BaseConfigsVariables';
+import { Button, CardHeader, Card, CardBody } from 'reactstrap';
+import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
 
 
 const selected = `
-color: ${sportsGray};
+color: black;
 background: ${sportsYellow};
 border-color: ${sportsYellow};
 `;
@@ -17,6 +15,12 @@ const BaseHeader = styled.h1`
   font-size: 65px;
   @media (max-height: 1080px) {
     font-size: 30px !important;
+  }
+`;
+const BaseFormHeader = styled.h1`
+  color: white;
+  @media (max-height: 1080px) {
+    font-size: 28px !important;
   }
 `;
 
@@ -35,6 +39,10 @@ const StyledButton = styled(Button)`
   border: none;
   font-weight: bold;
   font-size: 50px;
+  :hover{
+    background-color: ${sportsOrange};
+    color: white;
+  }
   @media (max-height: 1080px) {
     font-size: 30px !important;
   }
@@ -46,7 +54,7 @@ const StyledCardHeader = styled(CardHeader)`
 const StyledBTN = styled(Button)`
   color: ${sportsYellow};
   border-color: ${sportsYellow};
-  background: none;
+  background-color: gray;
   ${props => (props.selected ? `${selected}` : '')}
   &:hover{
    ${selected}
@@ -59,8 +67,18 @@ const StyledCard = styled(Card)`
   background-color: ${sportsTransGray};
 `;
 
+const StyledCardBody = styled(CardBody)`
+  padding: .75em 1.25em;
+   @media (max-height: 1080px) {
+     padding: .5em 1.5em;
+  }
+`;
+
+const ErrorWrapper = styled.div`
+  height: 25px;
+`;
 
 export {
   BaseHeader, BigHeader, StyledButton, StyledCardHeader, StyledCard, StyledBTN,
-  selected,
+  selected, StyledCardBody, BaseFormHeader, ErrorWrapper,
 };

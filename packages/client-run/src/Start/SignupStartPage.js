@@ -11,7 +11,6 @@ import Running from './Running';
 import RunningTimerPost from './RunningTimerPost';
 import SignupFormFormik from './SignupFormFormik';
 import GET_RUN_STATE_LOCAL from './graphql/GetRaceStateLocal.graphql';
-import personActive from './personActive';
 import RunnerIcon from './RunnerIcon';
 
 class SignupStartPage extends React.Component {
@@ -21,7 +20,7 @@ class SignupStartPage extends React.Component {
         {({ loading, error, data: { activeRun } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          const person = personActive(activeRun);
+          const { runId } = activeRun;
           return (
             <Fragment>
               {
@@ -43,7 +42,7 @@ class SignupStartPage extends React.Component {
               {{
                 preSignupForm: <SignupPreMutation />,
                 signupForm: <SignupFormFormik />,
-                runTimerPre: <RunningTimerPre person={person} />,
+                runTimerPre: <RunningTimerPre runId={runId} />,
                 running: <Running />,
                 postRunTimer: <RunningTimerPost />,
                 falseStart: <div>False start</div>,
