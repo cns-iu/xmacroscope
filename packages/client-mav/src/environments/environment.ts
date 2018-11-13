@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  mockMessages: true,
-  useHashStrategy: false
+  useHashStrategy: false,
+  projectConfiguration: {
+    mockData: true
+    // endpoint: 'http://localhost:4000/graphql'
+  }
 };
 
 /*
