@@ -92,10 +92,11 @@ input RunInput {
 }
 
 input RunStartInput {
+  id: ID
   start: Date!
 }
 
-input RunRecordFinishInput {
+input RunFinishInput {
   id: ID!
   finish: Date!
 }

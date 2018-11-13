@@ -12,10 +12,10 @@ type Mutation {
   runCompleted(runs: [RunInput!]!): [ID!]!
 
   # Start run is a create operation and returns the created run's ID
-  StartRun(run: RunInput!): ID!
+  StartRun(run: RunStartInput!): [Int]
 
   # Run finish is an update operation and simply returns the number of rows affected.
-  FinishRun(run: RunRecordFinishInput!): [Int]
+  FinishRun(run: RunFinishInput!): [Int]
 
   SendMessage(message: MessageAnyInput): Boolean
 }

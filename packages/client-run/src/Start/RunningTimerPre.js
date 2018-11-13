@@ -15,8 +15,8 @@ const GET_PRE_RUN_DELAY = gql`
 `;
 
 const START_RUN = gql`
-  mutation StartRun(
-  $run: RunInput!
+  mutation startRun(
+  $run: RunStartInput!
   ) {
     StartRun(
       run: $run
@@ -24,7 +24,7 @@ const START_RUN = gql`
   }
 `;
 
-function RunningTimerPre({ person }) {
+function RunningTimerPre({ runId }) {
   return (
     <Query
       query={GET_PRE_RUN_DELAY}
@@ -38,13 +38,11 @@ function RunningTimerPre({ person }) {
         return (
           <Mutation
             mutation={START_RUN}
-            update={(cache, { data }) => {
-              const createdRunID = data.StartRun;
+            update={(cache) => {
               cache.writeData({
                 data: {
                   activeRun: {
                     __typename: 'ActiveRun',
-                    runId: createdRunID,
                     status: 'running',
                   },
                 },
@@ -61,8 +59,8 @@ function RunningTimerPre({ person }) {
                       StartRun({
                         variables: {
                           run: {
+                            id: runId,
                             start: moment(),
-                            person,
                           },
                         },
                       });
@@ -84,7 +82,11 @@ function RunningTimerPre({ person }) {
 }
 
 RunningTimerPre.propTypes = {
-  person: PropTypes.object.isRequired,
+  runId: PropTypes.string,
+};
+
+RunningTimerPre.defaultProps = {
+  runId: null,
 };
 
 export default RunningTimerPre;

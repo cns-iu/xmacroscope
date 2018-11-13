@@ -104,6 +104,49 @@ const FinishSignup = baseResolver
       return runWithPerson;
     }));
 
+// Update an existing run record with a start time, return the ID
+const StartRun = baseResolver
+  .createResolver((root, args) => db.run.update(
+    { start: args.run.start },
+    { where: { id: args.run.id } },
+  ).then((updatedRuns) => {
+    // We get the raw data object here instead of a Sequelize object
+    // so that we can access the personId without worry about the association
+    db.run.findOne({
+      attributes: [
+        'start',
+        'PersonId',
+      ],
+      where: { id: args.run.id },
+      raw: true,
+    })
+      .then((startedRun) => {
+        db.person.findOne({ where: { id: startedRun.PersonId } })
+          .then(runnerPerson => runnerPerson).then((runnerPerson) => {
+            const runWithPerson = Object.assign(
+              { person: runnerPerson },
+              runnerPerson,
+            );
+
+            const publishPayload = {
+              runCompletedSubscription: {
+                timestamp: new Date(),
+                type: 'run-started',
+                run: runWithPerson,
+              },
+            };
+            const message = pubsub.publish('run-started', publishPayload);
+            if (message) {
+              console.log('Run started - Message sent');
+            } else {
+              console.log('Run started - Message failed');
+            }
+          });
+      });
+    // Publish run completion for MAV
+    return updatedRuns;
+  }));
+
 // Update an existing run record with a finish time, return the ID
 const FinishRun = baseResolver
   .createResolver((root, args) => db.run.update(
@@ -145,11 +188,11 @@ const FinishRun = baseResolver
                 run: runWithPerson,
               },
             };
-            const message = pubsub.publish('run-completed', publishPayload);
+            const message = pubsub.publish('run-finished', publishPayload);
             if (message) {
-              console.log('Run completed - Message sent');
+              console.log('Run finished - Message sent');
             } else {
-              console.log('Run completed - Message failed');
+              console.log('Run finished - Message failed');
             }
           });
       });
@@ -165,7 +208,7 @@ const RunResolver = {
     // SelectRun,
     StartSignup,
     FinishSignup,
-    // StartRun,
+    StartRun,
     FinishRun,
   },
 };
