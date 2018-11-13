@@ -4,14 +4,18 @@ type Mutation {
   # Initiate signup message
   StartSignup: Boolean
 
+  # Finish signup creastes a run record and associates the person to it.
+  # It returns the created run
+  FinishSignup(run: RunInput): Run
+
   # TODO: Are these in use?
   runCompleted(runs: [RunInput!]!): [ID!]!
 
   # Start run is a create operation and returns the created run's ID
-  StartRun(run: RunInput!): ID!
+  StartRun(run: RunStartInput!): [Int]
 
   # Run finish is an update operation and simply returns the number of rows affected.
-  FinishRun(run: RunRecordFinishInput!): [Int]
+  FinishRun(run: RunFinishInput!): [Int]
 
   SendMessage(message: MessageAnyInput): Boolean
 }
