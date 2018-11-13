@@ -1,7 +1,9 @@
 // refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import { access, chain, map, Operand } from '@ngx-dino/core';
-import * as casual from 'casual-browserify';
+import * as casual_ from 'casual-browserify';
+const casual = casual_;
 import * as zipcodes from 'zipcodes';
+import { pick } from 'lodash';
 
 import { ageGroups, colors, favoriteActivities, shapes, Person } from '../shared/person';
 
@@ -25,38 +27,22 @@ export function mockUSLocation(): USLocation {
   return zipcodes.lookup(casual.random_element(usZipCodes)) || mockUSLocation() /* keep looking until we find a valid location */;
 }
 
-// @dynamic
 export class MockPerson extends Person {
-  @Operand(map(() => 'person' + casual.integer(1, 500)))
-  id: string;
+  constructor() {
+    super({
+      id: 'person' + casual.integer(1, 500),
+      name: nullable(casual.first_name),
+      icon: casual.random_element(shapes),
+      color: casual.random_element(colors),
+      ageGroup: nullable(casual.random_element(ageGroups)),
+      favoriteActivity: nullable(casual.random_element(favoriteActivities)),
+      height: nullable(casual.integer(36, 96))
+    });
 
-  @Operand(map(() => nullable(casual.first_name)))
-  name: string;
-
-  @Operand(map(() => casual.random_element(shapes)))
-  icon: string;
-
-  @Operand(map(() => casual.random_element(colors)))
-  color: string;
-
-  @Operand(map(() => nullable(casual.random_element(ageGroups))))
-  ageGroup: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';
-
-  @Operand(map(() => nullable(casual.random_element(favoriteActivities))))
-  favoriteActivity: 'Sports' | 'Cooking' | 'Art' | 'Gaming' | 'Other';
-
-  @Operand(map(() => nullable(casual.integer(36, 96))))
-  height: number;
-
-  @Operand(map(mockUSLocation))
-  location: USLocation;
-
-  @Operand(chain(access('location.zip'), map(nullable)))
-  zipCode: string;
-
-  @Operand(chain(access('location.state'), map(nullable)))
-  state: string;
-
-  @Operand(chain(access<USLocation>('location'), map((l) => nullable([l.latitude, l.longitude]) || [null, null])))
-  latlng: [number, number];
+    const location = mockUSLocation();
+    Object.assign(this, {
+      zipCode: nullable(location.zip),
+      state: nullable(location.state)
+    }, nullable(pick(location, ['latitude', 'longitude'])));
+  }
 }
