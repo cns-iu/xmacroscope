@@ -5,9 +5,31 @@ const moment = moment_; // See https://github.com/jvandemo/generator-angular2-li
 import { Message, RunSignupMessage, RunPressedMessage, RunInitiatedMessage, RunCompletedMessage } from '../shared/message';
 
 
+export const RECENT_RUNS = gql`
+  query ($lastX: Int) {
+    Runs(lastX: $lastX) {
+      id
+      start
+      end
+      person {
+        id
+        icon
+        color
+        ageGroup
+        favoriteActivity
+        height
+        zipCode
+        state
+        latitude
+        longitude
+      }
+    }
+  }
+`;
+
 export const MESSAGE_SUBSCRIPTION = gql`
   subscription messages {
-    runCompletedSubscription {
+    runMessageSubscription {
       type
       timestamp
       run {
@@ -58,25 +80,3 @@ export function asMessage(messageData: any): Message {
       return new Message(data);
   }
 }
-
-export const RECENT_RUNS = gql`
-  query ($lastX: Int) {
-    Runs(lastX: $lastX) {
-      id
-      start
-      end
-      person {
-        id
-        icon
-        color
-        ageGroup
-        favoriteActivity
-        height
-        zipCode
-        state
-        latitude
-        longitude
-      }
-    }
-  }
-`;

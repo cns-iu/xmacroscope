@@ -58,15 +58,15 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
   subscribeToMessages(): Observable<Message> {
     return Observable.create(observer => {
       // NOTE: apollo-client uses Zen-Observable, so we must adapt it to be an RxJS Observable
-      this.client.subscribe<{data: {runCompletedSubscription: any}}>({ query: MESSAGE_SUBSCRIPTION })
+      this.client.subscribe<{data: {runMessageSubscription: any}}>({ query: MESSAGE_SUBSCRIPTION })
         .subscribe({
           next: observer.next.bind(observer),
           error: observer.error.bind(observer),
           complete: observer.complete.bind(observer)
         });
     }).pipe(
-      map<{data: {runCompletedSubscription: any}}, Message>(results =>
-        asMessage(results.data.runCompletedSubscription)
+      map<{data: {runMessageSubscription: any}}, Message>(results =>
+        asMessage(results.data.runMessageSubscription)
       )
     );
   }

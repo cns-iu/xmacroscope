@@ -42,7 +42,7 @@
     "d3-zoom": "^1.7.3",
     "graphology": "^0.13.1",
     "graphology-layout-forceatlas2": "^0.2.1",
-    "graphql": "^14.0.2",
+    "graphql": "^0.13.2",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.22.2",
     "nano-sql": "^1.7.8",
@@ -83,5 +83,8 @@
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-node-externals": "^1.7.2"
+  },
+  "resolutions": {
+    "graphql": "^0.13.2"
   }
 }

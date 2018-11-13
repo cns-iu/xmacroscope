@@ -41,5 +41,8 @@
         "dist/xmacroscope-dvl-fw-plugin/*"
       ]
     }
-  }
+  },
+  "exclude": [
+    "../../node_modules/**/*"
+  ],
 }

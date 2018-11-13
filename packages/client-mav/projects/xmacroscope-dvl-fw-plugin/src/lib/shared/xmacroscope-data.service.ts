@@ -14,7 +14,7 @@ export class XMacroscopeDataService {
   public readonly runStreamController: RunStreamController;
 
   constructor() {
-    const project = new XMacroscopeProject(true, false, 'http://localhost:4000/graphql');
+    const project = new XMacroscopeProject(false, false, 'http://localhost:4000/graphql');
     this.project = project;
     this.runStreamController = project.runStreamController;
     this.messages = project.runStreamController.messageStream;

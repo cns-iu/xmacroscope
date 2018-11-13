@@ -48,7 +48,7 @@
     "dotenv-webpack": "^1.5.4",
     "express": "^4.15.2",
     "express-jwt": "^5.3.0",
-    "graphql": "^0.11.7",
+    "graphql": "^0.13.2",
     "graphql-iso-date": "^3.5.0",
     "graphql-tag": "^2.6.0",
     "jsonwebtoken": "^8.1.0",
@@ -62,5 +62,8 @@
     "sequelize": "^4.23.2",
     "sequelize-cli": "^4.0.0",
     "sqlite3": "^4.0.2"
+  },
+  "resolutions": {
+    "graphql": "^0.13.2"
   }
 }
