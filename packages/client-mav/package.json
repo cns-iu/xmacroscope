@@ -42,6 +42,7 @@
     "d3-zoom": "^1.7.3",
     "graphology": "^0.13.1",
     "graphology-layout-forceatlas2": "^0.2.1",
+    "graphql": "^14.0.2",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.22.2",
     "nano-sql": "^1.7.8",
