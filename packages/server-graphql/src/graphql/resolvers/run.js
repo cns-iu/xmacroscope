@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { omit } from 'lodash';
 import baseResolver from './baseResolver';
 import db from '../../db/models/index';
 import pubsub from './pubsub';
@@ -34,12 +33,12 @@ const Runs = baseResolver
 const StartSignup = baseResolver
   .createResolver(() => {
     const publishPayload = {
-      signupStartSubscription: {
+      runMessageSubscription: {
         type: 'signup-started',
         timestamp: new Date(),
       },
     };
-    const message = pubsub.publish('signup-started', publishPayload);
+    const message = pubsub.publish('run-message', publishPayload);
     if (message) {
       console.log('Signup started - Message sent');
     } else {
@@ -55,12 +54,12 @@ const StartSignup = baseResolver
 const SelectRun = baseResolver
   .createResolver((root, args) => {
     const publishPayload = {
-      runSelectedSubscription: {
+      runMessageSubscription: {
         type: 'run-selected',
         timestamp: new Date(),
       },
     };
-    const message = pubsub.publish('run-selected', publishPayload);
+    const message = pubsub.publish('run-message', publishPayload);
     if (message) {
       console.log('Run selected - Message sent');
     } else {
@@ -89,13 +88,13 @@ const FinishSignup = baseResolver
       );
       // Publish run initiation for MAV
       const publishPayload = {
-        runInitiatedSubscription: {
+        runMessageSubscription: {
           type: 'signup-finished',
           timestamp: new Date(),
           run: runWithPerson,
         },
       };
-      const message = pubsub.publish('signup-finished', publishPayload);
+      const message = pubsub.publish('run-message', publishPayload);
       if (message) {
         console.log('Signup finished - Message sent');
       } else {
@@ -114,6 +113,7 @@ const StartRun = baseResolver
     // so that we can access the personId without worry about the association
     db.run.findOne({
       attributes: [
+        'id',
         'start',
         'PersonId',
       ],
@@ -121,21 +121,23 @@ const StartRun = baseResolver
       raw: true,
     })
       .then((startedRun) => {
+        const runId = startedRun.id;
+        const runStart = startedRun.start;
         db.person.findOne({ where: { id: startedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const runWithPerson = Object.assign(
               { person: runnerPerson },
-              runnerPerson,
+              { id: runId, start: new Date(startedRun.start) },
             );
 
             const publishPayload = {
-              runCompletedSubscription: {
+              runMessageSubscription: {
                 timestamp: new Date(),
                 type: 'run-started',
                 run: runWithPerson,
               },
             };
-            const message = pubsub.publish('run-started', publishPayload);
+            const message = pubsub.publish('run-message', publishPayload);
             if (message) {
               console.log('Run started - Message sent');
             } else {
@@ -157,6 +159,7 @@ const FinishRun = baseResolver
     // so that we can access the personId without worry about the association
     db.run.findOne({
       attributes: [
+        'id',
         'start',
         'end',
         'PersonId',
@@ -169,6 +172,7 @@ const FinishRun = baseResolver
         // string before we pass it to moment
         const startTime = moment(new Date(completedRun.start));
         const endTime = moment(moment(new Date(completedRun.end)));
+        const runId = completedRun.id;
 
         db.person.findOne({ where: { id: completedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
@@ -178,17 +182,17 @@ const FinishRun = baseResolver
 
             const runWithPerson = Object.assign(
               { person: runnerPerson },
-              runnerPerson,
+              { id: runId, start: new Date(completedRun.start), end: new Date(completedRun.end) },
             );
 
             const publishPayload = {
-              runCompletedSubscription: {
+              runMessageSubscription: {
                 timestamp: endTime,
-                type: 'run-completed',
+                type: 'run-finished',
                 run: runWithPerson,
               },
             };
-            const message = pubsub.publish('run-finished', publishPayload);
+            const message = pubsub.publish('run-message', publishPayload);
             if (message) {
               console.log('Run finished - Message sent');
             } else {
