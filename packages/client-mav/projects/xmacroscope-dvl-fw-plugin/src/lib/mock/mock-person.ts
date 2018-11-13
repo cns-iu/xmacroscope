@@ -1,5 +1,3 @@
-// refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
-import { access, chain, map, Operand } from '@ngx-dino/core';
 import * as casual_ from 'casual-browserify';
 const casual = casual_;
 import * as zipcodes from 'zipcodes';
