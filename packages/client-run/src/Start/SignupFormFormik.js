@@ -1,28 +1,26 @@
 import React from 'react';
 import { withFormik } from 'formik';
-import { Row, Col, CardBody } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { Mutation } from 'react-apollo';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
 import gql from 'graphql-tag';
-import { BaseHeader, StyledCardHeader, StyledCard } from '../Primatives/BasePrimatives';
+import { BaseHeader, StyledCardHeader, StyledCard, StyledCardBody } from '../Primatives/BasePrimatives';
 import SignupForm from './SignupForm';
 
-const UPDATE_RUN_LOCAL = gql`
-  mutation updateRun($status: String!) {
-    updateRun(
-      runId: null
-      status: $status
-      ageGroup: $ageGroup
-      favoriteActivity: $favoriteActivity
-      height: $height
-      zipCode: $zipCode
-      color: $color
-      icon: $icon
-      state: $state
-      latitude: $latitude
-      longitude: $longitude
-    ) @client
+const FINISH_SIGNUP = gql`
+  mutation finishSignup(
+    $run: RunInput,
+  ) {
+    FinishSignup(
+      run: $run
+    ) {
+      id
+      person {
+        icon
+        color
+      }
+    }
   }
 `;
 
@@ -58,16 +56,20 @@ const SignupFormFormik = withFormik({
     const location = zipcodes.lookup(values.zipCode);
     props.updateRun({
       variables: {
-        status: 'runTimerPre',
-        ageGroup: values.ageGroup,
-        favoriteActivity: values.favoriteActivity,
-        height: values.height,
-        zipCode: values.zipCode,
-        color: values.color,
-        icon: values.shape,
-        state: location.state,
-        latitude: location.latitude,
-        longitude: location.longitude,
+        run: {
+          start: null,
+          person: {
+            ageGroup: values.ageGroup,
+            favoriteActivity: values.favoriteActivity,
+            height: values.height,
+            zipCode: values.zipCode,
+            color: values.color,
+            icon: values.shape,
+            state: location.state,
+            latitude: location.latitude,
+            longitude: location.longitude,
+          },
+        },
       },
     });
   },
@@ -75,23 +77,38 @@ const SignupFormFormik = withFormik({
 
 function WithCreateMutation() {
   return (
-    <Mutation mutation={UPDATE_RUN_LOCAL}>
+    <Mutation
+      mutation={FINISH_SIGNUP}
+      update={(cache, { data }) => {
+        cache.writeData({
+          data: {
+            activeRun: {
+              __typename: 'ActiveRun',
+              runId: data.FinishSignup.id,
+              status: 'runTimerPre',
+              color: data.FinishSignup.person.color,
+              icon: data.FinishSignup.person.icon,
+            },
+          },
+        });
+      }}
+    >
       {updateRun => (
         <Row className="h-100 align-items-center">
           <Col
             md={10}
-            xl={8}
+            xl={7}
             className="mx-auto"
           >
             <StyledCard>
               <StyledCardHeader className="text-center">
                 <BaseHeader>RUN SIGN UP</BaseHeader>
               </StyledCardHeader>
-              <CardBody>
+              <StyledCardBody>
                 <SignupFormFormik
                   updateRun={updateRun}
                 />
-              </CardBody>
+              </StyledCardBody>
             </StyledCard>
           </Col>
         </Row>

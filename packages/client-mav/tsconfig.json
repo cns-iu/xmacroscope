@@ -15,8 +15,9 @@
       "node_modules/@types"
     ],
     "lib": [
+      "dom",
       "es2018",
-      "dom"
+      "esnext"
     ],
     "paths": {
       "@angular": [
@@ -41,5 +42,8 @@
         "dist/xmacroscope-dvl-fw-plugin/*"
       ]
     }
-  }
+  },
+  "exclude": [
+    "../../node_modules/**/*"
+  ],
 }

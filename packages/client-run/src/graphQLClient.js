@@ -6,7 +6,7 @@ import { withClientState } from 'apollo-link-state';
 import { resolvers, defaults } from './App/resolvers';
 
 const httpLink = new HttpLink({
-  uri: `${process.env.REACT_APP_GRAPHQL_URL}/graphql`,
+  uri: `${process.env.REACT_APP_GRAPHQL_URL}`,
 });
 
 const typeDefs = `

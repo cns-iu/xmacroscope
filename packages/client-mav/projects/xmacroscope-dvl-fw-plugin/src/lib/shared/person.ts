@@ -10,7 +10,6 @@ export const shapes: string[] = ['square', 'cross', 'diamond', 'triangle-up', 's
 export const colors: string[] = ['#D36E44', '#D30706', '#0707D2', '#8E1BCE', '#D372D2',
   '#55D4D2', '#9B180F', '#33820D', '#D39827', '#D3D406'
 ];
-export const genders: string[] = ['male', 'female', 'other'];
 export const ageGroups: string[] = ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired'];
 export const favoriteActivities: string[] = ['Sports', 'Cooking', 'Art', 'Gaming', 'Other'];
 
@@ -20,10 +19,6 @@ export class Person {
   id: string;
   // Unused
   name: string;
-  gender: 'male' | 'female' | 'other';
-  handedness: 'left' | 'right' | 'ambidextrous';
-  siblings: number;
-  // Used
   icon: string;
   color: string;
   ageGroup: 'Kid' | 'Pre-Teen' | 'Teen' | 'Adult' | 'Retired';

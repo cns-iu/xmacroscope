@@ -1,4 +1,10 @@
 <div class="data-view-container">
     <button mat-raised-button class="restart-button">RESTART</button>
-    <div class="table-container">data view main works!</div>
+    <div class="table-container">
+        <div class='data-view-inner-container'>
+            <ng-container *ngFor="let dataSource of dataSources | async">
+                <app-table [dataSource]="dataSource" [displayedColumns]="dataSource.columns"></app-table>
+            </ng-container>
+        </div>
+    </div>
 </div>

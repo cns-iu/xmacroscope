@@ -1,8 +1,7 @@
 {
   "lerna": "2.8.0",
   "packages": [
-    "packages/*",
-		"ngx-dino/packages/*"
+    "packages/*"
   ],
   "version": "independent",
   "npmClient": "yarn",

@@ -16,7 +16,7 @@ const GET_RUN_ID = gql`
 
 const FINISH_RUN = gql`
   mutation RunUpdate(
-  $run: RunRecordFinishInput!
+  $run: RunFinishInput!
   ) {
     FinishRun(
       run: $run

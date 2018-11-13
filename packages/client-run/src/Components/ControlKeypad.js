@@ -1,10 +1,26 @@
 import React, { Fragment } from 'react';
 import { Col } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { ControlKeypadContainer, KeyInput } from '../Primatives/ControlPrimatives';
+import { ControlKeypadContainer, KeyInput, PlaceHolder } from '../Primatives/ControlPrimatives';
 
+const zipCodeUpdate = (zipCode) => {
+  let zipCodeFormatted = '';
+  if (!zipCode.length) {
+    zipCodeFormatted = '_ _ _ _ _ ';
+  } else if (zipCode.length > 5) {
+    zipCodeFormatted = zipCode;
+  } else {
+    zipCodeFormatted = zipCode + '_ '.repeat(5 - zipCode.length);
+  }
+  return zipCodeFormatted;
+};
 const ControlKeypad = props => (
   <Fragment>
+    <Col sm={12}>
+      <PlaceHolder className="pb-2 text-center">
+        <h4>Zip Code:<span>&nbsp;&nbsp;{zipCodeUpdate(props.value)}</span></h4>
+      </PlaceHolder>
+    </Col>
     <ControlKeypadContainer>
       {
       props.options.map((opt, index) => (
@@ -12,16 +28,13 @@ const ControlKeypad = props => (
           hide={opt === '.' ? 'hide' : 'show'}
           dimension="50px"
           key={opt + index}
-          onClick={() => { opt === 'DEL' ? props.clearInput() : props.updateInputValueConcat(opt); }}
+          onClick={() => { opt === 'CLR' ? props.clearInput() : props.updateInputValueConcat(opt); }}
         >
           {opt}
         </KeyInput>
       ))
     }
     </ControlKeypadContainer>
-    <Col sm={12} className="pt-3">
-      <h4>{props.value.length ? `Zip Code: ${props.value}` : ''}</h4>
-    </Col>
   </Fragment>
 );
 

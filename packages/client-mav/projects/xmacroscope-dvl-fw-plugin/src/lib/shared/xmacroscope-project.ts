@@ -6,6 +6,11 @@ import { XMacroscopeDataSource } from './xmacroscope-data-source';
 import { MockRunRawData } from '../mock/mock-run-raw-data';
 import { RunStreamController } from './run-stream-controller';
 
+export interface XMacroscopeProjectConfig {
+  mockData?: boolean;
+  staticMockData?: boolean;
+  endpoint?: string;
+}
 
 export class XMacroscopeProject extends DefaultProject {
   runStreamController: RunStreamController;
@@ -16,17 +21,17 @@ export class XMacroscopeProject extends DefaultProject {
   graphicSymbols: GraphicSymbol[];
   visualizations: Visualization[];
 
-  static async create(mockData: boolean, staticMockData?: boolean, endpoint?: string): Promise<Project> {
-    const project = new XMacroscopeProject(mockData, staticMockData, endpoint);
+  static async create(config: XMacroscopeProjectConfig): Promise<Project> {
+    const project = new XMacroscopeProject(config);
     return project;
   }
 
-  constructor(mockData: boolean, staticMockData?: boolean, endpoint?: string) {
+  constructor(config: XMacroscopeProjectConfig) {
     super();
-    if (staticMockData) {
+    if (config.staticMockData) {
       this.dataSources = this.getStaticMockDataSources();
     } else {
-      this.dataSources = this.getDataSources(mockData, endpoint);
+      this.dataSources = this.getDataSources(config.mockData, config.endpoint);
     }
     this.recordSets = this.getRecordSets();
     this.graphicVariables = this.getGraphicVariables();
