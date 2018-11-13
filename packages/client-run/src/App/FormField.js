@@ -33,12 +33,14 @@ FormField.propTypes = {
   label: PropTypes.string,
   className: PropTypes.string,
   value: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 FormField.defaultProps = {
   type: 'text',
   component: 'input',
   className: 'form-control',
+  disabled: false,
   label: null,
   value: '',
 };

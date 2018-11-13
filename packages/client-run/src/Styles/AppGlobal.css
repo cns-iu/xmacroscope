@@ -46,18 +46,17 @@ body {
     font-size: 16px;
   }
   .base-container{
-    display: inherit;
-    height: auto;
-    padding: 20px 0;
+    padding: 5px 0;
   }
   .signup-form{
+    padding: 15px;
     display: inherit;
   }
   .form-container{
     padding: 20px 0 ;
   }
   .signup-form label {
-    font-size: 1.25em;
+    font-size: 1.35em;
   }
   .displayTimer{
     height: 500px;
