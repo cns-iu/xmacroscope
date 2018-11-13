@@ -1,0 +1,31 @@
+<div class="visualization-container">
+  <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs>
+    <mat-tab [disabled]="true" isActive="false">
+      <ng-template mat-tab-label>
+        <div class="tab-label partial-disabled-tab-label">
+          <div class="first-line">Select</div>
+          <div>Visualization Type</div>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+       <div class="tab-label">
+          <div class="image"><img src="assets/img/icon-mav-scatter-graph.svg" height="100%"></div>
+          <div class="text">Scatter Graph</div>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="tab-label">
+          <div class="image"><img src="assets/img/icon-mav-geomap.svg" height="100%"></div>
+          <div class="text">&emsp;&emsp;&ensp;Map&emsp;&emsp;</div>
+        </div>
+      </ng-template>
+
+    </mat-tab>
+  </mat-tab-group>
+</div>

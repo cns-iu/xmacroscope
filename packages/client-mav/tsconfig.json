@@ -1,0 +1,48 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "es2018",
+      "esnext"
+    ],
+    "paths": {
+      "@angular": [
+        "node_modules/@angular/"
+      ],
+      "@angular/*": [
+        "node_modules/@angular/*"
+      ],
+      "rxjs": [
+        "node_modules/rxjs"
+      ],
+      "rxjs/*": [
+        "node_modules/rxjs/*"
+      ],
+      "stream": [ 
+        "node_modules/readable-stream"
+      ],
+      "xmacroscope-dvl-fw-plugin": [
+        "dist/xmacroscope-dvl-fw-plugin"
+      ],
+      "xmacroscope-dvl-fw-plugin/*": [
+        "dist/xmacroscope-dvl-fw-plugin/*"
+      ]
+    }
+  },
+  "exclude": [
+    "../../node_modules/**/*"
+  ],
+}

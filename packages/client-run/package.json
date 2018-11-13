@@ -79,6 +79,9 @@
     "yup": "^0.26.2",
     "zipcodes": "^6.0.1"
   },
+  "resolutions": {
+    "graphql": "^0.13.2"
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "start-smm": "node scripts/start.js",

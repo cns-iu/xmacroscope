@@ -72,7 +72,7 @@ const app = express();
 // cross-origin requests otherwise the browser will throw
 // an error.
 //
-app.use('*', cors({ origin: process.env.CLIENT_ORIGIN }));
+// app.use('*', cors({ origin: process.env.CLIENT_ORIGIN }));
 
 //
 // Serve other apps

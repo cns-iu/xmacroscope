@@ -10,7 +10,7 @@ import ControlShapes from '../Components/ControlShapes';
 import ControlColors from '../Components/ControlColors';
 import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
-import { StyledButton } from '../Primatives/BasePrimatives';
+import { StyledButton, BaseFormHeader } from '../Primatives/BasePrimatives';
 
 // Our inner form component which receives our form's state and updater methods
 // as props
@@ -78,7 +78,7 @@ const SignupForm = ({
           label="What's your Zip Code?"
           errors={errors}
           touched={touched}
-          options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'DEL']}
+          options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
           type="hidden"
           setInput={setFieldValue}
         />
@@ -86,7 +86,7 @@ const SignupForm = ({
     </Row>
     <Row>
       <Col className="pt-3 pb-2">
-        <h1 className="text-center">Create your icon</h1>
+        <BaseFormHeader className="text-center">Create your icon</BaseFormHeader>
       </Col>
     </Row>
     <Row>
@@ -131,7 +131,7 @@ const SignupForm = ({
         />
       </Col>
     </Row>
-    <Col sm={12} className="px-0 pt-5">
+    <Col sm={12} className="px-0 pt-4">
       <StyledButton
         className="btn-lg btn-block"
         type="submit"
