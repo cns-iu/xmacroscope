@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { Message, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { Message, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 
 @Component({
