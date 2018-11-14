@@ -17,7 +17,7 @@ export class DisplayScreenComponent implements OnInit {
   personaColor = '#000';
   personaShape = 'circle';
   isPersonaSet = false;
-  personaBackgroundSize = {width: 400, height: 400};
+  personaBackgroundSize = {width: 420, height: 420};
   personaShapeSize = 25000;
   personaBackgroundRadius = 200;
 
@@ -49,7 +49,6 @@ export class DisplayScreenComponent implements OnInit {
 
   createPersona(msg: SignupFinishedMessage) {
     if (msg && msg.run && msg.run.person) {
-      console.log(msg.type , msg.run.person);
       const personAttributes = msg.run.person;
       this.personaColor = personAttributes.color;
       this.personaShape =  personAttributes.icon;
