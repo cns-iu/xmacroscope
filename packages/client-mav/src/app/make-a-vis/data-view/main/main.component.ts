@@ -14,7 +14,6 @@ export class MainComponent implements OnInit {
 
   constructor(private dataService: DataService) {
     this.dataSources = this.dataService.dataSourcesChanged;
-    this.dataSources.subscribe(console.log); // TODO: temporary for debugging
   }
 
   ngOnInit() {
