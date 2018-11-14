@@ -1,5 +1,10 @@
 <div class="backend-container" [ngClass]="{'no-header': !showAppHeader}">
   <div class="content">
-    backend main works!
+    <h1>Backend Debug Display</h1>
+
+    <h2>Incoming Messages</h2>
+    <div class="message-box">
+      <code *ngFor="let msg of messages | async" [innerHTML]="formatMsg(msg)"></code>
+    </div>
   </div>
 </div>
