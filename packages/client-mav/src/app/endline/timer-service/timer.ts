@@ -1,5 +1,5 @@
 import { Observable, Subject, interval, merge } from 'rxjs';
-import { filter, map } from 'rxjs/Operators';
+import { filter, map } from 'rxjs/operators';
 
 import * as moment from 'moment';
 import { Duration, duration } from 'moment';
