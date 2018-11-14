@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
+import { TimerService } from './timer-service/timer.service';
+import { DisplayScreenComponent } from './display-screen/display-screen.component';
 
 @NgModule({
   imports: [
@@ -9,6 +11,7 @@ import { MainComponent } from './main/main.component';
   exports: [
     MainComponent
   ],
-  declarations: [MainComponent]
+  declarations: [MainComponent, DisplayScreenComponent],
+  providers: [TimerService]
 })
 export class EndlineModule { }
