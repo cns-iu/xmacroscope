@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import * as moment_ from 'moment';
 const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
 
-import { Message, RunSignupMessage, RunPressedMessage, RunInitiatedMessage, RunCompletedMessage } from '../shared/message';
+import { Message, SignupStartedMessage, SignupFinishedMessage, RunStartedMessage, RunFinishedMessage } from '../shared/message';
 
 
 export const RECENT_RUNS = gql`
@@ -68,14 +68,14 @@ export function asMessage(messageData: any): Message {
     data.run.end = asDate(data.run.end);
   }
   switch (data.type) {
-    case 'run-signup':
-      return new RunSignupMessage(data);
-    case 'run-pressed':
-      return new RunPressedMessage(data);
-    case 'run-initiated':
-      return new RunInitiatedMessage(data);
-    case 'run-completed':
-      return new RunCompletedMessage(data);
+    case 'signup-started':
+      return new SignupStartedMessage(data);
+    case 'signup-finished':
+      return new SignupFinishedMessage(data);
+    case 'run-started':
+      return new RunStartedMessage(data);
+    case 'run-finished':
+      return new RunFinishedMessage(data);
     default:
       return new Message(data);
   }

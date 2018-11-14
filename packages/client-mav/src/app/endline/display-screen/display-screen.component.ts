@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { XMacroscopeDataService, RunCompletedMessage } from 'xmacroscope-dvl-fw-plugin';
-
-import { Message } from 'projects/xmacroscope-dvl-fw-plugin/src/public_api';
-import { TimerService } from '../timer-service/timer.service';
-import { Observable } from 'rxjs';
 import { duration } from 'moment';
+
+import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage } from 'xmacroscope-dvl-fw-plugin';
+import { TimerService } from '../timer-service/timer.service';
+
 
 @Component({
   selector: 'app-display-screen',
@@ -14,55 +12,27 @@ import { duration } from 'moment';
   providers: [XMacroscopeDataService, TimerService],
 })
 export class DisplayScreenComponent implements OnInit {
-
-  displayFlags: DisplayFlags;
+  lastMessage: Message;
   timerText = '00:00';
 
-  constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {
-    this.displayFlags = {
-      displayWaitingText: false,
-      displayGetReadyText: false,
-      displayGoText: false,
-      displayFinishedText: false
-    };
+  constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {}
+
+  ngOnInit() {
     this.dataService.messages.subscribe((msg: Message) => {
       this.handleMessage(msg);
      });
-  }
-
-  ngOnInit() {
-    this.timerService.getFormattedTimeObservable().subscribe((timeObj) => {
-      this.timerText = timeObj;
+    this.timerService.getFormattedTimeObservable().subscribe((timerText) => {
+      this.timerText = timerText;
     });
   }
 
   handleMessage(msg: Message) {
-    if ( msg.type === 'run-signup') {
-      this.show('displayWaitingText');
-    } else if ( msg.type === 'run-pressed' ) {
-      this.show('displayGetReadyText');
-    } else if ( msg.type === 'run-initiated' ) {
-      this.show('displayGoText');
+    this.lastMessage = msg;
+    if (msg instanceof RunStartedMessage) {
       this.timerService.start();
-    } else if ( msg.type === 'run-completed' ) {
-      this.show('displayFinishedText');
+    } else if (msg instanceof RunFinishedMessage) {
       this.timerService.stop();
-      this.timerText = this.timerService.formatTime(duration((<RunCompletedMessage>msg).run.timeMillis, 'millisecond'));
+      this.timerText = this.timerService.formatTime(duration((<RunFinishedMessage>msg).run.timeMillis, 'millisecond'));
     }
   }
-
-  show(type: string) {
-    Object.keys(this.displayFlags).forEach(flag => {
-      this.displayFlags[flag] = false;
-      this.displayFlags[type] = true;
-    });
-  }
-
-}
-
-interface DisplayFlags {
-  displayWaitingText: boolean;
-  displayGetReadyText: boolean;
-  displayGoText: boolean;
-  displayFinishedText: boolean;
 }

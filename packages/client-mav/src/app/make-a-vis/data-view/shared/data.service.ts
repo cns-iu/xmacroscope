@@ -32,7 +32,6 @@ export class DataService {
         dataSource.columns = recordSet.dataVariables;
 
         const operator = this.getDataMappingOperator(recordSet.dataVariables, project.graphicVariables, recordSet.id);
-        console.log(operator);
 
         dataSource.data = [];
         dataSource.records = [];

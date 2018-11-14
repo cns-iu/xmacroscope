@@ -5,7 +5,7 @@ import { RawChangeSet } from '@ngx-dino/core';
 
 import { Run } from '../shared/run';
 import { RunMocker } from './run-mocker';
-import { RunCompletedMessage, Message } from '../shared/message';
+import { RunFinishedMessage, Message } from '../shared/message';
 import { RunStreamController } from '../shared/run-stream-controller';
 
 
