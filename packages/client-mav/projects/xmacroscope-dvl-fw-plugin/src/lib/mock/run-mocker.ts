@@ -4,7 +4,7 @@ import * as moment_ from 'moment';
 const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
 
 import { Run } from '../shared/run';
-import { Message, RunSignupMessage, RunPressedMessage, RunInitiatedMessage, RunCompletedMessage } from '../shared/message';
+import { Message, SignupStartedMessage, SignupFinishedMessage, RunStartedMessage, RunFinishedMessage } from '../shared/message';
 import { MockPerson } from './mock-person';
 
 export class RunMocker {
@@ -54,33 +54,33 @@ export class RunMocker {
     }, runSignupTime);
   }
 
-  runSignup(timestamp?: Date): RunSignupMessage {
+  runSignup(timestamp?: Date): SignupStartedMessage {
     timestamp = this.getTime(timestamp);
-    const message = new RunSignupMessage({timestamp});
+    const message = new SignupStartedMessage({timestamp});
     this.send(message);
     return message;
   }
-  runPressed(timestamp?: Date): RunPressedMessage {
+  runPressed(timestamp?: Date): SignupFinishedMessage {
     timestamp = this.getTime(timestamp);
-    const message = new RunPressedMessage({
+    const message = new SignupFinishedMessage({
       timestamp,
       run: this.runResults(0, timestamp)
     });
     this.send(message);
     return message;
   }
-  runInitiated(timestamp?: Date): RunInitiatedMessage {
+  runInitiated(timestamp?: Date): RunStartedMessage {
     timestamp = this.getTime(timestamp);
-    const message = new RunInitiatedMessage({
+    const message = new RunStartedMessage({
       timestamp,
       run: this.runResults(0, timestamp)
     });
     this.send(message);
     return message;
   }
-  runCompleted(timeMillis: number, timestamp?: Date): RunCompletedMessage {
+  runCompleted(timeMillis: number, timestamp?: Date): RunFinishedMessage {
     timestamp = this.getTime(timestamp);
-    const message = new RunCompletedMessage({
+    const message = new RunFinishedMessage({
       timestamp,
       run: this.runResults(timeMillis, timestamp)
     });

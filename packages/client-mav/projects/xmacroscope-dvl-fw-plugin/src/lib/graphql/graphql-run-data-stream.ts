@@ -13,7 +13,7 @@ import { RawChangeSet } from '@ngx-dino/core';
 
 import { Run } from '../shared/run';
 import { RunStreamController } from '../shared/run-stream-controller';
-import { RunCompletedMessage, Message } from '../shared/message';
+import { RunFinishedMessage, Message } from '../shared/message';
 import { asMessage, RECENT_RUNS, MESSAGE_SUBSCRIPTION } from './graphql-queries';
 
 
@@ -49,9 +49,9 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
         });
     }).pipe(
       map<{data: {Runs: Run[]}}, Message[]>(results => results.data.Runs.map(run =>
-        asMessage({ type: 'run-completed', timestamp: run.end, run})
+        asMessage({ type: 'run-finished', timestamp: run.end, run})
       )),
-      concatMap<RunCompletedMessage[], Message>(r => from(r))
+      concatMap<RunFinishedMessage[], Message>(r => from(r))
     );
   }
 

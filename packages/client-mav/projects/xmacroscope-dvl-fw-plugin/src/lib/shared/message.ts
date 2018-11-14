@@ -12,21 +12,21 @@ export class Message {
   }
 }
 
-export class RunSignupMessage extends Message {
-  type = 'run-signup';
+export class SignupStartedMessage extends Message {
+  type = 'signup-started';
 }
 
-export class RunPressedMessage extends Message {
-  type = 'run-pressed';
+export class SignupFinishedMessage extends Message {
+  type = 'signup-finished';
   run: Run;
 }
 
-export class RunInitiatedMessage extends Message {
-  type = 'run-initiated';
+export class RunStartedMessage extends Message {
+  type = 'run-started';
   run: Run;
 }
 
-export class RunCompletedMessage extends Message {
-  type = 'run-completed';
+export class RunFinishedMessage extends Message {
+  type = 'run-finished';
   run: Run;
 }

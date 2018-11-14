@@ -4,7 +4,7 @@ import { filter, map } from 'rxjs/operators';
 import { List } from 'immutable';
 
 import { Run } from './run';
-import { RunCompletedMessage, Message } from './message';
+import { RunFinishedMessage, Message } from './message';
 
 
 export class ChangeTracker {
@@ -17,8 +17,8 @@ export class ChangeTracker {
     public readonly highlightCount: number
   ) {
     this.changeStream = stream.pipe(
-      filter(message => message instanceof RunCompletedMessage),
-      map<RunCompletedMessage, Run>(message => message.run),
+      filter(message => message instanceof RunFinishedMessage),
+      map<RunFinishedMessage, Run>(message => message.run),
       map(runs => this.accumulate([runs]))
     );
   }

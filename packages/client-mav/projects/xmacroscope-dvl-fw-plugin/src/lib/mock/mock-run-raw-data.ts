@@ -1,6 +1,6 @@
 import { DefaultRawData } from '@dvl-fw/core';
 
-import { RunCompletedMessage } from '../shared/message';
+import { RunFinishedMessage } from '../shared/message';
 import { RunMocker } from './run-mocker';
 
 
@@ -12,8 +12,8 @@ export class MockRunRawData extends DefaultRawData {
   public static generateMockRunData(numMocks = 50): any[] {
     const runs = [];
     const mocker = new RunMocker({ next: (message) => {
-      if (message instanceof RunCompletedMessage) {
-        const run = (message as RunCompletedMessage).run;
+      if (message instanceof RunFinishedMessage) {
+        const run = (message as RunFinishedMessage).run;
         runs.push(run.toJSON());
       }
     }});
