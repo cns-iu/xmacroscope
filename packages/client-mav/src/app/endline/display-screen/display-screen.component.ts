@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { duration } from 'moment';
 
-import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage } from 'xmacroscope-dvl-fw-plugin';
+import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage, SignupFinishedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
 
 
@@ -14,6 +14,12 @@ import { TimerService } from '../timer-service/timer.service';
 export class DisplayScreenComponent implements OnInit {
   lastMessage: Message;
   timerText = '00:00';
+  personaColor = '#000';
+  personaShape = 'circle';
+  isPersonaSet = false;
+  personaBackgroundSize = {width: 400, height: 400};
+  personaShapeSize = 25000;
+  personaBackgroundRadius = 200;
 
   constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {}
 
@@ -27,12 +33,26 @@ export class DisplayScreenComponent implements OnInit {
   }
 
   handleMessage(msg: Message) {
+    if (!this.isPersonaSet && msg instanceof SignupFinishedMessage) {
+      this.createPersona(<SignupFinishedMessage>msg);
+      this.isPersonaSet = true;
+    }
     this.lastMessage = msg;
     if (msg instanceof RunStartedMessage) {
       this.timerService.start();
     } else if (msg instanceof RunFinishedMessage) {
       this.timerService.stop();
+      this.isPersonaSet = false;
       this.timerText = this.timerService.formatTime(duration((<RunFinishedMessage>msg).run.timeMillis, 'millisecond'));
+    }
+  }
+
+  createPersona(msg: SignupFinishedMessage) {
+    if (msg && msg.run && msg.run.person) {
+      console.log(msg.type , msg.run.person);
+      const personAttributes = msg.run.person;
+      this.personaColor = personAttributes.color;
+      this.personaShape =  personAttributes.icon;
     }
   }
 }

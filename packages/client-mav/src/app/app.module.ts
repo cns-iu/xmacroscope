@@ -12,11 +12,10 @@ import { MakeAVisModule } from './make-a-vis/make-a-vis.module';
 import { ThemesModule } from './themes/themes.module';
 import { XMacroscopeDataModule, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { environment } from 'src/environments/environment';
-import { XMacroscopePersonaComponent } from './shared/components/xmacroscope-persona/xmacroscope-persona.component';
 
 
 @NgModule({
-  declarations: [ AppComponent, XMacroscopePersonaComponent ],
+  declarations: [ AppComponent ],
   imports: [
     BrowserModule,
     MatTabsModule,

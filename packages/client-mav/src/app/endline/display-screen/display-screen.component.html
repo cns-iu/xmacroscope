@@ -1,6 +1,19 @@
-<div class="endline-screen-text-container">
+<div class="endline-screen-container">
+
+  <div class="endline-screen-persona" *ngIf="lastMessage?.type !== 'signup-started'" >
+    <app-xmacroscope-persona 
+    
+    [shape]="personaShape" 
+    [color]="personaColor"
+    [backgroundRadius]="personaBackgroundRadius"
+    [backgroundSize]="personaBackgroundSize"
+    [shapeSize]="personaShapeSize"
+    ></app-xmacroscope-persona>
+  </div>
+
+  <div class="endilne-screen-text">
   <div  *ngIf="lastMessage?.type === 'signup-started'"> 
-    <div class="endline-label">Waiting for Runner</div>
+    <div class="endline-label">Waiting for the Runner</div>
   </div>
 
   <div *ngIf="lastMessage?.type === 'signup-finished'">
@@ -17,4 +30,5 @@
       <div class="endline-label">Finished!</div>
       <div class="endline-timer">{{timerText}}</div> 
   </div>
+</div>
 </div>
