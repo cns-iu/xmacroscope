@@ -1,0 +1,21 @@
+<div class="endline-screen-text-container">
+
+  <div  *ngIf="displayFlags.displayWaitingText"> 
+    <div class="endline-label">Waiting for Runner</div>
+  </div>
+
+  <div *ngIf="displayFlags.displayGetReadyText">
+     <div class="endline-label">Get Ready:</div>
+     <div class="endline-timer">00:00</div> 
+  </div>
+
+  <div *ngIf="displayFlags.displayGoText">
+      <div class="endline-label">Go!</div>
+      <div class="endline-timer">{{timerText}}</div> 
+  </div>
+
+  <div *ngIf="displayFlags.displayFinishedText">
+      <div class="endline-label">Finished!</div>
+      <div class="endline-timer">{{timerText}}</div> 
+  </div>
+</div>

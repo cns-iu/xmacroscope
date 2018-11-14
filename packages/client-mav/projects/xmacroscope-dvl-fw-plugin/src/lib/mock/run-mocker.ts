@@ -32,10 +32,10 @@ export class RunMocker {
   }
 
   protected mockRace() {
-    const runSignupTime = casual.integer(100, 300);
-    const runPressedTime = casual.integer(100, 400);
-    const runInitiatedTime = casual.integer(500, 1500);
-    const runCompletedTime = casual.integer(1000, 4000);
+    const runSignupTime = casual.integer(100, 300) + 1000;
+    const runPressedTime = casual.integer(100, 400) + 1000;
+    const runInitiatedTime = casual.integer(500, 1500) + 1000;
+    const runCompletedTime = casual.integer(1000, 4000) + 1000;
 
     setTimeout(() => {
       this.runSignup();
