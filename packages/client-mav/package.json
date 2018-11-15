@@ -11,7 +11,8 @@
     "e2e": "ng e2e",
     "build:cli": "webpack --config projects/xmacroscope-dvl-fw-plugin/src/lib/cli/webpack.config.js",
     "start-local": "ng serve --configuration=local",
-    "build-deploy": "ng build --prod --configuration=deploy --base-href=/mav/"
+    "build-deploy": "ng build --configuration=deploy --base-href=/mav/",
+    "build-demo": "ng build --prod --base-href=/xmacroscope/"
   },
   "private": true,
   "dependencies": {

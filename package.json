@@ -3,14 +3,18 @@
   "scripts": {
     "preinstall": "for p in packages/*; do cd $p; npm install; cd ../../; done",
     "quickinstall": "for p in packages/*; do cd $p; npm ci & cd ../../; done; wait",
+
     "build:mav": "cd packages/client-mav && npm run build-deploy",
     "build:run": "cd packages/client-run && npm run build",
     "build:server": "cd packages/server-graphql && npm run build",
     "build": "npm-run-all --parallel build:mav build:run build:server --print-label",
+
     "start:mav": "cd packages/client-mav && npm run start-local",
     "start:run": "cd packages/client-run && npm run start",
     "start:server": "cd packages/server-graphql && npm run start",
-    "start": "npm-run-all --parallel start:mav start:run start:server --print-label"
+    "start": "npm-run-all --parallel start:mav start:run start:server --print-label",
+
+    "build:mav-demo": "cd packages/client-mav && npm run build-demo"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.3"
