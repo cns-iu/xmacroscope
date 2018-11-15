@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack --mode=development --config webpack.dev.js",
-    "start-smm": "webpack --mode=development --config webpack.dev.js",
+    "start:prod": "node ./build/server.js",
     "build": "webpack --progress --colors --config webpack.prod.js"
   },
   "devDependencies": {

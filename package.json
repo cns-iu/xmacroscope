@@ -13,7 +13,7 @@
     "start:run": "cd packages/client-run && npm run start",
     "start:server": "cd packages/server-graphql && npm run start",
     "start-dev": "npm-run-all --parallel start:mav start:run start:server --print-label",
-    "start": "npm run start:server",
+    "start": "cd packages/server-graphql && npm run start:prod",
     "clean": "rimraf packages/client-mav/dist packages/client-run/build packages/server-graphql/build",
     "build:mav": "cd packages/client-mav && npm run build:libs && npm run build-deploy",
     "build:run": "cd packages/client-run && npm run build",
