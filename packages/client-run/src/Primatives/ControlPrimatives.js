@@ -6,6 +6,7 @@ import { sportsYellow } from './BaseConfigsVariables';
 const dashedOutline = `
 border: 8px dashed white;
 `;
+
 const solidOutline = `
 border: 14px solid;
 `;
@@ -13,9 +14,11 @@ border: 14px solid;
 const dashedOutlineControl = `
 border: 2px dashed;
 `;
+
 const solidOutlineControl = `
 border: 3px solid;
 `;
+
 const ControlKeypadContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -28,6 +31,7 @@ const ControlKeypadContainer = styled.div`
     max-width: 280px;
   }
 `;
+
 const KeyInput = styled(Button)`
   ${props => (props.hide === 'hide' ? 'visibility: hidden' : '')};
   color: ${sportsYellow};
@@ -43,24 +47,28 @@ const KeyInput = styled(Button)`
     ${props => (props.hide === 'hide' ? 'display: none' : '')};
   }
 
-  &:active{
+  &:active {
    ${selected}
   }
-  &:hover{
+  
+  &:hover {
    ${selected}
   }
-  &:hover{
+  
+  &:hover {
     color: ${sportsYellow};
     border-color: ${sportsYellow};
     background-color: gray;
   }
 `;
+
 const PlaceHolder = styled.div`
   min-height: 30px;
-  span{
+  span {
     letter-spacing: 4px;
   }
 `;
+
 const ControlColorsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -87,10 +95,12 @@ const ControlColor = styled.div`
     max-width: 40px;
   }
 `;
+
 const ControlShapesContainer = styled.div`
   display: flex;
   justify-content: space-around;
 `;
+
 const ShapeWrapperControl = styled.div`
   background: none;
   color: ${sportsYellow};
@@ -107,8 +117,8 @@ const ShapeWrapperControl = styled.div`
   path {
     transition: all 1s ease-in-out;
   }
-  }
 `;
+
 const ShapeWrapper = styled.div`
   background: ${props => (props.color === 'none' || props.shape === 'none'
     ? 'none'
