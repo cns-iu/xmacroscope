@@ -13,7 +13,7 @@ const ControlGroupBtns = (props) => {
     props.updateInputValue(String(value));
   };
   return (
-    <Row>
+    <Row className="justify-content-md-center">
       <Col sm={8}>
         <PlaceHolder className="pb-2 text-center">
           <h4>Height: {props.value}{props.value ? '"' : ''}</h4>

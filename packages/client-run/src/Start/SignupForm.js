@@ -33,7 +33,7 @@ const SignupForm = ({
 }) => (
   <Form onSubmit={handleSubmit} className="signup-form">
     <Row>
-      <Col lg={6}>
+      <Col className="text-center" lg={6}>
         <AgeInput
           className="form-control form-control-lg"
           name="ageGroup"
@@ -45,7 +45,7 @@ const SignupForm = ({
           setInput={setFieldValue}
         />
       </Col>
-      <Col lg={6}>
+      <Col className="text-center" lg={6}>
         <ActivityInput
           className="form-control form-control-lg"
           name="favoriteActivity"
@@ -60,7 +60,7 @@ const SignupForm = ({
       </Col>
     </Row>
     <Row>
-      <Col lg={6}>
+      <Col className="text-center" lg={6}>
         <HeightInput
           className="form-control form-control-lg"
           name="height"
@@ -71,7 +71,7 @@ const SignupForm = ({
           setInput={setFieldValue}
         />
       </Col>
-      <Col lg={6}>
+      <Col className="text-center" lg={6}>
         <ZipCodeInput
           className="form-control form-control-lg"
           name="zipCode"
@@ -90,7 +90,7 @@ const SignupForm = ({
       </Col>
     </Row>
     <Row>
-      <Col md={6}>
+      <Col className="text-center" md={6}>
         <ColorInput
           className="form-control form-control-lg"
           name="color"
