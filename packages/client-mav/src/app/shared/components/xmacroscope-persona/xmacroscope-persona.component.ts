@@ -24,14 +24,15 @@ export class XMacroscopePersonaComponent implements OnInit, OnChanges {
 
   pathDefinition: string;
   pathFill: string;
+  pathPosition: string;
 
-  pathPosition = 'translate('
-   + this.backgroundSize.width / 2 + ', '
-   + this.backgroundSize.height / 2 + ')';
 
   constructor() { }
 
   ngOnInit() {
+    this.pathPosition = 'translate('
+    + this.backgroundSize.width / 2 + ', '
+    + this.backgroundSize.height / 2 + ')';
     const persona = d3Selection.select('.persona-container').select('svg')
       .select('.persona').select('path');
   }
