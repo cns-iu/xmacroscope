@@ -6,8 +6,23 @@ import gql from 'graphql-tag';
 import Timer from './Timer';
 
 const UPDATE_RUN_LOCAL = gql`
-  mutation updateRun($status: String!) {
-    updateRun(status: $status) @client
+  mutation updateRun(
+  $status: String!
+  ) {
+    updateRun(
+      runId: null,
+      status: $status,
+      name: null,
+      color: null,
+      icon: null,
+      ageGroup: null,
+      favoriteActivity: null,
+      height: null,
+      zipCode: null,
+      latitude: null,
+      longitude: null,
+      state: null,
+    ) @client
   }
 `;
 
