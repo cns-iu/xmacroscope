@@ -94,7 +94,7 @@ const SignupForm = ({
         <ColorInput
           className="form-control form-control-lg"
           name="color"
-          label="Select Color"
+          label="Select color"
           errors={errors}
           touched={touched}
           type="hidden"
@@ -104,7 +104,7 @@ const SignupForm = ({
         <ShapeInput
           className="form-control form-control-lg"
           name="shape"
-          label="Select Shape"
+          label="Select shape"
           errors={errors}
           touched={touched}
           type="hidden"
