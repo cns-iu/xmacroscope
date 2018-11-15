@@ -60,4 +60,3 @@ RunningTimerTimeout.propTypes = {
 };
 
 export default RunningTimerTimeout;
-

@@ -5,12 +5,17 @@ import { Mutation } from 'react-apollo';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
 import gql from 'graphql-tag';
-import { BaseHeader, StyledCardHeader, StyledCard, StyledCardBody } from '../Primatives/BasePrimatives';
+import {
+  BaseHeader,
+  StyledCardHeader,
+  StyledCard,
+  StyledCardBody,
+} from '../Primatives/BasePrimatives';
 import SignupForm from './SignupForm';
 
 const FINISH_SIGNUP = gql`
   mutation finishSignup(
-    $run: RunInput,
+  $run: RunInput,
   ) {
     FinishSignup(
       run: $run

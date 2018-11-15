@@ -53,7 +53,11 @@ function RunningTimerPre({ runId }) {
               <Col className="col-sm-12">
                 <div className="text-center pt-5">
                   <h1>On your marks...</h1>
-                  <h2>Step up to the starting line and<br />get ready to run.</h2>
+                  <h2>
+                    Step up to the starting line and
+                    <br />
+                    get ready to run.
+                  </h2>
                   <Timer
                     completion={() => {
                       StartRun({
@@ -90,4 +94,3 @@ RunningTimerPre.defaultProps = {
 };
 
 export default RunningTimerPre;
-

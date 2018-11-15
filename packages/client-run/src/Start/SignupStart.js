@@ -14,7 +14,8 @@ const START_SIGNUP = gql`
 
 class CallSignupStart extends React.Component {
   componentDidMount() {
-    this.props.startSignup();
+    const { startSignup } = this.props;
+    startSignup();
   }
 
   render() {
@@ -51,4 +52,3 @@ function SignupStart() {
 }
 
 export default SignupStart;
-

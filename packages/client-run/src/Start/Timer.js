@@ -18,7 +18,8 @@ class Timer extends React.Component {
   }
 
   componentWillMount() {
-    this.timer = setInterval(this.incrementTimer, this.props.tick);
+    const { tick } = this.props;
+    this.timer = setInterval(this.incrementTimer, tick);
   }
 
   componentWillUnmount() {
@@ -39,31 +40,34 @@ class Timer extends React.Component {
     };
 
     // Increment the timer in the correct direction
-    const tick = direction === 'down' ? this.props.tick * -1 : this.props.tick;
-    if (this.state.timer === this.props.end || stop) {
+    const { tick, end, completion } = this.props;
+    const { timer } = this.state;
+    const tickValue = direction === 'down' ? tick * -1 : tick;
+    if (timer === end || stop) {
       clearInterval(this.timer);
-      this.props.completion();
+      completion();
     } else {
-      const newTimer = this.state.timer + tick;
+      const newTimer = timer + tickValue;
       this.setState({
-        timer: operators[op](newTimer, this.props.end)
+        timer: operators[op](newTimer, end)
           ? newTimer
-          : this.props.end,
+          : end,
       });
     }
   }
 
   // Add two seconds to playing conditional to
   // handle clip delay
-
   render() {
+    const { displayTimer } = this.props;
+    const { timer, countDownSound } = this.state;
     return (
-      <TimerWrapper displayTimer={this.props.displayTimer}>
-        {this.state.timer}
-        {this.state.countDownSound ? (
+      <TimerWrapper displayTimer={displayTimer}>
+        {timer}
+        {countDownSound ? (
           <ReactHowler
             src={CountDown}
-            playing={this.state.timer <= 8500}
+            playing={timer <= 8500}
           />
         ) : (
           ''

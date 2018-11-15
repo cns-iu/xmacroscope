@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import { ErrorWrapper } from '../Primatives/BasePrimatives';
 
-const ErrorFeedBack = ({
-  name, disabled, errors, touched,
-}) => (
+const ErrorFeedBack = ({ name, errors }) => (
   <Row>
     <Col sm={12}>
       <ErrorWrapper className="pt-2">
@@ -27,13 +25,9 @@ const ErrorFeedBack = ({
 ErrorFeedBack.propTypes = {
   name: PropTypes.string.isRequired,
   errors: PropTypes.object,
-  touched: PropTypes.object,
-  disabled: PropTypes.bool,
 };
 
 ErrorFeedBack.defaultProps = {
-  touched: {},
-  disabled: false,
   errors: {},
 };
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import mouseTrap from 'react-mousetrap';
 import moment from 'moment';
@@ -6,23 +7,20 @@ class RunFinishKeypress extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      timerStopped: false,
-    };
-
     this.finishRunTrigger = this.finishRunTrigger.bind(this);
   }
 
   componentWillMount() {
-    this.props.bindShortcut('e', this.finishRunTrigger);
+    const { bindShortcut } = this.props;
+    bindShortcut('e', this.finishRunTrigger);
   }
 
   finishRunTrigger() {
-    this.setState({ timerStopped: true });
-    this.props.finishRun({
+    const { finishRun, runId } = this.props;
+    finishRun({
       variables: {
         run: {
-          id: this.props.runId,
+          id: runId,
           finish: moment(),
         },
       },
@@ -34,5 +32,10 @@ class RunFinishKeypress extends React.Component {
   }
 }
 
-export default mouseTrap(RunFinishKeypress);
+RunFinishKeypress.propTypes = {
+  bindShortcut: PropTypes.func.isRequired,
+  finishRun: PropTypes.func.isRequired,
+  runId: PropTypes.string.isRequired,
+};
 
+export default mouseTrap(RunFinishKeypress);

@@ -14,34 +14,50 @@ const zipCodeUpdate = (zipCode) => {
   }
   return zipCodeFormatted;
 };
-const ControlKeypad = props => (
+const ControlKeypad = ({
+  value, options, clearInput, updateInputValueConcat,
+}) => (
   <Fragment>
     <Col sm={12}>
       <PlaceHolder className="pb-2 text-center">
-        <h4>Zip Code:<span>&nbsp;&nbsp;{zipCodeUpdate(props.value)}</span></h4>
+        <h4>
+          Zip Code:
+          <span>
+            &nbsp;
+            &nbsp;
+            {zipCodeUpdate(value)}
+          </span>
+        </h4>
       </PlaceHolder>
     </Col>
     <ControlKeypadContainer>
       {
-      props.options.map((opt, index) => (
-        <KeyInput
-          hide={opt === '.' ? 'hide' : 'show'}
-          dimension="50px"
-          key={opt + index}
-          onClick={() => { opt === 'CLR' ? props.clearInput() : props.updateInputValueConcat(opt); }}
-        >
-          {opt}
-        </KeyInput>
-      ))
-    }
+        options.map(opt => (
+          <KeyInput
+            hide={opt === '.' ? 'hide' : 'show'}
+            dimension="50px"
+            key={opt}
+            onClick={() => {
+              if (opt === 'CLR') {
+                clearInput();
+              } else {
+                updateInputValueConcat(opt);
+              }
+            }}
+          >
+            {opt}
+          </KeyInput>
+        ))
+      }
     </ControlKeypadContainer>
   </Fragment>
 );
 
 ControlKeypad.propTypes = {
-  options: PropTypes.array,
-  value: PropTypes.string,
+  options: PropTypes.array.isRequired,
+  value: PropTypes.string.isRequired,
+  clearInput: PropTypes.func.isRequired,
+  updateInputValueConcat: PropTypes.func.isRequired,
 };
-
 
 export default ControlKeypad;

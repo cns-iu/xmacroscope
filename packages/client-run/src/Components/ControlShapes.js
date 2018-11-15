@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import DisplayShape from './DisplayShape';
 import { ControlShapesContainer } from '../Primatives/ControlPrimatives';
 
-const ControlShapes = props => (
+const ControlShapes = ({ value, updateInputValue, options }) => (
   <ControlShapesContainer>
     {
-      props.options.map(opt => (
+      options.map(opt => (
         <DisplayShape
           typeDisplay="controlDisplay"
-          selected={opt === props.value}
+          selected={opt === value}
           key={opt}
           value={opt}
-          updateInputValue={props.updateInputValue}
+          updateInputValue={updateInputValue}
           color="#fdff5f"
           shape={opt}
           shapeTransform="translate(50, 50) scale(.75)"
@@ -25,10 +25,9 @@ const ControlShapes = props => (
 );
 
 ControlShapes.propTypes = {
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   value: PropTypes.string.isRequired,
   updateInputValue: PropTypes.func.isRequired,
 };
-
 
 export default ControlShapes;

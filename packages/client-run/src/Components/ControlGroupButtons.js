@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import { ButtonGroup } from 'reactstrap';
 import { StyledBTN } from '../Primatives/BasePrimatives';
 
-const ControlGroupBtns = props => (
+const ControlGroupButtons = ({ options, value, updateInputValue }) => (
   <ButtonGroup size="lg pb-3">
     {
-      props.options.map(opt => (
+      options.map(opt => (
         <StyledBTN
-          selected={opt === props.value}
+          selected={opt === value}
           key={opt}
-          onClick={() => { props.updateInputValue(opt); }}
+          onClick={() => {
+            updateInputValue(opt);
+          }}
         >
           {opt}
         </StyledBTN>
@@ -19,14 +21,14 @@ const ControlGroupBtns = props => (
   </ButtonGroup>
 );
 
-ControlGroupBtns.propTypes = {
+ControlGroupButtons.propTypes = {
+  updateInputValue: PropTypes.func.isRequired,
   options: PropTypes.array,
   value: PropTypes.string,
 };
-ControlGroupBtns.defaultProps = {
+ControlGroupButtons.defaultProps = {
   options: ['ss'],
   value: '',
 };
 
-
-export default ControlGroupBtns;
+export default ControlGroupButtons;
