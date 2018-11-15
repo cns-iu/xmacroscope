@@ -34,17 +34,22 @@ cp packages/server-graphql/env.example packages/server-graphql/.env
 ```
 Unless you're deploying this to a server, you should keep all the defaults.
 
-# Running the application
+# Running the application in development mode
 
 In the project root directory:
 ```
-npm start
+npm run start-dev
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
 
-## Running the application locally
-During development you may want to MAV system to point to the database sever, rather than its internal mocking data source.
+# Running the application in development mode
 
-To do this start each package separately, using `npm run start-local` in the MAV package.
-
-Once the local graphql server is stable we'll simplify this process into a dev and production environment.
+In the project root directory:
+```
+npm run build
+```
+This will build the two client applications and the server.
+```
+npm start
+```
+This will start up the server which will serve the client code and the graphql endpoint.
