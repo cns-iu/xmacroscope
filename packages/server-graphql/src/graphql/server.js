@@ -81,10 +81,10 @@ const app = express();
 // Possibly bit clunky to have them here within the GraphQL endpoint.
 
 // SMM run logic
-app.use('/smm', express.static(path.join(__dirname, '../../../client/build')));
+app.use('/', express.static(path.join(__dirname, '../../../client-run/build')));
 
 // Make-a-Viz compiled project path
-app.use('/mav', express.static(path.join(__dirname, '../../../aisl/dist')));
+app.use('/mav', express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
 
 //
 // Setup GraphQL endpoint with GUI for development

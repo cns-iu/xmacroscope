@@ -24,7 +24,7 @@ npm run setup # Initial default setup
 ## Setup environment
 ### Client
 ```
-cp packages/client-run/env.development.example packages/client-run/.env.development
+cp packages/client-run/env.example packages/client-run/.env
 ```
 REACT_APP_GRAPHQL_URL: Leave at the default unless you're running the GraphQL in a unique location.
 REACT_APP_LOCATION: Select a location for your installation. Options can be found in the `packages/server-graphql/src/db/seeders/*-demo-settings.js` file
