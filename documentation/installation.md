@@ -4,18 +4,16 @@
 
 Node >= 10
 
-
 ## Install Global Dependencies
-NPM or Yarn is used as a package manager and Angular CLI is used for the CNS UI components
+Angular CLI is used for the CNS UI components
 ```
-npm install --global yarn # Optional
 npm install --global @angular/cli
 ```
 
 ## Bootstrap the project
-Download the latest code and bootstrap the project with Lerna.
+Download the latest code and bootstrap the project.
 
-This will install all the required projects in each project and link required binaries.
+This will install all the required dependencies in each project
 ```
 git clone git@github.com:cns-iu/xmacroscope.git
 cd xmacroscope
@@ -44,7 +42,7 @@ npm start
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
 
-## Running the application loaclly
+## Running the application locally
 During development you may want to MAV system to point to the database sever, rather than its internal mocking data source.
 
 To do this start each package separately, using `npm run start-local` in the MAV package.
