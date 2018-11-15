@@ -12,9 +12,10 @@ function Admin() {
       <Col xs={12} className="mx-auto">
         <Card body>
           <div>Admin page</div>
-          <ul>{links.map(link => (
-            <li><Link to={link.path}>{link.label}</Link></li>
-          ))}
+          <ul>
+            {links.map(link => (
+              <li><Link to={link.path}>{link.label}</Link></li>
+            ))}
           </ul>
         </Card>
       </Col>

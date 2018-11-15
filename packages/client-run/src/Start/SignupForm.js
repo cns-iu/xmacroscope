@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Form, Row, Col } from 'reactstrap';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
 import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
-import ControlGroupBtns from '../Components/ControlGroupBtns';
+import ControlGroupButtons from '../Components/ControlGroupButtons';
 import ControlSlider from '../Components/ControlSlider';
 import ControlShapes from '../Components/ControlShapes';
 import ControlColors from '../Components/ControlColors';
@@ -14,8 +15,8 @@ import { StyledButton, BaseFormHeader } from '../Primatives/BasePrimatives';
 
 // Our inner form component which receives our form's state and updater methods
 // as props
-const AgeInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
-const ActivityInput = CustomInputHOC(FormField, ControlGroupBtns, ErrorFeedBack);
+const AgeInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
+const ActivityInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
 const ShapeInput = CustomInputHOC(FormField, ControlShapes, ErrorFeedBack);
@@ -25,8 +26,6 @@ const SignupForm = ({
   values,
   errors,
   touched,
-  handleChange,
-  handleBlur,
   handleSubmit,
   isSubmitting,
   setFieldValue,
@@ -143,5 +142,14 @@ const SignupForm = ({
     </Col>
   </Form>
 );
+
+SignupForm.propTypes = {
+  errors: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  setFieldValue: PropTypes.func.isRequired,
+  touched: PropTypes.object.isRequired,
+  values: PropTypes.object.isRequired,
+};
 
 export default SignupForm;

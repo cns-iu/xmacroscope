@@ -60,8 +60,8 @@ function RunningTimerPost() {
                   <h1>Wait for the current runner to finish.</h1>
                   <Timer
                     completion={() => {
-                        updateRace();
-                      }}
+                      updateRace();
+                    }}
                     direction="down"
                     start={postRunDelay}
                     end={0}

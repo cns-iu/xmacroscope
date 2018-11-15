@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlColor, ControlColorsContainer } from '../Primatives/ControlPrimatives';
 
-const ControlColors = props => (
+const ControlColors = ({ options, value, updateInputValue }) => (
   <ControlColorsContainer className="pb-3">
     {
-      props.options.map(opt => (
+      options.map(opt => (
         <ControlColor
           width="50px"
           color={opt.hexValue}
-          selected={opt.hexValue === props.value}
+          selected={opt.hexValue === value}
           key={opt.hexValue}
-          onClick={() => { props.updateInputValue(opt.hexValue); }}
+          onClick={() => {
+            updateInputValue(opt.hexValue);
+          }}
         />
       ))
     }

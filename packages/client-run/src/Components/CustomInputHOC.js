@@ -23,7 +23,7 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
 
     updateInputValueConcat = (value) => {
       const { setInput, name } = this.props;
-      const valueCurrent = this.state.value;
+      const { value: valueCurrent } = this.state;
       const updatedValue = valueCurrent + value;
       this.setState({ value: updatedValue });
       setInput(`${name}`, updatedValue);

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
-import { Button, CardHeader, Card, CardBody } from 'reactstrap';
-import { sportsGray, sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
+import {
+  Button, CardHeader, Card, CardBody,
+} from 'reactstrap';
+import { sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
 
 
 const selected = `
@@ -8,6 +10,7 @@ color: black;
 background: ${sportsYellow};
 border-color: ${sportsYellow};
 `;
+
 const BaseHeader = styled.h1`
   color: white;
   font-weight: 900;
@@ -17,6 +20,7 @@ const BaseHeader = styled.h1`
     font-size: 30px !important;
   }
 `;
+
 const BaseFormHeader = styled.h1`
   color: white;
   @media (max-height: 1080px) {
@@ -47,6 +51,7 @@ const StyledButton = styled(Button)`
     font-size: 30px !important;
   }
 `;
+
 const StyledCardHeader = styled(CardHeader)`
   background-color: ${sportsOrange};
 `;
@@ -63,6 +68,7 @@ const StyledBTN = styled(Button)`
     max-height: 40px;
   }
 `;
+
 const StyledCard = styled(Card)`
   background-color: ${sportsTransGray};
 `;
