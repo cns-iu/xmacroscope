@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactHowler from 'react-howler';
-import prettyMs from 'pretty-ms';
 import TimerWrapper from '../Primatives/TimerPrimatives';
 import CountDown from '../Media/countDown.wav';
 
@@ -60,7 +59,7 @@ class Timer extends React.Component {
   render() {
     return (
       <TimerWrapper displayTimer={this.props.displayTimer}>
-        {prettyMs(this.state.timer)}
+        {this.state.timer}
         {this.state.countDownSound ? (
           <ReactHowler
             src={CountDown}
