@@ -1,5 +1,5 @@
 <div class="visualization-container">
-  <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs>
+  <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs [ngStyle]="{'height': '100%'}" >
     <mat-tab [disabled]="true" isActive="false">
       <ng-template mat-tab-label>
         <div class="tab-label partial-disabled-tab-label">
@@ -9,23 +9,24 @@
       </ng-template>
     </mat-tab>
 
-    <mat-tab>
+    <mat-tab *ngFor="let visType of vis">
       <ng-template mat-tab-label>
        <div class="tab-label">
-          <div class="image"><img src="assets/img/icon-mav-scatter-graph.svg" height="100%"></div>
-          <div class="text">Scatter Graph</div>
+          <div class="image"><img [src]="visType.icon" height="100%"></div>
+          <div class="text">{{visType.label}}</div>
         </div>
+       
       </ng-template>
+     
+      <ng-template matTabContent>
+          <div class="tab-content">
+              <dvl-visualization [data]="visType.data"></dvl-visualization>
+          </div>
+       
+    </ng-template>
+   
+   
     </mat-tab>
-
-    <mat-tab>
-      <ng-template mat-tab-label>
-        <div class="tab-label">
-          <div class="image"><img src="assets/img/icon-mav-geomap.svg" height="100%"></div>
-          <div class="text">&emsp;&emsp;&ensp;Map&emsp;&emsp;</div>
-        </div>
-      </ng-template>
-
-    </mat-tab>
+   
   </mat-tab-group>
 </div>
