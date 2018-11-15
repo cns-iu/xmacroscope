@@ -20,6 +20,7 @@ This will install all the required projects in each project and link required bi
 git clone git@github.com:cns-iu/xmacroscope.git
 cd xmacroscope
 npm install
+npm run setup # Initial default setup
 ```
 
 ## Setup environment

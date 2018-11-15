@@ -3,6 +3,9 @@
   "scripts": {
     "preinstall": "for p in packages/*; do cd $p; npm install; cd ../../; done",
     "quickinstall": "for p in packages/*; do cd $p; npm ci & cd ../../; done; wait",
+    "setup:server": "cp packages/server-graphql/env.example packages/server-graphql/.env",
+    "setup:run": "cp packages/client-run/env.development.example packages/client-run/.env",
+    "setup": "npm-run-all setup:run setup:server",
     "build:mav": "cd packages/client-mav && npm run build-deploy",
     "build:run": "cd packages/client-run && npm run build",
     "build:server": "cd packages/server-graphql && npm run build",
