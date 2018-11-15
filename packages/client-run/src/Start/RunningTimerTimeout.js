@@ -32,7 +32,7 @@ function RunningTimerTimeout(props) {
     <Mutation
       mutation={UPDATE_RUN_LOCAL}
       variables={{
-        status: 'postRunTimer',
+        status: 'preSignupForm',
       }}
     >
       {updateRun => (
