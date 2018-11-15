@@ -1,6 +1,6 @@
-/**
- * Reusable form field
- */
+//
+// Reusable form field error feedback
+//
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
@@ -14,13 +14,11 @@ const ErrorFeedBack = ({
       <ErrorWrapper className="pt-2">
         {/* Validation feedback */}
         {
-      errors[name]
-      && (
-
-        <span>{errors[name]}</span>
-
-      )
-    }
+          errors[name]
+          && (
+            <span>{errors[name]}</span>
+          )
+        }
       </ErrorWrapper>
     </Col>
   </Row>
