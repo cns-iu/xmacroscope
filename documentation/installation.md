@@ -2,30 +2,14 @@
 
 ## Requirements
 
-Node < 10
+Node >= 10
 
-Some modules are not compatible with Node v10 yet.
 
-## Install Lerna
-We use Lerna to manage dependencies across the different projects.
-
-Install it globally to get started
+## Install Global Dependencies
+NPM or Yarn is used as a package manager and Angular CLI is used for the CNS UI components
 ```
-npm install --global lerna
-```
-
-## Install Other Global Dependencies
-Yarn is used as a package manager and Angular CLI is used for the CNS UI components
-```
-npm install --global yarn
+npm install --global yarn # Optional
 npm install --global @angular/cli
-```
-
-## Initialize [@ngx-dino](https://github.com/cns-iu/ngx-dino) Submodule
-[@ngx-dino](https://github.com/cns-iu/ngx-dino) is CNS' in development visualization framework. As it is not yet on npm, we reference it from a git submodule.
-```
-git submodule init
-git submodule update
 ```
 
 ## Bootstrap the project
@@ -35,8 +19,7 @@ This will install all the required projects in each project and link required bi
 ```
 git clone git@github.com:cns-iu/xmacroscope.git
 cd xmacroscope
-lerna bootstrap
-lerna link
+npm install
 ```
 
 ## Setup environment
@@ -56,13 +39,13 @@ Unless you're deploying this to a server, you should keep all the defaults.
 
 In the project root directory:
 ```
-yarn start
+npm start
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
 
 ## Running the application loaclly
 During development you may want to MAV system to point to the database sever, rather than its internal mocking data source.
 
-To do this start each package separately, using `yarn ng serve --env=local` in the MAV package.
+To do this start each package separately, using `npm run start-local` in the MAV package.
 
 Once the local graphql server is stable we'll simplify this process into a dev and production environment.

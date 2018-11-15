@@ -1,18 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "start": "lerna run start --stream --concurrency",
-    "start-smm": "lerna run start-smm --stream --concurrency"
+    "preinstall": "for p in packages/*; do cd $p; npm install; cd ../../; done",
+    "quickinstall": "for p in packages/*; do cd $p; npm ci & cd ../../; done; wait",
+    "build:mav": "cd packages/client-mav && npm run build-deploy",
+    "build:run": "cd packages/client-run && npm run build",
+    "build:server": "cd packages/server-graphql && npm run build",
+    "build": "npm-run-all --parallel build:mav build:run build:server --print-label",
+    "start:mav": "cd packages/client-mav && npm run start-local",
+    "start:run": "cd packages/client-run && npm run start",
+    "start:server": "cd packages/server-graphql && npm run start",
+    "start": "npm-run-all --parallel start:mav start:run start:server --print-label"
   },
   "devDependencies": {
-    "lerna": "^2.8.0"
-  },
-  "dependencies": {
-    "@angular/cli": "^7.0.3",
-    "bootstrap": "^4.0.0"
-  },
-  "workspaces": [
-    "packages/*",
-    "ngx-dino/packages/*"
-  ]
+    "npm-run-all": "^4.1.3"
+  }
 }

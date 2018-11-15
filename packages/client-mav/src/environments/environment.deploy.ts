@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
+  production: true,
   useHashStrategy: true,
   projectConfiguration: {
-    endpoint: 'http://localhost:4000/graphql'
+    endpoint: '/graphql'
   }
 };
