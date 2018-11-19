@@ -12,6 +12,7 @@ export class Run {
   end: Date;
   person: Person;
   showPersona = false;
+  selected = false;
 
   constructor(data: {
     id?: string, start?: Date, end?: Date, person?: any, showPersona?: boolean
@@ -33,7 +34,8 @@ export class Run {
 
   @Operand(constant({
     areaSize: 50,
-    color: '#000000'
+    color: '#000000',
+    pulse: true
   }))
   fixed: any;
 

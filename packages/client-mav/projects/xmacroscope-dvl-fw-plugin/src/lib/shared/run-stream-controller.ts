@@ -38,6 +38,11 @@ export class RunStreamController {
     this.emitter.next(change);
   }
 
+  selectRuns(runs: Run[]) {
+    const change = this.changeTracker.selectRuns(runs);
+    this.emitter.next(change);
+  }
+
   createRunStream(): Observable<RawChangeSet<Run>> {
     const snapshot = of(RawChangeSet.fromArray(this.changeTracker.snapshot().toArray()));
     return merge(snapshot, this.runStream);

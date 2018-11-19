@@ -121,6 +121,10 @@ export class XMacroscopeProject extends DefaultProject {
               ],
               areaSize: [
                 {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
+              ],
+              pulse: [
+                {selector: 'selected'},
+                {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
               ]
             },
             time: {
@@ -196,6 +200,12 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'selectRunner',
             graphicVariableType: 'identifier',
             graphicVariableId: 'identifier'
+          },
+          pulse: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'pulse',
+            graphicVariableId: 'pulse'
           },
           color: {
             recordSet: 'run',

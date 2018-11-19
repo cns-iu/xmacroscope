@@ -73,4 +73,32 @@ export class ChangeTracker {
     this.accumulator = accumulator;
     return new RawChangeSet(inserted, removed, undefined, replaced);
   }
+
+  selectRuns(runs: Run[]): RawChangeSet<Run> {
+    const snapshot: Run[] = this.snapshot().toArray();
+    const replaced: [Run, Run][] = [];
+
+    const run2id = {};
+    runs.forEach(r => run2id[r.id] = r);
+
+    const newSnapshot: Run[] = [];
+    for (const run of snapshot) {
+      if (run2id.hasOwnProperty(run.id)) {
+        const runClone = new Run(run);
+        runClone.selected = true;
+        replaced.push([run, runClone]);
+        newSnapshot.push(runClone);
+      } else if (run.selected) {
+        const runClone = new Run(run);
+        runClone.selected = false;
+        replaced.push([run, runClone]);
+        newSnapshot.push(runClone);
+      } else {
+        newSnapshot.push(run);
+      }
+    }
+
+    this.accumulator = List<Run>(newSnapshot);
+    return new RawChangeSet([], [], [], replaced);
+  }
 }
