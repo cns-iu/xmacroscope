@@ -4,8 +4,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "preinstall": "for p in packages/*; do cd $p; npm install; cd ../../; done",
-    "quickinstall": "for p in packages/*; do cd $p; npm ci & cd ../../; done; wait",
+    "install:mav": "cd packages/client-mav && npm install",
+    "install:run": "cd packages/client-run && npm install",
+    "install:server": "cd packages/client-run && npm install",
+    "postinstall": "npm-run-all --parallel install:mav install:run install:server --print-label",
     "setup:server": "cp packages/server-graphql/env.example packages/server-graphql/.env",
     "setup:run": "cp packages/client-run/env.development.example packages/client-run/.env",
     "setup": "npm-run-all setup:run setup:server",
