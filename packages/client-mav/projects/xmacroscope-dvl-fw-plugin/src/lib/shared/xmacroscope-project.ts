@@ -123,7 +123,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
               ],
               pulse: [
-                {selector: 'selected'},
+                {id: 'pulse', selector: 'selected'},
                 {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
               ]
             },

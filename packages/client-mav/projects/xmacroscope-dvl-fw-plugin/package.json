@@ -7,6 +7,6 @@
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
-    "@dvl-fw/core": "^0.5.3"
+    "@dvl-fw/core": "^0.6.2"
   }
 }
