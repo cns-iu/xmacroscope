@@ -8,8 +8,8 @@ export const environment = {
   projectConfiguration: {
     deploymentLocation: 'smm',
     defaultUsState: 'IN',
-    // mockData: true
-    endpoint: 'http://localhost:4000/graphql'
+    mockData: true
+    // endpoint: 'http://localhost:4000/graphql'
   }
 };
 
