@@ -5,6 +5,22 @@ const moment = moment_; // See https://github.com/jvandemo/generator-angular2-li
 import { Message, SignupStartedMessage, SignupFinishedMessage, RunStartedMessage, RunFinishedMessage } from '../shared/message';
 
 
+export const GET_SETTINGS = gql`
+  query ($location: String!) {
+    Settings(location: $location) {
+      location
+      usState
+      latitude
+      longitude
+      preRunDelay
+      postRunDelay
+      startLineTimeout
+      runTimeout
+      attractDelay
+    }
+  }
+`;
+
 export const RECENT_RUNS = gql`
   query ($lastX: Int) {
     Runs(lastX: $lastX) {

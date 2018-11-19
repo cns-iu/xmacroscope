@@ -11,14 +11,15 @@ import { XMacroscopeProjectConfigService } from './xmacroscope-project-config.se
 // @dynamic
 @Injectable()
 export class XMacroscopeDataService {
-  public readonly project: Project;
-  public readonly messages: Observable<Message>;
-  public readonly runStreamController: RunStreamController;
+  public project: Project;
+  public messages: Observable<Message>;
+  public runStreamController: RunStreamController;
 
   constructor(@Inject(XMacroscopeProjectConfigService) private config) {
-    const project = new XMacroscopeProject(config);
-    this.project = project;
-    this.runStreamController = project.runStreamController;
-    this.messages = project.runStreamController.messageStream;
+    XMacroscopeProject.create(config).then((project) => {
+      this.project = project;
+      this.runStreamController = project.runStreamController;
+      this.messages = project.runStreamController.messageStream;
+    });
   }
 }

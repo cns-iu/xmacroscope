@@ -6,8 +6,10 @@ export const environment = {
   production: false,
   useHashStrategy: false,
   projectConfiguration: {
-    mockData: true
-    // endpoint: 'http://localhost:4000/graphql'
+    deploymentLocation: 'smm',
+    defaultUsState: 'IN',
+    // mockData: true
+    endpoint: 'http://localhost:4000/graphql'
   }
 };
 

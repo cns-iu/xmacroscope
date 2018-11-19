@@ -5,11 +5,15 @@ import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, Defaul
 import { XMacroscopeDataSource } from './xmacroscope-data-source';
 import { MockRunRawData } from '../mock/mock-run-raw-data';
 import { RunStreamController } from './run-stream-controller';
+import { LocationSettings } from '../graphql/location-settings';
+
 
 export interface XMacroscopeProjectConfig {
   mockData?: boolean;
   staticMockData?: boolean;
   endpoint?: string;
+  deploymentLocation?: string;
+  defaultUsState?: string;
 }
 
 export class XMacroscopeProject extends DefaultProject {
@@ -21,12 +25,19 @@ export class XMacroscopeProject extends DefaultProject {
   graphicSymbols: GraphicSymbol[];
   visualizations: Visualization[];
 
-  static async create(config: XMacroscopeProjectConfig): Promise<Project> {
+  static async create(config: XMacroscopeProjectConfig): Promise<XMacroscopeProject> {
+    if (config.endpoint && config.deploymentLocation) {
+      const settingsGetter = new LocationSettings(config.endpoint, config.deploymentLocation);
+      const settings = await settingsGetter.getSettings();
+      if (settings && settings.usState) {
+        config.defaultUsState = settings.usState;
+      }
+    }
     const project = new XMacroscopeProject(config);
     return project;
   }
 
-  constructor(config: XMacroscopeProjectConfig) {
+  constructor(private config: XMacroscopeProjectConfig) {
     super();
     if (config.staticMockData) {
       this.dataSources = this.getStaticMockDataSources();
@@ -252,6 +263,7 @@ export class XMacroscopeProject extends DefaultProject {
         id: 'GM01',
         template: 'geomap',
         properties: {
+          defaultUsState: this.config.defaultUsState,
           stateDefaultColor: 'white',
           stateDefaultStrokeColor: '#bebebe'
         },
