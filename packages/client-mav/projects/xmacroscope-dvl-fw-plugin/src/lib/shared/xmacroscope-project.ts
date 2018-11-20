@@ -225,7 +225,7 @@ export class XMacroscopeProject extends DefaultProject {
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
           },
-          latlng: {
+          position: {
             recordSet: 'run',
             dataVariable: 'zipCode',
             graphicVariableType: 'latlng',
@@ -274,12 +274,11 @@ export class XMacroscopeProject extends DefaultProject {
         template: 'geomap',
         properties: {
           defaultUsState: this.config.defaultUsState,
-          stateDefaultColor: 'white',
-          stateDefaultStrokeColor: '#bebebe'
+          basemapDefaultColor: 'white',
+          basemapDefaultStrokeColor: '#bebebe'
         },
         graphicSymbols: {
-          points: 'runPoints',
-          states: 'runStates'
+          nodes: 'runPoints'
         }
       }, this),
     ];
