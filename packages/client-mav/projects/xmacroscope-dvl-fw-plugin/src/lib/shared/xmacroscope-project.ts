@@ -298,7 +298,8 @@ export class XMacroscopeProject extends DefaultProject {
           ],
           basemapSelectedZoomLevel: 2,
           basemapDefaultColor: 'white',
-          basemapDefaultStrokeColor: '#bebebe'
+          basemapDefaultStrokeColor: '#bebebe',
+          basemapDefaultStrokeWidth: '0.1%'
         },
         graphicSymbols: {
           nodes: 'runPoints'
