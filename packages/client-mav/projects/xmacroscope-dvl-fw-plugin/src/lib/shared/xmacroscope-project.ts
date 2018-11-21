@@ -276,7 +276,27 @@ export class XMacroscopeProject extends DefaultProject {
         id: 'GM01',
         template: 'geomap',
         properties: {
-          defaultUsState: this.config.defaultUsState,
+          basemapZoomLevels: [
+            {
+              selector: ['world', 'countries'],
+              projection: 'eckert4',
+              label: 'World',
+              class: 'world-icon'
+            },
+            {
+              selector: ['world', 'united states', 'states'],
+              projection: 'albersUsa',
+              label: 'United States',
+              class: 'us-icon'
+            },
+            {
+              selector: ['world', 'united states', this.config.defaultUsState, 'counties'],
+              projection: 'albersUsa',
+              label: this.config.defaultUsState,
+              class: 'state-icon'
+            }
+          ],
+          basemapSelectedZoomLevel: 2,
           basemapDefaultColor: 'white',
           basemapDefaultStrokeColor: '#bebebe'
         },
