@@ -12,14 +12,27 @@
   </div>
   <div class="quantitative">
     <span class="title">Quantitative</span>
-    <span class="subtitle">
-        Size:
-    </span>
+    <div>
+        <app-data-variable-dropzone 
+            [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]" 
+            [recordStream]="streams[0]"
+            (graphicVariableChange)="onGraphicVariableChange(group, graphicSymbolOptions.graphicVariableOptions[1], $event)"
+            [availableGraphicVariables]="filteredGraphicVariables"
+            #dropZone>
+              <div class="{{ dropZone.selectionClass }}">       
+                    <app-graphic-variable-legend 
+                        [graphicSymbolOption]="graphicSymbolOptions" 
+                        [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
+                        [visualization]="visualization">
+                    </app-graphic-variable-legend>
+              </div>
+          </app-data-variable-dropzone>
+    </div>
   </div>
   <div class="qualitative">
     <span class="title">Qualitative</span>
-    <span class="subtitle">
-      Color:
-    </span>
+    <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
+    [visualization]="visualization"></app-graphic-variable-legend>
   </div>
+
 </div>

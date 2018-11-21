@@ -3,7 +3,7 @@
       <app-data-view-main></app-data-view-main>
   </div>
   <div class="visualization-and-legend-view">
-      <app-visualization-view-main class="visualization"></app-visualization-view-main>
-      <app-legend-view-main class="legend"></app-legend-view-main>
+      <app-visualization-view-main class="visualization" #visualization></app-visualization-view-main>
+      <app-legend-view-main [activeVisualization]="visualization.selectedVisualization?visualization.selectedVisualization:1" class="legend" ></app-legend-view-main>
   </div>
 </div>
