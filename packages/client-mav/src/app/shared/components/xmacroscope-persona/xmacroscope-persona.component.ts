@@ -46,7 +46,7 @@ export class XMacroscopePersonaComponent implements OnInit, OnChanges {
 
     if ('color' in changes) {
       const color = changes.color.currentValue;
-      this.pathFill = (color === null) ? '' : color.toString();
+      this.pathFill = (color == null) ? '' : color.toString();
     }
   }
 
