@@ -27,9 +27,7 @@ export class MainComponent implements OnInit, OnChanges {
   private filteredGraphicVariables: DefaultGraphicVariable[];
   private filteredGraphicVariableOptions: GraphicVariableOption[] = [];
   private lastProject: Project;
-  private groups;
   private graphicSymbolOptions;
-  private permittedGraphicVariables = ['areasize', 'color'];
 
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.xMacroscopeDataService = dataService;
@@ -37,7 +35,6 @@ export class MainComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
     if ('activeVisualization' in changes) {
       this.project = this.xMacroscopeDataService.project;
       const changed = this.activeVisualization !== this.lastActiveVisualization || this.project !== this.lastProject;
@@ -51,11 +48,11 @@ export class MainComponent implements OnInit, OnChanges {
   }
   ngOnInit() {}
 
-  onGraphicVariableChange(group: Group, option: GraphicVariableOption, gv: GraphicVariable): void {
+  onGraphicVariableChange(group: any, option: GraphicVariableOption, gv: GraphicVariable): void {
     const  { updateService, visualization } = this;
     const id = option.id || option.type;
     if (visualization) {
-      updateService.updateGraphicVariable(visualization, null, id, gv);
+      updateService.updateGraphicVariable(visualization, group.id, id, gv);
     }
   }
 
@@ -65,11 +62,7 @@ export class MainComponent implements OnInit, OnChanges {
       this.setStreams(project);
       if (visualization) {
         this.setGroups(visualization);
-      } else {
-        this.groups = [];
       }
-    } else {
-      this.groups = [];
     }
   }
 
@@ -80,24 +73,17 @@ export class MainComponent implements OnInit, OnChanges {
   }
 
   private setGroups(visualization: Visualization): void {
-    this.groups = [];
     const graphicSymbols = cloneDeep(visualization.graphicSymbols);
     Object.keys(graphicSymbols).forEach((key) => {
-      const graphicVariables = graphicSymbols[key].graphicVariables;
-
-      this.filteredGraphicVariables = filter(graphicVariables, (gv) => {
-        return (this.permittedGraphicVariables.indexOf(gv.type.toLowerCase()) !== -1);
-      });
-
-      this.filteredGraphicVariableOptions =  this.filteredGraphicVariables.map((gs) => {
-        return { type: gs.type, label: gs.label, visualization: gs.type === 'areaSize' ? 'node-size' : 'color'};
-      });
+      this.filteredGraphicVariableOptions =  [
+        { type: 'color', label: 'Color', visualization: 'color' },
+        { type: 'areaSize', label: 'Area Size', visualization: 'node-size' }
+      ];
 
       this.graphicSymbolOptions = visualization.graphicSymbolOptions.filter((option) => {
         option.graphicVariableOptions = this.filteredGraphicVariableOptions;
         return option.id === key;
       })[0];
-
     });
   }
 }

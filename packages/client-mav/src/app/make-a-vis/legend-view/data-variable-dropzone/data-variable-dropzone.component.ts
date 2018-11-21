@@ -16,6 +16,7 @@ export class DataVariableDropzoneComponent {
   @Input() graphicVariableOption: GraphicVariableOption;
   @Input() availableGraphicVariables: GraphicVariable[];
   @Output() graphicVariableChange: Observable<GraphicVariable>;
+  graphicVariable: GraphicVariable;
 
   selectionClass = '';
 
@@ -27,6 +28,7 @@ export class DataVariableDropzoneComponent {
 
   dataVariableDropped(selectedDataVariable: DataVariable) {
     const gvs = this.mappableGraphicVariables(selectedDataVariable);
+    this.graphicVariable = gvs[0];
     this._graphicVariableChange.emit(gvs[0]);
   }
 
