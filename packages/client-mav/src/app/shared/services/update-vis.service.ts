@@ -45,6 +45,7 @@ export class UpdateVisService {
   }
 
   updateGraphicVariable(visualization: Visualization, slot: string, id: string, variable: GraphicVariable): void {
+    // ivc make a vis updating the store: TODO
     this._update.next(visualization);
   }
 }
