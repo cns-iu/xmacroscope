@@ -36,9 +36,9 @@ export class Run {
     areaSize: 50,
     color: '#000000',
     pulse: true,
-    transparency: 0.5,
-    strokeTransparency: 0,
-    strokeWidth: 2
+    transparency: 0.6,
+    strokeTransparency: 0.2,
+    strokeWidth: 1
   }))
   fixed: any;
 
