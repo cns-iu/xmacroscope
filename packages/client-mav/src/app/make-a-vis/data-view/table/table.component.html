@@ -12,6 +12,7 @@
               [shape]="element[col.id].shape" 
               [color]="element[col.id].color" 
               [shapeSize]="'50'" 
+              [backgroundStrokeColor]="element[col.id].color"
               [pathStrokeColor]="element[col.id].color">
             </app-xmacroscope-persona>
             <ng-template #notPersona>{{element[col.id]}}</ng-template>

@@ -39,12 +39,7 @@ export class DataService {
         recordSet.defaultRecordStream.asObservable().subscribe((changeSet: RawChangeSet<any>) => {
           dataSource.records = dataSource.records.filter((e: any) => !changeSet.remove
             .some((obj: any) => obj.id === e.id)).concat(changeSet.insert);
-          dataSource.data = dataSource.records.map(operator.getter)
-            .map((e, index) => {
-              const newElement = e;
-              newElement['index'] = index + 1;
-              return newElement;
-            });
+          dataSource.data = dataSource.records.map(operator.getter).reverse();
         });
 
         if (dataSource.data.length > 1) {
