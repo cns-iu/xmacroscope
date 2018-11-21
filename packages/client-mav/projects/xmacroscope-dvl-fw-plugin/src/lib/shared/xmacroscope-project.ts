@@ -128,6 +128,19 @@ export class XMacroscopeProject extends DefaultProject {
               pulse: [
                 {id: 'pulse', selector: 'selected'},
                 {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
+              ],
+              transparency: [
+                {id: 'fixed', selector: 'fixed.transparency', label: 'Fixed'}
+              ],
+              strokeTransparency: [
+                {id: 'fixed', selector: 'fixed.strokeTransparency', label: 'Fixed'}
+              ],
+              strokeWidth: [
+                {id: 'fixed', selector: 'fixed.strokeWidth', label: 'Fixed'}
+              ],
+              strokeColor: [
+                {selector: 'person.color'},
+                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
               ]
             },
             time: {
@@ -216,6 +229,30 @@ export class XMacroscopeProject extends DefaultProject {
             graphicVariableType: 'color',
             graphicVariableId: 'fixed'
           },
+          transparency: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'transparency',
+            graphicVariableId: 'fixed'
+          },
+          strokeColor: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'strokeColor',
+            graphicVariableId: 'fixed'
+          },
+          strokeTransparency: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'strokeTransparency',
+            graphicVariableId: 'fixed'
+          },
+          strokeWidth: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'strokeWidth',
+            graphicVariableId: 'fixed'
+          },
           x: {
             recordSet: 'run',
             dataVariable: 'time',
@@ -239,19 +276,6 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'ageGroup',
             graphicVariableType: 'areaSize',
             graphicVariableId: 'areaSize'
-          }
-        }
-      }, this),
-      new DefaultGraphicSymbol({
-        id: 'runStates',
-        type: 'area',
-        recordStream: 'runs',
-        graphicVariables: {
-          identifier: {
-            recordSet: 'run',
-            dataVariable: 'zipCode',
-            graphicVariableType: 'identifier',
-            graphicVariableId: 'identifier'
           }
         }
       }, this)
