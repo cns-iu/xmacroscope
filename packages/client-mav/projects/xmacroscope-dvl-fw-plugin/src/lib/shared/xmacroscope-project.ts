@@ -109,6 +109,9 @@ export class XMacroscopeProject extends DefaultProject {
               identifier: [
                 {selector: 'id'}
               ],
+              icon: [
+                {selector: 'persona'}
+              ],
               label: [
                 {selector: 'person.label'}
               ],
