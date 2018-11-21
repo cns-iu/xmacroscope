@@ -7,8 +7,6 @@ import { filter, cloneDeep } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
-
-
 export interface Group {
   option: GraphicSymbolOption;
 }

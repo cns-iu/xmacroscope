@@ -82,7 +82,12 @@ export class GraphicVariableLegendComponent implements OnInit, OnChanges {
             legend.graphicSymbols.items = this.generateLegendGraphicSymbol(template, graphicVariable, graphicSymbol, this.project);
             this.legend = legend;
             this.legendComponent.data = legend;
+            this.legendComponent.runDataChangeDetection();
           });
+  } else if (this.legendComponent) {
+      this.legend = undefined; // TODO
+      this.legendComponent.data = undefined; // TODO
+      this.legendComponent.runDataChangeDetection();
   }
 
   }

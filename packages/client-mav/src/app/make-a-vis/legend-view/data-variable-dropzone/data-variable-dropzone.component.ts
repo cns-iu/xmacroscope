@@ -14,7 +14,7 @@ import { DataVariableHoverService } from '../../shared/services/data-variable-ho
 export class DataVariableDropzoneComponent {
   @Input() recordStream: RecordStream;
   @Input() graphicVariableOption: GraphicVariableOption;
-  @Input() availableGraphicVariables: any;
+  @Input() availableGraphicVariables: GraphicVariable[];
   @Output() graphicVariableChange: Observable<GraphicVariable>;
 
   selectionClass = '';
