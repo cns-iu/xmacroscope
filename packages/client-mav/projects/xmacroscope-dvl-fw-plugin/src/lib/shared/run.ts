@@ -35,7 +35,10 @@ export class Run {
   @Operand(constant({
     areaSize: 50,
     color: '#000000',
-    pulse: true
+    pulse: true,
+    transparency: 0.6,
+    strokeTransparency: 0.2,
+    strokeWidth: 1
   }))
   fixed: any;
 

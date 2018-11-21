@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   useHashStrategy: true,
   projectConfiguration: {
-    deploymentLocation: 'smm',
+    deploymentLocation: 'cns-iu',
     defaultUsState: 'IN',
     mockData: true
   }

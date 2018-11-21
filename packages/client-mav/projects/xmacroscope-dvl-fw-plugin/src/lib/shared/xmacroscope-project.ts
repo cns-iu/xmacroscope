@@ -128,6 +128,19 @@ export class XMacroscopeProject extends DefaultProject {
               pulse: [
                 {id: 'pulse', selector: 'selected'},
                 {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
+              ],
+              transparency: [
+                {id: 'fixed', selector: 'fixed.transparency', label: 'Fixed'}
+              ],
+              strokeTransparency: [
+                {id: 'fixed', selector: 'fixed.strokeTransparency', label: 'Fixed'}
+              ],
+              strokeWidth: [
+                {id: 'fixed', selector: 'fixed.strokeWidth', label: 'Fixed'}
+              ],
+              strokeColor: [
+                {selector: 'person.color'},
+                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
               ]
             },
             time: {
@@ -216,6 +229,30 @@ export class XMacroscopeProject extends DefaultProject {
             graphicVariableType: 'color',
             graphicVariableId: 'fixed'
           },
+          transparency: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'transparency',
+            graphicVariableId: 'fixed'
+          },
+          strokeColor: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'strokeColor',
+            graphicVariableId: 'fixed'
+          },
+          strokeTransparency: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'strokeTransparency',
+            graphicVariableId: 'fixed'
+          },
+          strokeWidth: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'strokeWidth',
+            graphicVariableId: 'fixed'
+          },
           x: {
             recordSet: 'run',
             dataVariable: 'time',
@@ -241,19 +278,6 @@ export class XMacroscopeProject extends DefaultProject {
             graphicVariableId: 'areaSize'
           }
         }
-      }, this),
-      new DefaultGraphicSymbol({
-        id: 'runStates',
-        type: 'area',
-        recordStream: 'runs',
-        graphicVariables: {
-          identifier: {
-            recordSet: 'run',
-            dataVariable: 'zipCode',
-            graphicVariableType: 'identifier',
-            graphicVariableId: 'identifier'
-          }
-        }
       }, this)
     ];
   }
@@ -276,9 +300,30 @@ export class XMacroscopeProject extends DefaultProject {
         id: 'GM01',
         template: 'geomap',
         properties: {
-          defaultUsState: this.config.defaultUsState,
+          basemapZoomLevels: [
+            {
+              selector: ['world', 'countries'],
+              projection: 'eckert4',
+              label: 'World',
+              class: 'world-icon'
+            },
+            {
+              selector: ['world', 'united states', 'states'],
+              projection: 'albersUsa',
+              label: 'United States',
+              class: 'us-icon'
+            },
+            {
+              selector: ['world', 'united states', this.config.defaultUsState, 'counties'],
+              projection: 'albersUsa',
+              label: this.config.defaultUsState,
+              class: 'state-icon'
+            }
+          ],
+          basemapSelectedZoomLevel: 2,
           basemapDefaultColor: 'white',
-          basemapDefaultStrokeColor: '#bebebe'
+          basemapDefaultStrokeColor: '#bebebe',
+          basemapDefaultStrokeWidth: '0.1%'
         },
         graphicSymbols: {
           nodes: 'runPoints'
