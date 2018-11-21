@@ -5,12 +5,15 @@ import { MatTableModule } from '@angular/material/table';
 
 import { MainComponent } from './main/main.component';
 import { TableComponent } from './table/table.component';
+import { SharedModule } from '../../shared/shared.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    SharedModule
   ],
   exports: [
     MainComponent

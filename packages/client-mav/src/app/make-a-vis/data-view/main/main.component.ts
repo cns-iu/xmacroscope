@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
-import { DataService, DataSource } from '../shared/data.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { TableComponent } from '../table/table.component';
+import { DataService, DataSource } from '../shared/data.service';
 
 @Component({
   selector: 'app-data-view-main',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
-
+  @ViewChild('table') table: TableComponent;
   dataSources: Observable<DataSource[]>;
 
   constructor(private dataService: DataService) {
@@ -17,6 +18,11 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  restartButtonClicked() {
+    this.dataService.restartStream();
+    this.table.resetSelection();
   }
 
 }

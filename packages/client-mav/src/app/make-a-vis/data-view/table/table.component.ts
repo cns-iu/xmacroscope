@@ -1,5 +1,9 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, Output } from '@angular/core';
 import { DataVariable } from '@dvl-fw/core';
+import { Observable } from 'rxjs';
+
+import { DataService } from '../shared/data.service';
+
 
 @Component({
   selector: 'app-table',
@@ -9,9 +13,11 @@ import { DataVariable } from '@dvl-fw/core';
 export class TableComponent implements OnInit, OnChanges {
   @Input() dataSource: any;
   @Input() displayedColumns: DataVariable[] = [];
+  @Output() rowClick: Observable<[number, any]> = new EventEmitter();
+  selectedIndex: number;
   displayedColumnNames: string[] = [];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('displayedColumns' in changes) {
@@ -22,4 +28,12 @@ export class TableComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  onRowClick(index: number) {
+      this.selectedIndex = index;
+      this.dataService.stopStream();
+  }
+
+  resetSelection(): void {
+    this.selectedIndex = undefined;
+  }
 }
