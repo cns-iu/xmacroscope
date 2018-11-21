@@ -17,7 +17,7 @@
             [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]" 
             [recordStream]="streams[0]"
             (graphicVariableChange)="onGraphicVariableChange(group, graphicSymbolOptions.graphicVariableOptions[1], $event)"
-            [availableGraphicVariables]="filteredGraphicVariables"
+            [availableGraphicVariables]="project.graphicVariables"
             #dropZone>
               <div class="{{ dropZone.selectionClass }}">       
                     <app-graphic-variable-legend 
@@ -31,8 +31,20 @@
   </div>
   <div class="qualitative">
     <span class="title">Qualitative</span>
-    <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
-    [visualization]="visualization"></app-graphic-variable-legend>
+    <app-data-variable-dropzone 
+            [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]" 
+            [recordStream]="streams[0]"
+            (graphicVariableChange)="onGraphicVariableChange(group, graphicSymbolOptions.graphicVariableOptions[0], $event)"
+            [availableGraphicVariables]="project.graphicVariables"
+            #dropZone>
+              <div class="{{ dropZone.selectionClass }}">       
+                    <app-graphic-variable-legend 
+                        [graphicSymbolOption]="graphicSymbolOptions" 
+                        [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
+                        [visualization]="visualization">
+                    </app-graphic-variable-legend>
+              </div>
+          </app-data-variable-dropzone>
   </div>
 
 </div>
