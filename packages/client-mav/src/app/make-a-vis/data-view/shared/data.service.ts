@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { DataVariable, GraphicVariable, Project, RecordSet } from '@dvl-fw/core';
+import { DataVariable, GraphicVariable, RecordSet } from '@dvl-fw/core';
 import { access, combine, RawChangeSet, Operator } from '@ngx-dino/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
-import { element } from '@angular/core/src/render3';
+import {  Run, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 export interface DataSource {
   id: string;
@@ -77,5 +76,9 @@ export class DataService {
 
   stopStream() {
     this.dataService.runStreamController.stop();
+  }
+
+  selectRunner(run: Run[]) {
+    this.dataService.runStreamController.selectRuns(run);
   }
 }

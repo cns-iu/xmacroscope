@@ -21,8 +21,8 @@ export class MainComponent implements OnInit {
   }
 
   restartButtonClicked() {
-    this.dataService.restartStream();
     this.table.resetSelection();
+    this.dataService.restartStream();
   }
 
 }

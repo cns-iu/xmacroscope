@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, SimpleChanges, Outpu
 import { DataVariable } from '@dvl-fw/core';
 import { Observable } from 'rxjs';
 
-import { DataService } from '../shared/data.service';
+import { DataService, DataSource } from '../shared/data.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { DataService } from '../shared/data.service';
   styleUrls: ['./table.component.sass']
 })
 export class TableComponent implements OnInit, OnChanges {
-  @Input() dataSource: any;
+  @Input() dataSource: DataSource;
   @Input() displayedColumns: DataVariable[] = [];
   @Output() rowClick: Observable<[number, any]> = new EventEmitter();
   selectedIndex: number;
@@ -29,8 +29,10 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   onRowClick(index: number) {
-      this.selectedIndex = index;
-      this.dataService.stopStream();
+    this.selectedIndex = index;
+    this.dataService.stopStream();
+    const selectedRun = this.dataSource.records[this.dataSource.records.length - 1 - index];
+    this.dataService.selectRunner([selectedRun]);
   }
 
   resetSelection(): void {
