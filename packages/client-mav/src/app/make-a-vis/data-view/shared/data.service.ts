@@ -4,6 +4,7 @@ import { access, combine, RawChangeSet, Operator } from '@ngx-dino/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+import { element } from '@angular/core/src/render3';
 
 export interface DataSource {
   id: string;
@@ -38,7 +39,7 @@ export class DataService {
         recordSet.defaultRecordStream.asObservable().subscribe((changeSet: RawChangeSet<any>) => {
           dataSource.records = dataSource.records.filter((e: any) => !changeSet.remove
             .some((obj: any) => obj.id === e.id)).concat(changeSet.insert);
-          dataSource.data = dataSource.records.map(operator.getter);
+          dataSource.data = dataSource.records.map(operator.getter).reverse();
         });
 
         if (dataSource.data.length > 1) {
@@ -57,7 +58,7 @@ export class DataService {
     dataVariables.forEach((dv: DataVariable) => {
       const filter = graphicVariables.filter((gv: GraphicVariable) => {
         if ((gv.dataVariable.id === dv.id) && (gv.recordSet.id === recordSetId)
-          && (gv.type === 'text' || gv.type === 'label')) {
+          && (gv.type === 'text' || gv.type === 'label' || gv.type === 'icon')) {
           return gv;
         }
       });
@@ -67,7 +68,14 @@ export class DataService {
         mapping[dv.id] = access<any>(dv.id, '');
       }
     });
-
     return combine(mapping);
+  }
+
+  restartStream() {
+    this.dataService.runStreamController.start();
+  }
+
+  stopStream() {
+    this.dataService.runStreamController.stop();
   }
 }

@@ -1,5 +1,5 @@
 import { pick } from 'lodash';
-import { Operand, map, constant, chain, access } from '@ngx-dino/core';
+import { Operand, map, constant, chain, access, combine } from '@ngx-dino/core';
 import { areaSizeScale } from '@dvl-fw/core';
 
 import { Person } from './person';
@@ -39,6 +39,8 @@ export class Run {
   }))
   fixed: any;
 
+  @Operand(combine({shape: access('person.icon'), color: access('person.color')}))
+  persona: {shape: string, color: string};
 
   toJSON(): any {
     return Object.assign({
