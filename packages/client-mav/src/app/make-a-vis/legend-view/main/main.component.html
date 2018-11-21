@@ -3,36 +3,47 @@
     <span class="title">Select Graphic Variables</span>
 
     <div class="text">
-      Quantitative: Data may take on any value within a finite or infinite interval and are commonly acquired via measurement.
+      Quantitative: Data may take on any value within a finite or infinite interval and are commonly acquired via
+      measurement.
     </div>
 
     <div class="text">
-      Qualitative: Data take on only specific values with no values in between and are frequently determined by counting.
+      Qualitative: Data take on only specific values with no values in between and are frequently determined by
+      counting.
     </div>
-  </div>
-  <div class="quantitative">
-    <span class="title">Quantitative</span>
-    <div>
-        <app-data-variable-dropzone 
-            [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]" 
-            [recordStream]="streams[0]"
-            (graphicVariableChange)="onGraphicVariableChange(group, graphicSymbolOptions.graphicVariableOptions[1], $event)"
-            [availableGraphicVariables]="filteredGraphicVariables"
-            #dropZone>
-              <div class="{{ dropZone.selectionClass }}">       
-                    <app-graphic-variable-legend 
-                        [graphicSymbolOption]="graphicSymbolOptions" 
-                        [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
-                        [visualization]="visualization">
-                    </app-graphic-variable-legend>
-              </div>
-          </app-data-variable-dropzone>
-    </div>
-  </div>
-  <div class="qualitative">
-    <span class="title">Qualitative</span>
-    <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
-    [visualization]="visualization"></app-graphic-variable-legend>
   </div>
 
+  <div class="quantitative">
+    <span class="title">Quantitative</span>
+    <div class="subtitle">
+      Size:
+      <app-data-variable-dropzone [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
+        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(group, graphicSymbolOptions.graphicVariableOptions[1], $event)"
+        [availableGraphicVariables]="filteredGraphicVariables" #dropZone>
+        <div class="{{ dropZone.selectionClass }}">
+          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
+            [visualization]="visualization">
+          </app-graphic-variable-legend>
+        </div>
+      </app-data-variable-dropzone>
+    </div>
+
+  </div>
+
+  <div class="qualitative">
+    <span class="title">Qualitative</span>
+    <div class="subtitle">
+      Color:
+      <app-data-variable-dropzone [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
+        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(group, graphicSymbolOptions.graphicVariableOptions[0], $event)"
+        [availableGraphicVariables]="filteredGraphicVariables" #dropZone>
+        <div class="{{ dropZone.selectionClass }}">
+          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
+            [visualization]="visualization">
+          </app-graphic-variable-legend>
+        </div>
+      </app-data-variable-dropzone>
+    </div>
+
+  </div>
 </div>
