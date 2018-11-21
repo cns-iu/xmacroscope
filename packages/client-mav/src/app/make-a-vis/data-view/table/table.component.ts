@@ -37,5 +37,6 @@ export class TableComponent implements OnInit, OnChanges {
 
   resetSelection(): void {
     this.selectedIndex = undefined;
+    this.dataService.selectRunner([]);
   }
 }
