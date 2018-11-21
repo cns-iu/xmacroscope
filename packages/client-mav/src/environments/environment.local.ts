@@ -2,8 +2,8 @@ export const environment = {
   production: false,
   useHashStrategy: true,
   projectConfiguration: {
-    deploymentLocation: 'smm',
-    defaultUsState: 'IN',
+    deploymentLocation: 'cosi',
+    defaultUsState: 'OH',
     endpoint: 'http://localhost:4000/graphql'
   }
 };
