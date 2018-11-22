@@ -7,6 +7,9 @@ import {
 } from '@dvl-fw/core';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
+import { UpdateVisService } from '../../../shared/services/update-vis.service';
+
+
 @Component({
   selector: 'app-graphic-variable-legend',
   templateUrl: './graphic-variable-legend.component.html',
@@ -26,10 +29,12 @@ export class GraphicVariableLegendComponent implements OnInit, OnChanges {
   project: Project;
   legend: Visualization;
 
-  constructor(private xMacroscopeDataService: XMacroscopeDataService, private serializer: ProjectSerializerService) {
+  constructor(private xMacroscopeDataService: XMacroscopeDataService, private serializer: ProjectSerializerService,
+    private updateService: UpdateVisService) {
    }
 
   ngOnInit() {
+    this.updateService.update.subscribe(this.visualizationUpdated.bind(this));
   }
 
   ngOnChanges(changes: SimpleChanges) {
