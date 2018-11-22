@@ -115,6 +115,9 @@ export class XMacroscopeProject extends DefaultProject {
               label: [
                 {selector: 'person.label'}
               ],
+              text: [
+                {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
+              ],
               shape: [
                 {selector: 'person.icon'}
               ],
@@ -170,6 +173,9 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.favoriteActivity'}
               ],
               label: [
+                {selector: 'person.favoriteActivity'}
+              ],
+              text: [
                 {selector: 'person.favoriteActivity'}
               ],
               color: [

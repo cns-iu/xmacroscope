@@ -81,6 +81,7 @@ export class GraphicVariableLegendComponent implements OnInit, OnChanges {
       };
 
       this.project = this.xMacroscopeDataService.project;
+      (<any>this.legendComponent).unload(); // FIXME: Make this public in dvl-fw
       this.serializer.createVisualization(
             this.graphicVariableOption.visualization, preData, this.project
           ).subscribe((legend) => {

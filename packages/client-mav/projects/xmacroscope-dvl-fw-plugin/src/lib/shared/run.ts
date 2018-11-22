@@ -38,7 +38,8 @@ export class Run {
     pulse: true,
     transparency: 0.6,
     strokeTransparency: 0.2,
-    strokeWidth: 1
+    strokeWidth: 1,
+    text: 'Fixed'
   }))
   fixed: any;
 
