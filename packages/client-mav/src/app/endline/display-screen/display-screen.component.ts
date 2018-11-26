@@ -5,7 +5,7 @@ import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage,
   SignupFinishedMessage, SignupStartedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
 
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-display-screen',
