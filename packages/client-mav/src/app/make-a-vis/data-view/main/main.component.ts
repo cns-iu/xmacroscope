@@ -20,9 +20,12 @@ export class MainComponent implements OnInit {
   ngOnInit() {
   }
 
+  resetButtonClicked(): void {
+    window.location.reload();
+  }
+
   restartButtonClicked() {
     this.table.resetSelection();
     this.dataService.restartStream();
   }
-
 }
