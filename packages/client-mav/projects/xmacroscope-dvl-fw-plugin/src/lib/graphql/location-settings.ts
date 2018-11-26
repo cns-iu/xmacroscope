@@ -3,14 +3,25 @@ import { GET_SETTINGS } from './graphql-queries';
 
 
 export class LocationSettings {
-  constructor(private endpoint: string, private location: string) {
+  location: string;
+  usState: string;
+  latitude: number;
+  longitude: number;
+  preRunDelay: number;
+  postRunDelay: number;
+  startLineTimeout: number;
+  runTimeout: number;
+  attractDelay: number;
+
+  constructor(data: any = {}) {
+    Object.assign(this, data);
   }
 
-  async getSettings(): Promise<any> {
-    const client = new GraphqlClient(this.endpoint).client;
+  static async getSettings(endpoint: string, location: string): Promise<LocationSettings> {
+    const client = new GraphqlClient(endpoint).client;
     const results = await client.query<{Settings: any}>({
-      query: GET_SETTINGS, variables: {location: this.location}
+      query: GET_SETTINGS, variables: {location}
     });
-    return results.data.Settings;
+    return new LocationSettings(results.data.Settings);
   }
 }

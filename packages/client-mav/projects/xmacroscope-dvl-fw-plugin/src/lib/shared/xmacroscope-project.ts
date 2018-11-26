@@ -14,6 +14,7 @@ export interface XMacroscopeProjectConfig {
   endpoint?: string;
   deploymentLocation?: string;
   defaultUsState?: string;
+  runTimeout?: number;
 }
 
 export class XMacroscopeProject extends DefaultProject {
@@ -27,10 +28,14 @@ export class XMacroscopeProject extends DefaultProject {
 
   static async create(config: XMacroscopeProjectConfig): Promise<XMacroscopeProject> {
     if (config.endpoint && config.deploymentLocation) {
-      const settingsGetter = new LocationSettings(config.endpoint, config.deploymentLocation);
-      const settings = await settingsGetter.getSettings();
-      if (settings && settings.usState) {
-        config.defaultUsState = settings.usState;
+      const settings = await LocationSettings.getSettings(config.endpoint, config.deploymentLocation);
+      if (settings) {
+        if (settings.usState) {
+          config.defaultUsState = settings.usState;
+        }
+        if (settings.runTimeout) {
+          config.runTimeout = settings.runTimeout;
+        }
       }
     }
     const project = new XMacroscopeProject(config);
