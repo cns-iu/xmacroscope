@@ -1,11 +1,11 @@
 <div class="data-view-container">
-    <div class="button-container">
-        <button mat-raised-button class="home-button" (click)="resetButtonClicked()">RESET</button>
-        <button mat-raised-button class="restart-button" (click)="restartButtonClicked()">RESTART</button>
-    </div>
     <div class="table-container">
         <div class='data-view-inner-container'>
             <app-table *ngFor="let dataSource of dataSources | async" [dataSource]="dataSource" [displayedColumns]="dataSource.columns" #table></app-table>
         </div>
+    </div>
+    <div class="button-container">
+        <button mat-raised-button class="home-button" (click)="resetButtonClicked()">RESET</button>
+        <button mat-raised-button class="restart-button" (click)="restartButtonClicked()">RESTART</button>
     </div>
 </div>
