@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { duration } from 'moment';
 
-import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage, SignupFinishedMessage } from 'xmacroscope-dvl-fw-plugin';
+import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage,
+  SignupFinishedMessage, SignupStartedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
-import { SignupStartedMessage } from 'projects/xmacroscope-dvl-fw-plugin/src/public_api';
+
 import { environment } from '../../../environments/environment'
 
 @Component({
@@ -25,7 +26,7 @@ export class DisplayScreenComponent implements OnInit {
   constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {}
 
   ngOnInit() {
-    let timeoutHandler: NodeJS.Timer; // used to store setTimeout Id to clear it when a new message arrives.
+    let timeoutHandler: any; // used to store setTimeout Id to clear it when a new message arrives.
     this.dataService.messages.subscribe((msg: Message) => {
       // clearing a timeout if it had been set earlier.
       if (timeoutHandler) {
