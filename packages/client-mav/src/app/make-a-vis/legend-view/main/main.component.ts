@@ -23,11 +23,11 @@ export class MainComponent implements OnInit, OnChanges {
   project: Project;
   visualization: Visualization;
   xMacroscopeDataService: XMacroscopeDataService;
+  graphicSymbolOptions;
   private lastActiveVisualization: number;
   private filteredGraphicVariables: DefaultGraphicVariable[];
   private filteredGraphicVariableOptions: GraphicVariableOption[] = [];
   private lastProject: Project;
-  private graphicSymbolOptions;
 
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.xMacroscopeDataService = dataService;
