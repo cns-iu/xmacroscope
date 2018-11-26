@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   useHashStrategy: false,
   projectConfiguration: {
+    runTimout: 10000,
     deploymentLocation: 'cns-iu',
     defaultUsState: 'IN',
     mockData: true

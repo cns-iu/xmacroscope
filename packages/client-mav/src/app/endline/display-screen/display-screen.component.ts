@@ -3,7 +3,8 @@ import { duration } from 'moment';
 
 import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage, SignupFinishedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
-
+import { SignupStartedMessage } from 'projects/xmacroscope-dvl-fw-plugin/src/public_api';
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-display-screen',
@@ -24,15 +25,36 @@ export class DisplayScreenComponent implements OnInit {
   constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {}
 
   ngOnInit() {
+    let timeoutHandler: NodeJS.Timer; // used to store setTimeout Id to clear it when a new message arrives.
     this.dataService.messages.subscribe((msg: Message) => {
+      // clearing a timeout if it had been set earlier.
+      if (timeoutHandler) {
+        clearTimeout(timeoutHandler);
+        timeoutHandler = null;
+      }
       this.handleMessage(msg);
+      /*
+       * If a RunFinishedMessage does not arrive, the screen is tricked to
+       * show 'Waiting for Runner' text.
+       * To do this, a timeout is fetched from the environment and when the timeout expires,
+       * a SignupStartedMessage is simulated, this ends the timer and displays
+       * 'Waiting for Runner' text.
+       */
+      if (msg instanceof RunStartedMessage) {
+        timeoutHandler = setTimeout(() => {
+          this.timerService.stop();
+          this.handleMessage(this.createDummySignupStartedMessage());
+        }, environment.projectConfiguration.runTimout);
+      }
      });
+
     this.timerService.getFormattedTimeObservable().subscribe((timerText) => {
       this.timerText = timerText;
     });
   }
 
   handleMessage(msg: Message) {
+    console.log(msg);
     if (!this.isPersonaSet && msg instanceof SignupFinishedMessage) {
       this.createPersona(<SignupFinishedMessage>msg);
       this.isPersonaSet = true;
@@ -53,5 +75,10 @@ export class DisplayScreenComponent implements OnInit {
       this.personaColor = personAttributes.color;
       this.personaShape =  personAttributes.icon;
     }
+  }
+
+  createDummySignupStartedMessage(): SignupStartedMessage {
+    return new SignupStartedMessage();
+
   }
 }
