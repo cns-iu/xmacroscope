@@ -5,7 +5,6 @@ import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage,
   SignupFinishedMessage, SignupStartedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
 
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-display-screen',
@@ -45,7 +44,7 @@ export class DisplayScreenComponent implements OnInit {
         timeoutHandler = setTimeout(() => {
           this.timerService.stop();
           this.handleMessage(this.createDummySignupStartedMessage());
-        }, environment.projectConfiguration.runTimout);
+        }, this.dataService.config.runTimout);
       }
      });
 
@@ -55,7 +54,6 @@ export class DisplayScreenComponent implements OnInit {
   }
 
   handleMessage(msg: Message) {
-    console.log(msg);
     if (!this.isPersonaSet && msg instanceof SignupFinishedMessage) {
       this.createPersona(<SignupFinishedMessage>msg);
       this.isPersonaSet = true;
