@@ -127,8 +127,8 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.icon'}
               ],
               color: [
-                {selector: 'person.color'},
-                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
+                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'},
+                {selector: 'person.color'}
               ],
               areaSize: [
                 {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}

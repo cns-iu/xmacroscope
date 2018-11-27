@@ -9,17 +9,18 @@
     display: flex
     flex-flow: row
     justify-content: space-between
+    padding-top: 1vh
+    height: 5vh
 
     button
       width: 49%
-      height: 5vh
-      margin-bottom: 1vh
       border-radius: 8px
       background: #afafaa
       color: #ffffff
 
   .table-container
-    height: 78vh
+    height: calc(100% - 6vh) // subtracting height+padding of button-container 
     width: 100%
     background: #3d3d3d
     color: #ffffff
+    overflow: hidden
