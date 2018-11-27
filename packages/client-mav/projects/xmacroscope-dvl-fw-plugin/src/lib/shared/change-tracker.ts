@@ -10,6 +10,7 @@ import { RunFinishedMessage, Message } from './message';
 export class ChangeTracker {
   private readonly changeStream: Observable<RawChangeSet<Run>>;
   private accumulator: List<Run> = List();
+  private runsSelected = false;
 
   constructor(
     stream: Observable<Message>,
@@ -61,10 +62,11 @@ export class ChangeTracker {
 
     // Update highlights
     accumulator.reverse().forEach((run, index) => {
-      if (index < highlightCount) {
+      if (index < highlightCount && !this.runsSelected) {
         run.showPersona = true;
       } else if (run.showPersona) {
         const runClone = new Run(run);
+        run.showPersona = false;
         runClone.showPersona = false;
         replaced.push([run, runClone]);
       }
@@ -75,6 +77,7 @@ export class ChangeTracker {
   }
 
   selectRuns(runs: Run[]): RawChangeSet<Run> {
+    const runsSelected = this.runsSelected = runs.length > 0;
     const snapshot: Run[] = this.snapshot().toArray();
     const replaced: [Run, Run][] = [];
 
@@ -82,20 +85,44 @@ export class ChangeTracker {
     runs.forEach(r => run2id[r.id] = r);
 
     const newSnapshot: Run[] = [];
-    for (const run of snapshot) {
-      if (run2id.hasOwnProperty(run.id)) {
-        const runClone = new Run(run);
-        runClone.selected = true;
-        replaced.push([run, runClone]);
-        newSnapshot.push(runClone);
-      } else if (run.selected) {
-        const runClone = new Run(run);
-        runClone.selected = false;
-        replaced.push([run, runClone]);
-        newSnapshot.push(runClone);
-      } else {
-        newSnapshot.push(run);
+    // FIXME: This is a little too complicated/wordy. Simplify.
+    if (runsSelected) {
+      for (const run of snapshot) {
+        if (run2id.hasOwnProperty(run.id)) {
+          const runClone = new Run(run);
+          runClone.selected = true;
+          runClone.showPersona = false;
+          replaced.push([run, runClone]);
+          newSnapshot.push(runClone);
+        } else if (run.selected || run.showPersona) {
+          const runClone = new Run(run);
+          runClone.selected = false;
+          runClone.showPersona = false;
+          replaced.push([run, runClone]);
+          newSnapshot.push(runClone);
+        } else {
+          newSnapshot.push(run);
+        }
       }
+    } else {
+      const highlightCount = this.highlightCount;
+      snapshot.reverse().forEach((run, index) => {
+        if (index < highlightCount) {
+          const runClone = new Run(run);
+          runClone.showPersona = true;
+          runClone.selected = false;
+          replaced.push([run, runClone]);
+          newSnapshot.push(runClone);
+        } else if (run.showPersona || run.selected) {
+          const runClone = new Run(run);
+          runClone.showPersona = false;
+          runClone.selected = false;
+          replaced.push([run, runClone]);
+          newSnapshot.push(runClone);
+        } else {
+          newSnapshot.push(run);
+        }
+      });
     }
 
     this.accumulator = List<Run>(newSnapshot);

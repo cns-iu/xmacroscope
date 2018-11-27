@@ -124,21 +124,20 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
               ],
               shape: [
-                {selector: 'person.icon'}
+                {selector: 'showPersonaFixedShape'}
               ],
               color: [
-                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'},
-                {selector: 'person.color'}
+                {id: 'fixed', selector: 'showPersonaFixedColor', label: 'Fixed'}
               ],
               areaSize: [
-                {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
+                {id: 'fixed', selector: 'showPersonaFixedAreaSize', label: 'Fixed'}
               ],
               pulse: [
                 {id: 'pulse', selector: 'selected'},
                 {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
               ],
               transparency: [
-                {id: 'fixed', selector: 'fixed.transparency', label: 'Fixed'}
+                {id: 'fixed', selector: 'showPersonaFixedTransparency', label: 'Fixed'}
               ],
               strokeTransparency: [
                 {id: 'fixed', selector: 'fixed.strokeTransparency', label: 'Fixed'}
@@ -147,7 +146,6 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.strokeWidth', label: 'Fixed'}
               ],
               strokeColor: [
-                {selector: 'person.color'},
                 {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
               ]
             },
@@ -159,7 +157,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'timeLabel'}
               ],
               areaSize: [
-                {selector: 'timeAreaSize'}
+                {selector: 'showPersonaTimeAreaSize'}
               ]
             },
             height: {
@@ -170,7 +168,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.height'}
               ],
               areaSize: [
-                {selector: 'person.heightAreaSize'}
+                {selector: 'showPersonaHeightAreaSize'}
               ]
             },
             favoriteActivity: {
@@ -184,7 +182,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.favoriteActivity'}
               ],
               color: [
-                {selector: 'person.favoriteActivityColor'}
+                {selector: 'showPersonaFavoriteActivityColor'}
               ]
             },
             ageGroup: {
@@ -195,7 +193,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.ageGroup'}
               ],
               areaSize: [
-                {selector: 'person.ageGroupAreaSize'}
+                {selector: 'showPersonaAgeGroupAreaSize'}
               ]
             },
             zipCode: {
@@ -233,6 +231,12 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'selectRunner',
             graphicVariableType: 'pulse',
             graphicVariableId: 'pulse'
+          },
+          shape: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'shape',
+            graphicVariableId: 'shape'
           },
           color: {
             recordSet: 'run',
