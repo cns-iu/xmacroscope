@@ -17,8 +17,9 @@ export class MockRunDataStream implements RecordStream<Run> {
   constructor(private runStreamController: RunStreamController) {
     this.mocker = new RunMocker({
       next: runStreamController.sendMessage.bind(runStreamController)
-    }, this.runStreamController.historySize);
+    });
     this.mocker.startMocking();
+    this.mocker.sendPastRuns(this.runStreamController.historySize);
   }
 
   asObservable(): Observable<RawChangeSet<Run>> {
