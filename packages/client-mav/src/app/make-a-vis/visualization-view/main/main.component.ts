@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
-import { Visualization, VisualizationComponent } from '@dvl-fw/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Visualization, DvlFwVisualizationComponent } from '@dvl-fw/core';
 
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { find } from 'lodash';
+import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 export interface VisType {
   template: string;
@@ -25,6 +26,7 @@ export interface Vis {
 
 export class MainComponent implements OnInit {
 
+  @ViewChild('visualization') visualizationComponent: DvlFwVisualizationComponent;
 
   visTypes: VisType[] = [
     { template: 'scattergraph', label: 'Scatter Graph', icon: 'scatter-graph' },
@@ -34,16 +36,25 @@ export class MainComponent implements OnInit {
     { template: 'temporal-bargraph', label: 'Temporal Bar Graph', icon: 'hbg' }
   ];
 
+  // visualization indexing starting from 1
+  selectedVisualization = 1;
   vis = undefined;
   visualizations = [];
-  constructor(private dataService: XMacroscopeDataService ) {
-
+  constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
+    this.selectedVisualization = 1;
     this.vis = this.dataService.project.visualizations.map(vis => {
       const type = find(this.visTypes, { template: vis.template });
       const label = type && type.label || vis.id || '';
       const icon = 'assets/img/icon-mav-' + type.icon + '.svg';
       return { label, icon, data: vis } as Vis;
     });
+    this.updateService.update.subscribe(() => {
+      this.visualizationComponent.runDataChangeDetection();
+    });
+  }
+
+  setSelectedVis(index) {
+   this.selectedVisualization = index;
 
   }
 

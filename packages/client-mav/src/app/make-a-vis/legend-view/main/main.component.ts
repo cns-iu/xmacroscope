@@ -1,13 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { GraphicSymbolOption, GraphicVariable, GraphicVariableOption, Project, RecordStream, Visualization } from '@dvl-fw/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { GraphicSymbolOption, GraphicVariable, GraphicVariableOption, Project,
+  Visualization, RecordStream, DefaultGraphicVariable
+} from '@dvl-fw/core';
+import { filter, cloneDeep } from 'lodash';
 
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
-
 export interface Group {
   option: GraphicSymbolOption;
-  index: number;
 }
 
 @Component({
@@ -15,45 +16,43 @@ export interface Group {
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit {
-  @Input() project: Project;
+export class MainComponent implements OnInit, OnChanges {
   @Input() activeVisualization: number;
 
   streams: RecordStream[];
-  groups: Group[] = [];
-
+  project: Project;
   visualization: Visualization;
-
+  xMacroscopeDataService: XMacroscopeDataService;
+  graphicSymbolOptions;
   private lastActiveVisualization: number;
+  private filteredGraphicVariables: DefaultGraphicVariable[];
+  private filteredGraphicVariableOptions: GraphicVariableOption[] = [];
   private lastProject: Project;
 
-  private permittedGraphicVariables = ['color', 'size'];
-
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
-    const changed = this.activeVisualization !== this.lastActiveVisualization || this.project !== this.lastProject;
-    this.lastActiveVisualization = this.activeVisualization;
-    this.lastProject = this.project;
-    if (changed) {
-      this.setState(this.project, this.activeVisualization);
+    this.xMacroscopeDataService = dataService;
+    this.project = dataService.project;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('activeVisualization' in changes) {
+      this.project = this.xMacroscopeDataService.project;
+      const changed = this.activeVisualization !== this.lastActiveVisualization || this.project !== this.lastProject;
+      this.lastActiveVisualization = this.activeVisualization;
+      this.lastProject = this.project;
+      if (changed) {
+        this.setState(this.project, this.activeVisualization - 1);
+      }
     }
-  }
 
-  ngOnInit() {
   }
+  ngOnInit() {}
 
-  onStreamChange(group: Group, index: number) {
-    const { streams, updateService, visualization } = this;
-    const { id, type } = group.option;
-    if (visualization) {
-      updateService.updateGraphicSymbol(visualization, id, type, streams[index]);
-    }
-  }
-
-  onGraphicVariableChange(group: Group, option: GraphicVariableOption, gv: GraphicVariable): void {
+  onGraphicVariableChange(group: any, option: GraphicVariableOption, gv: GraphicVariable): void {
     const  { updateService, visualization } = this;
     const id = option.id || option.type;
     if (visualization) {
-      updateService.updateGraphicVariable(visualization, group.option.id, id, gv);
+      updateService.updateGraphicVariable(visualization, group.id, id, gv);
     }
   }
 
@@ -63,12 +62,7 @@ export class MainComponent implements OnInit {
       this.setStreams(project);
       if (visualization) {
         this.setGroups(visualization);
-      } else {
-        this.groups = [];
       }
-    } else {
-      this.streams = [];
-      this.groups = [];
     }
   }
 
@@ -79,17 +73,17 @@ export class MainComponent implements OnInit {
   }
 
   private setGroups(visualization: Visualization): void {
-    const { graphicSymbolOptions: options, graphicSymbols } = visualization;
-    this.groups = [];
+    const graphicSymbols = cloneDeep(visualization.graphicSymbols);
+    Object.keys(graphicSymbols).forEach((key) => {
+      this.filteredGraphicVariableOptions =  [
+        { type: 'color', label: 'Color', visualization: 'color' },
+        { type: 'areaSize', label: 'Area Size', visualization: 'node-size' }
+      ];
 
-    if (options) {
-      options.forEach(option => {
-        if (this.permittedGraphicVariables.filter((pgv: string) => option.id.toLowerCase().includes(pgv)).length) {
-          const symbol = graphicSymbols[option.id];
-          const index = symbol ? this.streams.indexOf(symbol.recordStream) : -1;
-          this.groups.push({ option, index });
-        }
-      });
-    }
+      this.graphicSymbolOptions = visualization.graphicSymbolOptions.filter((option) => {
+        option.graphicVariableOptions = this.filteredGraphicVariableOptions;
+        return option.id === key;
+      })[0];
+    });
   }
 }

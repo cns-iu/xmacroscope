@@ -1,5 +1,5 @@
 <div class="visualization-container">
-  <mat-tab-group [selectedIndex]="1" class="visualization-tabs" #tabs [ngStyle]="{'height': '100%'}" >
+  <mat-tab-group [selectedIndex]="selectedVisualization" (selectedIndexChange)="setSelectedVis($event)" class="visualization-tabs" #tabs [ngStyle]="{'height': '100%'}" >
     <mat-tab [disabled]="true" isActive="false">
       <ng-template mat-tab-label>
         <div class="tab-label partial-disabled-tab-label">
@@ -9,7 +9,7 @@
       </ng-template>
     </mat-tab>
 
-    <mat-tab *ngFor="let visType of vis">
+    <mat-tab *ngFor="let visType of vis; let index = index">
       <ng-template mat-tab-label>
         <div class="tab-label">
           <div class="image"><img [src]="visType.icon" height="100%"></div>
@@ -19,7 +19,7 @@
 
       <ng-template matTabContent>
         <div class="tab-content">
-          <dvl-visualization [data]="visType.data"></dvl-visualization>
+          <dvl-visualization [data]="visType.data" #visualization></dvl-visualization>
         </div> 
       </ng-template>
     </mat-tab>   

@@ -4,16 +4,23 @@
   display: flex
   flex-flow: column
 
-  .restart-button
+  .button-container
     width: 100%
+    display: flex
+    flex-flow: row
+    justify-content: space-between
+    padding-top: 1vh
     height: 5vh
-    margin-bottom: 1vh
-    border-radius: 8px
-    background: #afafaa
-    color: #ffffff
+
+    button
+      width: 49%
+      border-radius: 8px
+      background: #afafaa
+      color: #ffffff
 
   .table-container
-    height: 94vh
+    height: calc(100% - 6vh) // subtracting height+padding of button-container 
     width: 100%
     background: #3d3d3d
     color: #ffffff
+    overflow: hidden
