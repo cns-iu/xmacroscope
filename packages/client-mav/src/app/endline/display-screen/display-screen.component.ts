@@ -5,7 +5,6 @@ import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage,
   SignupFinishedMessage, SignupStartedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
 
-
 @Component({
   selector: 'app-display-screen',
   templateUrl: './display-screen.component.html',
@@ -25,12 +24,12 @@ export class DisplayScreenComponent implements OnInit {
   constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {}
 
   ngOnInit() {
-    let timeoutHandler: any; // used to store setTimeout Id to clear it when a new message arrives.
+    let timeoutHandle: any; // used to store setTimeout Id to clear it when a new message arrives.
     this.dataService.messages.subscribe((msg: Message) => {
       // clearing a timeout if it had been set earlier.
-      if (timeoutHandler) {
-        clearTimeout(timeoutHandler);
-        timeoutHandler = null;
+      if (timeoutHandle) {
+        clearTimeout(timeoutHandle);
+        timeoutHandle = null;
       }
       this.handleMessage(msg);
       /*
@@ -41,13 +40,12 @@ export class DisplayScreenComponent implements OnInit {
        * 'Waiting for Runner' text.
        */
       if (msg instanceof RunStartedMessage) {
-        timeoutHandler = setTimeout(() => {
+        timeoutHandle = setTimeout(() => {
           this.timerService.stop();
           this.handleMessage(this.createDummySignupStartedMessage());
         }, this.dataService.config.runTimout);
       }
      });
-
     this.timerService.getFormattedTimeObservable().subscribe((timerText) => {
       this.timerText = timerText;
     });
@@ -78,6 +76,5 @@ export class DisplayScreenComponent implements OnInit {
 
   createDummySignupStartedMessage(): SignupStartedMessage {
     return new SignupStartedMessage();
-
   }
 }
