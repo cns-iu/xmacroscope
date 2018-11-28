@@ -19,7 +19,7 @@ function FooterSite() {
                   alt="placeholder"
                 />
               </Col>
-              <Col xs={12} md={8} className="text-sm-center text-md-left">
+              <Col xs={12} md={8} className="mb-3 text-sm-center text-md-left">
                 The xMacroscope project is supported by the
                 {' '}
                 <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1713567">

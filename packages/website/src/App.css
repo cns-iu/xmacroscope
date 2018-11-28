@@ -14,6 +14,7 @@ strong {
 
 .jumbotron {
   background: #eacb66;
+  border-bottom: 3px solid white;
 }
 
 .navbar-dark {
@@ -26,7 +27,15 @@ strong {
 }
 
 .footer-body {
-  border-top: 1px solid lightgray;
+  border-top: 3px solid white;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 3px solid white;
+  margin: 1em 0;
+  padding: 0;
 }
 
 a {
