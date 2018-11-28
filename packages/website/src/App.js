@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import {
-  Col, Container, Jumbotron, Row,
-} from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import ReactGA from 'react-ga';
 import './App.css';
+import IntroHeader from './IntroHeader';
+import FooterSite from './FooterSite';
 
 // Initialize Google Analytics for the website
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
@@ -13,26 +13,7 @@ function App() {
   return (
     <Fragment>
       <main>
-        <Jumbotron className="text-center">
-          <h1>xMacroscope</h1>
-          <Row className="justify-content-center">
-            <Col xs={8}>
-              <p className="lead">
-                xMacroscope is a
-                {' '}
-                <strong>design</strong>
-                {', '}
-                <strong>build</strong>
-                {', '}
-                <strong>research</strong>
-                {' '}
-                project
-                to study how visitors at science centers understand data visualization
-                techniques.
-              </p>
-            </Col>
-          </Row>
-        </Jumbotron>
+        <IntroHeader />
         <Container>
           <Row className="justify-content-center">
             <Col
@@ -123,24 +104,7 @@ function App() {
           </Row>
         </Container>
       </main>
-      <footer className="text-center">
-        <Container>
-          <Row className="justify-content-center">
-            <Col
-              className="pt-4 mt-4 footer-body"
-              xs={6}
-            >
-              The xMacroscope project is supported by
-              <br />
-              the
-              {' '}
-              <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1713567">
-                National Science Foundation, award #1713567
-              </a>
-            </Col>
-          </Row>
-        </Container>
-      </footer>
+      <FooterSite />
 
     </Fragment>
   );
