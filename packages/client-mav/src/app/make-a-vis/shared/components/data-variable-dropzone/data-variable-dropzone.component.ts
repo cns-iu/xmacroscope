@@ -1,10 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, Output} from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
 import { DataVariable,  GraphicVariable, GraphicVariableOption, RecordStream } from '@dvl-fw/core';
-import { DragDropEvent } from '../../drag-drop';
-import { DataVariableHoverService } from '../../shared/services/data-variable-hover.service';
+import { Observable } from 'rxjs';
+
+import { DataVariableHoverService } from '../../services/data-variable-hover.service';
+import { DragDropEvent } from '../../../drag-drop';
 
 @Component({
   selector: 'app-data-variable-dropzone',
@@ -53,8 +52,8 @@ export class DataVariableDropzoneComponent {
 
   mappableGraphicVariables(dataVariable: DataVariable): GraphicVariable[] {
     const acceptsDrop = this.availableGraphicVariables.filter(gv => gv.recordStream === this.recordStream
-                            && gv.dataVariable === dataVariable &&
-                            gv.type === this.graphicVariableOption.type
+      && gv.dataVariable === dataVariable
+      && gv.type === this.graphicVariableOption.type
    );
     return acceptsDrop;
   }

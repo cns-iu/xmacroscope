@@ -1,12 +1,11 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { uniqueId } from 'lodash';
-
 import {
   DefaultGraphicSymbol, DvlFwVisualizationComponent, GraphicSymbol, GraphicSymbolOption,
   GraphicVariable, GraphicVariableOption, Project, ProjectSerializerService, Visualization
 } from '@dvl-fw/core';
-import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+import { uniqueId } from 'lodash';
 
+import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 
