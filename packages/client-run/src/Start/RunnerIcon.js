@@ -19,7 +19,6 @@ function RunnerIcon(props) {
             shapeTransform="translate(50, 50) scale(.75)"
             width="45%"
             margin="auto"
-            type="viewDisplay"
           />
         </div>
       </Col>
