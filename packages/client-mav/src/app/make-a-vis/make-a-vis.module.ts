@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { DataViewModule } from './data-view/data-view.module';
 import { LegendViewModule } from './legend-view/legend-view.module';
-import { VisualizationViewModule } from './visualization-view/visualization-view.module';
-
 import { MainComponent } from './main/main.component';
+import { VisualizationViewModule } from './visualization-view/visualization-view.module';
 
 @NgModule({
   imports: [

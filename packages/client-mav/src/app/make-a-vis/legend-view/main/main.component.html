@@ -17,11 +17,11 @@
     <span class="title">Quantitative</span>
     <div class="subtitle">
       Size: {{ project.graphicSymbols[0].graphicVariables.areaSize?.label }}
-      <app-data-variable-dropzone [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
-        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicSymbolOptions.graphicVariableOptions[1], $event)"
+      <app-data-variable-dropzone [graphicVariableOption]="graphicVariableOptions[1]"
+        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicVariableOptions[1], $event)"
         [availableGraphicVariables]="project.graphicVariables" #dropZone1>
         <div class="{{ dropZone1.selectionClass }}">
-          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
+          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[1]"
             [visualization]="visualization">
           </app-graphic-variable-legend>
         </div>
@@ -33,11 +33,11 @@
     <span class="title">Qualitative</span>
     <div class="subtitle">
       Color: {{ project.graphicSymbols[0].graphicVariables.color?.label }}
-      <app-data-variable-dropzone [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
-        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicSymbolOptions.graphicVariableOptions[0], $event)"
+      <app-data-variable-dropzone [graphicVariableOption]="graphicVariableOptions[0]"
+        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicVariableOptions[0], $event)"
         [availableGraphicVariables]="project.graphicVariables" #dropZone2>
         <div class="{{ dropZone2.selectionClass }}">
-          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
+          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[0]"
             [visualization]="visualization">
           </app-graphic-variable-legend>
         </div>
