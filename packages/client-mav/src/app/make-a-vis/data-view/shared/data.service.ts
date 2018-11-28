@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataVariable, GraphicVariable, RecordSet, areaSizeRange } from '@dvl-fw/core';
+import { DataVariable, GraphicVariable, RecordSet } from '@dvl-fw/core';
 import { access, combine, RawChangeSet, Operator } from '@ngx-dino/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
