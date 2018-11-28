@@ -30,7 +30,6 @@ export class DataService {
 
   constructor(private dataService: XMacroscopeDataService) {
     const project = this.dataService.project;
-    console.log(project);
     if (project && project.recordSets) {
       const dataSources = project.recordSets.map((recordSet: RecordSet) => {
         const dataSource: DataSource = {} as DataSource;
@@ -79,7 +78,6 @@ export class DataService {
       });
 
     });
-  console.log(selectableDataVariable);
   return selectableDataVariable;
 
   }

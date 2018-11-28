@@ -20,11 +20,11 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   displayedColumnNames: string[] = [];
 
   private subscription: Subscription;
-  private mappingKeySelection: string[] = [];
+  private mappingKeySelection: string;
   private selectableColumns: {};
   constructor(private dataService: DataService, private hoverService: DataVariableHoverService) {
-    this.subscription = hoverService.hovers.subscribe((fields) => {
-      this.mappingKeySelection = fields;
+    this.subscription = hoverService.hovers.subscribe((key) => {
+      this.mappingKeySelection = key;
     });
    }
 
@@ -55,10 +55,10 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   isSelectable(dvId: string): boolean {
-    if (this.mappingKeySelection.length === 0) {
+    if (!this.mappingKeySelection) {
       return false;
     }
-    const dataVariables = this.selectableColumns[this.mappingKeySelection[0]];
+    const dataVariables = this.selectableColumns[this.mappingKeySelection];
     if (dataVariables) {
       for (const dataVariable of dataVariables) {
         if (dvId === dataVariable.id) {

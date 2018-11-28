@@ -42,7 +42,7 @@ export class DataVariableDropzoneComponent {
 
   @HostListener('mouseover', [])
   onMouseOver() {
-    this.hoverService.startHover([this.mappingKey]);
+    this.hoverService.startHover(this.mappingKey);
   }
 
   @HostListener('mouseout', [])
