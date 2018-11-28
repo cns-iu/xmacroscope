@@ -2,8 +2,12 @@ import React, { Fragment } from 'react';
 import {
   Col, Container, Jumbotron, Row,
 } from 'reactstrap';
-
+import ReactGA from 'react-ga';
 import './App.css';
+
+// Initialize Google Analytics for the website
+ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   return (
