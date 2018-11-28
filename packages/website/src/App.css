@@ -1,0 +1,34 @@
+body {
+  background: #f2dfa2;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #0a0909;
+}
+
+h1, h2 {
+  font-family: 'Patua One', cursive;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.jumbotron {
+  background: #eacb66;
+}
+
+.navbar-dark {
+  background: #232628;
+}
+
+.nav-item a {
+  color: #eacb66;
+  font-weight: 700;
+}
+
+.footer-body {
+  border-top: 1px solid lightgray;
+}
+
+a {
+  color: #3574D3;
+}
