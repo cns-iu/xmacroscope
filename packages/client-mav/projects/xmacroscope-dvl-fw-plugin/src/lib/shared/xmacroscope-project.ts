@@ -27,6 +27,11 @@ export class XMacroscopeProject extends DefaultProject {
   visualizations: Visualization[];
 
   static async create(config: XMacroscopeProjectConfig): Promise<XMacroscopeProject> {
+    config = await XMacroscopeProject.resolveConfig(config);
+    return new XMacroscopeProject(config);
+  }
+
+  static async resolveConfig(config: XMacroscopeProjectConfig): Promise<XMacroscopeProjectConfig> {
     if (config.endpoint && config.deploymentLocation) {
       const settings = await LocationSettings.getSettings(config.endpoint, config.deploymentLocation);
       if (settings) {
@@ -38,8 +43,7 @@ export class XMacroscopeProject extends DefaultProject {
         }
       }
     }
-    const project = new XMacroscopeProject(config);
-    return project;
+    return config;
   }
 
   constructor(private config: XMacroscopeProjectConfig) {
@@ -124,21 +128,20 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
               ],
               shape: [
-                {selector: 'person.icon'}
+                {selector: 'showPersonaFixedShape'}
               ],
               color: [
-                {selector: 'person.color'},
-                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
+                {id: 'fixed', selector: 'showPersonaFixedColor', label: 'Fixed'}
               ],
               areaSize: [
-                {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
+                {id: 'fixed', selector: 'showPersonaFixedAreaSize', label: 'Fixed'}
               ],
               pulse: [
                 {id: 'pulse', selector: 'selected'},
                 {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
               ],
               transparency: [
-                {id: 'fixed', selector: 'fixed.transparency', label: 'Fixed'}
+                {id: 'fixed', selector: 'showPersonaFixedTransparency', label: 'Fixed'}
               ],
               strokeTransparency: [
                 {id: 'fixed', selector: 'fixed.strokeTransparency', label: 'Fixed'}
@@ -147,7 +150,6 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.strokeWidth', label: 'Fixed'}
               ],
               strokeColor: [
-                {selector: 'person.color'},
                 {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
               ]
             },
@@ -159,7 +161,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'timeLabel'}
               ],
               areaSize: [
-                {selector: 'timeAreaSize'}
+                {selector: 'showPersonaTimeAreaSize'}
               ]
             },
             height: {
@@ -170,7 +172,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.height'}
               ],
               areaSize: [
-                {selector: 'person.heightAreaSize'}
+                {selector: 'showPersonaHeightAreaSize'}
               ]
             },
             favoriteActivity: {
@@ -184,7 +186,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.favoriteActivity'}
               ],
               color: [
-                {selector: 'person.favoriteActivityColor'}
+                {selector: 'showPersonaFavoriteActivityColor'}
               ]
             },
             ageGroup: {
@@ -195,7 +197,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.ageGroup'}
               ],
               areaSize: [
-                {selector: 'person.ageGroupAreaSize'}
+                {selector: 'showPersonaAgeGroupAreaSize'}
               ]
             },
             zipCode: {
@@ -233,6 +235,12 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'selectRunner',
             graphicVariableType: 'pulse',
             graphicVariableId: 'pulse'
+          },
+          shape: {
+            recordSet: 'run',
+            dataVariable: 'selectRunner',
+            graphicVariableType: 'shape',
+            graphicVariableId: 'shape'
           },
           color: {
             recordSet: 'run',

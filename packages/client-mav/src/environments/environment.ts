@@ -8,6 +8,7 @@ export const environment = {
   projectConfiguration: {
     deploymentLocation: 'cns-iu',
     defaultUsState: 'IN',
+    runTimout: 10000,
     mockData: true
     // endpoint: 'http://localhost:4000/graphql'
   }

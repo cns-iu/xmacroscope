@@ -16,10 +16,8 @@ export class XMacroscopeDataService {
   public runStreamController: RunStreamController;
 
   constructor(@Inject(XMacroscopeProjectConfigService) public config) {
-    XMacroscopeProject.create(config).then((project) => {
-      this.project = project;
-      this.runStreamController = project.runStreamController;
-      this.messages = project.runStreamController.messageStream;
-    });
+    const project = this.project = new XMacroscopeProject(config);
+    this.runStreamController = project.runStreamController;
+    this.messages = project.runStreamController.messageStream;
   }
 }
