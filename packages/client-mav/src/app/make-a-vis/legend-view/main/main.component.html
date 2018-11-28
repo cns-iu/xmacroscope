@@ -14,34 +14,35 @@
   </div>
 
   <div class="quantitative">
-    <span class="title">Quantitative</span>
-    <div class="subtitle">
-      Size: {{ project.graphicSymbols[0].graphicVariables.areaSize?.label }}
-      <app-data-variable-dropzone [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
-        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicSymbolOptions.graphicVariableOptions[1], $event)"
-        [availableGraphicVariables]="project.graphicVariables" #dropZone1>
-        <div class="{{ dropZone1.selectionClass }}">
-          <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
-            [visualization]="visualization">
-          </app-graphic-variable-legend>
-        </div>
-      </app-data-variable-dropzone>
-    </div>
+    <app-data-variable-dropzone mappingKey="areaSize" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
+      [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicSymbolOptions.graphicVariableOptions[1], $event)"
+      [availableGraphicVariables]="project.graphicVariables" #dropZone1>
+      <span class="title">Quantitative</span>
+      <div class="subtitle">
+        Size: {{ project.graphicSymbols[0].graphicVariables.areaSize?.label }}
+          <div class="{{ dropZone1.selectionClass }}">
+            <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[1]"
+              [visualization]="visualization">
+            </app-graphic-variable-legend>
+          </div>
+        
+      </div>
+    </app-data-variable-dropzone>
   </div>
 
   <div class="qualitative">
+      <app-data-variable-dropzone mappingKey="color" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
+      [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicSymbolOptions.graphicVariableOptions[0], $event)"
+      [availableGraphicVariables]="project.graphicVariables" #dropZone2>
     <span class="title">Qualitative</span>
     <div class="subtitle">
       Color: {{ project.graphicSymbols[0].graphicVariables.color?.label }}
-      <app-data-variable-dropzone [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
-        [recordStream]="streams[0]" (graphicVariableChange)="onGraphicVariableChange(graphicSymbolOptions, graphicSymbolOptions.graphicVariableOptions[0], $event)"
-        [availableGraphicVariables]="project.graphicVariables" #dropZone2>
         <div class="{{ dropZone2.selectionClass }}">
           <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicSymbolOptions.graphicVariableOptions[0]"
             [visualization]="visualization">
           </app-graphic-variable-legend>
         </div>
-      </app-data-variable-dropzone>
     </div>
+  </app-data-variable-dropzone>
   </div>
 </div>

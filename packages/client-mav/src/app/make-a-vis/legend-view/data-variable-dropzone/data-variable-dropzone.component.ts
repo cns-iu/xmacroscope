@@ -12,6 +12,7 @@ import { DataVariableHoverService } from '../../shared/services/data-variable-ho
   styleUrls: ['./data-variable-dropzone.component.sass']
 })
 export class DataVariableDropzoneComponent {
+  @Input() mappingKey: string;
   @Input() recordStream: RecordStream;
   @Input() graphicVariableOption: GraphicVariableOption;
   @Input() availableGraphicVariables: GraphicVariable[];
@@ -42,7 +43,7 @@ export class DataVariableDropzoneComponent {
 
   @HostListener('mouseover', [])
   onMouseOver() {
-    this.hoverService.startHover([this.graphicVariableOption.type]);
+    this.hoverService.startHover([this.mappingKey]);
   }
 
   @HostListener('mouseout', [])

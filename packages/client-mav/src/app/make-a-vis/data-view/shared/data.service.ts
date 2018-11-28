@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataVariable, GraphicVariable, RecordSet } from '@dvl-fw/core';
+import { DataVariable, GraphicVariable, RecordSet, areaSizeRange } from '@dvl-fw/core';
 import { access, combine, RawChangeSet, Operator } from '@ngx-dino/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,6 +11,13 @@ export interface DataSource {
   columns: DataVariable[];
   data: any[];
   records: any[];
+  selectable: any[];
+  selectableDataVariable: {};
+}
+
+export interface Selectable {
+  color: any[];
+  areaSize: any[];
 }
 
 @Injectable({
@@ -23,6 +30,7 @@ export class DataService {
 
   constructor(private dataService: XMacroscopeDataService) {
     const project = this.dataService.project;
+    console.log(project);
     if (project && project.recordSets) {
       const dataSources = project.recordSets.map((recordSet: RecordSet) => {
         const dataSource: DataSource = {} as DataSource;
@@ -30,7 +38,7 @@ export class DataService {
         dataSource.id = recordSet.id || '';
         dataSource.label = recordSet.label || '';
         dataSource.columns = recordSet.dataVariables;
-
+        dataSource.selectableDataVariable = this.getSelectableDataVariables(recordSet.dataVariables, project.graphicVariables);
         const operator = this.getDataMappingOperator(recordSet.dataVariables, project.graphicVariables, recordSet.id);
 
         dataSource.data = [];
@@ -50,6 +58,30 @@ export class DataService {
     } else {
       this.dataSourcesChange.next([]);
     }
+  }
+
+  getSelectableDataVariables(dataVariables: DataVariable[], graphicVariables: GraphicVariable[]) {
+    const selectableDataVariable: Selectable = {
+      color : [],
+      areaSize: []
+    };
+    dataVariables.forEach((dv: DataVariable) => {
+      graphicVariables.forEach((gv: GraphicVariable) => {
+        if (gv.dataVariable.id === dv.id) {
+          if (gv.type === 'color') {
+          selectableDataVariable.color.push(dv);
+          }
+
+          if (gv.type === 'areaSize') {
+            selectableDataVariable.areaSize.push(dv);
+          }
+        }
+      });
+
+    });
+  console.log(selectableDataVariable);
+  return selectableDataVariable;
+
   }
 
   getDataMappingOperator(dataVariables: DataVariable[], graphicVariables: GraphicVariable[], recordSetId: string): Operator<any, any> {
