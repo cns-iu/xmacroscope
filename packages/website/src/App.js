@@ -27,7 +27,7 @@ function App() {
                 <strong>research</strong>
                 {' '}
                 project
-                to study how visitors to science centers understand data visualization
+                to study how visitors at science centers understand data visualization
                 techniques.
               </p>
             </Col>
@@ -49,9 +49,9 @@ function App() {
                   <h3>Technology development</h3>
                   <p>
                     We are developing the open-source xMacroscope platform. This software and
-                    technology platform will allow us to build science center exhibit experience
+                    technology platform will allow us to build science center exhibit experiences
                     that let
-                    visitor build data visualization using their own experiences in interactive
+                    visitor construct data visualization using their own experiences in interactive
                     science exhibits.
                   </p>
                 </Col>
@@ -75,8 +75,8 @@ function App() {
                   <p>
                     As we build out these experiences we will observe how visitors interact with
                     these experiences, surveying them about their experiences. This learning
-                    research will allow us to itterate on the technology and exhibit platform
-                    while expanding out undestanding of data visualization literacy in the
+                    research will allow us to iterate on the technology and exhibit platform
+                    while expanding out understanding of data visualization literacy in the
                     science center environment.
                   </p>
                 </Col>
@@ -98,14 +98,13 @@ function App() {
                   xs={12}
                   md={3}
                 >
-                  Cyberinfrastructure for Network Science Center at Indiana University in
-                  Bloomington, Indiana
+                  Cyberinfrastructure for Network Science Center at Indiana University, Bloomington
                 </Col>
                 <Col
                   xs={12}
                   md={3}
                 >
-                  Creativity Labs at Indiana University in Bloomington, Indiana
+                  Creativity Labs at the University of California, Irvine
                 </Col>
                 <Col
                   xs={12}
