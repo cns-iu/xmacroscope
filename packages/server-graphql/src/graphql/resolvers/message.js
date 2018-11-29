@@ -24,6 +24,14 @@ const SendMessage = baseResolver
     }));
 
 const MessageResolvers = {
+  // Prevent resolver validation from error'ing on Message.
+  // Since Message doesn't have a resolver, but is an interface, we need to do this to prevent
+  // a validation error from being thrown.
+  Message: {
+    __resolveType() {
+      return null;
+    },
+  },
   Mutation: {
     SendMessage,
   },
