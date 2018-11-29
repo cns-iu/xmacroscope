@@ -1,16 +1,14 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 //
 // Webpack configuration
 //
-// We use webpack to compile the GraphQL server application
-// for production and development.
-//
-// On development it runs hot reloader so changes are automatically updated.
-// On production it builds files in the build directory.
+// We use webpack to compile the GraphQL server application for production and development.
 //
 module.exports = {
+  entry: ['./src/index'],
   target: 'node',
   node: {
     __filename: true,
@@ -54,9 +52,16 @@ module.exports = {
     ],
   },
 
+  //
   // Compile everything and output it to the build/server.js file.
+  //
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'server.js',
   },
+
+  //
+  // Load env variables
+  //
+  plugins: [new Dotenv()],
 };

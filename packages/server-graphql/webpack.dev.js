@@ -4,26 +4,21 @@
 // Enable Hot Module reload so that we don't need to restart the server
 // during development.
 //
-const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
 const merge = require('webpack-merge');
 const StartServerPlugin = require('start-server-webpack-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   watch: true,
-  entry: ['./src/index'],
-  devtool: 'inline-source-map',
+  mode: 'development',
   devServer: {
     contentBase: './build',
   },
 
-  // Dev server and hot reload plugins
+  //
+  // Auto start dev server after build
+  //
   plugins: [
     new StartServerPlugin('server.js'),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new Dotenv(),
   ],
 });
