@@ -18,16 +18,9 @@ module.exports = {
   },
 
   //
-  // Externals ensures that webpack doesn't try to compile the node_modules
-  // folder. Excluding the node_modules fixes problems with Sequelize.
+  // Externals ensures that webpack doesn't try to compile the node_modules folder.
   //
-  externals: [
-    nodeExternals({ whitelist: ['webpack/hot/poll?1000'] }),
-    nodeExternals({
-      whitelist: ['webpack/hot/poll?1000'],
-      modulesDir: path.resolve(__dirname, '../../node_modules'),
-    }),
-  ],
+  externals: [nodeExternals({ whitelist: ['webpack/hot/poll?1000'] })],
 
   //
   // Use babel to transpile ES6 code to raw node.
