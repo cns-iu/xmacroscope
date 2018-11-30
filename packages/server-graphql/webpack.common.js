@@ -1,16 +1,14 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 //
 // Webpack configuration
 //
-// We use webpack to compile the GraphQL server application
-// for production and development.
-//
-// On development it runs hot reloader so changes are automatically updated.
-// On production it builds files in the build directory.
+// We use webpack to compile the GraphQL server application for production and development.
 //
 module.exports = {
+  entry: ['./src/index'],
   target: 'node',
   node: {
     __filename: true,
@@ -18,16 +16,9 @@ module.exports = {
   },
 
   //
-  // Externals ensures that webpack doesn't try to compile the node_modules
-  // folder. Excluding the node_modules fixes problems with Sequelize.
+  // Externals ensures that webpack doesn't try to compile the node_modules folder.
   //
-  externals: [
-    nodeExternals({ whitelist: ['webpack/hot/poll?1000'] }),
-    nodeExternals({
-      whitelist: ['webpack/hot/poll?1000'],
-      modulesDir: path.resolve(__dirname, '../../node_modules'),
-    }),
-  ],
+  externals: [nodeExternals({ whitelist: ['webpack/hot/poll?1000'] })],
 
   //
   // Use babel to transpile ES6 code to raw node.
@@ -61,9 +52,16 @@ module.exports = {
     ],
   },
 
+  //
   // Compile everything and output it to the build/server.js file.
+  //
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'server.js',
   },
+
+  //
+  // Load env variables
+  //
+  plugins: [new Dotenv()],
 };
