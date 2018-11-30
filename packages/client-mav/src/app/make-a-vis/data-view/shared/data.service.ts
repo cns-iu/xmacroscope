@@ -18,6 +18,7 @@ export interface DataSource {
 export interface Selectable {
   color: any[];
   areaSize: any[];
+  axis: any[];
 }
 
 @Injectable({
@@ -62,24 +63,24 @@ export class DataService {
   getSelectableDataVariables(dataVariables: DataVariable[], graphicVariables: GraphicVariable[]) {
     const selectableDataVariable: Selectable = {
       color : [],
-      areaSize: []
+      areaSize: [],
+      axis: []
     };
     dataVariables.forEach((dv: DataVariable) => {
       graphicVariables.forEach((gv: GraphicVariable) => {
         if (gv.dataVariable.id === dv.id) {
-          if (gv.type === 'color') {
-          selectableDataVariable.color.push(dv);
-          }
-
-          if (gv.type === 'areaSize') {
-            selectableDataVariable.areaSize.push(dv);
+          switch (gv.type) {
+            case 'color': selectableDataVariable.color.push(dv);
+              break;
+            case 'areaSize': selectableDataVariable.areaSize.push(dv);
+              break;
+            case 'axis': selectableDataVariable.axis.push(dv);
+              break;
           }
         }
       });
-
     });
   return selectableDataVariable;
-
   }
 
   getDataMappingOperator(dataVariables: DataVariable[], graphicVariables: GraphicVariable[], recordSetId: string): Operator<any, any> {
