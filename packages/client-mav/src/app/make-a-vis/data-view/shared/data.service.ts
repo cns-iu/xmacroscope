@@ -11,6 +11,14 @@ export interface DataSource {
   columns: DataVariable[];
   data: any[];
   records: any[];
+  selectable: any[];
+  selectableDataVariable: {};
+}
+
+export interface Selectable {
+  color: any[];
+  areaSize: any[];
+  axis: any[];
 }
 
 @Injectable({
@@ -30,7 +38,7 @@ export class DataService {
         dataSource.id = recordSet.id || '';
         dataSource.label = recordSet.label || '';
         dataSource.columns = recordSet.dataVariables;
-
+        dataSource.selectableDataVariable = this.getSelectableDataVariables(recordSet.dataVariables, project.graphicVariables);
         const operator = this.getDataMappingOperator(recordSet.dataVariables, project.graphicVariables, recordSet.id);
 
         dataSource.data = [];
@@ -50,6 +58,22 @@ export class DataService {
     } else {
       this.dataSourcesChange.next([]);
     }
+  }
+
+  getSelectableDataVariables(dataVariables: DataVariable[], graphicVariables: GraphicVariable[]) {
+    const selectableDataVariable: Selectable = {
+      color : [],
+      areaSize: [],
+      axis: []
+    };
+    dataVariables.forEach((dv: DataVariable) => {
+      graphicVariables.forEach((gv: GraphicVariable) => {
+        if (gv.dataVariable.id === dv.id && selectableDataVariable.hasOwnProperty(gv.type)) {
+           selectableDataVariable[gv.type].push(dv);
+        }
+      });
+    });
+  return selectableDataVariable;
   }
 
   getDataMappingOperator(dataVariables: DataVariable[], graphicVariables: GraphicVariable[], recordSetId: string): Operator<any, any> {

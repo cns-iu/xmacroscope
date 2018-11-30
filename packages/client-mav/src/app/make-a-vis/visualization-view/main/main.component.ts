@@ -5,6 +5,7 @@ import { find } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
+
 export interface VisType {
   template: string;
   label: string;
@@ -25,7 +26,6 @@ export interface Vis {
 
 
 export class MainComponent implements OnInit {
-
   @ViewChild('visualization') visualizationComponent: DvlFwVisualizationComponent;
 
   visTypes: VisType[] = [
@@ -84,5 +84,4 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
