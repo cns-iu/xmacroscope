@@ -68,15 +68,8 @@ export class DataService {
     };
     dataVariables.forEach((dv: DataVariable) => {
       graphicVariables.forEach((gv: GraphicVariable) => {
-        if (gv.dataVariable.id === dv.id) {
-          switch (gv.type) {
-            case 'color': selectableDataVariable.color.push(dv);
-              break;
-            case 'areaSize': selectableDataVariable.areaSize.push(dv);
-              break;
-            case 'axis': selectableDataVariable.axis.push(dv);
-              break;
-          }
+        if (gv.dataVariable.id === dv.id && selectableDataVariable.hasOwnProperty(gv.type)) {
+           selectableDataVariable[gv.type].push(dv);
         }
       });
     });
