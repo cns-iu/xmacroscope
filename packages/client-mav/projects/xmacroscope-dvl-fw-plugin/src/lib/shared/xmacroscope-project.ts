@@ -27,6 +27,11 @@ export class XMacroscopeProject extends DefaultProject {
   visualizations: Visualization[];
 
   static async create(config: XMacroscopeProjectConfig): Promise<XMacroscopeProject> {
+    config = await XMacroscopeProject.resolveConfig(config);
+    return new XMacroscopeProject(config);
+  }
+
+  static async resolveConfig(config: XMacroscopeProjectConfig): Promise<XMacroscopeProjectConfig> {
     if (config.endpoint && config.deploymentLocation) {
       const settings = await LocationSettings.getSettings(config.endpoint, config.deploymentLocation);
       if (settings) {
@@ -38,8 +43,7 @@ export class XMacroscopeProject extends DefaultProject {
         }
       }
     }
-    const project = new XMacroscopeProject(config);
-    return project;
+    return config;
   }
 
   constructor(private config: XMacroscopeProjectConfig) {

@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DragDropModule } from '../drag-drop/drag-drop.module';
-import { MainComponent } from './main/main.component';
-import { GraphicVariableLegendComponent } from './graphic-variable-legend/graphic-variable-legend.component';
 import { DvlFwModule } from '@dvl-fw/core';
-import { DataVariableDropzoneComponent } from './data-variable-dropzone/data-variable-dropzone.component';
+import { DragDropModule } from '../drag-drop/drag-drop.module';
+import { SharedModule } from '../shared/shared.module';
+import { GraphicVariableLegendComponent } from './graphic-variable-legend/graphic-variable-legend.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DragDropModule,
-    DvlFwModule
+    DvlFwModule,
+    SharedModule
   ],
   exports: [
     MainComponent
   ],
-  declarations: [MainComponent, GraphicVariableLegendComponent, DataVariableDropzoneComponent]
+  declarations: [MainComponent, GraphicVariableLegendComponent]
 })
 export class LegendViewModule { }

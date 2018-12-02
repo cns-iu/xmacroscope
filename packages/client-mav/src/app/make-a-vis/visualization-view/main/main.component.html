@@ -1,5 +1,6 @@
 <div class="visualization-container">
-  <mat-tab-group [selectedIndex]="selectedVisualization" (selectedIndexChange)="setSelectedVis($event)" class="visualization-tabs" #tabs [ngStyle]="{'height': '100%'}" >
+  <mat-tab-group [selectedIndex]="selectedVisualization" (selectedIndexChange)="setSelectedVis($event)" class="visualization-tabs"
+    #tabs [ngStyle]="{'height': '100%'}">
     <mat-tab [disabled]="true" isActive="false">
       <ng-template mat-tab-label>
         <div class="tab-label partial-disabled-tab-label">
@@ -18,10 +19,24 @@
       </ng-template>
 
       <ng-template matTabContent>
+        <ng-container *ngIf="visType.data.template === 'scattergraph'">
+          <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[0]" [recordStream]="recordStreams[0]"
+            (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[0], $event)"
+            [availableGraphicVariables]="availableGraphicVariables" #xDropZone>
+            <div class="{{ xDropZone.selectionClass }} x-dropzone"></div>
+          </app-data-variable-dropzone>
+
+          <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[1]" [recordStream]="recordStreams[0]"
+            (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[1], $event)"
+            [availableGraphicVariables]="availableGraphicVariables" #yDropZone>
+            <div class="{{ yDropZone.selectionClass }} y-dropzone"></div>
+          </app-data-variable-dropzone>
+        </ng-container>
+
         <div class="tab-content">
           <dvl-visualization [data]="visType.data" #visualization></dvl-visualization>
-        </div> 
+        </div>
       </ng-template>
-    </mat-tab>   
+    </mat-tab>
   </mat-tab-group>
 </div>

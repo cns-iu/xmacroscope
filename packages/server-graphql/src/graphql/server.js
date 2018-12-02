@@ -2,7 +2,6 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
-import cors from 'cors';
 import { createServer } from 'http';
 import fs from 'fs';
 import chalk from 'chalk';
@@ -37,11 +36,11 @@ if (process.env.DB_DIALECT === 'sqlite') {
   );
   fs.access(sqliteStorage, (err) => {
     if (err === null) {
-      console.log(chalk.yellow('A SQLite database file already exists. ' +
-        'Leaving it intact.'));
+      console.log(chalk.yellow('A SQLite database file already exists. '
+        + 'Leaving it intact.'));
     } else if (err.code === 'ENOENT') {
-      console.log(chalk.blue('The defined SQLite file doesn\'t exist.\n' +
-        `Creating the SQLite db at ${sqliteStorage}.`));
+      console.log(chalk.blue('The defined SQLite file doesn\'t exist.\n'
+        + `Creating the SQLite db at ${sqliteStorage}.`));
       new sqlite.Database(sqliteStorage);
       // Populate database using Sequelize CLI
       const migrate = spawnSync('node_modules/.bin/sequelize', ['db:migrate']);
@@ -54,58 +53,54 @@ if (process.env.DB_DIALECT === 'sqlite') {
   });
 }
 
-// GraphQL port
-const DEFAULT_PORT = 4000;
-const PORT = process.env.PORT || DEFAULT_PORT;
-
 //
-// Setup Express to server the GraphQL API
+// Setup Express to serve GraphQL and (in-production) client apps
 //
+const PORT = process.env.PORT || '4000';
 const app = express();
 
 //
-// CORS
+// Serve client apps in production
 //
-// Expect connections from our client application
-// We use CORS here since our client application is
-// hosted at a seperate origin. We need to explicitly allows
-// cross-origin requests otherwise the browser will throw
-// an error.
-//
-// app.use('*', cors({ origin: process.env.CLIENT_ORIGIN }));
+const startPath = '/start';
+const mavPath = '/mav';
+if (process.env.NODE_ENV === 'production') {
+  app.use(startPath, express.static(path.join(__dirname, '../../../client-run/build')));
+  app.use(mavPath, express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
+}
 
 //
-// Serve other apps
-//
-// TODO: Break these out into their own servers via a proxy
-// Possibly bit clunky to have them here within the GraphQL endpoint.
-
-// SMM run logic
-app.use('/', express.static(path.join(__dirname, '../../../client-run/build')));
-
-// Make-a-Viz compiled project path
-app.use('/mav', express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
-
-//
-// Setup GraphQL endpoint with GUI for development
-// TODO: Only host GUI on dev
+// Setup GraphQL endpoint
 //
 const server = new ApolloServer({
   typeDefs: [TYPES, QUERIES, MUTATIONS, SUBSCRIPTIONS],
   resolvers,
 });
 
-// Add our middlewares
+// Add our middle-wares
 server.applyMiddleware({ app });
 
 // Start http server for GraphQL
 const httpServer = createServer(app);
 
-// Add subscriptions to our existing GraphQL server
+// Add subscriptions to GraphQL server
 server.installSubscriptionHandlers(httpServer);
 
-// Add a listener for our server on the correct ports
+// Add a listener for the server, and advertise various endpoints
 httpServer.listen(PORT, () => {
-  console.log(`GraphQL server ready at http://localhost:${PORT}${server.graphqlPath}`);
-  console.log(`Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`);
+  console.log(chalk.greenBright(
+    `GraphQL server ready at http://localhost:${PORT}${server.graphqlPath}`,
+  ));
+  console.log(chalk.greenBright(
+    `Message subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`,
+  ));
+  if (process.env.NODE_ENV === 'production') {
+    console.log(chalk.greenBright(
+      `Start line app ready at http://localhost:${PORT}${startPath}`,
+    ));
+    console.log(chalk.greenBright(
+      `Make-a-Vis app ready at http://localhost:${PORT}${mavPath}`,
+    ));
+    console.log();
+  }
 });

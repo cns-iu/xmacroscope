@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { GraphicSymbolOption, GraphicVariable, GraphicVariableOption, Project,
   Visualization, RecordStream, DefaultGraphicVariable
 } from '@dvl-fw/core';
-import { filter, cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash';
 
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
@@ -18,16 +18,17 @@ export interface Group {
 })
 export class MainComponent implements OnInit, OnChanges {
   @Input() activeVisualization: number;
-
+  private lastActiveVisualization: number;
+  private lastProject: Project;
   streams: RecordStream[];
   project: Project;
   visualization: Visualization;
   xMacroscopeDataService: XMacroscopeDataService;
-  graphicSymbolOptions;
-  private lastActiveVisualization: number;
-  private filteredGraphicVariables: DefaultGraphicVariable[];
-  private filteredGraphicVariableOptions: GraphicVariableOption[] = [];
-  private lastProject: Project;
+  graphicSymbolOptions: GraphicSymbolOption;
+  graphicVariableOptions: GraphicVariableOption[] =  [
+    { type: 'color', label: 'Color', visualization: 'color' },
+    { type: 'areaSize', label: 'Area Size', visualization: 'node-size' }
+  ];
 
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.xMacroscopeDataService = dataService;
@@ -44,8 +45,8 @@ export class MainComponent implements OnInit, OnChanges {
         this.setState(this.project, this.activeVisualization - 1);
       }
     }
-
   }
+
   ngOnInit() {}
 
   onGraphicVariableChange(group: any, option: GraphicVariableOption, gv: GraphicVariable): void {
@@ -75,13 +76,7 @@ export class MainComponent implements OnInit, OnChanges {
   private setGroups(visualization: Visualization): void {
     const graphicSymbols = cloneDeep(visualization.graphicSymbols);
     Object.keys(graphicSymbols).forEach((key) => {
-      this.filteredGraphicVariableOptions =  [
-        { type: 'color', label: 'Color', visualization: 'color' },
-        { type: 'areaSize', label: 'Area Size', visualization: 'node-size' }
-      ];
-
       this.graphicSymbolOptions = visualization.graphicSymbolOptions.filter((option) => {
-        option.graphicVariableOptions = this.filteredGraphicVariableOptions;
         return option.id === key;
       })[0];
     });

@@ -3,25 +3,51 @@
   height: 100%
   width: 100%
 
-.tab-content
-  padding: 1vh 1vw 1vh 1vh
-  height: calc(65vh - 13vh)
+  .tab-content
+    padding: 1vh 1vw 1vh 1vh
+    height: calc(65vh - 13vh)
 
-.text
-  color: #000000
+  .text
+    color: #000000
 
-.tab-label
-  display: flex
-  flex-direction: column
-  align-items: stretch
+  .tab-label
+    display: flex
+    flex-direction: column
+    align-items: stretch
 
-  .image
-    width: 100px
+    .image
+      width: 100px
 
 
-.partial-disabled-tab-label
-  color: #ffb100
-  font-weight: 700
+  .partial-disabled-tab-label
+    color: #ffb100
+    font-weight: 700
 
-  .first-line
-    align-self: flex-start
+    .first-line
+      align-self: flex-start
+
+
+  .selectable
+    background-color: rgba(235,237,79,0.5)
+    border: 1px solid rgb(235,237,79)
+    
+  .y-dropzone
+    position: absolute
+    width: 20%
+    top: 20vh
+    right: 83%
+    height: 5vh
+    padding-top: 1%
+    padding-left: 8%
+    transform: rotate(-90deg)
+
+  .x-dropzone
+    position: absolute
+    left: 15%
+    height: 5vh
+    width: 40%
+    top: 46vh
+    color: #000000
+    padding-left: 30%
+    padding-top: 2%
+    transform: none

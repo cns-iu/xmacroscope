@@ -15,9 +15,7 @@ const Runs = baseResolver
       ['start', 'DESC'],
     ],
     include: [
-      {
-        model: db.person,
-      },
+      { model: db.person, as: 'person' },
     ],
   }));
 
