@@ -20,11 +20,13 @@
 
       <ng-template matTabContent>
         <ng-container *ngIf="visType.data.template === 'scattergraph'">
-          <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[0]" [recordStream]="recordStreams[0]"
-            (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[0], $event)"
-            [availableGraphicVariables]="availableGraphicVariables" #xDropZone>
-            <div class="{{ xDropZone.selectionClass }} x-dropzone"></div>
-          </app-data-variable-dropzone>
+          <div class="{{ xDropZone.selectionClass }} x-dropzone">
+            <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[0]" [recordStream]="recordStreams[0]"
+              (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[0], $event)"
+              [availableGraphicVariables]="availableGraphicVariables" #xDropZone>
+              
+            </app-data-variable-dropzone>
+          </div>
 
           <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[1]" [recordStream]="recordStreams[0]"
             (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[1], $event)"
