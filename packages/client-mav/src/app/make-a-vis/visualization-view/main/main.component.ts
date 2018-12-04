@@ -61,10 +61,8 @@ export class MainComponent implements OnInit {
     });
 
     this.updateService.update.subscribe(() => {
-      // FIXME: Scatterplot is not properly handling graphic variable changes
-      if (this.selectedVisualization === 1) {
-        (<any>this.visualizationComponent).unload();
-      }
+      // FIXME: Visualizations are not properly handling graphic variable changes
+      (<any>this.visualizationComponent).unload();
       this.visualizationComponent.runDataChangeDetection();
     });
   }
