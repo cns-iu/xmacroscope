@@ -27,7 +27,7 @@
     "@angular/platform-browser": "~7.1.1",
     "@angular/platform-browser-dynamic": "~7.1.1",
     "@angular/router": "~7.1.1",
-    "@dvl-fw/core": "^0.6.4",
+    "@dvl-fw/core": "^0.6.5",
     "@ngx-dino/core": "^0.9.0",
     "@ngx-dino/geomap": "^0.11.2",
     "@ngx-dino/legend": "^0.9.0",
