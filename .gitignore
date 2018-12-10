@@ -16,6 +16,7 @@ packages/server-graphql/private/*
 # dependencies
 packages/*/node_modules
 node_modules
+package-lock.json
 
 # Compiled python files
 *.pyc
