@@ -61,6 +61,8 @@ export class MainComponent implements OnInit {
     });
 
     this.updateService.update.subscribe(() => {
+      // FIXME: Visualizations are not properly handling graphic variable changes
+      (<any>this.visualizationComponent).unload();
       this.visualizationComponent.runDataChangeDetection();
     });
   }
