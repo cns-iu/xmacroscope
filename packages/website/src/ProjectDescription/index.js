@@ -18,7 +18,7 @@ function ProjectDescription() {
             <h3>Technology development</h3>
             <p>
               We are developing the open-source xMacroscope platform. This software and technology
-              platform will allow us to build science center exhibit experiences that let visitor
+              platform will allow us to build science center exhibit experiences that let visitors
               construct data visualization using their own experiences in interactive science
               exhibits.
             </p>
@@ -42,7 +42,7 @@ function ProjectDescription() {
             <p>
               As we build out these experiences we will observe how visitors interact with these
               experiences, surveying them about their experiences. This learning research will allow
-              us to iterate on the technology and exhibit platform while expanding out understanding
+              us to iterate on the technology and exhibit platform while expanding our understanding
               of data visualization literacy in the science center environment.
             </p>
           </Col>

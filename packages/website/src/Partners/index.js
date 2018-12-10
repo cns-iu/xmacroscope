@@ -8,17 +8,18 @@ import logoSMM from './smm2x.png';
 function Partners() {
   const partners = [
     {
-      name: 'Cyberinfrastructure for Network Science Center at Indiana University, Bloomington',
+      name: 'Cyberinfrastructure for Network Science Center at Indiana University, in'
+        + ' Bloomington, Indiana',
       img: logoCNS,
       imgAlt: 'CNS logo, Green stylized lime artwork next to large thin black letter C N S',
     },
     {
-      name: 'Creativity Labs at the University of California, Irvine',
+      name: 'Creativity Labs at the University of California, in Irvine, California',
       img: logoUCI,
       imgAlt: 'UCI logo, Large block U C I letters',
     },
     {
-      name: 'Center of Science and Industry, COSI, in Columbus Ohio',
+      name: 'Center of Science and Industry, COSI, in Columbus, Ohio',
       img: logoCOSI,
       imgAlt: 'COSI logo, Large chunky C O S I letters',
     },
