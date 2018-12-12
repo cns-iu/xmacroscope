@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import AppRoutes from './AppRoutes';
 import './App.css';
+import AppRoutes from './AppRoutes';
 
 // Initialize Google Analytics for the website
 ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);

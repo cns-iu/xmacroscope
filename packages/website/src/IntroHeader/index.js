@@ -1,12 +1,17 @@
 import React from 'react';
 import { Col, Jumbotron, Row } from 'reactstrap';
+import AppNav from '../AppNav';
+import './index.css';
 
 function IntroHeader() {
   return (
     <Jumbotron className="text-center">
-      <h1>xMacroscope</h1>
+      <h1><a className="home-link" href="/">xMacroscope</a></h1>
       <Row className="justify-content-center">
-        <Col xs={8} lg={6}>
+        <Col
+          xs={8}
+          lg={6}
+        >
           <p className="lead">
             xMacroscope is a
             {' '}
@@ -19,6 +24,11 @@ function IntroHeader() {
             project to study how visitors at science centers understand data visualization
             techniques.
           </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <AppNav />
         </Col>
       </Row>
     </Jumbotron>

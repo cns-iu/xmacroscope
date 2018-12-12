@@ -1,14 +1,16 @@
 import React, { Fragment } from 'react';
 import { Container } from 'reactstrap';
+import ExhibitIntroPara from '../Copy/ExhibitIntroPara';
 
-function Publications() {
+function Exhibit() {
   return (
     <Fragment>
       <Container>
-        <p>Publications</p>
+        <h2>Experience</h2>
+        <ExhibitIntroPara />
       </Container>
     </Fragment>
   );
 }
 
-export default Publications;
+export default Exhibit;

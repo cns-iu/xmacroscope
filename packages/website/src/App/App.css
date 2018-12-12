@@ -21,9 +21,37 @@ strong {
   background: #232628;
 }
 
+.nav-item {
+  margin: 0 20px;
+
+}
+
 .nav-item a {
-  color: #eacb66;
+  min-width: 220px;
+  font-size: 20px;
+  padding: 8px 18px;
+  position: relative;
+  background: white;
+  color: black;
   font-weight: 700;
+  margin: 0;
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+}
+
+.nav-item .active {
+  background: #f8efcf;
+}
+
+.nav-item a:active {
+  background: white;
+  color: black;
+  font-weight: 700;
+  margin: 3px 0 -3px 3px;
+  -webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75);
 }
 
 .footer-body {
@@ -40,4 +68,11 @@ hr {
 
 a {
   color: #3574D3;
+}
+
+.pdf-thumb {
+  border: 8px solid white;
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
 }

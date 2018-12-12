@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
 import { Container } from 'reactstrap';
-import IntroHeader from '../IntroHeader';
 import Partners from '../Partners';
 import ProjectDescription from '../ProjectDescription';
 
-function Index() {
+function Home() {
   return (
     <Fragment>
-      <IntroHeader />
-      <Container>
-        <ProjectDescription />
-        <Partners />
-      </Container>
+      <main>
+        <Container>
+          <ProjectDescription />
+          <Partners />
+        </Container>
+      </main>
     </Fragment>
   );
 }
 
-export default Index;
+export default Home;
