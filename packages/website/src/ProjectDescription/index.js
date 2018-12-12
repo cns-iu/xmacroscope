@@ -14,16 +14,12 @@ function ProjectDescription() {
             <h3>Technology development</h3>
             <p>
               <ExhibitIntroPara />
-              <br />
-              <a href="/tech">Learn more.</a>
             </p>
           </Col>
           <Col xs={12} md={4}>
             <h3>Exhibit development</h3>
             <p>
               <TechIntroPara />
-              <br />
-              <a href="/experience">Learn more.</a>
             </p>
           </Col>
           <Col xs={12} md={4}>

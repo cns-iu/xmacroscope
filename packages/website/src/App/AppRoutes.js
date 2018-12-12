@@ -6,8 +6,6 @@ import IntroHeader from '../IntroHeader';
 import Home from '../Home';
 import NoMatch from '../NoMatch';
 import FooterSite from '../FooterSite';
-import Exhibit from '../Exhibit';
-import Tech from '../Tech';
 import Research from '../Research';
 
 function AppRoutes() {
@@ -18,8 +16,6 @@ function AppRoutes() {
           <IntroHeader />
           <Switch>
             <Route exact path="/" render={() => (<Home />)} />
-            <Route exact path="/tech" render={() => (<Tech />)} />
-            <Route exact path="/experience" render={() => (<Exhibit />)} />
             <Route exact path="/research" render={() => (<Research />)} />
             <Route component={NoMatch} />
             <FooterSite />
