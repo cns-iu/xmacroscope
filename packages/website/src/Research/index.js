@@ -9,12 +9,12 @@ function Research() {
       paperTitle: 'NSF Annual Report - Year 1',
       fileName: 'research-annual-report-year-1',
     },
-    {
-      paperTitle: 'Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises,'
-        + ' and Assessments',
-      paperAuthors: 'Katy Börner, Andreas Bueckle, and Michael Ginda',
-      fileName: 'research-data-vis-literacy',
-    },
+    // {
+    //   paperTitle: 'Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises,'
+    //     + ' and Assessments',
+    //   paperAuthors: 'Katy Börner, Andreas Bueckle, and Michael Ginda',
+    //   fileName: 'research-data-vis-literacy',
+    // },
     {
       paperTitle: 'Begin at the Beginning: A Constructionist Model for Interpreting Data'
         + ' Visualizations',
@@ -43,7 +43,7 @@ function Research() {
       <Row className="justify-content-center">
         {
           papers.map(paper => (
-            <Col xs={4} className="mt-5 text-center" key={paper.paperPDF}>
+            <Col xs={6} className="mt-5 text-center" key={paper.paperPDF}>
               <h5>{paper.paperTitle}</h5>
               <a href={`${s3Base}${paper.fileName}.pdf`}>
                 <img
