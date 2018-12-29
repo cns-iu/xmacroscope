@@ -16,7 +16,15 @@ packages/server-graphql/private/*
 # dependencies
 packages/*/node_modules
 node_modules
+# We're using npm to handle packages on this project.
+# There is some disagreement on our team about tracking the package lock files:
+# https://github.com/cns-iu/xmacroscope/issues/146
+# For now, we're not tracking these files.
 package-lock.json
+
+# We don't use yarn for this project, but we should ignore it
+# in case an end  user uses it and generates a lock file that shouldn't be tracked
+yarn.lock
 
 # Compiled python files
 *.pyc
