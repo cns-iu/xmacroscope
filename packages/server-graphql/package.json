@@ -53,6 +53,7 @@
     "graphql": "^0.13.2",
     "graphql-iso-date": "^3.5.0",
     "graphql-tag": "^2.6.0",
+    "graphql-type-uuid": "^0.2.0",
     "jsonwebtoken": "^8.1.0",
     "jwks-rsa": "^1.2.1",
     "jwt-decode": "^2.2.0",

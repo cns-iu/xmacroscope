@@ -12,6 +12,11 @@ import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 
 const Performance = sequelize.define('Performance', {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true
+  },
   type: { type: Sequelize.STRING },
 }, {
   paranoid: true,

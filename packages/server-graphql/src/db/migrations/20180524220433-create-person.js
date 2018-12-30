@@ -1,10 +1,9 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('People', {
     id: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: Sequelize.INTEGER,
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
+      primaryKey: true
     },
     icon: {
       type: Sequelize.STRING,

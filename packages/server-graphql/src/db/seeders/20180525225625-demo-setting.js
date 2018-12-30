@@ -1,8 +1,11 @@
+const uuidv4 = require('uuid/v4');
+
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.bulkInsert(
     'Settings',
     [
       {
+        id: uuidv4(),
         location: 'smm',
         usState: 'MN',
         preRunDelay: 11540,
@@ -17,6 +20,7 @@ module.exports = {
         deletedAt: null,
       },
       {
+        id: uuidv4(),
         location: 'cns-iu',
         usState: 'IN',
         preRunDelay: 15540,
@@ -31,6 +35,7 @@ module.exports = {
         deletedAt: null,
       },
       {
+        id: uuidv4(),
         location: 'cosi',
         usState: 'OH',
         preRunDelay: 15540,
@@ -45,6 +50,7 @@ module.exports = {
         deletedAt: null,
       },
       {
+        id: uuidv4(),
         location: 'dev',
         usState: 'MN',
         preRunDelay: 2000,
@@ -59,6 +65,7 @@ module.exports = {
         deletedAt: null,
       },
       {
+        id: uuidv4(),
         location: 'demo',
         usState: 'IN',
         preRunDelay: 0,

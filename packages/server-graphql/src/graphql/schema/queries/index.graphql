@@ -1,6 +1,6 @@
 # Define GraphQL queries
 type Query {
-  Person(id: ID): Person
+  Person(id: UUID): Person
   People(limit: Int = 20): [Person!]!
   Runs(lastX: Int): [Run!]!
   Messages(lastX: Int): MessageAny
