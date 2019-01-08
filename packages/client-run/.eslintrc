@@ -11,8 +11,10 @@
     "jest": true
   },
   "rules": {
+    "linebreak-style": [0],
     "function-paren-newline": ["error", "consistent"],
     "react/forbid-prop-types": [0],
+    "react/jsx-one-expression-per-line": [0],
     "react/jsx-filename-extension": [
       1,
       {
