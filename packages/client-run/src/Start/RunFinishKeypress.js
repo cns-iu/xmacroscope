@@ -12,7 +12,7 @@ class RunFinishKeypress extends React.Component {
 
   componentWillMount() {
     const { bindShortcut } = this.props;
-    bindShortcut('e', this.finishRunTrigger);
+    bindShortcut('a', this.finishRunTrigger);
   }
 
   finishRunTrigger() {
