@@ -1,6 +1,6 @@
 import { areaSizeScale, greyScale } from '@dvl-fw/core';
 import { access, chain, combine, constant, map, Operand } from '@ngx-dino/core';
-import { pick } from 'lodash';
+import { assignIn } from 'lodash';
 
 export const allShapes: string[] = ['circle', 'square', 'cross', 'diamond',
   'triangle-up', 'triangle-down', 'triangle-left', 'triangle-right', 'star'
@@ -52,13 +52,6 @@ export class Person {
   // fixed: string;
 
   toJSON(): any {
-    return pick(this, [
-      'id', 'name', 'gender', 'handedness', 'siblings', 'icon', 'color',
-      'ageGroup', 'favoriteActivity', 'height', 'zipCode', 'state',
-
-      // Derived graphic variable data
-      'label', 'latlng', 'heightAreaSize', 'ageGroupAreaSize',
-      'favoriteActivityColor', 'timeAreaSize'
-    ]);
+    return assignIn({}, this);
   }
 }

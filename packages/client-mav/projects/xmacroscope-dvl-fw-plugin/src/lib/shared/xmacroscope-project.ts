@@ -121,9 +121,6 @@ export class XMacroscopeProject extends DefaultProject {
               icon: [
                 {selector: 'persona'}
               ],
-              label: [
-                {selector: 'person.label'}
-              ],
               text: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
               ],
@@ -132,6 +129,16 @@ export class XMacroscopeProject extends DefaultProject {
               ],
               color: [
                 {id: 'fixed', selector: 'showPersonaFixedColor', label: 'Fixed'}
+              ],
+              input: [
+                {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
+              ],
+              label: [
+                {id: 'fixed', selector: 'fixed.text', label: 'Fixed'},
+                {selector: 'person.label'}
+              ],
+              order: [
+                {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
               ],
               areaSize: [
                 {id: 'fixed', selector: 'showPersonaFixedAreaSize', label: 'Fixed'}
@@ -157,8 +164,14 @@ export class XMacroscopeProject extends DefaultProject {
               axis: [
                 {selector: 'timeSeconds'}
               ],
+              input: [
+                {selector: 'timeSeconds'}
+              ],
               label: [
                 {selector: 'timeLabel'}
+              ],
+              order: [
+                {selector: 'timeSeconds'}
               ],
               areaSize: [
                 {selector: 'showPersonaTimeAreaSize'}
@@ -168,7 +181,13 @@ export class XMacroscopeProject extends DefaultProject {
               axis: [
                 {selector: 'person.height'}
               ],
+              input: [
+                {selector: 'person.height'}
+              ],
               label: [
+                {selector: 'person.height'}
+              ],
+              order: [
                 {selector: 'person.height'}
               ],
               areaSize: [
@@ -179,8 +198,14 @@ export class XMacroscopeProject extends DefaultProject {
               axis: [
                 {selector: 'person.favoriteActivity'}
               ],
+              input: [
+                {selector: 'person.favoriteActivity'}
+              ],
               label: [
                 {selector: 'person.favoriteActivity'}
+              ],
+              order: [
+                {selector: 'person.favoriteActivityAreaSize'}
               ],
               text: [
                 {selector: 'person.favoriteActivity'}
@@ -193,7 +218,13 @@ export class XMacroscopeProject extends DefaultProject {
               axis: [
                 {selector: 'person.ageGroup'}
               ],
+              input: [
+                {selector: 'person.ageGroup'}
+              ],
               label: [
+                {selector: 'person.ageGroup'}
+              ],
+              order: [
                 {selector: 'person.ageGroup'}
               ],
               areaSize: [
@@ -201,8 +232,11 @@ export class XMacroscopeProject extends DefaultProject {
               ]
             },
             zipCode: {
-              latlng: [
-                {selector: 'person.latlng'}
+              latitude: [
+                {selector: 'person.latlng[0]'}
+              ],
+              longitude: [
+                {selector: 'person.latlng[1]'}
               ],
               identifier: [ // TODO: Fix in @dvl-fw to stateIdentifier
                 {selector: 'person.state'}
@@ -284,11 +318,17 @@ export class XMacroscopeProject extends DefaultProject {
             graphicVariableType: 'axis',
             graphicVariableId: 'axis'
           },
-          position: {
+          latitude: {
             recordSet: 'run',
             dataVariable: 'zipCode',
-            graphicVariableType: 'latlng',
-            graphicVariableId: 'latlng'
+            graphicVariableType: 'latitude',
+            graphicVariableId: 'latitude'
+          },
+          longitude: {
+            recordSet: 'run',
+            dataVariable: 'zipCode',
+            graphicVariableType: 'longitude',
+            graphicVariableId: 'longitude'
           },
           areaSize: {
             recordSet: 'run',

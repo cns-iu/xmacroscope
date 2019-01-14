@@ -1,4 +1,4 @@
-import { pick, get } from 'lodash';
+import { assignIn, get, pick } from 'lodash';
 import { Operand, map, constant, chain, access, combine, Operator } from '@ngx-dino/core';
 import { areaSizeScale } from '@dvl-fw/core';
 
@@ -69,14 +69,11 @@ export class Run {
   persona: {shape: string, color: string};
 
   toJSON(): any {
-    return Object.assign({
+    return Object.assign(assignIn({}, this), {
       id: this.id,
       start: this.start ? this.start.toISOString() : undefined,
       end: this.end ? this.end.toISOString() : undefined,
       person: this.person.toJSON(),
-    }, pick(this,
-      // Derived graphic variable data
-      ['timeMillis', 'timeSeconds', 'timeLabel', 'timeAreaSize', 'fixed']
-    ));
+    });
   }
 }

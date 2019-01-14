@@ -32,9 +32,9 @@ export class MockPerson extends Person {
       name: nullable(casual.first_name),
       icon: casual.random_element(shapes),
       color: casual.random_element(colors),
-      ageGroup: nullable(casual.random_element(ageGroups)),
-      favoriteActivity: nullable(casual.random_element(favoriteActivities)),
-      height: nullable(casual.integer(36, 96))
+      ageGroup: casual.random_element(ageGroups),
+      favoriteActivity: casual.random_element(favoriteActivities),
+      height: casual.integer(36, 96)
     });
 
     const location = mockUSLocation();
