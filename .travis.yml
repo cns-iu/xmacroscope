@@ -1,33 +1,57 @@
 language: node_js
-
 node_js:
   - "10"
-
-sudo: false
-
+sudo: required
+dist: trusty
 cache:
+  npm: true
   yarn: true
   directories:
     - "node_modules"
     - "packages/client-mav/node_modules"
     - "packages/client-run/node_modules"
     - "packages/server-graphql/node_modules"
-
 branches:
   only:
     - master
-
+    - develop
 install:
-  - cd packages/client-mav && npm ci
+  - cd packages/client-mav && npm install
+script: skip
+jobs:
+  include:
+  - stage: test
+    name: Run Tests
+    if: branch != develop
+    script:
+    - cd packages/client-mav
+    - npm run lint
+    - npm run build:libs
+  - stage: deploy
+    name: Deploy demo to GitHub Pages
+    if: branch = master
+    script:
+    - npm run build:mav-demo
+    deploy:
+      provider: pages
+      skip-cleanup: true
+      github-token: "$GITHUB_TOKEN"
+      keep-history: false
+      local-dir: packages/client-mav/dist/client-mav
+      on:
+        branch: master
+  - stage: deploy
+    name: Deploy staging to Netlify
+    if: branch = develop
+    script:
+    - npm run build:mav-demo
+    deploy:
+      provider: pages
+      target-branch: staging
+      skip-cleanup: true
+      github-token: "$GITHUB_TOKEN"
+      keep-history: false
+      local-dir: packages/client-mav/dist/client-mav
+      on:
+        branch: develop
 
-script:
-  - npm run build:mav-demo
-
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep-history: false
-  local-dir: packages/client-mav/dist/client-mav
-  on:
-    branch: master
