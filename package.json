@@ -21,7 +21,8 @@
     "build:run": "cd packages/client-run && npm run build",
     "build:server": "cd packages/server-graphql && npm run build",
     "build": "npm-run-all clean --parallel build:mav build:run build:server --print-label",
-    "build:mav-demo": "cd packages/client-mav && npm run build:libs && npm run build-demo"
+    "build:mav-demo": "cd packages/client-mav && npm run build:libs && npm run build-demo",
+    "build:staging": "cd packages/client-mav && npm run build:libs && npm run build-staging"
   },
   "devDependencies": {
     "npm-run-all": "4.1.5",

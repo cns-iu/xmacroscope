@@ -1,22 +1,22 @@
 language: node_js
 node_js:
-  - "10"
+- '10'
 sudo: required
 dist: trusty
 cache:
   npm: true
   yarn: true
   directories:
-    - "node_modules"
-    - "packages/client-mav/node_modules"
-    - "packages/client-run/node_modules"
-    - "packages/server-graphql/node_modules"
+  - node_modules
+  - packages/client-mav/node_modules
+  - packages/client-run/node_modules
+  - packages/server-graphql/node_modules
 branches:
   only:
-    - master
-    - develop
+  - master
+  - develop
 install:
-  - npm run install:mav
+- npm run install:mav
 script: skip
 jobs:
   include:
@@ -44,7 +44,7 @@ jobs:
     name: Deploy staging to Netlify
     if: branch = develop
     script:
-    - npm run build:mav-demo
+    - npm run build:staging
     deploy:
       provider: pages
       target-branch: staging
@@ -54,4 +54,6 @@ jobs:
       local-dir: packages/client-mav/dist/client-mav
       on:
         branch: develop
-
+notifications:
+  slack:
+    secure: gCju5wv7eoPmwiH494LNgn0rZdLdpcKsitJbSkehhE6tqFcfmy0I9AIWUZbwV022R5OiNgTL/cykssnF7HuBbiLEXmjWTQ5tBmH+ddDuKLlyUO+ElTdH5m12G2yK9KYqCjoFhlIPh0nXpTy1k4gpSyOwZnaeLAI1EFfSOFNGV44YQSGq+ag/OzcyeytYakLmg8tDbsCn0t7DMvKRVKnBGdKG7LsVYho26rm/FA7BeQRjx2/YtsEQlhtRXx3uW1mHD3Iwc+EvgtKMJgofq3NNBEYNSEsnA+E3ASECHe/Gk9NuHdJ/9fF1fVhrwTX8Sya1xhI7LdYAFjFhYynWfrPfgBH4Rkl8Z9HKI+taYvjeMYgO/leotmQ9/9OcGicqwYSPSFuMP6hFUgUCxLg97fhLExDjDtayBCEbjcUAbUX6T5Ukn9nIC5fsQGdDKRyUHfcs4cZD04qLoCo7PTKNyLL9FCECmVEsRdYpF8oW108IadhNiUCI8mB6NDYMyX6iZgCfX36XMwNf7FcjVrycYDoIonmtQ0m0bMQJhw+nrNyyGuWCfm1Caj8c7SlXJPyUIpWvKAcUaR6neHlN+cnQCmYJCK4CS87tfc5/kOWuKYeOeuya4Pc7yJvzyI72gMhTl+tfOEr8hYzX8cANIBYpqZ8rY7NUL4XCkB9eF9yBvgMpw30=

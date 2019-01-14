@@ -12,7 +12,8 @@
     "build:cli": "webpack --config projects/xmacroscope-dvl-fw-plugin/src/lib/cli/webpack.config.js",
     "start-local": "ng serve --configuration=local",
     "build-deploy": "ng build --configuration=deploy --base-href=/mav/",
-    "build-demo": "ng build --prod --base-href=/xmacroscope/"
+    "build-demo": "node --max_old_space_size=3000 ./node_modules/.bin/ng build --prod --base-href=/xmacroscope/",
+    "build-staging": "node --max_old_space_size=3000 ./node_modules/.bin/ng build --prod --base-href=/"
   },
   "private": true,
   "dependencies": {
