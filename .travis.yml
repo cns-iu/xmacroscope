@@ -16,7 +16,7 @@ branches:
     - master
     - develop
 install:
-  - cd packages/client-mav && npm install
+  - npm run install:mav
 script: skip
 jobs:
   include:
