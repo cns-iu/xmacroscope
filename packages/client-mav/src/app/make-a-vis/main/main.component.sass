@@ -28,8 +28,7 @@
       height: 23vh
       overflow-x: hidden
       padding-top: 1vh
-    
-  
+
 .no-header
   height: 98vh
 
@@ -40,3 +39,9 @@
     
     .legend
       height: 28.5vh
+
+::ng-deep .no-header .visualization-container .tab-content
+  height: calc(70.5vh - 13vh) !important
+
+::ng-deep .no-header .x-dropzone
+  top: 51vh !important
