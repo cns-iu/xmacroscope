@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.com/cns-iu/xmacroscope.svg?branch=master)](https://travis-ci.com/cns-iu/xmacroscope)
 [![GitHub last commit](https://img.shields.io/github/last-commit/cns-iu/xmacroscope.svg)](https://github.com/cns-iu/xmacroscope/commits/master)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
+[![View Staging Site](https://img.shields.io/badge/staging-online-brightgreen.svg)](https://xmacroscope.netlify.com/)
 [![View Demo](https://img.shields.io/badge/demo-online-brightgreen.svg)](https://cns-iu.github.io/xmacroscope)
 
 The xMacroscope project will develop a rapid-prototyping research and exhibit design platform for use in the science museum environment.
