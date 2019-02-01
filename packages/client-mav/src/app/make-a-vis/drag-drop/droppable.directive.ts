@@ -1,6 +1,7 @@
-import { Directive, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { forEach } from 'lodash';
 
 import { DragDropEvent } from './events';
 import { DragDropService } from './drag-drop.service';
@@ -12,6 +13,7 @@ export class DroppableDirective implements OnDestroy {
   private _zones: string[] = ['any-zone'];
   private acceptsCurrentDrop = false;
   private eventSubscription: Subscription;
+  private fingerOver = false;
 
   @Input()
   set zones(zone: string | string[]) {
@@ -22,7 +24,7 @@ export class DroppableDirective implements OnDestroy {
   @Output() mavDroppable = new EventEmitter<any>();
   @Output() dragDropEvents: Observable<DragDropEvent>;
 
-  constructor(private service: DragDropService) {
+  constructor(private service: DragDropService, private elementRef: ElementRef) {
     this.dragDropEvents = service.events.pipe(
       map((event: DragDropEvent) => {
         if (event.type === 'drag-start') {
@@ -30,6 +32,12 @@ export class DroppableDirective implements OnDestroy {
             this.acceptsDrop(event.data));
 
           return Object.assign({}, event, {accepted: this.acceptsCurrentDrop});
+        } else if (event.type === 'drag-end') {
+          if (this.acceptsCurrentDrop && this.fingerOver && !event.canceled) {
+            this.mavDroppable.emit(this.service.currentItem);
+          }
+          this.acceptsCurrentDrop = false;
+          this.fingerOver = false;
         }
 
         return event;
@@ -50,6 +58,24 @@ export class DroppableDirective implements OnDestroy {
   onDrop(): boolean {
     this.mavDroppable.emit(this.service.currentItem);
     return false;
+  }
+
+  /** Track touch movement to determine if an acceptable drop is over this component */
+  @HostListener('window:touchmove', ['$event'])
+  onTouchMove(event: TouchEvent) {
+    if (this.acceptsCurrentDrop) {
+      let fingerOver = false;
+      forEach(event.targetTouches, (touch) => {
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+        if (this.elementRef.nativeElement.contains(element)) {
+          fingerOver = true;
+          return false; // End iteration
+        }
+      });
+      if (this.fingerOver !== fingerOver) {
+        this.fingerOver = fingerOver;
+      }
+    }
   }
 
   ngOnDestroy(): void {

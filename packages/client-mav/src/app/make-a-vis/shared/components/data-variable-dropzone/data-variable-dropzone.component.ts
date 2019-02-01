@@ -40,13 +40,24 @@ export class DataVariableDropzoneComponent {
     }
   }
 
-  @HostListener('mouseover', [])
-  onMouseOver() {
+  /** Disable Context Menu */
+  @HostListener('contextmenu')
+  onContextMenu() {
+    return false;
+  }
+
+  @HostListener('touchstart', ['$event'])
+  @HostListener('mouseover', ['$event'])
+  onMouseOver(event) {
+    event.preventDefault();
     this.hoverService.startHover(this.mappingKey);
   }
 
-  @HostListener('mouseout', [])
-  onMouseOut() {
+  @HostListener('touchcancel', ['$event'])
+  @HostListener('touchend', ['$event'])
+  @HostListener('mouseout', ['$event'])
+  onMouseOut(event) {
+    event.preventDefault();
     this.hoverService.endHover();
   }
 

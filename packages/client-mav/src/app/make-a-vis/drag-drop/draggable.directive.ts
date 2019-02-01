@@ -34,6 +34,7 @@ export class DraggableDirective {
 
   @HostListener('dragstart', ['$event'])
   onDragStart(event: DragEvent): void {
+    this.service.startDrag(this.zone, this.mavDraggable);
     this.emitEndEventOnMouseOut = false;
     event.dataTransfer.effectAllowed = this.dropEffect;
     event.dataTransfer.setData('text/plain', 'Useless Data');
@@ -43,5 +44,31 @@ export class DraggableDirective {
   onDragEnd(event: DragEvent): void {
     this.service.endDrag(this.zone, this.mavDraggable,
       event.dataTransfer.dropEffect === 'none');
+  }
+
+  /** Disable Context Menu */
+  @HostListener('contextmenu')
+  onContextMenu() {
+    return false;
+  }
+
+  @HostListener('touchstart', ['$event'])
+  onTouchStart(event): void {
+    event.preventDefault();
+    this.service.startDrag(this.zone, this.mavDraggable);
+    this.emitEndEventOnMouseOut = false;
+  }
+
+  @HostListener('touchend', ['$event'])
+  onTouchEnd(event): void {
+    event.preventDefault();
+    this.service.endDrag(this.zone, this.mavDraggable, this.dropEffect === 'none');
+  }
+
+  @HostListener('touchcancel', ['$event'])
+  onTouchCancel(event): void {
+    event.preventDefault();
+    this.emitEndEventOnMouseOut = true;
+    this.service.endDrag(this.zone, this.mavDraggable, true);
   }
 }
