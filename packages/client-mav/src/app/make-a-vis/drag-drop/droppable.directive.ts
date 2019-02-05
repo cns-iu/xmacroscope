@@ -62,14 +62,16 @@ export class DroppableDirective implements OnDestroy {
 
   /** Track touch movement to determine if an acceptable drop is over this component */
   @HostListener('window:touchmove', ['$event'])
-  onTouchMove(event: TouchEvent) {
+  onTouchMove(event: TouchEvent | any) {
     if (this.acceptsCurrentDrop) {
       let fingerOver = false;
       forEach(event.targetTouches, (touch) => {
-        const element = document.elementFromPoint(touch.clientX, touch.clientY);
-        if (this.elementRef.nativeElement.contains(element)) {
-          fingerOver = true;
-          return false; // End iteration
+        const elements = document.elementsFromPoint(touch.clientX, touch.clientY);
+        for (const element of elements) {
+          if (this.elementRef.nativeElement.contains(element)) {
+            fingerOver = true;
+            return false; // End iteration
+          }
         }
       });
       if (this.fingerOver !== fingerOver) {

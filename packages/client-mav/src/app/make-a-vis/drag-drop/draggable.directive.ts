@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, Input } from '@angular/core';
+import { Directive, HostBinding, HostListener, Input, Renderer2, ElementRef } from '@angular/core';
 
 import { DragDropService } from './drag-drop.service';
 
@@ -7,12 +7,13 @@ import { DragDropService } from './drag-drop.service';
 })
 export class DraggableDirective {
   private emitEndEventOnMouseOut = true;
+  private touchstartPosition: [number, number];
 
   @Input() mavDraggable: any; // Data
   @Input() zone = 'any-zone';
   @Input() dropEffect = 'copy';
 
-  constructor(private service: DragDropService) { }
+  constructor(private service: DragDropService, private render: Renderer2, private elementRef: ElementRef) { }
 
   @HostBinding()
   get draggable(): boolean {
@@ -53,22 +54,48 @@ export class DraggableDirective {
   }
 
   @HostListener('touchstart', ['$event'])
-  onTouchStart(event): void {
+  onTouchStart(event: TouchEvent | any): void {
     event.preventDefault();
+    this.resetTouchMove();
+    const yOffset = this.elementRef.nativeElement.getBoundingClientRect().top + window.scrollY;
+    this.touchstartPosition = [event.touches[0].clientX, event.touches[0].clientY - yOffset];
     this.service.startDrag(this.zone, this.mavDraggable);
     this.emitEndEventOnMouseOut = false;
   }
 
+  @HostListener('touchmove', ['$event'])
+  onTouchMove(event: TouchEvent | any): void {
+    if (this.touchstartPosition) {
+      const newPosition = [event.touches[0].clientX, event.touches[0].clientY];
+      const dxPosition = [newPosition[0] - this.touchstartPosition[0], newPosition[1] - this.touchstartPosition[1]];
+      const transform = `translate(${dxPosition[0]}px,${dxPosition[1]}px)`;
+      this.render.setStyle(this.elementRef.nativeElement, 'position', 'absolute');
+      this.render.setStyle(this.elementRef.nativeElement, 'width', 'min-content');
+      this.render.setStyle(this.elementRef.nativeElement, 'opacity', 0.7);
+      this.render.setStyle(this.elementRef.nativeElement, 'transform', transform);
+    }
+  }
+
   @HostListener('touchend', ['$event'])
-  onTouchEnd(event): void {
+  onTouchEnd(event: TouchEvent | any): void {
     event.preventDefault();
+    this.resetTouchMove();
     this.service.endDrag(this.zone, this.mavDraggable, this.dropEffect === 'none');
   }
 
   @HostListener('touchcancel', ['$event'])
-  onTouchCancel(event): void {
+  onTouchCancel(event: TouchEvent | any): void {
     event.preventDefault();
+    this.resetTouchMove();
     this.emitEndEventOnMouseOut = true;
     this.service.endDrag(this.zone, this.mavDraggable, true);
+  }
+
+  private resetTouchMove() {
+    this.touchstartPosition = undefined;
+    this.render.removeStyle(this.elementRef.nativeElement, 'position');
+    this.render.removeStyle(this.elementRef.nativeElement, 'width');
+    this.render.removeStyle(this.elementRef.nativeElement, 'opacity');
+    this.render.removeStyle(this.elementRef.nativeElement, 'transform');
   }
 }
