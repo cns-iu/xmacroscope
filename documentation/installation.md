@@ -42,13 +42,13 @@ npm run start-dev
 ```
 This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
 
-# Running the application in development mode
+# Running the application in production mode
 
 In the project root directory:
 ```
 npm run build
 ```
-This will build the two client applications and the server.
+This will build static versions of the client applications and the server.
 ```
 npm start
 ```
