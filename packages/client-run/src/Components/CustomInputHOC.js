@@ -39,11 +39,11 @@ const CustomInputHOC = (FieldTitle, FieldControl, FieldError) => {
       const { value } = this.state;
       return (
         <Fragment>
-          <FieldTitle
+          <FieldError
             value={value}
             {...this.props}
           />
-          <FieldError
+          <FieldTitle
             value={value}
             {...this.props}
           />

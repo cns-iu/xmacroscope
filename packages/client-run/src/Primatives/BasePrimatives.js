@@ -81,7 +81,9 @@ const StyledCardBody = styled(CardBody)`
 `;
 
 const ErrorWrapper = styled.div`
-  height: 25px;
+  display: inline;
+  border: ${props => (props.active ? '1px solid white' : 'none')};
+  background: ${props => (props.active ? sportsOrange : 'none')};
 `;
 
 export {

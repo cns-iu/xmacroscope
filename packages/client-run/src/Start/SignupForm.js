@@ -58,7 +58,7 @@ const SignupForm = ({
         />
       </Col>
     </Row>
-    <Row>
+    <Row className="pt-4">
       <Col className="text-center" lg={6}>
         <HeightInput
           className="form-control form-control-lg"
