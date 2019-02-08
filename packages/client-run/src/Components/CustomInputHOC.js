@@ -43,15 +43,15 @@ const CustomInputHOC = (FieldTitle, FieldControl, FieldError) => {
             value={value}
             {...this.props}
           />
+          <FieldError
+            value={value}
+            {...this.props}
+          />
           <FieldControl
             value={value}
             updateInputValueConcat={this.updateInputValueConcat}
             updateInputValue={this.updateInputValue}
             clearInput={this.clearInput}
-            {...this.props}
-          />
-          <FieldError
-            value={value}
             {...this.props}
           />
         </Fragment>
