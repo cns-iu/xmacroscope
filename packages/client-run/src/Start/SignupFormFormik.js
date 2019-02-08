@@ -46,7 +46,7 @@ const SignupFormFormik = withFormik({
       .required('Please select your favorite activity'),
     color: Yup.string()
       .required('Please select a color'),
-    icon: Yup.string()
+    shape: Yup.string()
       .required('Please select an icon'),
     height: Yup.number()
       .typeError('height must be a number')
