@@ -49,13 +49,13 @@ const SignupFormFormik = withFormik({
     shape: Yup.string()
       .required('Please select an icon'),
     height: Yup.number()
-      .typeError('height must be a number')
+      .typeError('Height must be a number')
       .min(36)
       .max(96)
       .integer('Please enter a valid number'),
-    zipCode: Yup.string()
     // Zip codes are 5 digits
     // We don't accept the extra 4 digits.
+    zipCode: Yup.string()
       .matches(
         /(^\d{5}$)|(^\d{5}-\d{4}$)/,
         'Please enter 5 numbers for a Zip Code.',
