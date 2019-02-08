@@ -6,9 +6,9 @@ import { sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariab
 
 
 const selected = `
-color: black;
-background: ${sportsYellow};
-border-color: ${sportsYellow};
+  color: black;
+  background: ${sportsYellow};
+  border-color: ${sportsYellow};
 `;
 
 const BaseHeader = styled.h1`
