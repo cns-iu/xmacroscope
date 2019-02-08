@@ -40,6 +40,14 @@ function zipCodeLookup(value) {
 const SignupFormFormik = withFormik({
 
   validationSchema: Yup.object().shape({
+    ageGroup: Yup.string()
+      .required('Please enter an age group'),
+    favoriteActivity: Yup.string()
+      .required('Please select your favorite activity'),
+    color: Yup.string()
+      .required('Please select a color'),
+    icon: Yup.string()
+      .required('Please select an icon'),
     height: Yup.number()
       .typeError('height must be a number')
       .min(36)
