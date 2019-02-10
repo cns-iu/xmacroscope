@@ -43,12 +43,12 @@ const StyledButton = styled(Button)`
   border: none;
   font-weight: bold;
   font-size: 50px;
-  :hover{
-    background-color: ${sportsOrange};
-    color: white;
-  }
   @media (max-height: 1080px) {
     font-size: 30px !important;
+  }
+  :disabled {
+    color: black;
+    background: #0D0D0F;
   }
 `;
 

@@ -13,8 +13,7 @@ import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton, BaseFormHeader } from '../Primatives/BasePrimatives';
 
-// Our inner form component which receives our form's state and updater methods
-// as props
+// Our inner form component which receives our form's state and updater methods as props
 const AgeInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const ActivityInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
@@ -27,7 +26,7 @@ const SignupForm = ({
   errors,
   touched,
   handleSubmit,
-  isSubmitting,
+  isValid,
   setFieldValue,
 }) => (
   <Form onSubmit={handleSubmit} className="signup-form">
@@ -132,10 +131,10 @@ const SignupForm = ({
     </Row>
     <Col sm={12} className="px-0 pt-4">
       <StyledButton
-        className="btn-lg btn-block"
+        className="btn-lg btn-block link"
         type="submit"
-        disabled={isSubmitting}
-        color="primary"
+        disabled={!isValid}
+        color="secondary"
       >
         RUN
       </StyledButton>
@@ -146,7 +145,7 @@ const SignupForm = ({
 SignupForm.propTypes = {
   errors: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
+  isValid: PropTypes.bool.isRequired,
   setFieldValue: PropTypes.func.isRequired,
   touched: PropTypes.object.isRequired,
   values: PropTypes.object.isRequired,
