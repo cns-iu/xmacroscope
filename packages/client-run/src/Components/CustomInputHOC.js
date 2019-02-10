@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 // setInput function makes use of Formik setFieldValue Method
 // setFiledValue Method adds value to Formik HOC
-const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedComponentTre) => {
+const CustomInputHOC = (FieldTitle, FieldControl, FieldError) => {
   class HOC extends React.Component {
     constructor(props) {
       super(props);
@@ -39,19 +39,19 @@ const CustomInputHOC = (WrappedComponentUno, WrappedComponentDoz, WrappedCompone
       const { value } = this.state;
       return (
         <Fragment>
-          <WrappedComponentUno
+          <FieldError
             value={value}
             {...this.props}
           />
-          <WrappedComponentDoz
+          <FieldTitle
+            value={value}
+            {...this.props}
+          />
+          <FieldControl
             value={value}
             updateInputValueConcat={this.updateInputValueConcat}
             updateInputValue={this.updateInputValue}
             clearInput={this.clearInput}
-            {...this.props}
-          />
-          <WrappedComponentTre
-            value={value}
             {...this.props}
           />
         </Fragment>

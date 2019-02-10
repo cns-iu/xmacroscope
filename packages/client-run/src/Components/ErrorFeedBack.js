@@ -6,21 +6,21 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import { ErrorWrapper } from '../Primatives/BasePrimatives';
 
-const ErrorFeedBack = ({ name, errors }) => (
-  <Row>
-    <Col sm={12}>
-      <ErrorWrapper className="pt-2">
+const ErrorFeedBack = ({ name, errors }) => {
+  const active = errors[name] ? errors[name] : null;
+  return (
+    <Row className="justify-content-center">
+      <Col>
         {/* Validation feedback */}
         {
-          errors[name]
-          && (
-            <span>{errors[name]}</span>
-          )
+          <ErrorWrapper className="p-1" active={active}>
+            {errors[name] ? errors[name] : '\u00A0'}
+          </ErrorWrapper>
         }
-      </ErrorWrapper>
-    </Col>
-  </Row>
-);
+      </Col>
+    </Row>
+  );
+};
 
 ErrorFeedBack.propTypes = {
   name: PropTypes.string.isRequired,

@@ -39,15 +39,27 @@ function zipCodeLookup(value) {
 
 const SignupFormFormik = withFormik({
 
+  validateOnBlur: false,
+  validateOnChange: true,
   validationSchema: Yup.object().shape({
+    ageGroup: Yup.string()
+      .required('Required'),
+    favoriteActivity: Yup.string()
+      .required('Required'),
+    color: Yup.string()
+      .required('Required'),
+    shape: Yup.string()
+      .required('Required'),
     height: Yup.number()
-      .typeError('height must be a number')
+      .required('Required')
+      .typeError('Height must be a number')
       .min(36)
       .max(96)
       .integer('Please enter a valid number'),
-    zipCode: Yup.string()
     // Zip codes are 5 digits
     // We don't accept the extra 4 digits.
+    zipCode: Yup.string()
+      .required('Required')
       .matches(
         /(^\d{5}$)|(^\d{5}-\d{4}$)/,
         'Please enter 5 numbers for a Zip Code.',
