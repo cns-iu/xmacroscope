@@ -1,6 +1,10 @@
 # Troubleshooting
 
-## SQLite startup issues
-If you are getting an error about sqlite not being installed, but you have installed it, you might have a node compatibility issue.
+## Node version
+If you're running in to any issues installing the project, you're likely running the wrong `Node` version.
 
-Ensure that your system node matches the project requirements. We're currently only supporting the Node LTS v10.
+Ensure that you're using the supported `Node` and `npm` versions spelled out in the [project requirements](https://github.com/cns-iu/xmacroscope/blob/master/documentation/installation.md#requirements).
+
+If you're running the wrong `Node` or `npm` versions:
+ - you may see an error about sqlite not being installed.
+ - you may have difficulty installing the project on the Windows operating system.
