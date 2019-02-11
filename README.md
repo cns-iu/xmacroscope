@@ -15,17 +15,9 @@ will provide a novel platform for conducting research on the efficacy of differe
 
 *This project is a work in progress, under active development. It is not ready for a production deployment yet.*
 
-## Websites
 - [Project website - xMacroscope.org](https://xmacroscope.org)
-- [Software demo site](https://cns-iu.github.io/xmacroscope/)
-
-# Documentation
-
-- [Installation](documentation/installation.md)
-- [Project structure](documentation/structure.md)
-- [Database development](documentation/database.md)
-- [Naming conventions](documentation/namingConventions.md)
-- [Troubleshooting](documentation/troubleshooting.md)
+- [Documentation](documentation/README.md)
+- [Make a Vis demo site](https://cns-iu.github.io/xmacroscope/)
 
 # Credits
 
