@@ -28,6 +28,9 @@ module.exports = {
     longitude: {
       type: Sequelize.INTEGER,
     },
+    activityName: {
+      type: Sequelize.STRING,
+    },
     runTimeout: {
       type: Sequelize.INTEGER,
     },
