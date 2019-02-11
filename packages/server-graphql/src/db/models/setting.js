@@ -17,6 +17,11 @@ const Setting = sequelize.define('Setting', {
   latitude: { type: Sequelize.INTEGER },
   longitude: { type: Sequelize.INTEGER },
 
+  // Activity name
+  // Some locations will be running, some will be walking, this setting allows each location
+  // to customize the interface word use for prompting the visitors.
+  activityName: { type: Sequelize.STRING },
+
   // Milliseconds...
   //
   // ...of time between the run start signal, and the run actually beginning.

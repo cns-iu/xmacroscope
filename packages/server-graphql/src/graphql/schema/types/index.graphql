@@ -59,6 +59,7 @@ type Setting {
   usState: String
   latitude: Float
   longitude: Float
+  activityName: String
   preRunDelay: Int
   postRunDelay: Int
   startLineTimeout: Int
