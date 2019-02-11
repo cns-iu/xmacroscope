@@ -1,9 +1,7 @@
 # xMacroscope documentation
 
-- [Installation](documentation/installation.md)
-- [Project structure](documentation/structure.md)
-- [Database development](documentation/database.md)
-- [Naming conventions](documentation/namingConventions.md)
-- [Troubleshooting](documentation/troubleshooting.md)
-
-
+- [Installation](installation.md)
+- [Project structure](structure.md)
+- [Database development](database.md)
+- [Naming conventions](namingConventions.md)
+- [Troubleshooting](troubleshooting.md)
