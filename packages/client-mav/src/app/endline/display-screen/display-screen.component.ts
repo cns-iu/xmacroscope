@@ -15,7 +15,6 @@ export class DisplayScreenComponent implements OnInit {
   timerText = '00:00';
   personaColor = '#000';
   personaShape = 'circle';
-  isPersonaSet = false;
   personaBackgroundSize = {width: 420, height: 420};
   personaShapeSize = 25000;
   personaBackgroundRadius = 200;
@@ -57,7 +56,6 @@ export class DisplayScreenComponent implements OnInit {
       this.timerService.start();
     } else if (msg instanceof RunFinishedMessage) {
       this.timerService.stop();
-      this.isPersonaSet = false;
       this.timerText = this.timerService.formatTime(duration(msg.run.timeMillis, 'millisecond'));
     }
   }
