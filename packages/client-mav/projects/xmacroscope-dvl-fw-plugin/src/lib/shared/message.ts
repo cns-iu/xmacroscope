@@ -3,6 +3,7 @@ import { Run } from './run';
 export class Message {
   type: string;
   timestamp: Date;
+  run?: Run;
 
   constructor(data: any = {}) {
     if (data.run && !(data.run instanceof Run)) {
@@ -18,15 +19,12 @@ export class SignupStartedMessage extends Message {
 
 export class SignupFinishedMessage extends Message {
   type = 'signup-finished';
-  run: Run;
 }
 
 export class RunStartedMessage extends Message {
   type = 'run-started';
-  run: Run;
 }
 
 export class RunFinishedMessage extends Message {
   type = 'run-finished';
-  run: Run;
 }

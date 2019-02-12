@@ -52,21 +52,18 @@ export class DisplayScreenComponent implements OnInit {
   }
 
   handleMessage(msg: Message) {
-    if (!this.isPersonaSet && msg instanceof SignupFinishedMessage) {
-      this.createPersona(<SignupFinishedMessage>msg);
-      this.isPersonaSet = true;
-    }
+    this.updatePersona(msg);
     this.lastMessage = msg;
     if (msg instanceof RunStartedMessage) {
       this.timerService.start();
     } else if (msg instanceof RunFinishedMessage) {
       this.timerService.stop();
       this.isPersonaSet = false;
-      this.timerText = this.timerService.formatTime(duration((<RunFinishedMessage>msg).run.timeMillis, 'millisecond'));
+      this.timerText = this.timerService.formatTime(duration(msg.run.timeMillis, 'millisecond'));
     }
   }
 
-  createPersona(msg: SignupFinishedMessage) {
+  updatePersona(msg: Message) {
     if (msg && msg.run && msg.run.person) {
       const personAttributes = msg.run.person;
       this.personaColor = personAttributes.color;
