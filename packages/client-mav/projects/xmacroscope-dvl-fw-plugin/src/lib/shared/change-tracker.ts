@@ -2,6 +2,7 @@ import { RawChangeSet } from '@ngx-dino/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { List } from 'immutable';
+import { reverse } from 'lodash';
 
 import { Run } from './run';
 import { RunFinishedMessage, Message } from './message';
@@ -61,8 +62,9 @@ export class ChangeTracker {
     }
 
     // Update highlights
-    accumulator.reverse().forEach((run, index) => {
-      if (index < highlightCount && !this.runsSelected) {
+    accumulator.forEach((run, index) => {
+      const fromTheEnd = accumulator.size - index;
+      if (fromTheEnd <= highlightCount && !this.runsSelected) {
         run.showPersona = true;
       } else if (run.showPersona) {
         const runClone = new Run(run);
@@ -78,7 +80,7 @@ export class ChangeTracker {
 
   selectRuns(runs: Run[]): RawChangeSet<Run> {
     const runsSelected = this.runsSelected = runs.length > 0;
-    const snapshot: Run[] = this.snapshot().toArray();
+    const snapshot = this.snapshot();
     const replaced: [Run, Run][] = [];
 
     const run2id = {};
@@ -87,7 +89,7 @@ export class ChangeTracker {
     const newSnapshot: Run[] = [];
     // FIXME: This is a little too complicated/wordy. Simplify.
     if (runsSelected) {
-      for (const run of snapshot) {
+      snapshot.forEach((run) => {
         if (run2id.hasOwnProperty(run.id)) {
           const runClone = new Run(run);
           runClone.selected = true;
@@ -103,11 +105,12 @@ export class ChangeTracker {
         } else {
           newSnapshot.push(run);
         }
-      }
+      });
     } else {
       const highlightCount = this.highlightCount;
-      snapshot.reverse().forEach((run, index) => {
-        if (index < highlightCount) {
+      snapshot.forEach((run, index) => {
+        const fromTheEnd = snapshot.size - index;
+        if (fromTheEnd <= highlightCount) {
           const runClone = new Run(run);
           runClone.showPersona = true;
           runClone.selected = false;

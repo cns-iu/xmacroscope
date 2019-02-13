@@ -42,15 +42,22 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onRowClick(index: number) {
-    this.selectedIndex = index;
-    this.dataService.stopStream();
-    const selectedRun = this.dataSource.records[this.dataSource.records.length - 1 - index];
-    this.dataService.selectRunner([selectedRun]);
+    if (this.selectedIndex === index) {
+      this.resetSelection();
+    } else {
+      this.selectedIndex = index;
+      this.dataService.stopStream();
+      const selectedRun = this.dataSource.records[this.dataSource.records.length - 1 - index];
+      this.dataService.selectRunner([selectedRun]);
+    }
   }
 
   resetSelection(): void {
-    this.selectedIndex = undefined;
-    this.dataService.selectRunner([]);
+    if (this.selectedIndex !== undefined) {
+      this.selectedIndex = undefined;
+      this.dataService.selectRunner([]);
+      this.dataService.restartStream();
+    }
   }
 
   isSelectable(dvId: string): boolean {

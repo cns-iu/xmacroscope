@@ -10,6 +10,9 @@ import pubsub from './pubsub';
 // Load n runs starting with the most recent
 const Runs = baseResolver
   .createResolver((root, args) => db.run.findAll({
+    where: {
+      end: { [db.Sequelize.Op.ne]: null },
+    },
     limit: args.lastX,
     order: [
       ['start', 'DESC'],
