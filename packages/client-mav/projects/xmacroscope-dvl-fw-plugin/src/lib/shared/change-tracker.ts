@@ -1,8 +1,7 @@
-import { RawChangeSet } from '@ngx-dino/core';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { List } from 'immutable';
-import { reverse } from 'lodash';
+import { RawChangeSet } from '@ngx-dino/core';
 
 import { Run } from './run';
 import { RunFinishedMessage, Message } from './message';
@@ -80,7 +79,6 @@ export class ChangeTracker {
 
   selectRuns(runs: Run[]): RawChangeSet<Run> {
     const runsSelected = this.runsSelected = runs.length > 0;
-    const snapshot = this.snapshot();
     const replaced: [Run, Run][] = [];
 
     const run2id = {};
@@ -89,7 +87,7 @@ export class ChangeTracker {
     const newSnapshot: Run[] = [];
     // FIXME: This is a little too complicated/wordy. Simplify.
     if (runsSelected) {
-      snapshot.forEach((run) => {
+      this.accumulator.forEach((run) => {
         if (run2id.hasOwnProperty(run.id)) {
           const runClone = new Run(run);
           runClone.selected = true;
@@ -108,8 +106,8 @@ export class ChangeTracker {
       });
     } else {
       const highlightCount = this.highlightCount;
-      snapshot.forEach((run, index) => {
-        const fromTheEnd = snapshot.size - index;
+      this.accumulator.forEach((run, index, accumulator) => {
+        const fromTheEnd = accumulator.size - index;
         if (fromTheEnd <= highlightCount) {
           const runClone = new Run(run);
           runClone.showPersona = true;
