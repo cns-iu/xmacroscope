@@ -1,9 +1,10 @@
 import { pick } from 'lodash';
 import { ApolloClient } from 'apollo-client';
-import { Observable, from, merge } from 'rxjs';
+import { Observable, defer, from, merge } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { RecordStream } from '@dvl-fw/core';
 import { RawChangeSet } from '@ngx-dino/core';
+import { reverse } from 'lodash';
 
 import { Run } from '../shared/run';
 import { RunStreamController } from '../shared/run-stream-controller';
@@ -34,16 +35,11 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
   }
 
   getPastRunsCompleted(lastX: number): Observable<Message> {
-    return Observable.create(observer => {
-      // NOTE: apollo-client uses Zen-Observable, so we must adapt it to be an RxJS Observable
-      this.client.watchQuery<{data: {Runs: Run[]}}, {lastX: number}>({ query: RECENT_RUNS, variables: {lastX}})
-        .subscribe({
-          next: observer.next.bind(observer),
-          error: observer.error.bind(observer),
-          complete: observer.complete.bind(observer)
-        });
+    return defer<Run[]>(async () => {
+      const results = await this.client.query<{Runs: Run[]}, {lastX: number}>({ query: RECENT_RUNS, variables: {lastX}});
+      return reverse(results.data.Runs); // Data comes in from youngest to oldest, we need the reverse
     }).pipe(
-      map<{data: {Runs: Run[]}}, Message[]>(results => results.data.Runs.map(run =>
+      map<Run[], Message[]>(runs => runs.map(run =>
         asMessage({ type: 'run-finished', timestamp: run.end, run})
       )),
       concatMap<RunFinishedMessage[], Message>(r => from(r))
