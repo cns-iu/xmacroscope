@@ -14,7 +14,7 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   @Input() dataSource: DataSource;
   @Input() displayedColumns: DataVariable[] = [];
   @Output() rowClick: Observable<[number, any]> = new EventEmitter();
-  selectedIndex: number;
+  selectedId: any;
   displayedColumnNames: string[] = [];
 
   private subscription: Subscription;
@@ -41,22 +41,19 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
   }
 
-  onRowClick(index: number) {
-    if (this.selectedIndex === index) {
+  onRowClick(row: any) {
+    if (row && this.selectedId === row.id) {
       this.resetSelection();
     } else {
-      this.selectedIndex = index;
-      this.dataService.stopStream();
-      const selectedRun = this.dataSource.records[this.dataSource.records.length - 1 - index];
-      this.dataService.selectRunner([selectedRun]);
+      this.selectedId = row.id;
+      this.dataService.selectRunner([row]);
     }
   }
 
   resetSelection(): void {
-    if (this.selectedIndex !== undefined) {
-      this.selectedIndex = undefined;
+    if (this.selectedId !== undefined) {
+      this.selectedId = undefined;
       this.dataService.selectRunner([]);
-      this.dataService.restartStream();
     }
   }
 

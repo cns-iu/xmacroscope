@@ -77,7 +77,9 @@ export class DataService {
   }
 
   getDataMappingOperator(dataVariables: DataVariable[], graphicVariables: GraphicVariable[], recordSetId: string): Operator<any, any> {
-    const mapping = {};
+    const mapping = {
+      id: access<string>('id')
+    };
     dataVariables.forEach((dv: DataVariable) => {
       const filter = graphicVariables.filter((gv: GraphicVariable) => {
         if ((gv.dataVariable.id === dv.id) && (gv.recordSet.id === recordSetId)

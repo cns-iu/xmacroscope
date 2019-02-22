@@ -3,7 +3,7 @@
     <div class="wrapper">
       <table mat-table [dataSource]="dataSource.data" class="mat-elevation-z8 table">
         <tr mat-header-row *matHeaderRowDef="displayedColumnNames; sticky: true;" class="header-row"></tr>
-        <tr mat-row *matRowDef="let row; index as i; columns: displayedColumnNames;" class="row" (click)="onRowClick(i)" [ngClass]="{'selected':i===selectedIndex}">
+        <tr mat-row *matRowDef="let row; columns: displayedColumnNames;" class="row" (click)="onRowClick(row)" [ngClass]="{'selected':row.id===selectedId}">
         </tr>
 
         <ng-container [matColumnDef]="col.label" *ngFor="let col of displayedColumns">

@@ -23,8 +23,4 @@ export class MainComponent implements OnInit {
   resetButtonClicked(): void {
     window.location.reload();
   }
-
-  restartButtonClicked() {
-    this.table.resetSelection();
-  }
 }
