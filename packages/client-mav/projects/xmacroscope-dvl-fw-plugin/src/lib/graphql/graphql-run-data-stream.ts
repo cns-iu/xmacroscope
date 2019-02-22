@@ -1,7 +1,7 @@
 import { pick } from 'lodash';
 import { ApolloClient } from 'apollo-client';
 import { Observable, defer, from, merge } from 'rxjs';
-import { concatMap, map } from 'rxjs/operators';
+import { concatMap, delay, map } from 'rxjs/operators';
 import { RecordStream } from '@dvl-fw/core';
 import { RawChangeSet } from '@ngx-dino/core';
 import { reverse } from 'lodash';
@@ -42,7 +42,8 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
       map<Run[], Message[]>(runs => runs.map(run =>
         asMessage({ type: 'run-finished', timestamp: run.end, run})
       )),
-      concatMap<RunFinishedMessage[], Message>(r => from(r))
+      concatMap<RunFinishedMessage[], Message>(r => from(r)),
+      delay(200)
     );
   }
 
