@@ -12,6 +12,7 @@ const UPDATE_RUN_LOCAL = gql`
     updateRun(
       runId: null,
       status: $status,
+      activityName: null,
       name: null,
       color: null,
       icon: null,

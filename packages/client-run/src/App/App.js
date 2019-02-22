@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import 'bootswatch/dist/darkly/bootstrap.css';
-import AppRoutes from './AppRoutes';
+import AppSettings from './AppSettings';
 
 //
 // In production, the server-graphql express server hosts the app from the '/start' directory.
@@ -13,7 +13,7 @@ const App = () => (
   <BrowserRouter basename={basename}>
     <div className="base-container">
       <Container fluid>
-        <AppRoutes />
+        <AppSettings />
       </Container>
     </div>
   </BrowserRouter>

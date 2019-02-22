@@ -5,6 +5,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 import { Col } from 'reactstrap';
 import { includes } from 'lodash';
+import PropTypes from 'prop-types';
 import SignupPreMutation from './SignupStart';
 import RunningTimerPre from './RunningTimerPre';
 import Running from './Running';
@@ -40,8 +41,8 @@ class SignupStartPage extends React.Component {
                   : ''
               }
               {{
-                preSignupForm: <SignupPreMutation />,
-                signupForm: <SignupFormFormik />,
+                preSignupForm: <SignupPreMutation {...this.props} />,
+                signupForm: <SignupFormFormik {...this.props} />,
                 runTimerPre: <RunningTimerPre runId={runId} />,
                 running: <Running />,
                 postRunTimer: <RunningTimerPost />,
@@ -54,5 +55,9 @@ class SignupStartPage extends React.Component {
     );
   }
 }
+
+SignupStartPage.propTypes = {
+  settings: PropTypes.object.isRequired,
+};
 
 export default SignupStartPage;

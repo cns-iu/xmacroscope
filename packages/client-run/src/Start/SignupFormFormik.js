@@ -2,6 +2,7 @@ import React from 'react';
 import { withFormik } from 'formik';
 import { Row, Col } from 'reactstrap';
 import { Mutation } from 'react-apollo';
+import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import zipcodes from 'zipcodes';
 import gql from 'graphql-tag';
@@ -92,7 +93,8 @@ const SignupFormFormik = withFormik({
   },
 })(SignupForm);
 
-function WithCreateMutation() {
+function WithCreateMutation(props) {
+  const { settings } = props;
   return (
     <Mutation
       mutation={FINISH_SIGNUP}
@@ -119,7 +121,11 @@ function WithCreateMutation() {
           >
             <StyledCard>
               <StyledCardHeader className="text-center">
-                <BaseHeader>RUN SIGN UP</BaseHeader>
+                <BaseHeader>
+                  {settings.activityName.toUpperCase()}
+                  { ' ' }
+                  SIGN UP
+                </BaseHeader>
               </StyledCardHeader>
               <StyledCardBody>
                 <SignupFormFormik
@@ -133,5 +139,9 @@ function WithCreateMutation() {
     </Mutation>
   );
 }
+
+WithCreateMutation.propTypes = {
+  settings: PropTypes.object.isRequired,
+};
 
 export default WithCreateMutation;
