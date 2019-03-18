@@ -1,6 +1,6 @@
 # xMacroscope
 
-[![Shipping faster with ZenHub](https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png)](https://app.zenhub.com/workspace/o/cns-iu/xmacroscope)
+[![Shipping faster with ZenHub](https://img.shields.io/badge/Shipping_faster_with-ZenHub-5e60ba.svg?style=flat-square)](https://app.zenhub.com/workspace/o/cns-iu/xmacroscope)
 [![Build Status](https://travis-ci.com/cns-iu/xmacroscope.svg?branch=master)](https://travis-ci.com/cns-iu/xmacroscope)
 [![GitHub last commit](https://img.shields.io/github/last-commit/cns-iu/xmacroscope.svg)](https://github.com/cns-iu/xmacroscope/commits/master)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
