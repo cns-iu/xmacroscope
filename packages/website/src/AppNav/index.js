@@ -1,18 +1,16 @@
 import {
-  Col, Nav, NavItem, NavLink, Row,
+  Nav, NavItem, NavLink,
 } from 'reactstrap';
 import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
 function AppNav() {
   return (
-    <Row>
-      <Col>
-        <Nav className="justify-content-center">
-          <NavItem><NavLink to="/research" tag={RRNavLink}>Research</NavLink></NavItem>
-        </Nav>
-      </Col>
-    </Row>
+    <Nav className="justify-content-center">
+      <NavItem><NavLink exact to="/" tag={RRNavLink}>Home</NavLink></NavItem>
+      <NavItem><NavLink to="/research" tag={RRNavLink}>Research</NavLink></NavItem>
+      <NavItem><NavLink to="/media" tag={RRNavLink}>Media</NavLink></NavItem>
+    </Nav>
   );
 }
 

@@ -8,26 +8,30 @@ function Research() {
     {
       paperTitle: 'NSF Annual Report - Year 1',
       fileName: 'research-annual-report-year-1',
+      key: 1,
     },
-    // {
-    //   paperTitle: 'Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises,'
-    //     + ' and Assessments',
-    //   paperAuthors: 'Katy Börner, Andreas Bueckle, and Michael Ginda',
-    //   fileName: 'research-data-vis-literacy',
-    // },
+    {
+      paperTitle: 'Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments',
+      paperAuthors: 'Katy Börner, Andreas Bueckle, and Michael Ginda',
+      fileName: 'research-data-visualization-literacy',
+      key: 2,
+    },
     {
       paperTitle: 'Begin at the Beginning: A Constructionist Model for Interpreting Data'
         + ' Visualizations',
       paperAuthors: 'Mary Ann Wojton, Donnelley Hayde, Joe Heimlich, Katy Börner',
       fileName: 'research-begin-beginning',
+      key: 3,
     },
     {
       paperTitle: 'Lifelong Learning Group Research Articles in Progress',
       fileName: 'research-llg-research-in-progress',
+      key: 4,
     },
     {
       paperTitle: 'Data Visualization Literacy Literature Review: Sharing Personal Information',
       fileName: 'research-annual-report-year-1',
+      key: 5,
     },
   ];
 
@@ -40,10 +44,10 @@ function Research() {
       <p>
         In our work to date, we have already published several papers detailing our studies.
       </p>
-      <Row className="justify-content-center">
+      <Row className="mb-5 justify-content-center">
         {
           papers.map(paper => (
-            <Col xs={6} className="mt-5 text-center" key={paper.paperPDF}>
+            <Col xs={12} sm={6} className="mt-5 text-center" key={paper.key}>
               <h5>{paper.paperTitle}</h5>
               <a href={`${s3Base}${paper.fileName}.pdf`}>
                 <img

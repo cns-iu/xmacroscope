@@ -7,6 +7,7 @@ import Home from '../Home';
 import NoMatch from '../NoMatch';
 import FooterSite from '../FooterSite';
 import Research from '../Research';
+import Media from '../Media';
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
           <Switch>
             <Route exact path="/" render={() => (<Home />)} />
             <Route exact path="/research" render={() => (<Research />)} />
+            <Route exact path="/media" render={() => (<Media />)} />
             <Route component={NoMatch} />
             <FooterSite />
           </Switch>
