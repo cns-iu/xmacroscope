@@ -16,7 +16,7 @@ const ControlGroupButtons = ({ updateInputValue, value }) => {
     <Row className="justify-content-md-center">
       <Col sm={8}>
         <PlaceHolder className="pb-2 text-center">
-          <h4>
+          <h4 className="no-select">
             Height:&nbsp;
             {value}
             {value ? '"' : ''}

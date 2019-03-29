@@ -11,7 +11,7 @@ const FormField = ({
 }) => (
   <FormGroup>
     {/* Optional label */}
-    {label ? <Label>{label}</Label> : ''}
+    {label ? <Label className="no-select">{label}</Label> : ''}
 
     {/* Form field */}
     <Field

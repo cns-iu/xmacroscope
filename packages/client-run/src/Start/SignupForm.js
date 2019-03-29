@@ -84,7 +84,7 @@ const SignupForm = ({
     </Row>
     <Row>
       <Col className="pt-3 pb-2">
-        <BaseFormHeader className="text-center">Create your icon</BaseFormHeader>
+        <BaseFormHeader className="text-center no-select">Create your icon</BaseFormHeader>
       </Col>
     </Row>
     <Row>
@@ -131,7 +131,7 @@ const SignupForm = ({
     </Row>
     <Col sm={12} className="px-0 pt-4">
       <StyledButton
-        className="btn-lg btn-block link"
+        className="btn-lg btn-block link no-select"
         type="submit"
         disabled={!isValid}
         color="secondary"

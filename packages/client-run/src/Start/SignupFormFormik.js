@@ -118,7 +118,7 @@ function WithCreateMutation() {
             className="mx-auto"
           >
             <StyledCard>
-              <StyledCardHeader className="text-center">
+              <StyledCardHeader className="text-center no-select">
                 <BaseHeader>RUN SIGN UP</BaseHeader>
               </StyledCardHeader>
               <StyledCardBody>

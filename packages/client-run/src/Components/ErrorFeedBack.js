@@ -13,7 +13,7 @@ const ErrorFeedBack = ({ name, errors }) => {
       <Col>
         {/* Validation feedback */}
         {
-          <ErrorWrapper className="p-1" active={active}>
+          <ErrorWrapper className="p-1 no-select" active={active}>
             {errors[name] ? errors[name] : '\u00A0'}
           </ErrorWrapper>
         }

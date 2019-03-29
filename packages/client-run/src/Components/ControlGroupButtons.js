@@ -8,6 +8,7 @@ const ControlGroupButtons = ({ options, value, updateInputValue }) => (
     {
       options.map(opt => (
         <StyledBTN
+          className="no-select"
           selected={opt === value}
           key={opt}
           onClick={() => {

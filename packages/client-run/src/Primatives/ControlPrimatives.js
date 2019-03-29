@@ -26,8 +26,8 @@ const ControlKeypadContainer = styled.div`
   margin: auto;
   max-width: 250px;
   @media (max-height: 1080px) {
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
     max-width: 280px;
   }
 `;
@@ -37,24 +37,24 @@ const KeyInput = styled(Button)`
   color: ${sportsYellow};
   border-color: ${sportsYellow};
   background-color: gray;
+  display: initial;
   width: ${props => props.dimension};
   height: ${props => props.dimension};
   margin: auto;
   @media (max-height: 1080px) {
-    height: 40px;
-    width: 40px;
-    font-size: 12px;
     ${props => (props.hide === 'hide' ? 'display: none' : '')};
+    font-size: 22px;
+    display: initial;
   }
 
   &:active {
    ${selected}
   }
-  
+
   &:hover {
    ${selected}
   }
-  
+
   &:hover {
     color: ${sportsYellow};
     border-color: ${sportsYellow};
@@ -73,6 +73,7 @@ const ControlColorsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 25px;
+  margin: auto;
   @media (max-height: 1080px) {
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;

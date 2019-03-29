@@ -20,7 +20,7 @@ const ControlKeypad = ({
   <Fragment>
     <Col sm={12}>
       <PlaceHolder className="pb-2 text-center">
-        <h4>
+        <h4 className="no-select">
           Zip Code:
           <span>
             &nbsp;
@@ -35,7 +35,7 @@ const ControlKeypad = ({
         options.map(opt => (
           <KeyInput
             hide={opt === '.' ? 'hide' : 'show'}
-            dimension="50px"
+            dimension="60px"
             key={opt}
             onClick={() => {
               if (opt === 'CLR') {

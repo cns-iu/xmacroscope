@@ -16,6 +16,7 @@ const BaseHeader = styled.h1`
   font-weight: 900;
   letter-spacing: 2px;
   font-size: 65px;
+  margin-bottom: 0px;
   @media (max-height: 1080px) {
     font-size: 30px !important;
   }
@@ -60,6 +61,9 @@ const StyledBTN = styled(Button)`
   color: ${sportsYellow};
   border-color: ${sportsYellow};
   background-color: gray;
+  min-height: 40px;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
   ${props => (props.selected ? `${selected}` : '')}
   &:hover{
    ${selected}
