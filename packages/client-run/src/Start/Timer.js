@@ -61,6 +61,8 @@ class Timer extends React.Component {
   render() {
     const { displayTimer } = this.props;
     const { timer, countDownSound } = this.state;
+    const vol = process.env.NODE_ENV === 'development' ? 0.5 : 1.0;
+
     return (
       <TimerWrapper displayTimer={displayTimer}>
         {timer}
@@ -68,6 +70,7 @@ class Timer extends React.Component {
           <ReactHowler
             src={CountDown}
             playing={timer <= 8500}
+            volume={vol}
           />
         ) : (
           ''
