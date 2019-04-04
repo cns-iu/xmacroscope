@@ -1,0 +1,82 @@
+body {
+  background: #f2dfa2;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #0a0909;
+}
+
+h1, h2 {
+  font-family: 'Patua One', cursive;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.jumbotron {
+  background: #eacb66;
+  border-bottom: 3px solid white;
+}
+
+.navbar-dark {
+  background: #232628;
+}
+
+.nav-item {
+  margin: 0 20px;
+
+}
+
+button.nav-button,
+button.nav-button:focus,
+button.nav-button:hover {
+  border-radius: 0px;
+  border: none;
+  min-width: 220px;
+  font-size: 20px;
+  padding: 8px 18px;
+  position: relative;
+  background: white;
+  color: black;
+  font-weight: 700;
+  margin: 0px 10px;
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+}
+
+button.nav-button .active {
+  background: #f8efcf !important;
+}
+
+button.nav-button:active {
+  background: white !important;
+  color: black !important;
+  font-weight: 700;
+  margin: 3px 5px -3px 5px;
+  -webkit-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75) !important;
+  -moz-box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75) !important;
+  box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.75) !important;
+}
+
+.footer-body {
+  border-top: 3px solid white;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 3px solid white;
+  margin: 1em 0;
+  padding: 0;
+}
+
+a {
+  color: #3574D3;
+}
+
+.pdf-thumb {
+  border: 8px solid white;
+  -webkit-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+  box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.75);
+}
