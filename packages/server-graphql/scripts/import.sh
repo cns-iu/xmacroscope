@@ -21,11 +21,12 @@ fi
 
 DB_LOCATION=$1
 TEMP_FILE=$2
+TEMP_DIR=../tmp/import
 LOG_DIR=../logs
 
 mkdir -p $LOG_DIR
-tar -zxf $TEMP_FILE
-TEMP_DIR=${TEMP_FILE%%.*}
+mkdir $TEMP_DIR && tar -zxf $TEMP_FILE -C $TEMP_DIR
+
 ORG=$(cat "$TEMP_DIR/org")
 DATE=`date +"%Y-%m-%d-%T"`
 LOG_FILE=$LOG_DIR/import-$DATE-$ORG.log

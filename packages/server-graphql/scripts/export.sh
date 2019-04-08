@@ -16,30 +16,33 @@ fi
 DB_LOCATION=$1
 DATE=`date +"%Y-%m-%d-%T"`
 LOCATION='smm'
-TEMP_DIR="export-${DATE}-${LOCATION}"
+EXPORT_DIR="export-${DATE}-${LOCATION}"
 
-mkdir $TEMP_DIR
+mkdir -p ../tmp
+mkdir ../tmp/$EXPORT_DIR
 
 # Output organization so the other side knows who we are
-echo $LOCATION > $TEMP_DIR/org
+echo $LOCATION > ../tmp/$EXPORT_DIR/org
 
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Messages;" >> $TEMP_DIR/messages.sql
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM People;" >> $TEMP_DIR/people.sql
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Performances;" >> $TEMP_DIR/performances.sql
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Runs;" >> $TEMP_DIR/runs.sql
+#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Messages;" >> tmp/$EXPORT_DIR/messages.sql
+#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM People;" >> tmp/$EXPORT_DIR/people.sql
+#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Performances;" >> tmp/$EXPORT_DIR/performances.sql
+#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Runs;" >> tmp/$EXPORT_DIR/runs.sql
 
 # Limiting the dump to specific tables
-sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > $TEMP_DIR/dump.sql
-sqlite3 $DB_LOCATION ".schema" > $TEMP_DIR/schema.sql
+sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > ../tmp/$EXPORT_DIR/dump.sql
+sqlite3 $DB_LOCATION ".schema" > ../tmp/$EXPORT_DIR/schema.sql
 
 # Output the diff of the dump and the schema to get rid of the CREATE statements
-grep -vx -f $TEMP_DIR/schema.sql $TEMP_DIR/dump.sql > $TEMP_DIR/data.sql
+grep -vx -f ../tmp/$EXPORT_DIR/schema.sql ../tmp/$EXPORT_DIR/dump.sql > ../tmp/$EXPORT_DIR/data.sql
 
 # Get rid of SequelizeMeta table
 # sed -i '' '/SequelizeMeta/d' $TEMP_DIR/data.sql
 
 # Cleanup the TEMP_DIR to tar
-rm -f $TEMP_DIR/dump.sql $TEMP_DIR/schema.sql
+rm -f ../tmp/$EXPORT_DIR/dump.sql ../tmp/$EXPORT_DIR/schema.sql
 
-tar -zcf $TEMP_DIR.tar.gz $TEMP_DIR
-rm -rf $TEMP_DIR
+tar -zcf ../tmp/$EXPORT_DIR.tar.gz -C ../tmp/$EXPORT_DIR .
+rm -rf ../tmp/$EXPORT_DIR
+
+# TODO: rsync to deployment server
