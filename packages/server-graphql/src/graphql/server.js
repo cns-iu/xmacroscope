@@ -51,6 +51,21 @@ if (process.env.DB_DIALECT === 'sqlite') {
       console.log(chalk.red('Unknown error: ', err.code));
     }
   });
+
+  if (process.env.MIGRATION_MODE === 'export') {
+    const cron = require('node-cron');
+    const shell = require('shelljs');
+    const script = path.join(
+      __dirname,
+      `../../scripts/export.sh `
+    );
+
+    cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 * * * *', () => {
+      shell.exec(script + sqliteStorage);
+    });
+  } else if (process.env.MIGRATION_MODE === 'import') {
+    
+  }
 }
 
 //

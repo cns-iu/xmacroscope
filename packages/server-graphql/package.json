@@ -55,10 +55,12 @@
     "lodash": "^4.17.4",
     "moment": "^2.22.2",
     "mysql2": "^1.5.1",
+    "node-cron": "^2.0.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.23.2",
     "sequelize-cli": "^4.0.0",
+    "shelljs": "^0.8.3",
     "sqlite3": "^4.0.2"
   },
   "resolutions": {
