@@ -71,3 +71,4 @@ yarn-error.log
 # Data Exports
 runs.csv
 packages/server-graphql/logs
+packages/server-graphql/tmp
