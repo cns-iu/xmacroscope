@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack --config webpack.dev.js",
+    "start-destroy": "npm-run-all dev-data-destroy start",
+    "dev-data-destroy": "rimraf private/data.sqlite",
     "start:prod": "node ./build/server.js",
     "build": "webpack --progress --colors --config webpack.prod.js"
   },
@@ -28,6 +30,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "jsverify": "^0.7.4",
+    "npm-run-all": "4.1.5",
+    "rimraf": "2.6.2",
     "source-map-support": "^0.4.11",
     "start-server-webpack-plugin": "^2.2.0",
     "webpack": "^4.20.2",
@@ -49,6 +53,7 @@
     "graphql": "^0.13.2",
     "graphql-iso-date": "^3.5.0",
     "graphql-tag": "^2.6.0",
+    "graphql-type-uuid": "^0.2.0",
     "jsonwebtoken": "^8.1.0",
     "jwks-rsa": "^1.2.1",
     "jwt-decode": "^2.2.0",

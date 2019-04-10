@@ -7,6 +7,11 @@ import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 
 const Person = sequelize.define('Person', {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true
+  },
   icon: { type: Sequelize.STRING },
   color: { type: Sequelize.STRING },
   ageGroup: { type: Sequelize.STRING },

@@ -10,6 +10,11 @@ import Sequelize from 'sequelize';
 import sequelize from '../config/sequelize';
 
 const Setting = sequelize.define('Setting', {
+  id: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true
+  },
   location: { type: Sequelize.STRING, unique: true },
   usState: { type: Sequelize.STRING, unique: true },
 

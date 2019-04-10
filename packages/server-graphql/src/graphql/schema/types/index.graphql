@@ -4,6 +4,9 @@
 # Define an ISO-8601 date object for use in types
 scalar Date
 
+# Define an type for standard Universally Unique Identifiers
+scalar UUID
+
 #
 # Interfaces
 #
@@ -27,7 +30,7 @@ type MessageRun implements Message {
 }
 
 type Person {
-  id: ID!
+  id: UUID!
   icon: String
   color: String
   ageGroup: String
@@ -40,10 +43,10 @@ type Person {
 }
 
 type Run {
-  id: ID
+  id: UUID
   start: Date
   end: Date
-  personId: ID
+  personId: UUID
   person: Person
 }
 
@@ -92,11 +95,11 @@ input RunInput {
 }
 
 input RunStartInput {
-  id: ID
+  id: UUID
   start: Date!
 }
 
 input RunFinishInput {
-  id: ID!
+  id: UUID!
   finish: Date!
 }
