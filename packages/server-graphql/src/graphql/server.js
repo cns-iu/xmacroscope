@@ -52,20 +52,17 @@ if (process.env.DB_DIALECT === 'sqlite') {
     }
   });
 
-  if (process.env.MIGRATION_MODE === 'export') {
-    const cron = require('node-cron');
-    const shell = require('shelljs');
-    const script = path.join(
-      __dirname,
-      `../../scripts/export.sh `
-    );
+  const cron = require('node-cron');
+  const shell = require('shelljs');
+  const script = process.env.MIGRATION_MODE === 'import' ? `../../scripts/import.sh ` : `../../scripts/export.sh `
+  const cmd = path.join(
+    __dirname,
+    script
+  );
 
-    cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 * * * *', () => {
-      shell.exec(script + sqliteStorage);
-    });
-  } else if (process.env.MIGRATION_MODE === 'import') {
-    
-  }
+  cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 * * * *', () => {
+    shell.exec(cmd + sqliteStorage);
+  });
 }
 
 //
