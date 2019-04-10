@@ -3,10 +3,10 @@ set -e
 
 echo "Running export cron job..."
 
-# Check to see we've provided an argument for the db
-if [ $# -eq 0 ]
+# Check to see we've provided both required arguments (db location and org name)
+if [ ! $# -eq 2 ]
   then
-    echo "DB location required."
+    echo "DB location and org name required."
     exit 1
 fi
 
@@ -17,7 +17,14 @@ if [ ! -f $1 ]
     exit 1
 fi
 
-# We need the actual location of db on disk because we're gonna change directories
+# Check to see that the db we've provided actually exists
+if [ -z "$2" ]
+  then
+    echo "Org name required."
+    exit 1
+fi
+
+# We need the actual db location on disk because we're gonna change directories
 PWD=$(pwd)
 DB_LOCATION=$PWD/$1
 
@@ -28,7 +35,7 @@ cd "$SCRIPTDIR"
 # TODO: pull organization out of database or maybe from .env?
 
 DATE=`date +"%Y-%m-%d-%T"`
-LOCATION='smm'
+LOCATION=$2
 EXPORT_DIR="export-${DATE}-${LOCATION}"
 
 # We should already have a tmp directory, but you never know...

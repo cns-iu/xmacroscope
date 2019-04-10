@@ -61,7 +61,7 @@ if (process.env.DB_DIALECT === 'sqlite') {
   );
 
   cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 * * * *', () => {
-    shell.exec(cmd + sqliteStorage);
+    shell.exec(cmd + sqliteStorage + ` ${process.env.ORG}`);
   });
 }
 
