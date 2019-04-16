@@ -1,6 +1,7 @@
 import React from 'react';
-import { Col, Jumbotron, Row } from 'reactstrap';
-import AppNav from '../AppNav';
+import {
+  Jumbotron, Row, Col, Nav, Button,
+} from 'reactstrap';
 import './index.css';
 
 function IntroHeader() {
@@ -25,7 +26,13 @@ function IntroHeader() {
       </Row>
       <Row>
         <Col>
-          <AppNav />
+          <Nav className="justify-content-center">
+            <Button className="nav-button">All</Button>
+            <Button className="nav-button">CNS</Button>
+            <Button className="nav-button">UCI</Button>
+            <Button className="nav-button">COSI</Button>
+            <Button className="nav-button">SMM</Button>
+          </Nav>
         </Col>
       </Row>
     </Jumbotron>

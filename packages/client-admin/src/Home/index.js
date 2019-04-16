@@ -1,10 +1,18 @@
 import React from 'react';
 import './index.css';
-import RunTable from '../Tables/RunTable';
+import Table from '../Tables/BaseTable';
+import {
+  RunColumns, RunFormat, RunQuery, RunVariables,
+} from '../Tables/Runs';
 
 function Home() {
   return (
-    <RunTable />
+    <Table
+      columns={RunColumns}
+      formatFunction={RunFormat}
+      query={RunQuery}
+      queryVariables={RunVariables}
+    />
   );
 }
 
