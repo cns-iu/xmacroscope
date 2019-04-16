@@ -77,7 +77,10 @@ const FinishSignup = baseResolver
   .createResolver((root, args) => db.person.create({
     ...args.run.person,
     // Start is null until the race begins this is updated in another mutation
-    Runs: { start: null },
+    Runs: {
+      org: args.run.org,
+      start: null
+    },
   }, {
     include: [db.run],
   })

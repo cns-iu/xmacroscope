@@ -21,6 +21,7 @@ const Person = sequelize.define('Person', {
   latitude: { type: Sequelize.FLOAT(9, 6) },
   longitude: { type: Sequelize.FLOAT(9, 6) },
   state: { type: Sequelize.STRING },
+  org: { type: Sequelize.STRING },
 }, {
   paranoid: true,
 });

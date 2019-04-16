@@ -14,6 +14,7 @@ const Run = sequelize.define('Run', {
   },
   start: { type: Sequelize.DATE },
   end: { type: Sequelize.DATE },
+  org: { type: Sequelize.STRING },
 }, {
   paranoid: true,
 });

@@ -4,7 +4,7 @@ type Mutation {
   # Initiate signup message
   StartSignup: Boolean
 
-  # Finish signup creastes a run record and associates the person to it.
+  # Finish signup creates a run record and associates the person to it.
   # It returns the created run
   FinishSignup(run: RunInput): Run
 
