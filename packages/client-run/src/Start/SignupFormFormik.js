@@ -75,6 +75,7 @@ const SignupFormFormik = withFormik({
       variables: {
         run: {
           start: null,
+          org: process.env.REACT_APP_LOCATION,
           person: {
             ageGroup: values.ageGroup,
             favoriteActivity: values.favoriteActivity,
@@ -85,6 +86,7 @@ const SignupFormFormik = withFormik({
             state: location.state,
             latitude: location.latitude,
             longitude: location.longitude,
+            org: process.env.REACT_APP_LOCATION,
           },
         },
       },
