@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import React from 'react';
 import moment from 'moment';
 
-const dateFormat = 'MMMM Do YYYY, h:mm:ss a';
+const dateFormat = 'YYYY-MM-DD, h:mm:ss a';
 
 export const RunColumns = [
   {
@@ -69,6 +69,13 @@ export const RunColumns = [
   {
     accessor: 'latitude',
     Header: 'Latitude',
+  },
+];
+
+export const RunDefaultSort = [
+  {
+    id: 'start',
+    desc: true,
   },
 ];
 
