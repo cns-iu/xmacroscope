@@ -75,7 +75,7 @@ export const RunColumns = [
 export const RunDefaultSort = [
   {
     id: 'start',
-    desc: true,
+    desc: false,
   },
 ];
 
@@ -126,5 +126,7 @@ export const RunQuery = gql`
     }
   }
 `;
+
+export const RunTitle = 'People/Runs';
 
 export const RunVariables = { lastX: parseInt('10', 10) };

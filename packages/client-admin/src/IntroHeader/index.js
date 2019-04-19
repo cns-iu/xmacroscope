@@ -6,7 +6,7 @@ import './index.css';
 
 function IntroHeader() {
   return (
-    <Jumbotron className="text-center pb-5">
+    <Jumbotron className="text-center pb-5 mb-3">
       <h1><a className="home-link" href="/">xMacroscope Cloud</a></h1>
       <Row className="justify-content-center">
         <Col xs={8} lg={6}>
