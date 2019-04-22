@@ -2,12 +2,13 @@ import gql from 'graphql-tag';
 import React from 'react';
 import moment from 'moment';
 
-const dateFormat = 'YYYY-MM-DD, h:mm:ss a';
+const dateFormat = 'YYYY-MM-DD hh:mm:ss';
 
 export const RunColumns = [
   {
     accessor: 'id',
     Header: 'Id',
+    show: false,
   },
   {
     accessor: 'org',
@@ -18,7 +19,7 @@ export const RunColumns = [
     Header: 'Start',
     className: 'wordwrap',
     Cell: row => (
-      <span>{moment(row.start).format(dateFormat)}</span>
+      <span>{moment(row.value).format(dateFormat)}</span>
     ),
   },
   {
@@ -26,7 +27,7 @@ export const RunColumns = [
     Header: 'End',
     className: 'wordwrap',
     Cell: row => (
-      <span>{moment(row.end).format(dateFormat)}</span>
+      <span>{moment(row.value).format(dateFormat)}</span>
     ),
   },
   {
@@ -65,17 +66,19 @@ export const RunColumns = [
   {
     accessor: 'longitude',
     Header: 'Longitude',
+    show: false,
   },
   {
     accessor: 'latitude',
     Header: 'Latitude',
+    show: false,
   },
 ];
 
 export const RunDefaultSort = [
   {
     id: 'start',
-    desc: false,
+    desc: true,
   },
 ];
 
@@ -96,8 +99,8 @@ export const RunFormat = function formatRuns(data) {
         height: row.person.height,
         zipCode: row.person.zipCode,
         state: row.person.state,
-        latitude: row.person.latitude,
         longitude: row.person.longitude,
+        latitude: row.person.latitude,
       },
     )
   ));
@@ -128,5 +131,3 @@ export const RunQuery = gql`
 `;
 
 export const RunTitle = 'People/Runs';
-
-export const RunVariables = { lastX: parseInt('10', 10) };

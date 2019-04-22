@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import Table from '../Tables/BaseTable';
 import {
-  RunColumns, RunDefaultSort, RunFormat, RunQuery, RunTitle, RunVariables,
+  RunColumns, RunDefaultSort, RunFormat, RunQuery, RunTitle,
 } from '../Tables/Runs';
 
 function Home() {
@@ -12,7 +12,6 @@ function Home() {
       defaultSort={RunDefaultSort}
       formatForTable={RunFormat}
       query={RunQuery}
-      queryVariables={RunVariables}
       title={RunTitle}
     />
   );

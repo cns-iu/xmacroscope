@@ -115,6 +115,7 @@ class Table extends Component {
                       defaultPageSize={10}
                       filterable
                       filtered={filtered}
+                      resizable={false}
                       onFilteredChange={(filter, column, value) => {
                         onFilteredChanged(value, column.id || column.accessor);
                       }}
