@@ -82,7 +82,7 @@ export const RunDefaultSort = [
 export const RunFormat = function formatRuns(data) {
   const results = [];
 
-  data.Runs.map(row => (
+  data.AllRuns.map(row => (
     results.push(
       {
         id: row.id,
@@ -106,8 +106,8 @@ export const RunFormat = function formatRuns(data) {
 };
 
 export const RunQuery = gql`
-  query Runs($lastX: Int!) {
-    Runs(lastX: $lastX){
+  query AllRuns {
+    AllRuns {
       id
       start
       end
