@@ -20,7 +20,23 @@ const Runs = baseResolver
     include: [
       { model: db.person, as: 'person' },
     ],
-  }));
+  })
+);
+
+// Load ALL runs starting with the most recent
+const AllRuns = baseResolver
+  .createResolver((root, args) => db.run.findAll({
+    where: {
+      end: { [db.Sequelize.Op.ne]: null },
+    },
+    order: [
+      ['start', 'DESC'],
+    ],
+    include: [
+      { model: db.person, as: 'person' },
+    ],
+  })
+);
 
 //------------------------------------------------------------------------------
 // Mutations
@@ -211,6 +227,7 @@ const FinishRun = baseResolver
 const RunResolver = {
   Query: {
     Runs,
+    AllRuns,
   },
   Mutation: {
     // SelectRun,

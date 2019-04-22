@@ -3,7 +3,7 @@ type Query {
   Person(id: UUID): Person
   People(limit: Int = 20): [Person!]!
   Runs(lastX: Int): [Run!]!
+  AllRuns: [Run!]!
   Messages(lastX: Int): MessageAny
   Settings(location: String!): Setting
 }
-
