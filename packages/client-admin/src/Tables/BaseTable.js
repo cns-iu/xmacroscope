@@ -136,11 +136,16 @@ class Table extends Component {
 
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
-  defaultSort: PropTypes.arrayOf(PropTypes.object).isRequired,
+  defaultSort: PropTypes.arrayOf(PropTypes.object),
   formatForTable: PropTypes.func.isRequired,
   query: PropTypes.objectOf(PropTypes.any).isRequired,
-  queryVariables: PropTypes.objectOf(PropTypes.any).isRequired,
+  queryVariables: PropTypes.objectOf(PropTypes.any),
   title: PropTypes.string.isRequired,
+};
+
+Table.defaultProps = {
+  defaultSort: [],
+  queryVariables: {},
 };
 
 export default Table;
