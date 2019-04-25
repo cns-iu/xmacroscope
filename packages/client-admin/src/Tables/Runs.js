@@ -31,6 +31,16 @@ export const RunColumns = [
     ),
   },
   {
+    accessor: 'duration',
+    Header: 'Duration',
+    Cell: row => (
+      <span>
+        { row.value }
+        s
+      </span>
+    ),
+  },
+  {
     accessor: 'icon',
     Header: 'Icon',
   },
@@ -54,6 +64,12 @@ export const RunColumns = [
   {
     accessor: 'height',
     Header: 'Height',
+    Cell: row => (
+      <span>
+        { row.value }
+        &quot;
+      </span>
+    ),
   },
   {
     accessor: 'zipCode',
@@ -85,13 +101,16 @@ export const RunDefaultSort = [
 export const RunFormat = function formatRuns(data) {
   const results = [];
 
-  data.AllRuns.map(row => (
+  data.AllRuns.map((row) => {
+    /* eslint array-callback-return: 0 */
+    const runDuration = Math.abs(moment(row.start).diff(row.end)) / 1000;
     results.push(
       {
         id: row.id,
         org: row.org,
         start: row.start,
         end: row.end,
+        duration: runDuration,
         icon: row.person.icon,
         color: row.person.color,
         ageGroup: row.person.ageGroup,
@@ -102,9 +121,8 @@ export const RunFormat = function formatRuns(data) {
         longitude: row.person.longitude,
         latitude: row.person.latitude,
       },
-    )
-  ));
-
+    );
+  });
   return results;
 };
 
