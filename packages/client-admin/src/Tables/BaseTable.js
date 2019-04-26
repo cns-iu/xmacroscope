@@ -41,7 +41,7 @@ class Table extends Component {
             if (error) return `Error! ${error.message}`;
 
             const FilterMethod = (filter, row) => (
-              String(row[filter.id].toLowerCase()).startsWith(filter.value.toLowerCase())
+              String(row[filter.id]).toLowerCase().startsWith(String(filter.value).toLowerCase())
             );
 
             const onFilteredChanged = (value, accessor) => {
