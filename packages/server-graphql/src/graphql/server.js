@@ -54,14 +54,13 @@ if (process.env.DB_DIALECT === 'sqlite') {
 
   const cron = require('node-cron');
   const shell = require('shelljs');
-  const script = process.env.MIGRATION_MODE === 'import' ? `../../scripts/import.sh ` : `../../scripts/export.sh `
   const cmd = path.join(
     __dirname,
-    script
+    `../../scripts/export.sh ${sqliteStorage} ${process.env.PG_PASS}`
   );
 
   cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 * * * *', () => {
-    shell.exec(cmd + sqliteStorage + ` ${process.env.ORG}`);
+    shell.exec(cmd);
   });
 }
 

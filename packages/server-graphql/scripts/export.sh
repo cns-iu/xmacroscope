@@ -3,10 +3,10 @@ set -e
 
 echo "Running export cron job..."
 
-# Check to see we've provided both required arguments (db location and org name)
+# Check to see we've provided both required arguments (db location, pgpass)
 if [ ! $# -eq 2 ]
   then
-    echo "DB location and org name required."
+    echo "DB location and PGPASS required."
     exit 1
 fi
 
@@ -17,67 +17,57 @@ if [ ! -f $1 ]
     exit 1
 fi
 
-# Check to see that the db we've provided actually exists
+# Check to see that the PG_PASS is actually defined
 if [ -z "$2" ]
   then
-    echo "Org name required."
+    echo "PG_PASS required."
     exit 1
 fi
 
 # We need the actual db location on disk because we're gonna change directories
 PWD=$(pwd)
 DB_LOCATION=$PWD/$1
+DB_PASS=$2
 
 # This allows us to use fixed relative paths ensuring we're acting relative to the scripts directory
 SCRIPTDIR="$(dirname "$0")"
 cd "$SCRIPTDIR"
 
-# TODO: pull organization out of database or maybe from .env?
+# We should already have a logs and tmp directory, but you never know...
+mkdir -p ../logs
+mkdir -p ../tmp
 
 DATE=`date +"%Y-%m-%d-%T"`
-LOCATION=$2
-EXPORT_DIR="export-${DATE}-${LOCATION}"
+EXPORT_DIR=../tmp/export-$DATE
+mkdir $EXPORT_DIR
 
-# We should already have a tmp directory, but you never know...
-mkdir -p ../tmp
-mkdir ../tmp/$EXPORT_DIR
+LOG_FILE=../logs/export-$DATE.log
+echo "-------------------- Export ${DATE} ----------------------" >> $LOG_FILE
 
-# Output location so the other side knows who we are
-echo $LOCATION > ../tmp/$EXPORT_DIR/org
-
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Messages;" >> tmp/$EXPORT_DIR/messages.sql
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM People;" >> tmp/$EXPORT_DIR/people.sql
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Performances;" >> tmp/$EXPORT_DIR/performances.sql
-#sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Runs;" >> tmp/$EXPORT_DIR/runs.sql
-
-# Get rid of SequelizeMeta table
-# sed -i '' '/SequelizeMeta/d' $TEMP_DIR/data.sql
+# Telling psql to look at specific schema
+echo "SET search_path TO test;" > $EXPORT_DIR/data.sql
 
 # Limiting the dump to specific tables
-sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > ../tmp/$EXPORT_DIR/dump.sql
-sqlite3 $DB_LOCATION ".schema" > ../tmp/$EXPORT_DIR/schema.sql
+sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > $EXPORT_DIR/dump.sql
+sqlite3 $DB_LOCATION ".schema" > $EXPORT_DIR/schema.sql
 
 # Output the diff of the dump and the schema to get rid of the CREATE statements
-grep -vx -f ../tmp/$EXPORT_DIR/schema.sql ../tmp/$EXPORT_DIR/dump.sql > ../tmp/$EXPORT_DIR/data.sql
+grep -vx -f $EXPORT_DIR/schema.sql $EXPORT_DIR/dump.sql >> $EXPORT_DIR/data.sql
 
-# Cleanup the TEMP_DIR to tar
-rm -f ../tmp/$EXPORT_DIR/dump.sql
-rm -f ../tmp/$EXPORT_DIR/schema.sql
+# Remove PRAGMA lines because psql has no equivalent
+sed -i '' '/PRAGMA/d' $EXPORT_DIR/data.sql
 
-# Tar up everything
-tar -zcf ../tmp/$EXPORT_DIR.tar.gz -C ../tmp/$EXPORT_DIR .
+# Setup psql arguments
+DBHOST=psql-3.ctrcns5uid16.us-east-2.rds.amazonaws.com
+DBUSER=xmacroscope_admin
+DBNAME=xmacroscope_dev_02
 
-# TODO: in the distant future, we should encrypt our tarred file to make sure nothing get compromised
+PGPASSWORD=$DB_PASS psql -h $DBHOST -U $DBUSER -d $DBNAME < $EXPORT_DIR/data.sql 1>>$LOG_FILE 2>>$LOG_FILE
 
-rm -r ../tmp/$EXPORT_DIR
-
-# TODO: pushing to deployment server
-# probably should end up using curl to push future jwt token integration instead of rsync
-
-# https://medium.com/@nieldw/using-curl-to-authenticate-with-jwt-bearer-tokens-55b7fac506bd
-# curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" https://{hostname}/api/myresource
-
-# Let someone know we were successful
-echo "OPERATION SUCCESS"
+# We should add some sort of word finding to see if we have any errors
+echo "OPERATION SUCCESS" | tee -a $LOG_FILE
 
 # TODO: probably should send an email to some sort of logging service to report as successful
+
+# Remove the EXPORT_DIR
+rm -r $EXPORT_DIR
