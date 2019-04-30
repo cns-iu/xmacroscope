@@ -45,17 +45,54 @@ LOG_FILE=../logs/export-$DATE.log
 echo "-------------------- Export ${DATE} ----------------------" >> $LOG_FILE
 
 # Telling psql to look at specific schema
-echo "SET search_path TO test;" > $EXPORT_DIR/data.sql
+#echo "SET search_path TO test;" > $EXPORT_DIR/data.sql
 
 # Limiting the dump to specific tables
-sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > $EXPORT_DIR/dump.sql
-sqlite3 $DB_LOCATION ".schema" > $EXPORT_DIR/schema.sql
+sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Runs;" >> $EXPORT_DIR/Runs.sql
+sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM People;" >> $EXPORT_DIR/People.sql
+
+for query in $EXPORT_DIR/*.sql ; do
+  TABLENAME="$(basename $query .sql)"
+  echo "BEGIN TRANSACTION;" >> $EXPORT_DIR/data.sql
+  COLUMN_ROW=true
+  while read line ; do
+    VALUES=
+    QUERY="INSERT INTO ${TABLENAME} ("
+    IFS='|' read -r -a array <<< "$line"
+
+    for col in "${array[@]}" ; do
+      if [ "$COLUMN_ROW" = true ] ; then
+        VALUES+="$col,"
+      else
+        if [ -z "$col" ] ; then
+          VALUES+="NULL,"
+        else
+          VALUES+="'$col',"
+        fi
+      fi
+    done
+
+    if [ "$COLUMN_ROW" = true ] ; then
+      COLUMN_ROW=false
+      COLUMNS=$VALUES
+    else
+      QUERY+=$COLUMNS") VALUES ("
+      QUERY+=$VALUES");"
+
+      echo "$QUERY" >> $EXPORT_DIR/data.sql
+    fi
+  done < "$query"
+  echo "COMMIT;" >> $EXPORT_DIR/data.sql
+done
+
+#sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > $EXPORT_DIR/dump.sql
+#sqlite3 $DB_LOCATION ".schema" > $EXPORT_DIR/schema.sql
 
 # Output the diff of the dump and the schema to get rid of the CREATE statements
-grep -vx -f $EXPORT_DIR/schema.sql $EXPORT_DIR/dump.sql >> $EXPORT_DIR/data.sql
+#grep -vx -f $EXPORT_DIR/schema.sql $EXPORT_DIR/dump.sql >> $EXPORT_DIR/data.sql
 
 # Remove PRAGMA lines because psql has no equivalent
-sed -i '' '/PRAGMA/d' $EXPORT_DIR/data.sql
+#sed -i '' '/PRAGMA/d' $EXPORT_DIR/data.sql
 
 # Setup psql arguments
 DBHOST=psql-3.ctrcns5uid16.us-east-2.rds.amazonaws.com
