@@ -63,7 +63,7 @@
     "node-cron": "^2.0.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.23.2",
+    "sequelize": "^5.8.1",
     "sequelize-cli": "^4.0.0",
     "shelljs": "^0.8.3",
     "sqlite3": "^4.0.2"
