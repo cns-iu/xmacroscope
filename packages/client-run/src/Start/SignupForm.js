@@ -28,6 +28,7 @@ const SignupForm = ({
   handleSubmit,
   isValid,
   setFieldValue,
+  settings,
 }) => (
   <Form onSubmit={handleSubmit} className="signup-form">
     <Row>
@@ -136,7 +137,7 @@ const SignupForm = ({
         disabled={!isValid}
         color="secondary"
       >
-        RUN
+        {settings.activityName.toUpperCase()}
       </StyledButton>
     </Col>
   </Form>
@@ -147,6 +148,7 @@ SignupForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
   setFieldValue: PropTypes.func.isRequired,
+  settings: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
   values: PropTypes.object.isRequired,
 };
