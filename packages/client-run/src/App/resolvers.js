@@ -5,6 +5,7 @@ export const defaults = {
   activeRun: {
     __typename: 'ActiveRun',
     runId: null,
+    activityName: null,
     status: 'preSignupForm',
     ageGroup: null,
     color: null,
@@ -24,7 +25,7 @@ export const defaults = {
 export const resolvers = {
   Mutation: {
     updateRun: (_, {
-      runId, status, ageGroup, color, favoriteActivity, height, icon, latitude,
+      runId, activityName, status, ageGroup, color, favoriteActivity, height, icon, latitude,
       longitude, state, zipCode,
     },
     { cache }) => {
@@ -32,6 +33,7 @@ export const resolvers = {
         activeRun: {
           __typename: 'ActiveRun',
           runId,
+          activityName,
           status,
           ageGroup,
           color,

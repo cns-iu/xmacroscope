@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config webpack.dev.js",
+    "start": "webpack --mode development --config webpack.dev.js",
     "start-destroy": "npm-run-all dev-data-destroy start",
     "dev-data-destroy": "rimraf private/data.sqlite",
     "start:prod": "node ./build/server.js",
