@@ -41,21 +41,21 @@ function Runs() {
                     },
                     {
                       Header: 'Start',
-                      accessor: 'start',
+                      accessor: 'startTime',
                       className: 'wordwrap',
                       Cell: row => (
-                        <div>{moment(row.row.start).format(dateFormat)}</div>
+                        <div>{moment(row.row.startTime).format(dateFormat)}</div>
                       ),
                     },
                     {
                       Header: 'End',
-                      accessor: 'end',
+                      accessor: 'endTime',
                       className: 'wordwrap',
                       Cell: row => (
                         <div>
                           {
-                                  row.row.end
-                                    ? moment(row.row.end).format(dateFormat)
+                                  row.row.endTime
+                                    ? moment(row.row.endTime).format(dateFormat)
                                     : '-'
                                 }
                         </div>
@@ -65,9 +65,9 @@ function Runs() {
                       Header: 'Duration',
                       accessor: 'duration',
                       Cell: (row) => {
-                        const completed = !!(row.row.start && row.row.end);
-                        const startDate = moment(row.row.start).valueOf();
-                        const endDate = moment(row.row.end).valueOf();
+                        const completed = !!(row.row.startTime && row.row.endTime);
+                        const startDate = moment(row.row.startTime).valueOf();
+                        const endDate = moment(row.row.endTime).valueOf();
                         const runDuration = endDate - startDate;
                         return (
                           <div>

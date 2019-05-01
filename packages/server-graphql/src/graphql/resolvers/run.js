@@ -11,11 +11,11 @@ import pubsub from './pubsub';
 const Runs = baseResolver
   .createResolver((root, args) => db.run.findAll({
     where: {
-      end: { [db.Sequelize.Op.ne]: null },
+      endTime: { [db.Sequelize.Op.ne]: null },
     },
     limit: args.lastX,
     order: [
-      ['start', 'DESC'],
+      ['startTime', 'DESC'],
     ],
     include: [
       { model: db.person, as: 'person' },
@@ -27,10 +27,10 @@ const Runs = baseResolver
 const AllRuns = baseResolver
   .createResolver((root, args) => db.run.findAll({
     where: {
-      end: { [db.Sequelize.Op.ne]: null },
+      endTime: { [db.Sequelize.Op.ne]: null },
     },
     order: [
-      ['start', 'DESC'],
+      ['startTime', 'DESC'],
     ],
     include: [
       { model: db.person, as: 'person' },
@@ -92,10 +92,10 @@ const SelectRun = baseResolver
 const FinishSignup = baseResolver
   .createResolver((root, args) => db.person.create({
     ...args.run.person,
-    // Start is null until the race begins this is updated in another mutation
+    // Time is null until the race begins this is updated in another mutation
     Runs: {
       org: args.run.org,
-      start: null
+      startTime: null
     },
   }, {
     include: [db.run],
@@ -126,7 +126,7 @@ const FinishSignup = baseResolver
 // Update an existing run record with a start time, return the ID
 const StartRun = baseResolver
   .createResolver((root, args) => db.run.update(
-    { start: args.run.start },
+    { startTime: args.run.startTime },
     { where: { id: args.run.id } },
   ).then((updatedRuns) => {
     // We get the raw data object here instead of a Sequelize object
@@ -134,7 +134,7 @@ const StartRun = baseResolver
     db.run.findOne({
       attributes: [
         'id',
-        'start',
+        'startTime',
         'PersonId',
       ],
       where: { id: args.run.id },
@@ -142,12 +142,12 @@ const StartRun = baseResolver
     })
       .then((startedRun) => {
         const runId = startedRun.id;
-        const runStart = startedRun.start;
+        const runStart = startedRun.startTime;
         db.person.findOne({ where: { id: startedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const runWithPerson = Object.assign(
               { person: runnerPerson },
-              { id: runId, start: new Date(startedRun.start) },
+              { id: runId, startTime: new Date(startedRun.startTime) },
             );
 
             const publishPayload = {
@@ -172,7 +172,7 @@ const StartRun = baseResolver
 // Update an existing run record with a finish time, return the ID
 const FinishRun = baseResolver
   .createResolver((root, args) => db.run.update(
-    { end: args.run.finish },
+    { endTime: args.run.finish },
     { where: { id: args.run.id } },
   ).then((updatedRuns) => {
     // We get the raw data object here instead of a Sequelize object
@@ -180,8 +180,8 @@ const FinishRun = baseResolver
     db.run.findOne({
       attributes: [
         'id',
-        'start',
-        'end',
+        'startTime',
+        'endTime',
         'PersonId',
       ],
       where: { id: args.run.id },
@@ -190,8 +190,8 @@ const FinishRun = baseResolver
       .then((completedRun) => {
         // Pulling the raw data requires us to make a date object out of the
         // string before we pass it to moment
-        const startTime = moment(new Date(completedRun.start));
-        const endTime = moment(moment(new Date(completedRun.end)));
+        const startTime = moment(new Date(completedRun.startTime));
+        const endTime = moment(moment(new Date(completedRun.endTime)));
         const runId = completedRun.id;
 
         db.person.findOne({ where: { id: completedRun.PersonId } })
@@ -202,7 +202,7 @@ const FinishRun = baseResolver
 
             const runWithPerson = Object.assign(
               { person: runnerPerson },
-              { id: runId, start: new Date(completedRun.start), end: new Date(completedRun.end) },
+              { id: runId, startTime: new Date(completedRun.start), endTime: new Date(completedRun.end) },
             );
 
             const publishPayload = {

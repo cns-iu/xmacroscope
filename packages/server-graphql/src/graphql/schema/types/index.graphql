@@ -45,8 +45,8 @@ type Person {
 
 type Run {
   id: UUID
-  start: Date
-  end: Date
+  startTime: Date
+  endTime: Date
   personId: UUID
   person: Person
   org: String
@@ -94,14 +94,14 @@ input PersonInput {
 }
 
 input RunInput {
-  start: Date
+  startTime: Date
   org: String
   person: PersonInput
 }
 
 input RunStartInput {
   id: UUID
-  start: Date!
+  startTime: Date!
 }
 
 input RunFinishInput {

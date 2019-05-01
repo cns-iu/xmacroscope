@@ -15,7 +15,7 @@ export const RunColumns = [
     Header: 'Organization',
   },
   {
-    accessor: 'start',
+    accessor: 'startTime',
     Header: 'Start',
     className: 'wordwrap',
     Cell: row => (
@@ -23,7 +23,7 @@ export const RunColumns = [
     ),
   },
   {
-    accessor: 'end',
+    accessor: 'endTime',
     Header: 'End',
     className: 'wordwrap',
     Cell: row => (
@@ -93,7 +93,7 @@ export const RunColumns = [
 
 export const RunDefaultSort = [
   {
-    id: 'start',
+    id: 'startTime',
     desc: true,
   },
 ];
@@ -103,13 +103,13 @@ export const RunFormat = function formatRuns(data) {
 
   data.AllRuns.map((row) => {
     /* eslint array-callback-return: 0 */
-    const runDuration = Math.abs(moment(row.start).diff(row.end)) / 1000;
+    const runDuration = Math.abs(moment(row.startTime).diff(row.endTime)) / 1000;
     results.push(
       {
         id: row.id,
         org: row.org,
-        start: row.start,
-        end: row.end,
+        startTime: row.startTime,
+        endTime: row.endTime,
         duration: runDuration,
         icon: row.person.icon,
         color: row.person.color,
@@ -130,8 +130,8 @@ export const RunQuery = gql`
   query AllRuns {
     AllRuns {
       id
-      start
-      end
+      startTime
+      endTime
       org
       person {
         icon

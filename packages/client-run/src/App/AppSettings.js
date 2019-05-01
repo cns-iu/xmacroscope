@@ -2,7 +2,7 @@
 // Settings query
 //
 import React from 'react';
-import { Query, Mutation } from 'react-apollo';
+import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import AppRoutes from './AppRoutes';
 
@@ -15,15 +15,15 @@ const GET_SETTINGS = gql`
   }
 `;
 
-const UPDATE_RUN_LOCAL = gql`
-  mutation updateRun(
-  $activityName: String!
-  ) {
-    updateRun(
-      activityName: $activityName,
-    ) @client
-  }
-`;
+// const UPDATE_RUN_LOCAL = gql`
+//   mutation updateRun(
+//   $activityName: String!
+//   ) {
+//     updateRun(
+//       activityName: $activityName,
+//     ) @client
+//   }
+// `;
 
 class AppSettings extends React.Component {
   render() {
@@ -38,7 +38,7 @@ class AppSettings extends React.Component {
           console.log(Settings);
           console.log('----^ ^ ^ ^ ^ Settings ^ ^ ^ ^ ^----');
           return (
-              <AppRoutes settings={Settings} />
+            <AppRoutes settings={Settings} />
           );
         }}
       </Query>

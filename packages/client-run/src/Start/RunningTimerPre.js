@@ -64,7 +64,7 @@ function RunningTimerPre({ runId }) {
                         variables: {
                           run: {
                             id: runId,
-                            start: moment(),
+                            startTime: moment(),
                           },
                         },
                       });
