@@ -44,67 +44,78 @@ mkdir $EXPORT_DIR
 LOG_FILE=../logs/export-$DATE.log
 echo "-------------------- Export ${DATE} ----------------------" >> $LOG_FILE
 
+#
+# Figure out boolean COLUMNS for exporting
+# Update exported after the fact?
+
 # Telling psql to look at specific schema
 #echo "SET search_path TO test;" > $EXPORT_DIR/data.sql
 
 # Limiting the dump to specific tables
-sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Runs;" >> $EXPORT_DIR/Runs.sql
-sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM People;" >> $EXPORT_DIR/People.sql
+sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM Runs WHERE createdAt > DATETIME('NOW','-5 minute');" >> $EXPORT_DIR/Runs.sql
+sqlite3 $DB_LOCATION ".headers ON" "SELECT * FROM People WHERE createdAt > DATETIME('NOW','-5 minute');" >> $EXPORT_DIR/People.sql
 
-for query in $EXPORT_DIR/*.sql ; do
-  TABLENAME="$(basename $query .sql)"
-  echo "BEGIN TRANSACTION;" >> $EXPORT_DIR/data.sql
-  COLUMN_ROW=true
-  while read line ; do
-    VALUES=
-    QUERY="INSERT INTO ${TABLENAME} ("
-    IFS='|' read -r -a array <<< "$line"
+for sql in $EXPORT_DIR/*.sql ; do
+  TABLENAME="$(basename $sql .sql)"
 
-    for col in "${array[@]}" ; do
-      if [ "$COLUMN_ROW" = true ] ; then
-        VALUES+="$col,"
-      else
-        if [ -z "$col" ] ; then
-          VALUES+="NULL,"
+  # Check to see that we actually have data to move
+  if [ -s $sql ] ; then
+    echo "BEGIN TRANSACTION;" >> $EXPORT_DIR/data.sql
+    COLUMN_ROW=true
+    while read line ; do
+      VALUES=
+      QUERY="INSERT INTO ${TABLENAME} ("
+      IFS='|' read -r -a array <<< "$line"
+
+      for col in "${array[@]}" ; do
+        if [ "$COLUMN_ROW" = true ] ; then
+          VALUES+="$col,"
         else
-          VALUES+="'$col',"
+          if [ -z "$col" ] ; then
+            VALUES+="NULL,"
+          else
+            VALUES+="'$col',"
+          fi
         fi
+      done
+
+      if [ "$COLUMN_ROW" = true ] ; then
+        COLUMN_ROW=false
+        COLUMNS=$VALUES
+      else
+        QUERY+=$COLUMNS") VALUES ("
+        QUERY+=$VALUES");"
+
+        echo "$QUERY" >> $EXPORT_DIR/data.sql
       fi
-    done
-
-    if [ "$COLUMN_ROW" = true ] ; then
-      COLUMN_ROW=false
-      COLUMNS=$VALUES
-    else
-      QUERY+=$COLUMNS") VALUES ("
-      QUERY+=$VALUES");"
-
-      echo "$QUERY" >> $EXPORT_DIR/data.sql
-    fi
-  done < "$query"
-  echo "COMMIT;" >> $EXPORT_DIR/data.sql
+    done < "$sql"
+    echo "COMMIT;" >> $EXPORT_DIR/data.sql
+  else
+    echo "Nothing to export from $TABLENAME..." >> $LOG_FILE
+  fi
 done
 
-#sqlite3 $DB_LOCATION ".dump 'People'" ".dump 'Runs'" > $EXPORT_DIR/dump.sql
-#sqlite3 $DB_LOCATION ".schema" > $EXPORT_DIR/schema.sql
+if [ -f $EXPORT_DIR/data.sql ] ; then
+  # Setup psql arguments
+  DBHOST=psql-3.ctrcns5uid16.us-east-2.rds.amazonaws.com
+  DBUSER=xmacroscope_admin
+  DBNAME=xmacroscope_dev_02
 
-# Output the diff of the dump and the schema to get rid of the CREATE statements
-#grep -vx -f $EXPORT_DIR/schema.sql $EXPORT_DIR/dump.sql >> $EXPORT_DIR/data.sql
+  PGPASSWORD=$DB_PASS psql -h $DBHOST -U $DBUSER -d $DBNAME < $EXPORT_DIR/data.sql 1>>$LOG_FILE 2>>$LOG_FILE
 
-# Remove PRAGMA lines because psql has no equivalent
-#sed -i '' '/PRAGMA/d' $EXPORT_DIR/data.sql
+  # We should add some sort of word finding to see if we have any errors
+  echo "OPERATION SUCCESS" | tee -a $LOG_FILE
 
-# Setup psql arguments
-DBHOST=psql-3.ctrcns5uid16.us-east-2.rds.amazonaws.com
-DBUSER=xmacroscope_admin
-DBNAME=xmacroscope_dev_02
+else
 
-PGPASSWORD=$DB_PASS psql -h $DBHOST -U $DBUSER -d $DBNAME < $EXPORT_DIR/data.sql 1>>$LOG_FILE 2>>$LOG_FILE
+  # We should add some sort of word finding to see if we have any errors
+  echo "OPERATION SUCCESS but nothing was exported." | tee -a $LOG_FILE
 
-# We should add some sort of word finding to see if we have any errors
-echo "OPERATION SUCCESS" | tee -a $LOG_FILE
+fi
 
 # TODO: probably should send an email to some sort of logging service to report as successful
 
 # Remove the EXPORT_DIR
 rm -r $EXPORT_DIR
+
+exit 0;
