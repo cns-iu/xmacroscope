@@ -8,6 +8,8 @@
     "start": "webpack --mode development --config webpack.dev.js",
     "start-destroy": "npm-run-all dev-data-destroy start",
     "dev-data-destroy": "rimraf private/data.sqlite",
+    "dev-logs-destroy": "rimraf logs/*.log",
+    "dev-tmp-destroy": "rimraf tmp/*.gz",
     "start:prod": "node ./build/server.js",
     "build": "webpack --progress --colors --config webpack.prod.js"
   },
