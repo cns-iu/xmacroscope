@@ -6,32 +6,27 @@ function Research() {
   const s3Base = 'https://s3.us-east-2.amazonaws.com/org.xmacroscope/';
   const papers = [
     {
-      paperTitle: 'NSF Annual Report - Year 1',
-      fileName: 'research-annual-report-year-1',
-      key: 1,
-    },
-    {
       paperTitle: 'Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments',
       paperAuthors: 'Katy Börner, Andreas Bueckle, and Michael Ginda',
       fileName: 'research-data-visualization-literacy',
-      key: 2,
+      key: 1,
     },
     {
       paperTitle: 'Begin at the Beginning: A Constructionist Model for Interpreting Data'
         + ' Visualizations',
       paperAuthors: 'Mary Ann Wojton, Donnelley Hayde, Joe Heimlich, Katy Börner',
       fileName: 'research-begin-beginning',
-      key: 3,
+      key: 2,
     },
     {
       paperTitle: 'Lifelong Learning Group Research Articles in Progress',
       fileName: 'research-llg-research-in-progress',
-      key: 4,
+      key: 3,
     },
     {
       paperTitle: 'Data Visualization Literacy Literature Review: Sharing Personal Information',
       fileName: 'research-annual-report-year-1',
-      key: 5,
+      key: 4,
     },
   ];
 
