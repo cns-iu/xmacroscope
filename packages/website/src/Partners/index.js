@@ -4,6 +4,7 @@ import logoCNS from './cns2x.png';
 import logoCOSI from './cosi2x.png';
 import logoUCI from './uci2x.png';
 import logoSMM from './smm2x.png';
+import logoNYSCI from './nysci.png';
 
 function Partners() {
   const partners = [
@@ -28,6 +29,11 @@ function Partners() {
       img: logoSMM,
       imgAlt: 'SMM Logo, a blue nautilus swirl over the museum name.',
     },
+    {
+      name: 'New York Hall of Science in Corona, New York',
+      img: logoNYSCI,
+      imgAlt: 'NYSCI Logo, Gray N Y letters next to a Red circle with the White letters S C I.',
+    },
   ];
   return (
     <Row className="justify-content-center">
@@ -41,13 +47,14 @@ function Partners() {
           The xMacroscope project is a partnership between:
         </p>
         <Row>
+          <Col md={1} />
           {
             partners.map(partner => (
               <Col
                 key={partner.name}
                 className="text-center pb-5 pb-sm-2"
                 xs={12}
-                md={3}
+                md={2}
               >
                 <h5>{partner.name}</h5>
                 <hr className="d-none d-sm-none d-md-block" />
