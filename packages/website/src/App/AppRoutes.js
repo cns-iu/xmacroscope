@@ -20,8 +20,8 @@ function AppRoutes() {
             <Route exact path="/research" render={() => (<Research />)} />
             <Route exact path="/media" render={() => (<Media />)} />
             <Route component={NoMatch} />
-            <FooterSite />
           </Switch>
+          <FooterSite />
         </Fragment>
       </BrowserRouter>
     </Fragment>
