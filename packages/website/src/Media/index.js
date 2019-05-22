@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import {
+  Col, Container, Row,
+} from 'reactstrap';
+import MediaLinks from './MediaLinks';
 import MediaIntroPara from '../Copy/MediaIntroPara';
 
 function Media() {
@@ -31,6 +34,9 @@ function Media() {
       <p>
         <MediaIntroPara />
       </p>
+      <Row>
+        <MediaLinks />
+      </Row>
       <Row className="justify-content-center">
         {
           videos.map(video => (
