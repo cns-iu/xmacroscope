@@ -9,8 +9,8 @@ function Home() {
       <main>
         <Container>
           <ProjectDescription />
-          <Partners />
         </Container>
+        <Partners />
       </main>
     </Fragment>
   );

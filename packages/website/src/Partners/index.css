@@ -1,0 +1,10 @@
+.partnerImgContainer {
+  height: 75px;
+  position: relative;
+}
+
+.partnerImgContainer img {
+  position: absolute;
+  bottom: 0px;
+  transform: translateX(-50%);
+}

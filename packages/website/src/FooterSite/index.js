@@ -4,7 +4,7 @@ import nsfLogo from './nsf-logo.png';
 
 function FooterSite() {
   return (
-    <footer className="footer-body mt-0 pt-4 pb-4 text-center">
+    <footer className="footer-body mt-4 pt-4 pb-4 text-center">
       <Container>
         <a
           href="https://www.nsf.gov"
