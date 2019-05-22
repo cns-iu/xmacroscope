@@ -20,19 +20,11 @@ function FooterSite() {
         The xMacroscope project is supported by the
         {' '}
         <a
-          href="https://www.nsf.gov"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          National Science Foundation
-        </a>
-        {', '}
-        <a
           href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1713567"
           rel="noopener noreferrer"
           target="_blank"
         >
-          award #1713567
+          National Science Foundation, Advancing Informal STEM Learning (AISL - award #1713567)
         </a>
         .
       </Container>
