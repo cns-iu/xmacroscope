@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "install:mav": "cd packages/client-mav && npm install",
+    "install:mav": "cd packages/client-mav && npm ci",
     "install:run": "cd packages/client-run && npm install",
     "install:server": "cd packages/server-graphql && npm install",
     "postinstall": "npm-run-all --parallel install:mav install:run install:server --print-label",
