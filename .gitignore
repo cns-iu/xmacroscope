@@ -20,6 +20,7 @@ node_modules
 # https://github.com/cns-iu/xmacroscope/issues/146
 # For now, we're not tracking these files.
 package-lock.json
+!packages/client-mav/package-lock.json
 
 # We don't use yarn for this project, but we should ignore it
 # in case an end  user uses it and generates a lock file that shouldn't be tracked
@@ -42,6 +43,7 @@ packages/aisl/out-tsc
 *.launch
 .settings/
 *.sublime-workspace
+.vscode/
 
 # IDE - VSCode
 .vscode/*
