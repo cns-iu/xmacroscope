@@ -25,7 +25,7 @@ function Research() {
     },
     {
       paperTitle: 'Data Visualization Literacy Literature Review: Sharing Personal Information',
-      fileName: 'research-annual-report-year-1',
+      fileName: 'research-lit-review-willingness-to-share',
       key: 4,
     },
   ];
