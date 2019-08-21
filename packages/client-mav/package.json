@@ -55,6 +55,7 @@
     "nano-sql": "^1.8.5",
     "papaparse": "^5.0.2",
     "rxjs": "~6.5.2",
+    "shelljs": "^0.8.3",
     "subscriptions-transport-ws": "^0.9.16",
     "topojson-client": "^3.0.0",
     "typeface-lato": "0.0.75",
