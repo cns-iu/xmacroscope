@@ -1,16 +1,15 @@
-import { pick } from 'lodash';
-import { ApolloClient } from 'apollo-client';
-import { Observable, defer, from, merge } from 'rxjs';
-import { concatMap, delay, map } from 'rxjs/operators';
 import { RecordStream } from '@dvl-fw/core';
 import { RawChangeSet } from '@ngx-dino/core';
-import { reverse } from 'lodash';
+import { ApolloClient } from 'apollo-client';
+import { pick, reverse } from 'lodash';
+import { defer, from, merge, Observable } from 'rxjs';
+import { concatMap, delay, map } from 'rxjs/operators';
 
+import { Message } from '../shared/message';
 import { Run } from '../shared/run';
 import { RunStreamController } from '../shared/run-stream-controller';
-import { RunFinishedMessage, Message } from '../shared/message';
-import { asMessage, RECENT_RUNS, MESSAGE_SUBSCRIPTION } from './graphql-queries';
 import { GraphqlClient } from './graphql-client';
+import { asMessage, MESSAGE_SUBSCRIPTION, RECENT_RUNS } from './graphql-queries';
 
 
 export class GraphQLRunDataStream implements RecordStream<Run> {
@@ -35,27 +34,28 @@ export class GraphQLRunDataStream implements RecordStream<Run> {
   }
 
   getPastRunsCompleted(lastX: number): Observable<Message> {
-    return defer<Run[]>(async () => {
+    return defer(async () => {
       const results = await this.client.query<{Runs: Run[]}, {lastX: number}>({ query: RECENT_RUNS, variables: {lastX}});
       return reverse(results.data.Runs); // Data comes in from youngest to oldest, we need the reverse
     }).pipe(
-      map<Run[], Message[]>(runs => runs.map(run =>
+      map(runs => runs.map(run =>
         asMessage({ type: 'run-finished', timestamp: run.end, run})
       )),
-      concatMap<RunFinishedMessage[], Message>(r => from(r)),
+      concatMap(r => from(r)),
       delay(200)
     );
   }
 
   subscribeToMessages(): Observable<Message> {
-    return Observable.create(observer => {
+    return new Observable(observer => {
       // NOTE: apollo-client uses Zen-Observable, so we must adapt it to be an RxJS Observable
-      this.client.subscribe<{data: {runMessageSubscription: any}}>({ query: MESSAGE_SUBSCRIPTION })
+      const sub = this.client.subscribe<{data: {runMessageSubscription: any}}>({ query: MESSAGE_SUBSCRIPTION })
         .subscribe({
           next: observer.next.bind(observer),
           error: observer.error.bind(observer),
           complete: observer.complete.bind(observer)
         });
+      return () => sub.unsubscribe();
     }).pipe(
       map<{data: {runMessageSubscription: any}}, Message>(results =>
         asMessage(results.data.runMessageSubscription)

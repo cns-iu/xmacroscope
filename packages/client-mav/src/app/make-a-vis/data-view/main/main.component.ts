@@ -10,7 +10,7 @@ import { DataService, DataSource } from '../shared/data.service';
   styleUrls: ['./main.component.sass']
 })
 export class MainComponent implements OnInit {
-  @ViewChild('table') table: TableComponent;
+  @ViewChild('table', { static: false }) table: TableComponent;
   dataSources: Observable<DataSource[]>;
 
   constructor(private dataService: DataService) {
