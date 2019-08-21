@@ -20,7 +20,7 @@ export class GraphicVariableLegendComponent implements OnInit, OnChanges {
   @Input() graphicVariableOption: GraphicVariableOption;
   @Input() visualization: Visualization;
 
-  @ViewChild('visualization') legendComponent: DvlFwVisualizationComponent;
+  @ViewChild('visualization', { static: true }) legendComponent: DvlFwVisualizationComponent;
 
   graphicVariable: GraphicVariable;
   legendVisualizationTypes = ['color', 'node-size'];

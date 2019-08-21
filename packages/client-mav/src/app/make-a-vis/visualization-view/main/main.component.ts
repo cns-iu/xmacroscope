@@ -26,7 +26,7 @@ export interface Vis {
 
 
 export class MainComponent implements OnInit {
-  @ViewChild('visualization') visualizationComponent: DvlFwVisualizationComponent;
+  @ViewChild('visualization', { static: false }) visualizationComponent: DvlFwVisualizationComponent;
 
   visTypes: VisType[] = [
     { template: 'scattergraph', label: 'Scatter Graph', icon: 'scatter-graph' },
