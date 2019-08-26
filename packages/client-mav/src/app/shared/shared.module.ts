@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { ButtonGroupModule } from './components/button-group/button-group.module';
+import { ButtonGroupModule } from './components/button-group';
+import { GVButtonGroupModule } from './components/gv-button-group';
 import { XMacroscopePersonaComponent } from './components/xmacroscope-persona/xmacroscope-persona.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    ButtonGroupModule
+    ButtonGroupModule,
+    GVButtonGroupModule
   ],
   declarations: [
     XMacroscopePersonaComponent

@@ -1,0 +1,10 @@
+<app-button-group [items]="filteredVariables" [vertical]="vertical" (valueChange)="emitVariableChange($event)">
+  <div *appButtonGroupLabel>
+    <!-- TODO label icon -->
+    <span>{{ label }}</span>
+  </div>
+
+  <ng-container *appButtonContent="let variable">
+    {{ variable.label }}
+  </ng-container>
+</app-button-group>
