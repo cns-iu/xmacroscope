@@ -1,13 +1,14 @@
 import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
-  DefaultRecordSet, GeomapVisualization, GraphicSymbol, GraphicVariable, Project, RecordSet,
-  ScatterplotVisualization, Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
+  DefaultRecordSet, GraphicSymbol, GraphicVariable, Project, RecordSet,
+  Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
 
 import { XMacroscopeDataSource } from './xmacroscope-data-source';
 import { MockRunRawData } from '../mock/mock-run-raw-data';
 import { RunStreamController } from './run-stream-controller';
 import { LocationSettings } from '../graphql/location-settings';
-import { Run } from './run';
 import { asMessage } from '../graphql/graphql-queries';
+import { ScatterplotMapVisualization } from '../visualizations/scatterplot-map/scatterplot-map.visualization';
+import { GeographicMapVisualization } from '../visualizations/geographic-map/geographic-map.visualization';
 
 
 export interface XMacroscopeProjectConfig {
@@ -354,7 +355,7 @@ export class XMacroscopeProject extends DefaultProject {
 
   getVisualizations(): Visualization[] {
     return [
-      new ScatterplotVisualization({
+      new ScatterplotMapVisualization({
         id: 'SG01',
         template: 'scattergraph',
         properties: {
@@ -366,7 +367,7 @@ export class XMacroscopeProject extends DefaultProject {
           points: 'runPoints'
         }
       }, this),
-      new GeomapVisualization({
+      new GeographicMapVisualization({
         id: 'GM01',
         template: 'geomap',
         properties: {

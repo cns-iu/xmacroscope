@@ -10,7 +10,7 @@ import { EndlineModule } from './endline/endline.module';
 import { HomeModule } from './home/home.module';
 import { MakeAVisModule } from './make-a-vis/make-a-vis.module';
 import { ThemesModule } from './themes/themes.module';
-import { XMacroscopeDataModule, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+import { XMacroscopeDataModule, VisualizationsModule, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { environment } from 'src/environments/environment';
 
 
@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
     MatToolbarModule,
 
     XMacroscopeDataModule.forRoot(environment.projectConfiguration),
+    VisualizationsModule,
 
     AppRoutingModule,
     BackendModule,
