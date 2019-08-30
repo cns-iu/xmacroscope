@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Outpu
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
-import { FeatureCollection, Geometry, BBox } from '@turf/helpers';
+import { FeatureCollection, Geometry, BBox, featureCollection } from '@turf/helpers';
 import { isArray } from 'lodash';
 import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike, PaddingOptions } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
@@ -15,13 +15,19 @@ import { graticule, withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
 import { NodesGeojson } from '../shared/nodes-geojson';
 import { reprojector } from '../shared/reprojector';
-import { UsGeojson } from './../shared/us-geojson';
+import { getStatesGeoJson, getCountiesForStateGeoJson } from './../shared/us-geojson';
 
 
-const basemapGeoJson = reprojector('albersUsa', new UsGeojson());
+const usGeoJson = reprojector('albersUsa', getStatesGeoJson());
 const gridGeoJson = reprojector('albersUsa', graticule(5));
 const grid = withAxes(gridGeoJson);
 const worldBbox = bbox(grid.geojson);
+const countiesGeoJson = reprojector('albersUsa', getCountiesForStateGeoJson('Indiana'));
+
+const basemapGeoJson = featureCollection([
+  ...usGeoJson.features,
+  ...countiesGeoJson.features
+]);
 
 @Component({
   selector: 'mav-geographic-map',
@@ -56,6 +62,7 @@ export class GeographicMapComponent implements VisualizationComponent,
   nodes: TDatum<Node>[];
   nodesSubscription: Subscription;
   basemapGeoJson: FeatureCollection<Geometry> = basemapGeoJson;
+  countiesGeoJson: FeatureCollection<Geometry> = countiesGeoJson;
 
   constructor(private dataProcessorService: DataProcessorService) {}
 

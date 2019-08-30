@@ -128,7 +128,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
         node.position = [xScale(node.x), yScale(node.y)];
       }
 
-      const margin = 120;
+      const margin = 80;
       const bounds = new Cartesian2dBounds(-margin, w + margin, -margin, h + margin);
       const projection = new Cartesian2dProjection(bounds);
       this.nodes = nodes;

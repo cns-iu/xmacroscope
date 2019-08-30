@@ -1,30 +1,27 @@
-import { FeatureCollection, Geometry, Feature } from 'geojson';
-import { usTopoJson } from '../shared/us-topojson';
-import { feature, mesh } from 'topojson-client';
+import { Feature, FeatureCollection, featureCollection, Geometry } from '@turf/helpers';
+import { feature } from 'topojson-client';
+import { usNameLookup, usTopoJson } from '../shared/us-topojson';
 
-function asFeature(geometry: Geometry, properties: any = {}): Feature {
-  return { type: 'Feature', geometry, properties };
+
+export function getStatesGeoJson(): FeatureCollection<Geometry> {
+  const features = feature(usTopoJson, usTopoJson.objects.states).features as Feature<Geometry>[];
+  features.forEach(f => {
+    if (usNameLookup.hasOwnProperty(f.id)) {
+      f.properties.label = usNameLookup[f.id];
+    }
+  });
+  return featureCollection(features);
 }
 
-export class UsGeojson implements FeatureCollection<Geometry> {
-  type: 'FeatureCollection' = 'FeatureCollection';
-  features: Feature<Geometry, { [name: string]: any; }>[];
-  constructor() {
-    // const counties = feature(usTopoJson, usTopoJson.objects.counties).features;
-    const states = feature(usTopoJson, usTopoJson.objects.states).features;
-    // const states = [asFeature(mesh(usTopoJson, usTopoJson.objects.states, function(a, b) { return a.id !== b.id; }))];
-    // const nation = feature(usTopoJson, usTopoJson.objects.nation).features;
-    // const nation = [asFeature(mesh(usTopoJson, usTopoJson.objects.nation))];
-
-    // this.features = [
-    //   asFeature(counties),
-    //   asFeature(states),
-    //   ...nation
-    // ];
-    this.features = [
-      // ...counties,
-      ...states,
-      // ...nation
-    ];
-  }
+export function getCountiesForStateGeoJson(state: string): FeatureCollection<Geometry> {
+  let prefix = state;
+  Object.entries(usNameLookup).forEach(([id, name]) => {
+    if (name === state) { prefix = id; }
+  });
+  const geometries = usTopoJson.objects.counties.geometries.filter(g => (g.id as string).indexOf(prefix) === 0);
+  const features = feature(usTopoJson,
+    { 'type': 'GeometryCollection', geometries }
+  ).features as Feature<Geometry>[];
+  features.forEach(f => f.properties.label = state);
+  return featureCollection(features);
 }
