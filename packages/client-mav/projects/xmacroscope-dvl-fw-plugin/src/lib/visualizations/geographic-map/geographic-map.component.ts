@@ -2,9 +2,9 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Outpu
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
-import { FeatureCollection, Geometry } from '@turf/helpers';
+import { FeatureCollection, Geometry, BBox } from '@turf/helpers';
 import { isArray } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike, PaddingOptions } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
@@ -20,8 +20,8 @@ import { UsGeojson } from './../shared/us-geojson';
 
 const basemapGeoJson = reprojector('albersUsa', new UsGeojson());
 const gridGeoJson = reprojector('albersUsa', graticule(5));
-const graticuleGeoJson = withAxes(gridGeoJson);
-const worldBbox = bbox(graticuleGeoJson);
+const grid = withAxes(gridGeoJson);
+const worldBbox = bbox(grid.geojson);
 
 @Component({
   selector: 'mav-geographic-map',
@@ -49,8 +49,9 @@ export class GeographicMapComponent implements VisualizationComponent,
   style = blankStyle;
   map: Map;
 
-  worldBbox: any = worldBbox;
-  graticule: FeatureCollection<Geometry> = graticuleGeoJson;
+  worldBbox: BBox = worldBbox;
+  worldPadding: PaddingOptions = grid.padding;
+  graticule: FeatureCollection<Geometry> = grid.geojson;
   nodesGeoJson: NodesGeojson;
   nodes: TDatum<Node>[];
   nodesSubscription: Subscription;
@@ -116,6 +117,7 @@ export class GeographicMapComponent implements VisualizationComponent,
     if (isArray(nodes)) {
       this.nodes = nodes;
       this.nodesGeoJson = reprojector('albersUsa', new NodesGeojson(nodes));
+      this.worldBbox = bbox(this.graticule);
     }
   }
 
@@ -147,6 +149,8 @@ export class GeographicMapComponent implements VisualizationComponent,
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
   ngOnDestroy(): void {
-
+    if (this.nodesSubscription) {
+      this.nodesSubscription.unsubscribe();
+    }
   }
 }

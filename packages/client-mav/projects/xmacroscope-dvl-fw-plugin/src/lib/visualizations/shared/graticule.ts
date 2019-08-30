@@ -2,6 +2,8 @@
 import bbox from '@turf/bbox';
 import { Feature, FeatureCollection, featureCollection, Geometry, lineString, point } from '@turf/helpers';
 import lineIntersect from '@turf/line-intersect';
+import { max } from 'd3-array';
+import { PaddingOptions } from 'mapbox-gl';
 
 
 export function graticule(interval: number): FeatureCollection<Geometry> {
@@ -68,7 +70,7 @@ function latFix(lat: number) {
 
 export function withAxes(geojson: FeatureCollection<Geometry>,
     xAxisLabel: string = 'Longitude (degrees)',
-    yAxisLabel: string = 'Latitude (degrees)'): FeatureCollection<Geometry> {
+    yAxisLabel: string = 'Latitude (degrees)'): { geojson: FeatureCollection<Geometry>, padding: PaddingOptions } {
   const [minX, minY, maxX, maxY] = bbox(geojson);
 
   const axisLineX = lineString(
@@ -105,6 +107,8 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
       { type: 'tick-label-y', label: t.label }
     ));
 
+  const maxYLabelLength = max(yTicks, (d) => (d.properties.label || 0).length);
+
   const features: Feature<Geometry>[] = geojson.features.concat([
     lineString(
       [ [maxX, minY], [maxX, maxY] ],
@@ -119,21 +123,17 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
     ...xTicks,
     ...yTicks,
     point(
-      [ (minX + maxX) / 2, latFix(minY - 2) ],
+      [ (minX + maxX) / 2, minY ],
       { type: 'axis-label-x', label: xAxisLabel || '' }
     ),
     point(
-      [ lngFix(minX - 3), (minY + maxY) / 2 ],
-      { type: 'axis-label-y', label: yAxisLabel || '' }
-    ),
-    lineString(
-      [
-        [ lngFix(minX - 4), latFix(maxY + 0.25) ],
-        [ lngFix(maxX + 0.5), latFix(minY - 4) ]
-      ],
-      { type: 'bounds-mark', label: 'Bounds Mark' }
+      [ minX, (minY + maxY) / 2 ],
+      { type: 'axis-label-y', label: yAxisLabel || '', maxYLabelLength }
     )
   ]);
 
-  return featureCollection(features);
+  return {
+    geojson: featureCollection(features),
+    padding: { top: 8, right: 8, left: (maxYLabelLength * 8 + 24), bottom: 88 }
+  };
 }

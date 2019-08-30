@@ -4,22 +4,20 @@ import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } fr
 import { extent } from 'd3-array';
 import { scaleLinear, scalePoint } from 'd3-scale';
 import { isArray, reverse, sortedUniq } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike, PaddingOptions } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
-import { featureCollection, lineString, FeatureCollection, Geometry, BBox, point, multiLineString } from '@turf/helpers';
+import { featureCollection, lineString, FeatureCollection, Geometry, BBox } from '@turf/helpers';
 
 import { blankStyle } from '../shared/blank-style';
 import { Cartesian2dBounds, Cartesian2dProjection } from '../shared/cartesian-2d-projection';
 import { DataDrivenIcons } from '../shared/data-driven-icons';
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
-import { graticule } from '../shared/graticule';
+import { withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
 import { NodesGeojson } from '../shared/nodes-geojson';
 import bbox from '@turf/bbox';
 
-
-const graticuleGeoJson = graticule(5);
 
 @Component({
   selector: 'mav-scatterplot-map',
@@ -48,7 +46,8 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   map: Map;
 
   worldBbox: BBox;
-  graticule: FeatureCollection<Geometry> = graticuleGeoJson as FeatureCollection<Geometry>;
+  worldPadding: PaddingOptions;
+  graticule: FeatureCollection<Geometry>;
   nodesGeoJson: FeatureCollection<Geometry>;
   nodes: TDatum<Node>[];
   nodesSubscription: Subscription;
@@ -134,7 +133,10 @@ export class ScatterplotMapComponent implements VisualizationComponent,
       const projection = new Cartesian2dProjection(bounds);
       this.nodes = nodes;
       this.nodesGeoJson = new NodesGeojson(nodes, projection) as any;
-      this.graticule = this.getGrid(xScale, yScale, projection, xDV.label, yDV.label);
+
+      const grid = this.getGrid(xScale, yScale, projection, xDV.label, yDV.label);
+      this.graticule = grid.geojson;
+      this.worldPadding = grid.padding;
       this.worldBbox = bbox(this.graticule);
     }
   }
@@ -142,85 +144,30 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   getGrid(xScale: (x: any) => number | undefined,
       yScale: (x: any) => number | undefined,
       projection: Cartesian2dProjection,
-      xAxisLabel?: string,
-      yAxisLabel?: string): FeatureCollection<Geometry> {
+      xAxisLabel: string = '',
+      yAxisLabel: string = ''): {geojson: FeatureCollection<Geometry>, padding: PaddingOptions} {
     const numTicks = 10;
     const xTicks = this.getTicks(xScale, numTicks);
     const yTicks = this.getTicks(yScale, numTicks);
 
     const { minX, maxX, minY, maxY } = projection.sourceBounds;
 
-    return featureCollection<Geometry>([
-      ...xTicks.map(t => lineString([
+    return withAxes(featureCollection<Geometry>([
+      ...xTicks.map(t => lineString(
+        [
           projection.toLngLat(t.point, minY).toArray(),
           projection.toLngLat(t.point, maxY).toArray()
-        ], {
-          type: 'grid-line-x',
-          label: t.label
-        })),
-      ...yTicks.map(t => lineString([
+        ],
+        { type: 'grid-line-x', label: t.label }
+      )),
+      ...yTicks.map(t => lineString(
+        [
           projection.toLngLat(minX, t.point).toArray(),
           projection.toLngLat(maxX, t.point).toArray()
-        ], {
-          type: 'grid-line-y',
-          label: t.label
-        })),
-      lineString([
-          projection.toLngLat(maxX, minY).toArray(),
-          projection.toLngLat(maxX, maxY).toArray()
-        ], {
-          type: 'grid-line-x',
-          label: 'X Axis'
-        }),
-      lineString([
-          projection.toLngLat(minX, minY).toArray(),
-          projection.toLngLat(maxX, minY).toArray()
-        ], {
-          type: 'grid-line-y',
-          label: 'Y Axis'
-        }),
-      lineString([
-          projection.toLngLat(minX, minY).toArray(),
-          projection.toLngLat(minX, maxY).toArray()
-        ], {
-          type: 'axis-line',
-          label: 'X Axis'
-        }),
-      lineString([
-          projection.toLngLat(minX, maxY).toArray(),
-          projection.toLngLat(maxX, maxY).toArray()
-        ], {
-          type: 'axis-line',
-          label: 'Y Axis'
-        }),
-      ...xTicks.map(t => point(
-          projection.toLngLat(t.point, maxY).toArray(), {
-          type: 'tick-label-x',
-          label: t.label
-        })),
-      ...yTicks.map(t => point(
-          projection.toLngLat(minX, t.point).toArray(), {
-          type: 'tick-label-y',
-          label: t.label
-        })),
-      point(
-          projection.toLngLat((minX + maxX) / 2, maxY + 70).toArray(), {
-          type: 'axis-label-x',
-          label: xAxisLabel || ''
-        }),
-      point(
-          projection.toLngLat(minX - 80, (minY + maxY) / 2).toArray(), {
-          type: 'axis-label-y',
-          label: yAxisLabel || ''
-        }),
-      lineString([
-          projection.toLngLat(minX - 240, maxY + 140).toArray(),
-          projection.toLngLat(maxX + 10, minY - 10).toArray()
-        ], {
-          type: 'bounds-mark',
-          label: 'Bounds Mark'
-        })
-    ]);
+        ],
+        { type: 'grid-line-y', label: t.label }
+      ))
+    ]), xAxisLabel, yAxisLabel);
   }
 
   getTicks(scale: any, numTicks: number): {point: number, label: string}[] {
@@ -285,6 +232,8 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
   ngOnDestroy(): void {
-
+    if (this.nodesSubscription) {
+      this.nodesSubscription.unsubscribe();
+    }
   }
 }

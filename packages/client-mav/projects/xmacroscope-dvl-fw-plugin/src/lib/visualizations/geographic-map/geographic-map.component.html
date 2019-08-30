@@ -4,6 +4,9 @@
   [zoom]="[3]"
   [center]="[0, 0]"
   [fitBounds]="worldBbox"
+  [fitBoundsOptions]="{
+    padding: worldPadding
+  }"
   [renderWorldCopies]="false"
   (load)="onMapLoad($event)">
 
@@ -78,7 +81,13 @@
         'axis-label-y', -90,
         0
       ],
-      'text-radial-offset': 0.5,
+      'text-radial-offset': [
+        'match',
+        ['get', 'type'],
+        'axis-label-x', 1.75,
+        'axis-label-y', ['+', ['*', ['get', 'maxYLabelLength'], 0.5], 1.25],
+        0.5
+      ],
       'text-justify': [
         'match',
         ['get', 'type'],
