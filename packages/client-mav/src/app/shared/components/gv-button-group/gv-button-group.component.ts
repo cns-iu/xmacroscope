@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { GraphicVariable, GraphicVariableType } from '@dvl-fw/core';
 import { get, groupBy } from 'lodash';
 
 @Component({
   selector: 'app-gv-button-group',
-  templateUrl: './gvbutton-group.component.html',
-  styleUrls: ['./gvbutton-group.component.scss']
+  templateUrl: './gv-button-group.component.html',
+  styleUrls: ['./gv-button-group.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GVButtonGroupComponent implements OnChanges {
   @Input() variables: GraphicVariable[];

@@ -6,6 +6,8 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { DvlFwModule } from '@dvl-fw/core';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './main/main.component';
+import { ScatterGraphComponent } from './scatter-graph/scatter-graph.component';
+import { GVButtonGroupModule } from 'src/app/shared/components/gv-button-group';
 
 @NgModule({
   imports: [
@@ -14,11 +16,12 @@ import { MainComponent } from './main/main.component';
     MatTabsModule,
     NoopAnimationsModule,
     DvlFwModule,
-    SharedModule
+    SharedModule,
+    GVButtonGroupModule
   ],
   exports: [
     MainComponent
   ],
-  declarations: [MainComponent]
+  declarations: [MainComponent, ScatterGraphComponent]
 })
 export class VisualizationViewModule { }

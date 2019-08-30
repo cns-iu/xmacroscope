@@ -32,9 +32,10 @@
             <div class="{{ yDropZone.selectionClass }} y-dropzone"></div>
           </app-data-variable-dropzone>
         </ng-container>
-
+       
         <div class="tab-content">
-          <dvl-visualization [data]="visType.data" #visualization></dvl-visualization>
+           <app-scatter-graph [data]="visType.data"></app-scatter-graph>
+          <!-- <dvl-visualization [data]="visType.data" #visualization></dvl-visualization> -->
         </div>
       </ng-template>
     </mat-tab>

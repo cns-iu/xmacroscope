@@ -13,7 +13,6 @@ import { ThemesModule } from './themes/themes.module';
 import { XMacroscopeDataModule, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 import { environment } from 'src/environments/environment';
 
-
 @NgModule({
   declarations: [ AppComponent ],
   imports: [
