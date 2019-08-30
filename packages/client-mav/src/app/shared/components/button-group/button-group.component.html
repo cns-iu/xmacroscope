@@ -5,7 +5,7 @@
   </div>
 
   <mat-button-toggle-group multiple [vertical]="vertical" [value]="[value]" (change)="selectionChanged($event)"
-                           >
+                           (valueChange)="valueChange.emit($event[0])">
     <mat-button-toggle *ngFor="let item of items; index as i; trackBy: trackBy" [value]="item">
       <ng-container *ngTemplateOutlet="content || defaultContent; context: makeContentContext(item, i)">
       </ng-container>
