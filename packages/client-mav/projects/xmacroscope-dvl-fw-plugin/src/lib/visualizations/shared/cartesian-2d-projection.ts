@@ -38,8 +38,6 @@ export class Cartesian2dProjection {
 
     this.mercatorWidth = earthRadius * 2.5;
     this.mercatorHeight = this.mercatorWidth * ((maxY - minY) / (maxX - minX));
-    console.log(this.mercatorWidth, this.mercatorHeight);
-    console.log(this.getWorldBbox());
   }
 
   toLngLat(x: number, y: number): LngLat {

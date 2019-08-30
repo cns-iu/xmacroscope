@@ -22,19 +22,21 @@
     id="graticule"
     source="graticule"
     type="line"
-    [filter]="['==', '$type', 'LineString']"
+    [filter]="['!=', '$type', 'Point']"
     [paint]="{
       'line-color': [
         'match',
         ['get', 'type'],
-        'grid-line', '#DEDAD7',
+        'grid-line-x', '#DEDAD7',
+        'grid-line-y', '#DEDAD7',
         'axis-line', '#01426A',
         '#bdbdbd'
       ],
       'line-width': [
         'match',
         ['get', 'type'],
-        'grid-line', 1,
+        'grid-line-x', 1,
+        'grid-line-y', 1,
         'axis-line', 2,
         'bounds-mark', 0,
         3

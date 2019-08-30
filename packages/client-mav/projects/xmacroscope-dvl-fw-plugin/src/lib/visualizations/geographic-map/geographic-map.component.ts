@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Outpu
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
-import { FeatureCollection, Geometry } from 'geojson';
+import { FeatureCollection, Geometry } from '@turf/helpers';
 import { isArray } from 'lodash';
 import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
@@ -11,7 +11,7 @@ import { EMPTY, Observable, of, Subscription } from 'rxjs';
 import { blankStyle } from '../shared/blank-style';
 import { DataDrivenIcons } from '../shared/data-driven-icons';
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
-import { graticule } from '../shared/graticule';
+import { graticule, withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
 import { NodesGeojson } from '../shared/nodes-geojson';
 import { reprojector } from '../shared/reprojector';
@@ -19,8 +19,9 @@ import { UsGeojson } from './../shared/us-geojson';
 
 
 const basemapGeoJson = reprojector('albersUsa', new UsGeojson());
-const worldBbox = bbox(basemapGeoJson);
-const graticuleGeoJson = reprojector('albersUsa', graticule(5));
+const gridGeoJson = reprojector('albersUsa', graticule(5));
+const graticuleGeoJson = withAxes(gridGeoJson);
+const worldBbox = bbox(graticuleGeoJson);
 
 @Component({
   selector: 'mav-geographic-map',
@@ -108,9 +109,6 @@ export class GeographicMapComponent implements VisualizationComponent,
     this.map.resize();
     new DataDrivenIcons().addTo(map);
 
-    // this.basemapGeoJson = reprojector('albersUsa', new UsGeojson());
-    // this.worldBbox = bbox(this.basemapGeoJson);
-    // this.graticule = reprojector('albersUsa', graticule(5));
     this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange});
   }
 

@@ -155,28 +155,28 @@ export class ScatterplotMapComponent implements VisualizationComponent,
           projection.toLngLat(t.point, minY).toArray(),
           projection.toLngLat(t.point, maxY).toArray()
         ], {
-          type: 'grid-line',
+          type: 'grid-line-x',
           label: t.label
         })),
       ...yTicks.map(t => lineString([
           projection.toLngLat(minX, t.point).toArray(),
           projection.toLngLat(maxX, t.point).toArray()
         ], {
-          type: 'grid-line',
+          type: 'grid-line-y',
           label: t.label
         })),
       lineString([
           projection.toLngLat(maxX, minY).toArray(),
           projection.toLngLat(maxX, maxY).toArray()
         ], {
-          type: 'grid-line',
+          type: 'grid-line-x',
           label: 'X Axis'
         }),
       lineString([
           projection.toLngLat(minX, minY).toArray(),
           projection.toLngLat(maxX, minY).toArray()
         ], {
-          type: 'grid-line',
+          type: 'grid-line-y',
           label: 'Y Axis'
         }),
       lineString([

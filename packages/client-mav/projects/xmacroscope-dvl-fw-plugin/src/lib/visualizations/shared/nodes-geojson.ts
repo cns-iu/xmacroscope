@@ -1,5 +1,5 @@
 import { idSymbol } from '@ngx-dino/core';
-import { FeatureCollection, Geometry, Feature } from 'geojson';
+import { FeatureCollection, Geometry, Feature } from '@turf/helpers';
 import { pick, round } from 'lodash';
 
 import { Cartesian2dProjection } from './cartesian-2d-projection';

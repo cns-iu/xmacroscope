@@ -26,9 +26,72 @@
     id="graticule"
     source="graticule"
     type="line"
+    [filter]="['!=', '$type', 'Point']"
     [paint]="{
-      'line-color': '#DEDAD7',
-      'line-width': 1
+      'line-color': [
+        'match',
+        ['get', 'type'],
+        'grid-line-x', '#DEDAD7',
+        'grid-line-y', '#DEDAD7',
+        'axis-line', '#01426A',
+        '#bdbdbd'
+      ],
+      'line-width': [
+        'match',
+        ['get', 'type'],
+        'grid-line-x', 1,
+        'grid-line-y', 1,
+        'axis-line', 2,
+        'bounds-mark', 0,
+        3
+      ]
+    }">
+  </mgl-layer>
+  <mgl-layer
+    id="graticule-labels"
+    source="graticule"
+    type="symbol"
+    [filter]="['==', '$type', 'Point']"
+    [paint]="{
+      'text-color': [
+        'match',
+        ['get', 'type'],
+        'axis-label-x', '#006298',
+        'axis-label-y', '#006298',
+        '#01426A'
+      ]
+    }"
+    [layout]="{
+      'text-field': ['get', 'label'],
+      'text-size': 24,
+      'text-allow-overlap': true,
+      'text-font': [
+        'match',
+        ['get', 'type'],
+        'axis-label-x', ['literal', ['Open Sans Regular']],
+        'axis-label-y', ['literal', ['Open Sans Regular']],
+        ['literal', ['Roboto Regular']]
+      ],
+      'text-rotate': [
+        'match',
+        ['get', 'type'],
+        'axis-label-y', -90,
+        0
+      ],
+      'text-radial-offset': 0.5,
+      'text-justify': [
+        'match',
+        ['get', 'type'],
+        'tick-label-y', 'right',
+        'center'
+      ],
+      'text-anchor': [
+        'match',
+        ['get', 'type'],
+        'tick-label-y', 'right',
+        'axis-label-y', 'bottom',
+        'top'
+      ]
     }">
   </mgl-layer>
   <mgl-layer

@@ -10,11 +10,11 @@ export class UsGeojson implements FeatureCollection<Geometry> {
   type: 'FeatureCollection' = 'FeatureCollection';
   features: Feature<Geometry, { [name: string]: any; }>[];
   constructor() {
-    const counties = feature(usTopoJson, usTopoJson.objects.counties).features;
+    // const counties = feature(usTopoJson, usTopoJson.objects.counties).features;
     const states = feature(usTopoJson, usTopoJson.objects.states).features;
     // const states = [asFeature(mesh(usTopoJson, usTopoJson.objects.states, function(a, b) { return a.id !== b.id; }))];
     // const nation = feature(usTopoJson, usTopoJson.objects.nation).features;
-    const nation = [asFeature(mesh(usTopoJson, usTopoJson.objects.nation))];
+    // const nation = [asFeature(mesh(usTopoJson, usTopoJson.objects.nation))];
 
     // this.features = [
     //   asFeature(counties),
@@ -22,7 +22,7 @@ export class UsGeojson implements FeatureCollection<Geometry> {
     //   ...nation
     // ];
     this.features = [
-      //...counties,
+      // ...counties,
       ...states,
       // ...nation
     ];
