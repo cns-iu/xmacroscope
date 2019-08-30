@@ -1,10 +1,10 @@
 // Adapted from https://github.com/dereklieu/cool-grid/blob/master/index.js
-import { FeatureCollection, Geometry, lineString, featureCollection, point, Feature } from '@turf/helpers';
 import bbox from '@turf/bbox';
+import { Feature, FeatureCollection, featureCollection, Geometry, lineString, point } from '@turf/helpers';
+import lineIntersect from '@turf/line-intersect';
 
 
 export function graticule(interval: number): FeatureCollection<Geometry> {
-
   interval = +interval || 20;
   const features = [];
 
@@ -71,79 +71,68 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
     yAxisLabel: string = 'Latitude (degrees)'): FeatureCollection<Geometry> {
   const [minX, minY, maxX, maxY] = bbox(geojson);
 
+  const axisLineX = lineString(
+    [ [minX, minY], [minX, maxY] ],
+    { type: 'axis-line', label: 'X Axis' }
+  );
+  const axisLineY = lineString(
+    [ [minX, minY], [maxX, minY] ],
+    { type: 'axis-line', label: 'Y Axis' }
+  );
+
   const xTicks = geojson.features
     .filter(f => f.properties.type === 'grid-line-x')
     .map(f => {
-      const [tMinX, tMinY, tMaxX, tMaxY] = bbox(f);
-      if (tMinY === minY) {
-        return {point: tMinX, label: f.properties.label};
+      const points = lineIntersect(axisLineY, f as any);
+      if (points.features.length > 0) {
+        const axisPoint = points.features[0].geometry.coordinates;
+        return {point: axisPoint[0], label: f.properties.label};
       }
-    }).filter(f => !!f);
+    }).filter(f => !!f).map(t => point(
+      [t.point, minY],
+      { type: 'tick-label-x', label: t.label }
+    ));
   const yTicks = geojson.features
     .filter(f => f.properties.type === 'grid-line-y')
     .map(f => {
-      const [tMinX, tMinY, tMaxX, tMaxY] = bbox(f);
-      if (tMinX === minX) {
-        return {point: tMaxY, label: f.properties.label};
+      const points = lineIntersect(axisLineX, f as any);
+      if (points.features.length > 0) {
+        const axisPoint = points.features[0].geometry.coordinates;
+        return {point: axisPoint[1], label: f.properties.label};
       }
-    }).filter(f => !!f);
+    }).filter(f => !!f).map(t => point(
+      [minX, t.point],
+      { type: 'tick-label-y', label: t.label }
+    ));
 
   const features: Feature<Geometry>[] = geojson.features.concat([
-    lineString([
-        [maxX, minY],
-        [maxX, maxY]
-      ], {
-        type: 'grid-line-x',
-        label: 'X Axis'
-      }),
-    lineString([
-        [minX, maxY],
-        [maxX, maxY]
-      ], {
-        type: 'grid-line-y',
-        label: 'Y Axis'
-      }),
-    lineString([
-        [minX, minY],
-        [minX, maxY]
-      ], {
-        type: 'axis-line',
-        label: 'X Axis'
-      }),
-    lineString([
-        [minX, minY],
-        [maxX, minY]
-      ], {
-        type: 'axis-line',
-        label: 'Y Axis'
-      }),
-    ...xTicks.map(t => point(
-        [t.point, minY], {
-        type: 'tick-label-x',
-        label: t.label
-      })),
-    ...yTicks.map(t => point(
-        [minX, t.point], {
-        type: 'tick-label-y',
-        label: t.label
-      })),
+    lineString(
+      [ [maxX, minY], [maxX, maxY] ],
+      { type: 'grid-line-x', label: 'X Axis' }
+    ),
+    lineString(
+      [ [minX, maxY], [maxX, maxY] ],
+      { type: 'grid-line-y', label: 'Y Axis' }
+    ),
+    axisLineX,
+    axisLineY,
+    ...xTicks,
+    ...yTicks,
     point(
-        [(minX + maxX) / 2, latFix(minY - 2)], {
-        type: 'axis-label-x',
-        label: xAxisLabel || ''
-      }),
+      [ (minX + maxX) / 2, latFix(minY - 2) ],
+      { type: 'axis-label-x', label: xAxisLabel || '' }
+    ),
     point(
-        [lngFix(minX - 3), (minY + maxY) / 2], {
-        type: 'axis-label-y',
-        label: yAxisLabel || ''
-      }),
-    lineString([
-        [lngFix(minX - 4), latFix(maxY + 0.5)],
-        [lngFix(maxX + 0.5), latFix(minY - 4)]
-      ], {
-        type: 'bounds-mark',
-        label: 'Bounds Mark'
-      })
+      [ lngFix(minX - 3), (minY + maxY) / 2 ],
+      { type: 'axis-label-y', label: yAxisLabel || '' }
+    ),
+    lineString(
+      [
+        [ lngFix(minX - 4), latFix(maxY + 0.25) ],
+        [ lngFix(maxX + 0.5), latFix(minY - 4) ]
+      ],
+      { type: 'bounds-mark', label: 'Bounds Mark' }
+    )
   ]);
 
   return featureCollection(features);
