@@ -10,6 +10,8 @@ import {
   TrackByFunction,
 } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { Observable } from 'rxjs';
+import { sampleTime } from 'rxjs/operators';
 
 export interface ButtonContentContext {
   $implicit: any;
@@ -39,11 +41,18 @@ export class ButtonGroupComponent {
   @Input() deselectable = true;
   @Input() vertical = false;
 
-  @Output() valueChange = new EventEmitter<any>();
+  @Output() valueChange: Observable<any>;
   @Output() change = new EventEmitter<MatButtonToggleChange>();
 
   @ContentChild(ButtonGroupLabelDirective, { static: false, read: TemplateRef }) label: TemplateRef<void>;
   @ContentChild(ButtonContentDirective, { static: false, read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
+
+  private _valueChange = new EventEmitter<any>();
+
+  constructor() {
+    // Waits for the group's state to settle before emitting the current value.
+    this.valueChange = this._valueChange.pipe(sampleTime(10));
+  }
 
   makeContentContext(item: any, index: number): ButtonContentContext {
     return { $implicit: item, index };
@@ -64,5 +73,9 @@ export class ButtonGroupComponent {
     }
 
     this.change.emit(new MatButtonToggleChange(toggle, singleValue));
+  }
+
+  valueChanged(item: [any] | undefined): void {
+    this._valueChange.emit(item && item[0]);
   }
 }
