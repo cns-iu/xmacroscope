@@ -1,13 +1,9 @@
-::ng-deep body
-  background: #000000
-
 .main-view 
   display: flex
-  width: 99vw
+  width: 100vw
   height: 89vh
   align-items: stretch
   overflow: hidden
-  padding: 1vh .5vw 1vh .5vw
 
   .data-view 
     width: 31.5vw
@@ -21,27 +17,26 @@
     display: flex
 
     .visualization
-      height: 65vh
+      height: 57.5rem
     
     .legend
       display: block
-      height: 23vh
+      height: 10rem
       overflow-x: hidden
-      padding-top: 1vh
 
 .no-header
-  height: 98vh
+  height: 100vh
 
   .visualization-and-legend-view
     
     .visualization
-      height: 70.5vh
+      height: 57.5rem
     
     .legend
-      height: 28.5vh
+      height: 10rem
 
 ::ng-deep .no-header .visualization-container .tab-content
-  height: calc(70.5vh - 13vh) !important
+  height: 100vh !important
 
 ::ng-deep .no-header .x-dropzone
   top: 51vh !important
