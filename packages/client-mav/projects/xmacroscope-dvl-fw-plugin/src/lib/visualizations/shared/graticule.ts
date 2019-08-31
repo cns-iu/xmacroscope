@@ -129,7 +129,24 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
     point(
       [ minX, (minY + maxY) / 2 ],
       { type: 'axis-label-y', label: yAxisLabel || '', maxYLabelLength }
-    )
+    ),
+    point(
+      [ minX, minY ],
+      { type: 'axis-line-label-x', label: 'X Axis' }
+    ),
+    point(
+      [ minX, minY ],
+      { type: 'axis-line-label-y', label: 'Y Axis' }
+    ),
+    point(
+      [ maxX, minY ],
+      { type: 'axis-line-arrow-x', label: '>' }
+    ),
+    point(
+      [ minX, maxY ],
+      { type: 'axis-line-arrow-y', label: '>' }
+      // 1→2⇒3⇛4⇢5⇨6⇾7⟶8⟹9⤍10⤏11⤑12⭢13⭬14⮕15⮚16⮞17⯈18
+    ),
   ]);
 
   return {

@@ -58,23 +58,48 @@
         'axis-label-x', '#006298',
         'axis-label-y', '#006298',
         '#01426A'
+      ],
+      'text-halo-color': [
+        'match',
+        ['get', 'type'],
+        'axis-line-label-x', '#FFFFFF',
+        'axis-line-label-y', '#FFFFFF',
+        'rgba(0, 0, 0, 0)'
+      ],
+      'text-halo-width': [
+        'match',
+        ['get', 'type'],
+        'axis-line-label-x', 6,
+        'axis-line-label-y', 6,
+        0
       ]
     }"
     [layout]="{
       'text-field': ['get', 'label'],
-      'text-size': 24,
+      'text-size': [
+        'match',
+        ['get', 'type'],
+        'axis-line-arrow-x', 24,
+        'axis-line-arrow-y', 24,
+        24
+      ],
       'text-allow-overlap': true,
       'text-font': [
         'match',
         ['get', 'type'],
         'axis-label-x', ['literal', ['Open Sans Regular']],
         'axis-label-y', ['literal', ['Open Sans Regular']],
+        'axis-line-arrow-x', ['literal', ['Open Sans Bold']],
+        'axis-line-arrow-y', ['literal', ['Open Sans Bold']],
         ['literal', ['Roboto Regular']]
       ],
       'text-rotate': [
         'match',
         ['get', 'type'],
         'axis-label-y', -90,
+        'axis-line-label-y', -90,
+        'axis-line-arrow-x', 0,
+        'axis-line-arrow-y', -90,
         0
       ],
       'text-radial-offset': [
@@ -82,19 +107,20 @@
         ['get', 'type'],
         'axis-label-x', 1.75,
         'axis-label-y', ['+', ['*', ['get', 'maxYLabelLength'], 0.5], 1.25],
+        'axis-line-arrow-x', 0,
+        'axis-line-arrow-y', 0,
         0.5
       ],
-      'text-justify': [
-        'match',
-        ['get', 'type'],
-        'tick-label-y', 'right',
-        'center'
-      ],
+      'text-justify': 'auto',
       'text-anchor': [
         'match',
         ['get', 'type'],
         'tick-label-y', 'right',
         'axis-label-y', 'bottom',
+        'axis-line-label-x', 'left',
+        'axis-line-label-y', 'left',
+        'axis-line-arrow-x', 'right',
+        'axis-line-arrow-y', 'right',
         'top'
       ]
     }">
