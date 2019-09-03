@@ -18,14 +18,10 @@ export interface ButtonContentContext {
   index: number;
 }
 
-@Directive({
-  selector: '[app-button-group-label], [appButtonGroupLabel]'
-})
+@Directive({ selector: '[app-button-group-label], [appButtonGroupLabel]' })
 export class ButtonGroupLabelDirective { }
 
-@Directive({
-  selector: '[app-button-content], [appButtonContent]'
-})
+@Directive({ selector: '[app-button-content], [appButtonContent]' })
 export class ButtonContentDirective { }
 
 @Component({
@@ -36,8 +32,8 @@ export class ButtonContentDirective { }
 })
 export class ButtonGroupComponent {
   @Input() items: any[];
-  @Input() value: any;
-  @Input() trackBy: TrackByFunction<any>;
+  @Input() value?: any;
+  @Input() trackBy?: TrackByFunction<any>;
   @Input() deselectable = true;
   @Input() vertical = false;
 

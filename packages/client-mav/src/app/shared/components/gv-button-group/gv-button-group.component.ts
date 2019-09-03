@@ -1,6 +1,23 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  Pipe,
+  PipeTransform,
+  SimpleChanges,
+} from '@angular/core';
 import { GraphicVariable, GraphicVariableType } from '@dvl-fw/core';
-import { get, groupBy } from 'lodash';
+import { get, groupBy, replace } from 'lodash';
+
+@Pipe({ name: 'removeUnits' })
+export class RemoveUnitsPipe implements PipeTransform {
+  transform(value: string): string {
+    return replace(value, /\s*\(.*\)\s*$/, '');
+  }
+}
 
 @Component({
   selector: 'app-gv-button-group',
@@ -11,8 +28,9 @@ import { get, groupBy } from 'lodash';
 export class GVButtonGroupComponent implements OnChanges {
   @Input() variables: GraphicVariable[];
   @Input() type: GraphicVariableType;
-  @Input() label: string;
-  @Input() icon: string; // FIXME: type?
+  @Input() defaultVariable?: GraphicVariable;
+  @Input() label?: string;
+  @Input() icon?: string;
   @Input() vertical = false;
 
   @Output() variableChange = new EventEmitter<GraphicVariable>();
@@ -26,8 +44,8 @@ export class GVButtonGroupComponent implements OnChanges {
     }
   }
 
-  emitVariableChange(variable: GraphicVariable): void {
-    this.variableChange.emit(variable || this.fixedVariable);
+  variableChanged(variable: GraphicVariable): void {
+    this.variableChange.emit(variable || this.defaultVariable || this.fixedVariable);
   }
 
   private updateVariables(): void {

@@ -38,6 +38,10 @@
         border-radius: 0.25rem;
         color: #006298;
         background: linear-gradient(to top, #F1BE48, #F9E5B6);
+
+        .mat-button-toggle-label-content {
+          padding: 0 0;
+        }
       }
     }
 
