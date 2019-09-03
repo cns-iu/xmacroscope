@@ -30,7 +30,7 @@ export class GVButtonGroupComponent implements OnChanges {
   @Input() type: GraphicVariableType;
   @Input() defaultVariable?: GraphicVariable;
   @Input() label?: string;
-  @Input() icon?: string; // FIXME: type?
+  @Input() icon?: string;
   @Input() vertical = false;
 
   @Output() variableChange = new EventEmitter<GraphicVariable>();
