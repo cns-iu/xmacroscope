@@ -1,43 +1,6 @@
 <div class="visualization-container">
-  <mat-tab-group [selectedIndex]="selectedVisualization" (selectedIndexChange)="setSelectedVis($event)" class="visualization-tabs"
-    #tabs [ngStyle]="{'height': '100%'}">
-    <mat-tab [disabled]="true" isActive="false">
-      <ng-template mat-tab-label>
-        <div class="tab-label partial-disabled-tab-label">
-          <div class="first-line">Select</div>
-          <div>Visualization Type</div>
-        </div>
-      </ng-template>
-    </mat-tab>
-
-    <mat-tab *ngFor="let visType of vis; let index = index">
-      <ng-template mat-tab-label>
-        <div class="tab-label">
-          <div class="image"><img [src]="visType.icon" height="100%"></div>
-          <div class="text">{{visType.label}}</div>
-        </div>
-      </ng-template>
-
-      <ng-template matTabContent>
-        <!-- <ng-container *ngIf="visType.data.template === 'scattergraph'">
-          <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[0]" [recordStream]="recordStreams[0]"
-            (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[0], $event)"
-            [availableGraphicVariables]="availableGraphicVariables" #xDropZone>
-            <div class="{{ xDropZone.selectionClass }} x-dropzone"></div>
-          </app-data-variable-dropzone>
-
-          <app-data-variable-dropzone mappingKey="axis" [graphicVariableOption]="graphicVariableOptions[1]" [recordStream]="recordStreams[0]"
-            (graphicVariableChange)="onGraphicVariableChange(visType.data, graphicVariableOptions[1], $event)"
-            [availableGraphicVariables]="availableGraphicVariables" #yDropZone>
-            <div class="{{ yDropZone.selectionClass }} y-dropzone"></div>
-          </app-data-variable-dropzone>
-        </ng-container> -->
-       
-        <div class="tab-content">
-           <app-scatter-graph [data]="visType.data"></app-scatter-graph>
-          <!-- <dvl-visualization [data]="visType.data" #visualization></dvl-visualization> -->
-        </div>
-      </ng-template>
-    </mat-tab>
-  </mat-tab-group>
+  <div class="tab-content">
+    <app-scatter-graph [data]="vis[0].data"></app-scatter-graph>
+   <!-- <dvl-visualization [data]="visType.data" #visualization></dvl-visualization> -->
+ </div>
 </div>

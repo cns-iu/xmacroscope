@@ -1,41 +1,32 @@
 .main-view 
-  display: flex
-  width: 100vw
-  height: 67.5rem
   align-items: stretch
   overflow: hidden
+  margin: 3rem
 
   .data-view 
     width: 31.5vw
     overflow-y: auto
     padding-right: 0.5vw
 
-  .visualization-and-legend-view 
-    position: relative
-    width: 100%
-    flex-direction: column
-    display: flex
+  .visualization-and-legend-view
 
     .visualization
       height: 57.5rem
     
     .legend
       display: block
-      height: 10rem
+      height: 7rem
       overflow-x: hidden
 
 .no-header
-  height: 67.5rem
   .visualization-and-legend-view
     
     .visualization
       height: 57.5rem
     
     .legend
-      height: 10rem
-
-::ng-deep .no-header .visualization-container .tab-content
-  height: 100vh !important
+      height: 7rem
+      background: grey
 
 ::ng-deep .no-header .x-dropzone
   top: 51vh !important
