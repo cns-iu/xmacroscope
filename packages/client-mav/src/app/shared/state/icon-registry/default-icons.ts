@@ -5,7 +5,7 @@ import YAxisSvg from './inline-svg/y-axis.svg';
 /**
  * Icon definition where url and html are strings instead of SafeResourceUrl or SafeHtml.
  */
-export type DefaultIconDefinition = Exclude<IconDefinition, 'url' | 'html'> & {
+export type DefaultIconDefinition = Omit<IconDefinition, 'url' | 'html'> & {
   url?: string,
   html?: string
 };
