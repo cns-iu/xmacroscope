@@ -1,10 +1,12 @@
-<div class="container">
-    <div class="y-axis-buttons">
-        <app-gv-button-group [variables]="dataService.project.graphicVariables" [type]="'identifier'" [vertical]="true"></app-gv-button-group>
-    </div>
-    <div class="visualization">
-         <dvl-visualization [data]="data" #visualization></dvl-visualization>
-    </div>
-    <div class="graphic-variables-selection">
+<div class="scatter-graph">
+    <div class="container">
+        <div class="y-axis-buttons">
+            <app-gv-button-group [variables]="dataService.project.graphicVariables" [type]="'identifier'" [vertical]="true"></app-gv-button-group>
+        </div>
+        <div class="visualization">
+            <dvl-visualization [data]="data" #visualization></dvl-visualization>
+        </div>
+        <div class="graphic-variables-selection">
+        </div>
     </div>
 </div>

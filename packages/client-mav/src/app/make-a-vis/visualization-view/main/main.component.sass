@@ -1,11 +1,16 @@
 .visualization-container
   background: #ffffff
-  height: 100%
   width: 100%
+  padding: 4rem
+
+  ::ng-deep .mat-tab-body
+    overflow-y: hidden
+  
+  ::ng-deep .mat-tab-header
+    display: none
 
   .tab-content
-    padding: 1vh 1vw 1vh 1vh
-    height: calc(65vh - 13vh)
+    height: 100vh
 
   .text
     color: #000000
