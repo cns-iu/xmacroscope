@@ -22,7 +22,7 @@ import { ThemesModule } from './themes/themes.module';
     MatTabsModule,
     MatToolbarModule,
 
-    NgxsModule.forRoot([IconRegistryState]),
+    NgxsModule.forRoot([IconRegistryState], { developmentMode: !environment.production }),
     XMacroscopeDataModule.forRoot(environment.projectConfiguration),
 
     AppRoutingModule,
