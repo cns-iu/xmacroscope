@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ButtonGroupModule } from '../button-group';
-import { GVButtonGroupComponent } from './gv-button-group.component';
+import { GVButtonGroupComponent, RemoveUnitsPipe } from './gv-button-group.component';
 
 @NgModule({
   imports: [CommonModule, ButtonGroupModule],
-  declarations: [GVButtonGroupComponent],
+  declarations: [GVButtonGroupComponent, RemoveUnitsPipe],
   exports: [GVButtonGroupComponent],
 })
 export class GVButtonGroupModule { }
