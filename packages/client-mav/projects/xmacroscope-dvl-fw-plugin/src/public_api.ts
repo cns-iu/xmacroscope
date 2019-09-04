@@ -13,3 +13,5 @@ export * from './lib/shared/xmacroscope-data-source';
 export * from './lib/shared/xmacroscope-plugin';
 export * from './lib/shared/xmacroscope-project';
 export * from './lib/shared/run-stream-controller';
+
+export * from './lib/visualizations/visualizations.module';
