@@ -1,17 +1,31 @@
 <div class="scatter-graph">
-    <div class="container">
-        <div class="y-axis-buttons">
-            <app-gv-button-group [variables]="dataService.project.graphicVariables" [type]="'identifier'" [vertical]="true"></app-gv-button-group>
-        </div>
-        <div class="visualization">
-            <div class="visualization-area">
-                <dvl-visualization [data]="data" #visualization></dvl-visualization>
-            </div>
-            <div class="x-axis-buttons">
-                For buttons
-            </div>
-        </div>
-        <div class="graphic-variables-selection">
-        </div>
+  <div class="container">
+    <div class="y-axis-buttons">
+      <app-gv-button-group label="Y Axis" icon="label:y-axis" [variables]="dataService.project.graphicVariables"
+                           [type]="xAxisType" [vertical]="true"></app-gv-button-group>
     </div>
+    <div class="visualization">
+      <div class="visualization-area">
+        <dvl-visualization [data]="data" #visualization></dvl-visualization>
+      </div>
+      <div class="x-axis-buttons">
+        <app-gv-button-group label="X Axis" icon="label:x-axis" [variables]="dataService.project.graphicVariables"
+                             [type]="yAxisType"></app-gv-button-group>
+      </div>
+    </div>
+    <div class="graphic-variables-selection">
+      <div>
+        <app-gv-button-group label="Color" icon="label:color" [variables]="dataService.project.graphicVariables"
+                             [type]="colorType" [vertical]="true"></app-gv-button-group>
+      </div>
+      <div>
+        <app-gv-button-group label="Shape" icon="label:shape" [variables]="dataService.project.graphicVariables"
+                             [type]="shapeType" [vertical]="true"></app-gv-button-group>
+      </div>
+      <div>
+        <app-gv-button-group label="Size" icon="label:size" [variables]="dataService.project.graphicVariables"
+                             [type]="sizeType" [vertical]="true"></app-gv-button-group>
+      </div>
+    </div>
+  </div>
 </div>
