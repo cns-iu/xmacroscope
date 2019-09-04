@@ -1,16 +1,20 @@
 <div class="scatter-graph">
   <div class="container">
-    <div class="y-axis-buttons">
-      <app-gv-button-group label="Y Axis" icon="label:y-axis" [variables]="variables" [type]="xAxisType"
-                           [defaultVariable]="defaultYAxisVariable" [vertical]="true"
-                           (variableChange)="variableChanged($event, 'y')"></app-gv-button-group>
+    <div class="y-axis">
+      <div class="visualization-name">SCATTER GRAPH</div>
+
+      <div class="buttons">
+        <app-gv-button-group label="Y Axis" icon="label:y-axis" [variables]="variables" [type]="yAxisType"
+                             [defaultVariable]="defaultYAxisVariable" [vertical]="true"
+                             (variableChange)="variableChanged($event, 'y')"></app-gv-button-group>
+      </div>
     </div>
     <div class="visualization">
       <div class="visualization-area">
         <dvl-visualization [data]="data" #visualization></dvl-visualization>
       </div>
       <div class="x-axis-buttons">
-        <app-gv-button-group label="X Axis" icon="label:x-axis" [variables]="variables" [type]="yAxisType"
+        <app-gv-button-group label="X Axis" icon="label:x-axis" [variables]="variables" [type]="xAxisType"
                              [defaultVariable]="defaultXAxisVariable" (variableChange)="variableChanged($event, 'x')">
         </app-gv-button-group>
       </div>
