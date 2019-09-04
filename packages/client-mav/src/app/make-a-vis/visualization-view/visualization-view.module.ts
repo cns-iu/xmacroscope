@@ -4,7 +4,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DvlFwModule } from '@dvl-fw/core';
-import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './main/main.component';
 import { ScatterGraphComponent } from './scatter-graph/scatter-graph.component';
 import { GVButtonGroupModule } from 'src/app/shared/components/gv-button-group';
@@ -16,7 +15,6 @@ import { GVButtonGroupModule } from 'src/app/shared/components/gv-button-group';
     MatTabsModule,
     NoopAnimationsModule,
     DvlFwModule,
-    SharedModule,
     GVButtonGroupModule
   ],
   exports: [
