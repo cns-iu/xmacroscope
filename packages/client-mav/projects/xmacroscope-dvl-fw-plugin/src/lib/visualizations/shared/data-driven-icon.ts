@@ -72,6 +72,9 @@ export class DataDrivenIcon {
   readonly canvas: HTMLCanvasElement;
   readonly context: CanvasRenderingContext2D;
 
+  private imageDrawn: boolean;
+  private imageSent: boolean;
+
   constructor(public readonly config: IconConfig, private createCanvas = defaultCanvasCreator) {
     const symbolDiameter = Math.sqrt(config.areaSize / Math.PI) * 2;
     if (config.pulse) {
@@ -86,19 +89,25 @@ export class DataDrivenIcon {
   }
 
   get isAnimated(): boolean {
-    return this.config.pulse;
+    return this.config.pulse || (this.hasImageShape && !this.imageSent);
+  }
+
+  get hasImageShape(): boolean {
+    return this.config.shape && (this.config.shape.startsWith('data:') || this.config.shape.startsWith('http'));
   }
 
   render(): boolean {
-    const { config, canvas, context } = this;
+    const { config, canvas, context, hasImageShape } = this;
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    if (!hasImageShape || config.pulse) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
     context.save();
+
     context.translate(canvas.width / 2, canvas.height / 2);
+    context.beginPath();
 
     const shape = symbolLookup[config.shape] || defaultSymbol;
-
-    context.beginPath();
     shape.draw(context, config.areaSize);
 
     if (config.pulse) {
@@ -112,20 +121,37 @@ export class DataDrivenIcon {
       context.fill();
       context.stroke();
     }
-    if (config.color) {
-      context.fillStyle = config.color;
-      context.globalAlpha = 1 - config.transparency;
-      context.fill();
-    }
-    if (config.strokeColor) {
-      context.strokeStyle = config.strokeColor;
-      context.lineWidth = config.strokeWidth;
-      context.globalAlpha = 1 - config.strokeTransparency;
-      context.stroke();
+    if (hasImageShape) {
+      if (this.imageDrawn) {
+        setTimeout(() => this.imageSent = true, 10);
+      } else {
+        const symbolRadius = Math.sqrt(config.areaSize) / 2;
+        const image = new Image();
+        this.imageDrawn = false;
+        this.imageSent = false;
+        image.onload = () => {
+          context.globalAlpha = 1;
+          context.drawImage(image, canvas.width / 2 - symbolRadius, canvas.height / 2 - symbolRadius, symbolRadius * 2, symbolRadius * 2);
+          this.imageDrawn = true;
+        };
+        image.src = config.shape;
+      }
+    } else {
+      if (config.color) {
+        context.fillStyle = config.color;
+        context.globalAlpha = 1 - config.transparency;
+        context.fill();
+      }
+      if (config.strokeColor) {
+        context.strokeStyle = config.strokeColor;
+        context.lineWidth = config.strokeWidth;
+        context.globalAlpha = 1 - config.strokeTransparency;
+        context.stroke();
+      }
     }
     context.restore();
 
-    return config.pulse;
+    return this.isAnimated;
   }
 
   getImageData(): ImageData {
