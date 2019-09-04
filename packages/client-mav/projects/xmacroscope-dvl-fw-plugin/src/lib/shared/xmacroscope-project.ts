@@ -1,16 +1,19 @@
 import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
-  DefaultRecordSet, GeomapVisualization, GraphicSymbol, GraphicVariable, Project, RecordSet,
-  ScatterplotVisualization, Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
+  DefaultRecordSet, GraphicSymbol, GraphicVariable, Project, RecordSet,
+  Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
 
 import { XMacroscopeDataSource } from './xmacroscope-data-source';
 import { MockRunRawData } from '../mock/mock-run-raw-data';
 import { RunStreamController } from './run-stream-controller';
 import { LocationSettings } from '../graphql/location-settings';
+import { asMessage } from '../graphql/graphql-queries';
+import { ScatterplotMapVisualization } from '../visualizations/scatterplot-map/scatterplot-map.visualization';
+import { GeographicMapVisualization } from '../visualizations/geographic-map/geographic-map.visualization';
 
 
 export interface XMacroscopeProjectConfig {
   mockData?: boolean;
-  staticMockData?: boolean;
+  staticData?: 'mocked' | any;
   endpoint?: string;
   deploymentLocation?: string;
   defaultUsState?: string;
@@ -48,8 +51,8 @@ export class XMacroscopeProject extends DefaultProject {
 
   constructor(private config: XMacroscopeProjectConfig) {
     super();
-    if (config.staticMockData) {
-      this.dataSources = this.getStaticMockDataSources();
+    if (config.staticData) {
+      this.dataSources = this.getStaticDataSources(config.staticData);
     } else {
       this.dataSources = this.getDataSources(config.mockData, config.endpoint);
     }
@@ -69,11 +72,20 @@ export class XMacroscopeProject extends DefaultProject {
     return [ ds ];
   }
 
-  getStaticMockDataSources(): DataSource[] {
-    this.rawData.push(new MockRunRawData({
-      id: 'runs', template: 'json',
-      data: { 'runs': [] }
-    }));
+  getStaticDataSources(staticData: 'mocked' | any): DataSource[] {
+    if (staticData === 'mocked') {
+      this.rawData.push(new MockRunRawData({
+        id: 'runs', template: 'json',
+        data: { 'runs': [] }
+      }));
+    } else {
+      this.rawData.push(new DefaultRawData({
+        id: 'runs', template: 'json',
+        data: { 'runs': staticData.data.Runs.map((run: any) =>
+          asMessage({ type: 'run-finished', timestamp: run.end, run}).run.toJSON()
+        )}
+      }));
+    }
     // TODO: fix associated bug in MAV
     this.rawData.push(new DefaultRawData({
       id: 'activityLog', template: 'activityLog',
@@ -343,7 +355,7 @@ export class XMacroscopeProject extends DefaultProject {
 
   getVisualizations(): Visualization[] {
     return [
-      new ScatterplotVisualization({
+      new ScatterplotMapVisualization({
         id: 'SG01',
         template: 'scattergraph',
         properties: {
@@ -355,17 +367,11 @@ export class XMacroscopeProject extends DefaultProject {
           points: 'runPoints'
         }
       }, this),
-      new GeomapVisualization({
+      new GeographicMapVisualization({
         id: 'GM01',
         template: 'geomap',
         properties: {
           basemapZoomLevels: [
-            {
-              selector: ['world', 'countries'],
-              projection: 'eckert4',
-              label: 'World',
-              class: 'world-icon'
-            },
             {
               selector: ['world', 'united states', 'states'],
               projection: 'albersUsa',
@@ -373,9 +379,9 @@ export class XMacroscopeProject extends DefaultProject {
               class: 'us-icon'
             },
             {
-              selector: ['world', 'united states', this.config.defaultUsState, 'counties'],
+              selector: ['world', 'united states', this.config.defaultUsState || 'Indiana', 'counties'],
               projection: 'albersUsa',
-              label: this.config.defaultUsState,
+              label: this.config.defaultUsState || 'Indiana',
               class: 'state-icon'
             }
           ],

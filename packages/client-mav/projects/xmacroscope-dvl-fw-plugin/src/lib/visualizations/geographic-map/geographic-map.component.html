@@ -1,0 +1,190 @@
+<div #tooltipElement class="tooltip"></div>
+<mgl-map
+  [style]="style"
+  [zoom]="[3]"
+  [center]="[0, 0]"
+  [fitBounds]="worldBbox"
+  [fitBoundsOptions]="{
+    padding: worldPadding
+  }"
+  [renderWorldCopies]="false"
+  (load)="onMapLoad($event)">
+
+  <!-- Soures -->
+  <mgl-geojson-source
+    id="graticule"
+    [data]="graticule">
+  </mgl-geojson-source>
+  <mgl-geojson-source
+    id="basemap"
+    [data]="basemapGeoJson">
+  </mgl-geojson-source>
+  <mgl-geojson-source
+    id="nodes"
+    [data]="nodesGeoJson">
+  </mgl-geojson-source>
+
+  <!-- Layers -->
+  <mgl-layer
+    id="graticule"
+    source="graticule"
+    type="line"
+    [filter]="['!=', '$type', 'Point']"
+    [paint]="{
+      'line-color': [
+        'match',
+        ['get', 'type'],
+        'grid-line-x', '#DEDAD7',
+        'grid-line-y', '#DEDAD7',
+        'axis-line', '#01426A',
+        '#bdbdbd'
+      ],
+      'line-width': [
+        'match',
+        ['get', 'type'],
+        'grid-line-x', 1,
+        'grid-line-y', 1,
+        'axis-line', 2,
+        'bounds-mark', 0,
+        3
+      ]
+    }">
+  </mgl-layer>
+  <mgl-layer
+    id="basemapFill"
+    source="basemap"
+    type="fill"
+    [paint]="{
+      'fill-color': '#fff',
+      'fill-outline-color': '#DEDAD7',
+      'fill-opacity': 0.6
+    }">
+  </mgl-layer>
+  <mgl-layer
+    id="basemapLines"
+    source="basemap"
+    type="line"
+    [paint]="{
+      'line-color': '#DEDAD7',
+      'line-width': 1.5
+    }">
+  </mgl-layer>
+  <mgl-layer
+    id="nodes"
+    source="nodes"
+    type="symbol"
+    [paint]="{
+      'text-color': '#000'
+    }"
+    [layout]="{
+      'icon-image': ['get', 'icon'],
+      'icon-allow-overlap': true,
+      'symbol-sort-key': ['get', 'areaSize'],
+      'text-field': ['case', ['==', ['get', 'labelPosition'], ''], '', ['get', 'label']],
+      'text-justify': 'auto',
+      'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+      'text-radial-offset': 1,
+      'text-optional': true,
+      'text-size': 14,
+      'text-allow-overlap': true,
+      'text-font': [
+        'Roboto Regular'
+      ]
+    }"
+    (click)="nodeClicked($event)"
+    (mouseEnter)="onMouseEnter($event)"
+    (mouseLeave)="onMouseLeave($event)">
+  </mgl-layer>
+  <mgl-layer
+    id="axes"
+    source="graticule"
+    type="line"
+    [filter]="['==', 'type', 'axis-line']"
+    [paint]="{
+      'line-color': '#01426A',
+      'line-width': 2
+    }"
+    [layout]="{
+      'line-cap': 'round'
+    }">
+  </mgl-layer>
+  <mgl-layer
+    id="graticule-labels"
+    source="graticule"
+    type="symbol"
+    [filter]="['==', '$type', 'Point']"
+    [paint]="{
+      'text-color': [
+        'match',
+        ['get', 'type'],
+        'axis-label-x', '#006298',
+        'axis-label-y', '#006298',
+        '#01426A'
+      ],
+      'text-halo-color': [
+        'match',
+        ['get', 'type'],
+        'axis-line-label-x', '#FFFFFF',
+        'axis-line-label-y', '#FFFFFF',
+        'rgba(0, 0, 0, 0)'
+      ],
+      'text-halo-width': [
+        'match',
+        ['get', 'type'],
+        'axis-line-label-x', 6,
+        'axis-line-label-y', 6,
+        0
+      ]
+    }"
+    [layout]="{
+      'text-field': ['get', 'label'],
+      'text-size': [
+        'match',
+        ['get', 'type'],
+        'axis-line-arrow-x', 24,
+        'axis-line-arrow-y', 24,
+        24
+      ],
+      'text-allow-overlap': true,
+      'text-font': [
+        'match',
+        ['get', 'type'],
+        'axis-label-x', ['literal', ['Open Sans Regular']],
+        'axis-label-y', ['literal', ['Open Sans Regular']],
+        'axis-line-arrow-x', ['literal', ['Open Sans Bold']],
+        'axis-line-arrow-y', ['literal', ['Open Sans Bold']],
+        ['literal', ['Roboto Regular']]
+      ],
+      'text-rotate': [
+        'match',
+        ['get', 'type'],
+        'axis-label-y', -90,
+        'axis-line-label-y', -90,
+        'axis-line-arrow-x', 0,
+        'axis-line-arrow-y', -90,
+        0
+      ],
+      'text-radial-offset': [
+        'match',
+        ['get', 'type'],
+        'axis-label-x', 1.75,
+        'axis-label-y', ['+', ['*', ['get', 'maxYLabelLength'], 0.5], 1.25],
+        'axis-line-arrow-x', 0,
+        'axis-line-arrow-y', 0,
+        0.5
+      ],
+      'text-justify': 'auto',
+      'text-anchor': [
+        'match',
+        ['get', 'type'],
+        'tick-label-y', 'right',
+        'axis-label-y', 'bottom',
+        'axis-line-label-x', 'left',
+        'axis-line-label-y', 'left',
+        'axis-line-arrow-x', 'right',
+        'axis-line-arrow-y', 'right',
+        'top'
+      ]
+    }">
+  </mgl-layer>
+</mgl-map>
