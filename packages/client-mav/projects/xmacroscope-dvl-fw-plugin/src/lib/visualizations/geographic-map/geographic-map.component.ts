@@ -4,22 +4,22 @@ import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } fr
 import bbox from '@turf/bbox';
 import bboxClip from '@turf/bbox-clip';
 import clone from '@turf/clone';
+import { BBox, FeatureCollection, featureCollection, Geometry, Point, Polygon } from '@turf/helpers';
 import pointsWithinPolygon from '@turf/points-within-polygon';
-import { FeatureCollection, Geometry, BBox, featureCollection, Point, Polygon } from '@turf/helpers';
 import { isArray } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, Point as MapPoint, PointLike, PaddingOptions } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point as MapPoint, PointLike } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 import { blankStyle } from '../shared/blank-style';
 import { DataDrivenIcons } from '../shared/data-driven-icons';
+import { fitBoundsToAspectRatio } from '../shared/fit-bounds-to-aspect-ratio';
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
 import { graticule, withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
 import { nodesGeoJson } from '../shared/nodes-geojson';
 import { reprojector } from '../shared/reprojector';
-import { getStatesGeoJson, getCountiesForStateGeoJson } from './../shared/us-geojson';
-import { fitBoundsToAspectRatio } from '../shared/fit-bounds-to-aspect-ratio';
+import { getCountiesForStateGeoJson, getStatesGeoJson } from '../shared/us-geojson';
 
 
 // Precompute some geometry
@@ -131,34 +131,42 @@ export class GeographicMapComponent implements VisualizationComponent,
       const state = this.featureSelection;
       const feature = usGeoJson.features.find(f => f.properties.label === state);
 
-      if (state && state !== 'USA') {
+      if (state && state !== 'USA' && !!feature) {
+        // Limit nodes showing to just those in the selected state
         this.nodesGeoJson = pointsWithinPolygon(this.nodesGeoJson, feature) as FeatureCollection<Point>;
+
+        // Stretch out the state bounding box to match the screen aspect ratio. This will
+        // necessarily include some parts of bordering states.
         const featureBounds = fitBoundsToAspectRatio(bbox(feature), viewBox);
 
+        // Clip the 1°x1° grid to the region we will be displaying
         const grid = withAxes(featureCollection(gridGeoJson1.features.map(f =>
           bboxClip(clone(f), featureBounds)
         ).filter(f => !!f.geometry)));
 
+        // Clip the us map to the region we will be displaying
         const featureGeoJson = featureCollection<Polygon>(usGeoJson.features.map(f => {
           const clip = bboxClip<Polygon>(clone(f), featureBounds);
           clip.geometry.coordinates = clip.geometry.coordinates.filter(c => c && c.length > 0);
           return clip.geometry.coordinates.length > 0 ? clip : undefined;
         }).filter(f => !!f));
 
+        // Get the counties for the selected state
         const countiesGeoJson = reprojector<Polygon>('albersUsa', getCountiesForStateGeoJson(state));
 
+        // Set the base map to the counties + the us map region selected
         this.basemapGeoJson = featureCollection([
           ...featureGeoJson.features,
           ...countiesGeoJson.features
-        ])
+        ]);
         this.graticule = grid.geojson;
         this.worldPadding = grid.padding;
-        this.worldBbox = fitBoundsToAspectRatio(bbox(this.graticule), viewBox);
+        this.worldBbox = fitBoundsToAspectRatio(bbox(grid.geojson), viewBox);
       } else {
         this.basemapGeoJson = usGeoJson;
         this.graticule = grid5.geojson;
         this.worldPadding = grid5.padding;
-        this.worldBbox = fitBoundsToAspectRatio(bbox(this.graticule), viewBox);
+        this.worldBbox = fitBoundsToAspectRatio(bbox(grid5.geojson), viewBox);
       }
     }
   }
