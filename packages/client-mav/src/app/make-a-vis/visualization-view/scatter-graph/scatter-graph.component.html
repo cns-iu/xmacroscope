@@ -1,8 +1,17 @@
 <div class="scatter-graph">
   <div class="container">
-    <div class="y-axis-buttons">
-      <app-gv-button-group label="Y Axis" icon="label:y-axis" [variables]="dataService.project.graphicVariables"
-                           [type]="xAxisType" [vertical]="true"></app-gv-button-group>
+    <div class="y-axis">
+      <div class="visualization-name">SCATTER GRAPH</div>
+
+      <div class="buttons">
+        <app-gv-button-group
+          label="Y Axis" 
+          icon="label:y-axis"
+          [variables]="dataService.project.graphicVariables"
+          [type]="xAxisType"
+          [vertical]="true">
+        </app-gv-button-group>
+      </div>
     </div>
     <div class="visualization">
       <div class="visualization-area">
