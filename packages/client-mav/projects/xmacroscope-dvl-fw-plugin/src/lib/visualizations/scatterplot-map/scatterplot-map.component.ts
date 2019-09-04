@@ -15,7 +15,7 @@ import { DataDrivenIcons } from '../shared/data-driven-icons';
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
 import { withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
-import { NodesGeojson } from '../shared/nodes-geojson';
+import { nodesGeoJson } from '../shared/nodes-geojson';
 import bbox from '@turf/bbox';
 
 
@@ -132,7 +132,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
       const bounds = new Cartesian2dBounds(-margin, w + margin, -margin, h + margin);
       const projection = new Cartesian2dProjection(bounds);
       this.nodes = nodes;
-      this.nodesGeoJson = new NodesGeojson(nodes, projection) as any;
+      this.nodesGeoJson = nodesGeoJson(nodes, projection);
 
       const grid = this.getGrid(xScale, yScale, projection, xDV.label, yDV.label);
       this.graticule = grid.geojson;

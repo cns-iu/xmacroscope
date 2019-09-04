@@ -2,9 +2,12 @@ import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Outpu
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
-import { FeatureCollection, Geometry, BBox, featureCollection } from '@turf/helpers';
+import bboxClip from '@turf/bbox-clip';
+import clone from '@turf/clone';
+import pointsWithinPolygon from '@turf/points-within-polygon';
+import { FeatureCollection, Geometry, BBox, featureCollection, Point, Polygon } from '@turf/helpers';
 import { isArray } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike, PaddingOptions } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, Point as MapPoint, PointLike, PaddingOptions } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
@@ -13,21 +16,18 @@ import { DataDrivenIcons } from '../shared/data-driven-icons';
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
 import { graticule, withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
-import { NodesGeojson } from '../shared/nodes-geojson';
+import { nodesGeoJson } from '../shared/nodes-geojson';
 import { reprojector } from '../shared/reprojector';
 import { getStatesGeoJson, getCountiesForStateGeoJson } from './../shared/us-geojson';
+import { fitBoundsToAspectRatio } from '../shared/fit-bounds-to-aspect-ratio';
 
 
+// Precompute some geometry
 const usGeoJson = reprojector('albersUsa', getStatesGeoJson());
-const gridGeoJson = reprojector('albersUsa', graticule(5));
-const grid = withAxes(gridGeoJson);
-const worldBbox = bbox(grid.geojson);
-const countiesGeoJson = reprojector('albersUsa', getCountiesForStateGeoJson('Indiana'));
-
-const basemapGeoJson = featureCollection([
-  ...usGeoJson.features,
-  ...countiesGeoJson.features
-]);
+const gridGeoJson5 = reprojector('albersUsa', graticule(5));
+const gridGeoJson1 = reprojector('albersUsa', graticule(1));
+const grid5 = withAxes(gridGeoJson5);
+const worldBbox = bbox(grid5.geojson);
 
 @Component({
   selector: 'mav-geographic-map',
@@ -38,6 +38,7 @@ const basemapGeoJson = featureCollection([
 export class GeographicMapComponent implements VisualizationComponent,
     OnDestroy, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
+  featureSelection = 'USA';
   nodeDefaults: { [gvName: string]: any } = {
     shape: 'circle',
     areaSize: 16,
@@ -56,18 +57,17 @@ export class GeographicMapComponent implements VisualizationComponent,
   map: Map;
 
   worldBbox: BBox = worldBbox;
-  worldPadding: PaddingOptions = grid.padding;
-  graticule: FeatureCollection<Geometry> = grid.geojson;
-  nodesGeoJson: NodesGeojson;
+  worldPadding: PaddingOptions = grid5.padding;
+  graticule: FeatureCollection<Geometry> = grid5.geojson;
+  nodesGeoJson: FeatureCollection<Point>;
   nodes: TDatum<Node>[];
   nodesSubscription: Subscription;
-  basemapGeoJson: FeatureCollection<Geometry> = basemapGeoJson;
-  countiesGeoJson: FeatureCollection<Geometry> = countiesGeoJson;
+  basemapGeoJson: FeatureCollection<Geometry> = usGeoJson;
 
   constructor(private dataProcessorService: DataProcessorService) {}
 
   private toNgxDinoEvent(event: MapMouseEvent, layers: string[], data: Datum[]): NgxDinoEvent | undefined {
-    const bboxMargin = new Point(4, 4);
+    const bboxMargin = new MapPoint(4, 4);
     const pointBox: [PointLike, PointLike] = [ event.point.sub(bboxMargin), event.point.add(bboxMargin) ];
     const features = this.map.queryRenderedFeatures(pointBox, {layers});
     const itemId = features[0].properties[idSymbol];
@@ -123,8 +123,43 @@ export class GeographicMapComponent implements VisualizationComponent,
   private layout(nodes?: TDatum<Node>[]): void {
     if (isArray(nodes)) {
       this.nodes = nodes;
-      this.nodesGeoJson = reprojector('albersUsa', new NodesGeojson(nodes));
-      this.worldBbox = bbox(this.graticule);
+      this.nodesGeoJson = reprojector<Point>('albersUsa', nodesGeoJson(nodes));
+
+      const w = this.map ? this.map.getCanvas().width : 1000;
+      const h = this.map ? this.map.getCanvas().height : 1000;
+      const viewBox: BBox = [0, 0, w, h];
+      const state = this.featureSelection;
+      const feature = usGeoJson.features.find(f => f.properties.label === state);
+
+      if (state && state !== 'USA') {
+        this.nodesGeoJson = pointsWithinPolygon(this.nodesGeoJson, feature) as FeatureCollection<Point>;
+        const featureBounds = fitBoundsToAspectRatio(bbox(feature), viewBox);
+
+        const grid = withAxes(featureCollection(gridGeoJson1.features.map(f =>
+          bboxClip(clone(f), featureBounds)
+        ).filter(f => !!f.geometry)));
+
+        const featureGeoJson = featureCollection<Polygon>(usGeoJson.features.map(f => {
+          const clip = bboxClip<Polygon>(clone(f), featureBounds);
+          clip.geometry.coordinates = clip.geometry.coordinates.filter(c => c && c.length > 0);
+          return clip.geometry.coordinates.length > 0 ? clip : undefined;
+        }).filter(f => !!f));
+
+        const countiesGeoJson = reprojector<Polygon>('albersUsa', getCountiesForStateGeoJson(state));
+
+        this.basemapGeoJson = featureCollection([
+          ...featureGeoJson.features,
+          ...countiesGeoJson.features
+        ])
+        this.graticule = grid.geojson;
+        this.worldPadding = grid.padding;
+        this.worldBbox = fitBoundsToAspectRatio(bbox(this.graticule), viewBox);
+      } else {
+        this.basemapGeoJson = usGeoJson;
+        this.graticule = grid5.geojson;
+        this.worldPadding = grid5.padding;
+        this.worldBbox = fitBoundsToAspectRatio(bbox(this.graticule), viewBox);
+      }
     }
   }
 
@@ -149,6 +184,10 @@ export class GeographicMapComponent implements VisualizationComponent,
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('nodeDefaults' in changes) {
       this.nodeDefaults = this.data.properties.nodeDefaults;
+      this.refreshNodes();
+    }
+    if ('featureSelection' in changes) {
+      this.featureSelection = this.data.properties.featureSelection;
       this.refreshNodes();
     }
   }
