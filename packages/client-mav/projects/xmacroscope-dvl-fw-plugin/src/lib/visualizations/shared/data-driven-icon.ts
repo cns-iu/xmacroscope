@@ -49,25 +49,20 @@ export class IconConfig {
   }
 
   constructor(data: Partial<IconConfig>) {
-    Object.assign(this, data);
-    this.normalize();
+    Object.assign(this, {
+      shape: data.shape,
+      areaSize: round(data.areaSize),
+      color: data.color || undefined,
+      transparency: data.color ? round(data.transparency || 0, 2) : undefined,
+      strokeColor: data.strokeColor || undefined,
+      strokeWidth: data.strokeColor ? round(data.strokeWidth || 0, 2) : undefined,
+      strokeTransparency: data.strokeColor ? round(data.strokeTransparency || 0, 2) : undefined,
+      pulse: data.pulse ? true : undefined,
+      pulseColor: data.pulse ? data.pulseColor || defaultPulseColor : undefined,
+      pulseWidth: data.pulse ? round(data.pulseWidth || 0, 2) || undefined : undefined
+    });
   }
 
-  normalize(): this {
-    Object.assign(this, {
-      shape: this.shape,
-      areaSize: round(this.areaSize),
-      color: this.color || undefined,
-      transparency: this.color ? round(this.transparency || 0, 2) : undefined,
-      strokeColor: this.strokeColor || undefined,
-      strokeWidth: this.strokeColor ? round(this.strokeWidth || 0, 2) : undefined,
-      strokeTransparency: this.strokeColor ? round(this.strokeTransparency || 0, 2) : undefined,
-      pulse: this.pulse ? true : undefined,
-      pulseColor: this.pulse ? this.pulseColor || defaultPulseColor : undefined,
-      pulseWidth: this.pulse ? round(this.pulseWidth || 0, 2) || undefined : undefined
-    });
-    return this;
-  }
   toString(): string {
     return `ddi:${JSON.stringify(this)}`;
   }
