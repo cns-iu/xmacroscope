@@ -5,11 +5,7 @@ import { usNameLookup, usTopoJson } from '../shared/us-topojson';
 
 export function getStatesGeoJson(): FeatureCollection<Polygon> {
   const features = feature(usTopoJson, usTopoJson.objects.states).features as Feature<Polygon>[];
-  features.forEach(f => {
-    if (usNameLookup.hasOwnProperty(f.id)) {
-      f.properties.label = usNameLookup[f.id];
-    }
-  });
+  features.forEach(f => f.properties.label = usNameLookup[f.id] || undefined);
   return featureCollection(features);
 }
 
@@ -19,9 +15,7 @@ export function getCountiesForStateGeoJson(state: string): FeatureCollection<Pol
     if (name === state) { prefix = id; }
   });
   const geometries = usTopoJson.objects.counties.geometries.filter(g => (g.id as string).indexOf(prefix) === 0);
-  const features = feature(usTopoJson,
-    { 'type': 'GeometryCollection', geometries }
-  ).features as Feature<Polygon>[];
+  const features = feature<any>(usTopoJson, {'type': 'GeometryCollection', geometries}).features;
   features.forEach(f => f.properties.label = state);
-  return featureCollection(features);
+  return featureCollection(features as Feature<Polygon>[]);
 }
