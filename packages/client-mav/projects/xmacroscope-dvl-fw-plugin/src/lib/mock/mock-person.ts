@@ -1,9 +1,9 @@
 import * as casual_ from 'casual-browserify';
 const casual = casual_;
-import * as zipcodes from 'zipcodes';
 import { pick } from 'lodash';
+import * as zipcodes from 'zipcodes';
 
-import { ageGroups, colors, favoriteActivities, shapes, Person } from '../shared/person';
+import { icons, opponents, Person, shoes } from '../shared/person';
 
 
 function nullable<T>(value: T, nullProb = .1): T | null {
@@ -29,12 +29,11 @@ export class MockPerson extends Person {
   constructor() {
     super({
       id: 'person' + casual.integer(1, 500),
-      name: nullable(casual.first_name),
-      icon: casual.random_element(shapes),
-      color: casual.random_element(colors),
-      ageGroup: casual.random_element(ageGroups),
-      favoriteActivity: casual.random_element(favoriteActivities),
-      height: casual.integer(36, 96)
+      icon: casual.random_element(icons),
+      age: casual.integer(0, 120),
+      height: casual.integer(12, 96),
+      opponent: casual.random_element(opponents).label,
+      shoes: casual.random_element(shoes).label
     });
 
     const location = mockUSLocation();

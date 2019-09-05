@@ -109,11 +109,12 @@ export class XMacroscopeProject extends DefaultProject {
         labelPlural: 'Runs',
         defaultRecordStream: 'runs',
         dataVariables: [
-          {id: 'selectRunner', label: 'Select Runner', dataType: 'persona', scaleType: 'nominal'},
-          {id: 'time', label: 'Time (seconds)', dataType: 'number', scaleType: 'linear'},
+          {id: 'icon', label: 'Icon', dataType: 'string', scaleType: 'nominal'},
+          {id: 'age', label: 'Age (years)', dataType: 'number', scaleType: 'linear'},
           {id: 'height', label: 'Height (inches)', dataType: 'number', scaleType: 'linear'},
-          {id: 'favoriteActivity', label: 'Favorite Activity', dataType: 'string', scaleType: 'nominal'},
-          {id: 'ageGroup', label: 'Age Group', dataType: 'string', scaleType: 'nominal'},
+          {id: 'time', label: 'Time (seconds)', dataType: 'number', scaleType: 'linear'},
+          {id: 'opponent', label: 'Opponent', dataType: 'string', scaleType: 'nominal'},
+          {id: 'shoes', label: 'Shoes', dataType: 'string', scaleType: 'nominal'},
           {id: 'zipCode', label: 'Zip Code', dataType: 'number', scaleType: 'nominal'}
         ]
       }, this)
@@ -126,7 +127,7 @@ export class XMacroscopeProject extends DefaultProject {
         recordStream: 'runs',
         mappings: {
           run: {
-            selectRunner: {
+            icon: {
               identifier: [
                 {selector: 'id'}
               ],
@@ -137,10 +138,10 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
               ],
               shape: [
-                {selector: 'showPersonaFixedShape'}
+                {id: 'fixed', selector: 'fixed.shape'}
               ],
               color: [
-                {id: 'fixed', selector: 'showPersonaFixedColor', label: 'Fixed'}
+                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
               ],
               input: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
@@ -153,14 +154,14 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
               ],
               areaSize: [
-                {id: 'fixed', selector: 'showPersonaFixedAreaSize', label: 'Fixed'}
+                {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
               ],
               pulse: [
                 {id: 'pulse', selector: 'selected'},
                 {id: 'fixed', selector: 'fixed.pulse', label: 'Fixed'}
               ],
               transparency: [
-                {id: 'fixed', selector: 'showPersonaFixedTransparency', label: 'Fixed'}
+                {id: 'fixed', selector: 'fixed.transparency', label: 'Fixed'}
               ],
               strokeTransparency: [
                 {id: 'fixed', selector: 'fixed.strokeTransparency', label: 'Fixed'}
@@ -172,21 +173,21 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
               ]
             },
-            time: {
+            age: {
               axis: [
-                {selector: 'timeSeconds'}
+                {selector: 'person.age'}
               ],
               input: [
-                {selector: 'timeSeconds'}
+                {selector: 'person.age'}
               ],
               label: [
-                {selector: 'timeLabel'}
+                {selector: 'person.age'}
               ],
               order: [
-                {selector: 'timeSeconds'}
+                {selector: 'person.age'}
               ],
               areaSize: [
-                {selector: 'showPersonaTimeAreaSize'}
+                {selector: 'person.ageAreaSize'}
               ]
             },
             height: {
@@ -203,52 +204,72 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'person.height'}
               ],
               areaSize: [
-                {selector: 'showPersonaHeightAreaSize'}
+                {selector: 'person.heightAreaSize'}
               ]
             },
-            favoriteActivity: {
+            time: {
               axis: [
-                {selector: 'person.favoriteActivity'}
+                {selector: 'timeSeconds'}
               ],
               input: [
-                {selector: 'person.favoriteActivity'}
+                {selector: 'timeSeconds'}
               ],
               label: [
-                {selector: 'person.favoriteActivity'}
+                {selector: 'timeLabel'}
               ],
               order: [
-                {selector: 'person.favoriteActivityAreaSize'}
-              ],
-              text: [
-                {selector: 'person.favoriteActivity'}
-              ],
-              color: [
-                {selector: 'showPersonaFavoriteActivityColor'}
-              ]
-            },
-            ageGroup: {
-              axis: [
-                {selector: 'person.ageGroup'}
-              ],
-              input: [
-                {selector: 'person.ageGroup'}
-              ],
-              label: [
-                {selector: 'person.ageGroup'}
-              ],
-              order: [
-                {selector: 'person.ageGroup'}
+                {selector: 'timeSeconds'}
               ],
               areaSize: [
-                {selector: 'showPersonaAgeGroupAreaSize'}
+                {selector: 'timeAreaSize'}
+              ]
+            },
+            opponent: {
+              input: [
+                {selector: 'person.Opponent.label'}
+              ],
+              label: [
+                {selector: 'person.Opponent.label'}
+              ],
+              order: [
+                {selector: 'person.Opponent.label'}
+              ],
+              text: [
+                {selector: 'person.Opponent.label'}
+              ],
+              color: [
+                {selector: 'person.Opponent.color'}
+              ],
+              shape: [
+                {selector: 'person.Opponent.shape'}
+              ]
+            },
+            shoes: {
+              input: [
+                {selector: 'person.Shoe.label'}
+              ],
+              label: [
+                {selector: 'person.Shoe.label'}
+              ],
+              order: [
+                {selector: 'person.Shoe.label'}
+              ],
+              text: [
+                {selector: 'person.Shoe.label'}
+              ],
+              color: [
+                {selector: 'person.Shoe.color'}
+              ],
+              shape: [
+                {selector: 'person.Shoe.shape'}
               ]
             },
             zipCode: {
               latitude: [
-                {selector: 'person.latlng[0]'}
+                {selector: 'person.latitude'}
               ],
               longitude: [
-                {selector: 'person.latlng[1]'}
+                {selector: 'person.longitude'}
               ],
               identifier: [ // TODO: Fix in @dvl-fw to stateIdentifier
                 {selector: 'person.state'}
@@ -272,49 +293,55 @@ export class XMacroscopeProject extends DefaultProject {
         graphicVariables: {
           identifier: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'identifier',
             graphicVariableId: 'identifier'
           },
           pulse: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'pulse',
             graphicVariableId: 'pulse'
           },
           shape: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'shape',
-            graphicVariableId: 'shape'
+            graphicVariableId: 'fixed'
           },
           color: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'color',
+            graphicVariableId: 'fixed'
+          },
+          areaSize: {
+            recordSet: 'run',
+            dataVariable: 'icon',
+            graphicVariableType: 'areaSize',
             graphicVariableId: 'fixed'
           },
           transparency: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'transparency',
             graphicVariableId: 'fixed'
           },
           strokeColor: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'strokeColor',
             graphicVariableId: 'fixed'
           },
           strokeTransparency: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'strokeTransparency',
             graphicVariableId: 'fixed'
           },
           strokeWidth: {
             recordSet: 'run',
-            dataVariable: 'selectRunner',
+            dataVariable: 'icon',
             graphicVariableType: 'strokeWidth',
             graphicVariableId: 'fixed'
           },
@@ -341,12 +368,6 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'zipCode',
             graphicVariableType: 'longitude',
             graphicVariableId: 'longitude'
-          },
-          areaSize: {
-            recordSet: 'run',
-            dataVariable: 'ageGroup',
-            graphicVariableType: 'areaSize',
-            graphicVariableId: 'areaSize'
           }
         }
       }, this)
