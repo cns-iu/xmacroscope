@@ -125,14 +125,41 @@ export class DataDrivenIcon {
       if (this.imageDrawn) {
         setTimeout(() => this.imageSent = true, 10);
       } else {
-        const symbolRadius = Math.sqrt(config.areaSize) / 2;
+        const symbolRadius = Math.sqrt(config.areaSize);
+        const [x, y, w, h] = [canvas.width / 2 - symbolRadius, canvas.height / 2 - symbolRadius, symbolRadius * 2, symbolRadius * 2];
         const image = new Image();
         this.imageDrawn = false;
         this.imageSent = false;
         image.onload = () => {
+          context.save();
+          context.globalCompositeOperation = 'source-over';
+
+          if (config.color) {
+            // Draw a color rect
+            context.fillStyle = config.color;
+            context.globalAlpha = 1 - config.transparency;
+            context.beginPath();
+            context.rect(0, 0, canvas.width, canvas.height);
+            context.fill();
+
+            context.globalCompositeOperation = 'destination-in';
+          }
+
           context.globalAlpha = 1;
-          context.drawImage(image, canvas.width / 2 - symbolRadius, canvas.height / 2 - symbolRadius, symbolRadius * 2, symbolRadius * 2);
+          context.drawImage(image, x, y, w, h);
+
+          if (config.strokeColor) {
+            context.globalCompositeOperation = 'source-over';
+            const sw = config.strokeWidth;
+            context.strokeStyle = config.strokeColor;
+            context.globalAlpha = 1 - config.strokeTransparency;
+            context.beginPath();
+            context.rect(x - sw, y - sw, w + 2 * sw, h + 2 * sw);
+            context.stroke();
+          }
+
           this.imageDrawn = true;
+          context.restore();
         };
         image.src = config.shape;
       }
