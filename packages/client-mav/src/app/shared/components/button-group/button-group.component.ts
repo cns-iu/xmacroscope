@@ -45,7 +45,7 @@ export class ButtonGroupComponent {
   @ContentChild(ButtonGroupLabelDirective, { static: false, read: TemplateRef }) label: TemplateRef<void>;
   @ContentChild(ButtonContentDirective, { static: false, read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
 
-  private lastChangeEvent = new MatButtonToggleChange(undefined, []);
+  private lastChangeEvent = new MatButtonToggleChange(undefined, undefined);
   private _valueChange = new EventEmitter<any>();
 
   constructor() {
