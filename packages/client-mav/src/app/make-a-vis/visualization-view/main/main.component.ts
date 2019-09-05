@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DvlFwVisualizationComponent, GraphicVariable, GraphicVariableOption, Visualization, RecordStream } from '@dvl-fw/core';
+import { Component, OnInit } from '@angular/core';
+import { GraphicVariable, GraphicVariableOption, RecordStream, Visualization } from '@dvl-fw/core';
 import { find } from 'lodash';
-
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 
@@ -26,8 +26,6 @@ export interface Vis {
 
 
 export class MainComponent implements OnInit {
-  @ViewChild('visualization', { static: false }) visualizationComponent: DvlFwVisualizationComponent;
-
   visTypes: VisType[] = [
     { template: 'scattergraph', label: 'Scatter Graph', icon: 'scatter-graph' },
     { template: 'geomap', label: 'Geomap', icon: 'geomap' },
@@ -58,13 +56,6 @@ export class MainComponent implements OnInit {
       const label = type && type.label || vis.id || '';
       const icon = 'assets/img/icon-mav-' + type.icon + '.svg';
       return { label, icon, data: vis } as Vis;
-    });
-
-    this.updateService.update.subscribe(() => {
-      if (!this.visualizationComponent) { return; }
-      // FIXME: Visualizations are not properly handling graphic variable changes
-      (<any>this.visualizationComponent).unload();
-      this.visualizationComponent.runDataChangeDetection();
     });
   }
 
