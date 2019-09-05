@@ -1,0 +1,45 @@
+.scatter-graph {
+  .container {
+    display: flex;
+
+    .y-axis {
+      width: 15.625rem;
+
+      .visualization-name {
+        font-size: 3rem;
+        font-family: Paytone;
+        color: #006298;
+        text-align: center;
+      }
+
+      .buttons {
+        margin-top: 3rem;
+      }
+
+    }
+
+    .visualization {
+      width: calc(100vw - 31.25rem);
+
+      .visualization-area {
+        height: calc(100vh - 23rem);
+      }
+
+      .x-axis-buttons {
+        height: 10rem;
+        padding: 3rem 0;
+        display:flex;
+        justify-content: center
+      }
+    }
+
+    .graphic-variables-selection {
+      width: 15.625rem;
+      margin: auto;
+
+      :not(:last-child) {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+}

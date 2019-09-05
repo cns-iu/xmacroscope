@@ -1,0 +1,40 @@
+<div class="scatter-graph">
+    <div class="container">
+      <div class="y-axis">
+        <div class="visualization-name">GEOMAP</div>
+            <app-button-group [items]="" [deselectable]="false" [vertical]="true">
+                <div *appButtonContent="let item">
+                    <mat-icon inline svgIcon="map:"></mat-icon>
+                    {{ 'label' }}
+                </div>
+            </app-button-group>
+        <div class="buttons">
+        </div>
+      </div>
+      <div class="visualization">
+        <div class="visualization-area">
+          <dvl-visualization [data]="data" #visualization></dvl-visualization>
+        </div>
+        <div class="x-axis-buttons">
+        </div>
+      </div>
+      <div class="graphic-variables-selection">
+        <div>
+          <app-gv-button-group label="Color" icon="label:color" [variables]="variables" [type]="colorType"
+                               [vertical]="true" (variableChange)="variableChanged($event, 'color')">
+          </app-gv-button-group>
+        </div>
+        <div>
+          <app-gv-button-group label="Shape" icon="label:shape" [variables]="variables" [type]="shapeType"
+                               [vertical]="true" (variableChange)="variableChanged($event, 'shape')">
+          </app-gv-button-group>
+        </div>
+        <div>
+          <app-gv-button-group label="Size" icon="label:size" [variables]="variables" [type]="sizeType" [vertical]="true"
+                               (variableChange)="variableChanged($event, 'areaSize')">
+          </app-gv-button-group>
+        </div>
+      </div>
+    </div>
+  </div>
+  
