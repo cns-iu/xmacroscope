@@ -18,6 +18,7 @@ interface GVData {
   label: string;
   color: string;
   shape: string;
+  icon: string;
   areaSize: number;
   axis: string | number;
 }
@@ -26,9 +27,9 @@ export const icons: string[] = [
   'ico-brat', 'ico-cool', 'ico-happy', 'ico-silly', 'ico-surprise', 'ico-updsidedown'
 ];
 export const opponents = [
-  { label: 'Turtle', color: '#4527a0', shape: images['turtle'] },
-  { label: 'Squirrel', color: '#f7d97b', shape: images['squirrel'] },
-  { label: 'Cheetah', color: '#f44336', shape: images['cheetah'] },
+  { label: 'Turtle', color: '#4527a0', shape: 'circle', icon: images['turtle'] },
+  { label: 'Squirrel', color: '#f7d97b', shape: 'triangle', icon: images['squirrel'] },
+  { label: 'Cheetah', color: '#f44336', shape: 'square', icon: images['cheetah'] },
 ];
 export const shoes = [
   { label: 'Paws', color: '#4527a0', shape: 'circle' },

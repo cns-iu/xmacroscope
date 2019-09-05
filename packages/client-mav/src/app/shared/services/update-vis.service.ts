@@ -15,6 +15,10 @@ export class UpdateVisService {
     this.update = this._update.asObservable();
   }
 
+  triggerUpdate(visualization: Visualization) {
+    this._update.next(visualization);
+  }
+
   updateGraphicSymbol(visualization: Visualization, slot: string, type: string, stream?: RecordStream) {
     this._update.next(visualization);
   }
