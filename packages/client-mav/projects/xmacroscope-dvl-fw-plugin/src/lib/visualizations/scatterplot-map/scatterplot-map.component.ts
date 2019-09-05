@@ -17,6 +17,7 @@ import { withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
 import { nodesGeoJson } from '../shared/nodes-geojson';
 import bbox from '@turf/bbox';
+import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 
 
 @Component({
@@ -52,7 +53,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   nodes: TDatum<Node>[];
   nodesSubscription: Subscription;
 
-  constructor(private dataProcessorService: DataProcessorService) {}
+  constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) { }
 
   private toNgxDinoEvent(event: MapMouseEvent, layers: string[], data: Datum[]): NgxDinoEvent | undefined {
     const bboxMargin = new Point(4, 4);
@@ -69,6 +70,13 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     if (ngxDinoEvent) {
       this.nodeClick.emit(ngxDinoEvent);
     }
+    this.tempClickListener(ngxDinoEvent);
+  }
+
+  // FIXME: Remove specifics to xMacroscope
+  tempClickListener(event: NgxDinoEvent) {
+    const selection = !event || event.data.selected ? [] : [event.data];
+    this.xMacroscopeDataService.runStreamController.selectRuns(selection);
   }
 
   onMouseEnter(event: MapLayerMouseEvent): void {
