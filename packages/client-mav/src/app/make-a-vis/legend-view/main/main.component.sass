@@ -5,6 +5,10 @@
     width: 50vw
   
   .legend-view-container
+    display: flex
+    justify-content: space-evenly
+    padding-right: 4rem
+    padding-bottom: 1rem
     height: 100%
     width: 50vw
     display: flex
@@ -13,14 +17,20 @@
     .quantitative, .qualitative
       display: flex
       flex-flow: column
-      padding: 5px
+      width: 27%
 
       .subtitle
+        display: flex
+        justify-content: space-between
         white-space: nowrap
         font-size: 15px
         
         .legend-name
           font-size: 20px
+
+        .icon 
+            width: 20px
+            height: 20px
 
         .selectable
           border: 1px solid rgb(235,237,79)

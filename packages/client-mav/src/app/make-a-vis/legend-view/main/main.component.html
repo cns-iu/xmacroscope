@@ -5,34 +5,38 @@
           <div *appButtonContent="let item" class="button">
               <div class="label">{{ item.label }}</div>
           </div>
-  </app-button-group>
+      </app-button-group>
   </div>
+
   <div class="legend-view-container">
     <div class="qualitative" *ngIf="project.graphicSymbols[0].graphicVariables.color?.id !== 'fixed'">
       <div class="subtitle">
+          <mat-icon class="icon" inline [svgIcon]="'label:color'"></mat-icon>
         <span class="legend-name">Color: {{ project.graphicSymbols[0].graphicVariables.color?.label }}</span>
-        <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[0]"
-          [visualization]="visualization">
-        </app-graphic-variable-legend>
       </div>
+      <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[0]"
+        [visualization]="visualization">
+      </app-graphic-variable-legend>
     </div>
 
     <div class="qualitative" *ngIf="project.graphicSymbols[0].graphicVariables.shape?.id !== 'fixed'">
       <div class="subtitle">
+          <mat-icon class="icon" inline [svgIcon]="'label:shape'"></mat-icon>
         <span class="legend-name">Shape: {{ project.graphicSymbols[0].graphicVariables.shape?.label }}</span>
-        <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[2]"
-          [visualization]="visualization">
-        </app-graphic-variable-legend>
       </div>
+      <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[2]"
+        [visualization]="visualization">
+      </app-graphic-variable-legend>
     </div>
 
     <div class="quantitative" *ngIf="project.graphicSymbols[0].graphicVariables.areaSize?.id !== 'fixed'">
       <div class="subtitle">
+          <mat-icon class="icon" inline [svgIcon]="'label:size'"></mat-icon>
         <span class="legend-name">Size: {{ project.graphicSymbols[0].graphicVariables.areaSize?.label }}</span>
-        <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[1]"
-          [visualization]="visualization">
-        </app-graphic-variable-legend>
       </div>
+      <app-graphic-variable-legend [graphicSymbolOption]="graphicSymbolOptions" [graphicVariableOption]="graphicVariableOptions[1]"
+        [visualization]="visualization">
+      </app-graphic-variable-legend>
     </div>
   </div>
 </div>

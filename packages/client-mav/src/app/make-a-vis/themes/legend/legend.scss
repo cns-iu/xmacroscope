@@ -29,7 +29,7 @@ $default-legend-theme: mat-light-theme($default-legend-theme-primary, $default-l
 
                 .mark {
 
-                    .circle {
+                    .circle, .rectangle {
                     border-color: mat-color($primary, legendText) !important;
                     }
                 }
