@@ -1,1 +1,24 @@
 .legend-view-container
+  height: 100%
+  width: 100%
+  display: flex
+  overflow-y: hidden
+
+  .quantitative, .qualitative
+    display: flex
+    flex-flow: column
+    padding: 5px
+
+    .subtitle
+      white-space: nowrap
+      font-size: 15px
+      
+      .legend-name
+        font-size: 20px
+
+      .selectable
+        border: 1px solid rgb(235,237,79)
+        height: 100%
+
+  .quantitative
+    border-right: 1px solid transparent
