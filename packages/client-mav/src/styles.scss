@@ -1,0 +1,14 @@
+
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+@import "~mapbox-gl/dist/mapbox-gl.css";
+@import "~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
+
+@include mat-core();
+
+@import "app/make-a-vis/themes/legend/legend.scss";
+
+body {
+  margin: 0px;
+}
+

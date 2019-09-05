@@ -26,7 +26,6 @@ export class ScatterGraphComponent {
     this.variables = dataService.project.graphicVariables;
     this.defaultXAxisVariable = this.findVariable(/time/i, this.xAxisType);
     this.defaultYAxisVariable = this.findVariable(/height/i, this.yAxisType);
-    console.log(this);
   }
 
   variableChanged(variable: GraphicVariable, id: string): void {
