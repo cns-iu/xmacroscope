@@ -1,24 +1,30 @@
-.legend-view-container
-  height: 100%
-  width: 100%
+.wrapper
   display: flex
-  overflow-y: hidden
-
-  .quantitative, .qualitative
+  
+  .navigation
+    width: 50vw
+  
+  .legend-view-container
+    height: 100%
+    width: 50vw
     display: flex
-    flex-flow: column
-    padding: 5px
+    overflow-y: hidden
 
-    .subtitle
-      white-space: nowrap
-      font-size: 15px
-      
-      .legend-name
-        font-size: 20px
+    .quantitative, .qualitative
+      display: flex
+      flex-flow: column
+      padding: 5px
 
-      .selectable
-        border: 1px solid rgb(235,237,79)
-        height: 100%
+      .subtitle
+        white-space: nowrap
+        font-size: 15px
+        
+        .legend-name
+          font-size: 20px
 
-  .quantitative
-    border-right: 1px solid transparent
+        .selectable
+          border: 1px solid rgb(235,237,79)
+          height: 100%
+
+    .quantitative
+      border-right: 1px solid transparent

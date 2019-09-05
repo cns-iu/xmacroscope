@@ -47,4 +47,11 @@ export class GeomapComponent {
       this.visualization.runDataChangeDetection();
     }
   }
+
+  variableChanged(variable: GraphicVariable, id: string): void {
+    if (this.data) {
+      this.data.graphicSymbols['nodes'].graphicVariables[id] = variable;
+      this.visualization.runDataChangeDetection();
+    }
+  }
 }
