@@ -62,9 +62,8 @@ export class DisplayScreenComponent implements OnInit {
 
   updatePersona(msg: Message) {
     if (msg && msg.run && msg.run.person) {
-      const personAttributes = msg.run.person;
-      this.personaColor = personAttributes.color;
-      this.personaShape =  personAttributes.icon;
+      this.personaColor = msg.run.persona.color;
+      this.personaShape = msg.run.persona.shape;
     }
   }
 

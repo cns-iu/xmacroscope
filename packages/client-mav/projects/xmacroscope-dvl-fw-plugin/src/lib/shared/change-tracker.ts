@@ -64,11 +64,11 @@ export class ChangeTracker {
     accumulator.forEach((run, index) => {
       const fromTheEnd = accumulator.size - index;
       if (fromTheEnd <= highlightCount && !this.runsSelected) {
-        run.showPersona = true;
-      } else if (run.showPersona) {
+        run.highlighted = true;
+      } else if (run.highlighted) {
         const runClone = new Run(run);
-        run.showPersona = false;
-        runClone.showPersona = false;
+        run.highlighted = false;
+        runClone.highlighted = false;
         replaced.push([run, runClone]);
       }
     });
@@ -91,13 +91,13 @@ export class ChangeTracker {
         if (run2id.hasOwnProperty(run.id)) {
           const runClone = new Run(run);
           runClone.selected = true;
-          runClone.showPersona = false;
+          runClone.highlighted = false;
           replaced.push([run, runClone]);
           newSnapshot.push(runClone);
-        } else if (run.selected || run.showPersona) {
+        } else if (run.selected || run.highlighted) {
           const runClone = new Run(run);
           runClone.selected = false;
-          runClone.showPersona = false;
+          runClone.highlighted = false;
           replaced.push([run, runClone]);
           newSnapshot.push(runClone);
         } else {
@@ -110,13 +110,13 @@ export class ChangeTracker {
         const fromTheEnd = accumulator.size - index;
         if (fromTheEnd <= highlightCount) {
           const runClone = new Run(run);
-          runClone.showPersona = true;
+          runClone.highlighted = true;
           runClone.selected = false;
           replaced.push([run, runClone]);
           newSnapshot.push(runClone);
-        } else if (run.showPersona || run.selected) {
+        } else if (run.highlighted || run.selected) {
           const runClone = new Run(run);
-          runClone.showPersona = false;
+          runClone.highlighted = false;
           runClone.selected = false;
           replaced.push([run, runClone]);
           newSnapshot.push(runClone);

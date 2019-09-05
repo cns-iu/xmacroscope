@@ -1,6 +1,6 @@
 import { GraphicSymbol, Visualization } from '@dvl-fw/core';
 import { DataProcessorService, RawChangeSet, ChangeSet, Datum, idSymbol, DataProcessor, simpleField, constant, BoundField } from '@ngx-dino/core';
-import { differenceBy, transform } from 'lodash';
+import { differenceBy, transform, isString } from 'lodash';
 import { Observable, EMPTY } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -13,15 +13,20 @@ export class GraphicSymbolData<T = any> {
 
   constructor(private dataProcessorCreator: DataProcessorService,
     public readonly visualization: Visualization,
-    graphicSymbolId: string,
+    graphicSymbol: string | GraphicSymbol,
     public readonly defaultValues: { [gvName: string]: any } = {},
     private readonly postprocessingFields: { [gvName: string]: BoundField<any> } = {}) {
 
-    this.graphicSymbol = visualization.graphicSymbols[graphicSymbolId];
-    if (!this.graphicSymbol) {
-      throw new Error(`'Graphic Symbol ${graphicSymbolId} not found in Visualization ${visualization.id}`);
+    if (isString(graphicSymbol)) {
+      this.graphicSymbol = visualization.graphicSymbols[graphicSymbol];
+      if (!this.graphicSymbol) {
+        throw new Error(`'Graphic Symbol ${graphicSymbol} not found in Visualization ${visualization.id}`);
+      }
+    } else {
+      this.graphicSymbol = graphicSymbol;
     }
-    const options = visualization.graphicSymbolOptions.filter(gso => gso.id === graphicSymbolId);
+
+    const options = visualization.graphicSymbolOptions.filter(gso => gso.id === this.graphicSymbol.id);
     if (options.length) {
       this.requiredFields = options[0].graphicVariableOptions.filter(gvo => gvo['required'] === true).map(gvo => gvo.id || gvo.type);
     }
