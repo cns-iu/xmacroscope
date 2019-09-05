@@ -1,3 +1,4 @@
+import { UpdateVisService } from '../../../shared/services/update-vis.service';
 import { Component, Input, ViewChild } from '@angular/core';
 import { DvlFwVisualizationComponent, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
@@ -37,7 +38,7 @@ export class GeomapComponent {
     }
   ];
 
-  constructor(dataService: XMacroscopeDataService) {
+  constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.variables = dataService.project.graphicVariables;
   }
 
@@ -52,6 +53,7 @@ export class GeomapComponent {
     if (this.data) {
       this.data.graphicSymbols['nodes'].graphicVariables[id] = variable;
       this.visualization.runDataChangeDetection();
+      this.updateService.triggerUpdate(this.data);
     }
   }
 }
