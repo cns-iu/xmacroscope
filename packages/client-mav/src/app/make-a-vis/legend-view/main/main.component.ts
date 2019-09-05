@@ -11,6 +11,12 @@ export interface Group {
   option: GraphicSymbolOption;
 }
 
+export interface ButtonGroupItem {
+  label: string;
+  id: string;
+  icon: string;
+}
+
 @Component({
   selector: 'app-legend-view-main',
   templateUrl: './main.component.html',
@@ -28,6 +34,14 @@ export class MainComponent implements OnInit, OnChanges {
   graphicVariableOptions: GraphicVariableOption[] =  [
     { type: 'color', label: 'Color', visualization: 'color' },
     { type: 'areaSize', label: 'Area Size', visualization: 'node-size' }
+  ];
+
+  navigationButtons: ButtonGroupItem[] = [
+    {
+      label: 'Data Table',
+      id: 'datatable',
+      icon: 'icon'
+    }
   ];
 
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
