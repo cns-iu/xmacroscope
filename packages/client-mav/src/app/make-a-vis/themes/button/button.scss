@@ -18,13 +18,13 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
 
         .mat-button-toggle-group {
 
-            .mat-button-toggle {
+            .mat-button-toggle.mat-button-toggle-appearance-standard {
                 border-color: mat-color($primary, buttonOuterBorder) !important;
                 background: mat-color($primary, buttonToggleBackground);
                 box-shadow: 0px 1px 3px 1px mat-color($primary, buttonBoxShadow16);
 
                 .mat-button-toggle-button {
-                    border-color: mat-color($primary, buttonInnerBorder);
+                    border-color: mat-color($primary, buttonInnerBorder) !important;
                     color: mat-color($primary, buttonLabel);
                     background: linear-gradient(to top, mat-color($primary, buttonInnerBorder), mat-color($primary, buttonTopGraient));
                 }
