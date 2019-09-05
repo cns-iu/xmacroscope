@@ -1,10 +1,15 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { GraphicSymbolOption, GraphicVariable, GraphicVariableOption, Project,
-  Visualization, RecordStream, DefaultGraphicVariable
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  GraphicSymbolOption,
+  GraphicVariable,
+  GraphicVariableOption,
+  Project,
+  RecordStream,
+  Visualization,
 } from '@dvl-fw/core';
 import { cloneDeep } from 'lodash';
-
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 export interface Group {
@@ -22,7 +27,7 @@ export interface ButtonGroupItem {
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit, OnChanges {
+export class MainComponent implements OnChanges {
   @Input() activeVisualization: number;
   private lastActiveVisualization: number;
   private lastProject: Project;
@@ -72,8 +77,6 @@ export class MainComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit() {}
-
   onGraphicVariableChange(group: any, option: GraphicVariableOption, gv: GraphicVariable): void {
     const  { updateService, visualization } = this;
     const id = option.id || option.type;
@@ -81,6 +84,8 @@ export class MainComponent implements OnInit, OnChanges {
       updateService.updateGraphicVariable(visualization, group.id, id, gv);
     }
   }
+
+  navigationChanged(event: any) {} // FIXME
 
   private setState(project: Project, index: number): void {
     const visualization = this.visualization = project && index >= 0 && project.visualizations[index];
