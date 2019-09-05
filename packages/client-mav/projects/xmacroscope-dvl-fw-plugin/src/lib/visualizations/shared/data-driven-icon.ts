@@ -75,6 +75,13 @@ export class DataDrivenIcon {
   private imageDrawn: boolean;
   private imageSent: boolean;
 
+  static fromString(icon: string, prefix: string = 'ddi:', createCanvas = defaultCanvasCreator): DataDrivenIcon {
+    if (icon.startsWith(prefix)) {
+      const config = JSON.parse(icon.slice(prefix.length));
+      return new DataDrivenIcon(config, createCanvas);
+    }
+  }
+
   constructor(public readonly config: IconConfig, private createCanvas = defaultCanvasCreator) {
     const symbolDiameter = Math.sqrt(config.areaSize / Math.PI) * 2;
     if (config.pulse) {

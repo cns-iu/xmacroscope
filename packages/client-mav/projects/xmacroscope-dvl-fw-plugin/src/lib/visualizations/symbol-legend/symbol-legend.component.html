@@ -1,0 +1,31 @@
+<div class="dvl-symbol-legend dvl-symbol-legend">
+  <div class="qualitative-legend-wrapper legend-container" *ngIf="legendType === 'qualitative' && items">
+    <div *ngFor="let item of items" class="legend-row">
+        <div class="mark" [style.min-width]="items[0].iconWidth + 'px'">
+          <img [src]="getDataUrl(item.icon)" alt="">
+        </div>
+        <div class="label" [title]="item.label">{{ item.label }}</div>
+    </div>
+  </div>
+
+  <div class="quantitative-legend-wrapper legend-container" *ngIf="legendType === 'quantitative' && stats">
+    <div class="legend-row">
+      <div class="mark" [style.min-width]="stats.max.iconWidth + 'px'">
+        <img [src]="getDataUrl(stats.max.icon)" alt="">
+      </div>
+      <div class="label" [title]="stats.max.label">{{ stats.max.label }}</div>
+    </div>
+    <div class="legend-row" *ngIf="stats && stats.min.value !== stats.max.value">
+      <div class="mark" [style.min-width]="stats.max.iconWidth + 'px'">
+        <img [src]="getDataUrl(stats.max.icon)" alt="">
+      </div>
+      <div class="label" [title]="stats.median.label">{{ stats.median.label }}</div>
+    </div>
+    <div class="legend-row" *ngIf="stats && stats.min.value !== stats.max.value">
+      <div class="mark" [style.min-width]="stats.max.iconWidth + 'px'">
+        <img [src]="getDataUrl(stats.max.icon)" alt="">
+      </div>
+      <div class="label" [title]="stats.min.label">{{ stats.min.label }}</div>
+    </div>
+  </div>
+</div>
