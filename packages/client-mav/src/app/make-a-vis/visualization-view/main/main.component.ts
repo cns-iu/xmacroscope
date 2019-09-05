@@ -60,8 +60,6 @@ export class MainComponent implements OnInit {
       return { label, icon, data: vis } as Vis;
     });
 
-    console.log(this.vis);
-
     this.updateService.update.subscribe(() => {
       // FIXME: Visualizations are not properly handling graphic variable changes
       (<any>this.visualizationComponent).unload();

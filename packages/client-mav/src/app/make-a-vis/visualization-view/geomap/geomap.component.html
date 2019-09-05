@@ -2,13 +2,14 @@
     <div class="container">
       <div class="y-axis">
         <div class="visualization-name">GEOMAP</div>
-            <app-button-group [items]="" [deselectable]="false" [vertical]="true">
-                <div *appButtonContent="let item">
-                    <mat-icon inline svgIcon="map:"></mat-icon>
-                    {{ 'label' }}
-                </div>
+        <div class="map-selection">
+            <app-button-group [items]="buttonItems" [value]="buttonItems[1]" [deselectable]="false" [vertical]="true" (valueChange)="geoMapChanged($event)">
+                    <div *appButtonContent="let item" class="button">
+                        <mat-icon class="icon" inline [svgIcon]="item.icon">
+                        </mat-icon>
+                        <div>{{ item.label }}</div>
+                    </div>
             </app-button-group>
-        <div class="buttons">
         </div>
       </div>
       <div class="visualization">
