@@ -59,6 +59,7 @@
     "hammerjs": "^2.0.8",
     "immutable": "^4.0.0-rc.12",
     "mapbox-gl": "^1.2.1",
+    "material-design-icons": "^3.0.1",
     "moment": "^2.23.0",
     "moment-duration-format": "^2.3.2",
     "nano-sql": "^1.8.5",
