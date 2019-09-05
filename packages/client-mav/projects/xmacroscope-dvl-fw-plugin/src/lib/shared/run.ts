@@ -48,7 +48,7 @@ export class Run {
   showPersonaFixedColor: number;
   @Operand(ifShowPersona('persona.shape', 'fixed.shape'), false)
   showPersonaFixedShape: number;
-  @Operand(ifShowPersona('persona.color', 'fixed.areaSize'), false)
+  @Operand(ifShowPersona('fixed.areaSize', 'fixed.areaSize'), false)
   showPersonaFixedAreaSize: number;
   @Operand(ifShowPersona('fixed.strokeTransparency', 'fixed.transparency'), false)
   showPersonaFixedTransparency: number;

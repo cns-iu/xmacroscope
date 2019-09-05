@@ -3,7 +3,6 @@ import { DataVariable } from '@dvl-fw/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { DataService, DataSource } from '../shared/data.service';
-import { DataVariableHoverService } from '../../shared/services/data-variable-hover.service';
 
 @Component({
   selector: 'app-table',
@@ -21,10 +20,7 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   private mappingKeySelection: string;
   private selectableColumns: {};
 
-  constructor(private dataService: DataService, private hoverService: DataVariableHoverService) {
-    this.subscription = hoverService.hovers.subscribe((key) => {
-      this.mappingKeySelection = key;
-    });
+  constructor(private dataService: DataService) {
    }
 
   ngOnChanges(changes: SimpleChanges) {

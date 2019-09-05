@@ -140,14 +140,14 @@ export class GeographicMapComponent implements VisualizationComponent,
         const featureBounds = fitBoundsToAspectRatio(bbox(feature), viewBox);
 
         // Clip the 1°x1° grid to the region we will be displaying
-        const grid = withAxes(featureCollection(gridGeoJson1.features.map(f =>
+        const grid = withAxes(featureCollection<Geometry>(gridGeoJson1.features.map(f =>
           bboxClip(clone(f), featureBounds)
         ).filter(f => !!f.geometry)));
 
         // Clip the us map to the region we will be displaying
-        const featureGeoJson = featureCollection<Polygon>(usGeoJson.features.map(f => {
+        const featureGeoJson = featureCollection<Geometry>(usGeoJson.features.map(f => {
           const clip = bboxClip<Polygon>(clone(f), featureBounds);
-          clip.geometry.coordinates = clip.geometry.coordinates.filter(c => c && c.length > 0);
+          clip.geometry.coordinates = (clip.geometry.coordinates as number[][]).filter(c => c && c.length > 0);
           return clip.geometry.coordinates.length > 0 ? clip : undefined;
         }).filter(f => !!f));
 
