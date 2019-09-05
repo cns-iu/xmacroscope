@@ -8,8 +8,9 @@ import {
   Output,
   TemplateRef,
   TrackByFunction,
+  ViewChild,
 } from '@angular/core';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatButtonToggleChange, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { Observable } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
@@ -40,9 +41,11 @@ export class ButtonGroupComponent {
   @Output() valueChange: Observable<any>;
   @Output() change = new EventEmitter<MatButtonToggleChange>();
 
+  @ViewChild('buttonGroup', { static: false, read: MatButtonToggleGroup }) buttonGroup: MatButtonToggleGroup;
   @ContentChild(ButtonGroupLabelDirective, { static: false, read: TemplateRef }) label: TemplateRef<void>;
   @ContentChild(ButtonContentDirective, { static: false, read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
 
+  private lastChangeEvent = new MatButtonToggleChange(undefined, []);
   private _valueChange = new EventEmitter<any>();
 
   constructor() {
@@ -54,21 +57,25 @@ export class ButtonGroupComponent {
     return { $implicit: item, index };
   }
 
-  // https://stackoverflow.com/questions/51282112/uncheck-active-angular-material-toggle-buttons-on-click/51290230
   selectionChanged(event: MatButtonToggleChange): void {
-    const toggle = event.source;
-    const evalue = event.value as any[];
-    let singleValue = evalue[0];
+    const values = event.value as any[];
+    let source = event.source;
+    let value = values[0];
 
-    if (toggle) {
-      const { buttonToggleGroup: group, value: tvalue } = toggle;
-      if ((evalue.length === 0 && !this.deselectable) || evalue.some(v => v === tvalue)) {
-        singleValue = tvalue;
-        group.value = [tvalue];
-      }
+    if (!source && !this.deselectable) {
+      const lastValue = this.lastChangeEvent.value;
+      source = this.lastChangeEvent.source;
+      value = lastValue !== undefined ? lastValue : this.value;
+    } else if (event.source && values.length > 1) {
+      value = event.source.value;
     }
 
-    this.change.emit(new MatButtonToggleChange(toggle, singleValue));
+    const changeEvent = new MatButtonToggleChange(source, value);
+    const group = this.buttonGroup;
+
+    group.value = value !== undefined ? [value] : [];
+    this.lastChangeEvent = changeEvent;
+    this.change.emit(changeEvent);
   }
 
   valueChanged(item: [any] | undefined): void {
