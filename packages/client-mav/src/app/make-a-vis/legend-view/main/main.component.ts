@@ -27,7 +27,8 @@ export class MainComponent implements OnInit, OnChanges {
   graphicSymbolOptions: GraphicSymbolOption;
   graphicVariableOptions: GraphicVariableOption[] =  [
     { type: 'color', label: 'Color', visualization: 'color' },
-    { type: 'areaSize', label: 'Area Size', visualization: 'node-size' }
+    { type: 'areaSize', label: 'Area Size', visualization: 'node-size' },
+    { type: 'shape', label: 'Shape', visualization: 'shape' }
   ];
 
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
