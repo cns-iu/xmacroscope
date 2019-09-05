@@ -41,7 +41,17 @@ export class MainComponent implements OnInit, OnChanges {
     {
       label: 'Data Table',
       id: 'datatable',
-      icon: 'icon'
+      icon: 'visualization:table'
+    },
+    {
+      label: 'Scatter Graph',
+      id: 'scattergraph',
+      icon: 'visualization:scatter-graph'
+    },
+    {
+      label: 'Map',
+      id: 'geomap',
+      icon: 'visualization:geomap'
     }
   ];
 
