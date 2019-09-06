@@ -4,7 +4,7 @@
       <mat-icon class="home-icon">home</mat-icon>
       <span class="home-label">Home</span>
     </div>
-    <app-button-group [items]="navigationButtons" [value]="navigationButtons[1]" [deselectable]="false"
+    <app-button-group [items]="navigation" [value]="navigation[1]" [deselectable]="false"
                       (valueChange)="navigationChanged($event)">
       <div *appButtonContent="let item" class="button">
         <mat-icon class="icon" inline [svgIcon]="item.icon"></mat-icon>
@@ -14,28 +14,14 @@
   </div>
 
   <div class="legend-view-container">
-    <div class="qualitative" *ngIf="!isVariableFixed('color')">
-      <div class="subtitle">
-        <mat-icon class="icon" inline [svgIcon]="'label:color'"></mat-icon>
-        <span class="legend-name">Color: {{ project.graphicSymbols[0].graphicVariables.color?.label }}</span>
+    <ng-container *ngFor="let legend of legends">
+      <div class="qualitative" *ngIf="!isVariableFixed(legend.variable)">
+        <div class="subtitle">
+          <mat-icon class="icon" inline [svgIcon]="legend.icon"></mat-icon>
+          <span class="legend-name">{{ legend.label + ': ' + variableLabel(legend.variable) }}</span>
+        </div>
+        <app-graphic-variable-legend [visualizationId]="legend.type"></app-graphic-variable-legend>
       </div>
-      <app-graphic-variable-legend visualizationId="color-legend"></app-graphic-variable-legend>
-    </div>
-
-    <div class="qualitative" *ngIf="!isVariableFixed('shape')">
-      <div class="subtitle">
-        <mat-icon class="icon" inline [svgIcon]="'label:shape'"></mat-icon>
-        <span class="legend-name">Shape: {{ project.graphicSymbols[0].graphicVariables.shape?.label }}</span>
-      </div>
-      <app-graphic-variable-legend visualizationId="shape-legend"></app-graphic-variable-legend>
-    </div>
-
-    <div class="quantitative" *ngIf="!isVariableFixed('areaSize')">
-      <div class="subtitle">
-        <mat-icon class="icon" inline [svgIcon]="'label:size'"></mat-icon>
-        <span class="legend-name">Size: {{ project.graphicSymbols[0].graphicVariables.areaSize?.label }}</span>
-      </div>
-      <app-graphic-variable-legend visualizationId="size-legend"></app-graphic-variable-legend>
-    </div>
+    </ng-container>
   </div>
 </div>
