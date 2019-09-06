@@ -1,19 +1,21 @@
-import { UpdateVisService } from '../../../shared/services/update-vis.service';
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
 import { DvlFwVisualizationComponent, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+
+import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 export interface ButtonItems {
   label: string;
   icon: string;
   id: string;
 }
+
 @Component({
   selector: 'app-geomap',
   templateUrl: './geomap.component.html',
-  styleUrls: ['./geomap.component.scss']
+  styleUrls: ['./geomap.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class GeomapComponent {
   @Input() data: Visualization;
 
