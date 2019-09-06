@@ -276,6 +276,9 @@ export class XMacroscopeProject extends DefaultProject {
               identifier: [ // TODO: Fix in @dvl-fw to stateIdentifier
                 {selector: 'person.state'}
               ],
+              order: [
+                {selector: 'person.zipCode'}
+              ],
               label: [
                 {selector: 'person.zipCode'}
               ]
