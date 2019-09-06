@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
   showAppHeader = true;
 
   constructor(route: ActivatedRoute) {
@@ -18,8 +18,4 @@ export class MainComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit() {
-  }
-
 }

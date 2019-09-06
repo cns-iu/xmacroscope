@@ -1,12 +1,14 @@
-import { UpdateVisService } from '../../../shared/services/update-vis.service';
-import { Component, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
 import { DvlFwVisualizationComponent, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+
+import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 @Component({
   selector: 'app-scatter-graph',
   templateUrl: './scatter-graph.component.html',
-  styleUrls: ['./scatter-graph.component.scss']
+  styleUrls: ['./scatter-graph.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScatterGraphComponent {
   @Input() data: Visualization;

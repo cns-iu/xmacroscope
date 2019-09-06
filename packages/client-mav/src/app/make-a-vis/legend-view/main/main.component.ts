@@ -7,7 +7,7 @@ import {
   RecordStream,
   Visualization,
 } from '@dvl-fw/core';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, get } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
@@ -29,12 +29,12 @@ export interface ButtonGroupItem {
 })
 export class MainComponent implements OnChanges {
   @Input() activeVisualization: number;
+
   private lastActiveVisualization: number;
   private lastProject: Project;
   streams: RecordStream[];
   project: Project;
   visualization: Visualization;
-  xMacroscopeDataService: XMacroscopeDataService;
   graphicSymbolOptions: GraphicSymbolOption;
   graphicVariableOptions: GraphicVariableOption[] =  [
     { type: 'color', label: 'Color', visualization: 'color' },
@@ -60,14 +60,12 @@ export class MainComponent implements OnChanges {
     }
   ];
 
-  constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
-    this.xMacroscopeDataService = dataService;
+  constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.project = dataService.project;
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('activeVisualization' in changes) {
-      this.project = this.xMacroscopeDataService.project;
       const changed = this.activeVisualization !== this.lastActiveVisualization || this.project !== this.lastProject;
       this.lastActiveVisualization = this.activeVisualization;
       this.lastProject = this.project;
@@ -110,5 +108,10 @@ export class MainComponent implements OnChanges {
         return option.id === key;
       })[0];
     });
+  }
+
+  isVariableFixed(type: string): boolean {
+    const id = get(this.project, ['graphicSymbols', 0, 'graphicVariables', type, 'id']);
+    return id === 'fixed';
   }
 }

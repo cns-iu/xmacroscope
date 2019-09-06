@@ -1,9 +1,6 @@
-<div class="main-view" [ngClass]="{'no-header': !showAppHeader}">
-  <!-- <div class="data-view">
-      <app-data-view-main></app-data-view-main>
-  </div> -->
+<div class="main-view" [class.no-header]="!showAppHeader">
   <div class="visualization-and-legend-view">
-      <app-visualization-view-main class="visualization" #visualization></app-visualization-view-main>
-      <app-legend-view-main [activeVisualization]="visualization.selectedVisualization?visualization.selectedVisualization:1" class="legend" ></app-legend-view-main>
-  </div>  
+    <app-visualization-view-main class="visualization" active="geomap"></app-visualization-view-main>
+    <app-legend-view-main [activeVisualization]="1" class="legend"></app-legend-view-main>
+  </div>
 </div>

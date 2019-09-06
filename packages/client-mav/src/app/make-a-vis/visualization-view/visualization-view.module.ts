@@ -13,18 +13,19 @@ import { ScatterGraphComponent } from './scatter-graph/scatter-graph.component';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+
     MatTabsModule,
     MatIconModule,
-    NoopAnimationsModule,
+
     DvlFwModule,
+
     ButtonGroupModule,
     GVButtonGroupModule,
   ],
-  exports: [
-    MainComponent
-  ],
-  declarations: [MainComponent, ScatterGraphComponent, GeomapComponent]
+  declarations: [MainComponent, ScatterGraphComponent, GeomapComponent],
+  exports: [MainComponent],
 })
 export class VisualizationViewModule { }
