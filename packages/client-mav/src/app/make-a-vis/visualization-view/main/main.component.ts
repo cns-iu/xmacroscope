@@ -27,6 +27,7 @@ export interface Vis {
 
 export class MainComponent implements OnInit {
   visTypes: VisType[] = [
+    { template: 'table', label: 'Table', icon: 'table' },
     { template: 'scattergraph', label: 'Scatter Graph', icon: 'scatter-graph' },
     { template: 'geomap', label: 'Geomap', icon: 'geomap' },
     { template: 'science-map', label: 'Map of Science', icon: 'mapOfScience' },
@@ -44,6 +45,7 @@ export class MainComponent implements OnInit {
   vis = undefined;
 
   constructor(private dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
+    setTimeout(() => dataService.runStreamController.stop(), 10000);
     this.selectedVisualization = 1;
     this.availableGraphicVariables = this.dataService.project.graphicVariables;
 

@@ -50,7 +50,7 @@ export class GeomapComponent {
   }
 
   variableChanged(variable: GraphicVariable, id: string): void {
-    if (this.data) {
+    if (this.data && this.data.graphicSymbols['nodes']) {
       this.data.graphicSymbols['nodes'].graphicVariables[id] = variable;
       this.visualization.runDataChangeDetection();
       this.updateService.triggerUpdate(this.data);

@@ -30,7 +30,7 @@ export class ScatterGraphComponent {
   }
 
   variableChanged(variable: GraphicVariable, id: string): void {
-    if (this.data) {
+    if (this.data && this.data.graphicSymbols['points']) {
       this.data.graphicSymbols['points'].graphicVariables[id] = variable;
       this.visualization.runDataChangeDetection();
       this.updateService.triggerUpdate(this.data);

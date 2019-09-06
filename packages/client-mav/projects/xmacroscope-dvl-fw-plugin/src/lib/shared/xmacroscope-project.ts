@@ -1,3 +1,4 @@
+import { TableVisualization } from './../visualizations/table/table.visualization';
 import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
   DefaultRecordSet, GraphicSymbol, GraphicVariable, Project, RecordSet,
   Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
@@ -149,7 +150,7 @@ export class XMacroscopeProject extends DefaultProject {
               ],
               label: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'},
-                {selector: 'person.label'}
+                {id: 'label', selector: 'person.label'}
               ],
               order: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
@@ -288,6 +289,67 @@ export class XMacroscopeProject extends DefaultProject {
   getGraphicSymbols(): GraphicSymbol[] {
     return [
       new DefaultGraphicSymbol({
+        id: 'runTable',
+        type: 'record',
+        recordStream: 'runs',
+        graphicVariables: {
+          identifier: {
+            recordSet: 'run',
+            dataVariable: 'icon',
+            graphicVariableType: 'identifier',
+            graphicVariableId: 'identifier'
+          },
+          order: {
+            recordSet: 'run',
+            dataVariable: 'icon',
+            graphicVariableType: 'identifier',
+            graphicVariableId: 'identifier'
+          },
+          icon: {
+            recordSet: 'run',
+            dataVariable: 'icon',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          },
+          age: {
+            recordSet: 'run',
+            dataVariable: 'age',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          },
+          height: {
+            recordSet: 'run',
+            dataVariable: 'height',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          },
+          time: {
+            recordSet: 'run',
+            dataVariable: 'time',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          },
+          opponent: {
+            recordSet: 'run',
+            dataVariable: 'opponent',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          },
+          shoes: {
+            recordSet: 'run',
+            dataVariable: 'shoes',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          },
+          zipCode: {
+            recordSet: 'run',
+            dataVariable: 'zipCode',
+            graphicVariableType: 'label',
+            graphicVariableId: 'label'
+          }
+        }
+      }, this),
+      new DefaultGraphicSymbol({
         id: 'runPoints',
         type: 'area',
         recordStream: 'runs',
@@ -377,6 +439,14 @@ export class XMacroscopeProject extends DefaultProject {
 
   getVisualizations(): Visualization[] {
     return [
+      new TableVisualization({
+        id: 'table',
+        template: 'table',
+        properties: {},
+        graphicSymbols: {
+          items: 'runTable'
+        }
+      }, this),
       new ScatterplotMapVisualization({
         id: 'scattergraph',
         template: 'scattergraph',
