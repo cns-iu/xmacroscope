@@ -31,13 +31,34 @@
       width: calc(100vw - 31.25rem);
 
       .visualization-area {
+        width: fit-content;
         height: calc(100vh - 23rem);
+        margin: auto;
         overflow-y: scroll;
+
+        ::ng-deep {
+          table {
+            width: unset;
+          }
+
+          th, td {
+            width: 10.375rem;
+            text-align: center;
+          }
+
+          th:first-of-type, td:first-of-type {
+            padding-left: 0;
+          }
+
+          th:last-of-type, td:last-of-type {
+            padding-right: 0;
+          }
+        }
       }
 
       .x-axis-buttons {
         height: 10rem;
-        padding: 3rem 0;
+        padding: 3rem 8.5625rem 3rem 12.5625rem;
         display:flex;
         justify-content: center
       }
