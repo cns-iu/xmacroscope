@@ -3,7 +3,6 @@ import { duration } from 'moment';
 
 import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage, SignupStartedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
-import { Person } from 'projects/xmacroscope-dvl-fw-plugin/src/public_api';
 
 @Component({
   selector: 'app-display-screen',
