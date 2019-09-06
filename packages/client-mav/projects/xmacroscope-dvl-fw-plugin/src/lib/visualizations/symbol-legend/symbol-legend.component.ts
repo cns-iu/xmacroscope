@@ -2,7 +2,7 @@ import { IconConfig, DataDrivenIcon } from './../shared/data-driven-icon';
 import { Component, Input, OnChanges, OnDestroy, SimpleChanges, OnInit } from '@angular/core';
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent, GraphicSymbol, DataType } from '@dvl-fw/core';
 import { DataProcessorService } from '@ngx-dino/core';
-import { orderBy, uniqBy, isNumber } from 'lodash';
+import { orderBy, uniqBy, isNumber, maxBy } from 'lodash';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
@@ -35,7 +35,7 @@ class DataItem extends IconConfig {
   constructor(data: Partial<DataItem>) {
     super(data);
     this.icon = this.toString();
-    this.iconWidth = areaToDiameter(this.areaSize);
+    this.iconWidth = Math.ceil(areaToDiameter(this.areaSize) + 4 + (this.strokeWidth || 0));
     Object.assign(this, {
       value: data.value,
       input: data.input || data.value,
@@ -59,7 +59,6 @@ export interface SummaryStatistics {
 export class SymbolLegendComponent implements VisualizationComponent,
     OnDestroy, OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
-  legendType: 'qualitative' | 'quantitative';
   itemDefaults: { [gvName: string]: any } = {
     shape: 'square',
     areaSize: 196,
@@ -75,16 +74,28 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
   items: DataItem[];
   stats: SummaryStatistics;
+  maxIconWidth: number;
 
   private iconCache: { [icon: string]: string } = {};
 
-  constructor(private dataProcessorService: DataProcessorService) { }
+  constructor(private dataProcessorService: DataProcessorService) { console.log(this); }
 
   processItems(data: TDatum<DataItem>[]) {
-    this.legendType = this.getLegendType('value', this.data.graphicSymbols.items);
     const items = orderBy(data.map(d => new DataItem(d)), 'order', 'asc');
-    this.stats = this.computeSummaryStatistics(items);
-    this.items = uniqBy(items, 'input');
+
+    const type = this.getLegendType('value', this.data.graphicSymbols.items);
+    switch (type) {
+      case 'qualitative':
+        this.items = uniqBy(items, 'input');
+        break;
+      case 'quantitative':
+        const stats = this.computeSummaryStatistics(items);
+        this.items = [stats.min, stats.median, stats.max];
+        break;
+      default:
+        this.items = [];
+    }
+    this.maxIconWidth = this.items.length ? maxBy(items, 'iconWidth').iconWidth : 0;
   }
 
   getLegendType(gvName: string, graphicSymbol: GraphicSymbol): 'quantitative' | 'qualitative' {
@@ -117,7 +128,8 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
   refreshItems(): void {
     if (this.data) {
-      this.items$ = this.getGraphicSymbolData<DataItem>('items', this.itemDefaults);
+      const itemDefaults = Object.assign({}, this.itemDefaults, this.data.properties.itemDefaults);
+      this.items$ = this.getGraphicSymbolData<DataItem>('items', itemDefaults);
     } else {
       this.items$ = of([]);
     }
@@ -137,10 +149,7 @@ export class SymbolLegendComponent implements VisualizationComponent,
     if ('items' in changes) { this.refreshItems(); }
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('itemDefaults' in changes) {
-      this.itemDefaults = this.data.properties.itemDefaults;
-      this.refreshItems();
-    }
+    if ('itemDefaults' in changes) { this.refreshItems(); }
   }
   getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: any } = {}): Observable<TDatum<T>[]> {
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();

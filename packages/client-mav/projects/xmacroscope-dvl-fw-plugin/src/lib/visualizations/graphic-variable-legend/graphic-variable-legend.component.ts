@@ -28,20 +28,21 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
       const slot = allSlots.length && allSlots[0];
       const gs = allGraphicSymbols[slot];
       const gv = gs.graphicVariables[this.data.properties['graphicVariable']];
+      const itemDefaults = this.data.properties['itemDefaults'] || undefined;
 
       if (gs && gv) {
         const graphicSymbol = this.createGraphicSymbol(gv, gs, project);
-        legend = this.createLegend(this.data.id, graphicSymbol, project);
+        legend = this.createLegend(this.data.id, graphicSymbol, {itemDefaults}, project);
       }
     }
     this.legend = legend;
   }
 
-  private createLegend(id: string, graphicSymbol: GraphicSymbol, project: Project): Visualization {
+  private createLegend(id: string, graphicSymbol: GraphicSymbol, properties: any, project: Project): Visualization {
     const visualization = new SymbolLegendVisualization({
       id,
       template: 'symbol-legend',
-      properties: {},
+      properties,
       graphicSymbols: {}
     }, project);
     visualization.graphicSymbols = { items: graphicSymbol };
@@ -86,6 +87,6 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
     this.refreshItems();
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('graphicVariable' in changes) { this.refreshItems(); }
+    if ('graphicVariable' in changes || 'itemDefaults' in changes) { this.refreshItems(); }
   }
 }

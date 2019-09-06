@@ -419,19 +419,41 @@ export class XMacroscopeProject extends DefaultProject {
       new GraphicVariableLegendVisualization({
         id: 'color-legend',
         template: 'graphic-variable-legend',
-        properties: { graphicVariable: 'color' },
+        properties: {
+          graphicVariable: 'color',
+          itemDefaults: {
+            strokeColor: '#83786F',
+            strokeWidth: 1,
+            shape: 'square'
+          }
+        },
         graphicSymbols: { items: 'runPoints' }
       }, this),
       new GraphicVariableLegendVisualization({
         id: 'shape-legend',
         template: 'graphic-variable-legend',
-        properties: { graphicVariable: 'shape' },
+        properties: {
+          graphicVariable: 'shape',
+          itemDefaults: {
+            color: '#FFFFFF',
+            strokeColor: '#83786F',
+            strokeWidth: 1
+          }
+        },
         graphicSymbols: { items: 'runPoints' }
       }, this),
       new GraphicVariableLegendVisualization({
         id: 'size-legend',
         template: 'graphic-variable-legend',
-        properties: { graphicVariable: 'areaSize' },
+        properties: {
+          graphicVariable: 'areaSize',
+          itemDefaults: {
+            color: '#FFFFFF',
+            strokeColor: '#83786F',
+            strokeWidth: 1,
+            shape: 'circle'
+          }
+        },
         graphicSymbols: { items: 'runPoints' }
       }, this)
     ];
