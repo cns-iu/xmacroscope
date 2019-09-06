@@ -46,12 +46,14 @@ export class MainComponent implements OnChanges {
   }
 
   isVariableFixed(type: string): boolean {
-    const id = get(this.project, ['graphicSymbols', 0, 'graphicVariables', type, 'id']);
-    return id === 'fixed' || !id;
+    const gs = this.project.graphicSymbols.find(g => g.id === 'runPoints');
+    const id = get(gs, ['graphicVariables', type, 'id']);
+    return id === 'fixed' || id === undefined;
   }
 
   variableLabel(type: string): string {
-    return get(this.project, ['graphicSymbols', 0, 'graphicVariables', type, 'label']);
+    const gs = this.project.graphicSymbols.find(g => g.id === 'runPoints');
+    return get(gs, ['graphicVariables', type, 'label']);
   }
 
   goHome() {
