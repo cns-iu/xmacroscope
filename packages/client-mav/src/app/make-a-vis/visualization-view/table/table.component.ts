@@ -14,5 +14,20 @@ export class TableComponent {
   @Input() data: Visualization;
   @ViewChild('visualization', { static: true }) visualization: DvlFwVisualizationComponent;
 
-  constructor() { }
+  readonly orderType = GraphicVariableType.ORDER;
+
+  readonly variables: GraphicVariable[];
+  readonly defaultOrderVariable: GraphicVariable;
+
+  constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
+    this.variables = dataService.project.graphicVariables;
+  }
+
+  variableChanged(variable: GraphicVariable, id: string): void {
+    if (this.data && this.data.graphicSymbols['items']) {
+      this.data.graphicSymbols['items'].graphicVariables[id] = variable;
+      this.visualization.runDataChangeDetection();
+      this.updateService.triggerUpdate(this.data);
+    }
+  }
 }

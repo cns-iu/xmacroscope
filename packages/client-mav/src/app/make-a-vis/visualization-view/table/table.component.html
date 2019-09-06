@@ -2,11 +2,22 @@
     <div class="container">
       <div class="y-axis">
         <div class="visualization-name">DATA TABLE</div>
+
+        <div class="message">Find and Select Your Data Record</div>
       </div>
       <div class="visualization">
         <div class="visualization-area">
           <dvl-visualization [data]="data" #visualization></dvl-visualization>
         </div>
+        <div class="x-axis-buttons">
+            <app-gv-button-group
+                label="Sort by"
+                [variables]="variables"
+                [type]="orderType"
+                [defaultVariable]="defaultOrderVariable"
+                (variableChange)="variableChanged($event, 'order')">
+            </app-gv-button-group>
+          </div>
       </div>
       <div class="graphic-variables-selection">
 
