@@ -78,7 +78,7 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
   private iconCache: { [icon: string]: string } = {};
 
-  constructor(private dataProcessorService: DataProcessorService) { console.log(this); }
+  constructor(private dataProcessorService: DataProcessorService) { }
 
   processItems(data: TDatum<DataItem>[]) {
     const items = orderBy(data.map(d => new DataItem(d)), 'order', 'asc');
