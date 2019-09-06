@@ -11,7 +11,7 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
-export interface ButtonItems {
+export interface ButtonItem {
   label: string;
   icon: string;
   id: string;
@@ -33,7 +33,7 @@ export class GeomapComponent {
   readonly sizeType = GraphicVariableType.AREA_SIZE;
 
   readonly variables: GraphicVariable[];
-  readonly buttonItems: ButtonItems[] = [
+  readonly buttonItems: ButtonItem[] = [
     {
       label: 'United States',
       icon: 'map:us',
@@ -54,11 +54,16 @@ export class GeomapComponent {
     this.variables = dataService.project.graphicVariables;
   }
 
+  currentFeature(): ButtonItem {
+    const id = get(this.data, ['properties', 'featureSelection']);
+    return this.buttonItems.find(item => item.id === id) || this.buttonItems[1];
+  }
+
   currentVariable(id: string): GraphicVariable {
     return get(this.graphicSymbol, ['graphicVariables', id]);
   }
 
-  geoMapChanged(selectedMap: ButtonItems): void {
+  geoMapChanged(selectedMap: ButtonItem): void {
     if (this.data) {
       this.data.properties.featureSelection = selectedMap.id;
       this.visualization.runDataChangeDetection();

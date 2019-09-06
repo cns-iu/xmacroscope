@@ -3,7 +3,7 @@
     <div class="y-axis">
       <div class="visualization-name">GEOMAP</div>
       <div class="map-selection">
-        <app-button-group [items]="buttonItems" [value]="buttonItems[1]" [deselectable]="false" [vertical]="true"
+        <app-button-group [items]="buttonItems" [value]="currentFeature()" [deselectable]="false" [vertical]="true"
                           (valueChange)="geoMapChanged($event)">
           <div *appButtonContent="let item" class="button">
             <mat-icon class="icon" inline [svgIcon]="item.icon">
