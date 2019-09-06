@@ -59,7 +59,7 @@ export class GraphqlClient {
     const networkLink = split(
       // split based on operation type
       ({ query }) => {
-        const { kind, operation } = getMainDefinition(query);
+        const { kind, operation } = getMainDefinition(query) as any;
         return kind === 'OperationDefinition' && operation === 'subscription';
       },
       wsLink,
