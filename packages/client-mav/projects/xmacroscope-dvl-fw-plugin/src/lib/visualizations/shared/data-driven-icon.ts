@@ -75,14 +75,25 @@ export class DataDrivenIcon {
   private imageDrawn: boolean;
   private imageSent: boolean;
 
+  static fromString(icon: string, prefix: string = 'ddi:', createCanvas = defaultCanvasCreator): DataDrivenIcon {
+    if (icon.startsWith(prefix)) {
+      const config = JSON.parse(icon.slice(prefix.length));
+      return new DataDrivenIcon(config, createCanvas);
+    }
+  }
+
   constructor(public readonly config: IconConfig, private createCanvas = defaultCanvasCreator) {
-    const symbolDiameter = Math.sqrt(config.areaSize / Math.PI) * 2;
+    const symbolDiameter = Math.sqrt(config.areaSize) * 2;
+    let canvasWidth = symbolDiameter + 4;
+    if (config.strokeWidth) {
+      canvasWidth += config.strokeWidth;
+    }
     if (config.pulse) {
       config.pulseColor = config.pulseColor || config.strokeColor || config.color;
       config.pulseWidth = config.pulseWidth || (symbolDiameter * 2);
+      canvasWidth += config.pulseWidth * 3;
     }
 
-    const canvasWidth = (symbolDiameter + (config.pulse ? config.pulseWidth * 2 : 0)) * 2;
     const canvas = this.canvas = this.createCanvas(canvasWidth, canvasWidth);
     this.context = canvas.getContext('2d');
     this.render();

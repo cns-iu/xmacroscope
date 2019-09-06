@@ -1,0 +1,8 @@
+<div class="dvl-symbol-legend legend-container" *ngIf="items">
+  <div *ngFor="let item of items" class="legend-row">
+      <div class="mark" [style.width]="maxIconWidth + 'px'">
+        <img class="icon" [src]="getDataUrl(item.icon)" alt="">
+      </div>
+      <div class="label" [title]="item.label">{{ item.label }}</div>
+  </div>
+</div>
