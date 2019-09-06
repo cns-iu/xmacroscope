@@ -1,8 +1,8 @@
 import { IconConfig, DataDrivenIcon } from './../shared/data-driven-icon';
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges, OnInit } from '@angular/core';
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent, GraphicSymbol, DataType } from '@dvl-fw/core';
 import { DataProcessorService } from '@ngx-dino/core';
-import { orderBy, uniqBy, pick, isNumber } from 'lodash';
+import { orderBy, uniqBy, isNumber } from 'lodash';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
@@ -57,7 +57,7 @@ export interface SummaryStatistics {
   styleUrls: ['./symbol-legend.component.scss']
 })
 export class SymbolLegendComponent implements VisualizationComponent,
-    OnDestroy, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
+    OnDestroy, OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
   legendType: 'qualitative' | 'quantitative';
   itemDefaults: { [gvName: string]: any } = {
@@ -81,8 +81,8 @@ export class SymbolLegendComponent implements VisualizationComponent,
   constructor(private dataProcessorService: DataProcessorService) { }
 
   processItems(data: TDatum<DataItem>[]) {
-    this.legendType = this.getLegendType('input', this.data.graphicSymbols.items);
-    const items = orderBy(data.map(d => new DataItem(d)), 'order', 'desc');
+    this.legendType = this.getLegendType('value', this.data.graphicSymbols.items);
+    const items = orderBy(data.map(d => new DataItem(d)), 'order', 'asc');
     this.stats = this.computeSummaryStatistics(items);
     this.items = uniqBy(items, 'input');
   }
@@ -126,14 +126,18 @@ export class SymbolLegendComponent implements VisualizationComponent,
     }
     this.itemsSubscription = this.items$.subscribe(items => this.processItems(items));
   }
+
+  ngOnInit(): void {
+    this.refreshItems();
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) { this.refreshItems(); }
   }
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
-    if ('points' in changes) { this.refreshItems(); }
+    if ('items' in changes) { this.refreshItems(); }
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('pointDefaults' in changes) {
+    if ('itemDefaults' in changes) {
       this.itemDefaults = this.data.properties.itemDefaults;
       this.refreshItems();
     }

@@ -51,11 +51,13 @@ export class MainComponent implements OnInit {
       .map(source => source.recordStreams)
       .reduce((acc, s) => acc.concat(s), [] as RecordStream[]);
 
-    this.vis = this.dataService.project.visualizations.map(vis => {
-      const type = find(this.visTypes, { template: vis.template });
-      const label = type && type.label || vis.id || '';
-      const icon = 'assets/img/icon-mav-' + type.icon + '.svg';
-      return { label, icon, data: vis } as Vis;
+    this.vis = this.dataService.project.visualizations
+      .filter(vis => vis.template !== 'graphic-variable-legend')
+      .map(vis => {
+        const type = find(this.visTypes, { template: vis.template });
+        const label = type && type.label || vis.id || '';
+        const icon = 'assets/img/icon-mav-' + type.icon + '.svg';
+        return { label, icon, data: vis } as Vis;
     });
   }
 
