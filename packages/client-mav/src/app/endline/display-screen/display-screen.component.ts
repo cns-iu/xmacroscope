@@ -62,7 +62,6 @@ export class DisplayScreenComponent implements OnInit {
   }
 
   updatePersona(msg: Message) {
-    console.log(msg)
     if (msg && msg.run && msg.run.person) {
       this.personaIcon = `emoji:${msg.run.person.icon.slice(4)}`; // probably change this if icon names are changed.
       this.personaColor = msg.run.persona.color;
