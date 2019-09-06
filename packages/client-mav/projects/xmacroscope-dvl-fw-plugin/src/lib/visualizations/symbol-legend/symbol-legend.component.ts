@@ -94,6 +94,7 @@ export class SymbolLegendComponent implements VisualizationComponent,
         break;
       default:
         this.items = [];
+        break;
     }
     this.maxIconWidth = this.items.length ? maxBy(items, 'iconWidth').iconWidth : 0;
   }
