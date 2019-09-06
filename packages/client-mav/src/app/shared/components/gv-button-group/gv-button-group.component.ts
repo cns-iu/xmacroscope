@@ -28,6 +28,7 @@ export class RemoveUnitsPipe implements PipeTransform {
 export class GVButtonGroupComponent implements OnChanges {
   @Input() variables: GraphicVariable[];
   @Input() type: GraphicVariableType;
+  @Input() selected?: GraphicVariable;
   @Input() defaultVariable?: GraphicVariable;
   @Input() label?: string;
   @Input() icon?: string;

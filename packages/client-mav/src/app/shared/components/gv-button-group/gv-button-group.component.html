@@ -1,4 +1,5 @@
-<app-button-group class="container" [items]="filteredVariables" [vertical]="vertical" (valueChange)="variableChanged($event)">
+<app-button-group class="container" [items]="filteredVariables" [value]="selected" [vertical]="vertical"
+                  (valueChange)="variableChanged($event)">
   <div *appButtonGroupLabel class="label-container">
     <mat-icon class="icon" inline [svgIcon]="icon"></mat-icon>
     <span class="label">{{ label }}</span>

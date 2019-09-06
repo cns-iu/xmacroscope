@@ -5,8 +5,8 @@
 
       <div class="buttons">
         <app-gv-button-group label="Y Axis" icon="label:y-axis" [variables]="variables" [type]="yAxisType"
-                             [defaultVariable]="defaultYAxisVariable" [vertical]="true"
-                             (variableChange)="variableChanged($event, 'y')"></app-gv-button-group>
+                             [selected]="currentVariable('y')" [defaultVariable]="defaultYAxisVariable"
+                             [vertical]="true" (variableChange)="variableChanged($event, 'y')"></app-gv-button-group>
       </div>
     </div>
     <div class="visualization">
@@ -15,23 +15,27 @@
       </div>
       <div class="x-axis-buttons">
         <app-gv-button-group label="X Axis" icon="label:x-axis" [variables]="variables" [type]="xAxisType"
-                             [defaultVariable]="defaultXAxisVariable" (variableChange)="variableChanged($event, 'x')">
+                             [selected]="currentVariable('x')" [defaultVariable]="defaultXAxisVariable"
+                             (variableChange)="variableChanged($event, 'x')">
         </app-gv-button-group>
       </div>
     </div>
     <div class="graphic-variables-selection">
       <div>
         <app-gv-button-group label="Color" icon="label:color" [variables]="variables" [type]="colorType"
-                             [vertical]="true" (variableChange)="variableChanged($event, 'color')">
+                             [selected]="currentVariable('color')" [vertical]="true"
+                             (variableChange)="variableChanged($event, 'color')">
         </app-gv-button-group>
       </div>
       <div>
         <app-gv-button-group label="Shape" icon="label:shape" [variables]="variables" [type]="shapeType"
-                             [vertical]="true" (variableChange)="variableChanged($event, 'shape')">
+                             [selected]="currentVariable('shape')" [vertical]="true"
+                             (variableChange)="variableChanged($event, 'shape')">
         </app-gv-button-group>
       </div>
       <div>
-        <app-gv-button-group label="Size" icon="label:size" [variables]="variables" [type]="sizeType" [vertical]="true"
+        <app-gv-button-group label="Size" icon="label:size" [variables]="variables" [type]="sizeType"
+                             [selected]="currentVariable('areaSize')" [vertical]="true"
                              (variableChange)="variableChanged($event, 'areaSize')">
         </app-gv-button-group>
       </div>

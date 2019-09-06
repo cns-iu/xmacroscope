@@ -1,5 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
-import { DvlFwVisualizationComponent, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
+import {
+  DvlFwVisualizationComponent,
+  GraphicSymbol,
+  GraphicVariable,
+  GraphicVariableType,
+  Visualization,
+} from '@dvl-fw/core';
+import { get, set } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
@@ -25,15 +32,23 @@ export class ScatterGraphComponent {
   readonly defaultXAxisVariable: GraphicVariable;
   readonly defaultYAxisVariable: GraphicVariable;
 
+  private get graphicSymbol(): GraphicSymbol {
+    return get(this.data, ['graphicSymbols', 'points']);
+  }
+
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.variables = dataService.project.graphicVariables;
     this.defaultXAxisVariable = this.findVariable(/time/i, this.xAxisType);
     this.defaultYAxisVariable = this.findVariable(/height/i, this.yAxisType);
   }
 
+  currentVariable(id: string): GraphicVariable {
+    return get(this.graphicSymbol, ['graphicVariables', id]);
+  }
+
   variableChanged(variable: GraphicVariable, id: string): void {
-    if (this.data && this.data.graphicSymbols['points']) {
-      this.data.graphicSymbols['points'].graphicVariables[id] = variable;
+    if (this.graphicSymbol) {
+      set(this.graphicSymbol, ['graphicVariables', id], variable);
       this.visualization.runDataChangeDetection();
       this.updateService.triggerUpdate(this.data);
     }

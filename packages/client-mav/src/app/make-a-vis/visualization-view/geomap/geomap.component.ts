@@ -1,5 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
-import { DvlFwVisualizationComponent, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
+import {
+  DvlFwVisualizationComponent,
+  GraphicSymbol,
+  GraphicVariable,
+  GraphicVariableType,
+  Visualization,
+} from '@dvl-fw/core';
+import { get, set } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
@@ -26,8 +33,7 @@ export class GeomapComponent {
   readonly sizeType = GraphicVariableType.AREA_SIZE;
 
   readonly variables: GraphicVariable[];
-
-  buttonItems: ButtonItems[] = [
+  readonly buttonItems: ButtonItems[] = [
     {
       label: 'United States',
       icon: 'map:us',
@@ -40,8 +46,16 @@ export class GeomapComponent {
     }
   ];
 
+  private get graphicSymbol(): GraphicSymbol {
+    return get(this.data, ['graphicSymbols', 'nodes']);
+  }
+
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.variables = dataService.project.graphicVariables;
+  }
+
+  currentVariable(id: string): GraphicVariable {
+    return get(this.graphicSymbol, ['graphicVariables', id]);
   }
 
   geoMapChanged(selectedMap: ButtonItems): void {
@@ -52,8 +66,8 @@ export class GeomapComponent {
   }
 
   variableChanged(variable: GraphicVariable, id: string): void {
-    if (this.data && this.data.graphicSymbols['nodes']) {
-      this.data.graphicSymbols['nodes'].graphicVariables[id] = variable;
+    if (this.graphicSymbol) {
+      set(this.graphicSymbol, ['graphicVariables', id], variable);
       this.visualization.runDataChangeDetection();
       this.updateService.triggerUpdate(this.data);
     }

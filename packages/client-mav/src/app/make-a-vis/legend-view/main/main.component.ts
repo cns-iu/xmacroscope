@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { GraphicSymbol, GraphicVariable, Project, DefaultGraphicSymbol } from '@dvl-fw/core';
+import { DefaultGraphicSymbol, GraphicSymbol, GraphicVariable, Project } from '@dvl-fw/core';
 import { get } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
 
@@ -16,9 +17,9 @@ export class MainComponent implements OnChanges {
   @Output() activeVisualizationChange = new EventEmitter<string>();
 
   readonly navigation = [
-    { label: 'Data Table', id: 'datatable', icon: 'visualization:table' },
-    { label: 'Scatter Graph', id: 'scattergraph', icon: 'visualization:scatter-graph' },
-    { label: 'Map', id: 'geomap', icon: 'visualization:geomap' }
+    { label: 'Data Table', id: 'datatable', icon: 'visualization:table', hideLegend: true },
+    { label: 'Scatter Graph', id: 'scattergraph', icon: 'visualization:scatter-graph', hideLegend: false },
+    { label: 'Map', id: 'geomap', icon: 'visualization:geomap', hideLegend: false }
   ];
   readonly legends = [
     { variable: 'color', label: 'Color', icon: 'label:color', type: 'color-legend' },
@@ -26,17 +27,17 @@ export class MainComponent implements OnChanges {
     { variable: 'areaSize', label: 'Size', icon: 'label:size', type: 'size-legend' }
   ];
 
-  selected = this.navigation[0];
   readonly originalGraphicSymbol: any;
   readonly originalTableOrder: GraphicVariable;
 
   project: Project;
+  selected = this.navigation[0];
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.project = dataService.project;
 
-    this.originalGraphicSymbol = this.project.graphicSymbols.find(g => g.id === 'runPoints').toJSON();
-    this.originalTableOrder = this.project.graphicSymbols.find(g => g.id === 'runTable').graphicVariables.order;
+    this.originalGraphicSymbol = this.getRunPoints().toJSON();
+    this.originalTableOrder = this.getRunTable().graphicVariables.order;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,24 +47,19 @@ export class MainComponent implements OnChanges {
   }
 
   isVariableFixed(type: string): boolean {
-    const gs = this.project.graphicSymbols.find(g => g.id === 'runPoints');
-    const id = get(gs, ['graphicVariables', type, 'id']);
-    return id === 'fixed' || id === undefined;
+    const id = get(this.getRunPoints(), ['graphicVariables', type, 'id']);
+    return this.selected.hideLegend || id === 'fixed' || id === undefined;
   }
 
   variableLabel(type: string): string {
-    const gs = this.project.graphicSymbols.find(g => g.id === 'runPoints');
-    return get(gs, ['graphicVariables', type, 'label']);
+    return get(this.getRunPoints(), ['graphicVariables', type, 'label']);
   }
 
   goHome() {
     this.navigationChanged(this.navigation[0]);
     const gs = new DefaultGraphicSymbol(this.originalGraphicSymbol, this.project);
-    const runPoints = this.project.graphicSymbols.find(g => g.id === 'runPoints');
-    Object.assign(runPoints.graphicVariables, gs.graphicVariables);
-
-    const runTable = this.project.graphicSymbols.find(g => g.id === 'runTable');
-    runTable.graphicVariables.order = this.originalTableOrder;
+    Object.assign(this.getRunPoints().graphicVariables, gs.graphicVariables);
+    this.getRunTable().graphicVariables.order = this.originalTableOrder;
 
     this.updateService.triggerUpdate(this.project.visualizations.find(v => v.id === 'datatable'));
   }
@@ -72,5 +68,13 @@ export class MainComponent implements OnChanges {
     this.selected = event;
     this.activeVisualization = event.id;
     this.activeVisualizationChange.emit(event.id);
+  }
+
+  private getRunPoints(): GraphicSymbol {
+    return this.project.graphicSymbols.find(g => g.id === 'runPoints');
+  }
+
+  private getRunTable(): GraphicSymbol {
+    return this.project.graphicSymbols.find(g => g.id === 'runTable');
   }
 }
