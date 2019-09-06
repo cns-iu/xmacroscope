@@ -13,13 +13,14 @@ import { TimerService } from '../timer-service/timer.service';
 export class DisplayScreenComponent implements OnInit {
   lastMessage: Message;
   timerText = '00:00';
+  personaIcon: string;
   personaColor = '#000';
   personaShape = 'circle';
-  personaBackgroundSize = {width: 420, height: 420};
+  personaBackgroundSize = { width: 420, height: 420 };
   personaShapeSize = 25000;
   personaBackgroundRadius = 200;
 
-  constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) {}
+  constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) { }
 
   ngOnInit() {
     let timeoutHandle: any; // used to store setTimeout Id to clear it when a new message arrives.
@@ -43,7 +44,7 @@ export class DisplayScreenComponent implements OnInit {
           this.handleMessage(this.createDummySignupStartedMessage());
         }, this.dataService.config.runTimout);
       }
-     });
+    });
     this.timerService.getFormattedTimeObservable().subscribe((timerText) => {
       this.timerText = timerText;
     });
@@ -62,6 +63,7 @@ export class DisplayScreenComponent implements OnInit {
 
   updatePersona(msg: Message) {
     if (msg && msg.run && msg.run.person) {
+      this.personaIcon = `emoji:${msg.run.person.icon.slice(4)}`; // probably change this if icon names are changed.
       this.personaColor = msg.run.persona.color;
       this.personaShape = msg.run.persona.shape;
     }
