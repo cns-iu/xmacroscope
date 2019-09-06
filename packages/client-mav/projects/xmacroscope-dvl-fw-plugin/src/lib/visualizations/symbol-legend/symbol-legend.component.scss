@@ -1,0 +1,28 @@
+.legend-container {
+  display: inline-block;
+
+  .legend-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    line-height: 1.5rem;
+
+    .mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        display: block;
+        margin:auto;
+      }
+    }
+
+    .label {
+      margin-left: .5rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

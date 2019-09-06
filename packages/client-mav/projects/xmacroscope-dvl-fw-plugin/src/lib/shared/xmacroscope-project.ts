@@ -9,6 +9,7 @@ import { LocationSettings } from '../graphql/location-settings';
 import { asMessage } from '../graphql/graphql-queries';
 import { ScatterplotMapVisualization } from '../visualizations/scatterplot-map/scatterplot-map.visualization';
 import { GeographicMapVisualization } from '../visualizations/geographic-map/geographic-map.visualization';
+import { GraphicVariableLegendVisualization } from '../visualizations/graphic-variable-legend/graphic-variable-legend.visualization';
 
 
 export interface XMacroscopeProjectConfig {
@@ -377,7 +378,7 @@ export class XMacroscopeProject extends DefaultProject {
   getVisualizations(): Visualization[] {
     return [
       new ScatterplotMapVisualization({
-        id: 'SG01',
+        id: 'scattergraph',
         template: 'scattergraph',
         properties: {
           gridlines: true,
@@ -389,7 +390,7 @@ export class XMacroscopeProject extends DefaultProject {
         }
       }, this),
       new GeographicMapVisualization({
-        id: 'GM01',
+        id: 'geomap',
         template: 'geomap',
         properties: {
           basemapZoomLevels: [
@@ -415,6 +416,46 @@ export class XMacroscopeProject extends DefaultProject {
           nodes: 'runPoints'
         }
       }, this),
+      new GraphicVariableLegendVisualization({
+        id: 'color-legend',
+        template: 'graphic-variable-legend',
+        properties: {
+          graphicVariable: 'color',
+          itemDefaults: {
+            strokeColor: '#83786F',
+            strokeWidth: 1,
+            shape: 'square'
+          }
+        },
+        graphicSymbols: { items: 'runPoints' }
+      }, this),
+      new GraphicVariableLegendVisualization({
+        id: 'shape-legend',
+        template: 'graphic-variable-legend',
+        properties: {
+          graphicVariable: 'shape',
+          itemDefaults: {
+            color: '#FFFFFF',
+            strokeColor: '#83786F',
+            strokeWidth: 1
+          }
+        },
+        graphicSymbols: { items: 'runPoints' }
+      }, this),
+      new GraphicVariableLegendVisualization({
+        id: 'size-legend',
+        template: 'graphic-variable-legend',
+        properties: {
+          graphicVariable: 'areaSize',
+          itemDefaults: {
+            color: '#FFFFFF',
+            strokeColor: '#83786F',
+            strokeWidth: 1,
+            shape: 'circle'
+          }
+        },
+        graphicSymbols: { items: 'runPoints' }
+      }, this)
     ];
   }
 }

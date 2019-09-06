@@ -38,10 +38,10 @@ export class Run {
 
   @Operand(constant({
     areaSize: 250,
-    color: '#000000',
+    color: '#83786F',
     pulse: true,
-    transparency: 0.6,
-    strokeTransparency: 0.2,
+    transparency: 0.8,
+    strokeTransparency: 0.5,
     strokeWidth: 1,
     text: 'Fixed',
     shape: 'circle'
