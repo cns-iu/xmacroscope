@@ -1,10 +1,10 @@
 <div class="wrapper default-legend-theme default-button-theme">
   <div class="navigation">
-    <div class="home-icon-wrapper">
+    <div class="home-icon-wrapper" (click)="goHome()">
       <mat-icon class="home-icon">home</mat-icon>
       <span class="home-label">Home</span>
     </div>
-    <app-button-group [items]="navigation" [value]="navigation[1]" [deselectable]="false"
+    <app-button-group [items]="navigation" [value]="selected" [deselectable]="false"
                       (valueChange)="navigationChanged($event)">
       <div *appButtonContent="let item" class="button">
         <mat-icon class="icon" inline [svgIcon]="item.icon"></mat-icon>

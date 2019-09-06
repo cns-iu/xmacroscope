@@ -10,6 +10,7 @@ import { GVButtonGroupModule } from 'src/app/shared/components/gv-button-group';
 import { GeomapComponent } from './geomap/geomap.component';
 import { MainComponent } from './main/main.component';
 import { ScatterGraphComponent } from './scatter-graph/scatter-graph.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { ScatterGraphComponent } from './scatter-graph/scatter-graph.component';
     ButtonGroupModule,
     GVButtonGroupModule,
   ],
-  declarations: [MainComponent, ScatterGraphComponent, GeomapComponent],
+  declarations: [MainComponent, ScatterGraphComponent, GeomapComponent, TableComponent],
   exports: [MainComponent],
 })
 export class VisualizationViewModule { }

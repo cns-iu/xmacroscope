@@ -1,16 +1,9 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import {
-  GraphicSymbolOption,
-  GraphicVariable,
-  GraphicVariableOption,
-  Project,
-  RecordStream,
-  Visualization,
-} from '@dvl-fw/core';
-import { cloneDeep, get } from 'lodash';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { GraphicSymbol, GraphicVariable, Project, DefaultGraphicSymbol } from '@dvl-fw/core';
+import { get } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
-
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
+
 
 
 @Component({
@@ -18,8 +11,9 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent {
-  @Input() activeVisualization: number;
+export class MainComponent implements OnChanges {
+  @Input() activeVisualization = 'datatable';
+  @Output() activeVisualizationChange = new EventEmitter<string>();
 
   readonly navigation = [
     { label: 'Data Table', id: 'datatable', icon: 'visualization:table' },
@@ -32,20 +26,49 @@ export class MainComponent {
     { variable: 'areaSize', label: 'Size', icon: 'label:size', type: 'size-legend' }
   ];
 
+  selected = this.navigation[0];
+  readonly originalGraphicSymbol: any;
+  readonly originalTableOrder: GraphicVariable;
+
   project: Project;
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.project = dataService.project;
+
+    this.originalGraphicSymbol = this.project.graphicSymbols.find(g => g.id === 'runPoints').toJSON();
+    this.originalTableOrder = this.project.graphicSymbols.find(g => g.id === 'runTable').graphicVariables.order;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('activeVisualization' in changes) {
+      this.selected = this.navigation.find(n => n.id === this.activeVisualization) || this.navigation[0];
+    }
   }
 
   isVariableFixed(type: string): boolean {
     const id = get(this.project, ['graphicSymbols', 0, 'graphicVariables', type, 'id']);
-    return id === 'fixed';
+    return id === 'fixed' || !id;
   }
 
   variableLabel(type: string): string {
     return get(this.project, ['graphicSymbols', 0, 'graphicVariables', type, 'label']);
   }
 
-  navigationChanged(event: any) {} // FIXME
+  goHome() {
+    this.navigationChanged(this.navigation[0]);
+    const gs = new DefaultGraphicSymbol(this.originalGraphicSymbol, this.project);
+    const runPoints = this.project.graphicSymbols.find(g => g.id === 'runPoints');
+    Object.assign(runPoints.graphicVariables, gs.graphicVariables);
+
+    const runTable = this.project.graphicSymbols.find(g => g.id === 'runTable');
+    runTable.graphicVariables.order = this.originalTableOrder;
+
+    this.updateService.triggerUpdate(this.project.visualizations.find(v => v.id === 'datatable'));
+  }
+
+  navigationChanged(event: any) {
+    this.selected = event;
+    this.activeVisualization = event.id;
+    this.activeVisualizationChange.emit(event.id);
+  }
 }

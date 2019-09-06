@@ -18,6 +18,6 @@ export class MainComponent {
   }
 
   constructor(dataService: XMacroscopeDataService) {
-    this.visualizations = keyBy(dataService.project.visualizations, 'template');
+    this.visualizations = keyBy(dataService.project.visualizations, 'id');
   }
 }

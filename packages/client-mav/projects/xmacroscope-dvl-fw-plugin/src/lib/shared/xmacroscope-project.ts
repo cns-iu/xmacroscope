@@ -440,7 +440,7 @@ export class XMacroscopeProject extends DefaultProject {
   getVisualizations(): Visualization[] {
     return [
       new TableVisualization({
-        id: 'table',
+        id: 'datatable',
         template: 'table',
         properties: {},
         graphicSymbols: {

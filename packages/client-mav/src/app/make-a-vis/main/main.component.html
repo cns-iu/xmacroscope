@@ -1,6 +1,6 @@
 <div class="main-view" [class.no-header]="!showAppHeader">
   <div class="visualization-and-legend-view">
-    <app-visualization-view-main class="visualization" active="scattergraph"></app-visualization-view-main>
-    <app-legend-view-main [activeVisualization]="1" class="legend"></app-legend-view-main>
+    <app-visualization-view-main class="visualization" [active]="nav.activeVisualization"></app-visualization-view-main>
+    <app-legend-view-main class="legend" #nav></app-legend-view-main>
   </div>
 </div>

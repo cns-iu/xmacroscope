@@ -1,4 +1,5 @@
 <div class="container" [ngSwitch]="active">
+  <app-table *ngSwitchCase="'datatable'" [data]="data"></app-table>
   <app-scatter-graph *ngSwitchCase="'scattergraph'" [data]="data"></app-scatter-graph>
   <app-geomap *ngSwitchCase="'geomap'" [data]="data"></app-geomap>
 </div>
