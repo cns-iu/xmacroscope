@@ -1,6 +1,6 @@
 <div class="endline-screen-container">
 
-  <div class="endline-screen-persona" *ngIf="lastMessage?.type !== 'signup-started'" >
+  <!--<div class="endline-screen-persona" *ngIf="lastMessage?.type !== 'signup-started'" >
     <app-xmacroscope-persona 
       [shape]="personaShape" 
       [color]="personaColor"
@@ -11,25 +11,28 @@
       [pathStrokeSize]="8"
     ></app-xmacroscope-persona>
   </div>
-
+-->
+  <div class="endline-screen-persona" *ngIf="lastMessage?.type !== 'signup-started'">
+    <mat-icon class="icon" inline [svgIcon]="personaIcon" [style.color]="personaColor"></mat-icon>
+  </div>
   <div class="endline-screen-text">
-  <div  *ngIf="lastMessage?.type === 'signup-started'"> 
-    <div class="endline-label">Waiting for Runner</div>
-  </div>
+    <div *ngIf="lastMessage?.type === 'signup-started'">
+      <div class="endline-label">Waiting for Runner</div>
+    </div>
 
-  <div *ngIf="lastMessage?.type === 'signup-finished'">
-     <div class="endline-label">Get Ready</div>
-     <div class="endline-timer">00:00</div> 
-  </div>
+    <div *ngIf="lastMessage?.type === 'signup-finished'">
+      <div class="endline-label">Get Ready</div>
+      <div class="endline-timer">00:00</div>
+    </div>
 
-  <div *ngIf="lastMessage?.type === 'run-started'">
+    <div *ngIf="lastMessage?.type === 'run-started'">
       <div class="endline-label">Go!</div>
-      <div class="endline-timer">{{timerText}}</div> 
-  </div>
+      <div class="endline-timer">{{timerText}}</div>
+    </div>
 
-  <div *ngIf="lastMessage?.type === 'run-finished'">
+    <div *ngIf="lastMessage?.type === 'run-finished'">
       <div class="endline-label">Finished!</div>
-      <div class="endline-timer">{{timerText}}</div> 
+      <div class="endline-timer">{{timerText}}</div>
+    </div>
   </div>
-</div>
 </div>
