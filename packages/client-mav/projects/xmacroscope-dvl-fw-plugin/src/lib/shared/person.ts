@@ -73,7 +73,7 @@ export class Person {
   @Operand(map<Person, string>(s => `${s.icon}`))
   label: string;
 
-  @Operand(chain(access('icon'), lookup(images, 'circle')))
+  @Operand(chain(access('icon'), lookup(images, images['turtle'])))
   iconShape: string;
 
   @Operand(chain(access('age'), areaSizeScale.quantitative([0, 120])))

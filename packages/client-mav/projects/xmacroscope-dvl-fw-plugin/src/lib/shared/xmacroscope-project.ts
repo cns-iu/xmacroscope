@@ -133,8 +133,8 @@ export class XMacroscopeProject extends DefaultProject {
               identifier: [
                 {selector: 'id'}
               ],
-              icon: [
-                {selector: 'persona'}
+              imageUrl: [
+                {selector: 'person.iconShape'}
               ],
               text: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
@@ -317,8 +317,8 @@ export class XMacroscopeProject extends DefaultProject {
           icon: {
             recordSet: 'run',
             dataVariable: 'icon',
-            graphicVariableType: 'label',
-            graphicVariableId: 'label'
+            graphicVariableType: 'imageUrl',
+            graphicVariableId: 'imageUrl'
           },
           age: {
             recordSet: 'run',

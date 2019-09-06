@@ -43,9 +43,9 @@ export class Run {
     areaSize: 250,
     color: '#83786F',
     pulse: true,
-    transparency: 0.8,
-    strokeTransparency: 0.5,
-    strokeWidth: 1,
+    transparency: 0.4,
+    strokeTransparency: 0.3,
+    strokeWidth: 2,
     text: 'Fixed',
     shape: 'circle'
   }))
