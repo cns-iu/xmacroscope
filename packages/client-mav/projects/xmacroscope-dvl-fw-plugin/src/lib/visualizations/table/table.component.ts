@@ -1,16 +1,18 @@
-import { IconConfig, DataDrivenIcon } from './../shared/data-driven-icon';
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges, OnInit } from '@angular/core';
-import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent, GraphicSymbol, DataType } from '@dvl-fw/core';
-import { DataProcessorService } from '@ngx-dino/core';
-import { orderBy, uniqBy, isNumber, maxBy, entries } from 'lodash';
-import { EMPTY, Observable, of, Subscription } from 'rxjs';
-
-import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import { GraphicSymbol, OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
+import { DataProcessorService, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
+import { entries, orderBy } from 'lodash';
+import { EMPTY, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
+import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
+
 
 interface DataItem {
   identifier: number | string;
   order: number | string;
+  pulse: boolean;
 }
 interface Column {
   id: string;
@@ -27,16 +29,19 @@ export class TableComponent implements VisualizationComponent,
     OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
 
+  // Outputs
+  @Output() nodeClick = new EventEmitter<NgxDinoEvent>();
+
   items$: Observable<TDatum<DataItem>[]> = EMPTY;
   columns: { [id: string]: Column };
   displayedColumns: string[];
 
-  constructor(private dataProcessorService: DataProcessorService) { }
+  constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) { }
 
   getColumns(gs: GraphicSymbol): { [id: string]: Column } {
     const columns = {};
     entries(gs.graphicVariables)
-      .filter(([key]) => key !== 'identifier' && key !== 'order')
+      .filter(([key]) => key !== 'identifier' && key !== 'order' && key !== 'pulse')
       .forEach(([id, gv]) => {
         columns[id] = {
           id,
@@ -56,6 +61,25 @@ export class TableComponent implements VisualizationComponent,
     } else {
       this.items$ = of([]);
     }
+  }
+
+  private toNgxDinoEvent(event: Event, item: TDatum<DataItem>): NgxDinoEvent | undefined {
+    if (item) {
+      return new NgxDinoEvent(event.type, item[rawDataSymbol], item, this, event);
+    }
+  }
+  rowClicked(event: Event, item: TDatum<DataItem>): void {
+    const ngxDinoEvent = this.toNgxDinoEvent(event, item);
+    if (ngxDinoEvent) {
+      this.nodeClick.emit(ngxDinoEvent);
+    }
+    this.tempClickListener(ngxDinoEvent);
+  }
+
+  // FIXME: Remove specifics to xMacroscope
+  tempClickListener(event: NgxDinoEvent) {
+    const selection = !event || event.data.selected ? [] : [event.data];
+    this.xMacroscopeDataService.runStreamController.selectRuns(selection);
   }
 
   ngOnInit(): void {

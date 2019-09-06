@@ -153,7 +153,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'label', selector: 'person.label'}
               ],
               order: [
-                {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
+                {id: 'fixed', selector: 'endOrder', label: 'Fixed'}
               ],
               areaSize: [
                 {id: 'fixed', selector: 'fixed.areaSize', label: 'Fixed'}
@@ -302,8 +302,14 @@ export class XMacroscopeProject extends DefaultProject {
           order: {
             recordSet: 'run',
             dataVariable: 'icon',
-            graphicVariableType: 'identifier',
-            graphicVariableId: 'identifier'
+            graphicVariableType: 'order',
+            graphicVariableId: 'fixed'
+          },
+          pulse: {
+            recordSet: 'run',
+            dataVariable: 'icon',
+            graphicVariableType: 'pulse',
+            graphicVariableId: 'pulse'
           },
           icon: {
             recordSet: 'run',

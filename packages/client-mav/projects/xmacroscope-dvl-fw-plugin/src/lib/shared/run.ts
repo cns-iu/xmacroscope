@@ -27,6 +27,9 @@ export class Run {
     Object.assign(this, pick(data, ['id', 'start', 'end', 'person', 'highlighted', 'selected']));
   }
 
+  @Operand(chain(access<Date>('end'), map<Date, number>(d => Date.now() - d.getTime())))
+  endOrder: number;
+
   @Operand(map(s => s.end && s.start ? s.end.getTime() - s.start.getTime() : undefined))
   timeMillis: number;
   @Operand(chain(access<number>('timeMillis'), map(t => t ? t / 1000 : undefined)))

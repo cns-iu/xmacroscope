@@ -21,6 +21,7 @@ export class TableComponent {
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.variables = dataService.project.graphicVariables;
+    this.defaultOrderVariable = dataService.project.graphicSymbols.find(g => g.id === 'runTable').graphicVariables.order;
   }
 
   variableChanged(variable: GraphicVariable, id: string): void {

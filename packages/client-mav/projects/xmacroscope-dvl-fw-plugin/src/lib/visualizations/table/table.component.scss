@@ -1,3 +1,7 @@
 .mav-table {
-  width: 100%
+  width: 100%;
+
+  .selected {
+    background-color: grey;
+  }
 }

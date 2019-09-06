@@ -2,7 +2,11 @@
   <caption></caption>
   <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
     <th scope="col" mat-header-cell *matHeaderCellDef>{{ columns[column].label }}</th>
-    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+    <td mat-cell *matCellDef="let element"
+      [class.selected]="element.pulse"
+      (click)="rowClicked($event, element)">
+      {{ element[column] }}
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
