@@ -8,7 +8,7 @@
       (click)="rowClicked($event, element)">
 
       <img class="image-url" *ngSwitchCase="'imageUrl'" [src]="element[column]">
-      <span class="label" *ngSwitchDefault>{{ element[column] }}</span>
+      <ng-template ngSwitchDefault>{{ element[column] }}</ng-template>
     </td>
   </ng-container>
 

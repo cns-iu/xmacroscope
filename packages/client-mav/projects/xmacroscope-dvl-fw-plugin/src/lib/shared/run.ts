@@ -41,7 +41,8 @@ export class Run {
 
   @Operand(constant({
     areaSize: 250,
-    color: '#83786F',
+    color: '#DEDAD7',
+    strokeColor: '#83786F',
     pulse: true,
     transparency: 0.4,
     strokeTransparency: 0.3,

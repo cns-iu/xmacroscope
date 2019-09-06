@@ -134,7 +134,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {selector: 'id'}
               ],
               imageUrl: [
-                {selector: 'person.iconShape'}
+                {selector: 'person.iconShape', label: ' '}
               ],
               text: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
@@ -172,7 +172,7 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.strokeWidth', label: 'Fixed'}
               ],
               strokeColor: [
-                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
+                {id: 'fixed', selector: 'fixed.strokeColor', label: 'Fixed'}
               ]
             },
             age: {
