@@ -40,11 +40,12 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
                 }
             }
         }
-
-        .home-label, .home-icon {
-            color: mat-color($primary, buttonLabel);
-        }
     }
+
+    .home-label, .home-icon {
+        color: mat-color($primary, buttonLabel);
+    }
+
 }
 
 
