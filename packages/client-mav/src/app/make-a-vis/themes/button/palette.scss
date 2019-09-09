@@ -1,12 +1,15 @@
 @import "../shared/common-colors.scss";
 
 $button: (
-    buttonLabel: $color-0-98-152,
-    buttonOuterBorder: $color-220-136-35,
-    buttonInnerBorder: $color-241-190-72,
-    buttonTopGraient: $color-249-229-182,
-    buttonToggleBackground: $color-white,
-    buttonBoxshadow10: $color-60-64-67-10,
-    buttonBoxShadow16: $color-60-64-67-16,
-    buttonBackgroundWhite: $color-white
+  buttonLabel: $color-0-98-152,
+  buttonOuterBorder: $color-220-136-35,
+  buttonInnerBorder: $color-241-190-72,
+  buttonTopGradient: $color-249-229-182,
+  buttonToggleBackground: $color-white,
+  buttonBoxshadow10: $color-60-64-67-10,
+  buttonBoxShadow16: $color-60-64-67-16,
+  buttonBackgroundWhite: $color-white,
+  buttonIconIconColor3: $color-0-98-152,
+  buttonIconIconColor2: $color-102-161-193,
+  buttonIconIconColor1: $color-204-224-234
 );
