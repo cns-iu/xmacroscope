@@ -1,0 +1,51 @@
+@import "palette.scss";
+
+// primary, accent, warn
+$default-table-theme-primary: $table;
+$default-table-theme-accent: mat-palette($mat-orange, A200, A100, A400);
+$default-table-theme-warn: mat-palette($mat-red);
+
+$default-table-theme: mat-light-theme($default-table-theme-primary, $default-table-theme-accent, $default-table-theme-warn);
+
+@mixin default-table-theme-mixin($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+
+  .visualization-area {
+    &::-webkit-scrollbar-track {
+      background: mat-color($primary, scrollbarTrackColor);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: mat-color($primary, scrollbarHandleColor);
+    }
+
+    table {
+      thead {
+        background: mat-color($primary, headerBackground);
+
+        th {
+          color: mat-color($primary, headerColor);
+        }
+      }
+
+      tbody {
+        background: mat-color($primary, bodyBackground);
+
+        td {
+          color: mat-color($primary, bodyColor)
+        }
+      }
+    }
+  }
+}
+
+@include angular-material-theme($default-table-theme);
+
+.default-table-theme {
+  @include angular-material-theme($default-table-theme);
+  @include default-table-theme-mixin($default-table-theme);
+}
