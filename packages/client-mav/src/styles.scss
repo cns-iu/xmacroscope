@@ -5,22 +5,14 @@
 @import "~mapbox-gl/dist/mapbox-gl.css";
 @import "~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css";
 
-@include mat-core();
+@import "~typeface-lato/index.css";
+@import "~typeface-paytone-one/index.css";
 
 @import "app/make-a-vis/themes/legend/legend.scss";
 @import "app/make-a-vis/themes/button/button.scss";
 @import "app/make-a-vis/themes/table/table.scss";
 
-// import fonts from assets
-@font-face {
-  font-family: Lato;
-  src: url('assets/fonts/Lato-Regular.ttf') format("opentype");
-}
-
-@font-face {
-  font-family: Paytone;
-  src: url('assets/fonts/PaytoneOne-Regular.ttf') format("opentype");
-}
+@include mat-core();
 
 * {
   font-family: Lato, Arial, Helvetica, sans-serif;
