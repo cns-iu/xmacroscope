@@ -1,13 +1,17 @@
-import { assignIn, get, pick } from 'lodash';
-import { Operand, map, constant, chain, access, combine, Operator } from '@ngx-dino/core';
 import { areaSizeScale } from '@dvl-fw/core';
+import { access, chain, combine, constant, map, Operand, Operator } from '@ngx-dino/core';
+import { assignIn, get, pick, round } from 'lodash';
 
 import { Person } from './person';
+
 
 
 function ifHighlighted<T>(trueAttr: string, falseAttr: string): Operator<any, T> {
   return map(s => s.highlighted ? get(s, trueAttr) : get(s, falseAttr));
 }
+
+// The time in which the application started
+const startupTime = Date.now();
 
 // @dynamic
 export class Run {
@@ -27,7 +31,8 @@ export class Run {
     Object.assign(this, pick(data, ['id', 'start', 'end', 'person', 'highlighted', 'selected']));
   }
 
-  @Operand(chain(access<Date>('end'), map<Date, number>(d => Date.now() - d.getTime())))
+  // Order by the number of milliseconds before the application was started
+  @Operand(chain(access<Date>('end'), map<Date, number>(d => round(startupTime - d.getTime() + Math.random(), 2))))
   endOrder: number;
 
   @Operand(map(s => s.end && s.start ? s.end.getTime() - s.start.getTime() : undefined))

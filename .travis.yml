@@ -8,9 +8,6 @@ cache:
   yarn: true
   directories:
   - node_modules
-  - packages/client-mav/node_modules
-  - packages/client-run/node_modules
-  - packages/server-graphql/node_modules
 branches:
   only:
   - master
