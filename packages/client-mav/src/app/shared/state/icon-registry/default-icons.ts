@@ -85,6 +85,10 @@ export const defaultIcons: DefaultIconDefinition[] = [
     namespace: 'emoji', name: 'upsidedown',
     html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs><style>upsidedown-cls-2{fill:currentColor}</style></defs><circle cx="11.5" cy="11.5" r="11" fill="#fff" stroke="currentColor" stroke-miterlimit="10"/><path class=upsidedown-cls-2" d="M12 5C7.34 5 6 8 6 8s1.85-1.69 6-1.69S18 8 18 8s-1.38-3-6-3z" transform="translate(-.5 -.5)"/><circle class=upsidedown-cls-2" cx="6.97" cy="14.5" r="1.5"/><circle class=upsidedown-cls-2" cx="15.97" cy="14.5" r="1.5"/></svg>'
   },
+  {
+    namespace: 'emoji', name: 'unknown',
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs></defs><circle cx="11.5" cy="11.5" r="11" fill="#fff" stroke="currentColor" stroke-miterlimit="10"/></svg>'
+  },
 
   {
     namespace: 'map', name: 'us',
