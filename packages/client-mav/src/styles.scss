@@ -10,7 +10,21 @@
 @import "app/make-a-vis/themes/legend/legend.scss";
 @import "app/make-a-vis/themes/button/button.scss";
 
+// import fonts from assets
+@font-face {
+  font-family: Lato;
+  src: url('assets/fonts/Lato-Regular.ttf') format("opentype");
+}
+
+@font-face {
+  font-family: Paytone;
+  src: url('assets/fonts/PaytoneOne-Regular.ttf') format("opentype");
+}
+
+* {
+  font-family: Lato, Arial, Helvetica, sans-serif;
+}
+
 body {
   margin: 0px;
 }
-
