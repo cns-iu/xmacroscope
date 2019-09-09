@@ -67,6 +67,7 @@
     "subscriptions-transport-ws": "^0.9.16",
     "topojson-client": "^3.0.0",
     "typeface-lato": "0.0.75",
+    "typeface-paytone-one": "0.0.72",
     "typescript-logging": "^0.6.2",
     "zipcodes": "^8.0.0",
     "zone.js": "^0.9.1"
