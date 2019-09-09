@@ -12,7 +12,6 @@ import { EndlineModule } from './endline/endline.module';
 import { HomeModule } from './home/home.module';
 import { MakeAVisModule } from './make-a-vis/make-a-vis.module';
 import { IconRegistryState } from './shared/state/icon-registry/icon-registry.state';
-import { ThemesModule } from './themes/themes.module';
 import { XMacroscopeDataModule, VisualizationsModule, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 @NgModule({
@@ -30,8 +29,7 @@ import { XMacroscopeDataModule, VisualizationsModule, XMacroscopeDataService } f
     BackendModule,
     EndlineModule,
     HomeModule,
-    MakeAVisModule,
-    ThemesModule
+    MakeAVisModule
   ],
   providers: [ XMacroscopeDataService ],
   bootstrap: [ AppComponent ]
