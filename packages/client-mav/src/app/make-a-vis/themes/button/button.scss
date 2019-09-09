@@ -15,7 +15,9 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
   $background: map-get($theme, background);
 
   .container {
+
     .mat-button-toggle-group {
+
       .mat-button-toggle.mat-button-toggle-appearance-standard {
         border-color: mat-color($primary, buttonOuterBorder) !important;
         background: mat-color($primary, buttonToggleBackground);
@@ -37,12 +39,31 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
 
         }
       }
+      
     }
-  }
 
-  .home-label,
-  .home-icon {
-    color: mat-color($primary, buttonLabel);
+    .home-label, .home-icon {
+      color: mat-color($primary, buttonLabel);
+    }
+
+    .label-container {
+
+      .mat-icon {
+          color: mat-color($primary, buttonIconIconColor3);
+      
+        .svg-color-ellipse1 {
+          fill: mat-color($primary, buttonIconIconColor1);
+        }
+    
+        .svg-color-ellipse2 {
+          fill: mat-color($primary, buttonIconIconColor2);
+        }
+    
+        .svg-color-ellipse3 {
+          fill: mat-color($primary, buttonIconIconColor3);
+        }
+      }
+    }
   }
 }
 

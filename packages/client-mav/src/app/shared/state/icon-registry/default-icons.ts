@@ -58,7 +58,7 @@ export const defaultIcons: DefaultIconDefinition[] = [
   },
   {
     namespace: 'label', name: 'color',
-    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="none" d="M0 0h32v32H0z"/><g transform="translate(-1206.343 -762.049)"><ellipse cx="1214" cy="785.4" rx="6.6" ry="6.6" fill="#99c0d6"/><ellipse cx="1230.7" cy="785.4" rx="6.6" ry="6.6" fill="#66a1c1"/><ellipse cx="1223.4" cy="770.7" rx="6.6" ry="6.6" fill="#006298"/></g></svg>'
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="none" d="M0 0h32v32H0z"/><g transform="translate(-1206.343 -762.049)"><ellipse cx="1214" cy="785.4" rx="6.6" ry="6.6" fill="currentColor" class="svg-color-ellipse1"/><ellipse cx="1230.7" cy="785.4" rx="6.6" ry="6.6" fill="currentColor" class="svg-color-ellipse2"/><ellipse cx="1223.4" cy="770.7" rx="6.6" ry="6.6" fill="currentColor" class="svg-color-ellipse3"/></g></svg>'
   },
 
   {
