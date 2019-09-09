@@ -10,7 +10,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { GraphicVariable, GraphicVariableType } from '@dvl-fw/core';
-import { get, groupBy, replace } from 'lodash';
+import { get, groupBy, includes, replace } from 'lodash';
 
 @Pipe({ name: 'removeUnits' })
 export class RemoveUnitsPipe implements PipeTransform {
@@ -43,6 +43,10 @@ export class GVButtonGroupComponent implements OnChanges {
     if ('variables' in changes || 'type' in changes) {
       this.updateVariables();
     }
+  }
+
+  isDeselectable(): boolean {
+    return !includes(this.filteredVariables, this.defaultVariable);
   }
 
   variableChanged(variable: GraphicVariable): void {

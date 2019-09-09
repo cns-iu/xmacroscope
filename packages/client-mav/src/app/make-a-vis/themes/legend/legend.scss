@@ -30,6 +30,22 @@ $default-legend-theme: mat-light-theme($default-legend-theme-primary, $default-l
         }
       }
     }
+
+    .mat-icon {
+      color: mat-color($primary, legendIconColor3);
+
+      .svg-color-ellipse1 {
+        fill: mat-color($primary, legendIconColor1);
+      }
+  
+      .svg-color-ellipse2 {
+        fill: mat-color($primary, legendIconColor2);
+      }
+  
+      .svg-color-ellipse3 {
+        fill: mat-color($primary, legendIconColor3);
+      }
+    }
   }
 }
 

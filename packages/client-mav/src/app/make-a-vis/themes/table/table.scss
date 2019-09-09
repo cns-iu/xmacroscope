@@ -15,16 +15,8 @@ $default-table-theme: mat-light-theme($default-table-theme-primary, $default-tab
   $background: map-get($theme, background);
 
   .visualization-area {
-    &::-webkit-scrollbar-track {
-      background: mat-color($primary, scrollbarTrackColor);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: mat-color($primary, scrollbarHandleColor);
-    }
-
     table {
-      thead {
+      thead tr {
         background: mat-color($primary, headerBackground);
 
         th {
@@ -36,7 +28,19 @@ $default-table-theme: mat-light-theme($default-table-theme-primary, $default-tab
         background: mat-color($primary, bodyBackground);
 
         td {
-          color: mat-color($primary, bodyColor)
+          color: mat-color($primary, bodyColor);
+        }
+
+        .selected {
+          background: mat-color($primary, selectedBackground) !important;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: mat-color($primary, scrollbarTrackColor);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: mat-color($primary, scrollbarHandleColor);
         }
       }
     }
