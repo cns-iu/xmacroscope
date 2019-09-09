@@ -47,6 +47,7 @@
 
             th {
               border: none;
+              font-weight: bold;
             }
           }
 
@@ -60,7 +61,8 @@
             }
           }
 
-          th, td {
+          th,
+          td {
             width: 10.375rem;
             text-align: center;
             vertical-align: middle;
@@ -86,8 +88,9 @@
       .x-axis-buttons {
         height: 10rem;
         padding: 3rem 8.5625rem 3rem 12.5625rem;
-        display:flex;
-        justify-content: center
+        display: flex;
+        justify-content: center;
+        white-space: nowrap;
       }
     }
 
