@@ -16,18 +16,24 @@
       .map-selection {
         margin-top: 13rem;
 
-          .button {
-            height: 6rem;
-          }
+        ::ng-deep .mat-button-toggle {
+          width: 7.5rem;
+        }
 
-          .icon {
-            height: 3rem;
-          }
+        .button {
+          height: 6rem;
+          line-height: 1.6rem;
+          white-space: pre-wrap;
+        }
 
-          .label {
-            font-family: 'Paytone One'
-            font-size: 1.25rem;
-          }
+        .icon {
+          height: 3rem;
+        }
+
+        .label {
+          font-family: 'Paytone One';
+          font-size: 1.25rem;
+        }
       }
     }
 
