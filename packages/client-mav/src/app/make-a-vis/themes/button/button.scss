@@ -42,10 +42,6 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
       
     }
 
-    .home-label, .home-icon {
-      color: mat-color($primary, buttonLabel);
-    }
-
     .label-container {
 
       .mat-icon {
@@ -64,6 +60,10 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
         }
       }
     }
+  }
+
+  .home-label, .home-icon {
+    color: mat-color($primary, buttonLabel);
   }
 }
 
