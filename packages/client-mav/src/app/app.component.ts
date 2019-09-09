@@ -9,7 +9,6 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  theme = 'dark-theme';
   title = 'AISL xMacroscope';
   routeLinks: any[];
   showAppHeader = true;
@@ -41,7 +40,7 @@ export class AppComponent {
 
     route.queryParams.subscribe((q) => {
       if ('showAppHeader' in q) {
-        this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+        this.showAppHeader = q['showAppHeader'] === 'true';
       } else if (Object.keys(q).length === 0) {
         this.showAppHeader = true;
       }
