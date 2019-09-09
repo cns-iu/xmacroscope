@@ -9,7 +9,6 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  theme = 'dark-theme';
   title = 'AISL xMacroscope';
   routeLinks: any[];
   showAppHeader = true;
