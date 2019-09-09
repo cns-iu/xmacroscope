@@ -7,7 +7,7 @@
 
       .visualization-name {
         font-size: 3rem;
-        font-family: Paytone;
+        font-family: 'Paytone One';
         color: #006298;
         text-align: center;
       }
@@ -16,7 +16,7 @@
         padding-top: 12rem;
         margin: 2.5rem;
         font-size: 2rem;
-        font-family: Paytone;
+        font-family: 'Paytone One';
         color: #66A1C1;
         text-align: center;
       }
@@ -36,22 +36,33 @@
         margin: auto;
         overflow-y: scroll;
 
-        ::ng-deep {
-          table {
-            width: unset;
-          }
+        &::-webkit-scrollbar {
+          width: 1.25rem;
+        }
+
+        ::ng-deep table {
+          width: unset;
+          table-layout: fixed;
 
           th, td {
             width: 10.375rem;
             text-align: center;
+            vertical-align: middle;
+            font-family: "Lato", sans-serif;
+            font-size: 1.25rem;
+            padding: 0;
           }
 
-          th:first-of-type, td:first-of-type {
-            padding-left: 0;
+          th:first-child {
+            border-radius: 1rem 0 0 0;
           }
 
-          th:last-of-type, td:last-of-type {
-            padding-right: 0;
+          th:last-child {
+            border-radius: 0 1rem 0 0;
+          }
+
+          td:first-child {
+            padding: 0.25rem 0;
           }
         }
       }

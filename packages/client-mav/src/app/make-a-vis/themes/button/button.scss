@@ -1,6 +1,6 @@
 @import "palette.scss";
 
-//primary, accent, warn
+// primary, accent, warn
 $default-button-theme-primary: $button;
 $default-button-theme-accent: mat-palette($mat-orange, A200, A100, A400);
 $default-button-theme-warn: mat-palette($mat-red);
@@ -8,51 +8,47 @@ $default-button-theme-warn: mat-palette($mat-red);
 $default-button-theme: mat-light-theme($default-button-theme-primary, $default-button-theme-accent, $default-button-theme-warn);
 
 @mixin default-button-theme-mixin($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
 
-    .container {
+  .container {
+    .mat-button-toggle-group {
+      .mat-button-toggle.mat-button-toggle-appearance-standard {
+        border-color: mat-color($primary, buttonOuterBorder) !important;
+        background: mat-color($primary, buttonToggleBackground);
+        box-shadow: 0px 1px 3px 1px mat-color($primary, buttonBoxShadow16);
 
-        .mat-button-toggle-group {
-
-            .mat-button-toggle.mat-button-toggle-appearance-standard {
-                border-color: mat-color($primary, buttonOuterBorder) !important;
-                background: mat-color($primary, buttonToggleBackground);
-                box-shadow: 0px 1px 3px 1px mat-color($primary, buttonBoxShadow16);
-
-                .mat-button-toggle-button {
-                    border-color: mat-color($primary, buttonInnerBorder) !important;
-                    color: mat-color($primary, buttonLabel);
-                    background: linear-gradient(to top, mat-color($primary, buttonInnerBorder), mat-color($primary, buttonTopGraient));
-                }
-            }
-
-            .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
-                box-shadow: 0px 4px 8px 4px mat-color($primary, buttonBoxshadow10) !important;
-
-                .mat-button-toggle-button {
-                    color: mat-color($primary, buttonBackgroundWhite);
-                    background: mat-color($primary, buttonOuterBorder);
-                    
-                }
-            }
+        .mat-button-toggle-button {
+          border-color: mat-color($primary, buttonInnerBorder) !important;
+          color: mat-color($primary, buttonLabel);
+          background: linear-gradient(to top, mat-color($primary, buttonInnerBorder), mat-color($primary, buttonTopGradient));
         }
-    }
+      }
 
-    .home-label, .home-icon {
-        color: mat-color($primary, buttonLabel);
-    }
+      .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+        box-shadow: 0px 4px 8px 4px mat-color($primary, buttonBoxshadow10) !important;
 
+        .mat-button-toggle-button {
+          color: mat-color($primary, buttonBackgroundWhite);
+          background: mat-color($primary, buttonOuterBorder);
+
+        }
+      }
+    }
+  }
+
+  .home-label,
+  .home-icon {
+    color: mat-color($primary, buttonLabel);
+  }
 }
-
-
 
 @include angular-material-theme($default-button-theme);
 
 .default-button-theme {
-    @include angular-material-theme($default-button-theme);
-    @include default-button-theme-mixin($default-button-theme);
+  @include angular-material-theme($default-button-theme);
+  @include default-button-theme-mixin($default-button-theme);
 }
