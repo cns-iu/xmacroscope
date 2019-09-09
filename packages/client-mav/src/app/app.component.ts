@@ -41,7 +41,7 @@ export class AppComponent {
 
     route.queryParams.subscribe((q) => {
       if ('showAppHeader' in q) {
-        this.showAppHeader = q['showAppHeader'] === 'true' ? true : false;
+        this.showAppHeader = q['showAppHeader'] === 'true';
       } else if (Object.keys(q).length === 0) {
         this.showAppHeader = true;
       }
