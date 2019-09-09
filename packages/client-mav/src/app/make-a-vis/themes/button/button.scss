@@ -1,6 +1,6 @@
 @import "palette.scss";
 
-//primary, accent, warn
+// primary, accent, warn
 $default-button-theme-primary: $button;
 $default-button-theme-accent: mat-palette($mat-orange, A200, A100, A400);
 $default-button-theme-warn: mat-palette($mat-red);
@@ -67,11 +67,9 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
   }
 }
 
-
-
 @include angular-material-theme($default-button-theme);
 
 .default-button-theme {
-    @include angular-material-theme($default-button-theme);
-    @include default-button-theme-mixin($default-button-theme);
+  @include angular-material-theme($default-button-theme);
+  @include default-button-theme-mixin($default-button-theme);
 }

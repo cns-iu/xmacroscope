@@ -42,15 +42,15 @@ export const defaultIcons: DefaultIconDefinition[] = [
 
   {
     namespace: 'label', name: 'x-axis',
-    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.72 29.57"><g ><path d="M4 7.54v18.25" stroke="currentColor" stroke-dasharray="3 3" fill="none" stroke-width="3"/><path fill="#bdbdbd" d="M4 0L2 3 0 6h8L6 3 4 0z"/></g><g ><path d="M25.98 25.58H2.52" stroke="currentColor" fill="none" stroke-width="3"/><path d="M29.72 25.57l-3-2-3-2v8l3-2 3-2z"/></g></svg>'
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.72 29.57"><g><path d="M4 7.54v18.25" stroke="#bdbdbd" stroke-dasharray="3 3" fill="none" stroke-width="3"/><path fill="#bdbdbd" d="M4 0L2 3 0 6h8L6 3 4 0z"/></g><g ><path d="M25.98 25.58H2.52" stroke="currentColor" fill="none" stroke-width="3"/><path d="M29.72 25.57l-3-2-3-2v8l3-2 3-2z"/></g></svg>'
   },
   {
     namespace: 'label', name: 'y-axis',
-    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.57 29.72"><g ><path d="M6.79 25.72h18.24" stroke-width="3" fill="#9d9d9d" stroke="currentColor" stroke-dasharray="3 3"/><path fill="#bdbdbd" d="M29.57 25.72l-3 2-3 2v-8l3 2 3 2z"/></g><g ><path d="M4 27.2V3.74" fill="none" stroke="currentColor" stroke-width="3"/><path d="M4 0l2 3 2 3H0l2-3 2-3z"/></g></svg>'
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.57 29.72"><g><path d="M6.79 25.72h18.24" stroke-width="3" fill="#9d9d9d" stroke="#bdbdbd" stroke-dasharray="3 3"/><path fill="#bdbdbd" d="M29.57 25.72l-3 2-3 2v-8l3 2 3 2z"/></g><g ><path d="M4 27.2V3.74" fill="none" stroke="currentColor" stroke-width="3"/><path d="M4 0l2 3 2 3H0l2-3 2-3z"/></g></svg>'
   },
   {
     namespace: 'label', name: 'size',
-    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><style>.size-st1{fill:currentColorize-st2{fill:none;stroke:currentColor}</style><path fill="none" d="M0 0h32v32H0z"/><g transform="translate(-1683 -366)"><g transform="translate(1683 366)"><circle class="size-st1" cx="16" cy="16" r="15"/><circle class="size-st2" cx="16" cy="16" r="14.5"/></g><g transform="translate(1689 378)"><circle class="size-st1" cx="10" cy="9.6" r="9.4"/><circle class="size-st2" cx="10" cy="9.6" r="8.9"/></g><g transform="translate(1694 388)"><circle class="size-st1" cx="5" cy="4.3" r="4.7"/><circle class="size-st2" cx="5" cy="4.3" r="4.2"/></g></g></svg>'
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><style>.size-st1{fill:#fff;}.size-st2{fill:none;stroke:currentColor}</style><path fill="none" d="M0 0h32v32H0z"/><g transform="translate(-1683 -366)"><g transform="translate(1683 366)"><circle class="size-st1" cx="16" cy="16" r="15"/><circle class="size-st2" cx="16" cy="16" r="14.5"/></g><g transform="translate(1689 378)"><circle class="size-st1" cx="10" cy="9.6" r="9.4"/><circle class="size-st2" cx="10" cy="9.6" r="8.9"/></g><g transform="translate(1694 388)"><circle class="size-st1" cx="5" cy="4.3" r="4.7"/><circle class="size-st2" cx="5" cy="4.3" r="4.2"/></g></g></svg>'
   },
   {
     namespace: 'label', name: 'shape',
