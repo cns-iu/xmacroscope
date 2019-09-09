@@ -1,50 +1,41 @@
 @import "palette.scss";
 
-//primary, accent, warn
+// primary, accent, warn
 $default-legend-theme-primary: $gv-label;
 $default-legend-theme-accent: mat-palette($mat-orange, A200, A100, A400);
 $default-legend-theme-warn: mat-palette($mat-red);
 
 $default-legend-theme: mat-light-theme($default-legend-theme-primary, $default-legend-theme-accent, $default-legend-theme-warn);
 
-
 @mixin default-legend-theme-mixin($theme) {
-    $primary: map-get($theme, primary);
-    $accent: map-get($theme, accent);
-    $warn: map-get($theme, warn);
-    $foreground: map-get($theme, foreground);
-    $background: map-get($theme, background);
-  
-    .legend-view-container {
-        background: #ffffff;
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
 
-        .legend-name {
-            color: mat-color($primary, gvLabel);
-        }
+  .legend-view-container {
+    background: #ffffff;
 
-        .graphic-variable-legend {
-            color: mat-color($primary, legendText);
-            
-            .legend-row {
-
-                .mark {
-
-                    .circle, .rectangle {
-                    border-color: mat-color($primary, legendText) !important;
-                    }
-                }
-            }
-        }
+    .legend-name {
+      color: mat-color($primary, gvLabel);
     }
+
+    .graphic-variable-legend {
+      color: mat-color($primary, legendText);
+
+      .legend-row .mark {
+        .circle, .rectangle {
+          border-color: mat-color($primary, legendText) !important;
+        }
+      }
+    }
+  }
 }
-
-
-
-
 
 @include angular-material-theme($default-legend-theme);
 
 .default-legend-theme {
-    @include angular-material-theme($default-legend-theme);
-    @include default-legend-theme-mixin($default-legend-theme);
+  @include angular-material-theme($default-legend-theme);
+  @include default-legend-theme-mixin($default-legend-theme);
 }
