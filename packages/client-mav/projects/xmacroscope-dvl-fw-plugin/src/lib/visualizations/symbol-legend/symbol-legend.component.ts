@@ -24,23 +24,22 @@ function valueLabel(o: number | string): string {
   }
 }
 
-class DataItem extends IconConfig {
+class DataItem {
   value: number | string;
   input: number | string;
   label: string;
   order: number;
   icon: string;
-  iconWidth: number;
+  areaSize: number;
 
-  constructor(data: Partial<DataItem>) {
-    super(data);
-    this.icon = this.toString();
-    this.iconWidth = Math.ceil(areaToDiameter(this.areaSize) + 4 + (this.strokeWidth || 0));
+  constructor(data: Partial<DataItem & IconConfig>) {
     Object.assign(this, {
       value: data.value,
       input: data.input || data.value,
       label: data.label || data.input || valueLabel(data.value),
-      order: data.order || data.input || data.value
+      order: data.order || data.input || data.value,
+      icon: IconConfig.asString(data),
+      areaSize: data.areaSize
     });
   }
 }
@@ -97,7 +96,12 @@ export class SymbolLegendComponent implements VisualizationComponent,
         this.items = [];
         break;
     }
-    this.maxIconWidth = this.items.length ? maxBy(items, 'iconWidth').iconWidth : 0;
+    if (this.items.length > 0) {
+      const icon = DataDrivenIcon.fromString(maxBy(items, 'areaSize').icon);
+      this.maxIconWidth = icon.canvas.width;
+    } else {
+      this.maxIconWidth = 0;
+    }
   }
 
   getLegendType(gvName: string, graphicSymbol: GraphicSymbol): 'quantitative' | 'qualitative' {
