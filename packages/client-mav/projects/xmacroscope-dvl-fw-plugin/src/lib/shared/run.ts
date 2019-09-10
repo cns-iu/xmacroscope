@@ -38,6 +38,9 @@ export class Run {
   @Operand(map<Run, string>(r => r.selected ? '#F9E5B6' : (r.pinned ? '#CCE0EA' : undefined )))
   tableRowColor: string;
 
+  @Operand(map<Run, string>(r => r.pinned ? '#000000' : r.fixed.strokeColor ))
+  fixedStrokeColor: string;
+
   @Operand(map(s => s.end && s.start ? s.end.getTime() - s.start.getTime() : undefined))
   timeMillis: number;
   @Operand(chain(access<number>('timeMillis'), map(t => t ? t / 1000 : undefined)))
@@ -47,17 +50,32 @@ export class Run {
   @Operand(chain(access<number>('timeSeconds'), areaSizeScale.quantitative([1, 10])))
   timeAreaSize: number;
 
-  @Operand(constant({
-    areaSize: 250,
-    color: '#DEDAD7',
-    strokeColor: '#83786F',
-    pulse: true,
-    transparency: 0.4,
-    strokeTransparency: 0.3,
-    strokeWidth: 2,
-    text: 'Fixed',
-    shape: 'circle'
-  }))
+  @Operand(map<Run, any>(r => {
+    return r.pinned ?
+      { // For Opponents
+        areaSize: 500,
+        color: '#000000',
+        strokeColor: '#000000',
+        pulse: true,
+        transparency: 0,
+        strokeTransparency: 1,
+        strokeWidth: 2,
+        text: 'Fixed',
+        shape: r.person.iconShape
+      } :
+      { // For Runners
+        areaSize: 250,
+        color: '#DEDAD7',
+        strokeColor: '#83786F',
+        pulse: true,
+        transparency: 0.4,
+        strokeTransparency: 0.3,
+        strokeWidth: 2,
+        text: 'Fixed',
+        shape: 'circle'
+      };
+    }
+  ))
   fixed: any;
 
   @Operand(combine({shape: access('person.icon'), color: access('fixed.color')}))
