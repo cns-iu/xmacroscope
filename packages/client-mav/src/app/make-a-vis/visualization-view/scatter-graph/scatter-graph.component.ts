@@ -37,7 +37,7 @@ export class ScatterGraphComponent {
   }
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
-    this.variables = dataService.project.graphicVariables;
+    this.variables = dataService.project.graphicVariables.filter(gv => gv.id !== 'row-color');
     this.defaultXAxisVariable = this.findVariable(/time/i, this.xAxisType);
     this.defaultYAxisVariable = this.findVariable(/height/i, this.yAxisType);
   }

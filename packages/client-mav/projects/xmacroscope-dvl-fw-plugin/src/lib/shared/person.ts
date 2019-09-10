@@ -37,6 +37,9 @@ export const opponents = [
   { label: 'Turtle', color: '#4527a0', shape: 'circle', icon: images['turtle'] },
   { label: 'Squirrel', color: '#f7d97b', shape: 'triangle', icon: images['squirrel'] },
   { label: 'Cheetah', color: '#f44336', shape: 'square', icon: images['cheetah'] },
+  { id: 'real-turtle', label: 'Visitor', color: '#4527a0', shape: 'circle', icon: images['turtle'] },
+  { id: 'real-squirrel', label: 'Visitor', color: '#f7d97b', shape: 'triangle', icon: images['squirrel'] },
+  { id: 'real-cheetah', label: 'Visitor', color: '#f44336', shape: 'square', icon: images['cheetah'] },
 ];
 export const shoes = [
   { label: 'Paws', color: '#4527a0', shape: 'circle' },

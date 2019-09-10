@@ -1,16 +1,18 @@
-import { TableVisualization } from './../visualizations/table/table.visualization';
-import { DataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
-  DefaultRecordSet, GraphicSymbol, GraphicVariable, Project, RecordSet,
-  Visualization, DefaultDataSource, DefaultRawData } from '@dvl-fw/core';
+import { DataSource, DefaultDataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
+  DefaultRawData, DefaultRecordSet, GraphicSymbol, GraphicVariable, RecordSet, Visualization } from '@dvl-fw/core';
 
-import { XMacroscopeDataSource } from './xmacroscope-data-source';
-import { MockRunRawData } from '../mock/mock-run-raw-data';
-import { RunStreamController } from './run-stream-controller';
-import { LocationSettings } from '../graphql/location-settings';
 import { asMessage } from '../graphql/graphql-queries';
-import { ScatterplotMapVisualization } from '../visualizations/scatterplot-map/scatterplot-map.visualization';
+import { LocationSettings } from '../graphql/location-settings';
+import { MockRunRawData } from '../mock/mock-run-raw-data';
 import { GeographicMapVisualization } from '../visualizations/geographic-map/geographic-map.visualization';
 import { GraphicVariableLegendVisualization } from '../visualizations/graphic-variable-legend/graphic-variable-legend.visualization';
+import { ScatterplotMapVisualization } from '../visualizations/scatterplot-map/scatterplot-map.visualization';
+import { TableVisualization } from '../visualizations/table/table.visualization';
+import { opponentRuns } from './opponent-runs';
+import { Run } from './run';
+import { RunStreamController } from './run-stream-controller';
+import { XMacroscopeDataSource } from './xmacroscope-data-source';
+import { isArray } from 'lodash';
 
 
 export interface XMacroscopeProjectConfig {
@@ -20,6 +22,7 @@ export interface XMacroscopeProjectConfig {
   deploymentLocation?: string;
   defaultUsState?: string;
   runTimeout?: number;
+  opponentRuns?: 'default' | any[] | string;
 }
 
 export class XMacroscopeProject extends DefaultProject {
@@ -37,6 +40,9 @@ export class XMacroscopeProject extends DefaultProject {
   }
 
   static async resolveConfig(config: XMacroscopeProjectConfig): Promise<XMacroscopeProjectConfig> {
+    if (!isArray(config.opponentRuns)) {
+      config.opponentRuns = opponentRuns[config.opponentRuns] || [];
+    }
     if (config.endpoint && config.deploymentLocation) {
       const settings = await LocationSettings.getSettings(config.endpoint, config.deploymentLocation);
       if (settings) {
@@ -71,6 +77,7 @@ export class XMacroscopeProject extends DefaultProject {
       recordStreams: [{id: 'runs', label: 'Runs'}]
     }, this);
     this.runStreamController = ds.runStreamController;
+    this.runStreamController.opponentRuns = (this.config.opponentRuns as any[] || []).map(r => new Run(r));
     return [ ds ];
   }
 
@@ -143,7 +150,8 @@ export class XMacroscopeProject extends DefaultProject {
                 {id: 'fixed', selector: 'fixed.shape'}
               ],
               color: [
-                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'}
+                {id: 'fixed', selector: 'fixed.color', label: 'Fixed'},
+                {id: 'row-color', selector: 'tableRowColor', label: 'Row Color'}
               ],
               input: [
                 {id: 'fixed', selector: 'fixed.text', label: 'Fixed'}
@@ -307,6 +315,12 @@ export class XMacroscopeProject extends DefaultProject {
             dataVariable: 'icon',
             graphicVariableType: 'order',
             graphicVariableId: 'fixed'
+          },
+          color: {
+            recordSet: 'run',
+            dataVariable: 'icon',
+            graphicVariableType: 'color',
+            graphicVariableId: 'row-color'
           },
           pulse: {
             recordSet: 'run',

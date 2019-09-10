@@ -10,7 +10,8 @@ export class TableVisualization extends DefaultVisualization {
     id: 'data', label: 'Data', type: 'area',
     graphicVariableOptions: [
       { type: 'identifier', label: 'Identifier', visualization: 'id', scaleType: 'ratio', required: true },
-      { type: 'order', label: 'Sort Order' }
+      { type: 'order', label: 'Sort Order' },
+      { type: 'color', label: 'Color Hue', visualization: 'color', scaleType: 'nominal', staticVisualization: 'color-area' }
     ]
   }];
 }

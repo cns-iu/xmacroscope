@@ -9,7 +9,8 @@ export const environment = {
     deploymentLocation: 'cns-iu',
     defaultUsState: 'IN',
     runTimout: 10000,
-    mockData: true
+    mockData: true,
+    opponentRuns: 'default'
     // endpoint: 'http://localhost:4000/graphql'
   }
 };

@@ -12,6 +12,7 @@ export class RunStreamController {
   private messages = new Subject<Message>();
   public readonly messageStream = this.messages.asObservable().pipe(share());
   public readonly runStream: Observable<RawChangeSet<Run>>;
+  public opponentRuns: Run[] = [];
 
   private readonly changeTracker: ChangeTracker;
   private readonly emitter = new Subject<RawChangeSet<Run>>();
@@ -44,8 +45,9 @@ export class RunStreamController {
   }
 
   createRunStream(): Observable<RawChangeSet<Run>> {
+    const opponentRuns = of(RawChangeSet.fromArray(this.opponentRuns));
     const snapshot = of(RawChangeSet.fromArray(this.changeTracker.snapshot().toArray()));
-    return merge(snapshot, this.runStream);
+    return merge(opponentRuns, snapshot, this.runStream);
   }
 
   start(): void {
