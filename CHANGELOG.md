@@ -2,6 +2,18 @@
 
 Changelog for the xMacroscope project.
 
+## 0.7.0 - 2019-09-10
+
+### Added in 0.7.0
+
+- The Make-a-Vis UI for xMacroscope was changed completely
+- Drag-and-Drop was replaced with more simple/obvious Buttons
+- The data variables are now: Age, Height, Time, Opponent, Shoes, and Zip Code
+- The UI is now has brighter, more engaging colors including in Visualizations
+- Opponents show up in all visualizations
+
+##
+
 ## 0.0.6 - 2018-07-20
 
 ### Added in 0.0.6
