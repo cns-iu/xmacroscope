@@ -1,4 +1,16 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChange,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
@@ -11,6 +23,7 @@ import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point as MapPoi
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
+import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 import { blankStyle } from '../shared/blank-style';
 import { DataDrivenIcons } from '../shared/data-driven-icons';
 import { fitBoundsToAspectRatio } from '../shared/fit-bounds-to-aspect-ratio';
@@ -20,7 +33,6 @@ import { Node } from '../shared/node';
 import { nodesGeoJson } from '../shared/nodes-geojson';
 import { reprojector } from '../shared/reprojector';
 import { getCountiesForStateGeoJson, getStatesGeoJson } from '../shared/us-geojson';
-import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 
 
 // Precompute some geometry
@@ -37,7 +49,7 @@ const worldBbox = bbox(grid5.geojson);
   providers: [MapService]
 })
 export class GeographicMapComponent implements VisualizationComponent,
-    OnDestroy, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
+  OnInit, OnChanges, OnDestroy, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
   featureSelection = 'USA';
   nodeDefaults: { [gvName: string]: any } = {
@@ -191,6 +203,10 @@ export class GeographicMapComponent implements VisualizationComponent,
     this.nodesSubscription = this.nodes$.subscribe(nodes => this.layout(nodes));
   }
 
+  ngOnInit() {
+    this.nodeDefaults = this.data.properties.nodeDefaults;
+    this.featureSelection = this.data.properties.featureSelection;
+  }
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) { this.refreshNodes(); }
   }
