@@ -1,3 +1,4 @@
-<div class="graphic-variable-legend container">
-  <dvl-visualization class="legend" [data]="legend" #visualization></dvl-visualization>
+<div class="graphic-variable-legend container" [class.size-legend]="isSizeLegend()">
+  <dvl-visualization class="legend" [data]="legend" #visualization>
+  </dvl-visualization>
 </div>

@@ -33,4 +33,8 @@ export class GraphicVariableLegendComponent implements OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
+
+  isSizeLegend(): boolean {
+    return this.legend.id === 'size-legend';
+  }
 }

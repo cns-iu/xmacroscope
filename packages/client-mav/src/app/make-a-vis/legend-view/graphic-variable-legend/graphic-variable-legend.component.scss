@@ -2,11 +2,20 @@
   margin-top: 1rem;
 
   ::ng-deep .legend-container {
-    height: 5.25rem;
+    height: 7.25rem;
 
     .legend-row {
       width: 7rem;
-      line-height: 1.75rem !important;
+    }
+  }
+
+  &.size-legend {
+    ::ng-deep .legend-container {
+      height: auto;
+
+      .legend-row:nth-child(3) {
+        margin-top: -0.5rem;
+      }
     }
   }
 }
