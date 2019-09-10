@@ -51,7 +51,7 @@ export class GeomapComponent {
   }
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
-    this.variables = dataService.project.graphicVariables;
+    this.variables = dataService.project.graphicVariables.filter(gv => gv.id !== 'row-color');
   }
 
   currentFeature(): ButtonItem {

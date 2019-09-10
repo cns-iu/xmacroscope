@@ -5,7 +5,6 @@ import { assignIn, get, pick, round } from 'lodash';
 import { Person } from './person';
 
 
-
 function ifHighlighted<T>(trueAttr: string, falseAttr: string): Operator<any, T> {
   return map(s => s.highlighted ? get(s, trueAttr) : get(s, falseAttr));
 }
@@ -21,19 +20,23 @@ export class Run {
   person: Person;
   highlighted = false;
   selected = false;
+  pinned = false;
 
   constructor(data: {
-    id?: string, start?: Date, end?: Date, person?: any, highlighted?: boolean, selected?: boolean
+    id?: string, start?: Date, end?: Date, person?: any, highlighted?: boolean, selected?: boolean, pinned?: boolean
   } = {}) {
     if (!(data.person instanceof Person)) {
       data.person = new Person(data.person || {});
     }
-    Object.assign(this, pick(data, ['id', 'start', 'end', 'person', 'highlighted', 'selected']));
+    Object.assign(this, pick(data, ['id', 'start', 'end', 'person', 'highlighted', 'selected', 'pinned']));
   }
 
   // Order by the number of milliseconds before the application was started
   @Operand(chain(access<Date>('end'), map<Date, number>(d => round(startupTime - d.getTime() + Math.random(), 2))))
   endOrder: number;
+
+  @Operand(map<Run, string>(r => r.selected ? '#F9E5B6' : (r.pinned ? '#CCE0EA' : undefined )))
+  tableRowColor: string;
 
   @Operand(map(s => s.end && s.start ? s.end.getTime() - s.start.getTime() : undefined))
   timeMillis: number;

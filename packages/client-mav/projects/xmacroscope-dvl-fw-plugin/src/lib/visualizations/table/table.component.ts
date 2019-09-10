@@ -13,6 +13,7 @@ interface DataItem {
   identifier: number | string;
   order: number | string;
   pulse: boolean;
+  color: string;
 }
 interface Column {
   id: string;
@@ -41,7 +42,7 @@ export class TableComponent implements VisualizationComponent,
   getColumns(gs: GraphicSymbol): { [id: string]: Column } {
     const columns = {};
     entries(gs.graphicVariables)
-      .filter(([key]) => key !== 'identifier' && key !== 'order' && key !== 'pulse')
+      .filter(([key]) => key !== 'identifier' && key !== 'order' && key !== 'pulse' && key !== 'color')
       .forEach(([id, gv]) => {
         columns[id] = {
           id,
