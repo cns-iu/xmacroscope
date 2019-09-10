@@ -1,4 +1,5 @@
-import moment from 'moment';
+import * as moment_ from 'moment';
+const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
 
 export const opponentRuns = {
   'default': [
