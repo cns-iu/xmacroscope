@@ -1,16 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChange,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
 import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
@@ -204,8 +192,12 @@ export class GeographicMapComponent implements VisualizationComponent,
   }
 
   ngOnInit() {
-    this.nodeDefaults = this.data.properties.nodeDefaults;
-    this.featureSelection = this.data.properties.featureSelection;
+    if (this.data.properties.nodeDefaults) {
+      this.nodeDefaults = this.data.properties.nodeDefaults;
+    }
+    if (this.data.properties.featureSelection) {
+      this.featureSelection = this.data.properties.featureSelection;
+    }
   }
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) { this.refreshNodes(); }

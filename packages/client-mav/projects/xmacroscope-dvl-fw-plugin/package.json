@@ -1,6 +1,6 @@
 {
     "name": "xmacroscope-dvl-fw-plugin",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "bin": {
         "xmacrosope-export-project": "./xmacrosope-export-project"
     },

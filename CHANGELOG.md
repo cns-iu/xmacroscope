@@ -2,6 +2,23 @@
 
 Changelog for the xMacroscope project.
 
+## 0.7.0 - 2019-09-10
+
+### Added in 0.7.0
+
+- The Make-a-Vis UI for xMacroscope was changed completely, see updated [demo site](https://xmacroscope.netlify.com/)
+  - The spec can be viewed here: <https://iu.app.box.com/s/d2sgqg1k4c3j3dm79f8h26v3cth609rs/folder/84623228094>
+- Drag-and-Drop was replaced with more simple/obvious Button behavior
+- The data variables are now: Age, Height, Time, Opponent, Shoes, and Zip Code
+- The UI now has brighter, more engaging colors including in visualizations
+- Opponents show up in all visualizations
+
+### Known Issues in 0.7.0
+
+- Opponents show up in the visualizations, but not styled according to Spec yet
+- Ordering on the data table moves the opponents around rather than keeping them at the top
+- The current UI is not hooked up to the server backend
+
 ## 0.0.6 - 2018-07-20
 
 ### Added in 0.0.6
