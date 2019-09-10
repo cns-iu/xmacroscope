@@ -1,5 +1,7 @@
 .legend-container {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 
   .legend-row {
     display: flex;
@@ -14,7 +16,7 @@
 
       .icon {
         display: block;
-        margin:auto;
+        margin: auto;
       }
     }
 

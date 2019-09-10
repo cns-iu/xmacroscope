@@ -1,10 +1,11 @@
-<div class="wrapper default-legend-theme default-button-theme">
+<div class="container default-legend-theme default-button-theme">
   <div class="navigation">
-    <div class="home-icon-wrapper" (click)="goHome()">
-      <mat-icon class="home-icon">home</mat-icon>
-      <span class="home-label">Home</span>
+    <div class="home" (click)="goHome()">
+      <mat-icon class="icon">home</mat-icon>
+      <div class="label">Home</div>
     </div>
-    <app-button-group [items]="navigation" [value]="selected" [deselectable]="false"
+    <div class="filler"></div>
+    <app-button-group class="buttons" [items]="navigation" [value]="selected" [deselectable]="false"
                       (valueChange)="navigationChanged($event)">
       <div *appButtonContent="let item" class="button">
         <mat-icon class="icon" inline [svgIcon]="item.icon"></mat-icon>
@@ -14,14 +15,16 @@
   </div>
 
   <div class="legend-view-container">
-    <ng-container *ngFor="let legend of legends">
-      <div class="qualitative" *ngIf="!isVariableFixed(legend.variable)">
-        <div class="subtitle">
-          <mat-icon class="icon" inline [svgIcon]="legend.icon"></mat-icon>
-          <span class="legend-name">{{ legend.label + ': ' + variableLabel(legend.variable) }}</span>
+    <ng-container *ngIf="!selected.hideLegend">
+      <ng-container *ngFor="let legend of legends">
+        <div class="item" *ngIf="!isVariableFixed(legend.variable)">
+          <div class="title">
+            <mat-icon class="icon" inline [svgIcon]="legend.icon"></mat-icon>
+            <span class="label">{{ legend.label + ': ' + variableLabel(legend.variable) }}</span>
+          </div>
+          <app-graphic-variable-legend class="content" [visualizationId]="legend.type"></app-graphic-variable-legend>
         </div>
-        <app-graphic-variable-legend [visualizationId]="legend.type"></app-graphic-variable-legend>
-      </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>

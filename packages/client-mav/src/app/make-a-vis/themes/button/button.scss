@@ -39,22 +39,22 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
 
         }
       }
-      
+
     }
 
     .label-container {
 
       .mat-icon {
           color: mat-color($primary, buttonIconIconColor3);
-      
+
         .svg-color-ellipse1 {
           fill: mat-color($primary, buttonIconIconColor1);
         }
-    
+
         .svg-color-ellipse2 {
           fill: mat-color($primary, buttonIconIconColor2);
         }
-    
+
         .svg-color-ellipse3 {
           fill: mat-color($primary, buttonIconIconColor3);
         }
@@ -62,7 +62,7 @@ $default-button-theme: mat-light-theme($default-button-theme-primary, $default-b
     }
   }
 
-  .home-label, .home-icon {
+  .home {
     color: mat-color($primary, buttonLabel);
   }
 }

@@ -10,7 +10,7 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
 @Component({
   selector: 'app-legend-view-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.sass']
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnChanges {
   @Input() activeVisualization = 'datatable';
@@ -48,7 +48,7 @@ export class MainComponent implements OnChanges {
 
   isVariableFixed(type: string): boolean {
     const id = get(this.getRunPoints(), ['graphicVariables', type, 'id']);
-    return this.selected.hideLegend || id === 'fixed' || id === undefined;
+    return id === 'fixed' || id === undefined;
   }
 
   variableLabel(type: string): string {

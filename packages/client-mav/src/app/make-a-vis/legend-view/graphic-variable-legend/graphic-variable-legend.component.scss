@@ -1,0 +1,12 @@
+.container {
+  margin-top: 1rem;
+
+  ::ng-deep .legend-container {
+    height: 5.25rem;
+
+    .legend-row {
+      width: 7rem;
+      line-height: 1.75rem !important;
+    }
+  }
+}
