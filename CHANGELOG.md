@@ -6,13 +6,19 @@ Changelog for the xMacroscope project.
 
 ### Added in 0.7.0
 
-- The Make-a-Vis UI for xMacroscope was changed completely
+- The Make-a-Vis UI for xMacroscope was changed completely, see updated [demo site](https://cns-iu.github.io/xmacroscope/)
+  - The spec can be viewed here: <https://iu.app.box.com/s/d2sgqg1k4c3j3dm79f8h26v3cth609rs/folder/84623228094>
 - Drag-and-Drop was replaced with more simple/obvious Buttons
 - The data variables are now: Age, Height, Time, Opponent, Shoes, and Zip Code
-- The UI is now has brighter, more engaging colors including in Visualizations
+- The UI now has brighter, more engaging colors including in visualizations
 - Opponents show up in all visualizations
 
-##
+### Known Issues in 0.7.0
+
+- There are a few remaining items from the Spec not yet implemented
+- Opponents show up in the visualizations, but not styled according to Spec yet
+- Ordering on the data table moves the opponents around rather than keeping them at the top
+- The current UI is not hooked up to the server backend
 
 ## 0.0.6 - 2018-07-20
 
