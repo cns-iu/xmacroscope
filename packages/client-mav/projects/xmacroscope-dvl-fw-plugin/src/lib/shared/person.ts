@@ -89,7 +89,7 @@ export class Person {
   @Operand(chain(access('age'), areaSizeScale.quantitative([0, 120])))
   ageAreaSize: number;
 
-  @Operand(chain(access('height'), areaSizeScale.quantitative([12, 96])))
+  @Operand(chain(access('height'), areaSizeScale.quantitative([0, 96])))
   heightAreaSize: number;
 
   @Operand(chain(access('opponent'), createLookup(opponents)))

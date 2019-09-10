@@ -47,7 +47,7 @@ export class Run {
   timeSeconds: number;
   @Operand(chain(access<number>('timeSeconds'), map(t => t ? Number(t).toFixed(2) : '')))
   timeLabel: string;
-  @Operand(chain(access<number>('timeSeconds'), areaSizeScale.quantitative([1, 10])))
+  @Operand(chain(access<number>('timeSeconds'), areaSizeScale.quantitative([0, 10])))
   timeAreaSize: number;
 
   @Operand(map<Run, any>(r => {

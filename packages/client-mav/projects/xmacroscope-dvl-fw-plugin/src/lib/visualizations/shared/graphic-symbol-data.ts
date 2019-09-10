@@ -64,7 +64,7 @@ export class GraphicSymbolData<T = any> {
       graphicSymbol.graphicVariables['identifier'].asBoundField(),
       this.graphicSymbolBoundFields(graphicSymbol, defaultValues),
       this.postprocessingFields,
-      { strictMode: true, keepAlive: true }
+      { strictMode: false, keepAlive: true }
     );
   }
 
