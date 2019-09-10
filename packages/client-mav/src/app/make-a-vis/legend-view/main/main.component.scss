@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  height: 7rem;
+  margin: 0 3rem;
+
+  .label {
+    font-size: 1.25rem;
+    font-family: 'Paytone One';
+  }
+
+  .navigation {
+    display: flex;
+    width: 40vw;
+    margin-right: 6rem;
+
+    ::ng-deep .mat-button-toggle {
+      width: 7.5rem;
+    }
+
+    .home {
+      cursor: pointer;
+
+      .icon {
+        font-size: 5.75rem;
+        width: 5.75rem;
+        height: 5.75rem;
+      }
+
+      .label {
+        text-align: center;
+        margin-top: -1rem;
+      }
+    }
+
+    .buttons {
+      .button {
+        height: 6rem;
+        line-height: 1.6rem;
+        white-space: pre-wrap;
+
+        .icon {
+          height: 2.5rem;
+          padding-top: 0.5rem;
+        }
+      }
+    }
+
+    .filler {
+      flex: 1 1 auto;
+    }
+  }
+
+  .legend-view-container {
+    display: flex;
+    width: 60vw;
+
+    .item {
+      width: 40%;
+
+      &:not(:first-child) {
+        margin-left: 3rem;
+      }
+
+      .title {
+        .icon {
+          width: 1.25rem;
+          height: 1.25rem;
+          vertical-align: middle;
+        }
+
+        .label {
+          margin-left: 1rem;
+          vertical-align: middle;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

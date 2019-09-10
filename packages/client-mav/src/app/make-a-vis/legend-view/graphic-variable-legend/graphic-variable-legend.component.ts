@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { DvlFwVisualizationComponent, Visualization } from '@dvl-fw/core';
+import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
+import { DvlFwVisualizationComponent, Project, Visualization } from '@dvl-fw/core';
+import { Subscription } from 'rxjs';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
@@ -8,27 +9,28 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
 @Component({
   selector: 'app-graphic-variable-legend',
   templateUrl: './graphic-variable-legend.component.html',
-  styleUrls: ['./graphic-variable-legend.component.sass']
+  styleUrls: ['./graphic-variable-legend.component.scss']
 })
-export class GraphicVariableLegendComponent implements OnInit, OnChanges {
-  @Input() visualizationId: string;
+export class GraphicVariableLegendComponent implements OnDestroy {
+  @Input() set visualizationId(id: string) {
+    this.legend = this.project.visualizations.find(vis => vis.id === id);
+  }
 
-  @ViewChild('visualization', { static: true }) legendComponent: DvlFwVisualizationComponent;
+  @ViewChild('visualization', { static: true }) component: DvlFwVisualizationComponent;
+
+  project: Project;
   legend: Visualization;
 
-  constructor(private xMacroscopeDataService: XMacroscopeDataService, private updateService: UpdateVisService) { }
+  private subscriptions = new Subscription();
 
-  ngOnInit() {
-    this.updateService.update.subscribe(this.legendUpdated.bind(this));
-  }
-  ngOnChanges(changes: SimpleChanges) {
-    if ('visualizationId' in changes) { this.setLegend(); }
+  constructor(dataService: XMacroscopeDataService, updateService: UpdateVisService) {
+    this.project = dataService.project;
+    this.subscriptions.add(updateService.update.subscribe(() => {
+      this.component.runDataChangeDetection();
+    }));
   }
 
-  private setLegend() {
-    this.legend = this.xMacroscopeDataService.project.visualizations.find(v => v.id === this.visualizationId);
-  }
-  private legendUpdated() {
-    this.legendComponent.runDataChangeDetection();
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
