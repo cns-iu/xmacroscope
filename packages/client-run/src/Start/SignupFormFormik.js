@@ -117,8 +117,8 @@ function WithCreateMutation(props) {
       {updateRun => (
         <Row className="h-100 align-items-center">
           <Col
-            md={10}
-            xl={7}
+            md={12}
+            xl={12}
             className="mx-auto"
           >
             <StyledCard>
