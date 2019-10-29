@@ -40,7 +40,7 @@ In the project root directory:
 ```
 npm run start-dev
 ```
-This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processess' output will be prefixed with its name.
+This will run all of the start processes concurrently, streaming output data from each to the terminal. Each processes' output will be prefixed with its name.
 
 # Running the application in production mode
 
