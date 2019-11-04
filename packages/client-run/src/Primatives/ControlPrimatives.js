@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
 import { selected } from './BasePrimatives';
-import { sportsYellow } from './BaseConfigsVariables';
+import { xMacBlue, xMacOrangeGradStart, xMacOrangeGradEnd } from './BaseConfigsVariables';
 
 const dashedOutline = `
 border: 8px dashed white;
@@ -34,9 +34,9 @@ const ControlKeypadContainer = styled.div`
 
 const KeyInput = styled(Button)`
   ${props => (props.hide === 'hide' ? 'visibility: hidden' : '')};
-  color: ${sportsYellow};
-  border-color: ${sportsYellow};
-  background-color: gray;
+  color: ${xMacBlue};
+  border-color: ${xMacBlue};
+  background: linear-gradient(to top, ${xMacOrangeGradStart}, ${xMacOrangeGradEnd});
   display: initial;
   width: ${props => props.dimension};
   height: ${props => props.dimension};
@@ -56,8 +56,8 @@ const KeyInput = styled(Button)`
   }
 
   &:hover {
-    color: ${sportsYellow};
-    border-color: ${sportsYellow};
+    color: ${xMacBlue};
+    border-color: ${xMacBlue};
     background-color: gray;
   }
 `;
@@ -104,7 +104,7 @@ const ControlShapesContainer = styled.div`
 
 const ShapeWrapperControl = styled.div`
   background: none;
-  color: ${sportsYellow};
+  color: ${xMacBlue};
   ${props => (props.selected ? `${solidOutlineControl}` : `${dashedOutlineControl}`)};
   text-align: center;
   margin: ${props => props.margin};

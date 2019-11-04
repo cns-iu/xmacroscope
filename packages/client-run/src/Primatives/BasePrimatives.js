@@ -2,17 +2,18 @@ import styled from 'styled-components';
 import {
   Button, CardHeader, Card, CardBody,
 } from 'reactstrap';
-import { sportsOrange, sportsTransGray, sportsYellow } from './BaseConfigsVariables';
-
+import {
+  sportsTransGray, xMacBlue, xMacOrangeGradEnd, xMacOrangeGradStart, xMacOrangeDark,
+} from './BaseConfigsVariables';
 
 const selected = `
-  color: black;
-  background: ${sportsYellow};
-  border-color: ${sportsYellow};
+  color: ${xMacBlue};
+  background: ${xMacOrangeDark};
+  border-color: ${xMacOrangeDark};
 `;
 
 const BaseHeader = styled.h1`
-  color: white;
+  color: ${xMacBlue};
   font-weight: 900;
   letter-spacing: 2px;
   font-size: 65px;
@@ -23,7 +24,7 @@ const BaseHeader = styled.h1`
 `;
 
 const BaseFormHeader = styled.h1`
-  color: white;
+  color: ${xMacBlue};
   @media (max-height: 1080px) {
     font-size: 28px !important;
   }
@@ -39,7 +40,7 @@ const BigHeader = styled.h1`
 
 const StyledButton = styled(Button)`
   background-color: white;
-  color: ${sportsOrange};
+  color: ${xMacBlue}
   letter-spacing: 1px;
   border: none;
   font-weight: bold;
@@ -48,19 +49,19 @@ const StyledButton = styled(Button)`
     font-size: 30px !important;
   }
   :disabled {
-    color: black;
+    color: white;
     background: #0D0D0F;
   }
 `;
 
 const StyledCardHeader = styled(CardHeader)`
-  background-color: ${sportsOrange};
+  background-color: white;
 `;
 
 const StyledBTN = styled(Button)`
-  color: ${sportsYellow};
-  border-color: ${sportsYellow};
-  background-color: gray;
+  color: ${xMacBlue};
+  background: linear-gradient(to top, ${xMacOrangeGradStart}, ${xMacOrangeGradEnd});
+  border: 2px solid white;
   min-height: 40px;
   padding-bottom: 0px !important;
   padding-top: 0px !important;
@@ -87,7 +88,8 @@ const StyledCardBody = styled(CardBody)`
 const ErrorWrapper = styled.div`
   display: inline;
   border: ${props => (props.active ? '1px solid white' : 'none')};
-  background: ${props => (props.active ? sportsOrange : 'none')};
+  background: ${props => (props.active ? xMacBlue : 'none')};
+  color: white;
 `;
 
 export {

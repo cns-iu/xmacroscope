@@ -1,18 +1,16 @@
 const personOptions = {};
 
+personOptions.opponents = ['turtle', 'squirrel', 'cheetah'];
+
 personOptions.shapes = ['square', 'cross', 'diamond', 'triangle-up', 'star'];
 
 personOptions.colors = [
-  { name: 'pastel red', hexValue: '#D36E44' },
-  { name: 'red', hexValue: '#D30706' },
-  { name: 'blue', hexValue: '#0707D2' },
-  { name: 'purple', hexValue: '#8E1BCE' },
-  { name: 'candy purple', hexValue: '#D372D2' },
-  { name: 'aqua', hexValue: '#55D4D2' },
-  { name: 'crimson red', hexValue: '#9B180F' },
-  { name: 'forrest green', hexValue: '#33820D' },
-  { name: 'honey brown', hexValue: '#D39827' },
-  { name: 'neon yellow', hexValue: '#D3D406' },
+  { name: 'violet', hexValue: '#402E9A' },
+  { name: 'blue', hexValue: '#3F88DE' },
+  { name: 'green', hexValue: '#86BD81' },
+  { name: 'yellow', hexValue: '#FCF6C3' },
+  { name: 'orange', hexValue: '#F1D582' },
+  { name: 'red', hexValue: '#DD4C3D' },
 ];
 
 // We're discussing the best way to categorize these on issue:

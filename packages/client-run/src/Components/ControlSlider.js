@@ -38,7 +38,7 @@ const ControlGroupButtons = ({ updateInputValue, value }) => {
             width: 35,
             marginLeft: -14,
             marginTop: -9,
-            backgroundColor: '#fdff5f',
+            backgroundColor: '#266294',
           }}
         />
       </Col>
