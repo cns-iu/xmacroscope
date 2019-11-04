@@ -1,4 +1,11 @@
 @font-face {
+  font-family: 'Paytone One';
+  src: url('./fonts/PaytoneOne-Regular.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Avenir Next Condensed';
   src: url('./fonts/AvenirNextCondensed-Regular.woff');
   font-weight: normal;
@@ -22,13 +29,11 @@ html {
 
 body {
   height: 100%;
-  font-family: 'Avenir Next Condensed', sans-serif;
+  font-family: 'Paytone One', sans-serif;
   font-size: 20px;
-  background-image: url('./images/selection_bg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  overflow: hidden;
+  background: white;
+  color: #266294;
+  /*overflow: hidden;*/
 }
 
 .no-select {
