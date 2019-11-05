@@ -75,11 +75,10 @@ const SignupFormFormik = withFormik({
     props.updateRun({
       variables: {
         run: {
-          startTime: null,
+          start: null,
           org: process.env.REACT_APP_LOCATION,
           person: {
             ageGroup: values.ageGroup,
-            favoriteActivity: values.favoriteActivity,
             height: values.height,
             zipCode: values.zipCode,
             color: values.color,

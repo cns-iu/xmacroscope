@@ -2,6 +2,6 @@ mutation (
   $start: String!
 ) {
   StartRun(run: {
-    startTime: $start
+    start: $start
   })
 }

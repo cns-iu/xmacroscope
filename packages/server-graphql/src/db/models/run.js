@@ -12,8 +12,8 @@ const Run = sequelize.define('Run', {
     defaultValue: Sequelize.UUIDV4,
     primaryKey: true
   },
-  startTime: { type: Sequelize.DATE },
-  endTime: { type: Sequelize.DATE },
+  start: { type: Sequelize.DATE },
+  end: { type: Sequelize.DATE },
   org: { type: Sequelize.STRING },
 }, {
   paranoid: true,

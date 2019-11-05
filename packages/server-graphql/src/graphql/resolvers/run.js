@@ -11,11 +11,11 @@ import pubsub from './pubsub';
 const Runs = baseResolver
   .createResolver((root, args) => db.run.findAll({
     where: {
-      endTime: { [db.Sequelize.Op.ne]: null },
+      end: { [db.Sequelize.Op.ne]: null },
     },
     limit: args.lastX,
     order: [
-      ['startTime', 'DESC'],
+      ['start', 'DESC'],
     ],
     include: [
       { model: db.person, as: 'person' },
@@ -27,10 +27,10 @@ const Runs = baseResolver
 const AllRuns = baseResolver
   .createResolver((root, args) => db.run.findAll({
     where: {
-      endTime: { [db.Sequelize.Op.ne]: null },
+      end: { [db.Sequelize.Op.ne]: null },
     },
     order: [
-      ['startTime', 'DESC'],
+      ['start', 'DESC'],
     ],
     include: [
       { model: db.person, as: 'person' },
@@ -95,7 +95,7 @@ const FinishSignup = baseResolver
     // Time is null until the race begins this is updated in another mutation
     Runs: {
       org: args.run.org,
-      startTime: null
+      start: null
     },
   }, {
     include: [db.run],
@@ -126,7 +126,7 @@ const FinishSignup = baseResolver
 // Update an existing run record with a start time, return the ID
 const StartRun = baseResolver
   .createResolver((root, args) => db.run.update(
-    { startTime: args.run.startTime },
+    { start: args.run.start },
     { where: { id: args.run.id } },
   ).then((updatedRuns) => {
     // We get the raw data object here instead of a Sequelize object
@@ -134,7 +134,7 @@ const StartRun = baseResolver
     db.run.findOne({
       attributes: [
         'id',
-        'startTime',
+        'start',
         'PersonId',
       ],
       where: { id: args.run.id },
@@ -142,12 +142,12 @@ const StartRun = baseResolver
     })
       .then((startedRun) => {
         const runId = startedRun.id;
-        const runStart = startedRun.startTime;
+        const runStart = startedRun.start;
         db.person.findOne({ where: { id: startedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
             const runWithPerson = Object.assign(
               { person: runnerPerson },
-              { id: runId, startTime: new Date(startedRun.startTime) },
+              { id: runId, start: new Date(startedRun.start) },
             );
 
             const publishPayload = {
@@ -172,7 +172,7 @@ const StartRun = baseResolver
 // Update an existing run record with a finish time, return the ID
 const FinishRun = baseResolver
   .createResolver((root, args) => db.run.update(
-    { endTime: args.run.finish },
+    { end: args.run.finish },
     { where: { id: args.run.id } },
   ).then((updatedRuns) => {
     // We get the raw data object here instead of a Sequelize object
@@ -180,8 +180,8 @@ const FinishRun = baseResolver
     db.run.findOne({
       attributes: [
         'id',
-        'startTime',
-        'endTime',
+        'start',
+        'end',
         'PersonId',
       ],
       where: { id: args.run.id },
@@ -190,24 +190,24 @@ const FinishRun = baseResolver
       .then((completedRun) => {
         // Pulling the raw data requires us to make a date object out of the
         // string before we pass it to moment
-        const startTime = moment(new Date(completedRun.startTime));
-        const endTime = moment(moment(new Date(completedRun.endTime)));
+        const start = moment(new Date(completedRun.start));
+        const end = moment(moment(new Date(completedRun.end)));
         const runId = completedRun.id;
 
         db.person.findOne({ where: { id: completedRun.PersonId } })
           .then(runnerPerson => runnerPerson).then((runnerPerson) => {
           // Milliseconds that the run took
           // TODO: Figure out if this is needed for MAV
-            const timeMillis = endTime.diff(startTime);
+            const timeMillis = end.diff(start);
 
             const runWithPerson = Object.assign(
               { person: runnerPerson },
-              { id: runId, startTime: new Date(completedRun.start), endTime: new Date(completedRun.end) },
+              { id: runId, start: new Date(completedRun.start), end: new Date(completedRun.end) },
             );
 
             const publishPayload = {
               runMessageSubscription: {
-                timestamp: endTime,
+                timestamp: end,
                 type: 'run-finished',
                 run: runWithPerson,
               },

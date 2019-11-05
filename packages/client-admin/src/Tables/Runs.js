@@ -15,7 +15,7 @@ export const RunColumns = [
     Header: 'Organization',
   },
   {
-    accessor: 'startTime',
+    accessor: 'start',
     Header: 'Start',
     className: 'wordwrap',
     Cell: row => (
@@ -23,7 +23,7 @@ export const RunColumns = [
     ),
   },
   {
-    accessor: 'endTime',
+    accessor: 'end',
     Header: 'End',
     className: 'wordwrap',
     Cell: row => (
