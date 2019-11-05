@@ -111,7 +111,7 @@ const SignupForm = ({
           setInput={setFieldValue}
         />
       </Col>
-      <Col md={6} className="align-self-center">
+      <Col md={4} className="align-self-center">
         <DisplayShape
           color={
             Object.prototype.hasOwnProperty.call(values, 'color')
