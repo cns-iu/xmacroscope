@@ -58,8 +58,12 @@ export const RunColumns = [
     Header: 'Age Group',
   },
   {
-    accessor: 'favoriteActivity',
-    Header: 'Favorite Activity',
+    accessor: 'opponent',
+    Header: 'Opponent',
+  },
+  {
+    accessor: 'shoes',
+    Header: 'Shoes',
   },
   {
     accessor: 'height',

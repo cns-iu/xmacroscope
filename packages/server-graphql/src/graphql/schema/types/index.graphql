@@ -34,7 +34,8 @@ type Person {
   icon: String
   color: String
   ageGroup: String
-  favoriteActivity: String
+  opponent: String
+  shoes: String
   height: Int
   zipCode: String
   state: String
@@ -84,7 +85,8 @@ input PersonInput {
   icon: String
   color: String
   ageGroup: String
-  favoriteActivity: String
+  opponent: String
+  shoes: String
   height: Int
   zipCode: String
   state: String

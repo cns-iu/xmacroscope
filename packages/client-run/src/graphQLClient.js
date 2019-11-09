@@ -19,7 +19,8 @@ const typeDefs = `
     runId: String
     ageGroup: String
     color: String
-    favoriteActivity: String
+    opponent: String
+    shoes: String
     height: String
     icon: String
     latitude: String

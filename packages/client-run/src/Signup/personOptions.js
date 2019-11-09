@@ -1,6 +1,8 @@
 const personOptions = {};
 
-personOptions.opponents = ['turtle', 'squirrel', 'cheetah'];
+personOptions.opponents = ['Turtle', 'Squirrel', 'Cheetah'];
+
+personOptions.shoes = ['Paws', 'Dress', 'Wheels', 'Casual', 'Heels'];
 
 personOptions.shapes = ['square', 'cross', 'diamond', 'triangle-up', 'star'];
 
@@ -19,14 +21,6 @@ personOptions.colors = [
 personOptions.ageGroups = ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired'];
 
 personOptions.gender = ['female', 'male', 'other'];
-
-personOptions.favoriteActivity = [
-  'Sports',
-  'Cooking',
-  'Art',
-  'Gaming',
-  'Other',
-];
 
 personOptions.height = { min: 36, max: 96 };
 

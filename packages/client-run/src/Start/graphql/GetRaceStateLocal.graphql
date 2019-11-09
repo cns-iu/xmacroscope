@@ -4,7 +4,8 @@ query {
     status
     ageGroup
     color
-    favoriteActivity
+    opponent
+    shoes
     height
     icon
     latitude

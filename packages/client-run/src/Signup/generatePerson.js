@@ -21,7 +21,9 @@ const generatePerson = () => {
 
   const fakeAgeGroup = sample(personOptions.ageGroups);
 
-  const fakeFavoriteActivity = sample(personOptions.favoriteActivity);
+  const fakeOpponent = sample(personOptions.opponents);
+
+  const fakeShoes = sample(personOptions.shoes);
 
   // Height in inches
   const fakeHeight = faker.random.number(personOptions.height);
@@ -35,7 +37,8 @@ const generatePerson = () => {
     color: fakeColor,
     gender: fakeGender,
     ageGroup: fakeAgeGroup,
-    favoriteActivity: fakeFavoriteActivity,
+    opponent: fakeOpponent,
+    shoes: fakeShoes,
     height: fakeHeight,
     zipCode: fakeLocation.zip,
     latitude: fakeLocation.latitude,

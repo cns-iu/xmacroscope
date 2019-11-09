@@ -5,7 +5,7 @@ set -e
 SERVER='http://localhost:4000'
 
 # GraphQL Query to run. Current query extracts the 'last 5000' Runs
-QUERY='{"query":"query {Runs(lastX: 5000) {id start end person {id icon color ageGroup favoriteActivity height zipCode state latitude longitude}}}"}'
+QUERY='{"query":"query {Runs(lastX: 5000) {id start end person {id icon color ageGroup opponent shoes height zipCode state latitude longitude}}}"}'
 
 # Use curl to do the query
 curl "${SERVER}/graphql" \

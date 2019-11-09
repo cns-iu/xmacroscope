@@ -14,7 +14,10 @@ module.exports = {
     ageGroup: {
       type: Sequelize.STRING,
     },
-    favoriteActivity: {
+    opponent: {
+      type: Sequelize.STRING,
+    },
+    shoes: {
       type: Sequelize.STRING,
     },
     height: {

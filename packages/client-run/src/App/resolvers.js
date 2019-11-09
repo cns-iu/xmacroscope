@@ -9,7 +9,8 @@ export const defaults = {
     status: 'preSignupForm',
     ageGroup: null,
     color: null,
-    favoriteActivity: null,
+    opponent: null,
+    shoes: null,
     height: null,
     icon: null,
     latitude: null,
@@ -25,7 +26,7 @@ export const defaults = {
 export const resolvers = {
   Mutation: {
     updateRun: (_, {
-      runId, activityName, status, ageGroup, color, favoriteActivity, height, icon, latitude,
+      runId, activityName, status, ageGroup, color, opponent, shoes, height, icon, latitude,
       longitude, state, zipCode,
     },
     { cache }) => {
@@ -37,7 +38,8 @@ export const resolvers = {
           status,
           ageGroup,
           color,
-          favoriteActivity,
+          opponent,
+          shoes,
           height,
           icon,
           latitude,
