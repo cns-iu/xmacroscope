@@ -30,9 +30,9 @@ export const RECENT_RUNS = gql`
       person {
         id
         icon
-        color
-        ageGroup
-        favoriteActivity
+        age
+        opponent
+        shoes
         height
         zipCode
         state
@@ -55,9 +55,9 @@ export const MESSAGE_SUBSCRIPTION = gql`
         person {
           id
           icon
-          color
-          ageGroup
-          favoriteActivity
+          age
+          opponent
+          shoes
           height
           zipCode
           state
