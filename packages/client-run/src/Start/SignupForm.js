@@ -15,7 +15,7 @@ import { StyledButton, BaseFormHeader } from '../Primatives/BasePrimatives';
 
 // Our inner form component which receives our form's state and updater methods as props
 const AgeInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
-const ActivityInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
+const OpponentInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
 const ShapeInput = CustomInputHOC(FormField, ControlShapes, ErrorFeedBack);
@@ -33,6 +33,16 @@ const SignupForm = ({
   <Form onSubmit={handleSubmit} className="signup-form">
     <Row>
       <Col className="text-center" lg={6}>
+        <OpponentInput
+          className="form-control form-control-lg"
+          name="opponentGroup"
+          label="Who would you like to race?"
+          errors={errors}
+          touched={touched}
+          type="hidden"
+          options={personOptions.opponents}
+          setInput={setFieldValue}
+        />
         <AgeInput
           className="form-control form-control-lg"
           name="ageGroup"
@@ -42,19 +52,6 @@ const SignupForm = ({
           type="hidden"
           options={personOptions.ageGroups}
           setInput={setFieldValue}
-        />
-      </Col>
-      <Col className="text-center" lg={6}>
-        <ActivityInput
-          className="form-control form-control-lg"
-          name="favoriteActivity"
-          label="What's your favorite activity?"
-          errors={errors}
-          touched={touched}
-          type="hidden"
-          options={personOptions.favoriteActivity}
-          setInput={setFieldValue}
-          visible
         />
       </Col>
     </Row>

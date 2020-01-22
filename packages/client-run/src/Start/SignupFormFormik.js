@@ -45,8 +45,6 @@ const SignupFormFormik = withFormik({
   validationSchema: Yup.object().shape({
     ageGroup: Yup.string()
       .required('Required'),
-    favoriteActivity: Yup.string()
-      .required('Required'),
     color: Yup.string()
       .required('Required'),
     shape: Yup.string()
