@@ -28,6 +28,8 @@ const ControlGroupButtons = ({ updateInputValue, value }) => {
         className="pb-3"
       >
         <SliderWithTooltip
+          min={36}
+          max={96}
           onChange={onSliderChange}
           railStyle={{ height: 20 }}
           trackStyle={{ height: 20 }}
