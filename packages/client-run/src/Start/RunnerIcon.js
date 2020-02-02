@@ -35,8 +35,7 @@ function RunnerIcon(props) {
 }
 
 RunnerIcon.propTypes = {
-  color: PropTypes.string.isRequired,
-  shape: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default RunnerIcon;

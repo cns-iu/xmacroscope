@@ -33,8 +33,7 @@ class SignupStartPage extends React.Component {
                       className="mx-auto d-flex h-50 align-self-end"
                     >
                       <RunnerIcon
-                        color={activeRun.color}
-                        shape={activeRun.icon}
+                        icon={activeRun.icon}
                       />
                     </Col>
                   )
