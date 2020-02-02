@@ -7,7 +7,7 @@ import {
 } from './BaseConfigsVariables';
 
 const selected = `
-  color: ${xMacBlue};
+  color: white;
   background: ${xMacOrangeDark};
   border-color: ${xMacOrangeDark};
 `;
@@ -19,7 +19,7 @@ const BaseHeader = styled.h1`
   font-size: 65px;
   margin-bottom: 0px;
   @media (max-height: 1080px) {
-    font-size: 30px !important;
+    font-size: 60px !important;
   }
 `;
 
@@ -46,7 +46,7 @@ const StyledButton = styled(Button)`
   font-weight: bold;
   font-size: 50px;
   @media (max-height: 1080px) {
-    font-size: 30px !important;
+    font-size: 50px !important;
   }
   :disabled {
     color: white;
@@ -62,6 +62,7 @@ const StyledBTN = styled(Button)`
   color: ${xMacBlue};
   background: linear-gradient(to top, ${xMacOrangeGradStart}, ${xMacOrangeGradEnd});
   border: 2px solid white;
+  font-size: 30px !important;
   min-height: 40px;
   padding-bottom: 0px !important;
   padding-top: 0px !important;
@@ -70,7 +71,7 @@ const StyledBTN = styled(Button)`
    ${selected}
   }
   @media (max-height: 1080px) {
-    max-height: 40px;
+    max-height: 100px;
   }
 `;
 

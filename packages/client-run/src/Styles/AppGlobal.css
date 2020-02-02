@@ -67,13 +67,41 @@ body {
     padding: 5px 0;
   }
 
+  label {
+    margin-bottom: -20px;
+  }
+
+  .shoes-input, .height-input {
+    margin-top: 50px;
+  }
+
+  .icon-input {
+    margin-bottom: 50px;
+  }
+
+  .shoes-input label {
+    max-width: 420px;
+  }
+
   .signup-form {
     padding: 15px;
     display: inherit;
   }
 
+  button img {
+    margin: 20px;
+  }
+
   .form-container {
     padding: 20px 0;
+  }
+
+  .zip-code-input button {
+    font-size: 30px !important;
+  }
+
+  .zip-code-readout {
+    font-size: 30px;
   }
 
   .signup-form label {

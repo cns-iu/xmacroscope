@@ -18,16 +18,15 @@ const ControlKeypad = ({
   value, options, clearInput, updateInputValueConcat,
 }) => (
   <Fragment>
-    <Col sm={12}>
-      <PlaceHolder className="pb-2 text-center">
-        <h4 className="no-select">
-          Zip Code:
+    <Col className="text-center" lg={12}>
+      <PlaceHolder className="zip-code-readout pb-2 text-center">
+        <h2 className="no-select">
           <span>
             &nbsp;
             &nbsp;
             {zipCodeUpdate(value)}
           </span>
-        </h4>
+        </h2>
       </PlaceHolder>
     </Col>
     <ControlKeypadContainer>
@@ -35,7 +34,7 @@ const ControlKeypad = ({
         options.map(opt => (
           <KeyInput
             hide={opt === '.' ? 'hide' : 'show'}
-            dimension="60px"
+            dimension="90px"
             key={opt}
             onClick={() => {
               if (opt === 'CLR') {
