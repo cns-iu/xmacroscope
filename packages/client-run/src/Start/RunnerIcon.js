@@ -1,33 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'reactstrap';
-import DisplayShape from '../Components/DisplayShape';
+import personOptions from '../Signup/personOptions';
 
 function RunnerIcon(props) {
-  const { color, shape } = props;
+  const { icon } = props;
   return (
     <div className="d-flex align-items-center flex-wrap align-self-end">
-      <Col
-        sm={12}
-        className="align-self-end mx-auto"
-      >
+      <Col sm={12} className="align-self-end mx-auto">
         <div className="pt-3 pb-3">
-          <DisplayShape
-            typeDisplay="viewDisplay"
-            color={color}
-            shape={shape}
-            shapeTransform="translate(50, 50) scale(.75)"
-            width="45%"
-            margin="auto"
-          />
+          <img width={300} alt="Icon" src={personOptions.iconImages[icon]} />
         </div>
       </Col>
-      <Col
-        sm={12}
-        className="align-self-start mx-auto"
-      >
+      <Col sm={12} className="align-self-start mx-auto">
         <h1 className="text-center pt-2">
-            Remember your shape and look for it on the graph.
+          Remember your shape and look for it on the graph.
         </h1>
       </Col>
     </div>
