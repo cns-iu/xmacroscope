@@ -3,26 +3,24 @@ import React from 'react';
 import { Form, Row, Col } from 'reactstrap';
 import FormField from '../App/FormField';
 import personOptions from '../Signup/personOptions';
-import DisplayShape from '../Components/DisplayShape';
 import CustomInputHOC from '../Components/CustomInputHOC';
 import ControlGroupButtons from '../Components/ControlGroupButtons';
 import ControlSlider from '../Components/ControlSlider';
-import ControlShapes from '../Components/ControlShapes';
-import ControlColors from '../Components/ControlColors';
+// import ControlShapes from '../Components/ControlShapes';
+// import ControlColors from '../Components/ControlColors';
 import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
-import { StyledButton, BaseFormHeader } from '../Primatives/BasePrimatives';
+import { StyledButton } from '../Primatives/BasePrimatives';
 
 // Our inner form component which receives our form's state and updater methods as props
 const AgeInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
+const ShoesInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
+const IconInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const OpponentInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
-const ShapeInput = CustomInputHOC(FormField, ControlShapes, ErrorFeedBack);
-const ColorInput = CustomInputHOC(FormField, ControlColors, ErrorFeedBack);
 
 const SignupForm = ({
-  values,
   errors,
   touched,
   handleSubmit,
@@ -43,6 +41,16 @@ const SignupForm = ({
           options={personOptions.opponents}
           setInput={setFieldValue}
         />
+        <ShoesInput
+          className="form-control form-control-lg"
+          name="shoes"
+          label='What kind of "shoes" are you wearing'
+          errors={errors}
+          touched={touched}
+          type="hidden"
+          options={personOptions.shoes}
+          setInput={setFieldValue}
+        />
         <AgeInput
           className="form-control form-control-lg"
           min={0}
@@ -55,10 +63,6 @@ const SignupForm = ({
           options={personOptions.age}
           setInput={setFieldValue}
         />
-      </Col>
-    </Row>
-    <Row className="pt-4">
-      <Col className="text-center" lg={6}>
         <HeightInput
           className="form-control form-control-lg"
           min={36}
@@ -83,52 +87,18 @@ const SignupForm = ({
           type="hidden"
           setInput={setFieldValue}
         />
-      </Col>
-    </Row>
-    <Row>
-      <Col className="pt-3 pb-2">
-        <BaseFormHeader className="text-center no-select">Create your icon</BaseFormHeader>
-      </Col>
-    </Row>
-    <Row>
-      <Col className="text-center" md={6}>
-        <ColorInput
+        <IconInput
           className="form-control form-control-lg"
-          name="color"
-          label="Select color"
+          name="icon"
+          label="Select your icon"
           errors={errors}
           touched={touched}
           type="hidden"
-          options={personOptions.colors}
+          options={personOptions.iconNames}
+          icon
+          iconImages={personOptions.iconImages}
+          iconImageSize={60}
           setInput={setFieldValue}
-        />
-        <ShapeInput
-          className="form-control form-control-lg"
-          name="shape"
-          label="Select shape"
-          errors={errors}
-          touched={touched}
-          type="hidden"
-          options={personOptions.shapes}
-          setInput={setFieldValue}
-        />
-      </Col>
-      <Col md={4} className="align-self-center">
-        <DisplayShape
-          color={
-            Object.prototype.hasOwnProperty.call(values, 'color')
-              ? values.color
-              : 'none'
-          }
-          shape={
-            Object.prototype.hasOwnProperty.call(values, 'shape')
-              ? values.shape
-              : 'none'
-          }
-          shapeTransform="translate(50, 50) scale(.75)"
-          width="50%"
-          margin="auto"
-          typeDisplay="viewDisplay"
         />
       </Col>
     </Row>
@@ -152,7 +122,6 @@ SignupForm.propTypes = {
   setFieldValue: PropTypes.func.isRequired,
   settings: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
-  values: PropTypes.object.isRequired,
 };
 
 export default SignupForm;
