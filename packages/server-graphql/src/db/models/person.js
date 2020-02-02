@@ -13,7 +13,6 @@ const Person = sequelize.define('Person', {
     primaryKey: true
   },
   icon: { type: Sequelize.STRING },
-  color: { type: Sequelize.STRING },
   age: { type: Sequelize.STRING },
   opponent: { type: Sequelize.STRING },
   shoes: { type: Sequelize.STRING },

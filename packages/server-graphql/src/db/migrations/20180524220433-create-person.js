@@ -8,9 +8,6 @@ module.exports = {
     icon: {
       type: Sequelize.STRING,
     },
-    color: {
-      type: Sequelize.STRING,
-    },
     age: {
       type: Sequelize.STRING,
     },

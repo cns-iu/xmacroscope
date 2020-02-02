@@ -83,7 +83,6 @@ input MessageAnyInput {
 
 input PersonInput {
   icon: String
-  color: String
   age: String
   opponent: String
   shoes: String

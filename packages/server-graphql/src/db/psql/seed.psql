@@ -43,7 +43,6 @@ CREATE TABLE Performances (
 CREATE TABLE People (
   id UUID PRIMARY KEY,
   icon VARCHAR(255),
-  color VARCHAR(255),
   age VARCHAR(255),
   opponent VARCHAR(255),
   shoes VARCHAR(255),
