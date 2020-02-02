@@ -14,7 +14,7 @@ const Person = sequelize.define('Person', {
   },
   icon: { type: Sequelize.STRING },
   color: { type: Sequelize.STRING },
-  ageGroup: { type: Sequelize.STRING },
+  age: { type: Sequelize.STRING },
   opponent: { type: Sequelize.STRING },
   shoes: { type: Sequelize.STRING },
   height: { type: Sequelize.INTEGER },

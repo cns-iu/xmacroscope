@@ -45,12 +45,12 @@ const SignupForm = ({
         />
         <AgeInput
           className="form-control form-control-lg"
-          name="ageGroup"
+          name="age"
           label="What age group are you in?"
           errors={errors}
           touched={touched}
           type="hidden"
-          options={personOptions.ageGroups}
+          options={personOptions.age}
           setInput={setFieldValue}
         />
       </Col>

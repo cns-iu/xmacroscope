@@ -16,7 +16,7 @@ const UPDATE_RUN_LOCAL = gql`
       name: null,
       color: null,
       icon: null,
-      ageGroup: null,
+      age: null,
       opponent: null,
       shoes: null,
       height: null,

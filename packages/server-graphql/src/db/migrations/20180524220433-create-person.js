@@ -11,7 +11,7 @@ module.exports = {
     color: {
       type: Sequelize.STRING,
     },
-    ageGroup: {
+    age: {
       type: Sequelize.STRING,
     },
     opponent: {

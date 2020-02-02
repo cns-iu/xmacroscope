@@ -1,7 +1,7 @@
 const personActive = runner => ({
   icon: runner.icon,
   color: runner.color,
-  ageGroup: runner.ageGroup,
+  age: runner.age,
   opponent: runner.opponent,
   shoes: runner.shoes,
   height: runner.height,

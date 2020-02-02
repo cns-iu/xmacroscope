@@ -43,7 +43,7 @@ const SignupFormFormik = withFormik({
   validateOnBlur: false,
   validateOnChange: true,
   validationSchema: Yup.object().shape({
-    ageGroup: Yup.string()
+    age: Yup.string()
       .required('Required'),
     color: Yup.string()
       .required('Required'),
@@ -76,7 +76,7 @@ const SignupFormFormik = withFormik({
           start: null,
           org: process.env.REACT_APP_LOCATION,
           person: {
-            ageGroup: values.ageGroup,
+            age: values.age,
             height: values.height,
             zipCode: values.zipCode,
             color: values.color,

@@ -19,7 +19,7 @@ const generatePerson = () => {
 
   const fakeGender = sample(personOptions.gender);
 
-  const fakeAgeGroup = sample(personOptions.ageGroups);
+  const fakeAge = sample(personOptions.age);
 
   const fakeOpponent = sample(personOptions.opponents);
 
@@ -36,7 +36,7 @@ const generatePerson = () => {
     icon: fakeShape,
     color: fakeColor,
     gender: fakeGender,
-    ageGroup: fakeAgeGroup,
+    age: fakeAge,
     opponent: fakeOpponent,
     shoes: fakeShoes,
     height: fakeHeight,

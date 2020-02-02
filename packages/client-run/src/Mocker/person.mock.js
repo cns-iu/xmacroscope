@@ -1,7 +1,7 @@
 import { casual } from './casual';
 
 const GENDERS = ['male', 'female', 'other'];
-const AGE_GROUPS = [
+const AGE = [
   '07-09',
   '10-12',
   '13-18',
@@ -24,7 +24,7 @@ export class GeneratedPerson {
   icon; // string;
   color; // string;
   gender;
-  ageGroup;
+  age;
   handedness; // 'left' | 'right';
   zipCode; // string;
   state; // string;
@@ -37,7 +37,7 @@ export class GeneratedPerson {
     this.icon = casual.word;
     this.color = casual.safe_color_name;
     this.gender = casual.random_element(GENDERS);
-    this.ageGroup = casual.random_element(AGE_GROUPS);
+    this.age = casual.random_element(AGE);
     this.handedness = casual.random > 0.1 ? 'right' : 'left';
     this.zipCode = casual.zip(5);
     this.state = casual.state;

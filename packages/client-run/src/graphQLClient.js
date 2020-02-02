@@ -17,7 +17,7 @@ const typeDefs = `
   type ActiveRun {
     status: String!
     runId: String
-    ageGroup: String
+    age: String
     color: String
     opponent: String
     shoes: String

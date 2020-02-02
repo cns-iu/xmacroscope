@@ -33,7 +33,7 @@ type Person {
   id: UUID!
   icon: String
   color: String
-  ageGroup: String
+  age: String
   opponent: String
   shoes: String
   height: Int
@@ -84,7 +84,7 @@ input MessageAnyInput {
 input PersonInput {
   icon: String
   color: String
-  ageGroup: String
+  age: String
   opponent: String
   shoes: String
   height: Int

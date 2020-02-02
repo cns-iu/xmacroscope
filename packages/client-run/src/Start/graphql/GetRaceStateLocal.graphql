@@ -2,7 +2,7 @@ query {
   activeRun @client {
     runId
     status
-    ageGroup
+    age
     color
     opponent
     shoes
