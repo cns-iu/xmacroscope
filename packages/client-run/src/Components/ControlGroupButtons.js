@@ -30,12 +30,17 @@ const ControlGroupButtons = ({
 
 ControlGroupButtons.propTypes = {
   updateInputValue: PropTypes.func.isRequired,
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
+  icon: PropTypes.bool,
+  iconImages: PropTypes.objectOf(PropTypes.string),
+  iconImageSize: PropTypes.number,
   value: PropTypes.string,
 };
 ControlGroupButtons.defaultProps = {
-  options: ['ss'],
   value: '',
+  icon: false,
+  iconImages: {},
+  iconImageSize: 10,
 };
 
 export default ControlGroupButtons;
