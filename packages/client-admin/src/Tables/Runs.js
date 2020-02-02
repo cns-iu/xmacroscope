@@ -118,7 +118,6 @@ export const RunFormat = function formatRuns(data) {
         icon: row.person.icon,
         color: row.person.color,
         ageGroup: row.person.ageGroup,
-        favoriteActivity: row.person.favoriteActivity,
         height: row.person.height,
         zipCode: row.person.zipCode,
         state: row.person.state,
@@ -141,7 +140,6 @@ export const RunQuery = gql`
         icon
         color
         ageGroup
-        favoriteActivity
         height
         zipCode
         state
