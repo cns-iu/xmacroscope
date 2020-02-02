@@ -32,8 +32,7 @@ type MessageRun implements Message {
 type Person {
   id: UUID!
   icon: String
-  color: String
-  age: String
+  age: Int
   opponent: String
   shoes: String
   height: Int
