@@ -3,19 +3,25 @@ import PropTypes from 'prop-types';
 import { ButtonGroup } from 'reactstrap';
 import { StyledBTN } from '../Primatives/BasePrimatives';
 
-const ControlGroupButtons = ({ options, value, updateInputValue }) => (
+const ControlGroupButtons = ({
+  options, value, icon, iconImages, iconImageSize, updateInputValue,
+}) => (
   <ButtonGroup size="lg pb-3">
     {
-      options.map(opt => (
+      options.map(option => (
         <StyledBTN
           className="no-select"
-          selected={opt === value}
-          key={opt}
+          selected={option === value}
+          key={option}
           onClick={() => {
-            updateInputValue(opt);
+            updateInputValue(option);
           }}
         >
-          {opt}
+          {
+            icon
+              ? <img alt="temp" width={iconImageSize} src={iconImages[option]} />
+              : option
+          }
         </StyledBTN>
       ))
     }
