@@ -6,8 +6,6 @@ import personOptions from '../Signup/personOptions';
 import CustomInputHOC from '../Components/CustomInputHOC';
 import ControlGroupButtons from '../Components/ControlGroupButtons';
 import ControlSlider from '../Components/ControlSlider';
-// import ControlShapes from '../Components/ControlShapes';
-// import ControlColors from '../Components/ControlColors';
 import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
