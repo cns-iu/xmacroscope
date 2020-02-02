@@ -14,7 +14,7 @@ import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton, BaseFormHeader } from '../Primatives/BasePrimatives';
 
 // Our inner form component which receives our form's state and updater methods as props
-const AgeInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
+const AgeInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
 const OpponentInput = CustomInputHOC(FormField, ControlGroupButtons, ErrorFeedBack);
 const ZipCodeInput = CustomInputHOC(FormField, ControlKeypad, ErrorFeedBack);
 const HeightInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
@@ -45,8 +45,10 @@ const SignupForm = ({
         />
         <AgeInput
           className="form-control form-control-lg"
+          min={0}
+          max={110}
           name="age"
-          label="What age group are you in?"
+          label="How old are you?"
           errors={errors}
           touched={touched}
           type="hidden"
@@ -59,6 +61,9 @@ const SignupForm = ({
       <Col className="text-center" lg={6}>
         <HeightInput
           className="form-control form-control-lg"
+          min={36}
+          max={96}
+          height
           name="height"
           label="What's your height?"
           errors={errors}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
+import { floor } from 'lodash';
 import PropTypes from 'prop-types';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -7,19 +8,23 @@ import { PlaceHolder } from '../Primatives/ControlPrimatives';
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
-const ControlGroupButtons = ({ updateInputValue, value }) => {
+const ControlSlider = ({
+  updateInputValue, min, max, value, height,
+}) => {
   const onSliderChange = (changedValue) => {
     updateInputValue(String(changedValue));
   };
+  const heightFeet = floor((value / 12));
+  const heightInches = value % 12;
 
   return (
     <Row className="justify-content-md-center">
       <Col sm={8}>
         <PlaceHolder className="pb-2 text-center">
           <h4 className="no-select">
-            Height:&nbsp;
-            {value}
-            {value ? '"' : ''}
+            {height
+              ? `${heightFeet}' ${heightInches}"`
+              : value}
           </h4>
         </PlaceHolder>
       </Col>
@@ -28,8 +33,8 @@ const ControlGroupButtons = ({ updateInputValue, value }) => {
         className="pb-3"
       >
         <SliderWithTooltip
-          min={36}
-          max={96}
+          min={min}
+          max={max}
           onChange={onSliderChange}
           railStyle={{ height: 20 }}
           trackStyle={{ height: 20 }}
@@ -48,13 +53,17 @@ const ControlGroupButtons = ({ updateInputValue, value }) => {
   );
 };
 
-ControlGroupButtons.propTypes = {
+ControlSlider.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  height: PropTypes.bool,
   value: PropTypes.string,
   updateInputValue: PropTypes.func.isRequired,
 };
 
-ControlGroupButtons.defaultProps = {
+ControlSlider.defaultProps = {
   value: '',
+  height: false,
 };
 
-export default ControlGroupButtons;
+export default ControlSlider;
