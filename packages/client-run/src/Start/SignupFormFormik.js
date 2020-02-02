@@ -45,7 +45,7 @@ const SignupFormFormik = withFormik({
       .required('Required'),
     shoes: Yup.string()
       .required('Required'),
-    age: Yup.string()
+    age: Yup.number()
       .required('Required'),
     height: Yup.number()
       .required('Required')
