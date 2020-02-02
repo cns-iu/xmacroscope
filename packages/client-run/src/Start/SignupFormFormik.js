@@ -24,7 +24,6 @@ const FINISH_SIGNUP = gql`
       id
       person {
         icon
-        color
       }
     }
   }
@@ -39,15 +38,14 @@ function zipCodeLookup(value) {
 }
 
 const SignupFormFormik = withFormik({
-
   validateOnBlur: false,
   validateOnChange: true,
   validationSchema: Yup.object().shape({
+    opponent: Yup.string()
+      .required('Required'),
+    shoes: Yup.string()
+      .required('Required'),
     age: Yup.string()
-      .required('Required'),
-    color: Yup.string()
-      .required('Required'),
-    shape: Yup.string()
       .required('Required'),
     height: Yup.number()
       .required('Required')
@@ -65,6 +63,8 @@ const SignupFormFormik = withFormik({
       )
       // Also do a Zip Code lookup to ensure that it's a valid place.
       .test('test-name', 'enter a valid US Zip Code', zipCodeLookup),
+    icon: Yup.string()
+      .required('Required'),
   }),
 
   // Submission handler
@@ -76,11 +76,12 @@ const SignupFormFormik = withFormik({
           start: null,
           org: process.env.REACT_APP_LOCATION,
           person: {
+            opponent: values.opponent,
+            shoes: values.shoes,
             age: values.age,
             height: values.height,
             zipCode: values.zipCode,
-            color: values.color,
-            icon: values.shape,
+            icon: values.icon,
             state: location.state,
             latitude: location.latitude,
             longitude: location.longitude,
@@ -104,7 +105,6 @@ function WithCreateMutation(props) {
               __typename: 'ActiveRun',
               runId: data.FinishSignup.id,
               status: 'runTimerPre',
-              color: data.FinishSignup.person.color,
               icon: data.FinishSignup.person.icon,
             },
           },

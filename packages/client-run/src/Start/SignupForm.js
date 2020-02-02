@@ -33,7 +33,7 @@ const SignupForm = ({
       <Col className="text-center" lg={6}>
         <OpponentInput
           className="form-control form-control-lg"
-          name="opponentGroup"
+          name="opponent"
           label="Who would you like to race?"
           errors={errors}
           touched={touched}
