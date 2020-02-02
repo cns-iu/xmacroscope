@@ -38,14 +38,14 @@ body {
 
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
-.base-container{
+.base-container {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -59,23 +59,28 @@ body {
 }
 
 @media screen and (max-height: 1080px) {
-  body{
+  body {
     font-size: 16px;
   }
-  .base-container{
+
+  .base-container {
     padding: 5px 0;
   }
-  .signup-form{
+
+  .signup-form {
     padding: 15px;
     display: inherit;
   }
-  .form-container{
-    padding: 20px 0 ;
+
+  .form-container {
+    padding: 20px 0;
   }
+
   .signup-form label {
-    font-size: 1.35em;
+    font-size: 40px;
   }
-  .displayTimer{
+
+  .displayTimer {
     height: 500px;
     justify-content: center;
     align-items: center;
@@ -84,7 +89,7 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .signup-form{
+  .signup-form {
     padding: 0px;
   }
 }
