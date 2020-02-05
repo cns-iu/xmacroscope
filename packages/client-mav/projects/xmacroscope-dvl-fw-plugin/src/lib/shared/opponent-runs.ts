@@ -10,7 +10,8 @@ export const opponentRuns = {
       pinned: true,
       person: {
         id: 'cheetah', icon: 'cheetah', age: 8, height: 32, opponent: 'real-cheetah', shoes: 'Paws',
-        zipCode: '46202', state: 'IN', latitude: 39.7739, longitude: -86.1763
+        // zipCode: '46202', state: 'IN', latitude: 39.7739, longitude: -86.1763
+        zipCode: '45220', state: 'OH', latitude: 39.1433, longitude: -84.5090
       }
     },
     {
@@ -20,7 +21,8 @@ export const opponentRuns = {
       pinned: true,
       person: {
         id: 'squirrel', icon: 'squirrel', age: 4, height: 11, opponent: 'real-squirrel', shoes: 'Paws',
-        zipCode: '47405', state: 'IN', latitude: 39.1727, longitude: -86.5222
+        // zipCode: '47405', state: 'IN', latitude: 39.1727, longitude: -86.5222
+        zipCode: '43215', state: 'OH', latitude: 39.959836, longitude: -83.007020
       }
     },
     {
@@ -30,7 +32,8 @@ export const opponentRuns = {
       pinned: true,
       person: {
         id: 'turtle', icon: 'turtle', age: 30, height: 5, opponent: 'real-turtle', shoes: 'Paws',
-        zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212
+        // zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212
+        zipCode: '44114', state: 'OH', latitude: 41.5085, longitude: -81.6954
       }
     },
   ]
