@@ -42,6 +42,7 @@ export class GeomapComponent {
       id: 'USA'
     },
     {
+      // TODO: Make this optionally driven by server settings
       label: environment.projectConfiguration.defaultUsState,
       icon: `map:${environment.projectConfiguration.defaultUsState.toLowerCase()}`,
       id: environment.projectConfiguration.defaultUsState
