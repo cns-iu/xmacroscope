@@ -4,7 +4,7 @@ import { ButtonGroup } from 'reactstrap';
 import { StyledBTN } from '../Primatives/BasePrimatives';
 
 const ControlGroupButtons = ({
-  options, value, icon, iconImages, iconImageSize, updateInputValue,
+  options, value, icon, iconImageSize, updateInputValue,
 }) => (
   <ButtonGroup size="lg pb-3">
     {
@@ -19,7 +19,7 @@ const ControlGroupButtons = ({
         >
           {
             icon
-              ? <img alt="temp" width={iconImageSize} src={iconImages[option]} />
+              ? <img alt="temp" width={iconImageSize} src={`/ico-${option}.png`} />
               : option
           }
         </StyledBTN>
@@ -32,14 +32,12 @@ ControlGroupButtons.propTypes = {
   updateInputValue: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
   icon: PropTypes.bool,
-  iconImages: PropTypes.objectOf(PropTypes.string),
   iconImageSize: PropTypes.number,
   value: PropTypes.string,
 };
 ControlGroupButtons.defaultProps = {
   value: '',
   icon: false,
-  iconImages: {},
   iconImageSize: 10,
 };
 

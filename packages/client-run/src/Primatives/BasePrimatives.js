@@ -39,8 +39,8 @@ const BigHeader = styled.h1`
 `;
 
 const StyledButton = styled(Button)`
-  background-color: white;
-  color: ${xMacBlue}
+  background-color: ${xMacOrangeDark};
+  color: white;
   letter-spacing: 1px;
   border: none;
   font-weight: bold;

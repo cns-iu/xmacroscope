@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   useHashStrategy: false,
   projectConfiguration: {
-    deploymentLocation: 'cns-iu',
-    defaultUsState: 'IN',
+    deploymentLocation: 'cosi',
+    defaultUsState: 'Ohio',
     runTimout: 10000,
     mockData: true,
     opponentRuns: 'default'

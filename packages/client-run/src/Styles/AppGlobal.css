@@ -75,8 +75,12 @@ body {
     margin-top: 50px;
   }
 
-  .icon-input {
-    margin-bottom: 50px;
+  .vertical-slider {
+    height: 500px;
+  }
+
+  .slider-custom {
+    margin-left: 120px;
   }
 
   .shoes-input label {

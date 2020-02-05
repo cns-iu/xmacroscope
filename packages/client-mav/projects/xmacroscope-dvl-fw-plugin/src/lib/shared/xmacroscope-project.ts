@@ -496,7 +496,7 @@ export class XMacroscopeProject extends DefaultProject {
             {
               selector: ['world', 'united states', this.config.defaultUsState || 'Indiana', 'counties'],
               projection: 'albersUsa',
-              label: this.config.defaultUsState || 'Indiana',
+              label: this.config.defaultUsState || 'ZIndiana',
               class: 'state-icon'
             }
           ],

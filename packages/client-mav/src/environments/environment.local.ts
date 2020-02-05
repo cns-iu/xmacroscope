@@ -3,7 +3,7 @@ export const environment = {
   useHashStrategy: true,
   projectConfiguration: {
     deploymentLocation: 'cosi',
-    defaultUsState: 'OH',
+    defaultUsState: 'Ohio',
     runTimout: 10000,
     endpoint: 'http://localhost:4000/graphql'
   }
