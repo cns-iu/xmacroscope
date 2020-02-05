@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { ButtonGroup } from 'reactstrap';
 import { StyledBTN } from '../Primatives/BasePrimatives';
 
+const imagePath = process.env.NODE_ENV === 'development' ? '/' : '/images/';
+
 const ControlGroupButtons = ({
   options, value, icon, iconImageSize, updateInputValue,
 }) => (
@@ -19,7 +21,7 @@ const ControlGroupButtons = ({
         >
           {
             icon
-              ? <img alt="temp" width={iconImageSize} src={`/ico-${option}.png`} />
+              ? <img alt="temp" width={iconImageSize} src={`${imagePath}ico-${option}.png`} />
               : option
           }
         </StyledBTN>
