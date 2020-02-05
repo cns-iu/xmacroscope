@@ -9,7 +9,9 @@ import {
 import { get, set } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
+import { environment } from '../../../../environments/environment';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
+
 
 export interface ButtonItem {
   label: string;
@@ -40,9 +42,9 @@ export class GeomapComponent {
       id: 'USA'
     },
     {
-      label: 'Indiana',
-      icon: 'map:indiana',
-      id: 'Indiana'
+      label: environment.projectConfiguration.defaultUsState,
+      icon: `map:${environment.projectConfiguration.defaultUsState.toLowerCase()}`,
+      id: environment.projectConfiguration.defaultUsState
     }
   ];
 

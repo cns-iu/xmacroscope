@@ -97,6 +97,10 @@ export const defaultIcons: DefaultIconDefinition[] = [
   {
     namespace: 'map', name: 'indiana',
     html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="700 190.2 70.6 107.7" stroke-linejoin="round" stroke="currentColor" fill="none"><path d="M750.3 200.2l-14.8 2.6-3.4.7-12 2-2.6 2-3.7 1.7h-1.5l-1.8-1-.5-.5 6.8 47.8-1.4 5.2 2.4 4.6.8 3.7-3.7 8.7-2.1 1.5-.1 8.7h.8l1.4-2.7h3.6l4.4-1.5 5.4 2 .6-2.2 3.1-2.3 4.7.7 2.5-5 6.9.6-.1-2.8 6-8-.9-3.8h4.3l5.2-4.2-1.2-4.8.2-.2-.2-1.6-5.9-34.4L751 203l-.3-1.5-.3-1.3z" fill-rule="evenodd"/></svg>'
+  },
+  {
+    namespace: 'map', name: 'ohio',
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="700 190.2 70.6 107.7" stroke-linejoin="round" stroke="currentColor" fill="none"><path d="" fill-rule="evenodd"/></svg>'
   }
 
 
