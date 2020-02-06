@@ -50,8 +50,8 @@ const SignupFormFormik = withFormik({
     height: Yup.number()
       .required('Required')
       .typeError('Height must be a number')
-      .min(36)
-      .max(96)
+      .min(0)
+      .max(100)
       .integer('Please enter a valid number'),
     // Zip codes are 5 digits
     // We don't accept the extra 4 digits.

@@ -34,7 +34,7 @@ const SignupForm = ({
             <AgeInput
               className="form-control form-control-lg"
               min={0}
-              max={110}
+              max={100}
               name="age"
               label="How old are you?"
               errors={errors}
@@ -47,9 +47,8 @@ const SignupForm = ({
           <Col>
             <HeightInput
               className="form-control form-control-lg"
-              min={36}
-              max={96}
-              height
+              min={0}
+              max={89}
               name="height"
               label="What's your height?"
               errors={errors}
