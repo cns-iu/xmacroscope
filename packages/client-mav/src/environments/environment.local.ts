@@ -5,6 +5,7 @@ export const environment = {
     deploymentLocation: 'cosi',
     defaultUsState: 'Ohio',
     runTimout: 10000,
-    endpoint: 'http://localhost:4000/graphql'
+    endpoint: 'http://localhost:4000/graphql',
+    opponentRuns: 'default'
   }
 };
