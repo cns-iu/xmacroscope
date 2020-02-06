@@ -6,11 +6,11 @@ export const environment = {
   production: false,
   useHashStrategy: false,
   projectConfiguration: {
-    deploymentLocation: 'cosi',
-    defaultUsState: 'Ohio',
+    deploymentLocation: 'cns-iu',
+    defaultUsState: 'Indiana',
     runTimout: 10000,
     mockData: true,
-    opponentRuns: 'cosi'
+    opponentRuns: 'cns-iu'
     // endpoint: 'http://localhost:4000/graphql'
   }
 };

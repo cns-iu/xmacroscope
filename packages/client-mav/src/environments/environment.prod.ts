@@ -2,10 +2,10 @@ export const environment = {
   production: true,
   useHashStrategy: true,
   projectConfiguration: {
-    deploymentLocation: 'cosi',
-    defaultUsState: 'Ohio',
+    deploymentLocation: 'cns-iu',
+    defaultUsState: 'Indiana',
     runTimout: 10000,
     mockData: true,
-    opponentRuns: 'cosi'
+    opponentRuns: 'cns-iu'
   }
 };
