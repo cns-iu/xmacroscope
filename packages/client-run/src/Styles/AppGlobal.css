@@ -112,6 +112,11 @@ body {
     font-size: 40px;
   }
 
+  .signup-form .height-input-slider label {
+    line-height: 60px;
+    font-size: 30px;
+  }
+
   .displayTimer {
     height: 500px;
     justify-content: center;

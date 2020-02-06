@@ -31,31 +31,35 @@ const SignupForm = ({
       <Col className="text-center" lg={4}>
         <Row>
           <Col>
-            <AgeInput
-              className="form-control form-control-lg"
-              min={0}
-              max={100}
-              name="age"
-              label="How old are you?"
-              errors={errors}
-              touched={touched}
-              type="hidden"
-              options={personOptions.age}
-              setInput={setFieldValue}
-            />
+            <div className="age-input-slider">
+              <AgeInput
+                className="form-control form-control-lg"
+                min={0}
+                max={100}
+                name="age"
+                label="How old are you?"
+                errors={errors}
+                touched={touched}
+                type="hidden"
+                options={personOptions.age}
+                setInput={setFieldValue}
+              />
+            </div>
           </Col>
           <Col>
-            <HeightInput
-              className="form-control form-control-lg"
-              min={0}
-              max={89}
-              name="height"
-              label="What's your height?"
-              errors={errors}
-              touched={touched}
-              type="hidden"
-              setInput={setFieldValue}
-            />
+            <div className="height-input-slider">
+              <HeightInput
+                className="form-control form-control-lg"
+                min={0}
+                max={89}
+                name="height"
+                label="What's your height in inches?"
+                errors={errors}
+                touched={touched}
+                type="hidden"
+                setInput={setFieldValue}
+              />
+            </div>
           </Col>
         </Row>
       </Col>
