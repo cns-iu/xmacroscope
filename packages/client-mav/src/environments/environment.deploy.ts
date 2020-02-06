@@ -6,6 +6,6 @@ export const environment = {
     defaultUsState: 'Ohio',
     runTimout: 10000,
     endpoint: '/graphql',
-    opponentRuns: 'default'
+    opponentRuns: 'cosi'
   }
 };
