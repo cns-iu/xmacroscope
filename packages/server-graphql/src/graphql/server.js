@@ -74,9 +74,11 @@ const app = express();
 // Serve client apps in production
 //
 const startPath = '/start';
+const imagesPath = '/images';
 const mavPath = '/mav';
 if (process.env.NODE_ENV === 'production') {
   app.use(startPath, express.static(path.join(__dirname, '../../../client-run/build')));
+  app.use(imagesPath, express.static(path.join(__dirname, '../../../client-run/public')));
   app.use(mavPath, express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
 }
 
