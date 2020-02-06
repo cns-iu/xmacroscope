@@ -30,8 +30,8 @@ export class MockPerson extends Person {
     super({
       id: 'person' + casual.integer(1, 500),
       icon: casual.random_element(icons),
-      age: casual.integer(0, 120),
-      height: casual.integer(12, 96),
+      age: casual.integer(0, 100),
+      height: casual.integer(0, 89),
       opponent: casual.random_element(opponents).label,
       shoes: casual.random_element(shoes).label
     });

@@ -86,10 +86,10 @@ export class Person {
   @Operand(chain(access('icon'), lookup(images, images['unknown'])))
   iconShape: string;
 
-  @Operand(chain(access('age'), areaSizeScale.quantitative([0, 120])))
+  @Operand(chain(access('age'), areaSizeScale.quantitative([0, 100])))
   ageAreaSize: number;
 
-  @Operand(chain(access('height'), areaSizeScale.quantitative([0, 96])))
+  @Operand(chain(access('height'), areaSizeScale.quantitative([0, 89])))
   heightAreaSize: number;
 
   @Operand(chain(access('opponent'), createLookup(opponents)))
