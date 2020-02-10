@@ -199,7 +199,9 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     const gv = graphicSymbol.graphicVariables[gvName];
     switch (gv.dataVariable.dataType) {
       case DataType.NUMBER:
-        const domainL: number[] = extent(nodes, n => +n[gvName]);
+        // const domainL: number[] = extent(nodes, n => +n[gvName]);
+        // FIXME: Remove xMacroscope specific customization.
+        const domainL: number[] = [0, extent(nodes, n => +n[gvName])[1]];
         const scaleL = scaleLinear().domain(domainL).nice(10).rangeRound(range);
         return scaleL;
       case DataType.BOOLEAN:
