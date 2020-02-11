@@ -33,7 +33,7 @@ interface GVData {
 }
 
 export const icons: string[] = [
-  'brat', 'cool', 'happy', 'surprise', 'angry', 'grimace', 'sad', 'sleepy'
+  'brat', 'cool', 'happy', 'surprise', 'angry', 'grimace', 'sad', 'sleep'
 ];
 export const opponents = [
   { label: 'Penguin', color: '#4527a0', shape: 'circle', icon: images['penguin'] },
