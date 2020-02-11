@@ -23,24 +23,9 @@ function getOpponentRuns(location: string): any[] {
       }
     },
     {
-      id: 'squirrel-run',
-      start: moment().add(2, 'year').toDate(),
-      end: moment().add(2, 'year').add(2.20, 'seconds').toDate(),
-      pinned: true,
-      person: {
-        id: 'squirrel', icon: 'squirrel', age: 3, height: 11, opponent: 'Visitor', shoes: 'Barefoot'
-      },
-      locations: {
-        'Indiana': { zipCode: '47405', state: 'IN', latitude: 39.1727, longitude: -86.5222 },
-        'Minnesota': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 },
-        'Ohio': { zipCode: '43215', state: 'OH', latitude: 39.959836, longitude: -83.007020 },
-        'California': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 }
-      }
-    },
-    {
       id: 'penguin-run',
-      start: moment().add(3, 'year').toDate(),
-      end: moment().add(3, 'year').add(5.48, 'seconds').toDate(),
+      start: moment().add(2, 'year').toDate(),
+      end: moment().add(2, 'year').add(5.48, 'seconds').toDate(),
       pinned: true,
       person: {
         id: 'penguin', icon: 'penguin', age: 13, height: 35, opponent: 'Visitor', shoes: 'Barefoot'
@@ -49,6 +34,21 @@ function getOpponentRuns(location: string): any[] {
         'Indiana': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 },
         'Minnesota': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 },
         'Ohio': { zipCode: '44114', state: 'OH', latitude: 41.5085, longitude: -81.6954 },
+        'California': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 }
+      }
+    },
+    {
+      id: 'squirrel-run',
+      start: moment().add(3, 'year').toDate(),
+      end: moment().add(3, 'year').add(2.20, 'seconds').toDate(),
+      pinned: true,
+      person: {
+        id: 'squirrel', icon: 'squirrel', age: 3, height: 11, opponent: 'Visitor', shoes: 'Barefoot'
+      },
+      locations: {
+        'Indiana': { zipCode: '47405', state: 'IN', latitude: 39.1727, longitude: -86.5222 },
+        'Minnesota': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 },
+        'Ohio': { zipCode: '43215', state: 'OH', latitude: 39.959836, longitude: -83.007020 },
         'California': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 }
       }
     },
