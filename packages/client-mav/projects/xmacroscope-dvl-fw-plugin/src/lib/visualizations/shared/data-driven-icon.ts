@@ -85,6 +85,10 @@ export class DataDrivenIcon {
   constructor(public readonly config: IconConfig, private createCanvas = defaultCanvasCreator) {
     const symbolDiameter = Math.sqrt(config.areaSize) * 2;
     let canvasWidth = symbolDiameter + 4;
+    // FIXME: Remove xMacroscope specific code
+    if (config.shape && !symbolLookup[config.shape]) {
+      canvasWidth *= 1.75;
+    }
     if (config.strokeWidth) {
       canvasWidth += config.strokeWidth;
     }
@@ -136,7 +140,8 @@ export class DataDrivenIcon {
       if (this.imageDrawn) {
         setTimeout(() => this.imageSent = true, 10);
       } else {
-        const symbolRadius = Math.sqrt(config.areaSize);
+        const symbolRadius = Math.sqrt(config.areaSize)
+                                  * 1.75; // FIXME: Remove xMacroscope specific code
         const [x, y, w, h] = [canvas.width / 2 - symbolRadius, canvas.height / 2 - symbolRadius, symbolRadius * 2, symbolRadius * 2];
         const image = new Image();
         this.imageDrawn = false;
@@ -145,6 +150,7 @@ export class DataDrivenIcon {
           context.save();
           context.globalCompositeOperation = 'source-over';
 
+          /* FIXME: Uncomment to remove xMacroscope specific code
           if (config.color) {
             // Draw a color rect
             context.fillStyle = config.color;
@@ -155,6 +161,7 @@ export class DataDrivenIcon {
 
             context.globalCompositeOperation = 'destination-in';
           }
+          */
 
           context.globalAlpha = 1;
           context.drawImage(image, x, y, w, h);

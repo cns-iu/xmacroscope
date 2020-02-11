@@ -10,7 +10,7 @@ export const environment = {
     defaultUsState: 'Indiana',
     runTimout: 10000,
     mockData: true,
-    opponentRuns: 'cns-iu'
+    opponentRuns: 'default'
     // endpoint: 'http://localhost:4000/graphql'
   }
 };
