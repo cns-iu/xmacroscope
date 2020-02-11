@@ -81,7 +81,7 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
   processItems(data: TDatum<DataItem>[]) {
     const items = orderBy(data.map(d => new DataItem(d)), 'order', 'asc')
-      .filter(d => d.value !== undefined);
+      .filter(d => d.value !== undefined && (d.label !== 'Visitor' && d.label !== 'Barefoot') /** FIXME: Remove xMac specific cases */);
 
     const type = this.getLegendType('value', this.data.graphicSymbols.items);
     switch (type) {

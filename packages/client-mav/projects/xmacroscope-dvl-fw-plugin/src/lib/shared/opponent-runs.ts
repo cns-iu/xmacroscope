@@ -13,7 +13,7 @@ function getOpponentRuns(location: string): any[] {
       end: moment().add(1, 'year').add(5.48, 'seconds').toDate(),
       pinned: true,
       person: {
-        id: 'penguin', icon: 'penguin', age: 13, height: 35, opponent: 'Visitor', shoes: 'Barefoot'
+        id: 'penguin', icon: 'penguin', age: 13, height: 35, opponent: 'real-penguin', shoes: 'penguin-feet'
       },
       locations: {
         'Indiana': { zipCode: '47907', state: 'IN', latitude: 40.4237, longitude: -86.9212 },
@@ -28,7 +28,7 @@ function getOpponentRuns(location: string): any[] {
       end: moment().add(2, 'year').add(2.20, 'seconds').toDate(),
       pinned: true,
       person: {
-        id: 'squirrel', icon: 'squirrel', age: 3, height: 11, opponent: 'Visitor', shoes: 'Barefoot'
+        id: 'squirrel', icon: 'squirrel', age: 3, height: 11, opponent: 'real-squirrel', shoes: 'squirrel-feet'
       },
       locations: {
         'Indiana': { zipCode: '47405', state: 'IN', latitude: 39.1727, longitude: -86.5222 },
@@ -43,7 +43,7 @@ function getOpponentRuns(location: string): any[] {
       end: moment().add(3, 'year').add(0.37, 'seconds').toDate(),
       pinned: true,
       person: {
-        id: 'cheetah', icon: 'cheetah', age: 5, height: 36, opponent: 'Visitor', shoes: 'Barefoot'
+        id: 'cheetah', icon: 'cheetah', age: 5, height: 36, opponent: 'real-cheetah', shoes: 'cheetah-feet'
       },
       locations: {
         'Indiana': { zipCode: '46202', state: 'IN', latitude: 39.7739, longitude: -86.1763 },

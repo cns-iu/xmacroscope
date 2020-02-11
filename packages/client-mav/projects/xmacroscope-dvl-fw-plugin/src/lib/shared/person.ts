@@ -39,14 +39,18 @@ export const opponents = [
   { label: 'Penguin', color: '#4527a0', shape: 'circle', icon: images['penguin'] },
   { label: 'Squirrel', color: '#f7d97b', shape: 'triangle', icon: images['squirrel'] },
   { label: 'Cheetah', color: '#f44336', shape: 'square', icon: images['cheetah'] },
-  { id: 'Visitor', label: 'Visitor', color: '#000000', shape: 'diamond', icon: images['unknown'] }
+  { id: 'real-penguin', label: 'Visitor', color: '#000000', shape: images['penguin'], icon: images['penguin'] },
+  { id: 'real-squirrel', label: 'Visitor', color: '#000000', shape: images['squirrel'], icon: images['squirrel'] },
+  { id: 'real-cheetah', label: 'Visitor', color: '#000000', shape: images['cheetah'], icon: images['cheetah'] }
 ];
 export const shoes = [
-  { label: 'Barefoot', color: '#000000', shape: 'square' },
   { label: 'Boots', color: '#1e88e5', shape: 'triangle' },
   { label: 'Wheels', color: '#81c784', shape: 'circle' },
   { label: 'Athletic', color: '#fff9c4', shape: 'diamond' },
   { label: 'Casual', color: '#f7d97b', shape: 'wye' },
+  { id: 'penguin-feet', label: 'Barefoot', color: '#000000', shape: images['penguin'] },
+  { id: 'squirrel-feet', label: 'Barefoot', color: '#000000', shape: images['squirrel'] },
+  { id: 'cheetah-feet', label: 'Barefoot', color: '#000000', shape: images['cheetah'] }
 ];
 
 const unknownGVData: Partial<GVData> = {label: 'Unknown', color: '#000000', shape: 'square'};

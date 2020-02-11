@@ -7,6 +7,7 @@ import { icons, opponents, Person, shoes } from '../shared/person';
 
 
 const opponentsMinusVistor = opponents.filter(o => o.label !== 'Visitor');
+const shoesMinusBarefoot = shoes.filter(s => s.label !== 'Barefoot');
 
 function nullable<T>(value: T, nullProb = .1): T | null {
   return casual.random > nullProb ? value : null;
@@ -35,7 +36,7 @@ export class MockPerson extends Person {
       age: casual.integer(0, 100),
       height: casual.integer(0, 89),
       opponent: casual.random_element(opponentsMinusVistor).label,
-      shoes: casual.random_element(shoes).label
+      shoes: casual.random_element(shoesMinusBarefoot).label
     });
 
     const location = mockUSLocation();
