@@ -86,15 +86,15 @@ export const defaultIcons: DefaultIconDefinition[] = [
     html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs><style>upsidedown-cls-2{fill:currentColor}</style></defs><circle cx="11.5" cy="11.5" r="11" fill="#fff" stroke="currentColor" stroke-miterlimit="10"/><path class=upsidedown-cls-2" d="M12 5C7.34 5 6 8 6 8s1.85-1.69 6-1.69S18 8 18 8s-1.38-3-6-3z" transform="translate(-.5 -.5)"/><circle class=upsidedown-cls-2" cx="6.97" cy="14.5" r="1.5"/><circle class=upsidedown-cls-2" cx="15.97" cy="14.5" r="1.5"/></svg>'
   },
   {
-    namespace: 'emoji', name: 'angry',
-    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs><style>.cls-1{fill:#fff;}.cls-1,.cls-3{stroke:currentColor;stroke-miterlimit:10;}.cls-2{fill:currentColor;}.cls-3{fill:none;}</style></defs><title>ico-angry</title><circle class="cls-1" cx="11.5" cy="11.5" r="11"/><ellipse class="cls-2" cx="7" cy="10.87" rx="1.02" ry="1.5"/><ellipse class="cls-2" cx="16.11" cy="10.87" rx="1.02" ry="1.5"/><path class="cls-2" d="M12.19,17.64a5.41,5.41,0,0,1,3,.88s0,0,0-.05a2.79,2.79,0,0,0-3-2.5,2.79,2.79,0,0,0-3,2.5v.05A5.44,5.44,0,0,1,12.19,17.64Z" transform="translate(-0.5 -0.5)"/><line class="cls-3" x1="5.08" y1="7.88" x2="7.73" y2="9.37"/><line class="cls-3" x1="17.73" y1="7.88" x2="15.08" y2="9.37"/></svg>'
-  },
-  {
     namespace: 'emoji', name: 'grimace',
     html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs><style>.cls-1{fill:#fff;}.cls-1,.cls-3,.cls-4,.cls-5{stroke:currentColor;stroke-miterlimit:10;}.cls-2{fill:currentColor;}.cls-3,.cls-4,.cls-5{fill:none;}.cls-3{stroke-width:0.57px;}.cls-4{stroke-width:0.25px;}.cls-5{stroke-width:0.65px;}</style></defs><title>ico-grimace</title><circle class="cls-1" cx="11.5" cy="11.5" r="11"/><ellipse class="cls-2" cx="16" cy="8.9" rx="1.5" ry="1.9"/><ellipse class="cls-2" cx="7" cy="8.9" rx="1.5" ry="1.9"/><line class="cls-3" x1="5.76" y1="16.49" x2="17.39" y2="16.49"/><line class="cls-4" x1="7.49" y1="14.72" x2="7.49" y2="18.58"/><line class="cls-4" x1="9.09" y1="14.69" x2="9.09" y2="18.55"/><line class="cls-4" x1="10.69" y1="14.59" x2="10.69" y2="18.45"/><line class="cls-4" x1="12.3" y1="14.62" x2="12.3" y2="18.48"/><line class="cls-4" x1="13.9" y1="14.66" x2="13.9" y2="18.51"/><line class="cls-4" x1="15.5" y1="14.56" x2="15.5" y2="18.42"/><rect class="cls-5" x="5.5" y="14.56" width="12.02" height="3.89" rx="1.6"/></svg>'
   },
   {
-    namespace: 'emoji', name: 'sad',
+    namespace: 'emoji', name: 'laughing',
+    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs><style>.cls-1{fill:#fff;}.cls-1,.cls-3{stroke:currentColor;stroke-miterlimit:10;}.cls-2{fill:currentColor;}.cls-3{fill:none;}</style></defs><title>ico-angry</title><circle class="cls-1" cx="11.5" cy="11.5" r="11"/><ellipse class="cls-2" cx="7" cy="10.87" rx="1.02" ry="1.5"/><ellipse class="cls-2" cx="16.11" cy="10.87" rx="1.02" ry="1.5"/><path class="cls-2" d="M12.19,17.64a5.41,5.41,0,0,1,3,.88s0,0,0-.05a2.79,2.79,0,0,0-3-2.5,2.79,2.79,0,0,0-3,2.5v.05A5.44,5.44,0,0,1,12.19,17.64Z" transform="translate(-0.5 -0.5)"/><line class="cls-3" x1="5.08" y1="7.88" x2="7.73" y2="9.37"/><line class="cls-3" x1="17.73" y1="7.88" x2="15.08" y2="9.37"/></svg>'
+  },
+  {
+    namespace: 'emoji', name: 'peace',
     html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><defs><style>.cls-1{fill:#fff;stroke:currentColor;stroke-miterlimit:10;}.cls-2{fill:currentColor;}</style></defs><title>ico-sad</title><circle class="cls-1" cx="11.5" cy="11.5" r="11"/><path class="cls-2" d="M12,17.64a4.3,4.3,0,0,1,2.62.88s0,0,0-.05A2.57,2.57,0,0,0,12,16a2.56,2.56,0,0,0-2.63,2.5v.05A4.33,4.33,0,0,1,12,17.64Z" transform="translate(-0.5 -0.5)"/><path class="cls-2" d="M7.51,12.53A2.4,2.4,0,0,1,6,12v0a1.5,1.5,0,0,0,3,0v0A2.4,2.4,0,0,1,7.51,12.53Z" transform="translate(-0.5 -0.5)"/><path class="cls-2" d="M16.49,12.53A2.4,2.4,0,0,1,15,12v0a1.5,1.5,0,0,0,3,0v0A2.4,2.4,0,0,1,16.49,12.53Z" transform="translate(-0.5 -0.5)"/></svg>'
   },
   {
