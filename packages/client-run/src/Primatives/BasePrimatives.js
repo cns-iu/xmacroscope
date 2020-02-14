@@ -16,10 +16,10 @@ const BaseHeader = styled.h1`
   color: ${xMacBlue};
   font-weight: 900;
   letter-spacing: 2px;
-  font-size: 65px;
+  font-size: 35px;
   margin-bottom: 0px;
   @media (max-height: 1080px) {
-    font-size: 60px !important;
+    font-size: 35px !important;
   }
 `;
 
@@ -88,8 +88,11 @@ const StyledCardBody = styled(CardBody)`
 
 const ErrorWrapper = styled.div`
   display: inline;
+  position: absolute;
+  //transform: rotate(-20deg);
+  margin-left: -37px;
   border: ${props => (props.active ? '1px solid white' : 'none')};
-  background: ${props => (props.active ? xMacBlue : 'none')};
+  background: ${props => (props.active ? xMacOrangeDark : 'none')};
   color: white;
 `;
 

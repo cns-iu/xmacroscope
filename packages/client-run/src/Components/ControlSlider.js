@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Col, Row } from 'reactstrap';
 import { floor } from 'lodash';
@@ -16,6 +17,7 @@ const ControlSlider = ({
   };
   const heightFeet = floor((value / 12));
   const heightInches = value % 12;
+  const dash = '-';
 
   return (
     <>
@@ -23,31 +25,27 @@ const ControlSlider = ({
         <h4 className="no-select">
           {height
             ? `${heightFeet}' ${heightInches}"`
-            : value}
+            : value.length ? value : dash
+          }
         </h4>
       </PlaceHolder>
       <Row>
         <Col>
-          <div className="vertical-slider">
-            <SliderWithTooltip
-              className="slider-custom"
-              vertical
-              min={min}
-              max={max}
-              onChange={onSliderChange}
-              railStyle={{ width: 16 }}
-              trackStyle={{ width: 16 }}
-              tipProps={{ overlayClassName: 'foo', placement: 'right' }}
-              handleStyle={{
-                borderColor: '#c5d1cf',
-                height: 35,
-                width: 35,
-                marginLeft: -10,
-                marginTop: -9,
-                backgroundColor: '#266294',
-              }}
-            />
-          </div>
+          <SliderWithTooltip
+            className="slider-custom"
+            min={min}
+            max={max}
+            onChange={onSliderChange}
+            tipProps={{ overlayClassName: 'foo', placement: 'right' }}
+            handleStyle={{
+              borderColor: '#c5d1cf',
+              height: 35,
+              width: 35,
+              marginLeft: -15,
+              marginTop: -15,
+              backgroundColor: '#266294',
+            }}
+          />
         </Col>
       </Row>
     </>

@@ -9,14 +9,13 @@ import gql from 'graphql-tag';
 import {
   BaseHeader,
   StyledCardHeader,
-  StyledCard,
   StyledCardBody,
 } from '../Primatives/BasePrimatives';
 import SignupForm from './SignupForm';
 
 const FINISH_SIGNUP = gql`
   mutation finishSignup(
-  $run: RunInput,
+    $run: RunInput,
   ) {
     FinishSignup(
       run: $run
@@ -118,21 +117,19 @@ function WithCreateMutation(props) {
             xl={12}
             className="mx-auto"
           >
-            <StyledCard>
-              <StyledCardHeader className="text-center">
-                <BaseHeader>
-                  {settings.activityName.toUpperCase()}
-                  { ' ' }
-                  SIGN UP
-                </BaseHeader>
-              </StyledCardHeader>
-              <StyledCardBody>
-                <SignupFormFormik
-                  updateRun={updateRun}
-                  settings={settings}
-                />
-              </StyledCardBody>
-            </StyledCard>
+            <StyledCardHeader className="text-center">
+              <BaseHeader>
+                {settings.activityName.toUpperCase()}
+                {' '}
+                SIGN UP
+              </BaseHeader>
+            </StyledCardHeader>
+            <StyledCardBody>
+              <SignupFormFormik
+                updateRun={updateRun}
+                settings={settings}
+              />
+            </StyledCardBody>
           </Col>
         </Row>
       )}

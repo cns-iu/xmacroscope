@@ -71,16 +71,9 @@ body {
     margin-bottom: -20px;
   }
 
-  .shoes-input, .height-input {
-    margin-top: 50px;
-  }
-
-  .vertical-slider {
-    height: 500px;
-  }
-
-  .slider-custom {
-    margin-left: 120px;
+  .signup-form .slider label {
+    text-align: left;
+    font-size: 35px;
   }
 
   .shoes-input label {
