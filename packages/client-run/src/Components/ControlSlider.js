@@ -36,7 +36,6 @@ const ControlSlider = ({
             min={min}
             max={max}
             onChange={onSliderChange}
-            tipProps={{ overlayClassName: 'foo', placement: 'right' }}
             handleStyle={{
               borderColor: '#c5d1cf',
               height: 35,
