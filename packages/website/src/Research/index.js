@@ -6,6 +6,11 @@ function Research() {
   const s3Base = 'https://s3.us-east-2.amazonaws.com/org.xmacroscope/';
   const papers = [
     {
+      paperTitle: 'NSF Annual Report, Year 2',
+      fileName: 'research-annual-report-year-2',
+      key: 0,
+    },
+    {
       paperTitle: 'Data Visualization Literacy: Definitions, Conceptual Frameworks, Exercises, and Assessments',
       paperAuthors: 'Katy Börner, Andreas Bueckle, and Michael Ginda',
       fileName: 'research-data-visualization-literacy',
