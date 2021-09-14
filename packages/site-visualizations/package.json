@@ -16,11 +16,16 @@
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
     "@angular/forms": "~12.2.0",
+    "@angular/material": "^12.2.5",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "ngx-vega": "^0.52.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
+    "vega": "^5.20.2",
+    "vega-embed": "^6.18.2",
+    "vega-lite": "^5.1.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
