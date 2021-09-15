@@ -1,0 +1,26 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "http://127.0.0.1:8080/Runs.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Time (seconds)": "number",
+        "Age Group": null
+      }
+    }
+  },
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "Height (inches)",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "Time (seconds)",
+      "type": "temporal"
+    },
+    "color": {"field": "Favorite Activity", "type": "nominal"},
+    "shape": {"field": "Age Group", "type": "nominal"}
+  }
+}
