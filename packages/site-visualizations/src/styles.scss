@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+a {
+  color: #6ea7ef;
+}
+
+// Added to root elements when ThemeService is switching between different themes
+.color-transitions-disabled {
+  transition: color 0s !important;
+  transition: background-color 0s !important;
+  transition: border-color 0s !important;
+  transition: caret-color 0s !important;
+  transition: outline-color 0s !important;
+  transition: scrollbar-color 0s !important;
+  transition: text-decoration-color 0s !important;
+  transition: text-emphasis-color 0s !important;
+}
+
+// Markdown table styling
+markdown table {
+  margin-bottom: 0.75rem;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 1rem;
+  }
+}

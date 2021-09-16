@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  height: 100%;
+  overflow-y: auto;
+
+  mat-sidenav-container {
+    height: calc(100% - 3.5rem);
+  }
+
+  .content {
+    display: flex;
+    flex-flow: column;
+    max-width: 1328px;
+    // Ensures that the footer is pushed to the bottom of the page
+    // 25.125 = 2.625 (subbar) + 15 (banner) + [4.5 + 3] (footer)
+    min-height: calc(100% - 25.125rem);
+    padding: 4.5rem 4rem;
+    align-items: center;
+    margin: auto;
+
+    .outlet-wrapper {
+      width: 100%;
+    }
+
+    .space-filler {
+      flex-grow: 1;
+    }
+  }
+}

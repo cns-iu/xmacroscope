@@ -1,0 +1,6 @@
+@use "./components/page-menu/page-menu.theme";
+
+
+@mixin theme($theme-or-config) {
+  @include page-menu.theme($theme-or-config);
+}

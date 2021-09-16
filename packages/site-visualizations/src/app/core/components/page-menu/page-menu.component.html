@@ -1,0 +1,12 @@
+<div class="header">
+  {{ header }}
+</div>
+
+<nav class="pages">
+  <a *ngFor="let page of pages; trackBy: linkId" class="link" [routerLink]="['/visualization', page.path]"
+     routerLinkActive="active">
+    <div class="title">{{ page.title }}</div>
+    <div class="description">{{ page.description }}</div>
+    <mat-divider></mat-divider>
+  </a>
+</nav>

@@ -1,0 +1,5 @@
+@use "./components/visualization-page/visualization-page.theme";
+
+@mixin theme($theme-or-config) {
+  @include visualization-page.theme($theme-or-config);
+}

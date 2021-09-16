@@ -1,0 +1,13 @@
+@use '~@angular/material' as mat;
+@use "colors";
+@use "typography";
+
+@forward "colors" show $color;
+@forward "typography" show $typography;
+
+$theme: mat.define-light-theme(
+  (
+    color: colors.$color,
+    typography: typography.$typography
+  )
+);

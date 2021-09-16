@@ -1,0 +1,93 @@
+@use '~@angular/material' as mat;
+
+@mixin color($config-or-theme) {
+  $config: mat.get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+
+  .app-page-menu {
+    background-color: mat.get-color-from-palette($accent, 50);
+
+    mat-divider {
+      color: mat.get-color-from-palette($accent, 300);
+    }
+
+    mat-icon {
+      color: mat.get-color-from-palette($accent, 500);
+    }
+
+    .header {
+      background-color: mat.get-color-from-palette($primary, 700);
+      color: mat.get-color-from-palette($primary, "700-contrast");
+    }
+
+    .pages {
+      background-color: mat.get-color-from-palette($accent, A100);
+
+      .link {
+        color: mat.get-color-from-palette($accent, "100-contrast");
+
+        &.active > div {
+          background-color: mat.get-color-from-palette($accent, 300);
+        }
+
+        &:hover {
+          color: mat.get-color-from-palette($primary);
+
+          & > div {
+            background-color: mat.get-color-from-palette($accent, 300);
+          }
+        }
+      }
+    }
+
+    .info .link {
+      color: mat.get-color-from-palette($accent, default-contrast);
+
+      &:hover {
+        color: mat.get-color-from-palette($primary);
+
+        mat-icon {
+          color: mat.get-color-from-palette($primary);
+        }
+      }
+    }
+  }
+}
+
+@mixin typography($config-or-theme) {
+  $config: mat.get-typography-config($config-or-theme);
+
+  .app-page-menu {
+    .header {
+      @include mat.typography-level($config, title);
+    }
+
+    .pages .link {
+      .title {
+        @include mat.typography-level($config, subheading-2);
+        font-weight: bold;
+      }
+
+      .description {
+        @include mat.typography-level($config, subheading-2);
+      }
+    }
+
+    .info .link {
+      @include mat.typography-level($config, subheading-2);
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color: mat.get-color-config($theme);
+  $typography: mat.get-typography-config($theme);
+
+  @if $color != null {
+    @include color($color);
+  }
+  @if $typography != null {
+    @include typography($typography);
+  }
+}

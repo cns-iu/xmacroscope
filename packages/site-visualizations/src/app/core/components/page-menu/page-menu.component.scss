@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  width: 30rem;
+  padding-bottom: 2rem;
+
+  .header,
+  .pages .link :not(mat-divider),
+  .info .link {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .header {
+    display: flex;
+    height: 4rem;
+    align-items: center;
+  }
+
+  .pages {
+    padding-top: 2rem;
+
+    .link {
+      outline: none;
+      text-decoration: none;
+
+      .title {
+        padding-top: 1rem;
+      }
+
+      .description {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+
+  .info .link {
+    display: flex;
+    height: 2.25rem;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+
+    mat-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}
