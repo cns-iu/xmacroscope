@@ -1,11 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
-import {
-  DvlFwVisualizationComponent,
-  GraphicSymbol,
-  GraphicVariable,
-  GraphicVariableType,
-  Visualization,
-} from '@dvl-fw/core';
+import { DvlFwVisualizationComponent } from '@dvl-fw/angular';
+import { GraphicSymbol, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
 import { get, set } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 

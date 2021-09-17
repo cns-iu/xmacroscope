@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
-import { DvlFwVisualizationComponent, Project, Visualization } from '@dvl-fw/core';
+import { DvlFwVisualizationComponent } from '@dvl-fw/angular';
+import { Project, Visualization } from '@dvl-fw/core';
 import { Subscription } from 'rxjs';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
