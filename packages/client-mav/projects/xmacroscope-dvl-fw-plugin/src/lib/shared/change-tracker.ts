@@ -1,10 +1,10 @@
+import { RawChangeSet } from '@ngx-dino/core';
+import { List } from 'immutable';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { List } from 'immutable';
-import { RawChangeSet } from '@ngx-dino/core';
 
+import { Message, RunFinishedMessage } from './message';
 import { Run } from './run';
-import { RunFinishedMessage, Message } from './message';
 
 
 export class ChangeTracker {

@@ -1,11 +1,14 @@
 // refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import * as casual from 'casual-browserify';
 import * as moment_ from 'moment';
-const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
 
+import {
+  Message, RunFinishedMessage, RunStartedMessage, SignupFinishedMessage, SignupStartedMessage,
+} from '../shared/message';
 import { Run } from '../shared/run';
-import { Message, SignupStartedMessage, SignupFinishedMessage, RunStartedMessage, RunFinishedMessage } from '../shared/message';
 import { MockPerson } from './mock-person';
+
+const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
 
 export class RunMocker {
   private _mocking = false;

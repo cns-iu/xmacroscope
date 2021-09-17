@@ -1,18 +1,22 @@
-import { DataSource, DefaultDataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject,
-  DefaultRawData, DefaultRecordSet, GraphicSymbol, GraphicVariable, RecordSet, Visualization } from '@dvl-fw/core';
+import {
+  DataSource, DefaultDataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject, DefaultRawData,
+  DefaultRecordSet, GraphicSymbol, GraphicVariable, RecordSet, Visualization,
+} from '@dvl-fw/core';
+import { isArray } from 'lodash';
 
 import { asMessage } from '../graphql/graphql-queries';
 import { LocationSettings } from '../graphql/location-settings';
 import { MockRunRawData } from '../mock/mock-run-raw-data';
 import { GeographicMapVisualization } from '../visualizations/geographic-map/geographic-map.visualization';
-import { GraphicVariableLegendVisualization } from '../visualizations/graphic-variable-legend/graphic-variable-legend.visualization';
+import {
+  GraphicVariableLegendVisualization,
+} from '../visualizations/graphic-variable-legend/graphic-variable-legend.visualization';
 import { ScatterplotMapVisualization } from '../visualizations/scatterplot-map/scatterplot-map.visualization';
 import { TableVisualization } from '../visualizations/table/table.visualization';
 import { opponentRuns } from './opponent-runs';
 import { Run } from './run';
 import { RunStreamController } from './run-stream-controller';
 import { XMacroscopeDataSource } from './xmacroscope-data-source';
-import { isArray } from 'lodash';
 
 
 export interface XMacroscopeProjectConfig {

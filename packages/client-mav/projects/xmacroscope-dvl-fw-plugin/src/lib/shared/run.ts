@@ -1,5 +1,5 @@
 import { areaSizeScale } from '@dvl-fw/core';
-import { access, chain, combine, constant, map, Operand, Operator } from '@ngx-dino/core';
+import { access, chain, combine, map, Operand, Operator } from '@ngx-dino/core';
 import { assignIn, get, pick, round } from 'lodash';
 
 import { Person } from './person';

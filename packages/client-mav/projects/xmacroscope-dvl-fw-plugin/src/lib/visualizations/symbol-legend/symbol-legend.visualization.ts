@@ -1,4 +1,5 @@
-import { DefaultVisualization, ObjectFactory, Visualization, Project, ObjectFactoryRegistry } from '@dvl-fw/core';
+import { DefaultVisualization, ObjectFactory, ObjectFactoryRegistry, Project, Visualization } from '@dvl-fw/core';
+
 import { SymbolLegendComponent } from './symbol-legend.component';
 
 

@@ -1,9 +1,10 @@
 import { GraphicSymbol, Visualization } from '@dvl-fw/core';
-import { DataProcessorService, RawChangeSet, ChangeSet, Datum, idSymbol, DataProcessor, simpleField, constant, BoundField } from '@ngx-dino/core';
-import { differenceBy, transform, isString } from 'lodash';
-import { Observable, EMPTY } from 'rxjs';
+import {
+  BoundField, ChangeSet, constant, DataProcessor, DataProcessorService, Datum, idSymbol, RawChangeSet, simpleField,
+} from '@ngx-dino/core';
+import { differenceBy, isString, transform } from 'lodash';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 export type TDatum<T> = Datum<T> & T;
 

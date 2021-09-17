@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, EventEmitter, Output } from '@angular/core';
-import { GraphicSymbol, OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import { GraphicSymbol, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import { entries, orderBy } from 'lodash';
 import { EMPTY, Observable, of } from 'rxjs';

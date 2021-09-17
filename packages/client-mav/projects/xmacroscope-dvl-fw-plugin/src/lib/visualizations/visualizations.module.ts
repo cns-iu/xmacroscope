@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { DvlFwModule } from '@dvl-fw/core';
+import { DvlFwAngularModule } from '@dvl-fw/angular';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 import { GeographicMapComponent } from './geographic-map/geographic-map.component';
@@ -24,7 +24,7 @@ const entryComponents: any = [
     CommonModule,
     NgxMapboxGLModule,
     MatTableModule,
-    DvlFwModule
+    DvlFwAngularModule
   ],
   declarations: entryComponents,
   entryComponents

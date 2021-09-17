@@ -1,14 +1,19 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
-import { DataType, GraphicSymbol, OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
+import {
+  Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChange, SimpleChanges, ViewChild,
+} from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import { DataType, GraphicSymbol, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
+import bbox from '@turf/bbox';
+import { BBox, FeatureCollection, featureCollection, Geometry, lineString } from '@turf/helpers';
 import { extent } from 'd3-array';
 import { scaleLinear, scalePoint } from 'd3-scale';
 import { isArray, reverse, sortedUniq } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, Point, PointLike, PaddingOptions } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point, PointLike } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
-import { featureCollection, lineString, FeatureCollection, Geometry, BBox } from '@turf/helpers';
 
+import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 import { blankStyle } from '../shared/blank-style';
 import { Cartesian2dBounds, Cartesian2dProjection } from '../shared/cartesian-2d-projection';
 import { DataDrivenIcons } from '../shared/data-driven-icons';
@@ -16,8 +21,6 @@ import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
 import { withAxes } from '../shared/graticule';
 import { Node } from '../shared/node';
 import { nodesGeoJson } from '../shared/nodes-geojson';
-import bbox from '@turf/bbox';
-import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 
 
 @Component({

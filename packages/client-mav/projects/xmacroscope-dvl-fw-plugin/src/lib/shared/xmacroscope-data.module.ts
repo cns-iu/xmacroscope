@@ -1,9 +1,8 @@
-import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
 
-import { XMacroscopeProjectConfig, XMacroscopeProject } from './xmacroscope-project';
 import { XMacroscopeDataService } from './xmacroscope-data.service';
+import { XMacroscopeProject, XMacroscopeProjectConfig } from './xmacroscope-project';
 import { XMacroscopeProjectConfigService } from './xmacroscope-project-config.service';
-import { LocationSettings } from '../graphql/location-settings';
 
 export function configFactory(config: XMacroscopeProjectConfig) {
   return () => XMacroscopeProject.resolveConfig(config);

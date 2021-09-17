@@ -1,10 +1,10 @@
 import * as casual_ from 'casual-browserify';
-const casual = casual_;
 import { pick } from 'lodash';
 import * as zipcodes from 'zipcodes';
 
 import { icons, opponents, Person, shoes } from '../shared/person';
 
+const casual = casual_;
 
 const opponentsMinusVistor = opponents.filter(o => o.label !== 'Visitor');
 const shoesMinusBarefoot = shoes.filter(s => s.label !== 'Barefoot');

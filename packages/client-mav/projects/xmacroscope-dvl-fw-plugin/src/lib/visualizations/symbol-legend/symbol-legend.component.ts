@@ -1,11 +1,12 @@
-import { IconConfig, DataDrivenIcon } from './../shared/data-driven-icon';
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges, OnInit } from '@angular/core';
-import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent, GraphicSymbol, DataType } from '@dvl-fw/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import { DataType, GraphicSymbol, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService } from '@ngx-dino/core';
-import { orderBy, uniqBy, isNumber, maxBy } from 'lodash';
+import { isNumber, maxBy, orderBy, uniqBy } from 'lodash';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
+import { DataDrivenIcon, IconConfig } from './../shared/data-driven-icon';
 
 
 function areaToDiameter(value: string | number) {

@@ -1,9 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
-import { GraphicSymbol, GraphicVariable, OnGraphicSymbolChange, OnPropertyChange,
-  Project, Visualization, VisualizationComponent, DefaultGraphicSymbol } from '@dvl-fw/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import {
+  DefaultGraphicSymbol, GraphicSymbol, GraphicVariable, Project, Visualization, VisualizationComponent,
+} from '@dvl-fw/core';
 
-import { SymbolLegendVisualization } from '../symbol-legend/symbol-legend.visualization';
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
+import { SymbolLegendVisualization } from '../symbol-legend/symbol-legend.visualization';
 
 
 @Component({
