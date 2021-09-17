@@ -1,0 +1,5 @@
+@use "./about/about.theme";
+
+@mixin theme($theme-or-config) {
+  @include about.theme($theme-or-config);
+}

@@ -17,7 +17,7 @@
     }
 
     .header {
-      background-color: mat.get-color-from-palette($primary, 700);
+      background-color: mat.get-color-from-palette($primary);
       color: mat.get-color-from-palette($primary, "700-contrast");
     }
 

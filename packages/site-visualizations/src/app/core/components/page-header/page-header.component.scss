@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  height: 3.5rem;
+  align-items: center;
+
+  .menu {
+    display: flex;
+    width: 5rem;
+    height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 0;
+    border-right-width: 1px;
+    border-right-style: solid;
+  }
+
+  .logos {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-radius: 0;
+    border-left-width: 1px;
+    border-left-style: solid;
+
+    & > * {
+      height: 2.25rem;
+      margin-left: 1rem;
+    }
+
+    img {
+      height: 2.25rem;
+    }
+  }
+}

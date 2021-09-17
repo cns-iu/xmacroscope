@@ -1,3 +1,6 @@
+<app-page-header [(menuOpen)]="menuOpen">
+</app-page-header>
+
 <mat-sidenav-container>
   <mat-sidenav mode="over" [(opened)]="menuOpen" (closedStart)="menuOpen = false">
     <app-page-menu [header]="menuHeader" [pages]="pages">
@@ -15,7 +18,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<button (click)="menuOpen = !menuOpen">
-  Click me
-</button>

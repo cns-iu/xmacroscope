@@ -3,6 +3,12 @@
   height: 100%;
   overflow-y: auto;
 
+  app-page-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
   mat-sidenav-container {
     height: calc(100% - 3.5rem);
   }
