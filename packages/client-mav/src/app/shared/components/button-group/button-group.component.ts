@@ -41,9 +41,9 @@ export class ButtonGroupComponent {
   @Output() valueChange: Observable<any>;
   @Output() change = new EventEmitter<MatButtonToggleChange>();
 
-  @ViewChild('buttonGroup', { static: false, read: MatButtonToggleGroup }) buttonGroup: MatButtonToggleGroup;
-  @ContentChild(ButtonGroupLabelDirective, { static: false, read: TemplateRef }) label: TemplateRef<void>;
-  @ContentChild(ButtonContentDirective, { static: false, read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
+  @ViewChild('buttonGroup', { read: MatButtonToggleGroup }) buttonGroup: MatButtonToggleGroup;
+  @ContentChild(ButtonGroupLabelDirective, { read: TemplateRef }) label: TemplateRef<void>;
+  @ContentChild(ButtonContentDirective, { read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
 
   private lastChangeEvent = new MatButtonToggleChange(undefined, undefined);
   private _valueChange = new EventEmitter<any>();

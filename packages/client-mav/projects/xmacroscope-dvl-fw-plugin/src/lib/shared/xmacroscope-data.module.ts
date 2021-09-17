@@ -12,7 +12,7 @@ export function configFactory(config: XMacroscopeProjectConfig) {
 // @dynamic
 @NgModule()
 export class XMacroscopeDataModule {
-  static forRoot(config: XMacroscopeProjectConfig): ModuleWithProviders {
+  static forRoot(config: XMacroscopeProjectConfig): ModuleWithProviders<XMacroscopeDataModule> {
     return {
       ngModule: XMacroscopeDataModule,
       providers: [
