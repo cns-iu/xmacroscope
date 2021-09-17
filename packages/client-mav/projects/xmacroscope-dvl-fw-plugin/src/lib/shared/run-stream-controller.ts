@@ -1,11 +1,10 @@
 import { RawChangeSet } from '@ngx-dino/core';
-import { Observable, Subject, of, merge } from 'rxjs';
+import { merge, Observable, of, Subject } from 'rxjs';
 import { mergeAll, share, windowToggle } from 'rxjs/operators';
-import { List } from 'immutable';
 
 import { ChangeTracker } from './change-tracker';
-import { Run } from './run';
 import { Message } from './message';
+import { Run } from './run';
 
 
 export class RunStreamController {
@@ -19,13 +18,13 @@ export class RunStreamController {
   private readonly starter = new Subject<any>();
   private readonly stopper = new Subject<any>();
   private running = true;
-  private snapshot = List<Run>();
+  private snapshot: readonly Run[] = [];
 
   constructor(public historySize = 50, public highlightCount = 4) {
     this.changeTracker = new ChangeTracker(this.messageStream, this.historySize, this.highlightCount);
     this.runStream = merge(this.changeTracker.asObservable().pipe(
       windowToggle(this.starter, () => this.stopper),
-      mergeAll() as (s: any) => Observable<RawChangeSet<Run>>
+      mergeAll()
     ), this.emitter).pipe(share());
     setTimeout(() => this.starter.next(), 0);
     this.runStream.subscribe();
@@ -46,14 +45,14 @@ export class RunStreamController {
 
   createRunStream(): Observable<RawChangeSet<Run>> {
     const opponentRuns = of(RawChangeSet.fromArray(this.opponentRuns));
-    const snapshot = of(RawChangeSet.fromArray(this.changeTracker.snapshot().toArray()));
+    const snapshot = of(RawChangeSet.fromArray(this.changeTracker.snapshot()));
     return merge(opponentRuns, snapshot, this.runStream);
   }
 
   start(): void {
     if (!this.running) {
       this.emitter.next(this.snapshotDiff(
-        this.snapshot, this.changeTracker.snapshot()
+        [...this.snapshot], this.changeTracker.snapshot()
       ));
       this.starter.next();
       this.running = true;
@@ -69,29 +68,28 @@ export class RunStreamController {
   }
 
   private snapshotDiff(
-    snapshot1: List<Run>,
-    snapshot2: List<Run>
+    snapshot1: Run[],
+    snapshot2: Run[]
   ): RawChangeSet<Run> {
-    if (snapshot1.size === 0) {
-      return new RawChangeSet(snapshot2.toArray());
-    } else if (snapshot2.size === 0) {
-      return new RawChangeSet(undefined, snapshot1.toArray());
+    if (snapshot1.length === 0) {
+      return new RawChangeSet(snapshot2);
+    } else if (snapshot2.length === 0) {
+      return new RawChangeSet(undefined, snapshot1);
     }
 
-    const first = snapshot2.first();
-    const index = snapshot1.findLastIndex((value) => value === first);
+    const first = snapshot2[0];
+    const index = snapshot1.lastIndexOf(first);
     if (index >= 0) {
-      const diffCount = snapshot1.size - index;
+      const diffCount = snapshot1.length - index;
       return new RawChangeSet(
-        snapshot2.slice(diffCount).toArray(),
-        snapshot1.slice(0, index).toArray(),
+        snapshot2.slice(diffCount),
+        snapshot1.slice(0, index),
         undefined,
         snapshot2.slice(0, diffCount)
           .map((item): [Run, Run] => [item, item])
-          .toArray()
       );
     } else {
-      return new RawChangeSet(snapshot2.toArray(), snapshot1.toArray());
+      return new RawChangeSet(snapshot2, snapshot1);
     }
   }
 }
