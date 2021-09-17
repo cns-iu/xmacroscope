@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {
+    "data": {
     "url": "http://127.0.0.1:8080/Runs.csv",
     "format": {
       "type": "csv",
@@ -10,17 +10,31 @@
       }
     }
   },
-  "mark": "point",
+  "mark": "rect",
+  "width": 300,
+  "height": 200,
   "encoding": {
-    "x": {
+    "y": {
+      "bin": {"maxbins":40},
       "field": "Height (inches)",
       "type": "quantitative"
     },
-    "y": {
+    "x": {
+      "bin": {"maxbins": 60},
       "field": "Time (seconds)",
-      "type": "temporal"
+      "type": "quantitative"
     },
-    "color": {"field": "Favorite Activity", "type": "nominal"},
-    "shape": {"field": "Age Group", "type": "nominal"}
+    "color": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "legend": {
+        "title": "Count"
+      }
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
   }
 }
