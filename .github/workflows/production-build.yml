@@ -44,15 +44,15 @@ jobs:
         run: |
           npm run build:libs
           npm run build -- --output-hashing=none --base-href=/xmacroscope/demo/
-      # - name: Build Site Visualizations
-      #   working-directory: packages/site-visualizations
-      #   run: npm run build -- --output-hashing=none --base-href=/xmacroscope/site-visualizations/
+      - name: Build Site Visualizations
+        working-directory: packages/site-visualizations
+        run: npm run build -- --output-hashing=none --base-href=/xmacroscope/site-visualizations/
 
       - name: Package Site
         run: |
           cp -r packages/website/build dist
           cp -r packages/client-mav/dist/client-mav dist/demo
-          # cp -r packages/site-visualizations/dist/site-visualizations dist/site-visualizations
+          cp -r packages/site-visualizations/dist/site-visualizations dist/site-visualizations
           cp dist/index.html dist/404.html
 
       - uses: peaceiris/actions-gh-pages@v3

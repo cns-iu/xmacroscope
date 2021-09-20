@@ -29,6 +29,7 @@
     "tslib": "^2.3.0",
     "vega": "^5.20.2",
     "vega-embed": "^6.18.2",
+    "vega-interpreter": "^1.0.4",
     "vega-lite": "^5.1.1",
     "zone.js": "~0.11.4"
   },
