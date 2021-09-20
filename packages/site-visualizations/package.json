@@ -23,6 +23,7 @@
     "@ngxs-labs/data": "^6.2.0",
     "@ngxs/router-plugin": "^3.7.2",
     "css-element-queries": "^1.2.3",
+    "ngx-markdown": "^12.0.1",
     "ngx-vega": "^0.52.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

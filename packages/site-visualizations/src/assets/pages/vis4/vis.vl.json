@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A scatterplot showing body mass and flipper lengths of penguins.",
+  "padding": {"top": 50},
+  "config": {
+    "view": {"strokeOpacity": 0}
+  },
+  "autosize": {
+    "contains": "padding"
+  },
+  "height": 800,
+  "data": {
+    "values": [
+      {"Species": "Adelie", "Flipper Length (mm)": 181, "Body Mass (g)": 3750},
+      {"Species": "Adelie", "Flipper Length (mm)": 186, "Body Mass (g)": 3800},
+      {"Species": "Adelie", "Flipper Length (mm)": 195, "Body Mass (g)": 3250},
+      {"Species": "Adelie", "Flipper Length (mm)": 193, "Body Mass (g)": 3450},
+      {"Species": "Chinstrap", "Flipper Length (mm)": 190, "Body Mass (g)": 3650},
+      {"Species": "Chinstrap", "Flipper Length (mm)": 181, "Body Mass (g)": 3625},
+      {"Species": "Chinstrap", "Flipper Length (mm)": 195, "Body Mass (g)": 4675},
+      {"Species": "Chinstrap", "Flipper Length (mm)": 193, "Body Mass (g)": 3475},
+      {"Species": "Chinstrap", "Flipper Length (mm)": 190, "Body Mass (g)": 4250},
+      {"Species": "Gentoo", "Flipper Length (mm)": 186, "Body Mass (g)": 3300},
+      {"Species": "Gentoo", "Flipper Length (mm)": 180, "Body Mass (g)": 3700},
+      {"Species": "Gentoo", "Flipper Length (mm)": 182, "Body Mass (g)": 3200},
+      {"Species": "Gentoo", "Flipper Length (mm)": 191, "Body Mass (g)": 3800},
+      {"Species": "Gentoo", "Flipper Length (mm)": 198, "Body Mass (g)": 4400}
+    ]
+  },
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "Flipper Length (mm)",
+      "type": "quantitative",
+      "scale": {"zero": false}
+    },
+    "y": {
+      "field": "Body Mass (g)",
+      "type": "quantitative",
+      "scale": {"zero": false}
+    },
+    "color": {"field": "Species", "type": "nominal"},
+    "shape": {"field": "Species", "type": "nominal"},
+    "size": {"value": 200}
+  }
+}

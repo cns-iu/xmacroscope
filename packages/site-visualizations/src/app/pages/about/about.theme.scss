@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+  @use '~@angular/material' as mat;
 
 
 @mixin color($config-or-theme) {
@@ -6,22 +6,10 @@
   $primary: map-get($config, primary);
   $accent: map-get($config, accent);
 
-  .app-visualization-page {
+  .app-about {
     .header {
       background-color: mat.get-color-from-palette($primary);
       color: mat.get-color-from-palette($primary, '600-contrast');
-    }
-
-    .visualization {
-      // Colors selected to match vega-embed action button
-      .help {
-        background-color: #fff;
-        border-color: #aaa;
-
-        .qmark {
-          color:#1b1e23;
-        }
-      }
     }
   }
 }
@@ -29,18 +17,9 @@
 @mixin typography($config-or-theme) {
   $config: mat.get-typography-config($config-or-theme);
 
-  .app-visualization-page {
+  .app-about {
     .header {
       @include mat.typography-level($config, title);
-    }
-
-    .title {
-      @include mat.typography-level($config, title);
-    }
-
-    .description {
-      @include mat.typography-level($config, title);
-      font-size: initial;
     }
   }
 }
