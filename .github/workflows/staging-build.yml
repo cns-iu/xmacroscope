@@ -30,27 +30,34 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm ci
-      - run: npm run build:libs
-      - name: Build EUI
+
+      - name: Install Dependencies
         run: |
-          npm run build -- --output-hashing=none --base-href=/ --configuration=staging
-          npm run build:ccf-eui:wc
-      - name: Build RUI
+          cd packages/client-mav && npm ci
+          cd ../website && npm ci
+          cd ../site-visualizations && npm ci
+      - name: Build Website
+        run: npm run build
+        working-directory: packages/website
+      - name: Build MAV
+        working-directory: packages/client-mav
         run: |
-          npm run build -- --project ccf-rui --output-hashing=none --base-href=/rui/ --configuration=staging
-          npm run build:ccf-rui:wc
-          cp -r dist/ccf-rui dist/ccf-ui/rui
-      - name: Build Organ Info
+          npm run build:libs
+          npm run build -- --output-hashing=none --base-href=/demo/
+      # - name: Build Site Visualizations
+      #   working-directory: packages/site-visualizations
+      #   run: npm run build -- --output-hashing=none --base-href=/site-visualizations/
+
+      - name: Package Site
         run: |
-          npm run build -- --project ccf-organ-info --output-hashing=none --base-href=/organ-info/ --configuration=staging
-          npm run build:ccf-organ-info:wc
-          cp -r dist/ccf-organ-info dist/ccf-ui/organ-info
-      - run: npm run compodoc
+          cp -r packages/website/build dist
+          cp -r packages/client-mav/dist/client-mav dist/demo
+          # cp -r packages/site-visualizations/dist/site-visualizations dist/site-visualizations
+          cp dist/index.html dist/404.html
 
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/ccf-ui
+          publish_dir: dist
           publish_branch: staging
           commit_message: "Staging deploy -- ${{ github.event.head_commit.message }}"
