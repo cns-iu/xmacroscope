@@ -1,0 +1,55 @@
+name: 'Tests'
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types: ['opened', 'edited', 'synchronize']
+
+jobs:
+  tests:
+    name: 'Tests'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
+        working-directory: packages/client-mav
+      - run: npm run lint
+        working-directory: packages/client-mav
+      - run: npm run build:libs
+        working-directory: packages/client-mav
+
+      # - run: npm run test
+      #   working-directory: packages/client-mav
+
+      # - run: npm ci
+      #   working-directory: packages/site-visualizations
+      # - run: npm run lint
+      #   working-directory: packages/site-visualizations
+      # - run: npm run test
+      #   working-directory: packages/site-visualizations
+
+      - name: Slack Notification
+        if: always()
+        uses: kpritam/slack-job-status-action@v1
+        with:
+          job-status: ${{ job.status }}
+          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel: github
