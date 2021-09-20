@@ -1,0 +1,62 @@
+name: 'Production Build'
+
+on:
+  workflow_run:
+    workflows: ['Tests']
+    branches: ['main']
+    types:
+      - completed
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: |
+          cd packages/client-mav && npm ci
+          cd ../website && npm ci
+          cd ../site-visualizations && npm ci
+      - name: Build Website
+        run: npm run build
+        working-directory: packages/website
+      - name: Build MAV
+        working-directory: packages/client-mav
+        run: |
+          npm run build:libs
+          npm run build -- --output-hashing=none --base-href=/xmacroscope/demo/
+      # - name: Build Site Visualizations
+      #   working-directory: packages/site-visualizations
+      #   run: npm run build -- --output-hashing=none --base-href=/xmacroscope/site-visualizations/
+
+      - name: Package Site
+        run: |
+          cp -r packages/website/build dist
+          cp -r packages/client-mav/dist/client-mav dist/demo
+          # cp -r packages/site-visualizations/dist/site-visualizations dist/site-visualizations
+          cp dist/index.html dist/404.html
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
+          commit_message: "Production deploy -- ${{ github.event.head_commit.message }}"
