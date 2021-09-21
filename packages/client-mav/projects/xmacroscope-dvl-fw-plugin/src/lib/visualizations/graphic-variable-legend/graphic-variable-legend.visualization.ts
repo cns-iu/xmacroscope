@@ -4,7 +4,7 @@ import { GraphicVariableLegendComponent } from './graphic-variable-legend.compon
 
 
 export class GraphicVariableLegendVisualization extends DefaultVisualization {
-  // tslint:disable-next-line: max-line-length
+  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A legend of a graphic variable data.';
   readonly component = GraphicVariableLegendComponent;
   readonly graphicSymbolOptions = [{

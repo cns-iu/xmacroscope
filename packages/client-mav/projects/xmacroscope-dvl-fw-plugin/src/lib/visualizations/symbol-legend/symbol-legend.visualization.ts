@@ -4,7 +4,7 @@ import { SymbolLegendComponent } from './symbol-legend.component';
 
 
 export class SymbolLegendVisualization extends DefaultVisualization {
-  // tslint:disable-next-line: max-line-length
+  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A legend of symbol data.';
   readonly component = SymbolLegendComponent;
   readonly graphicSymbolOptions = [{

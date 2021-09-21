@@ -158,14 +158,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }
@@ -210,13 +207,13 @@
           "options": {
             "tsConfig": "projects/xmacroscope-dvl-fw-plugin/tsconfig.lib.json",
             "project": "projects/xmacroscope-dvl-fw-plugin/ng-package.json"
-          }
-        ,          "configurations": {
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/xmacroscope-dvl-fw-plugin/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -226,14 +223,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/xmacroscope-dvl-fw-plugin/tsconfig.lib.json",
-              "projects/xmacroscope-dvl-fw-plugin/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/xmacroscope-dvl-fw-plugin/**/*.ts",
+              "projects/xmacroscope-dvl-fw-plugin/**/*.html"
             ]
           }
         }

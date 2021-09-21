@@ -4,7 +4,7 @@ import { TableComponent } from './table.component';
 
 
 export class TableVisualization extends DefaultVisualization {
-  // tslint:disable-next-line: max-line-length
+  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A table displaying data.';
   readonly component = TableComponent;
   readonly graphicSymbolOptions = [{
