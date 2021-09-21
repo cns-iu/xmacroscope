@@ -11,7 +11,7 @@ import { SymbolLegendComponent } from './symbol-legend/symbol-legend.component';
 import { TableComponent } from './table/table.component';
 
 
-const entryComponents: any = [
+const entryComponents: unknown = [
   GeographicMapComponent,
   GraphicVariableLegendComponent,
   ScatterplotMapComponent,

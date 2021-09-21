@@ -1,14 +1,14 @@
-const fs = require('fs');
-
+import * as fs from 'fs';
 import { ProjectSerializer } from '@dvl-fw/core';
 import { XMacroscopeProject } from '../shared/xmacroscope-project';
 
 async function exportProject(outYAML, graphQLData?: string) {
-  let staticData: 'mocked' | any = 'mocked';
+  let staticData: 'mocked' | unknown = 'mocked';
   if (graphQLData) {
-    staticData = JSON.parse(fs.readFileSync(graphQLData));
+    const content = fs.readFileSync(graphQLData, { encoding: 'utf-8' });
+    staticData = JSON.parse(content);
   }
-  const project = await XMacroscopeProject.create({staticData});
+  const project = await XMacroscopeProject.create({ staticData });
   const yamlString = await ProjectSerializer.toYAML(project);
   fs.writeFileSync(outYAML, yamlString, 'utf8');
 }

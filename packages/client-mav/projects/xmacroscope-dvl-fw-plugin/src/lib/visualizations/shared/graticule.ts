@@ -57,20 +57,28 @@ function makeParallel(lat: number) {
 }
 
 function lngFix(lng: number) {
-  if (lng >= 180) { return 179.999999; }
-  if (lng <= -180) { return -179.999999; }
+  if (lng >= 180) {
+    return 179.999999;
+  }
+  if (lng <= -180) {
+    return -179.999999;
+  }
   return lng;
 }
 
 function latFix(lat: number) {
-  if (lat >= 90) { return 89.999999; }
-  if (lat <= -90) { return -89.999999; }
+  if (lat >= 90) {
+    return 89.999999;
+  }
+  if (lat <= -90) {
+    return -89.999999;
+  }
   return lat;
 }
 
 export function withAxes(geojson: FeatureCollection<Geometry>,
-    xAxisLabel: string = 'Longitude (degrees)',
-    yAxisLabel: string = 'Latitude (degrees)'): { geojson: FeatureCollection<Geometry>, padding: PaddingOptions } {
+                         xAxisLabel = 'Longitude (degrees)',
+                         yAxisLabel = 'Latitude (degrees)'): { geojson: FeatureCollection<Geometry>; padding: PaddingOptions } {
   const [minX, minY, maxX, maxY] = bbox(geojson);
 
   const axisLineX = lineString(
@@ -85,10 +93,10 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
   const xTicks = geojson.features
     .filter(f => f.properties.type === 'grid-line-x')
     .map(f => {
-      const points = lineIntersect(axisLineY, f as any);
+      const points = lineIntersect(axisLineY, f as unknown);
       if (points.features.length > 0) {
         const axisPoint = points.features[0].geometry.coordinates;
-        return {point: axisPoint[0], label: f.properties.label};
+        return { point: axisPoint[0], label: f.properties.label };
       }
     }).filter(f => !!f).map(t => point(
       [t.point, minY],
@@ -97,10 +105,10 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
   const yTicks = geojson.features
     .filter(f => f.properties.type === 'grid-line-y')
     .map(f => {
-      const points = lineIntersect(axisLineX, f as any);
+      const points = lineIntersect(axisLineX, f as unknown);
       if (points.features.length > 0) {
         const axisPoint = points.features[0].geometry.coordinates;
-        return {point: axisPoint[1], label: f.properties.label};
+        return { point: axisPoint[1], label: f.properties.label };
       }
     }).filter(f => !!f).map(t => point(
       [minX, t.point],

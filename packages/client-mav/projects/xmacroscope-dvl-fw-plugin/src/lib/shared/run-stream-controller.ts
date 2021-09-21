@@ -8,19 +8,20 @@ import { Run } from './run';
 
 
 export class RunStreamController {
-  private messages = new Subject<Message>();
-  public readonly messageStream = this.messages.asObservable().pipe(share());
+  public readonly messageStream: Observable<Message>;
   public readonly runStream: Observable<RawChangeSet<Run>>;
   public opponentRuns: Run[] = [];
 
+  private messages = new Subject<Message>();
   private readonly changeTracker: ChangeTracker;
   private readonly emitter = new Subject<RawChangeSet<Run>>();
-  private readonly starter = new Subject<any>();
-  private readonly stopper = new Subject<any>();
+  private readonly starter = new Subject<unknown>();
+  private readonly stopper = new Subject<unknown>();
   private running = true;
   private snapshot: readonly Run[] = [];
 
   constructor(public historySize = 50, public highlightCount = 4) {
+    this.messageStream = this.messages.asObservable().pipe(share());
     this.changeTracker = new ChangeTracker(this.messageStream, this.historySize, this.highlightCount);
     this.runStream = merge(this.changeTracker.asObservable().pipe(
       windowToggle(this.starter, () => this.stopper),
@@ -30,7 +31,7 @@ export class RunStreamController {
     this.runStream.subscribe();
   }
 
-  sendMessage(message: Message) {
+  sendMessage(message: Message): void {
     this.messages.next(message);
   }
 
@@ -38,7 +39,7 @@ export class RunStreamController {
     this.emitter.next(change);
   }
 
-  selectRuns(runs: Run[]) {
+  selectRuns(runs: Run[]): void {
     const change = this.changeTracker.selectRuns(runs);
     this.emitter.next(change);
   }

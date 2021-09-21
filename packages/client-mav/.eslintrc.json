@@ -3,6 +3,7 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
+  "reportUnusedDisableDirectives": true,
   "overrides": [
     {
       "files": [
@@ -126,9 +127,7 @@
               "static-field",
               "static-method",
 
-              "public-decorated-field",
-              "public-instance-field",
-              "public-abstract-field",
+              "public-field",
 
               "signature",
 

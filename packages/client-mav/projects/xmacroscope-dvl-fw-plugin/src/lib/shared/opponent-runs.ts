@@ -1,12 +1,11 @@
-import * as moment_ from 'moment';
-
-const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
+import moment from 'moment';
 
 
 // TODO: Make opponent locations be data/site driven
 // TODO: Get Minnesota and California locations
 
-function getOpponentRuns(location: string): any[] {
+function getOpponentRuns(location: string): unknown[] {
+  /* eslint-disable @typescript-eslint/naming-convention */
   const opponentRunData = [
     {
       id: 'penguin-run',
@@ -54,8 +53,13 @@ function getOpponentRuns(location: string): any[] {
       }
     },
   ];
+  /* eslint-enable @typescript-eslint/naming-convention */
 
-  return opponentRunData.map(run => (Object.assign(run.person, run.locations[location], run)));
+  return opponentRunData.map(run => Object.assign(
+    run.person,
+    run.locations[location as keyof (typeof run)['locations']],
+    run
+  ));
 }
 
 export const opponentRuns = {

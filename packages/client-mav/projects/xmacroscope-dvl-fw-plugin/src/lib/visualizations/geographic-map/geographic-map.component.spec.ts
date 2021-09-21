@@ -10,7 +10,7 @@ describe('GeographicMapComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GeographicMapComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

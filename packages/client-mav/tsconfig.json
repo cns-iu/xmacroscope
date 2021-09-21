@@ -2,30 +2,30 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "target": "es2015",
+    "lib": [
+      "dom",
+      "es2018"
+    ],
+
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "sourceMap": true,
 
     "allowUnreachableCode": false,
     "noImplicitOverride": true,
-    "noImplicitReturns": true,
     "strict": true,
 
-
-    "downlevelIteration": true,
-    "importHelpers": true,
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "lib": [
-      "dom",
-      "es2018",
-      "esnext"
     ],
     "paths": {
       "stream": [

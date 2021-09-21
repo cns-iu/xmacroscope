@@ -24,20 +24,20 @@ export class DataDrivenIcons {
     const map = this.map;
     const icon = new DataDrivenIcon(config, this.createCanvas);
     if (icon.isAnimated) {
-      map.addImage(id, this.asAnimatedImage(icon), {pixelRatio: 2});
+      map.addImage(id, this.asAnimatedImage(icon), { pixelRatio: 2 });
     } else {
       map.addImage(id, icon.getImageData());
     }
   }
 
-  private asAnimatedImage(icon: DataDrivenIcon): {width: number, height: number, data: Uint8ClampedArray, render: () => boolean} {
+  private asAnimatedImage(icon: DataDrivenIcon): { width: number; height: number; data: Uint8ClampedArray; render: () => boolean } {
     const map = this.map;
     return {
       width: icon.canvas.width,
       height: icon.canvas.height,
       data: icon.getImageData().data,
 
-      render: function() {
+      render: function () {
         const doRepaint = icon.render();
         this.data = icon.getImageData().data;
         if (doRepaint) {

@@ -5,9 +5,9 @@ import projections from 'dirty-reprojectors/projections';
 
 
 export function reprojector<T = Geometry>(projection: string,
-    geojson: FeatureCollection<T> | FeatureCollection2<Geometry2>,
-    reverse = 'mercator'): FeatureCollection<T> {
-  const newFeatures: any[] = [];
+                                          geojson: FeatureCollection<T> | FeatureCollection2<Geometry2>,
+                                          reverse = 'mercator'): FeatureCollection<T> {
+  const newFeatures: unknown[] = [];
   for (const feature of geojson.features) {
     feature.geometry = dirtyReproject({
       forward: projection, reverse, projections

@@ -34,13 +34,13 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
 
       if (gs && gv) {
         const graphicSymbol = this.createGraphicSymbol(gv, gs, project);
-        legend = this.createLegend(this.data.id, graphicSymbol, {itemDefaults}, project);
+        legend = this.createLegend(this.data.id, graphicSymbol, { itemDefaults }, project);
       }
     }
     this.legend = legend;
   }
 
-  private createLegend(id: string, graphicSymbol: GraphicSymbol, properties: any, project: Project): Visualization {
+  private createLegend(id: string, graphicSymbol: GraphicSymbol, properties: unknown, project: Project): Visualization {
     const visualization = new SymbolLegendVisualization({
       id,
       template: 'symbol-legend',
@@ -53,7 +53,7 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
   }
 
   private createGraphicSymbol(graphicVariable: GraphicVariable, sourceGraphicSymbol: GraphicSymbol, project: Project) {
-    const gvars: { [id: string]: any } = {};
+    const gvars: { [id: string]: unknown } = {};
     for (const gv of project.graphicVariables) {
       if (gv.dataVariable === graphicVariable.dataVariable && !gvars[gv.type]) {
         gvars[gv.type] = gv;
@@ -83,12 +83,16 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
     this.refreshItems();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) { this.refreshItems(); }
+    if ('data' in changes) {
+      this.refreshItems();
+    }
   }
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
     this.refreshItems();
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('graphicVariable' in changes || 'itemDefaults' in changes) { this.refreshItems(); }
+    if ('graphicVariable' in changes || 'itemDefaults' in changes) {
+      this.refreshItems();
+    }
   }
 }

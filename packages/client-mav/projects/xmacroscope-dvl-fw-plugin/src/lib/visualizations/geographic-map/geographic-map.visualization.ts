@@ -32,8 +32,8 @@ export class GeographicMapVisualization extends DefaultVisualization {
         { type: 'areaSize', label: 'Size', visualization: 'node-size', scaleType: 'ratio', required: true,
           staticVisualization: 'area-size'
         },
-        { type: 'transparency', label: 'Transparency', advanced: true},
-        { id: 'strokeTransparency', type: 'transparency', label: 'Stroke Transparency', advanced: true},
+        { type: 'transparency', label: 'Transparency', advanced: true },
+        { id: 'strokeTransparency', type: 'transparency', label: 'Stroke Transparency', advanced: true },
         { id: 'label', type: 'text', label: 'Label', visualization: 'label', scaleType: 'nominal' },
         { id: 'tooltip', type: 'text', label: 'Tooltip', visualization: 'label' },
         { type: 'labelPosition', label: 'Label Position', advanced: true },
@@ -62,7 +62,7 @@ export class GeographicMapVisualizationFactory implements ObjectFactory<Visualiz
   readonly id = 'geomap';
   readonly type = 'visualization';
 
-  async fromJSON(data: any, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
+  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
     return new GeographicMapVisualization(data, context);
   }
   toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {

@@ -1,9 +1,9 @@
 export interface Node {
-  identifier: any;
+  identifier: unknown;
   latitude?: number;
   longitude?: number;
-  x?: any;
-  y?: any;
+  x?: unknown;
+  y?: unknown;
   position?: [number, number];
 
   color: string;

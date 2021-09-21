@@ -29,7 +29,7 @@ export class ScatterplotMapVisualizationFactory implements ObjectFactory<Visuali
   id = 'scattergraph';
   type = 'visualization';
 
-  async fromJSON(data: any, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
+  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
     return new ScatterplotMapVisualization(data, context);
   }
   toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {

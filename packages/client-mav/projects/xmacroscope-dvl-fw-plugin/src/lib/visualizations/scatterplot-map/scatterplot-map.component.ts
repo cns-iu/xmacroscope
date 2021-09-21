@@ -32,7 +32,7 @@ import { nodesGeoJson } from '../shared/nodes-geojson';
 export class ScatterplotMapComponent implements VisualizationComponent,
     OnDestroy, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
-  nodeDefaults: { [gvName: string]: any } = {
+  nodeDefaults: { [gvName: string]: unknown } = {
     shape: 'circle',
     areaSize: 16,
     color: '#000',
@@ -44,7 +44,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   @Output() nodeClick = new EventEmitter<NgxDinoEvent>();
 
   // Tooltip element
-  @ViewChild('tooltipElement', {static: true}) tooltipElement: ElementRef<HTMLDivElement>;
+  @ViewChild('tooltipElement', { static: true }) tooltipElement: ElementRef<HTMLDivElement>;
 
   style = blankStyle;
   map: Map;
@@ -61,7 +61,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   private toNgxDinoEvent(event: MapMouseEvent, layers: string[], data: Datum[]): NgxDinoEvent | undefined {
     const bboxMargin = new Point(4, 4);
     const pointBox: [PointLike, PointLike] = [ event.point.sub(bboxMargin), event.point.add(bboxMargin) ];
-    const features = this.map.queryRenderedFeatures(pointBox, {layers});
+    const features = this.map.queryRenderedFeatures(pointBox, { layers });
     const itemId = features[0].properties[idSymbol];
     const item = data.find(i => i[idSymbol] === itemId);
     if (item) {
@@ -90,7 +90,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   onMouseLeave(event: MapLayerMouseEvent): void {
     this.hideTooltip();
   }
-  showTooltip(event: any, tooltip: string): void {
+  showTooltip(event: unknown, tooltip: string): void {
     const el = this.tooltipElement.nativeElement;
     const { x, y } = event;
     if (!el || !tooltip) {
@@ -116,7 +116,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     this.map.resize();
     new DataDrivenIcons().addTo(map);
 
-    this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange});
+    this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange });
   }
 
   private layout(nodes?: TDatum<Node>[]): void {
@@ -152,11 +152,11 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     }
   }
 
-  getGrid(xScale: (x: any) => number | undefined,
-      yScale: (x: any) => number | undefined,
-      projection: Cartesian2dProjection,
-      xAxisLabel: string = '',
-      yAxisLabel: string = ''): {geojson: FeatureCollection<Geometry>, padding: PaddingOptions} {
+  getGrid(xScale: (x: unknown) => number | undefined,
+          yScale: (x: unknown) => number | undefined,
+          projection: Cartesian2dProjection,
+          xAxisLabel = '',
+          yAxisLabel = ''): { geojson: FeatureCollection<Geometry>; padding: PaddingOptions } {
     const numTicks = 10;
     const xTicks = this.getTicks(xScale, numTicks);
     const yTicks = this.getTicks(yScale, numTicks);
@@ -181,24 +181,20 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     ]), xAxisLabel, yAxisLabel);
   }
 
-  getTicks(scale: any, numTicks: number): {point: number, label: string}[] {
+  getTicks(scale: unknown, numTicks: number): { point: number; label: string }[] {
     if ('ticks' in scale && 'tickFormat' in scale) {
       const ticks: number[] = scale.ticks(numTicks);
       const formatter = scale.tickFormat(numTicks);
-      return ticks.map(tick => {
-        return {point: scale(tick), label: formatter(tick)};
-      });
+      return ticks.map(tick => ({ point: scale(tick), label: formatter(tick) }));
     } else if ('domain' in scale) {
       const ticks: string[] = scale.domain();
-      return ticks.map(label => {
-        return {point: scale(label), label};
-      });
+      return ticks.map(label => ({ point: scale(label), label }));
     }
     return [];
   }
 
   getScale(nodes: TDatum<Node>[], gvName: string, graphicSymbol: GraphicSymbol,
-      range: [number, number] = [1000, 0]): (x: any) => number | undefined {
+           range: [number, number] = [1000, 0]): (x: unknown) => number | undefined {
     const gv = graphicSymbol.graphicVariables[gvName];
     switch (gv.dataVariable.dataType) {
       case DataType.NUMBER:
@@ -230,10 +226,14 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) { this.refreshNodes(); }
+    if ('data' in changes) {
+      this.refreshNodes();
+    }
   }
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
-    if ('points' in changes) { this.refreshNodes(); }
+    if ('points' in changes) {
+      this.refreshNodes();
+    }
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('pointDefaults' in changes) {
@@ -241,7 +241,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
       this.refreshNodes();
     }
   }
-  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: any } = {}): Observable<TDatum<T>[]> {
+  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
   ngOnDestroy(): void {

@@ -59,7 +59,7 @@ export interface SummaryStatistics {
 export class SymbolLegendComponent implements VisualizationComponent,
     OnDestroy, OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
   @Input() data: Visualization;
-  itemDefaults: { [gvName: string]: any } = {
+  itemDefaults: { [gvName: string]: unknown } = {
     shape: 'square',
     areaSize: 196,
     color: '#000',
@@ -130,12 +130,12 @@ export class SymbolLegendComponent implements VisualizationComponent,
     const max = data.length > 0 ? data.slice(-1)[0] : undefined;
     const median = data.length > 0 ? data[Math.floor((data.length - 1) / 2)] : undefined;
 
-    return {min, max, median};
+    return { min, max, median };
   }
 
   refreshItems(): void {
     if (this.data) {
-      const itemDefaults = Object.assign({}, this.itemDefaults, this.data.properties.itemDefaults);
+      const itemDefaults = { ...this.itemDefaults, ...this.data.properties.itemDefaults };
       this.items$ = this.getGraphicSymbolData<DataItem>('items', itemDefaults);
     } else {
       this.items$ = of([]);
@@ -150,15 +150,21 @@ export class SymbolLegendComponent implements VisualizationComponent,
     this.refreshItems();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) { this.refreshItems(); }
+    if ('data' in changes) {
+      this.refreshItems();
+    }
   }
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
-    if ('items' in changes) { this.refreshItems(); }
+    if ('items' in changes) {
+      this.refreshItems();
+    }
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('itemDefaults' in changes) { this.refreshItems(); }
+    if ('itemDefaults' in changes) {
+      this.refreshItems();
+    }
   }
-  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: any } = {}): Observable<TDatum<T>[]> {
+  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
   ngOnDestroy(): void {

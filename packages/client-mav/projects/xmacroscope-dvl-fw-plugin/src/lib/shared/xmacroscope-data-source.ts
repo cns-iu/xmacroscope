@@ -1,9 +1,7 @@
-// refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import { DataSource, DataSourceOptions, ObjectFactory, ObjectFactoryRegistry, Project, RecordStream } from '@dvl-fw/core';
 
 import { GraphQLRunDataStream } from '../graphql/graphql-run-data-stream';
 import { MockRunDataStream } from '../mock/mock-run-data-stream';
-import { Run } from './run';
 import { RunStreamController } from './run-stream-controller';
 
 
@@ -12,31 +10,42 @@ export interface XMacroscopeDataSourceOptions extends DataSourceOptions {
   endpoint?: string;
 }
 
+export interface XMacroscopeDataSourceData {
+  id: string;
+  properties: XMacroscopeDataSourceOptions;
+
+  [key: string]: unknown;
+}
+
 export class XMacroscopeDataSource implements DataSource {
   id: string;
   template = 'xmacroscope';
-  recordStreams: RecordStream[];
   properties: XMacroscopeDataSourceOptions;
-  public readonly runStreamController: RunStreamController;
+  recordStreams: RecordStream[];
+  readonly runStreamController = new RunStreamController();
 
-  constructor(data: any, private project: Project) {
-    Object.assign(this, data);
-    this.runStreamController = new RunStreamController();
-
-    let recordStream: RecordStream<Run>;
-    if (this.properties.mockData) {
-      recordStream = new MockRunDataStream(this.runStreamController);
-    } else if (this.properties.endpoint) {
-      recordStream = new GraphQLRunDataStream(this.runStreamController, this.properties.endpoint);
-    }
-    this.recordStreams = recordStream ? [recordStream] : [];
+  constructor(data: XMacroscopeDataSourceData, _project: Project) {
+    ({ id: this.id, properties: this.properties } = data);
+    this.recordStreams = this.createRecordStreams();
   }
 
-  toJSON(): any {
+  toJSON(): unknown {
     return {
       id: this.id, template: this.template, properties: this.properties,
       recordStreams: this.recordStreams.map(s => s.toJSON())
     };
+  }
+
+  private createRecordStreams(): RecordStream[] {
+    const { properties: { mockData, endpoint }, runStreamController: controller } = this;
+
+    if (mockData) {
+      return [new MockRunDataStream(controller)];
+    } else if (endpoint) {
+      return [new GraphQLRunDataStream(controller, endpoint)];
+    }
+
+    return [];
   }
 }
 
@@ -44,10 +53,11 @@ export class XMacroscopeDataSourceFactory implements ObjectFactory<DataSource, P
   id = 'xmacroscope';
   type = 'dataSource';
 
-  async fromJSON(data: any, context: Project, registry: ObjectFactoryRegistry): Promise<DataSource> {
-    return new XMacroscopeDataSource(data, context);
+  async fromJSON(data: unknown, context: Project, _registry: ObjectFactoryRegistry): Promise<DataSource> {
+    return new XMacroscopeDataSource(data as XMacroscopeDataSourceData, context);
   }
-  toJSON(instance: DataSource, context: Project, registry: ObjectFactoryRegistry): any {
+
+  toJSON(instance: DataSource, _context: Project, _registry: ObjectFactoryRegistry): unknown {
     return instance.toJSON();
   }
 }

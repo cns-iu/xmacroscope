@@ -17,8 +17,8 @@ export class ChangeTracker {
     public readonly highlightCount: number
   ) {
     this.changeStream = stream.pipe(
-      filter(message => message instanceof RunFinishedMessage),
-      map<RunFinishedMessage, Run>(message => message.run),
+      filter((message): message is RunFinishedMessage => message instanceof RunFinishedMessage),
+      map(message => message.run),
       map(runs => this.accumulate([runs]))
     );
   }
@@ -34,7 +34,7 @@ export class ChangeTracker {
   private accumulate(runs: Run[]): RawChangeSet<Run> {
     let inserted: Run[] = [];
     let removed: Run[] = [];
-    const replaced: [Run, any][] = [];
+    const replaced: [Run, Run][] = [];
 
     const addCount = runs.length;
     const {
@@ -73,21 +73,21 @@ export class ChangeTracker {
     });
 
     this.accumulator = accumulator;
-    return new RawChangeSet(inserted, removed, undefined, replaced);
+    return new RawChangeSet<Run>(inserted, removed, undefined, replaced);
   }
 
   selectRuns(runs: Run[]): RawChangeSet<Run> {
     const runsSelected = this.runsSelected = runs.length > 0;
     const replaced: [Run, Run][] = [];
 
-    const run2id = {};
-    runs.forEach(r => run2id[r.id] = r);
+    const run2id: Record<string, Run> = {};
+    runs.forEach(r => (run2id[r.id] = r));
 
     const newSnapshot: Run[] = [];
     // FIXME: This is a little too complicated/wordy. Simplify.
     if (runsSelected) {
       this.accumulator.forEach((run) => {
-        if (run2id.hasOwnProperty(run.id)) {
+        if (run.id in run2id) {
           const runClone = new Run(run);
           runClone.selected = true;
           runClone.highlighted = false;

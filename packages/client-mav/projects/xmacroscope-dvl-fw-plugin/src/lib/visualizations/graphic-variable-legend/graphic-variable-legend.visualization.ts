@@ -14,8 +14,8 @@ export class GraphicVariableLegendVisualization extends DefaultVisualization {
     ]
   }];
 
-  constructor(data: {id: string, description?: string, template?: string, properties: any, graphicSymbols: any},
-      readonly project: Project) {
+  constructor(data: { id: string; description?: string; template?: string; properties: unknown; graphicSymbols: unknown },
+              readonly project: Project) {
     super(data, project);
   }
 }
@@ -24,7 +24,7 @@ export class GraphicVariableLegendVisualizationFactory implements ObjectFactory<
   id = 'symbol-legend';
   type = 'visualization';
 
-  async fromJSON(data: any, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
+  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
     return new GraphicVariableLegendVisualization(data, context);
   }
   toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {

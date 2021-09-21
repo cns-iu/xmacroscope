@@ -10,7 +10,7 @@ describe('SymbolLegendComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SymbolLegendComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

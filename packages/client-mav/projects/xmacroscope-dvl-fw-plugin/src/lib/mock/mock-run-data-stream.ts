@@ -25,7 +25,7 @@ export class MockRunDataStream implements RecordStream<Run> {
     return this.runStreamController.createRunStream();
   }
 
-  toJSON(): any {
+  toJSON(): unknown {
     return pick(this, ['id', 'label']);
   }
 }

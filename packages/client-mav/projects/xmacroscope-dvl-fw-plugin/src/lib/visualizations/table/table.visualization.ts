@@ -21,7 +21,7 @@ export class TableVisualizationFactory implements ObjectFactory<Visualization, P
   id = 'table';
   type = 'visualization';
 
-  async fromJSON(data: any, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
+  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
     return new TableVisualization(data, context);
   }
   toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {
