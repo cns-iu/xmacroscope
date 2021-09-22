@@ -10,7 +10,20 @@
       }
     }
   },
+  "height": 800,
   "mark": "point",
+  "params": [
+    {
+      "name": "event",
+      "select": {"type": "point", "fields": ["EVENT"]},
+      "bind": "legend"
+    },
+    {
+      "name": "activity",
+      "select": {"type": "point", "fields": ["Favorite Activity"]},
+      "bind": "legend"
+    }
+  ],
   "encoding": {
     "x": {
       "field": "Time (seconds)",
@@ -28,7 +41,20 @@
         "Kid"
       ]
     },
-    "color": {"field": "Favorite Activity", "type": "nominal"},
-    "shape": {"field": "Favorite Activity", "type": "nominal"}
+    "shape": {"field": "Favorite Activity", "type": "nominal"},
+    "color": {"field": "EVENT", "type": "nominal"},
+    "size": {"value": 300},
+    "opacity": {
+      "condition": {
+        "test": {
+          "and": [
+            {"param": "event"},
+            {"param": "activity"}
+          ]
+        },
+        "value": 1
+      },
+      "value": 0
+    }
   }
 }
