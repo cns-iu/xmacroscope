@@ -58,7 +58,7 @@
         "format": {
           "type": "csv",
           "parse": {
-            "Time (seconds)": "number",
+            "Time": "number",
             "Age Group": null
           }
         }
@@ -66,12 +66,6 @@
       "mark": "rect",
       "width": 300,
       "height": 200,
-      "transform": [
-        {
-          "calculate": "datum.Time",
-          "as": "Time (seconds)"
-        }
-      ],
       "encoding": {
         "y": {
           "field": "Age Group",
@@ -86,8 +80,9 @@
           ]
         },
         "x": {
+          "title": "Time (seconds)",
           "bin": {"maxbins": 20},
-          "field": "Time (seconds)",
+          "field": "Time",
           "type": "quantitative",
           "scale": {
             "domain": [0, 18]
@@ -109,27 +104,18 @@
         "format": {
           "type": "csv",
           "parse": {
-            "Time (seconds)": "number",
-            "Age Group": null
+            "runTime": "number",
+            "age_group": null
           }
         }
       },
       "mark": "rect",
       "width": 300,
       "height": 200,
-      "transform": [
-        {
-          "calculate": "datum.runTime",
-          "as": "Time (seconds)"
-        },
-        {
-          "calculate": "datum.age_group",
-          "as": "Age Group"
-        }
-      ],
       "encoding": {
         "y": {
-          "field": "Age Group",
+          "title": "Age Group",
+          "field": "age_group",
           "type": "nominal",
           "sort": [
             "",
@@ -141,8 +127,9 @@
           ]
         },
         "x": {
+          "title": "Time (seconds)",
           "bin": {"maxbins": 20},
-          "field": "Time (seconds)",
+          "field": "runTime",
           "type": "quantitative",
           "scale": {
             "domain": [0, 18]

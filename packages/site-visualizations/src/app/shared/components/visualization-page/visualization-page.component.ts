@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { Options, Spec } from 'ngx-vega';
 
 
@@ -8,7 +8,7 @@ import { Options, Spec } from 'ngx-vega';
   styleUrls: ['./visualization-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VisualizationPageComponent implements OnInit {
+export class VisualizationPageComponent {
   @HostBinding('class') readonly clsName = 'app-visualization-page';
 
   @Input() headline = 'xMacroscopes';
@@ -34,9 +34,6 @@ export class VisualizationPageComponent implements OnInit {
 
   constructor(
   ) { }
-
-  ngOnInit(): void {
-  }
 
   disableSpinner(key: string): void {
     this.spinners = {
