@@ -31,8 +31,9 @@ jobs:
 
       - run: npm ci
         working-directory: packages/client-mav
-      - run: npm run lint
-        working-directory: packages/client-mav
+      # Temporarily skipping linting of MAV
+      # - run: npm run lint
+      #   working-directory: packages/client-mav
       - run: npm run build:libs
         working-directory: packages/client-mav
       # - run: npm run test
