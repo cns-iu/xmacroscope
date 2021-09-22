@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: environment.useHashStrategy})],
+  imports: [RouterModule.forRoot(routes, { useHash: environment.useHashStrategy })],
   exports: [RouterModule]
 })
 

@@ -15,7 +15,7 @@ import { IconDefinition } from './icon-registry.model';
  * @param definition The definition for which to determine the appropriate method and arguments.
  * @returns An object containing the `MatIconRegistry` method name and argument to invoke it with.
  */
-function getRegistrationMethod({ name, namespace, url, html }: IconDefinition): { methodName: string, args: any[] } {
+function getRegistrationMethod({ name, namespace, url, html }: IconDefinition): { methodName: string; args: unknown[] } {
   if (!url && !html) {
     throw new Error('IconDefinition must have either an url or html');
   }

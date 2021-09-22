@@ -1,6 +1,5 @@
 import {
-  SymbolType, symbolCircle, symbolCross, symbolDiamond,
-  symbolSquare, symbolStar, symbolTriangle, symbolWye
+  symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, SymbolType, symbolWye,
 } from 'd3-shape';
 import { round } from 'lodash';
 
@@ -29,37 +28,37 @@ export const defaultCanvasCreator: CanvasCreator = function (width, height) {
 };
 
 export class IconConfig {
-  shape: BuiltinSymbolTypes | string;
-
-  areaSize: number;
-
-  color: string;
-  transparency: number;
-
-  strokeColor: string;
-  strokeWidth: number;
-  strokeTransparency: number;
-
-  pulse: boolean;
-  pulseColor: string;
-  pulseWidth: number;
-
   static asString(data: Partial<IconConfig>): string {
     return new IconConfig(data).toString();
   }
 
+  shape!: BuiltinSymbolTypes | string;
+
+  areaSize!: number;
+
+  color!: string;
+  transparency!: number;
+
+  strokeColor!: string;
+  strokeWidth!: number;
+  strokeTransparency!: number;
+
+  pulse!: boolean;
+  pulseColor!: string;
+  pulseWidth!: number;
+
   constructor(data: Partial<IconConfig>) {
     Object.assign(this, {
       shape: data.shape,
-      areaSize: round(data.areaSize),
-      color: data.color || undefined,
-      transparency: data.color ? round(data.transparency || 0, 2) : undefined,
-      strokeColor: data.strokeColor || undefined,
-      strokeWidth: data.strokeColor ? round(data.strokeWidth || 0, 2) : undefined,
-      strokeTransparency: data.strokeColor ? round(data.strokeTransparency || 0, 2) : undefined,
-      pulse: data.pulse ? true : undefined,
-      pulseColor: data.pulse ? data.pulseColor || defaultPulseColor : undefined,
-      pulseWidth: data.pulse ? round(data.pulseWidth || 0, 2) || undefined : undefined
+      areaSize: round(data.areaSize ?? 0),
+      color: data.color,
+      transparency: data.color ? round(data.transparency ?? 0, 2) : undefined,
+      strokeColor: data.strokeColor,
+      strokeWidth: data.strokeColor ? round(data.strokeWidth ?? 0, 2) : undefined,
+      strokeTransparency: data.strokeColor ? round(data.strokeTransparency ?? 0, 2) : undefined,
+      pulse: data.pulse,
+      pulseColor: data.pulse ? data.pulseColor ?? defaultPulseColor : undefined,
+      pulseWidth: data.pulse ? round(data.pulseWidth ?? 0, 2) || undefined : undefined
     });
   }
 
@@ -69,24 +68,26 @@ export class IconConfig {
 }
 
 export class DataDrivenIcon {
-  readonly canvas: HTMLCanvasElement;
-  readonly context: CanvasRenderingContext2D;
-
-  private imageDrawn: boolean;
-  private imageSent: boolean;
-
-  static fromString(icon: string, prefix = 'ddi:', createCanvas = defaultCanvasCreator): DataDrivenIcon {
+  static fromString(icon: string, prefix = 'ddi:', createCanvas = defaultCanvasCreator): DataDrivenIcon | undefined {
     if (icon.startsWith(prefix)) {
       const config = JSON.parse(icon.slice(prefix.length));
       return new DataDrivenIcon(config, createCanvas);
     }
+
+    return undefined;
   }
+
+  readonly canvas: HTMLCanvasElement;
+  readonly context: CanvasRenderingContext2D;
+
+  private imageDrawn!: boolean;
+  private imageSent!: boolean;
 
   constructor(public readonly config: IconConfig, private createCanvas = defaultCanvasCreator) {
     const symbolDiameter = Math.sqrt(config.areaSize) * 2;
     let canvasWidth = symbolDiameter + 4;
     // FIXME: Remove xMacroscope specific code
-    if (config.shape && !symbolLookup[config.shape]) {
+    if (config.shape && !(config.shape in symbolLookup)) {
       canvasWidth *= 1.75;
     }
     if (config.strokeWidth) {
@@ -99,7 +100,7 @@ export class DataDrivenIcon {
     }
 
     const canvas = this.canvas = this.createCanvas(canvasWidth, canvasWidth);
-    this.context = canvas.getContext('2d');
+    this.context = canvas.getContext('2d')!;
     this.render();
   }
 
@@ -108,7 +109,8 @@ export class DataDrivenIcon {
   }
 
   get hasImageShape(): boolean {
-    return this.config.shape && (this.config.shape.startsWith('data:') || this.config.shape.startsWith('http'));
+    const { shape } = this.config;
+    return shape.startsWith('data:') || shape.startsWith('http');
   }
 
   render(): boolean {
@@ -122,7 +124,7 @@ export class DataDrivenIcon {
     context.translate(canvas.width / 2, canvas.height / 2);
     context.beginPath();
 
-    const shape = symbolLookup[config.shape] || defaultSymbol;
+    const shape = symbolLookup[config.shape as BuiltinSymbolTypes] ?? defaultSymbol;
     shape.draw(context, config.areaSize);
 
     if (config.pulse) {
@@ -131,17 +133,17 @@ export class DataDrivenIcon {
 
       context.strokeStyle = config.pulseColor;
       context.fillStyle = config.pulseColor;
-      context.lineWidth = (config.strokeWidth || 0) + (config.pulseWidth * tick);
+      context.lineWidth = (config.strokeWidth ?? 0) + (config.pulseWidth * tick);
       context.globalAlpha = 1 - tick;
       context.fill();
       context.stroke();
     }
     if (hasImageShape) {
       if (this.imageDrawn) {
-        setTimeout(() => this.imageSent = true, 10);
+        setTimeout(() => (this.imageSent = true), 10);
       } else {
         const symbolRadius = Math.sqrt(config.areaSize)
-                                  * 1.75; // FIXME: Remove xMacroscope specific code
+          * 1.75; // FIXME: Remove xMacroscope specific code
         const [x, y, w, h] = [canvas.width / 2 - symbolRadius, canvas.height / 2 - symbolRadius, symbolRadius * 2, symbolRadius * 2];
         const image = new Image();
         this.imageDrawn = false;

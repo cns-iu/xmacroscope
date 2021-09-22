@@ -10,7 +10,7 @@ describe('ScatterGraphComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ScatterGraphComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

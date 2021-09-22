@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
 export interface ButtonContentContext {
-  $implicit: any;
+  $implicit: unknown;
   index: number;
 }
 
@@ -32,13 +32,13 @@ export class ButtonContentDirective { }
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonGroupComponent {
-  @Input() items: any[];
-  @Input() value?: any;
-  @Input() trackBy?: TrackByFunction<any>;
+  @Input() items: unknown[];
+  @Input() value?: unknown;
+  @Input() trackBy?: TrackByFunction<unknown>;
   @Input() deselectable = true;
   @Input() vertical = false;
 
-  @Output() valueChange: Observable<any>;
+  @Output() valueChange: Observable<unknown>;
   @Output() change = new EventEmitter<MatButtonToggleChange>();
 
   @ViewChild('buttonGroup', { read: MatButtonToggleGroup }) buttonGroup: MatButtonToggleGroup;
@@ -46,19 +46,19 @@ export class ButtonGroupComponent {
   @ContentChild(ButtonContentDirective, { read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
 
   private lastChangeEvent = new MatButtonToggleChange(undefined, undefined);
-  private _valueChange = new EventEmitter<any>();
+  private _valueChange = new EventEmitter<unknown>();
 
   constructor() {
     // Waits for the group's state to settle before emitting the current value.
     this.valueChange = this._valueChange.pipe(sampleTime(10));
   }
 
-  makeContentContext(item: any, index: number): ButtonContentContext {
+  makeContentContext(item: unknown, index: number): ButtonContentContext {
     return { $implicit: item, index };
   }
 
   selectionChanged(event: MatButtonToggleChange): void {
-    const values = event.value as any[];
+    const values = event.value as unknown[];
     let source = event.source;
     let value = values[0];
 
@@ -78,7 +78,7 @@ export class ButtonGroupComponent {
     this.change.emit(changeEvent);
   }
 
-  valueChanged(item: [any] | undefined): void {
+  valueChanged(item: [unknown] | undefined): void {
     this._valueChange.emit(item && item[0]);
   }
 }

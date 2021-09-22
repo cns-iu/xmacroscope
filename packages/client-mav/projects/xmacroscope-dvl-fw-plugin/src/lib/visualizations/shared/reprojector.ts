@@ -1,19 +1,19 @@
-import { FeatureCollection, Geometry, point } from '@turf/helpers';
-import { FeatureCollection as FeatureCollection2, Geometry as Geometry2 } from 'geojson';
+import { FeatureCollection, Geometry } from '@turf/helpers';
 import dirtyReproject from 'dirty-reprojectors';
 import projections from 'dirty-reprojectors/projections';
+import { FeatureCollection as FeatureCollection2, Geometry as Geometry2 } from 'geojson';
 
 
 export function reprojector<T = Geometry>(projection: string,
                                           geojson: FeatureCollection<T> | FeatureCollection2<Geometry2>,
                                           reverse = 'mercator'): FeatureCollection<T> {
-  const newFeatures: unknown[] = [];
+  const newFeatures: FeatureCollection<T>['features'] = [];
   for (const feature of geojson.features) {
-    feature.geometry = dirtyReproject({
+    feature.geometry = (dirtyReproject as (arg1: unknown, arg2: unknown) => T)({
       forward: projection, reverse, projections
     }, feature.geometry);
     if (feature.geometry) {
-      newFeatures.push(feature);
+      newFeatures.push(feature as (typeof newFeatures)[0]);
     }
   }
   geojson.features = newFeatures;

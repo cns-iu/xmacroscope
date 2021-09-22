@@ -56,9 +56,7 @@ export class GVButtonGroupComponent implements OnChanges {
   private updateVariables(): void {
     const fixed = 'fixed';
     const { variables, type } = this;
-    const partitions = groupBy(variables, val => {
-      return val.id === fixed && val.type === type ? fixed : val.type;
-    });
+    const partitions = groupBy(variables, val => val.id === fixed && val.type === type ? fixed : val.type);
 
     this.fixedVariable = get(partitions, [fixed, 0], undefined);
     this.filteredVariables = get(partitions, type, []);

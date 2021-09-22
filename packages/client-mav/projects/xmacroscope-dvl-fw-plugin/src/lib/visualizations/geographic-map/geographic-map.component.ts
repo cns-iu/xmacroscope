@@ -10,10 +10,11 @@ import clone from '@turf/clone';
 import { BBox, FeatureCollection, featureCollection, Geometry, Point, Polygon } from '@turf/helpers';
 import pointsWithinPolygon from '@turf/points-within-polygon';
 import { isArray } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point as MapPoint, PointLike } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point as MapPoint, PointLike, Style } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
+import { Run } from '../../shared/run';
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 import { blankStyle } from '../shared/blank-style';
 import { DataDrivenIcons } from '../shared/data-driven-icons';
@@ -32,6 +33,7 @@ const gridGeoJson5 = reprojector('albersUsa', graticule(5));
 const gridGeoJson1 = reprojector('albersUsa', graticule(1));
 const grid5 = withAxes(gridGeoJson5);
 const worldBbox = bbox(grid5.geojson);
+
 
 @Component({
   selector: 'mav-geographic-map',
@@ -57,10 +59,13 @@ export class GeographicMapComponent implements VisualizationComponent,
   // Tooltip element
   @ViewChild('tooltipElement', { static: true }) tooltipElement!: ElementRef<HTMLDivElement>;
 
-  style = blankStyle;
+  style = blankStyle as Style;
   map!: Map;
 
   worldBbox: BBox = worldBbox;
+  get worldBbox2d(): [number, number, number, number] {
+    return this.worldBbox as [number, number, number, number];
+  }
   worldPadding: PaddingOptions = grid5.padding;
   graticule: FeatureCollection<Geometry> = grid5.geojson;
   nodesGeoJson!: FeatureCollection<Point>;
@@ -68,11 +73,11 @@ export class GeographicMapComponent implements VisualizationComponent,
   nodesSubscription!: Subscription;
   basemapGeoJson: FeatureCollection<Geometry> = usGeoJson;
 
-  constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) {}
+  constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) { }
 
   private toNgxDinoEvent(event: MapMouseEvent, layers: string[], data: Datum[]): NgxDinoEvent | undefined {
     const bboxMargin = new MapPoint(4, 4);
-    const pointBox: [PointLike, PointLike] = [ event.point.sub(bboxMargin), event.point.add(bboxMargin) ];
+    const pointBox: [PointLike, PointLike] = [event.point.sub(bboxMargin), event.point.add(bboxMargin)];
     const features = this.map.queryRenderedFeatures(pointBox, { layers });
     const itemId = features[0].properties?.[idSymbol];
     const item = data.find(i => i[idSymbol] === itemId);
@@ -91,7 +96,7 @@ export class GeographicMapComponent implements VisualizationComponent,
 
   // FIXME: Remove specifics to xMacroscope
   tempClickListener(event: NgxDinoEvent): void {
-    const selection = !event || event.data.selected ? [] : [event.data];
+    const selection = !event || (event.data as Run).selected ? [] : [event.data];
     this.xMacroscopeDataService.runStreamController?.selectRuns?.(selection);
   }
 
@@ -107,7 +112,7 @@ export class GeographicMapComponent implements VisualizationComponent,
 
   showTooltip(event: unknown, tooltip: string): void {
     const el = this.tooltipElement.nativeElement;
-    const { x, y } = event as { x: number, y: number };
+    const { x, y } = event as { x: number; y: number };
     if (!el || !tooltip) {
       return;
     }
@@ -127,12 +132,14 @@ export class GeographicMapComponent implements VisualizationComponent,
     el.style.visibility = 'hidden';
   }
 
-  onMapLoad(map: Map) {
+  onMapLoad(map: Map): void {
     this.map = map;
     this.map.resize();
     new DataDrivenIcons().addTo(map);
 
-    this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange });
+    this.ngOnChanges({
+      data: new SimpleChange(undefined, this.data, false)
+    });
   }
 
   private layout(nodes?: TDatum<Node>[]): void {
@@ -148,7 +155,7 @@ export class GeographicMapComponent implements VisualizationComponent,
 
       if (state && state !== 'USA' && !!feature) {
         // Limit nodes showing to just those in the selected state
-        this.nodesGeoJson = pointsWithinPolygon(this.nodesGeoJson, feature) ;
+        this.nodesGeoJson = pointsWithinPolygon(this.nodesGeoJson, feature);
 
         // Stretch out the state bounding box to match the screen aspect ratio. This will
         // necessarily include some parts of bordering states.
@@ -160,11 +167,19 @@ export class GeographicMapComponent implements VisualizationComponent,
         ).filter(f => !!f.geometry)));
 
         // Clip the us map to the region we will be displaying
-        const featureGeoJson = featureCollection<Geometry>(usGeoJson.features.map(f => {
-          const clip = bboxClip<Polygon>(clone(f), featureBounds);
-          clip.geometry.coordinates = (clip.geometry.coordinates as number[][]).filter(c => c && c.length > 0);
-          return clip.geometry.coordinates.length > 0 ? clip : undefined;
-        }).filter(f => !!f));
+        const clippedFeatures = usGeoJson.features.reduce<(typeof usGeoJson.features)>(
+          (result, feat) => {
+            const clip = bboxClip<Polygon>(clone(feat), featureBounds) as typeof feat;
+            const coords = clip.geometry.coordinates.filter(coord => coord.length > 0);
+            if (coords.length > 0) {
+              clip.geometry.coordinates = coords;
+              result.push(clip);
+            }
+
+            return result;
+          }, []
+        );
+        const featureGeoJson = featureCollection(clippedFeatures);
 
         // Get the counties for the selected state
         const countiesGeoJson = reprojector<Polygon>('albersUsa', getCountiesForStateGeoJson(state));
@@ -198,10 +213,11 @@ export class GeographicMapComponent implements VisualizationComponent,
     this.nodesSubscription = this.nodes$.subscribe(nodes => this.layout(nodes));
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.data.properties.nodeDefaults) {
       this.nodeDefaults = this.data.properties.nodeDefaults;
     }
+
     if (this.data.properties.featureSelection) {
       this.featureSelection = this.data.properties.featureSelection;
     }
@@ -231,7 +247,7 @@ export class GeographicMapComponent implements VisualizationComponent,
   }
 
   getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
-    return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
+    return new GraphicSymbolData<T>(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
 
   ngOnDestroy(): void {

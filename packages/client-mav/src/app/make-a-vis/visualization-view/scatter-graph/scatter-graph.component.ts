@@ -50,8 +50,6 @@ export class ScatterGraphComponent {
   }
 
   private findVariable(label: RegExp, type: GraphicVariableType): GraphicVariable {
-    return this.variables.find(variable => {
-      return label.test(variable.label) && variable.type === type;
-    });
+    return this.variables.find(variable => label.test(variable.label) && variable.type === type);
   }
 }

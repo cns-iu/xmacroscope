@@ -14,33 +14,36 @@ import { SymbolLegendVisualization } from '../symbol-legend/symbol-legend.visual
   styleUrls: ['./graphic-variable-legend.component.scss']
 })
 export class GraphicVariableLegendComponent implements VisualizationComponent,
-    OnChanges, OnInit, OnPropertyChange, OnGraphicSymbolChange {
-  @Input() data: Visualization;
-  legend: Visualization;
+  OnChanges, OnInit, OnPropertyChange, OnGraphicSymbolChange {
+  @Input() data!: Visualization;
+  legend!: Visualization;
 
   constructor(private xMacroscopeDataService: XMacroscopeDataService) { }
 
   refreshItems(): void {
-    let legend: Visualization = null;
     if (this.data) {
       // FIXME: Remove specifics to xMacroscope
-      const project: Project = this.data['project'] || this.xMacroscopeDataService.project;
-      const allGraphicSymbols = this.data.graphicSymbols || {};
+      const project = (this.data as { project?: Project })?.project ?? this.xMacroscopeDataService.project;
+      const allGraphicSymbols = this.data.graphicSymbols ?? {};
       const allSlots = Object.keys(allGraphicSymbols);
       const slot = allSlots.length && allSlots[0];
       const gs = allGraphicSymbols[slot];
-      const gv = gs.graphicVariables[this.data.properties['graphicVariable']];
+      const gv = gs.graphicVariables[this.data.properties['graphicVariable'] as string];
       const itemDefaults = this.data.properties['itemDefaults'] || undefined;
 
       if (gs && gv) {
         const graphicSymbol = this.createGraphicSymbol(gv, gs, project);
-        legend = this.createLegend(this.data.id, graphicSymbol, { itemDefaults }, project);
+        this.legend = this.createLegend(this.data.id, graphicSymbol, { itemDefaults }, project);
       }
     }
-    this.legend = legend;
   }
 
-  private createLegend(id: string, graphicSymbol: GraphicSymbol, properties: unknown, project: Project): Visualization {
+  private createLegend(
+    id: string,
+    graphicSymbol: GraphicSymbol,
+    properties: Record<string, unknown>,
+    project: Project
+  ): Visualization {
     const visualization = new SymbolLegendVisualization({
       id,
       template: 'symbol-legend',
@@ -52,20 +55,24 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
     return visualization;
   }
 
-  private createGraphicSymbol(graphicVariable: GraphicVariable, sourceGraphicSymbol: GraphicSymbol, project: Project) {
-    const gvars: { [id: string]: unknown } = {};
+  private createGraphicSymbol(
+    graphicVariable: GraphicVariable,
+    sourceGraphicSymbol: GraphicSymbol,
+    project: Project
+  ): GraphicSymbol {
+    const gvars: Record<string, GraphicVariable> = {};
     for (const gv of project.graphicVariables) {
       if (gv.dataVariable === graphicVariable.dataVariable && !gvars[gv.type]) {
         gvars[gv.type] = gv;
       }
     }
-    const graphicVariables = {
+    const graphicVariables: Record<string, GraphicVariable> = {
       identifier: sourceGraphicSymbol.graphicVariables.identifier,
       [graphicVariable.type]: graphicVariable,
       value: graphicVariable,
-      input: gvars.input || undefined,
-      label: gvars.label || undefined,
-      order: gvars.order || undefined
+      input: gvars.input,
+      label: gvars.label,
+      order: gvars.order
     };
 
     const graphicSymbol = new DefaultGraphicSymbol({
@@ -82,14 +89,17 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
   ngOnInit(): void {
     this.refreshItems();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.refreshItems();
     }
   }
-  dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
+
+  dvlOnGraphicSymbolChange(_changes: SimpleChanges): void {
     this.refreshItems();
   }
+
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('graphicVariable' in changes || 'itemDefaults' in changes) {
       this.refreshItems();

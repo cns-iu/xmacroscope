@@ -27,7 +27,7 @@ export class MainComponent implements OnChanges {
     { variable: 'areaSize', label: 'Size', icon: 'label:size', type: 'size-legend' }
   ];
 
-  readonly originalGraphicSymbol: any;
+  readonly originalGraphicSymbol: unknown;
   readonly originalTableOrder: GraphicVariable;
 
   project: Project;
@@ -64,7 +64,7 @@ export class MainComponent implements OnChanges {
     this.updateService.triggerUpdate(this.project.visualizations.find(v => v.id === 'datatable'));
   }
 
-  navigationChanged(event: any) {
+  navigationChanged(event: unknown) {
     this.selected = event;
     this.activeVisualization = event.id;
     this.activeVisualizationChange.emit(event.id);

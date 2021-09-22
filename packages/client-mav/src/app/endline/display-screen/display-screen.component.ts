@@ -23,7 +23,7 @@ export class DisplayScreenComponent implements OnInit {
   constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) { }
 
   ngOnInit() {
-    let timeoutHandle: any; // used to store setTimeout Id to clear it when a new message arrives.
+    let timeoutHandle: unknown; // used to store setTimeout Id to clear it when a new message arrives.
     this.dataService.messages.subscribe((msg: Message) => {
       // clearing a timeout if it had been set earlier.
       if (timeoutHandle) {
