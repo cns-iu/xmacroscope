@@ -35,6 +35,8 @@
     "@turf/clone": "^6.0.2",
     "@turf/line-intersect": "^6.0.2",
     "@turf/points-within-polygon": "^6.5.0",
+    "@types/papaparse": "^5.2.6",
+    "@types/ws": "^7.4.7",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",

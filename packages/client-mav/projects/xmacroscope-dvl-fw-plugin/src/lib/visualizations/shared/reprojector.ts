@@ -1,5 +1,7 @@
 import { FeatureCollection, Geometry } from '@turf/helpers';
+// @ts-ignore
 import dirtyReproject from 'dirty-reprojectors';
+// @ts-ignore
 import projections from 'dirty-reprojectors/projections';
 import { FeatureCollection as FeatureCollection2, Geometry as Geometry2 } from 'geojson';
 

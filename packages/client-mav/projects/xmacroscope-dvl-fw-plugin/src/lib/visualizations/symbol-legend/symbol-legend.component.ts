@@ -95,7 +95,7 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
     if (this.items.length > 0) {
       const icon = DataDrivenIcon.fromString(maxBy(items, 'areaSize')?.icon ?? '');
-      this.maxIconWidth = icon.canvas.width;
+      this.maxIconWidth = icon?.canvas?.width ?? 0;
     } else {
       this.maxIconWidth = 0;
     }
@@ -116,7 +116,7 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
   getDataUrl(icon: string): string {
     if (!this.iconCache[icon]) {
-      this.iconCache[icon] = DataDrivenIcon.fromString(icon).toDataUrl();
+      this.iconCache[icon] = DataDrivenIcon.fromString(icon)?.toDataUrl?.() ?? '';
     }
     return this.iconCache[icon];
   }
