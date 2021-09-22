@@ -15,8 +15,9 @@
   "height": 200,
   "encoding": {
     "y": {
+      "title": "Height (inches)",
       "bin": {"maxbins":40},
-      "field": "Height (inches)",
+      "field": "height",
       "type": "quantitative"
     },
     "x": {
