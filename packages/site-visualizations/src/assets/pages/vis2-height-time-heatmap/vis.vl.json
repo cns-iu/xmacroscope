@@ -10,6 +10,11 @@
       }
     }
   },
+  "transform": [
+    {
+      "filter": "datum.height < 100"
+    }
+  ],
   "mark": "rect",
   "width": 300,
   "height": 200,
