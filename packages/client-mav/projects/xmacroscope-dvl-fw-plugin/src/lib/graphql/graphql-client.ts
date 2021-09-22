@@ -8,16 +8,13 @@ import { getMainDefinition } from 'apollo-utilities';
 
 
 export class GraphqlClient {
-  readonly client: ApolloClient<any>;
+  readonly client: ApolloClient<unknown>;
 
-  constructor(private httpEndpoint: string, private wsEndpoint?: string) {
-    if (!wsEndpoint) {
-      this.wsEndpoint = httpEndpoint;
-    }
+  constructor(private readonly httpEndpoint: string, private readonly wsEndpoint = httpEndpoint) {
     this.client = this.createClient();
   }
 
-  createClient(): ApolloClient<any> {
+  createClient(): ApolloClient<unknown> {
     const client = new ApolloClient({
       link: this.createLink(this.httpEndpoint, this.wsEndpoint),
       cache: this.createCache()
@@ -59,8 +56,8 @@ export class GraphqlClient {
     const networkLink = split(
       // split based on operation type
       ({ query }) => {
-        const { kind, operation } = getMainDefinition(query) as any;
-        return kind === 'OperationDefinition' && operation === 'subscription';
+        const def = getMainDefinition(query);
+        return def.kind === 'OperationDefinition' && def.operation === 'subscription';
       },
       wsLink,
       httpLink,

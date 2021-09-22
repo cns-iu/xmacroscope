@@ -1,21 +1,22 @@
 import { GraphicSymbol, Visualization } from '@dvl-fw/core';
-import { DataProcessorService, RawChangeSet, ChangeSet, Datum, idSymbol, DataProcessor, simpleField, constant, BoundField } from '@ngx-dino/core';
-import { differenceBy, transform, isString } from 'lodash';
-import { Observable, EMPTY } from 'rxjs';
+import {
+  BoundField, ChangeSet, constant, DataProcessor, DataProcessorService, Datum, idSymbol, RawChangeSet, simpleField,
+} from '@ngx-dino/core';
+import { differenceBy, isString, transform } from 'lodash';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 export type TDatum<T> = Datum<T> & T;
 
-export class GraphicSymbolData<T = any> {
+export class GraphicSymbolData<T = unknown> {
   public readonly requiredFields: string[] = ['identifier'];
   public readonly graphicSymbol: GraphicSymbol;
 
   constructor(private dataProcessorCreator: DataProcessorService,
-    public readonly visualization: Visualization,
-    graphicSymbol: string | GraphicSymbol,
-    public readonly defaultValues: { [gvName: string]: any } = {},
-    private readonly postprocessingFields: { [gvName: string]: BoundField<any> } = {}) {
+              public readonly visualization: Visualization,
+              graphicSymbol: string | GraphicSymbol,
+              public readonly defaultValues: { [gvName: string]: unknown } = {},
+              private readonly postprocessingFields: { [gvName: string]: BoundField<unknown> } = {}) {
 
     if (isString(graphicSymbol)) {
       this.graphicSymbol = visualization.graphicSymbols[graphicSymbol];
@@ -68,7 +69,7 @@ export class GraphicSymbolData<T = any> {
     );
   }
 
-  applyChangeSet(set: ChangeSet<any>, data: Datum<T>[]): TDatum<T>[] {
+  applyChangeSet(set: ChangeSet<unknown>, data: Datum<T>[]): TDatum<T>[] {
     const result = differenceBy(data, set.remove.toArray(), set.replace.toArray(), idSymbol);
     set.insert.forEach(item => result.push(item as Datum<T>));
     set.replace.forEach(item => result.push(item as Datum<T>));
@@ -77,7 +78,7 @@ export class GraphicSymbolData<T = any> {
   }
 
   private graphicSymbolBoundFields(graphicSymbol: GraphicSymbol,
-    defaults: { [gvName: string]: any } = {}): { [gvName: string]: BoundField<any> } {
+                                   defaults: { [gvName: string]: unknown } = {}): { [gvName: string]: BoundField<unknown> } {
     return transform(graphicSymbol.graphicVariables, (result, gv, k) => {
       result[k] = gv.asBoundField();
     }, transform(defaults, (results, v, k) => {

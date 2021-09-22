@@ -1,10 +1,61 @@
 import { areaSizeScale } from '@dvl-fw/core';
 import { access, chain, lookup, map, Operand, Operator } from '@ngx-dino/core';
-import { assignIn, transform } from 'lodash';
+import { assignIn } from 'lodash';
 
 
-export const allShapes: string[] = [
-  'circle', 'cross', 'diamond', 'square', 'star', 'triangle', 'wye'
+export interface GVData {
+  id: string;
+  label: string;
+  color: string;
+  shape: string;
+  icon: string;
+  areaSize: number;
+  axis: string | number;
+}
+
+export interface PersonOptions {
+  id: string;
+  icon: string;
+  age: number;
+  height: number;
+  opponent: string;
+  shoes: string;
+  zipCode: string;
+
+  state: string; // Derived from zipCode
+  latitude: number;
+  longitude: number;
+}
+
+
+const unknownGVData: Partial<GVData> = {
+  label: 'Unknown',
+  color: '#000000',
+  shape: 'square'
+};
+
+
+export const shapes = [
+  'circle',
+  'cross',
+  'diamond',
+  'square',
+  'star',
+  'triangle',
+  'wye'
+];
+
+export const allShapes = shapes;
+
+export const icons = [
+  'brat',
+  'cool',
+  'happy',
+  'grimace',
+  'alien',
+  'laughing',
+  'crown',
+  'sleep'
 ];
 
 export const images = {
@@ -22,20 +73,7 @@ export const images = {
   'unknown': 'data:image/gif;base64,R0lGODlhZABkAMIFACQgH1ZRUIiDgrizsv3//P///////////yH5BAEKAAcALAAAAABkAGQAAAP+eLrc/vCBSWuNOOvNtf3g141k6YRoaplse6ow7M5jDASBoA/8oAs4G20oSeUGhKRyyVT6Aioi0YhsWq/LARQldYVy2LA4CQx1S9/qeI3Vms8bUEDNrl/dIngkRLf7rXgreg0gAn+HYgIggwsfAYiQYYEUjB+GkZhXioJnH32ZoEkDeVKeoadMo5w0pqiuSqReFY+vtUlblLIVtrwEsSStvbW/HRafwqequcAVx8jJq3EVl8+8m8vSE7TVvbgAxbvcyNEQFtTi1uQv2ujP3hnG7cjKExiz8u4X5c348+oH9/ohe1dkgjOBqOgVvIEwHzYF0xoiu/aNgQWJz1YFxNj+TR9ECgc5hlLYiILIccs2nrRFMOLKdLn4vbRFMtzMWjVN3rR1QeVOVN58/gwVlMK5oaEoukR6SqlRpqicGoQKDURIqnboycSKSStIrpm8TjgK9o9UAGTL2jmbVi2bs9vc+inKTu6fdzbt1tGXV++YnFP9rgGMVvAaih/rGg5DEKDOxVg8Og4MuQnJxAwrN2k8eYLmJtGWfkZMiEJczZxLUq58ubTiyqlVrzasdY9p1JLXzdZb297txbF1FxasNNvusr2Nn1Yb3PZTucVrbAWbXPpX6v88xMPqtcUHrsSY/WYadEiwneFZnF/Zvct6ju07mVvptJKF5f0m1WPU+blZQKn8yTadOPrtF6CA2lzlSoEVHejafQqGRVeDDgpnWluZlLFIhb6lMdKEBnLY4RcC8JDVE1GICA4MOPzQgw86BBGDiurZYGN6NFp344w5urcjjj36KAONCQAAOw=='
 };
 
-interface GVData {
-  id: string;
-  label: string;
-  color: string;
-  shape: string;
-  icon: string;
-  areaSize: number;
-  axis: string | number;
-}
-
-export const icons: string[] = [
-  'brat', 'cool', 'happy', 'grimace', 'alien', 'laughing', 'crown', 'sleep'
-];
-export const opponents = [
+export const opponents: Partial<GVData>[] = [
   { label: 'Penguin', color: '#4527a0', shape: 'circle', icon: images['penguin'] },
   { label: 'Squirrel', color: '#f7d97b', shape: 'triangle', icon: images['squirrel'] },
   { label: 'Cheetah', color: '#f44336', shape: 'square', icon: images['cheetah'] },
@@ -43,7 +81,8 @@ export const opponents = [
   { id: 'real-squirrel', label: 'Visitor', color: '#000000', shape: images['squirrel'], icon: images['squirrel'] },
   { id: 'real-cheetah', label: 'Visitor', color: '#000000', shape: images['cheetah'], icon: images['cheetah'] }
 ];
-export const shoes = [
+
+export const shoes: Partial<GVData>[] = [
   { label: 'Boots', color: '#1e88e5', shape: 'triangle' },
   { label: 'Wheels', color: '#81c784', shape: 'circle' },
   { label: 'Athletic', color: '#fff9c4', shape: 'diamond' },
@@ -53,18 +92,25 @@ export const shoes = [
   { id: 'cheetah-feet', label: 'Barefoot', color: '#000000', shape: images['cheetah'] }
 ];
 
-const unknownGVData: Partial<GVData> = {label: 'Unknown', color: '#000000', shape: 'square'};
-function createLookup(data: Partial<GVData>[], unknown = unknownGVData): Operator<any, Partial<GVData>> {
-  return lookup(transform(data, (result, d) => {
-    if (d.label) {
-      result[d.label] = d;
-      result[d.label.toLowerCase()] = d;
+
+function createLookup(data: Partial<GVData>[], defaultValue = unknownGVData): Operator<string, Partial<GVData>> {
+  const table = data.reduce<{ [key: string]: Partial<GVData> }>((result, item) => {
+    if (item.label) {
+      result[item.label] = item;
+      result[item.label.toLowerCase()] = item;
     }
-    if (d.id) { result[d.id] = d; }
-  }, {}), unknown);
+
+    if (item.id) {
+      result[item.id] = item;
+    }
+
+    return result;
+  }, {});
+
+  return lookup(table, defaultValue);
 }
 
-// @dynamic
+
 export class Person {
   id: string;
   icon: string;
@@ -78,29 +124,40 @@ export class Person {
   latitude: number;
   longitude: number;
 
-  constructor(data: any = {}) {
-    Object.assign(this, data);
-  }
-
   @Operand(map<Person, string>(s => `${s.icon}`))
-  label: string;
+  label!: string;
 
   @Operand(chain(access('icon'), lookup(images, images['unknown'])))
-  iconShape: string;
+  iconShape!: string;
 
   @Operand(chain(access('age'), areaSizeScale.quantitative([0, 100])))
-  ageAreaSize: number;
+  ageAreaSize!: number;
 
   @Operand(chain(access('height'), areaSizeScale.quantitative([0, 89])))
-  heightAreaSize: number;
+  heightAreaSize!: number;
 
   @Operand(chain(access('opponent'), createLookup(opponents)))
-  Opponent: Partial<GVData>;
+  Opponent!: Partial<GVData>; // eslint-disable-line @typescript-eslint/naming-convention
 
   @Operand(chain(access('shoes'), createLookup(shoes)))
-  Shoe: Partial<GVData>;
+  Shoe!: Partial<GVData>; // eslint-disable-line @typescript-eslint/naming-convention
 
-  toJSON(): any {
+  constructor(options: PersonOptions) {
+    ({
+      id: this.id,
+      icon: this.icon,
+      age: this.age,
+      height: this.height,
+      opponent: this.opponent,
+      shoes: this.shoes,
+      zipCode: this.zipCode,
+      state: this.state,
+      latitude: this.latitude,
+      longitude: this.longitude
+    } = options);
+  }
+
+  toJSON(): unknown {
     return assignIn({}, this);
   }
 }

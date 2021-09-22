@@ -1,30 +1,41 @@
-import { Run } from './run';
+import { Run, RunOptions } from './run';
+
+
+export interface MessageOptions {
+  type?: string;
+  timestamp?: Date;
+  run?: Run | RunOptions;
+}
 
 export class Message {
-  type: string;
+  type = '';
   timestamp: Date;
   run?: Run;
 
-  constructor(data: any = {}) {
-    if (data.run && !(data.run instanceof Run)) {
-      data.run = new Run(data.run);
+  constructor(options: MessageOptions) {
+    const { type, timestamp, run } = options;
+    this.type = type ?? this.type;
+    this.timestamp = timestamp ?? new Date();
+
+    if (run) {
+      this.run = run instanceof Run ? run : new Run(run);
     }
-    Object.assign(this, {timestamp: new Date()}, data);
   }
 }
 
 export class SignupStartedMessage extends Message {
-  type = 'signup-started';
+  override type = 'signup-started';
 }
 
 export class SignupFinishedMessage extends Message {
-  type = 'signup-finished';
+  override type = 'signup-finished';
 }
 
 export class RunStartedMessage extends Message {
-  type = 'run-started';
+  override type = 'run-started';
 }
 
 export class RunFinishedMessage extends Message {
-  type = 'run-finished';
+  override type = 'run-finished';
+  override run!: Run;
 }

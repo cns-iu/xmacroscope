@@ -9,7 +9,7 @@ import { round } from 'lodash';
 export type BuiltinSymbolTypes =
   'circle' | 'cross' | 'diamond' | 'square' | 'star' | 'triangle' | 'wye';
 
-const symbolLookup: {[P in BuiltinSymbolTypes]: SymbolType} = {
+const symbolLookup: { [P in BuiltinSymbolTypes]: SymbolType } = {
   'circle': symbolCircle, 'cross': symbolCross, 'diamond': symbolDiamond,
   'square': symbolSquare, 'star': symbolStar, 'triangle': symbolTriangle,
   'wye': symbolWye
@@ -21,7 +21,7 @@ const defaultPulseColor = '#F1BE48';
 
 export type CanvasCreator = (width: number, height: number) => HTMLCanvasElement;
 
-export const defaultCanvasCreator: CanvasCreator = function(width, height) {
+export const defaultCanvasCreator: CanvasCreator = function (width, height) {
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
@@ -75,7 +75,7 @@ export class DataDrivenIcon {
   private imageDrawn: boolean;
   private imageSent: boolean;
 
-  static fromString(icon: string, prefix: string = 'ddi:', createCanvas = defaultCanvasCreator): DataDrivenIcon {
+  static fromString(icon: string, prefix = 'ddi:', createCanvas = defaultCanvasCreator): DataDrivenIcon {
     if (icon.startsWith(prefix)) {
       const config = JSON.parse(icon.slice(prefix.length));
       return new DataDrivenIcon(config, createCanvas);

@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, EventEmitter, Output } from '@angular/core';
-import { GraphicSymbol, OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import { GraphicSymbol, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import { entries, orderBy } from 'lodash';
 import { EMPTY, Observable, of } from 'rxjs';
@@ -87,15 +88,21 @@ export class TableComponent implements VisualizationComponent,
     this.refreshItems();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) { this.refreshItems(); }
+    if ('data' in changes) {
+      this.refreshItems();
+    }
   }
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
-    if ('items' in changes) { this.refreshItems(); }
+    if ('items' in changes) {
+      this.refreshItems();
+    }
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('itemDefaults' in changes) { this.refreshItems(); }
+    if ('itemDefaults' in changes) {
+      this.refreshItems();
+    }
   }
-  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: any } = {}): Observable<TDatum<T>[]> {
+  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
 }

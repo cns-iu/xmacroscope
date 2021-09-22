@@ -1,5 +1,8 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange, SimpleChanges, ViewChild } from '@angular/core';
-import { OnGraphicSymbolChange, OnPropertyChange, Visualization, VisualizationComponent } from '@dvl-fw/core';
+import {
+  Component, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChange, SimpleChanges, ViewChild,
+} from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import { Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, Datum, idSymbol, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
 import bbox from '@turf/bbox';
 import bboxClip from '@turf/bbox-clip';
@@ -38,9 +41,9 @@ const worldBbox = bbox(grid5.geojson);
 })
 export class GeographicMapComponent implements VisualizationComponent,
   OnInit, OnChanges, OnDestroy, OnPropertyChange, OnGraphicSymbolChange {
-  @Input() data: Visualization;
+  @Input() data!: Visualization;
   featureSelection = 'USA';
-  nodeDefaults: { [gvName: string]: any } = {
+  nodeDefaults: { [gvName: string]: unknown } = {
     shape: 'circle',
     areaSize: 16,
     color: '#000',
@@ -49,20 +52,20 @@ export class GeographicMapComponent implements VisualizationComponent,
   nodes$: Observable<TDatum<Node>[]> = EMPTY;
 
   // Outputs
-  @Output() nodeClick = new EventEmitter<NgxDinoEvent>();
+  @Output() readonly nodeClick = new EventEmitter<NgxDinoEvent>();
 
   // Tooltip element
-  @ViewChild('tooltipElement', {static: true}) tooltipElement: ElementRef<HTMLDivElement>;
+  @ViewChild('tooltipElement', { static: true }) tooltipElement!: ElementRef<HTMLDivElement>;
 
   style = blankStyle;
-  map: Map;
+  map!: Map;
 
   worldBbox: BBox = worldBbox;
   worldPadding: PaddingOptions = grid5.padding;
   graticule: FeatureCollection<Geometry> = grid5.geojson;
-  nodesGeoJson: FeatureCollection<Point>;
-  nodes: TDatum<Node>[];
-  nodesSubscription: Subscription;
+  nodesGeoJson!: FeatureCollection<Point>;
+  nodes!: TDatum<Node>[];
+  nodesSubscription!: Subscription;
   basemapGeoJson: FeatureCollection<Geometry> = usGeoJson;
 
   constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) {}
@@ -70,38 +73,41 @@ export class GeographicMapComponent implements VisualizationComponent,
   private toNgxDinoEvent(event: MapMouseEvent, layers: string[], data: Datum[]): NgxDinoEvent | undefined {
     const bboxMargin = new MapPoint(4, 4);
     const pointBox: [PointLike, PointLike] = [ event.point.sub(bboxMargin), event.point.add(bboxMargin) ];
-    const features = this.map.queryRenderedFeatures(pointBox, {layers});
-    const itemId = features[0].properties[idSymbol];
+    const features = this.map.queryRenderedFeatures(pointBox, { layers });
+    const itemId = features[0].properties?.[idSymbol];
     const item = data.find(i => i[idSymbol] === itemId);
     if (item) {
       return new NgxDinoEvent(event.originalEvent, item[rawDataSymbol], item, this);
     }
   }
+
   nodeClicked(event: MapMouseEvent): void {
     const ngxDinoEvent = this.toNgxDinoEvent(event, ['nodes'], this.nodes);
     if (ngxDinoEvent) {
       this.nodeClick.emit(ngxDinoEvent);
     }
-    this.tempClickListener(ngxDinoEvent);
+    this.tempClickListener(ngxDinoEvent!);
   }
 
   // FIXME: Remove specifics to xMacroscope
-  tempClickListener(event: NgxDinoEvent) {
+  tempClickListener(event: NgxDinoEvent): void {
     const selection = !event || event.data.selected ? [] : [event.data];
-    this.xMacroscopeDataService.runStreamController.selectRuns(selection);
+    this.xMacroscopeDataService.runStreamController?.selectRuns?.(selection);
   }
 
   onMouseEnter(event: MapLayerMouseEvent): void {
     this.map.getCanvas().style.cursor = 'pointer';
-    const tooltip = event.features[0].properties.tooltip;
+    const tooltip = event?.features?.[0]?.properties?.tooltip;
     this.showTooltip(event.originalEvent, tooltip);
   }
-  onMouseLeave(event: MapLayerMouseEvent): void {
+
+  onMouseLeave(_event: MapLayerMouseEvent): void {
     this.hideTooltip();
   }
-  showTooltip(event: any, tooltip: string): void {
+
+  showTooltip(event: unknown, tooltip: string): void {
     const el = this.tooltipElement.nativeElement;
-    const { x, y } = event;
+    const { x, y } = event as { x: number, y: number };
     if (!el || !tooltip) {
       return;
     }
@@ -111,6 +117,7 @@ export class GeographicMapComponent implements VisualizationComponent,
     el.style.top = `${y - 40}px`;
     el.style.visibility = 'visible';
   }
+
   hideTooltip(): void {
     const el = this.tooltipElement.nativeElement;
     if (!el) {
@@ -125,7 +132,7 @@ export class GeographicMapComponent implements VisualizationComponent,
     this.map.resize();
     new DataDrivenIcons().addTo(map);
 
-    this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange});
+    this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange });
   }
 
   private layout(nodes?: TDatum<Node>[]): void {
@@ -137,11 +144,11 @@ export class GeographicMapComponent implements VisualizationComponent,
       const h = this.map ? this.map.getCanvas().height : 1000;
       const viewBox: BBox = [0, 0, w, h];
       const state = this.featureSelection;
-      const feature = usGeoJson.features.find(f => f.properties.label === state);
+      const feature = usGeoJson.features.find(f => f.properties?.label === state);
 
       if (state && state !== 'USA' && !!feature) {
         // Limit nodes showing to just those in the selected state
-        this.nodesGeoJson = pointsWithinPolygon(this.nodesGeoJson, feature) as FeatureCollection<Point>;
+        this.nodesGeoJson = pointsWithinPolygon(this.nodesGeoJson, feature) ;
 
         // Stretch out the state bounding box to match the screen aspect ratio. This will
         // necessarily include some parts of bordering states.
@@ -199,12 +206,19 @@ export class GeographicMapComponent implements VisualizationComponent,
       this.featureSelection = this.data.properties.featureSelection;
     }
   }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) { this.refreshNodes(); }
+    if ('data' in changes) {
+      this.refreshNodes();
+    }
   }
+
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
-    if ('nodes' in changes) { this.refreshNodes(); }
+    if ('nodes' in changes) {
+      this.refreshNodes();
+    }
   }
+
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('nodeDefaults' in changes) {
       this.nodeDefaults = this.data.properties.nodeDefaults;
@@ -215,9 +229,11 @@ export class GeographicMapComponent implements VisualizationComponent,
       this.refreshNodes();
     }
   }
-  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: any } = {}): Observable<TDatum<T>[]> {
+
+  getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
     return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
+
   ngOnDestroy(): void {
     if (this.nodesSubscription) {
       this.nodesSubscription.unsubscribe();

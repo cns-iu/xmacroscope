@@ -1,12 +1,11 @@
-import { pick } from 'lodash';
-import { Observable } from 'rxjs';
 import { RecordStream } from '@dvl-fw/core';
 import { RawChangeSet } from '@ngx-dino/core';
+import { pick } from 'lodash';
+import { Observable } from 'rxjs';
 
 import { Run } from '../shared/run';
-import { RunMocker } from './run-mocker';
-import { RunFinishedMessage, Message } from '../shared/message';
 import { RunStreamController } from '../shared/run-stream-controller';
+import { RunMocker } from './run-mocker';
 
 
 export class MockRunDataStream implements RecordStream<Run> {
@@ -26,7 +25,7 @@ export class MockRunDataStream implements RecordStream<Run> {
     return this.runStreamController.createRunStream();
   }
 
-  toJSON(): any {
+  toJSON(): unknown {
     return pick(this, ['id', 'label']);
   }
 }

@@ -1,18 +1,18 @@
-import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
 
-import { XMacroscopeProjectConfig, XMacroscopeProject } from './xmacroscope-project';
 import { XMacroscopeDataService } from './xmacroscope-data.service';
+import { XMacroscopeProject, XMacroscopeProjectConfig } from './xmacroscope-project';
 import { XMacroscopeProjectConfigService } from './xmacroscope-project-config.service';
-import { LocationSettings } from '../graphql/location-settings';
 
-export function configFactory(config: XMacroscopeProjectConfig) {
+
+export function configFactory(config: XMacroscopeProjectConfig): () => Promise<XMacroscopeProjectConfig> {
   return () => XMacroscopeProject.resolveConfig(config);
 }
 
-// @dynamic
+
 @NgModule()
 export class XMacroscopeDataModule {
-  static forRoot(config: XMacroscopeProjectConfig): ModuleWithProviders {
+  static forRoot(config: XMacroscopeProjectConfig): ModuleWithProviders<XMacroscopeDataModule> {
     return {
       ngModule: XMacroscopeDataModule,
       providers: [

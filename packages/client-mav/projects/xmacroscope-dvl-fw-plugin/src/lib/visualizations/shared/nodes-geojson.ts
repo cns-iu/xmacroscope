@@ -11,11 +11,11 @@ export function nodesGeoJson(nodes: Node[], projection?: Cartesian2dProjection):
   return featureCollection(nodes.map(n =>
     point(
       projection && n.position ? projection.toLngLat(...n.position).toArray() : [n.longitude, n.latitude],
-      Object.assign(
-        { icon: IconConfig.asString(n) },
-        pick(n, [ idSymbol, 'areaSize', 'tooltip', 'label', 'labelPosition' ])
-      ),
-      { id: n[idSymbol]}
+      {
+        icon: IconConfig.asString(n),
+        ...pick(n, [ idSymbol, 'areaSize', 'tooltip', 'label', 'labelPosition' ])
+      },
+      { id: n[idSymbol] }
     )
   ));
 }

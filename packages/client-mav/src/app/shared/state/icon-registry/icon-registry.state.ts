@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
@@ -37,6 +38,7 @@ function getRegistrationMethod({ name, namespace, url, html }: IconDefinition): 
  * State handling the registration of icons for use with `mat-icon`.
  */
 @State({ name: 'iconRegistry' })
+@Injectable()
 export class IconRegistryState implements NgxsOnInit {
   /**
    * Creates an instance of icon registry state.

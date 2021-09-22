@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
-import * as moment_ from 'moment';
-const moment = moment_; // See https://github.com/jvandemo/generator-angular2-library/issues/221
+import moment, { MomentInput } from 'moment';
 
-import { Message, SignupStartedMessage, SignupFinishedMessage, RunStartedMessage, RunFinishedMessage } from '../shared/message';
+import {
+  Message, MessageOptions, RunFinishedMessage, RunStartedMessage, SignupFinishedMessage, SignupStartedMessage,
+} from '../shared/message';
 
 
 export const GET_SETTINGS = gql`
@@ -69,20 +70,23 @@ export const MESSAGE_SUBSCRIPTION = gql`
   }
 `;
 
-function asDate(date: any): Date {
+function asDate(date: MomentInput | null | undefined): Date | undefined {
   return date ? moment(date).local().toDate() : undefined;
 }
 
-export function asMessage(messageData: any): Message {
-  const data: any = Object.assign({
-    type: messageData.type,
-    timestamp: asDate(messageData.timestamp),
-    run: messageData.run || undefined
-  });
-  if (data.run) {
-    data.run.start = asDate(data.run.start);
-    data.run.end = asDate(data.run.end);
+export function asMessage(messageData: unknown): Message {
+  const { type, timestamp, run } = messageData as MessageOptions;
+  const data: MessageOptions = {
+    type,
+    timestamp: asDate(timestamp),
+    run
+  };
+
+  if (run) {
+    run.start = asDate(run.start)!;
+    run.end = asDate(run.end)!;
   }
+
   switch (data.type) {
     case 'signup-started':
       return new SignupStartedMessage(data);

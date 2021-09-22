@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { DvlFwAngularModule } from '@dvl-fw/angular';
+import { ButtonGroupModule } from 'src/app/shared/components/button-group';
 
-import { DvlFwModule } from '@dvl-fw/core';
 import { GraphicVariableLegendComponent } from './graphic-variable-legend/graphic-variable-legend.component';
 import { MainComponent } from './main/main.component';
-import { MatIconModule } from '@angular/material/icon';
-import { ButtonGroupModule } from 'src/app/shared/components/button-group';
 
 @NgModule({
   imports: [
     CommonModule,
-    DvlFwModule,
+    DvlFwAngularModule,
     ButtonGroupModule,
     MatIconModule
   ],

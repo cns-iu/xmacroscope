@@ -10,7 +10,7 @@ describe('GraphicVariableLegendComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GraphicVariableLegendComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

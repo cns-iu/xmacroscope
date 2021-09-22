@@ -2,7 +2,7 @@ import { LngLat } from 'mapbox-gl';
 import { BBox } from 'geojson';
 
 
-// tslint:disable-next-line: max-line-length
+// eslint-disable-next-line max-len
 // See https://github.com/Leaflet/Leaflet/blob/dc6a0ae61a70b1d34f9ee2c4f814bdd21841c774/src/geo/projection/Projection.SphericalMercator.js#L32
 const earthRadius = 6378137;
 const d = 180 / Math.PI;

@@ -1,9 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
-import { GraphicSymbol, GraphicVariable, OnGraphicSymbolChange, OnPropertyChange,
-  Project, Visualization, VisualizationComponent, DefaultGraphicSymbol } from '@dvl-fw/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
+import {
+  DefaultGraphicSymbol, GraphicSymbol, GraphicVariable, Project, Visualization, VisualizationComponent,
+} from '@dvl-fw/core';
 
-import { SymbolLegendVisualization } from '../symbol-legend/symbol-legend.visualization';
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
+import { SymbolLegendVisualization } from '../symbol-legend/symbol-legend.visualization';
 
 
 @Component({
@@ -32,13 +34,13 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
 
       if (gs && gv) {
         const graphicSymbol = this.createGraphicSymbol(gv, gs, project);
-        legend = this.createLegend(this.data.id, graphicSymbol, {itemDefaults}, project);
+        legend = this.createLegend(this.data.id, graphicSymbol, { itemDefaults }, project);
       }
     }
     this.legend = legend;
   }
 
-  private createLegend(id: string, graphicSymbol: GraphicSymbol, properties: any, project: Project): Visualization {
+  private createLegend(id: string, graphicSymbol: GraphicSymbol, properties: unknown, project: Project): Visualization {
     const visualization = new SymbolLegendVisualization({
       id,
       template: 'symbol-legend',
@@ -51,7 +53,7 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
   }
 
   private createGraphicSymbol(graphicVariable: GraphicVariable, sourceGraphicSymbol: GraphicSymbol, project: Project) {
-    const gvars: { [id: string]: any } = {};
+    const gvars: { [id: string]: unknown } = {};
     for (const gv of project.graphicVariables) {
       if (gv.dataVariable === graphicVariable.dataVariable && !gvars[gv.type]) {
         gvars[gv.type] = gv;
@@ -81,12 +83,16 @@ export class GraphicVariableLegendComponent implements VisualizationComponent,
     this.refreshItems();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if ('data' in changes) { this.refreshItems(); }
+    if ('data' in changes) {
+      this.refreshItems();
+    }
   }
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
     this.refreshItems();
   }
   dvlOnPropertyChange(changes: SimpleChanges): void {
-    if ('graphicVariable' in changes || 'itemDefaults' in changes) { this.refreshItems(); }
+    if ('graphicVariable' in changes || 'itemDefaults' in changes) {
+      this.refreshItems();
+    }
   }
 }

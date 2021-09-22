@@ -10,7 +10,7 @@ describe('ScatterplotMapComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ScatterplotMapComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
