@@ -5,7 +5,16 @@
     "column": ["Miles_per_Gallon", "Acceleration", "Horsepower"]
   },
   "spec": {
-    "data": {"url": "data/cars.json"},
+    "data": {
+      "url": "assets/generated/combined-data.csv",
+      "format": {
+        "type": "csv",
+        "parse": {
+          "Time (seconds)": "number",
+          "Age Group": null
+        }
+      }
+    },
     "mark": "point",
     "params": [
       {

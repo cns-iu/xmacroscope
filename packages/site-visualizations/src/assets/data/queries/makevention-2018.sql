@@ -1,0 +1,24 @@
+SELECT
+  r.ID,
+  r.OPPONENT,
+  r.OPPONENTNAME,
+  r.START,
+  r.END,
+  r.PERSONID,
+  ROUND((JULIANDAY(r.END) - JULIANDAY(r.START)) * 86400) AS "Time (seconds)",
+
+  p.ID,
+  p.NAME,
+  p.ICON,
+  p.COLOR,
+  p.GENDER,
+  p.AGE_GROUP AS "Age Group",
+  p.FAVORITEACTIVITY AS "Favorite Activity",
+  p.HEIGHT,
+  p.ZIPCODE,
+  p.STATE,
+
+  'Makevention 2018' AS "EVENT"
+FROM RUNS AS r
+JOIN PEOPLE AS p ON p.ID = r.PERSONID
+ORDER BY ZIPCODE;
