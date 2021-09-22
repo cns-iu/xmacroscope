@@ -18,7 +18,7 @@ SELECT
   p.ZIPCODE,
   p.STATE,
 
-  'Makevention 2019' AS "EVENT"
+  'Sciencefest 2019' AS "EVENT"
 FROM RUNS AS r
 JOIN PEOPLE AS p ON p.ID = r.PERSONID
 ORDER BY ZIPCODE;
