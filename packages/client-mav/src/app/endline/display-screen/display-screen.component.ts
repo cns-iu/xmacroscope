@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { duration } from 'moment';
+import {
+  Message, RunFinishedMessage, RunStartedMessage, SignupStartedMessage, XMacroscopeDataService,
+} from 'xmacroscope-dvl-fw-plugin';
 
-import { Message, XMacroscopeDataService, RunStartedMessage, RunFinishedMessage, SignupStartedMessage } from 'xmacroscope-dvl-fw-plugin';
 import { TimerService } from '../timer-service/timer.service';
 
 @Component({
@@ -11,9 +13,9 @@ import { TimerService } from '../timer-service/timer.service';
   providers: [XMacroscopeDataService, TimerService],
 })
 export class DisplayScreenComponent implements OnInit {
-  lastMessage: Message;
+  lastMessage!: Message;
   timerText = '00:00';
-  personaIcon: string;
+  personaIcon!: string;
   personaColor = '#000';
   personaShape = 'circle';
   personaBackgroundSize = { width: 420, height: 420 };
@@ -22,8 +24,9 @@ export class DisplayScreenComponent implements OnInit {
 
   constructor(private dataService: XMacroscopeDataService, private timerService: TimerService) { }
 
-  ngOnInit() {
-    let timeoutHandle: unknown; // used to store setTimeout Id to clear it when a new message arrives.
+  ngOnInit(): void {
+    let timeoutHandle: ReturnType<typeof setTimeout> | null = null; // used to store setTimeout Id to clear it when a new message arrives.
+
     this.dataService.messages.subscribe((msg: Message) => {
       // clearing a timeout if it had been set earlier.
       if (timeoutHandle) {
@@ -42,27 +45,28 @@ export class DisplayScreenComponent implements OnInit {
         timeoutHandle = setTimeout(() => {
           this.timerService.stop();
           this.handleMessage(this.createDummySignupStartedMessage());
-        }, this.dataService.config.runTimout);
+        }, (this.dataService.config as { runTimout: number }).runTimout);
       }
     });
+
     this.timerService.getFormattedTimeObservable().subscribe((timerText) => {
       this.timerText = timerText;
     });
   }
 
-  handleMessage(msg: Message) {
+  handleMessage(msg: Message): void {
     this.updatePersona(msg);
     this.lastMessage = msg;
     if (msg instanceof RunStartedMessage) {
       this.timerService.start();
     } else if (msg instanceof RunFinishedMessage) {
       this.timerService.stop();
-      this.timerText = this.timerService.formatTime(duration(msg.run.timeMillis, 'millisecond'));
+      this.timerText = this.timerService.formatTime(duration(msg.run?.timeMillis, 'millisecond'));
     }
   }
 
-  updatePersona(msg: Message) {
-    if (msg && msg.run && msg.run.person) {
+  updatePersona(msg: Message): void {
+    if (msg?.run?.person) {
       this.personaIcon = `emoji:${msg.run.person.icon}`;
       this.personaColor = msg.run.persona.color;
       this.personaShape = msg.run.persona.shape;

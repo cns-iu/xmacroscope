@@ -74,8 +74,7 @@ export class Timer {
     return this.startTime ? +moment() - this.startTime : 0;
   }
 
-  private emit(dur: number) {
+  private emit(dur: number): void {
     this.eventEmiter.next(duration(dur));
   }
-
 }

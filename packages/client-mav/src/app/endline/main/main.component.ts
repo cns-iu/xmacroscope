@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -7,10 +7,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.sass']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
   showAppHeader = true;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(route: ActivatedRoute) {
     route.queryParams.subscribe((q) => {
       if ('showAppHeader' in q) {
         this.showAppHeader = q['showAppHeader'] === 'true';
@@ -19,8 +19,4 @@ export class MainComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit() {
-  }
-
 }

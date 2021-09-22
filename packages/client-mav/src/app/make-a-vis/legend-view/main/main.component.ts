@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { DefaultGraphicSymbol, GraphicSymbol, GraphicVariable, Project } from '@dvl-fw/core';
+import { DefaultGraphicSymbol, DefaultGraphicSymbolArg, GraphicSymbol, GraphicVariable, Project } from '@dvl-fw/core';
 import { get } from 'lodash';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
@@ -14,7 +14,7 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
 })
 export class MainComponent implements OnChanges {
   @Input() activeVisualization = 'datatable';
-  @Output() activeVisualizationChange = new EventEmitter<string>();
+  @Output() readonly activeVisualizationChange = new EventEmitter<string>();
 
   readonly navigation = [
     { label: 'Data Table', id: 'datatable', icon: 'visualization:table', hideLegend: true },
@@ -42,7 +42,7 @@ export class MainComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('activeVisualization' in changes) {
-      this.selected = this.navigation.find(n => n.id === this.activeVisualization) || this.navigation[0];
+      this.selected = this.navigation.find(n => n.id === this.activeVisualization) ?? this.navigation[0];
     }
   }
 
@@ -55,26 +55,26 @@ export class MainComponent implements OnChanges {
     return get(this.getRunPoints(), ['graphicVariables', type, 'label']);
   }
 
-  goHome() {
+  goHome(): void {
     this.navigationChanged(this.navigation[0]);
-    const gs = new DefaultGraphicSymbol(this.originalGraphicSymbol, this.project);
+    const gs = new DefaultGraphicSymbol(this.originalGraphicSymbol as DefaultGraphicSymbolArg, this.project);
     Object.assign(this.getRunPoints().graphicVariables, gs.graphicVariables);
     this.getRunTable().graphicVariables.order = this.originalTableOrder;
 
-    this.updateService.triggerUpdate(this.project.visualizations.find(v => v.id === 'datatable'));
+    this.updateService.triggerUpdate(this.project.visualizations.find(v => v.id === 'datatable')!);
   }
 
-  navigationChanged(event: unknown) {
-    this.selected = event;
-    this.activeVisualization = event.id;
-    this.activeVisualizationChange.emit(event.id);
+  navigationChanged(event: unknown): void {
+    this.selected = event as typeof this.selected;
+    this.activeVisualization = this.selected.id;
+    this.activeVisualizationChange.emit(this.selected.id);
   }
 
   private getRunPoints(): GraphicSymbol {
-    return this.project.graphicSymbols.find(g => g.id === 'runPoints');
+    return this.project.graphicSymbols.find(g => g.id === 'runPoints')!;
   }
 
   private getRunTable(): GraphicSymbol {
-    return this.project.graphicSymbols.find(g => g.id === 'runTable');
+    return this.project.graphicSymbols.find(g => g.id === 'runTable')!;
   }
 }

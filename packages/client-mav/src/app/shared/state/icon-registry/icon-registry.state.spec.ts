@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Actions, NgxsModule, ofActionDispatched, Store } from '@ngxs/store';
+import { Actions, ActionType, NgxsModule, ofActionDispatched, Store } from '@ngxs/store';
 import { take, timeout } from 'rxjs/operators';
 
 import { RegisterIcon, RegistrationError, RegistrationSuccess } from './icon-registry.action';
@@ -9,7 +9,9 @@ import { IconRegistryState } from './icon-registry.state';
 
 describe('State', () => {
   describe('IconRegistry', () => {
-    function noop() { }
+    function noop() {
+      // Intentionally empty
+    }
 
     const mockedRegistry = {
       addSvgIcon: noop,
@@ -29,8 +31,8 @@ describe('State', () => {
     let store: Store;
     let actions: Actions;
 
-    function describeDispatch(description: string, type: unknown, action: (() => void) | unknown): void {
-      describe(type.name, () => {
+    function describeDispatch(description: string, type: ActionType, action: (() => void) | unknown): void {
+      describe(type.type, () => {
         let event: Promise<unknown>;
 
         beforeEach(() => {
@@ -75,7 +77,7 @@ describe('State', () => {
       describe('RegisterIcon', () => {
         function describeMethod(methodName: keyof MatIconRegistry, ...keys: string[]): void {
           describe(`with IconDefinition{${keys.join(', ')}}`, () => {
-            const data = keys.reduce((obj, key, index) => ({ ...obj, [key]: 'foo' + index }), { });
+            const data = keys.reduce((obj, key, index) => ({ ...obj, [key]: 'foo' + index }), {});
             const action = new RegisterIcon(data);
             let spy: jasmine.Spy;
 
@@ -110,7 +112,7 @@ describe('State', () => {
       );
       describeDispatch(
         'is dispatched on failed icon registration',
-        RegistrationError, new RegisterIcon({ })
+        RegistrationError, new RegisterIcon({})
       );
     });
   });

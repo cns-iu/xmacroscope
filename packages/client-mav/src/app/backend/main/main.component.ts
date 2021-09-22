@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { Message, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 
@@ -13,7 +12,7 @@ import { Message, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 })
 export class MainComponent implements OnInit {
   showAppHeader = true;
-  messages: Observable<Message[]>;
+  messages!: Observable<Message[]>;
   private messageCache: Message[] = [];
 
   constructor(private route: ActivatedRoute, private dataService: XMacroscopeDataService) {
@@ -26,7 +25,7 @@ export class MainComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.messages = this.dataService.messages.pipe(
       map<Message, Message[]>(msg => this.accumulate(msg))
     );

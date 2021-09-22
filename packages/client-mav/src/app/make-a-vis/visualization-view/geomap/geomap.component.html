@@ -4,7 +4,7 @@
       <div class="visualization-name">MAP</div>
       <div class="map-selection">
         <app-button-group [items]="buttonItems" [value]="currentFeature()" [deselectable]="false" [vertical]="true"
-                          (valueChange)="geoMapChanged($event)">
+                          (valueChange)="geoMapChanged($any($event))">
           <div *appButtonContent="let item" class="button">
             <mat-icon class="icon" inline [svgIcon]="item.icon">
             </mat-icon>

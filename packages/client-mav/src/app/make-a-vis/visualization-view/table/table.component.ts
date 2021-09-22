@@ -12,8 +12,8 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TableComponent {
-  @Input() data: Visualization;
-  @ViewChild('visualization', { static: true }) visualization: DvlFwVisualizationComponent;
+  @Input() data!: Visualization;
+  @ViewChild('visualization', { static: true }) visualization!: DvlFwVisualizationComponent;
 
   readonly orderType = GraphicVariableType.ORDER;
 
@@ -22,11 +22,11 @@ export class TableComponent {
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.variables = dataService.project.graphicVariables;
-    this.defaultOrderVariable = dataService.project.graphicSymbols.find(g => g.id === 'runTable').graphicVariables.order;
+    this.defaultOrderVariable = dataService.project.graphicSymbols.find(g => g.id === 'runTable')!.graphicVariables.order;
   }
 
   variableChanged(variable: GraphicVariable, id: string): void {
-    if (this.data && this.data.graphicSymbols['items']) {
+    if (this.data?.graphicSymbols?.['items']) {
       this.data.graphicSymbols['items'].graphicVariables[id] = variable;
       this.visualization.runDataChangeDetection();
       this.updateService.triggerUpdate(this.data);

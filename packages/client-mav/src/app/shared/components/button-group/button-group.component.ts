@@ -1,16 +1,8 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  Directive,
-  EventEmitter,
-  Input,
-  Output,
-  TemplateRef,
-  TrackByFunction,
+  ChangeDetectionStrategy, Component, ContentChild, Directive, EventEmitter, Input, Output, TemplateRef, TrackByFunction,
   ViewChild,
 } from '@angular/core';
-import { MatButtonToggleChange, MatButtonToggleGroup } from '@angular/material/button-toggle';
+import { MatButtonToggle, MatButtonToggleChange, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { Observable } from 'rxjs';
 import { sampleTime } from 'rxjs/operators';
 
@@ -32,20 +24,21 @@ export class ButtonContentDirective { }
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonGroupComponent {
-  @Input() items: unknown[];
+  @Input() items!: unknown[];
   @Input() value?: unknown;
   @Input() trackBy?: TrackByFunction<unknown>;
   @Input() deselectable = true;
   @Input() vertical = false;
 
-  @Output() valueChange: Observable<unknown>;
-  @Output() change = new EventEmitter<MatButtonToggleChange>();
+  @Output() readonly valueChange: Observable<unknown>;
+  //eslint-disable-next-line @angular-eslint/no-output-native
+  @Output() readonly change = new EventEmitter<MatButtonToggleChange>();
 
-  @ViewChild('buttonGroup', { read: MatButtonToggleGroup }) buttonGroup: MatButtonToggleGroup;
-  @ContentChild(ButtonGroupLabelDirective, { read: TemplateRef }) label: TemplateRef<void>;
-  @ContentChild(ButtonContentDirective, { read: TemplateRef }) content: TemplateRef<ButtonContentContext>;
+  @ViewChild('buttonGroup', { read: MatButtonToggleGroup }) buttonGroup!: MatButtonToggleGroup;
+  @ContentChild(ButtonGroupLabelDirective, { read: TemplateRef }) label!: TemplateRef<void>;
+  @ContentChild(ButtonContentDirective, { read: TemplateRef }) content!: TemplateRef<ButtonContentContext>;
 
-  private lastChangeEvent = new MatButtonToggleChange(undefined, undefined);
+  private lastChangeEvent = new MatButtonToggleChange(undefined as unknown as MatButtonToggle, undefined);
   private _valueChange = new EventEmitter<unknown>();
 
   constructor() {
@@ -79,6 +72,6 @@ export class ButtonGroupComponent {
   }
 
   valueChanged(item: [unknown] | undefined): void {
-    this._valueChange.emit(item && item[0]);
+    this._valueChange.emit(item?.[0]);
   }
 }
