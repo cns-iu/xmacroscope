@@ -1,4 +1,4 @@
-id,Opponent,OpponentName,start,end,PersonId,"Time (seconds)",id,Name,icon,color,Gender,"Age Group",favoriteActivity,"Height (inches)",zipCode,state,EVENT
+id,Opponent,OpponentName,start,end,PersonId,"Time (seconds)",id,Name,icon,color,Gender,"Age Group","Favorite Activity","Height (inches)",zipCode,state,EVENT
 43,None,None,"2019-08-22 18:09:25.983 +00:00","2019-08-22 18:09:28.599 +00:00",43,3.0,43,Unkown,cross,#0707D2,Unkown,Teen,Cooking,58,02349,MA,"Makevention 2019"
 41,None,None,"2019-08-22 17:33:00.909 +00:00","2019-08-22 17:33:01.917 +00:00",41,1.0,41,Unkown,diamond,#0707D2,Unkown,Adult,Gaming,74,12784,NY,"Makevention 2019"
 42,None,None,"2019-08-22 17:34:53.707 +00:00","2019-08-22 17:35:03.371 +00:00",42,10.0,42,Unkown,star,#D3D406,Unkown,Retired,Sports,94,40826,KY,"Makevention 2019"

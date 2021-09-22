@@ -1,4 +1,4 @@
-id,opponent,opponentName,start,end,PersonId,"Time (seconds)",id,name,icon,color,gender,"Age Group",favoriteActivity,height,zipcode,state,EVENT
+id,opponent,opponentName,start,end,PersonId,"Time (seconds)",id,name,icon,color,gender,"Age Group","Favorite Activity",height,zipcode,state,EVENT
 20,fast-person,"Fast person","2018-08-25 15:07:29.106 +00:00","2018-08-25 15:07:32.662 +00:00",20,4.0,20,"Ignacio Hermiston III",triangle-up,#D3D406,male,Teen,Gaming,71,35242,AL,"Makevention 2018"
 84,fast-animal,"Fast animal","2018-08-25 18:09:09.094 +00:00","2018-08-25 18:09:16.522 +00:00",84,7.0,84,"Julius Schulist DDS",triangle-up,#D39827,female,Teen,Cooking,44,46106,IN,"Makevention 2018"
 87,fast-animal,"Fast animal","2018-08-25 18:40:16.144 +00:00","2018-08-25 18:40:24.444 +00:00",87,8.0,87,"Lela Marks",triangle-up,#55D4D2,female,Pre-Teen,Sports,11,46106,IN,"Makevention 2018"
