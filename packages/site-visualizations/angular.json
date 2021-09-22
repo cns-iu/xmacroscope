@@ -119,6 +119,7 @@
   },
   "defaultProject": "site-visualizations",
   "cli": {
+    "analytics": "eece6d7b-b51b-47bc-996b-b3a88be46bc8",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
