@@ -15,7 +15,7 @@ export interface Visualization {
 export const visualizations: Visualization[] = [
   {
     id: 'vis1',
-    title: 'Age-Time Heatmap',
+    title: 'Visualization 1',
     description: 'Visualization 1',
     spec: 'assets/pages/vis1/vis.vl.json',
     options: {},
@@ -25,7 +25,7 @@ export const visualizations: Visualization[] = [
   },
   {
     id: 'vis2',
-    title: 'Height-Time Heatmap',
+    title: 'Visualization 2',
     description: 'Visualization 2',
     spec: 'assets/pages/vis2/vis.vl.json',
     options: {},
@@ -35,7 +35,7 @@ export const visualizations: Visualization[] = [
   },
   {
     id: 'vis3',
-    title: 'Scatterplot',
+    title: 'Visualization 3',
     description: 'Visualization 3',
     spec: 'assets/pages/vis3/vis.vl.json',
     options: {},
