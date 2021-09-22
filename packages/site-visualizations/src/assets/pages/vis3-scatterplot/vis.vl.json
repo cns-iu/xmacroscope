@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
-    "url": "assets/generated/sciencefest-2019.csv",
+    "url": "assets/generated/combined-data.csv",
     "format": {
       "type": "csv",
       "parse": {
