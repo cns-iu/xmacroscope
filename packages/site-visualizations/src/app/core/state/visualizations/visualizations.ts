@@ -15,9 +15,9 @@ export interface Visualization {
 export const visualizations: Visualization[] = [
   {
     id: 'vis1',
-    title: 'Visualization 1',
+    title: 'Age-Time Heatmap',
     description: 'Visualization 1',
-    spec: 'assets/pages/vis1/vis.vl.json',
+    spec: 'assets/visualizations/vis1-age-time-heatmap/vis.vl.json',
     options: {},
     content: 'test',
     sql: 'test',
@@ -25,9 +25,9 @@ export const visualizations: Visualization[] = [
   },
   {
     id: 'vis2',
-    title: 'Visualization 2',
+    title: 'Height-Time Heatmap',
     description: 'Visualization 2',
-    spec: 'assets/pages/vis2/vis.vl.json',
+    spec: 'assets/visualizations/vis2-height-time-heatmap/vis.vl.json',
     options: {},
     content: 'test',
     sql: 'test',
@@ -35,9 +35,9 @@ export const visualizations: Visualization[] = [
   },
   {
     id: 'vis3',
-    title: 'Visualization 3',
+    title: 'Scatterplot',
     description: 'Visualization 3',
-    spec: 'assets/pages/vis3/vis.vl.json',
+    spec: 'assets/visualizations/vis3-scatterplot/vis.vl.json',
     options: {},
     content: 'test',
     sql: 'test',
@@ -45,9 +45,9 @@ export const visualizations: Visualization[] = [
   },
   {
     id: 'vis4',
-    title: 'Visualization 4',
+    title: 'Interactive Scatterplot',
     description: 'Visualization 4',
-    spec: 'assets/pages/vis4/vis.vl.json',
+    spec: 'assets/visualizations/vis4-interactive-scatterplot/vis.vl.json',
     options: {},
     content: 'test',
     sql: 'test',
