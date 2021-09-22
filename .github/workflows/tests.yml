@@ -35,14 +35,13 @@ jobs:
         working-directory: packages/client-mav
       - run: npm run build:libs
         working-directory: packages/client-mav
-
       # - run: npm run test
       #   working-directory: packages/client-mav
 
-      # - run: npm ci
-      #   working-directory: packages/site-visualizations
-      # - run: npm run lint
-      #   working-directory: packages/site-visualizations
+      - run: npm ci
+        working-directory: packages/site-visualizations
+      - run: npm run lint
+        working-directory: packages/site-visualizations
       # - run: npm run test
       #   working-directory: packages/site-visualizations
 

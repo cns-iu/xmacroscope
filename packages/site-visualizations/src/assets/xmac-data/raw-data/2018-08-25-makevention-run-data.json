@@ -1,0 +1,1807 @@
+[
+  {
+    "id": "95",
+    "opponent": "slow-animal",
+    "opponentName": "Slow animal",
+    "start": "2018-08-25T19:37:31.128Z",
+    "end": "2018-08-25T19:37:33.902Z",
+    "Person": {
+      "id": "95",
+      "icon": "cross",
+      "color": "#0707D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Other",
+      "height": 64,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "94",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T19:36:51.876Z",
+    "end": null,
+    "Person": {
+      "id": "94",
+      "icon": "star",
+      "color": "#55D4D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Cooking",
+      "height": 64,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "93",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T19:22:40.274Z",
+    "end": "2018-08-25T19:22:45.000Z",
+    "Person": {
+      "id": "93",
+      "icon": "cross",
+      "color": "#D30706",
+      "age_group": "Retired",
+      "favoriteActivity": "Sports",
+      "height": 45,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "92",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T19:18:58.072Z",
+    "end": "2018-08-25T19:19:02.680Z",
+    "Person": {
+      "id": "92",
+      "icon": "diamond",
+      "color": "#9B180F",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 45,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "91",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T19:18:08.762Z",
+    "end": "2018-08-25T19:18:16.950Z",
+    "Person": {
+      "id": "91",
+      "icon": "star",
+      "color": "#D30706",
+      "age_group": "Kid",
+      "favoriteActivity": "Gaming",
+      "height": 45,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "90",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T19:16:54.558Z",
+    "end": "2018-08-25T19:17:09.510Z",
+    "Person": {
+      "id": "90",
+      "icon": "square",
+      "color": "#55D4D2",
+      "age_group": "Retired",
+      "favoriteActivity": "Sports",
+      "height": 57,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "89",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T19:15:37.808Z",
+    "end": null,
+    "Person": {
+      "id": "89",
+      "icon": "cross",
+      "color": "#0707D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Art",
+      "height": 57,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "88",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T18:40:54.814Z",
+    "end": "2018-08-25T18:41:01.286Z",
+    "Person": {
+      "id": "88",
+      "icon": "diamond",
+      "color": "#D3D406",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 66,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "87",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T18:40:16.144Z",
+    "end": "2018-08-25T18:40:24.444Z",
+    "Person": {
+      "id": "87",
+      "icon": "triangle-up",
+      "color": "#55D4D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Sports",
+      "height": 11,
+      "zipcode": "46106",
+      "state": "IN",
+      "latitude": 39.5,
+      "longitude": -86.1797
+    }
+  },
+  {
+    "id": "86",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T18:38:33.008Z",
+    "end": null,
+    "Person": {
+      "id": "86",
+      "icon": "star",
+      "color": "#0707D2",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 66,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "85",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T18:33:25.388Z",
+    "end": "2018-08-25T18:33:29.618Z",
+    "Person": {
+      "id": "85",
+      "icon": "star",
+      "color": "#55D4D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 68,
+      "zipcode": "47403",
+      "state": "IN",
+      "latitude": 39.1263,
+      "longitude": -86.5769
+    }
+  },
+  {
+    "id": "84",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T18:09:09.094Z",
+    "end": "2018-08-25T18:09:16.522Z",
+    "Person": {
+      "id": "84",
+      "icon": "triangle-up",
+      "color": "#D39827",
+      "age_group": "Teen",
+      "favoriteActivity": "Cooking",
+      "height": 44,
+      "zipcode": "46106",
+      "state": "IN",
+      "latitude": 39.5,
+      "longitude": -86.1797
+    }
+  },
+  {
+    "id": "83",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T18:02:37.348Z",
+    "end": "2018-08-25T18:02:41.134Z",
+    "Person": {
+      "id": "83",
+      "icon": "star",
+      "color": "#D39827",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 58,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "82",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T18:00:13.998Z",
+    "end": "2018-08-25T18:00:22.146Z",
+    "Person": {
+      "id": "82",
+      "icon": "triangle-up",
+      "color": "#D30706",
+      "age_group": "Kid",
+      "favoriteActivity": "Sports",
+      "height": 7894,
+      "zipcode": "47403",
+      "state": "IN",
+      "latitude": 39.1263,
+      "longitude": -86.5769
+    }
+  },
+  {
+    "id": "81",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:57:41.402Z",
+    "end": "2018-08-25T17:57:44.968Z",
+    "Person": {
+      "id": "81",
+      "icon": "cross",
+      "color": "#D30706",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 52,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "80",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:57:12.250Z",
+    "end": "2018-08-25T17:57:19.172Z",
+    "Person": {
+      "id": "80",
+      "icon": "cross",
+      "color": "#D372D2",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 52,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "79",
+    "opponent": "slow-animal",
+    "opponentName": "Slow animal",
+    "start": "2018-08-25T17:52:03.252Z",
+    "end": "2018-08-25T17:52:07.170Z",
+    "Person": {
+      "id": "79",
+      "icon": "diamond",
+      "color": "#9B180F",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Other",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "78",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T17:49:18.318Z",
+    "end": "2018-08-25T17:49:22.422Z",
+    "Person": {
+      "id": "78",
+      "icon": "triangle-up",
+      "color": "#D372D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Cooking",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "77",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T17:47:13.908Z",
+    "end": "2018-08-25T17:47:17.492Z",
+    "Person": {
+      "id": "77",
+      "icon": "star",
+      "color": "#33820D",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "76",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:42:18.718Z",
+    "end": "2018-08-25T17:42:22.998Z",
+    "Person": {
+      "id": "76",
+      "icon": "cross",
+      "color": "#55D4D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 58,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "75",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T17:25:47.838Z",
+    "end": "2018-08-25T17:25:51.942Z",
+    "Person": {
+      "id": "75",
+      "icon": "square",
+      "color": "#D39827",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "74",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T17:24:51.940Z",
+    "end": "2018-08-25T17:24:56.068Z",
+    "Person": {
+      "id": "74",
+      "icon": "diamond",
+      "color": "#55D4D2",
+      "age_group": "Kid",
+      "favoriteActivity": "Art",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "73",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:24:00.084Z",
+    "end": "2018-08-25T17:24:04.420Z",
+    "Person": {
+      "id": "73",
+      "icon": "square",
+      "color": "#D3D406",
+      "age_group": "Kid",
+      "favoriteActivity": "Other",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "72",
+    "opponent": "slow-animal",
+    "opponentName": "Slow animal",
+    "start": "2018-08-25T17:22:59.360Z",
+    "end": "2018-08-25T17:23:05.606Z",
+    "Person": {
+      "id": "72",
+      "icon": "triangle-up",
+      "color": "#D372D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "71",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:22:18.726Z",
+    "end": "2018-08-25T17:22:27.276Z",
+    "Person": {
+      "id": "71",
+      "icon": "triangle-up",
+      "color": "#0707D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 72,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "70",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:21:08.220Z",
+    "end": "2018-08-25T17:21:15.138Z",
+    "Person": {
+      "id": "70",
+      "icon": "square",
+      "color": "#9B180F",
+      "age_group": "Retired",
+      "favoriteActivity": "Other",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "69",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T17:19:43.608Z",
+    "end": "2018-08-25T17:19:47.366Z",
+    "Person": {
+      "id": "69",
+      "icon": "star",
+      "color": "#0707D2",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 97,
+      "zipcode": "47586",
+      "state": "IN",
+      "latitude": 37.9655,
+      "longitude": -86.7457
+    }
+  },
+  {
+    "id": "68",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:18:32.936Z",
+    "end": "2018-08-25T17:18:36.808Z",
+    "Person": {
+      "id": "68",
+      "icon": "triangle-up",
+      "color": "#D3D406",
+      "age_group": "Retired",
+      "favoriteActivity": "Gaming",
+      "height": 1,
+      "zipcode": "47581",
+      "state": "IN",
+      "latitude": 38.6791,
+      "longitude": -86.7761
+    }
+  },
+  {
+    "id": "67",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:16:50.812Z",
+    "end": "2018-08-25T17:16:54.856Z",
+    "Person": {
+      "id": "67",
+      "icon": "triangle-up",
+      "color": "#0707D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 56,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "66",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T17:16:13.990Z",
+    "end": "2018-08-25T17:16:15.952Z",
+    "Person": {
+      "id": "66",
+      "icon": "star",
+      "color": "#D372D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Sports",
+      "height": 7,
+      "zipcode": "48768",
+      "state": "MI",
+      "latitude": 43.3691,
+      "longitude": -83.5844
+    }
+  },
+  {
+    "id": "65",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:14:33.604Z",
+    "end": "2018-08-25T17:14:35.990Z",
+    "Person": {
+      "id": "65",
+      "icon": "square",
+      "color": "#8E1BCE",
+      "age_group": "Retired",
+      "favoriteActivity": "Other",
+      "height": 67,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "64",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:13:47.284Z",
+    "end": "2018-08-25T17:13:49.192Z",
+    "Person": {
+      "id": "64",
+      "icon": "triangle-up",
+      "color": "#D3D406",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 678,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "63",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:13:06.512Z",
+    "end": "2018-08-25T17:13:08.118Z",
+    "Person": {
+      "id": "63",
+      "icon": "diamond",
+      "color": "#D3D406",
+      "age_group": "Retired",
+      "favoriteActivity": "Gaming",
+      "height": 30,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "62",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:12:18.504Z",
+    "end": "2018-08-25T17:12:22.598Z",
+    "Person": {
+      "id": "62",
+      "icon": "star",
+      "color": "#D372D2",
+      "age_group": "Retired",
+      "favoriteActivity": "Cooking",
+      "height": 62,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "61",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:11:24.640Z",
+    "end": "2018-08-25T17:11:28.256Z",
+    "Person": {
+      "id": "61",
+      "icon": "triangle-up",
+      "color": "#8E1BCE",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 58,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "60",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T17:10:23.800Z",
+    "end": "2018-08-25T17:10:27.776Z",
+    "Person": {
+      "id": "60",
+      "icon": "square",
+      "color": "#55D4D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "59",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:09:57.142Z",
+    "end": "2018-08-25T17:10:02.668Z",
+    "Person": {
+      "id": "59",
+      "icon": "triangle-up",
+      "color": "#33820D",
+      "age_group": "Teen",
+      "favoriteActivity": "Other",
+      "height": 58,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "58",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T17:07:49.084Z",
+    "end": "2018-08-25T17:07:53.014Z",
+    "Person": {
+      "id": "58",
+      "icon": "triangle-up",
+      "color": "#8E1BCE",
+      "age_group": "Teen",
+      "favoriteActivity": "Art",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "57",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:06:55.816Z",
+    "end": "2018-08-25T17:07:05.060Z",
+    "Person": {
+      "id": "57",
+      "icon": "triangle-up",
+      "color": "#D372D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 58,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "56",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T17:05:20.488Z",
+    "end": "2018-08-25T17:05:23.374Z",
+    "Person": {
+      "id": "56",
+      "icon": "square",
+      "color": "#D36E44",
+      "age_group": "Kid",
+      "favoriteActivity": "Cooking",
+      "height": 56,
+      "zipcode": "47265",
+      "state": "IN",
+      "latitude": 39.0018,
+      "longitude": -85.6272
+    }
+  },
+  {
+    "id": "55",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:03:34.320Z",
+    "end": "2018-08-25T17:03:37.242Z",
+    "Person": {
+      "id": "55",
+      "icon": "square",
+      "color": "#D39827",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 1234567890,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "54",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:02:41.150Z",
+    "end": "2018-08-25T17:02:44.196Z",
+    "Person": {
+      "id": "54",
+      "icon": "cross",
+      "color": "#D36E44",
+      "age_group": "Teen",
+      "favoriteActivity": "Art",
+      "height": 64,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "53",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T17:01:52.404Z",
+    "end": "2018-08-25T17:02:01.788Z",
+    "Person": {
+      "id": "53",
+      "icon": "star",
+      "color": "#D30706",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Cooking",
+      "height": 56,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "52",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T17:01:18.044Z",
+    "end": "2018-08-25T17:01:21.026Z",
+    "Person": {
+      "id": "52",
+      "icon": "square",
+      "color": "#D372D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 58,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "51",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T17:00:38.318Z",
+    "end": "2018-08-25T17:00:44.470Z",
+    "Person": {
+      "id": "51",
+      "icon": "triangle-up",
+      "color": "#55D4D2",
+      "age_group": "Retired",
+      "favoriteActivity": "Other",
+      "height": 30,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "50",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T16:23:22.300Z",
+    "end": "2018-08-25T16:23:26.258Z",
+    "Person": {
+      "id": "50",
+      "icon": "cross",
+      "color": "#D3D406",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 81,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "49",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T16:21:58.476Z",
+    "end": "2018-08-25T16:22:02.550Z",
+    "Person": {
+      "id": "49",
+      "icon": "diamond",
+      "color": "#0707D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Other",
+      "height": 37,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "48",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T16:21:32.040Z",
+    "end": "2018-08-25T16:21:35.690Z",
+    "Person": {
+      "id": "48",
+      "icon": "star",
+      "color": "#0707D2",
+      "age_group": "Retired",
+      "favoriteActivity": "Other",
+      "height": 37,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "47",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T16:18:27.432Z",
+    "end": "2018-08-25T16:18:29.750Z",
+    "Person": {
+      "id": "47",
+      "icon": "triangle-up",
+      "color": "#8E1BCE",
+      "age_group": "Adult",
+      "favoriteActivity": "Art",
+      "height": 73,
+      "zipcode": "47404",
+      "state": "IN",
+      "latitude": 39.195,
+      "longitude": -86.5757
+    }
+  },
+  {
+    "id": "46",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T16:15:03.726Z",
+    "end": "2018-08-25T16:15:09.188Z",
+    "Person": {
+      "id": "46",
+      "icon": "star",
+      "color": "#D3D406",
+      "age_group": "Adult",
+      "favoriteActivity": "Art",
+      "height": 68,
+      "zipcode": "47403",
+      "state": "IN",
+      "latitude": 39.1263,
+      "longitude": -86.5769
+    }
+  },
+  {
+    "id": "45",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T16:13:36.286Z",
+    "end": "2018-08-25T16:13:39.694Z",
+    "Person": {
+      "id": "45",
+      "icon": "star",
+      "color": "#33820D",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "44",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T16:10:40.994Z",
+    "end": "2018-08-25T16:10:45.470Z",
+    "Person": {
+      "id": "44",
+      "icon": "square",
+      "color": "#8E1BCE",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "43",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T16:09:44.920Z",
+    "end": "2018-08-25T16:09:47.974Z",
+    "Person": {
+      "id": "43",
+      "icon": "triangle-up",
+      "color": "#D372D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "42",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T16:09:01.868Z",
+    "end": "2018-08-25T16:09:07.348Z",
+    "Person": {
+      "id": "42",
+      "icon": "cross",
+      "color": "#D3D406",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "41",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T16:08:27.826Z",
+    "end": "2018-08-25T16:08:30.828Z",
+    "Person": {
+      "id": "41",
+      "icon": "star",
+      "color": "#55D4D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "40",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T16:07:31.494Z",
+    "end": "2018-08-25T16:07:34.464Z",
+    "Person": {
+      "id": "40",
+      "icon": "triangle-up",
+      "color": "#D39827",
+      "age_group": "Teen",
+      "favoriteActivity": "Other",
+      "height": 67,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "39",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T16:05:34.276Z",
+    "end": "2018-08-25T16:05:37.652Z",
+    "Person": {
+      "id": "39",
+      "icon": "star",
+      "color": "#0707D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "38",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T16:04:46.424Z",
+    "end": "2018-08-25T16:04:47.800Z",
+    "Person": {
+      "id": "38",
+      "icon": "triangle-up",
+      "color": "#9B180F",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "37",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T16:03:59.952Z",
+    "end": "2018-08-25T16:04:05.512Z",
+    "Person": {
+      "id": "37",
+      "icon": "star",
+      "color": "#0707D2",
+      "age_group": "Adult",
+      "favoriteActivity": "Cooking",
+      "height": 67,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "36",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T16:03:04.492Z",
+    "end": "2018-08-25T16:03:10.202Z",
+    "Person": {
+      "id": "36",
+      "icon": "square",
+      "color": "#D372D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 68,
+      "zipcode": "47403",
+      "state": "IN",
+      "latitude": 39.1263,
+      "longitude": -86.5769
+    }
+  },
+  {
+    "id": "35",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T15:59:51.696Z",
+    "end": "2018-08-25T15:59:55.822Z",
+    "Person": {
+      "id": "35",
+      "icon": "diamond",
+      "color": "#D39827",
+      "age_group": "Teen",
+      "favoriteActivity": "Sports",
+      "height": 47,
+      "zipcode": "47403",
+      "state": "IN",
+      "latitude": 39.1263,
+      "longitude": -86.5769
+    }
+  },
+  {
+    "id": "34",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:58:51.120Z",
+    "end": "2018-08-25T15:58:55.820Z",
+    "Person": {
+      "id": "34",
+      "icon": "triangle-up",
+      "color": "#D36E44",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 48,
+      "zipcode": "47403",
+      "state": "IN",
+      "latitude": 39.1263,
+      "longitude": -86.5769
+    }
+  },
+  {
+    "id": "33",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:54:57.584Z",
+    "end": "2018-08-25T15:55:01.428Z",
+    "Person": {
+      "id": "33",
+      "icon": "square",
+      "color": "#D36E44",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 70,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "32",
+    "opponent": "slow-animal",
+    "opponentName": "Slow animal",
+    "start": "2018-08-25T15:53:33.056Z",
+    "end": "2018-08-25T15:53:36.476Z",
+    "Person": {
+      "id": "32",
+      "icon": "square",
+      "color": "#8E1BCE",
+      "age_group": "Teen",
+      "favoriteActivity": "Cooking",
+      "height": 66,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "31",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:53:01.886Z",
+    "end": "2018-08-25T15:53:04.938Z",
+    "Person": {
+      "id": "31",
+      "icon": "diamond",
+      "color": "#D30706",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "30",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:52:28.266Z",
+    "end": "2018-08-25T15:52:35.580Z",
+    "Person": {
+      "id": "30",
+      "icon": "cross",
+      "color": "#D30706",
+      "age_group": "Teen",
+      "favoriteActivity": "Cooking",
+      "height": 66,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "29",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:39:07.102Z",
+    "end": "2018-08-25T15:39:13.436Z",
+    "Person": {
+      "id": "29",
+      "icon": "star",
+      "color": "#D39827",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 49,
+      "zipcode": "47404",
+      "state": "IN",
+      "latitude": 39.195,
+      "longitude": -86.5757
+    }
+  },
+  {
+    "id": "28",
+    "opponent": "slow-person",
+    "opponentName": "Slow person",
+    "start": "2018-08-25T15:38:19.632Z",
+    "end": "2018-08-25T15:38:34.516Z",
+    "Person": {
+      "id": "28",
+      "icon": "triangle-up",
+      "color": "#33820D",
+      "age_group": "Kid",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47404",
+      "state": "IN",
+      "latitude": 39.195,
+      "longitude": -86.5757
+    }
+  },
+  {
+    "id": "27",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T15:31:38.640Z",
+    "end": "2018-08-25T15:31:42.290Z",
+    "Person": {
+      "id": "27",
+      "icon": "triangle-up",
+      "color": "#D39827",
+      "age_group": "Adult",
+      "favoriteActivity": "Art",
+      "height": 72,
+      "zipcode": "88001",
+      "state": "NM",
+      "latitude": 32.2901,
+      "longitude": -106.7539
+    }
+  },
+  {
+    "id": "26",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T15:30:56.162Z",
+    "end": "2018-08-25T15:31:00.832Z",
+    "Person": {
+      "id": "26",
+      "icon": "diamond",
+      "color": "#33820D",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 68,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "25",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:29:49.840Z",
+    "end": "2018-08-25T15:29:59.248Z",
+    "Person": {
+      "id": "25",
+      "icon": "diamond",
+      "color": "#9B180F",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 68,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "24",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:24:20.996Z",
+    "end": "2018-08-25T15:24:23.062Z",
+    "Person": {
+      "id": "24",
+      "icon": "cross",
+      "color": "#D30706",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "23",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:18:48.206Z",
+    "end": "2018-08-25T15:18:51.388Z",
+    "Person": {
+      "id": "23",
+      "icon": "square",
+      "color": "#33820D",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "22",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T15:18:14.894Z",
+    "end": "2018-08-25T15:18:18.276Z",
+    "Person": {
+      "id": "22",
+      "icon": "cross",
+      "color": "#D36E44",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 70,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "21",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T15:17:49.542Z",
+    "end": "2018-08-25T15:17:52.660Z",
+    "Person": {
+      "id": "21",
+      "icon": "cross",
+      "color": "#D372D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "20",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T15:07:29.106Z",
+    "end": "2018-08-25T15:07:32.662Z",
+    "Person": {
+      "id": "20",
+      "icon": "triangle-up",
+      "color": "#D3D406",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 71,
+      "zipcode": "35242",
+      "state": "AL",
+      "latitude": 33.3813,
+      "longitude": -86.7046
+    }
+  },
+  {
+    "id": "19",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:03:47.074Z",
+    "end": "2018-08-25T15:03:53.404Z",
+    "Person": {
+      "id": "19",
+      "icon": "star",
+      "color": "#D3D406",
+      "age_group": "Adult",
+      "favoriteActivity": "Other",
+      "height": 73,
+      "zipcode": "47404",
+      "state": "IN",
+      "latitude": 39.195,
+      "longitude": -86.5757
+    }
+  },
+  {
+    "id": "18",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T15:02:25.556Z",
+    "end": "2018-08-25T15:02:28.958Z",
+    "Person": {
+      "id": "18",
+      "icon": "cross",
+      "color": "#D372D2",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 70,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "17",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:59:08.986Z",
+    "end": "2018-08-25T14:59:13.028Z",
+    "Person": {
+      "id": "17",
+      "icon": "cross",
+      "color": "#0707D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Art",
+      "height": 50,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "16",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:57:49.906Z",
+    "end": "2018-08-25T14:58:03.450Z",
+    "Person": {
+      "id": "16",
+      "icon": "cross",
+      "color": "#55D4D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Art",
+      "height": 50,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "15",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T14:57:10.242Z",
+    "end": "2018-08-25T14:57:14.290Z",
+    "Person": {
+      "id": "15",
+      "icon": "star",
+      "color": "#D372D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Gaming",
+      "height": 5,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "14",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T14:56:05.012Z",
+    "end": "2018-08-25T14:56:19.186Z",
+    "Person": {
+      "id": "14",
+      "icon": "cross",
+      "color": "#D30706",
+      "age_group": "Teen",
+      "favoriteActivity": "Art",
+      "height": 5,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "13",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:54:24.952Z",
+    "end": "2018-08-25T14:54:32.178Z",
+    "Person": {
+      "id": "13",
+      "icon": "diamond",
+      "color": "#D36E44",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Art",
+      "height": 50,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "12",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T14:51:32.568Z",
+    "end": "2018-08-25T14:51:35.790Z",
+    "Person": {
+      "id": "12",
+      "icon": "diamond",
+      "color": "#D3D406",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "11",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:49:23.288Z",
+    "end": "2018-08-25T14:49:26.784Z",
+    "Person": {
+      "id": "11",
+      "icon": "triangle-up",
+      "color": "#D30706",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "10",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:47:04.596Z",
+    "end": "2018-08-25T14:47:12.520Z",
+    "Person": {
+      "id": "10",
+      "icon": "cross",
+      "color": "#D30706",
+      "age_group": "Adult",
+      "favoriteActivity": "Sports",
+      "height": 73,
+      "zipcode": "47404",
+      "state": "IN",
+      "latitude": 39.195,
+      "longitude": -86.5757
+    }
+  },
+  {
+    "id": "9",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T14:46:21.412Z",
+    "end": "2018-08-25T14:46:24.354Z",
+    "Person": {
+      "id": "9",
+      "icon": "cross",
+      "color": "#33820D",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Sports",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "8",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T14:45:02.090Z",
+    "end": "2018-08-25T14:45:05.176Z",
+    "Person": {
+      "id": "8",
+      "icon": "triangle-up",
+      "color": "#8E1BCE",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 73,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "7",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:43:02.750Z",
+    "end": "2018-08-25T14:43:05.494Z",
+    "Person": {
+      "id": "7",
+      "icon": "diamond",
+      "color": "#D36E44",
+      "age_group": "Adult",
+      "favoriteActivity": "Gaming",
+      "height": 70,
+      "zipcode": "47401",
+      "state": "IN",
+      "latitude": 39.1401,
+      "longitude": -86.5083
+    }
+  },
+  {
+    "id": "6",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:42:19.272Z",
+    "end": "2018-08-25T14:42:22.366Z",
+    "Person": {
+      "id": "6",
+      "icon": "square",
+      "color": "#D372D2",
+      "age_group": "Retired",
+      "favoriteActivity": "Sports",
+      "height": 7,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "5",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T14:40:53.440Z",
+    "end": "2018-08-25T14:40:56.766Z",
+    "Person": {
+      "id": "5",
+      "icon": "star",
+      "color": "#0707D2",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Art",
+      "height": 78,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "4",
+    "opponent": "cartoon-character",
+    "opponentName": "Cartoon character",
+    "start": "2018-08-25T14:39:39.368Z",
+    "end": "2018-08-25T14:39:42.618Z",
+    "Person": {
+      "id": "4",
+      "icon": "diamond",
+      "color": "#D39827",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Cooking",
+      "height": 57,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "3",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:38:51.384Z",
+    "end": "2018-08-25T14:38:59.454Z",
+    "Person": {
+      "id": "3",
+      "icon": "cross",
+      "color": "#D39827",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "2",
+    "opponent": "fast-person",
+    "opponentName": "Fast person",
+    "start": "2018-08-25T14:37:45.454Z",
+    "end": "2018-08-25T14:37:48.436Z",
+    "Person": {
+      "id": "2",
+      "icon": "cross",
+      "color": "#D372D2",
+      "age_group": "Teen",
+      "favoriteActivity": "Art",
+      "height": 78,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  },
+  {
+    "id": "1",
+    "opponent": "fast-animal",
+    "opponentName": "Fast animal",
+    "start": "2018-08-25T14:36:21.094Z",
+    "end": "2018-08-25T14:36:24.182Z",
+    "Person": {
+      "id": "1",
+      "icon": "diamond",
+      "color": "#9B180F",
+      "age_group": "Pre-Teen",
+      "favoriteActivity": "Gaming",
+      "height": 48,
+      "zipcode": "47408",
+      "state": "IN",
+      "latitude": 39.2303,
+      "longitude": -86.4692
+    }
+  }
+]

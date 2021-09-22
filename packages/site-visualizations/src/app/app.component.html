@@ -1,0 +1,20 @@
+<app-page-header [(menuOpen)]="menuOpen">
+</app-page-header>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="over" [(opened)]="menuOpen" (closedStart)="menuOpen = false">
+    <app-page-menu [header]="menuHeader" [pages]="pages">
+    </app-page-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <div class="outlet-wrapper">
+        <router-outlet>
+        </router-outlet>
+      </div>
+
+      <div class="space-filler"></div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
