@@ -21,7 +21,7 @@ export const visualizations: Visualization[] = [
     options: {},
     content: 'test',
     sql: 'test',
-    csv: 'test'
+    csv: 'assets/generated/combined-data.csv'
   },
   {
     id: 'vis2',
@@ -31,7 +31,7 @@ export const visualizations: Visualization[] = [
     options: {},
     content: 'test',
     sql: 'test',
-    csv: 'test'
+    csv: 'assets/generated/combined-data.csv'
   },
   {
     id: 'vis3',
@@ -41,7 +41,7 @@ export const visualizations: Visualization[] = [
     options: {},
     content: 'test',
     sql: 'test',
-    csv: 'test'
+    csv: 'assets/generated/combined-data.csv'
   },
   {
     id: 'vis4',
@@ -51,6 +51,6 @@ export const visualizations: Visualization[] = [
     options: {},
     content: 'test',
     sql: 'test',
-    csv: 'test'
+    csv: 'assets/generated/combined-data.csv'
   }
 ];
