@@ -82,8 +82,8 @@ export class XMacroscopeProject extends DefaultProject {
       recordStreams: [{ id: 'runs', label: 'Runs' }]
     }, this);
     this.runStreamController = ds.runStreamController;
-    const opponentRuns = Array.isArray(this.config.opponentRuns) ? this.config.opponentRuns : [];
-    this.runStreamController.opponentRuns = opponentRuns.map(r => new Run(r as RunOptions));
+    const runs = Array.isArray(this.config.opponentRuns) ? this.config.opponentRuns : [];
+    this.runStreamController.opponentRuns = runs.map(r => new Run(r as RunOptions));
     return [ds];
   }
 

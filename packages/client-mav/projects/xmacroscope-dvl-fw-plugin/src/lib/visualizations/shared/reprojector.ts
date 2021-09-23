@@ -1,6 +1,8 @@
 import { FeatureCollection, Geometry } from '@turf/helpers';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import dirtyReproject from 'dirty-reprojectors';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import projections from 'dirty-reprojectors/projections';
 import { FeatureCollection as FeatureCollection2, Geometry as Geometry2 } from 'geojson';
