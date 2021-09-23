@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "0.1.0",
-  "homepage": "https://cns-iu.github.io/xmacroscope",
+  "homepage": "https://xmacroscope.netlify.app",
   "private": true,
   "dependencies": {
     "@babel/core": "7.1.0",
