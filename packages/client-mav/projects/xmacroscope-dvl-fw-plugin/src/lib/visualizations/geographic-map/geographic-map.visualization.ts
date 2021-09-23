@@ -1,10 +1,11 @@
-import { DefaultVisualization, ObjectFactory, ObjectFactoryRegistry, Project, Visualization } from '@dvl-fw/core';
+import {
+  DefaultVisualization, DefaultVisualizationArg, ObjectFactory, ObjectFactoryRegistry, Project, Visualization,
+} from '@dvl-fw/core';
 
 import { GeographicMapComponent } from './geographic-map.component';
 
 
 export class GeographicMapVisualization extends DefaultVisualization {
-  // eslint-disable-next-line max-len
   readonly defaultDescription = 'US Map: This proportional symbol map shows 50 US states and other jurisdictions using the Albers equal-area conic projection (Alaska and Hawaii are inset). Each dataset record is represented by a circle centered at its geolocation. The area, interior color, and exterior color of each circle may represent numeric attribute values. Minimum and maximum data values are given in the legend.<br><br>World Map: This proportional symbol map shows 252 countries of the world using the equal-area Eckert IV projection. Each dataset record is represented by a circle centered at its geolocation. The area, interior color, and exterior color of each circle may represent numeric attribute values. Minimum and maximum data values are given in the legend.';
   readonly component = GeographicMapComponent;
   readonly graphicSymbolOptions = [
@@ -29,7 +30,8 @@ export class GeographicMapVisualization extends DefaultVisualization {
         { type: 'color', label: 'Color Hue', visualization: 'color', scaleType: 'nominal', staticVisualization: 'color-area' },
         { id: 'strokeColor', type: 'color', label: 'Stroke Color Hue', visualization: 'color', advanced: true },
         { type: 'strokeWidth', label: 'Stroke Width', visualization: 'edge-size', staticVisualization: 'thickness', advanced: true },
-        { type: 'areaSize', label: 'Size', visualization: 'node-size', scaleType: 'ratio', required: true,
+        {
+          type: 'areaSize', label: 'Size', visualization: 'node-size', scaleType: 'ratio', required: true,
           staticVisualization: 'area-size'
         },
         { type: 'transparency', label: 'Transparency', advanced: true },
@@ -49,7 +51,8 @@ export class GeographicMapVisualization extends DefaultVisualization {
         { id: 'latitude2', type: 'latitude', label: 'Target Latitude', visualization: 'target', scaleType: 'ratio', required: true },
         { id: 'longitude2', type: 'longitude', label: 'Target Longitude', visualization: 'target', scaleType: 'ratio', required: true },
         { id: 'strokeColor', type: 'color', label: 'Color Hue', visualization: 'color', staticVisualization: 'color-edges' },
-        { type: 'strokeWidth', label: 'Size', visualization: 'edge-size', scaleType: 'ratio', required: true,
+        {
+          type: 'strokeWidth', label: 'Size', visualization: 'edge-size', scaleType: 'ratio', required: true,
           staticVisualization: 'thickness'
         },
         { type: 'transparency', label: 'Transparency', advanced: true }
@@ -62,10 +65,11 @@ export class GeographicMapVisualizationFactory implements ObjectFactory<Visualiz
   readonly id = 'geomap';
   readonly type = 'visualization';
 
-  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
-    return new GeographicMapVisualization(data, context);
+  async fromJSON(data: unknown, context: Project, _registry: ObjectFactoryRegistry): Promise<Visualization> {
+    return new GeographicMapVisualization(data as DefaultVisualizationArg, context);
   }
-  toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {
+
+  toJSON(instance: Visualization, _context: Project, _registry: ObjectFactoryRegistry): unknown {
     return instance.toJSON();
   }
 }

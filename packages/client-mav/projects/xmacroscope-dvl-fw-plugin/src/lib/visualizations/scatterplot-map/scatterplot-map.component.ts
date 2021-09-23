@@ -9,7 +9,7 @@ import { BBox, FeatureCollection, featureCollection, Geometry, lineString } from
 import { extent } from 'd3-array';
 import { scaleLinear, scalePoint } from 'd3-scale';
 import { isArray, reverse, sortedUniq } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point, PointLike } from 'mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point, PointLike, Style } from 'mapbox-gl';
 import { MapService } from 'ngx-mapbox-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
@@ -23,6 +23,16 @@ import { Node } from '../shared/node';
 import { nodesGeoJson } from '../shared/nodes-geojson';
 
 
+interface ScaleFactory {
+  (x: number | string): number | undefined;
+
+  domain?: () => string[];
+
+  ticks?: (count: number) => number[];
+  tickFormat?: (count: number) => ((val: number) => string);
+}
+
+
 @Component({
   selector: 'mav-scatterplot-map',
   templateUrl: './scatterplot-map.component.html',
@@ -30,8 +40,8 @@ import { nodesGeoJson } from '../shared/nodes-geojson';
   providers: [MapService]
 })
 export class ScatterplotMapComponent implements VisualizationComponent,
-    OnDestroy, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
-  @Input() data: Visualization;
+  OnDestroy, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
+  @Input() data!: Visualization;
   nodeDefaults: { [gvName: string]: unknown } = {
     shape: 'circle',
     areaSize: 16,
@@ -41,56 +51,62 @@ export class ScatterplotMapComponent implements VisualizationComponent,
   nodes$: Observable<TDatum<Node>[]> = EMPTY;
 
   // Outputs
-  @Output() nodeClick = new EventEmitter<NgxDinoEvent>();
+  @Output() readonly nodeClick = new EventEmitter<NgxDinoEvent>();
 
   // Tooltip element
-  @ViewChild('tooltipElement', { static: true }) tooltipElement: ElementRef<HTMLDivElement>;
+  @ViewChild('tooltipElement', { static: true }) tooltipElement!: ElementRef<HTMLDivElement>;
 
-  style = blankStyle;
-  map: Map;
+  style = blankStyle as Style;
+  map!: Map;
 
-  worldBbox: BBox;
-  worldPadding: PaddingOptions;
-  graticule: FeatureCollection<Geometry>;
-  nodesGeoJson: FeatureCollection<Geometry>;
-  nodes: TDatum<Node>[];
-  nodesSubscription: Subscription;
+  worldBbox!: BBox;
+  get worldBbox2d(): [number, number, number, number] {
+    return this.worldBbox as [number, number, number, number];
+  }
+  worldPadding!: PaddingOptions;
+  graticule!: FeatureCollection<Geometry>;
+  nodesGeoJson!: FeatureCollection<Geometry>;
+  nodes: TDatum<Node>[] = [];
+  nodesSubscription!: Subscription;
 
   constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) { }
 
   private toNgxDinoEvent(event: MapMouseEvent, layers: string[], data: Datum[]): NgxDinoEvent | undefined {
     const bboxMargin = new Point(4, 4);
-    const pointBox: [PointLike, PointLike] = [ event.point.sub(bboxMargin), event.point.add(bboxMargin) ];
+    const pointBox: [PointLike, PointLike] = [event.point.sub(bboxMargin), event.point.add(bboxMargin)];
     const features = this.map.queryRenderedFeatures(pointBox, { layers });
-    const itemId = features[0].properties[idSymbol];
+    const itemId = features[0].properties?.[idSymbol];
     const item = data.find(i => i[idSymbol] === itemId);
     if (item) {
       return new NgxDinoEvent(event.originalEvent, item[rawDataSymbol], item, this);
     }
   }
+
   nodeClicked(event: MapMouseEvent): void {
     const ngxDinoEvent = this.toNgxDinoEvent(event, ['nodes'], this.nodes);
     if (ngxDinoEvent) {
       this.nodeClick.emit(ngxDinoEvent);
     }
-    this.tempClickListener(ngxDinoEvent);
+    this.tempClickListener(ngxDinoEvent!);
   }
 
   // FIXME: Remove specifics to xMacroscope
-  tempClickListener(event: NgxDinoEvent) {
-    const selection = !event || event.data.selected ? [] : [event.data];
-    this.xMacroscopeDataService.runStreamController.selectRuns(selection);
+  tempClickListener(event: NgxDinoEvent): void {
+    const selection = !event || (event.data as { selected?: boolean }).selected ? [] : [event.data];
+    this.xMacroscopeDataService.runStreamController?.selectRuns?.(selection);
   }
 
   onMouseEnter(event: MapLayerMouseEvent): void {
     this.map.getCanvas().style.cursor = 'pointer';
-    const tooltip = event.features[0].properties.tooltip;
+    const tooltip = event.features?.[0].properties?.tooltip;
     this.showTooltip(event.originalEvent, tooltip);
   }
-  onMouseLeave(event: MapLayerMouseEvent): void {
+
+  onMouseLeave(_event: MapLayerMouseEvent): void {
     this.hideTooltip();
   }
-  showTooltip(event: unknown, tooltip: string): void {
+
+  showTooltip(event: { x: number; y: number }, tooltip: string): void {
     const el = this.tooltipElement.nativeElement;
     const { x, y } = event;
     if (!el || !tooltip) {
@@ -111,12 +127,14 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     el.style.visibility = 'hidden';
   }
 
-  onMapLoad(map: Map) {
+  onMapLoad(map: Map): void {
     this.map = map;
     this.map.resize();
     new DataDrivenIcons().addTo(map);
 
-    this.ngOnChanges({ data: { currentValue: this.data } as SimpleChange });
+    this.ngOnChanges({
+      data: new SimpleChange(undefined, this.data, false)
+    });
   }
 
   private layout(nodes?: TDatum<Node>[]): void {
@@ -136,7 +154,7 @@ export class ScatterplotMapComponent implements VisualizationComponent,
       const xScale = this.getScale(nodes, 'x', gs, flipX ? [w, 0] : [0, w]);
       const yScale = this.getScale(nodes, 'y', gs, [h, 0]);
       for (const node of nodes) {
-        node.position = [xScale(node.x), yScale(node.y)];
+        node.position = [xScale(node.x as number) ?? 0, yScale(node.y as number) ?? 0];
       }
 
       const margin = 80;
@@ -152,11 +170,13 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     }
   }
 
-  getGrid(xScale: (x: unknown) => number | undefined,
-          yScale: (x: unknown) => number | undefined,
-          projection: Cartesian2dProjection,
-          xAxisLabel = '',
-          yAxisLabel = ''): { geojson: FeatureCollection<Geometry>; padding: PaddingOptions } {
+  getGrid(
+    xScale: ScaleFactory,
+    yScale: ScaleFactory,
+    projection: Cartesian2dProjection,
+    xAxisLabel = '',
+    yAxisLabel = ''
+  ): { geojson: FeatureCollection<Geometry>; padding: PaddingOptions } {
     const numTicks = 10;
     const xTicks = this.getTicks(xScale, numTicks);
     const yTicks = this.getTicks(yScale, numTicks);
@@ -181,35 +201,45 @@ export class ScatterplotMapComponent implements VisualizationComponent,
     ]), xAxisLabel, yAxisLabel);
   }
 
-  getTicks(scale: unknown, numTicks: number): { point: number; label: string }[] {
-    if ('ticks' in scale && 'tickFormat' in scale) {
-      const ticks: number[] = scale.ticks(numTicks);
+  getTicks(scale: ScaleFactory, numTicks: number): { point: number; label: string }[] {
+    if (scale.ticks && scale.tickFormat) {
+      const ticks = scale.ticks(numTicks);
       const formatter = scale.tickFormat(numTicks);
-      return ticks.map(tick => ({ point: scale(tick), label: formatter(tick) }));
-    } else if ('domain' in scale) {
+      return ticks.map(tick => ({ point: scale(tick) ?? 0, label: formatter(tick) }));
+    } else if (scale.domain) {
       const ticks: string[] = scale.domain();
-      return ticks.map(label => ({ point: scale(label), label }));
+      return ticks.map(label => ({ point: scale(label) ?? 0, label }));
     }
     return [];
   }
 
-  getScale(nodes: TDatum<Node>[], gvName: string, graphicSymbol: GraphicSymbol,
-           range: [number, number] = [1000, 0]): (x: unknown) => number | undefined {
+  getScale(
+    nodes: TDatum<Node>[],
+    gvName: string,
+    graphicSymbol: GraphicSymbol,
+    range: [number, number] = [1000, 0]
+  ): ScaleFactory {
     const gv = graphicSymbol.graphicVariables[gvName];
+    const getGVValue = (node: TDatum<Node>) =>
+      (node as unknown as Record<string, string>)[gvName];
+
     switch (gv.dataVariable.dataType) {
-      case DataType.NUMBER:
+      case DataType.NUMBER: {
         // const domainL: number[] = extent(nodes, n => +n[gvName]);
         // FIXME: Remove xMacroscope specific customization.
-        const domainL: number[] = [0, extent(nodes, n => +n[gvName])[1]];
+        const domainL: number[] = [0, extent(nodes, node => +getGVValue(node))[1] ?? 0];
         const scaleL = scaleLinear().domain(domainL).nice(10).rangeRound(range);
-        return scaleL;
+        return scaleL as unknown as ScaleFactory;
+      }
+
       case DataType.BOOLEAN:
       case DataType.UNKNOWN:
       case DataType.STRING:
-      default:
-        const domainP: string[] = reverse(sortedUniq(nodes.map(n => n[gvName]).sort()));
+      default: {
+        const domainP: string[] = reverse(sortedUniq(nodes.map(getGVValue).sort()));
         const scaleP = scalePoint().domain(domainP).padding(0.5).rangeRound(range);
-        return scaleP;
+        return scaleP as unknown as ScaleFactory;
+      }
     }
   }
 
@@ -230,20 +260,24 @@ export class ScatterplotMapComponent implements VisualizationComponent,
       this.refreshNodes();
     }
   }
+
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
     if ('points' in changes) {
       this.refreshNodes();
     }
   }
+
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('pointDefaults' in changes) {
       this.nodeDefaults = this.data.properties.pointDefaults;
       this.refreshNodes();
     }
   }
+
   getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
-    return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
+    return new GraphicSymbolData<T>(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
+
   ngOnDestroy(): void {
     if (this.nodesSubscription) {
       this.nodesSubscription.unsubscribe();

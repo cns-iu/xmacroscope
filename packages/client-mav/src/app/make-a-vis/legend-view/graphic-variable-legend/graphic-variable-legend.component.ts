@@ -14,13 +14,13 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
 })
 export class GraphicVariableLegendComponent implements OnDestroy {
   @Input() set visualizationId(id: string) {
-    this.legend = this.project.visualizations.find(vis => vis.id === id);
+    this.legend = this.project.visualizations.find(vis => vis.id === id)!;
   }
 
-  @ViewChild('visualization', { static: true }) component: DvlFwVisualizationComponent;
+  @ViewChild('visualization', { static: true }) component!: DvlFwVisualizationComponent;
 
   project: Project;
-  legend: Visualization;
+  legend!: Visualization;
 
   private subscriptions = new Subscription();
 
@@ -31,7 +31,7 @@ export class GraphicVariableLegendComponent implements OnDestroy {
     }));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 

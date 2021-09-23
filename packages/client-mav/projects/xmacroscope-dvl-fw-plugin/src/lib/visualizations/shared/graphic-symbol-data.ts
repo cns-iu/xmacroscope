@@ -27,9 +27,11 @@ export class GraphicSymbolData<T = unknown> {
       this.graphicSymbol = graphicSymbol;
     }
 
-    const options = visualization.graphicSymbolOptions.filter(gso => gso.id === this.graphicSymbol.id);
+    const options = visualization.graphicSymbolOptions?.filter?.(gso => gso.id === this.graphicSymbol.id) ?? [];
     if (options.length) {
-      this.requiredFields = options[0].graphicVariableOptions.filter(gvo => gvo['required'] === true).map(gvo => gvo.id || gvo.type);
+      this.requiredFields = options[0].graphicVariableOptions
+        .filter(gvo => (gvo as { required?: boolean }).required === true)
+        .map(gvo => gvo.id ?? gvo.type);
     }
     if (this.requiredFields.indexOf('identifier') === -1) {
       this.requiredFields.push('identifier');
@@ -77,8 +79,10 @@ export class GraphicSymbolData<T = unknown> {
     return result as TDatum<T>[];
   }
 
-  private graphicSymbolBoundFields(graphicSymbol: GraphicSymbol,
-                                   defaults: { [gvName: string]: unknown } = {}): { [gvName: string]: BoundField<unknown> } {
+  private graphicSymbolBoundFields(
+    graphicSymbol: GraphicSymbol,
+    defaults: { [gvName: string]: unknown } = {}
+  ): { [gvName: string]: BoundField<unknown> } {
     return transform(graphicSymbol.graphicVariables, (result, gv, k) => {
       result[k] = gv.asBoundField();
     }, transform(defaults, (results, v, k) => {
@@ -87,6 +91,6 @@ export class GraphicSymbolData<T = unknown> {
         bfieldId: k,
         operator: constant(v)
       }).getBoundField();
-    }));
+    }, {} as Record<string, BoundField<unknown>>));
   }
 }

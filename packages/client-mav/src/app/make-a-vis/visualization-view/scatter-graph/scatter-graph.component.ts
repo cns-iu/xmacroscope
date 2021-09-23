@@ -6,6 +6,7 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
 
+
 @Component({
   selector: 'app-scatter-graph',
   templateUrl: './scatter-graph.component.html',
@@ -13,9 +14,9 @@ import { UpdateVisService } from '../../../shared/services/update-vis.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScatterGraphComponent {
-  @Input() data: Visualization;
+  @Input() data!: Visualization;
 
-  @ViewChild('visualization', { static: true }) visualization: DvlFwVisualizationComponent;
+  @ViewChild('visualization', { static: true }) visualization!: DvlFwVisualizationComponent;
 
   readonly xAxisType = GraphicVariableType.AXIS;
   readonly yAxisType = GraphicVariableType.AXIS;
@@ -50,8 +51,6 @@ export class ScatterGraphComponent {
   }
 
   private findVariable(label: RegExp, type: GraphicVariableType): GraphicVariable {
-    return this.variables.find(variable => {
-      return label.test(variable.label) && variable.type === type;
-    });
+    return this.variables.find(variable => label.test(variable.label) && variable.type === type)!;
   }
 }

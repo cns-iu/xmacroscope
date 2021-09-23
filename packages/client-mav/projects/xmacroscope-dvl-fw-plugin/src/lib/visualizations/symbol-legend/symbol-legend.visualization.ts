@@ -1,10 +1,11 @@
-import { DefaultVisualization, ObjectFactory, ObjectFactoryRegistry, Project, Visualization } from '@dvl-fw/core';
+import {
+  DefaultVisualization, DefaultVisualizationArg, ObjectFactory, ObjectFactoryRegistry, Project, Visualization,
+} from '@dvl-fw/core';
 
 import { SymbolLegendComponent } from './symbol-legend.component';
 
 
 export class SymbolLegendVisualization extends DefaultVisualization {
-  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A legend of symbol data.';
   readonly component = SymbolLegendComponent;
   readonly graphicSymbolOptions = [{
@@ -25,10 +26,11 @@ export class SymbolLegendVisualizationFactory implements ObjectFactory<Visualiza
   id = 'symbol-legend';
   type = 'visualization';
 
-  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
-    return new SymbolLegendVisualization(data, context);
+  async fromJSON(data: unknown, context: Project, _registry: ObjectFactoryRegistry): Promise<Visualization> {
+    return new SymbolLegendVisualization(data as DefaultVisualizationArg, context);
   }
-  toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {
+
+  toJSON(instance: Visualization, _context: Project, _registry: ObjectFactoryRegistry): unknown {
     return instance.toJSON();
   }
 }

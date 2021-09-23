@@ -1,13 +1,5 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  Pipe,
-  PipeTransform,
-  SimpleChanges,
+  ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, Pipe, PipeTransform, SimpleChanges,
 } from '@angular/core';
 import { GraphicVariable, GraphicVariableType } from '@dvl-fw/core';
 import { get, groupBy, includes, replace } from 'lodash';
@@ -26,17 +18,17 @@ export class RemoveUnitsPipe implements PipeTransform {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GVButtonGroupComponent implements OnChanges {
-  @Input() variables: GraphicVariable[];
-  @Input() type: GraphicVariableType;
+  @Input() variables!: GraphicVariable[];
+  @Input() type!: GraphicVariableType;
   @Input() selected?: GraphicVariable;
   @Input() defaultVariable?: GraphicVariable;
   @Input() label?: string;
   @Input() icon?: string;
   @Input() vertical = false;
 
-  @Output() variableChange = new EventEmitter<GraphicVariable>();
+  @Output() readonly variableChange = new EventEmitter<GraphicVariable>();
 
-  fixedVariable: GraphicVariable;
+  fixedVariable?: GraphicVariable;
   filteredVariables: GraphicVariable[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -56,9 +48,7 @@ export class GVButtonGroupComponent implements OnChanges {
   private updateVariables(): void {
     const fixed = 'fixed';
     const { variables, type } = this;
-    const partitions = groupBy(variables, val => {
-      return val.id === fixed && val.type === type ? fixed : val.type;
-    });
+    const partitions = groupBy(variables, val => val.id === fixed && val.type === type ? fixed : val.type);
 
     this.fixedVariable = get(partitions, [fixed, 0], undefined);
     this.filteredVariables = get(partitions, type, []);

@@ -8,14 +8,19 @@ import { Node } from './node';
 
 
 export function nodesGeoJson(nodes: Node[], projection?: Cartesian2dProjection): FeatureCollection<Point> {
-  return featureCollection(nodes.map(n =>
-    point(
-      projection && n.position ? projection.toLngLat(...n.position).toArray() : [n.longitude, n.latitude],
-      {
-        icon: IconConfig.asString(n),
-        ...pick(n, [ idSymbol, 'areaSize', 'tooltip', 'label', 'labelPosition' ])
-      },
-      { id: n[idSymbol] }
-    )
-  ));
+  return featureCollection(nodes.map(node => {
+    const { position, longitude, latitude } = node;
+    const projectedLngLat = position && projection?.toLngLat?.(...position);
+    const coords: [number, number] = [
+      projectedLngLat?.lng ?? longitude ?? 0,
+      projectedLngLat?.lat ?? latitude ?? 0
+    ];
+
+    return point(coords, {
+      icon: IconConfig.asString(node),
+      ...pick(node, [idSymbol, 'areaSize', 'tooltip', 'label', 'labelPosition'])
+    }, {
+      id: (node as unknown as { [idSymbol]: string })[idSymbol]
+    });
+  }));
 }

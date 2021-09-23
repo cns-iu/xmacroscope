@@ -10,7 +10,7 @@ describe('GeomapComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GeomapComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,10 +1,11 @@
-import { DefaultVisualization, ObjectFactory, ObjectFactoryRegistry, Project, Visualization } from '@dvl-fw/core';
+import {
+  DefaultVisualization, DefaultVisualizationArg, ObjectFactory, ObjectFactoryRegistry, Project, Visualization,
+} from '@dvl-fw/core';
 
 import { TableComponent } from './table.component';
 
 
 export class TableVisualization extends DefaultVisualization {
-  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A table displaying data.';
   readonly component = TableComponent;
   readonly graphicSymbolOptions = [{
@@ -21,10 +22,11 @@ export class TableVisualizationFactory implements ObjectFactory<Visualization, P
   id = 'table';
   type = 'visualization';
 
-  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
-    return new TableVisualization(data, context);
+  async fromJSON(data: unknown, context: Project, _registry: ObjectFactoryRegistry): Promise<Visualization> {
+    return new TableVisualization(data as DefaultVisualizationArg, context);
   }
-  toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {
+
+  toJSON(instance: Visualization, _context: Project, _registry: ObjectFactoryRegistry): unknown {
     return instance.toJSON();
   }
 }

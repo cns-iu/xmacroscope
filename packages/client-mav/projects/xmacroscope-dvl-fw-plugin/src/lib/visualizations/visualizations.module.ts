@@ -11,14 +11,6 @@ import { SymbolLegendComponent } from './symbol-legend/symbol-legend.component';
 import { TableComponent } from './table/table.component';
 
 
-const entryComponents: unknown = [
-  GeographicMapComponent,
-  GraphicVariableLegendComponent,
-  ScatterplotMapComponent,
-  SymbolLegendComponent,
-  TableComponent
-];
-
 @NgModule({
   imports: [
     CommonModule,
@@ -26,7 +18,12 @@ const entryComponents: unknown = [
     MatTableModule,
     DvlFwAngularModule
   ],
-  declarations: entryComponents,
-  entryComponents
+  declarations: [
+    GeographicMapComponent,
+    GraphicVariableLegendComponent,
+    ScatterplotMapComponent,
+    SymbolLegendComponent,
+    TableComponent
+  ]
 })
 export class VisualizationsModule { }

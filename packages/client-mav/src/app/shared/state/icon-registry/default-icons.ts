@@ -4,8 +4,8 @@ import { IconDefinition } from './icon-registry.model';
  * Icon definition where url and html are strings instead of SafeResourceUrl or SafeHtml.
  */
 export type DefaultIconDefinition = Pick<IconDefinition, 'name' | 'namespace'> & {
-  url?: string,
-  html?: string
+  url?: string;
+  html?: string;
 };
 
 /**

@@ -76,54 +76,58 @@ function latFix(lat: number) {
   return lat;
 }
 
-export function withAxes(geojson: FeatureCollection<Geometry>,
-                         xAxisLabel = 'Longitude (degrees)',
-                         yAxisLabel = 'Latitude (degrees)'): { geojson: FeatureCollection<Geometry>; padding: PaddingOptions } {
+export function withAxes(
+  geojson: FeatureCollection<Geometry>,
+  xAxisLabel = 'Longitude (degrees)',
+  yAxisLabel = 'Latitude (degrees)'
+): { geojson: FeatureCollection<Geometry>; padding: PaddingOptions } {
+  type IntersectFeature = Parameters<typeof lineIntersect>[1];
+
   const [minX, minY, maxX, maxY] = bbox(geojson);
 
   const axisLineX = lineString(
-    [ [minX, minY], [minX, maxY] ],
+    [[minX, minY], [minX, maxY]],
     { type: 'axis-line', label: 'X Axis' }
   );
   const axisLineY = lineString(
-    [ [minX, minY], [maxX, minY] ],
+    [[minX, minY], [maxX, minY]],
     { type: 'axis-line', label: 'Y Axis' }
   );
 
   const xTicks = geojson.features
-    .filter(f => f.properties.type === 'grid-line-x')
+    .filter(f => f.properties?.type === 'grid-line-x')
     .map(f => {
-      const points = lineIntersect(axisLineY, f as unknown);
+      const points = lineIntersect(axisLineY, f as IntersectFeature);
       if (points.features.length > 0) {
         const axisPoint = points.features[0].geometry.coordinates;
-        return { point: axisPoint[0], label: f.properties.label };
+        return { point: axisPoint[0], label: f.properties?.label as string };
       }
     }).filter(f => !!f).map(t => point(
-      [t.point, minY],
-      { type: 'tick-label-x', label: t.label }
+      [t?.point ?? 0, minY],
+      { type: 'tick-label-x', label: t?.label }
     ));
   const yTicks = geojson.features
-    .filter(f => f.properties.type === 'grid-line-y')
+    .filter(f => f.properties?.type === 'grid-line-y')
     .map(f => {
-      const points = lineIntersect(axisLineX, f as unknown);
+      const points = lineIntersect(axisLineX, f as IntersectFeature);
       if (points.features.length > 0) {
         const axisPoint = points.features[0].geometry.coordinates;
-        return { point: axisPoint[1], label: f.properties.label };
+        return { point: axisPoint[1], label: f.properties?.label as string };
       }
     }).filter(f => !!f).map(t => point(
-      [minX, t.point],
-      { type: 'tick-label-y', label: t.label }
+      [minX, t?.point ?? 0],
+      { type: 'tick-label-y', label: t?.label }
     ));
 
-  const maxYLabelLength = max(yTicks, (d) => (d.properties.label || 0).length);
+  const maxYLabelLength = max(yTicks, (d) => d.properties.label?.length ?? 0) ?? 0;
 
   const features: Feature<Geometry>[] = geojson.features.concat([
     lineString(
-      [ [maxX, minY], [maxX, maxY] ],
+      [[maxX, minY], [maxX, maxY]],
       { type: 'grid-line-x', label: 'X Axis' }
     ),
     lineString(
-      [ [minX, maxY], [maxX, maxY] ],
+      [[minX, maxY], [maxX, maxY]],
       { type: 'grid-line-y', label: 'Y Axis' }
     ),
     axisLineX,
@@ -131,27 +135,27 @@ export function withAxes(geojson: FeatureCollection<Geometry>,
     ...xTicks,
     ...yTicks,
     point(
-      [ (minX + maxX) / 2, minY ],
+      [(minX + maxX) / 2, minY],
       { type: 'axis-label-x', label: xAxisLabel || '' }
     ),
     point(
-      [ minX, (minY + maxY) / 2 ],
+      [minX, (minY + maxY) / 2],
       { type: 'axis-label-y', label: yAxisLabel || '', maxYLabelLength }
     ),
     point(
-      [ minX, minY ],
+      [minX, minY],
       { type: 'axis-line-label-x', label: 'X Axis' }
     ),
     point(
-      [ minX, minY ],
+      [minX, minY],
       { type: 'axis-line-label-y', label: 'Y Axis' }
     ),
     point(
-      [ maxX, minY ],
+      [maxX, minY],
       { type: 'axis-line-arrow-x', label: '>' }
     ),
     point(
-      [ minX, maxY ],
+      [minX, maxY],
       { type: 'axis-line-arrow-y', label: '>' }
       // 1→2⇒3⇛4⇢5⇨6⇾7⟶8⟹9⤍10⤏11⤑12⭢13⭬14⮕15⮚16⮞17⯈18
     ),

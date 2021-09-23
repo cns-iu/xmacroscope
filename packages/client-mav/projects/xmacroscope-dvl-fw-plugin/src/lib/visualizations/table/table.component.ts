@@ -6,6 +6,7 @@ import { entries, orderBy } from 'lodash';
 import { EMPTY, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { Run } from '../../shared/run';
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
 import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
 
@@ -28,20 +29,20 @@ interface Column {
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements VisualizationComponent,
-    OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
-  @Input() data: Visualization;
+  OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
+  @Input() data!: Visualization;
 
   // Outputs
-  @Output() nodeClick = new EventEmitter<NgxDinoEvent>();
+  @Output() readonly nodeClick = new EventEmitter<NgxDinoEvent>();
 
   items$: Observable<TDatum<DataItem>[]> = EMPTY;
-  columns: { [id: string]: Column };
-  displayedColumns: string[];
+  columns: { [id: string]: Column } = {};
+  displayedColumns: string[] = [];
 
   constructor(private dataProcessorService: DataProcessorService, private xMacroscopeDataService: XMacroscopeDataService) { }
 
   getColumns(gs: GraphicSymbol): { [id: string]: Column } {
-    const columns = {};
+    const columns: Record<string, Column> = {};
     entries(gs.graphicVariables)
       .filter(([key]) => key !== 'identifier' && key !== 'order' && key !== 'pulse' && key !== 'color')
       .forEach(([id, gv]) => {
@@ -75,34 +76,38 @@ export class TableComponent implements VisualizationComponent,
     if (ngxDinoEvent) {
       this.nodeClick.emit(ngxDinoEvent);
     }
-    this.tempClickListener(ngxDinoEvent);
+    this.tempClickListener(ngxDinoEvent!);
   }
 
   // FIXME: Remove specifics to xMacroscope
-  tempClickListener(event: NgxDinoEvent) {
-    const selection = !event || event.data.selected ? [] : [event.data];
-    this.xMacroscopeDataService.runStreamController.selectRuns(selection);
+  tempClickListener(event: NgxDinoEvent): void {
+    const selection = !event || (event.data as Run).selected ? [] : [event.data];
+    this.xMacroscopeDataService.runStreamController?.selectRuns?.(selection);
   }
 
   ngOnInit(): void {
     this.refreshItems();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.refreshItems();
     }
   }
+
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
     if ('items' in changes) {
       this.refreshItems();
     }
   }
+
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('itemDefaults' in changes) {
       this.refreshItems();
     }
   }
+
   getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
-    return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
+    return new GraphicSymbolData<T>(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
 }

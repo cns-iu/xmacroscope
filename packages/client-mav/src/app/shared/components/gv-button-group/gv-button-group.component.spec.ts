@@ -10,7 +10,7 @@ describe('GVButtonGroupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ GVButtonGroupComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

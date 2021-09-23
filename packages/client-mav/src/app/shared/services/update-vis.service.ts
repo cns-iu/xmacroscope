@@ -1,7 +1,6 @@
-// refer https://angular.io/guide/styleguide#style-03-06 for import line spacing
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { GraphicVariable, RecordStream, Visualization } from '@dvl-fw/core';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -15,15 +14,15 @@ export class UpdateVisService {
     this.update = this._update.asObservable();
   }
 
-  triggerUpdate(visualization: Visualization) {
+  triggerUpdate(visualization: Visualization): void {
     this._update.next(visualization);
   }
 
-  updateGraphicSymbol(visualization: Visualization, slot: string, type: string, stream?: RecordStream) {
+  updateGraphicSymbol(visualization: Visualization, _slot: string, _type: string, _stream?: RecordStream): void {
     this._update.next(visualization);
   }
 
-  updateGraphicVariable(visualization: Visualization, slot: string, id: string, variable: GraphicVariable) {
+  updateGraphicVariable(visualization: Visualization, slot: string, id: string, variable: GraphicVariable): void {
     visualization.graphicSymbols[slot].graphicVariables[id] = variable;
     this._update.next(visualization);
   }

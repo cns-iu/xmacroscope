@@ -9,14 +9,6 @@ import { GraphicSymbolData, TDatum } from '../shared/graphic-symbol-data';
 import { DataDrivenIcon, IconConfig } from './../shared/data-driven-icon';
 
 
-function areaToDiameter(value: string | number) {
-  if (!isNumber(value) || !isFinite(Number(value))) {
-    return 1;
-  } else {
-    return Math.max(1, Math.sqrt(Number(value) / Math.PI) * 2);
-  }
-}
-
 function valueLabel(o: number | string): string {
   if (isNumber(o)) {
     return Math.round(o).toLocaleString();
@@ -26,19 +18,19 @@ function valueLabel(o: number | string): string {
 }
 
 class DataItem {
-  value: number | string;
-  input: number | string;
-  label: string;
-  order: number;
-  icon: string;
-  areaSize: number;
+  value!: number | string;
+  input!: number | string;
+  label!: string;
+  order!: number;
+  icon!: string;
+  areaSize!: number;
 
   constructor(data: Partial<DataItem & IconConfig>) {
     Object.assign(this, {
       value: data.value,
-      input: data.input || data.value,
-      label: data.label || data.input || valueLabel(data.value),
-      order: data.order || data.input || data.value,
+      input: data.input ?? data.value,
+      label: data.label ?? data.input ?? valueLabel(data.value ?? ''),
+      order: data.order ?? data.input ?? data.value,
       icon: IconConfig.asString(data),
       areaSize: data.areaSize
     });
@@ -57,8 +49,8 @@ export interface SummaryStatistics {
   styleUrls: ['./symbol-legend.component.scss']
 })
 export class SymbolLegendComponent implements VisualizationComponent,
-    OnDestroy, OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
-  @Input() data: Visualization;
+  OnDestroy, OnInit, OnChanges, OnPropertyChange, OnGraphicSymbolChange {
+  @Input() data!: Visualization;
   itemDefaults: { [gvName: string]: unknown } = {
     shape: 'square',
     areaSize: 196,
@@ -70,17 +62,17 @@ export class SymbolLegendComponent implements VisualizationComponent,
   };
 
   items$: Observable<TDatum<DataItem>[]> = EMPTY;
-  itemsSubscription: Subscription;
+  itemsSubscription?: Subscription;
 
-  items: DataItem[];
-  stats: SummaryStatistics;
-  maxIconWidth: number;
+  items: DataItem[] = [];
+  stats?: SummaryStatistics;
+  maxIconWidth = 0;
 
   private iconCache: { [icon: string]: string } = {};
 
   constructor(private dataProcessorService: DataProcessorService) { }
 
-  processItems(data: TDatum<DataItem>[]) {
+  processItems(data: TDatum<DataItem>[]): void {
     const items = orderBy(data.map(d => new DataItem(d)), 'order', 'asc')
       .filter(d => d.value !== undefined && (d.label !== 'Visitor' && d.label !== 'Barefoot') /** FIXME: Remove xMac specific cases */);
 
@@ -89,17 +81,21 @@ export class SymbolLegendComponent implements VisualizationComponent,
       case 'qualitative':
         this.items = uniqBy(items, 'input');
         break;
-      case 'quantitative':
+
+      case 'quantitative': {
         const stats = this.computeSummaryStatistics(items);
         this.items = [stats.min, stats.median, stats.max];
         break;
+      }
+
       default:
         this.items = [];
         break;
     }
+
     if (this.items.length > 0) {
-      const icon = DataDrivenIcon.fromString(maxBy(items, 'areaSize').icon);
-      this.maxIconWidth = icon.canvas.width;
+      const icon = DataDrivenIcon.fromString(maxBy(items, 'areaSize')?.icon ?? '');
+      this.maxIconWidth = icon?.canvas?.width ?? 0;
     } else {
       this.maxIconWidth = 0;
     }
@@ -120,15 +116,15 @@ export class SymbolLegendComponent implements VisualizationComponent,
 
   getDataUrl(icon: string): string {
     if (!this.iconCache[icon]) {
-      this.iconCache[icon] = DataDrivenIcon.fromString(icon).toDataUrl();
+      this.iconCache[icon] = DataDrivenIcon.fromString(icon)?.toDataUrl?.() ?? '';
     }
     return this.iconCache[icon];
   }
 
   private computeSummaryStatistics(data: DataItem[]): SummaryStatistics {
-    const min = data.length > 0 ? data[0] : undefined;
-    const max = data.length > 0 ? data.slice(-1)[0] : undefined;
-    const median = data.length > 0 ? data[Math.floor((data.length - 1) / 2)] : undefined;
+    const min = (data.length > 0 ? data[0] : undefined)!;
+    const max = (data.length > 0 ? data.slice(-1)[0] : undefined)!;
+    const median = (data.length > 0 ? data[Math.floor((data.length - 1) / 2)] : undefined)!;
 
     return { min, max, median };
   }
@@ -149,24 +145,29 @@ export class SymbolLegendComponent implements VisualizationComponent,
   ngOnInit(): void {
     this.refreshItems();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('data' in changes) {
       this.refreshItems();
     }
   }
+
   dvlOnGraphicSymbolChange(changes: SimpleChanges): void {
     if ('items' in changes) {
       this.refreshItems();
     }
   }
+
   dvlOnPropertyChange(changes: SimpleChanges): void {
     if ('itemDefaults' in changes) {
       this.refreshItems();
     }
   }
+
   getGraphicSymbolData<T>(slot: string, defaults: { [gvName: string]: unknown } = {}): Observable<TDatum<T>[]> {
-    return new GraphicSymbolData(this.dataProcessorService, this.data, slot, defaults).asDataArray();
+    return new GraphicSymbolData<T>(this.dataProcessorService, this.data, slot, defaults).asDataArray();
   }
+
   ngOnDestroy(): void {
     if (this.itemsSubscription) {
       this.itemsSubscription.unsubscribe();

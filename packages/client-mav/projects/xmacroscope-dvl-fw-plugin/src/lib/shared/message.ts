@@ -12,7 +12,7 @@ export class Message {
   timestamp: Date;
   run?: Run;
 
-  constructor(options: MessageOptions) {
+  constructor(options: MessageOptions = {}) {
     const { type, timestamp, run } = options;
     this.type = type ?? this.type;
     this.timestamp = timestamp ?? new Date();

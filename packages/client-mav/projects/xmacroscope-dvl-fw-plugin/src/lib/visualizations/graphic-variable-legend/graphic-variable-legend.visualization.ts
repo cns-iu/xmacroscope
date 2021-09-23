@@ -1,10 +1,11 @@
-import { DefaultVisualization, ObjectFactory, ObjectFactoryRegistry, Project, Visualization } from '@dvl-fw/core';
+import {
+  DefaultVisualization, DefaultVisualizationArg, ObjectFactory, ObjectFactoryRegistry, Project, Visualization,
+} from '@dvl-fw/core';
 
 import { GraphicVariableLegendComponent } from './graphic-variable-legend.component';
 
 
 export class GraphicVariableLegendVisualization extends DefaultVisualization {
-  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A legend of a graphic variable data.';
   readonly component = GraphicVariableLegendComponent;
   readonly graphicSymbolOptions = [{
@@ -14,8 +15,7 @@ export class GraphicVariableLegendVisualization extends DefaultVisualization {
     ]
   }];
 
-  constructor(data: { id: string; description?: string; template?: string; properties: unknown; graphicSymbols: unknown },
-              readonly project: Project) {
+  constructor(data: DefaultVisualizationArg, readonly project: Project) {
     super(data, project);
   }
 }
@@ -24,10 +24,11 @@ export class GraphicVariableLegendVisualizationFactory implements ObjectFactory<
   id = 'symbol-legend';
   type = 'visualization';
 
-  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
-    return new GraphicVariableLegendVisualization(data, context);
+  async fromJSON(data: unknown, context: Project, _registry: ObjectFactoryRegistry): Promise<Visualization> {
+    return new GraphicVariableLegendVisualization(data as DefaultVisualizationArg, context);
   }
-  toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {
+
+  toJSON(instance: Visualization, _context: Project, _registry: ObjectFactoryRegistry): unknown {
     return instance.toJSON();
   }
 }
