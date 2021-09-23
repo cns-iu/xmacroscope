@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  },
+  "vconcat": [
+    {
+      "title": "Sciencefest 2019",
+      "data": {
+        "url": "assets/xmac-data/sciencefest-2019/Runs.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "Time (seconds)": "number",
+            "Age Group": null
+          }
+        }
+      },
+      "mark": "rect",
+      "width": 300,
+      "height": 200,
+      "encoding": {
+        "y": {
+          "bin": {"maxbins":40},
+          "field": "Height (inches)",
+          "type": "quantitative"
+        },
+        "x": {
+          "bin": {"maxbins": 60},
+          "field": "Time (seconds)",
+          "type": "quantitative"
+        },
+        "color": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "legend": {
+            "title": "Count"
+          }
+        }
+      }
+    },
+    {
+      "title": "Makevention 2019",
+      "data": {
+        "url": "assets/xmac-data/astc-2019/Run Data from Makevention 2019 - Runs.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "Time": "number",
+            "Age Group": null
+          }
+        }
+      },
+      "mark": "rect",
+      "width": 300,
+      "height": 200,
+      "encoding": {
+        "y": {
+          "title": "Height (inches)",
+          "bin": {"maxbins":40},
+          "field": "Height",
+          "type": "quantitative"
+        },
+        "x": {
+          "title": "Time (seconds)",
+          "bin": {"maxbins": 60},
+          "field": "Time",
+          "type": "quantitative"
+        },
+        "color": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "legend": {
+            "title": "Count"
+          }
+        }
+      }
+    },
+    {
+      "title": "Makevention 2018",
+      "data": {
+        "url": "assets/xmac-data/raw-data/2018-08-25-makevention-run-data.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "runTime": "number",
+            "age_group": null
+          }
+        }
+      },
+      "mark": "rect",
+      "width": 300,
+      "height": 200,
+      "encoding": {
+        "y": {
+          "title": "Height (inches)",
+          "bin": {"maxbins":40},
+          "field": "height",
+          "type": "quantitative"
+        },
+        "x": {
+          "title": "Time (seconds)",
+          "bin": {"maxbins": 60},
+          "field": "runTime",
+          "type": "quantitative"
+        },
+        "color": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "legend": {
+            "title": "Count"
+          }
+        }
+      }
+    }
+  ]
+}

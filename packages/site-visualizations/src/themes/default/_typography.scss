@@ -1,0 +1,8 @@
+@use '~@angular/material' as mat;
+
+$typography: mat.define-typography-config(
+  $font-family: 'Lato, sans serif',
+  $headline: mat.define-typography-level(2.5rem, 2.5rem, 300),
+  $caption: mat.define-typography-level(0.625rem, 0.625rem, 400),
+  $button: mat.define-typography-level(0.75rem, 0.75rem, 500)
+)

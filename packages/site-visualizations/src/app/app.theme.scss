@@ -1,0 +1,67 @@
+@use '~@angular/material' as mat;
+
+
+@mixin color($config-or-theme) {
+  $config: mat.get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  $accent: map-get($config, accent);
+
+  .app-root {
+    // Material overrides
+    mat-expansion-panel-header {
+      background-color: mat.get-color-from-palette($accent, 50);
+      border-top: 1px solid mat.get-color-from-palette($accent, 300);
+      border-bottom: 1px solid mat.get-color-from-palette($accent, 300);
+    }
+
+    mat-sidenav-content {
+      background-color: mat.get-color-from-palette($accent, A100);
+    }
+
+    // Markdown table styling
+    markdown table {
+      tbody tr:nth-child(odd) {
+        // Color doesn't exist in any material palettes and it is only used here
+        background-color: #f7fafd;
+      }
+
+      td {
+        border: 0.125rem solid mat.get-color-from-palette($accent, 300);
+
+        &:first-child {
+          border-left: none;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
+
+@mixin typography($config-or-theme) {
+  $config: mat.get-typography-config($config-or-theme);
+
+  .app-root {
+    // Markdown styling
+    markdown {
+      strong, table th {
+        @include mat.typography-level($config, subheading-2);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color: mat.get-color-config($theme);
+  $typography: mat.get-typography-config($theme);
+
+  @if $color != null {
+    @include color($color);
+  }
+  @if $typography != null {
+    @include typography($typography);
+  }
+}

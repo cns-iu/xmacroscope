@@ -1,0 +1,18 @@
+<div *ngIf="headline" class="header">{{ headline }}</div>
+
+<div class="content">
+  <div class="center-box">
+    <div *ngIf="title" class="title">{{ title }}</div>
+    <div *ngIf="description" class="description">{{ description }}</div>
+
+    <div class="loading-message" [class.smooth-hide]="!loadingVegaVisualization">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="visualization">
+      <ngx-vega *ngIf="spec" [spec]="spec" [options]="options" [autosize]="{ width: true, height: false }"
+                (viewLoading)="loadingVegaVisualization = $event">
+      </ngx-vega>
+    </div>
+  </div>
+</div>
