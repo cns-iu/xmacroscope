@@ -1,16 +1,17 @@
 import { Map } from 'mapbox-gl';
+
 import { DataDrivenIcon, defaultCanvasCreator, IconConfig } from './data-driven-icon';
 
 
 export class DataDrivenIcons {
   readonly prefix = 'ddi:';
-  private map: Map;
+  private map!: Map;
 
-  constructor(private createCanvas = defaultCanvasCreator) {}
+  constructor(private createCanvas = defaultCanvasCreator) { }
 
   addTo(map: Map): Map {
     this.map = map;
-    map.on('styleimagemissing', (e) => {
+    map.on('styleimagemissing', (e: { id: string }) => {
       const id = e.id; // id of the missing image
       if (id.indexOf(this.prefix) === 0) {
         const config = JSON.parse(id.slice(this.prefix.length));
@@ -20,7 +21,7 @@ export class DataDrivenIcons {
     return map;
   }
 
-  addImage(id: string, config: IconConfig) {
+  addImage(id: string, config: IconConfig): void {
     const map = this.map;
     const icon = new DataDrivenIcon(config, this.createCanvas);
     if (icon.isAnimated) {

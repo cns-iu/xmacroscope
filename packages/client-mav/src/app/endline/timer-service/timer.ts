@@ -14,9 +14,7 @@ export class Timer {
   constructor(private accumulator: number = 0, readonly granularity = 70) {
     this.ticker = interval(granularity).pipe(
       filter(() => this.isRunning)).pipe(
-        map(() => {
-          return duration(this.accumulator + this.timeDifference());
-        }));
+      map(() => duration(this.accumulator + this.timeDifference())));
 
 
     this.eventEmiter = new Subject<Duration>();
@@ -46,7 +44,7 @@ export class Timer {
     this.emit(this.accumulator);
   }
 
-  reset(offset: number = 0): void {
+  reset(offset = 0): void {
     this.setStartTime();
     this.accumulator = offset;
     this.emit(offset);
@@ -76,8 +74,7 @@ export class Timer {
     return this.startTime ? +moment() - this.startTime : 0;
   }
 
-  private emit(dur: number) {
+  private emit(dur: number): void {
     this.eventEmiter.next(duration(dur));
   }
-
 }

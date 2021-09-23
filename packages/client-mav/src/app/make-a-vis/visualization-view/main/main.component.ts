@@ -10,7 +10,7 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent {
-  @Input() active: string;
+  @Input() active!: string;
 
   readonly visualizations: { [template: string]: Visualization };
   get data(): Visualization {

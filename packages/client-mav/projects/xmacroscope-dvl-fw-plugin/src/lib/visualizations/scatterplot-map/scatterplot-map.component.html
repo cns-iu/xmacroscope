@@ -3,7 +3,7 @@
   [style]="style"
   [zoom]="[2]"
   [center]="[0, 0]"
-  [fitBounds]="worldBbox"
+  [fitBounds]="worldBbox2d"
   [fitBoundsOptions]="{
     padding: worldPadding
   }"
@@ -14,11 +14,11 @@
   <!-- Soures -->
   <mgl-geojson-source
     id="graticule"
-    [data]="graticule">
+    [data]="$any(graticule)">
   </mgl-geojson-source>
   <mgl-geojson-source
     id="nodes"
-    [data]="nodesGeoJson">
+    [data]="$any(nodesGeoJson)">
   </mgl-geojson-source>
 
   <!-- Layers -->

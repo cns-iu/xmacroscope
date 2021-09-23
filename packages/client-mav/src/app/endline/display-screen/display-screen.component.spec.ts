@@ -10,7 +10,7 @@ describe('DisplayScreenComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ DisplayScreenComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

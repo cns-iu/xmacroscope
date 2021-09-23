@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 @Component({
@@ -10,10 +9,10 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 })
 export class AppComponent {
   title = 'AISL xMacroscope';
-  routeLinks: any[];
+  routeLinks: { label: string; route: string; index: string }[];
   showAppHeader = true;
 
-  constructor(private router: Router, private route: ActivatedRoute, public dataService: XMacroscopeDataService) {
+  constructor(route: ActivatedRoute, public dataService: XMacroscopeDataService) {
     console.log(dataService);
     this.routeLinks = [
       {
@@ -47,4 +46,3 @@ export class AppComponent {
     });
   }
 }
-

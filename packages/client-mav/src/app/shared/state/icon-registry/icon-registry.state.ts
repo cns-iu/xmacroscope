@@ -9,18 +9,27 @@ import { defaultIcons } from './default-icons';
 import { RegisterIcon, RegistrationError, RegistrationSuccess } from './icon-registry.action';
 import { IconDefinition } from './icon-registry.model';
 
+
+type RegistrationMethods =
+  'addSvgIconInNamespace' | 'addSvgIconLiteralInNamespace' |
+  'addSvgIcon' | 'addSvgIconLiteral' |
+  'addSvgIconSetInNamespace' | 'addSvgIconSetLiteralInNamespace' |
+  'addSvgIconSet' | 'addSvgIconSetLiteral';
+
 /**
  * Determines the `MatIconRegistry` method and arguments to invoke for a specific `IconDefinition`.
  *
  * @param definition The definition for which to determine the appropriate method and arguments.
  * @returns An object containing the `MatIconRegistry` method name and argument to invoke it with.
  */
-function getRegistrationMethod({ name, namespace, url, html }: IconDefinition): { methodName: string, args: any[] } {
+function getRegistrationMethod(
+  { name, namespace, url, html }: IconDefinition
+): { methodName: RegistrationMethods; args: unknown[] } {
   if (!url && !html) {
     throw new Error('IconDefinition must have either an url or html');
   }
 
-  let methodName: string;
+  let methodName: RegistrationMethods;
   if (name && namespace) {
     methodName = url ? 'addSvgIconInNamespace' : 'addSvgIconLiteralInNamespace';
   } else if (name) {
@@ -31,7 +40,7 @@ function getRegistrationMethod({ name, namespace, url, html }: IconDefinition): 
     methodName = url ? 'addSvgIconSet' : 'addSvgIconSetLiteral';
   }
 
-  return { methodName, args: filter([namespace, name, url || html]) };
+  return { methodName, args: filter([namespace, name, url ?? html]) };
 }
 
 /**
@@ -54,7 +63,7 @@ export class IconRegistryState implements NgxsOnInit {
    *
    * @param context The state context.
    */
-  ngxsOnInit({ dispatch }: StateContext<{}>) {
+  ngxsOnInit({ dispatch }: StateContext<void>): void {
     const { sanitizer } = this;
     const actions = map(defaultIcons, def => new RegisterIcon({
       ...def,
@@ -72,14 +81,14 @@ export class IconRegistryState implements NgxsOnInit {
    * @param action The `RegisterIcon` action.
    */
   @Action(RegisterIcon)
-  registerIcon({ dispatch }: StateContext<{}>, { definition }: RegisterIcon): Observable<void> {
+  registerIcon({ dispatch }: StateContext<void>, { definition }: RegisterIcon): Observable<void> {
     try {
       const { methodName, args } = getRegistrationMethod(definition);
 
-      this.registry[methodName](...args);
+      (this.registry[methodName] as (...aargs: unknown[]) => void)(...args);
       return dispatch(new RegistrationSuccess());
     } catch (error) {
-      return dispatch(new RegistrationError(error));
+      return dispatch(new RegistrationError(error as Error));
     }
   }
 }

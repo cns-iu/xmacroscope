@@ -21,9 +21,9 @@ export interface ButtonItem {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GeomapComponent {
-  @Input() data: Visualization;
+  @Input() data!: Visualization;
 
-  @ViewChild('visualization', { static: true }) visualization: DvlFwVisualizationComponent;
+  @ViewChild('visualization', { static: true }) visualization!: DvlFwVisualizationComponent;
 
   readonly colorType = GraphicVariableType.COLOR;
   readonly shapeType = GraphicVariableType.SHAPE;
@@ -54,7 +54,7 @@ export class GeomapComponent {
 
   currentFeature(): ButtonItem {
     const id = get(this.data, ['properties', 'featureSelection']);
-    return this.buttonItems.find(item => item.id === id) || this.buttonItems[1];
+    return this.buttonItems.find(item => item.id === id) ?? this.buttonItems[1];
   }
 
   currentVariable(id: string): GraphicVariable {

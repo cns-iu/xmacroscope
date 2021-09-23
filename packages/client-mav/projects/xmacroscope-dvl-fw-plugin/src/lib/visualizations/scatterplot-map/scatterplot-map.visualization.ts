@@ -1,10 +1,11 @@
-import { DefaultVisualization, ObjectFactory, ObjectFactoryRegistry, Project, Visualization } from '@dvl-fw/core';
+import {
+  DefaultVisualization, DefaultVisualizationArg, ObjectFactory, ObjectFactoryRegistry, Project, Visualization,
+} from '@dvl-fw/core';
 
 import { ScatterplotMapComponent } from './scatterplot-map.component';
 
 
 export class ScatterplotMapVisualization extends DefaultVisualization {
-  // eslint-disable-next-line max-len
   readonly defaultDescription = 'A scatter graph visualization uses Cartesian coordinates as a reference system. In the current MAV, records are represented by circles. Circles are placed based on values for two data variables: one plotted along the x-axis, the other along the y-axis. Circles can be size coded and color coded to represent additional data variables. A third data variable can be added to the graph using tooltips for circles.';
   readonly component = ScatterplotMapComponent;
   readonly graphicSymbolOptions = [{
@@ -29,10 +30,11 @@ export class ScatterplotMapVisualizationFactory implements ObjectFactory<Visuali
   id = 'scattergraph';
   type = 'visualization';
 
-  async fromJSON(data: unknown, context: Project, registry: ObjectFactoryRegistry): Promise<Visualization> {
-    return new ScatterplotMapVisualization(data, context);
+  async fromJSON(data: unknown, context: Project, _registry: ObjectFactoryRegistry): Promise<Visualization> {
+    return new ScatterplotMapVisualization(data as DefaultVisualizationArg, context);
   }
-  toJSON(instance: Visualization, context: Project, registry: ObjectFactoryRegistry) {
+
+  toJSON(instance: Visualization, _context: Project, _registry: ObjectFactoryRegistry): unknown {
     return instance.toJSON();
   }
 }

@@ -10,7 +10,7 @@ describe('ButtonGroupComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ButtonGroupComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
