@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
 
   accumulate(message: Message): Message[] {
     this.messageCache.push(message);
-    if (this.messageCache.length > this.dataService.runStreamController.historySize) {
+    if (this.messageCache.length > (this.dataService.runStreamController?.historySize ?? 0)) {
       this.messageCache.shift();
     }
     return this.messageCache.concat().reverse();

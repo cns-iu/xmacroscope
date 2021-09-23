@@ -9,7 +9,7 @@ import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 })
 export class AppComponent {
   title = 'AISL xMacroscope';
-  routeLinks: unknown[];
+  routeLinks: { label: string, route: string, index: string }[];
   showAppHeader = true;
 
   constructor(route: ActivatedRoute, public dataService: XMacroscopeDataService) {

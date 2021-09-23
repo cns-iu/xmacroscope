@@ -65,7 +65,7 @@ export class MainComponent implements OnChanges {
   }
 
   navigationChanged(event: unknown): void {
-    this.selected = event as typeof this.selected;
+    this.selected = event as { label: string, id: string, icon: string, hideLegend: boolean };
     this.activeVisualization = this.selected.id;
     this.activeVisualizationChange.emit(this.selected.id);
   }
