@@ -51,6 +51,7 @@
       position: relative;
       padding-right: 2.375rem;
       display: flex;
+      flex-direction: column;
       width: 100%;
 
       &:hover {
@@ -84,6 +85,33 @@
 
         ::ng-deep .mat-button-focus-overlay {
           display: none;
+        }
+      }
+
+      .vis-controls {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        bottom: 0;
+
+        .vis-axes, .vis-shape-size {
+          display: flex;
+          padding: 1rem;
+
+          .radio-group {
+            padding-right: 2rem;
+
+            label {
+              padding-right: 1rem;
+              font-weight: bold; 
+            }
+
+            mat-radio-group {
+              mat-radio-button {
+                padding-right: 1rem;
+              }
+            }
+          }
         }
       }
     }
