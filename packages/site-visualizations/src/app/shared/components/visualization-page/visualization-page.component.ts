@@ -38,9 +38,6 @@ export class VisualizationPageComponent implements OnChanges {
   get specString(): string | undefined {
     return this.spec as string;
   }
-
-  constructor() {
-  }
   
   ngOnChanges(changes: SimpleChanges): void {
     if ('title' in changes) {
