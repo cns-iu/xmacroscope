@@ -21,7 +21,7 @@
             <mat-radio-group class="y-label" (change)="update($event.value, 'yAxis')" [value]="visControls.yAxis">
               <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
               <mat-radio-button value="Age Group">Age</mat-radio-button>
-              <mat-radio-button value="height">Height</mat-radio-button>
+              <mat-radio-button value="Height">Height</mat-radio-button>
             </mat-radio-group>
           </div>
           <div class="radio-group">
@@ -29,7 +29,7 @@
             <mat-radio-group class="x-label" (change)="update($event.value, 'xAxis')" [value]="visControls.xAxis">
               <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
               <mat-radio-button value="Age Group">Age</mat-radio-button>
-              <mat-radio-button value="height">Height</mat-radio-button>
+              <mat-radio-button value="Height">Height</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -37,16 +37,18 @@
         <div class="vis-shape-size">
           <div class="radio-group">
             <label>Shape:</label>
-            <mat-radio-group class="shape-label" (change)="update($event.value, 'shape')">
-              <mat-radio-button value="gender">Gender</mat-radio-button>
+            <mat-radio-group class="shape-label" (change)="update($event.value, 'shape')" [value]="visControls.shape">
+              <mat-radio-button value="Gender">Gender</mat-radio-button>
               <mat-radio-button value="Favorite Activity">Favorite Activity</mat-radio-button>
+              <mat-radio-button value="">None</mat-radio-button>
             </mat-radio-group>
           </div>
           <div class="radio-group">
             <label>Size:</label>
-            <mat-radio-group class="size-label" (change)="update($event.value, 'size')">
+            <mat-radio-group class="size-label" (change)="update($event.value, 'size')" [value]="visControls.size">
               <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
-              <mat-radio-button value="height">Height</mat-radio-button>
+              <mat-radio-button value="Height">Height</mat-radio-button>
+              <mat-radio-button value="">None</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>

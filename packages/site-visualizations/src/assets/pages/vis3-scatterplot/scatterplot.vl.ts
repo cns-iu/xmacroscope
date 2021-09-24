@@ -36,7 +36,7 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
     params: [
       {
         name: 'eventName',
-        select: { type: 'point', fields: ['EVENT'] },
+        select: { type: 'point', fields: ['Event'] },
         bind: 'legend'
       },
       {
@@ -47,28 +47,28 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
     ],
     transform: [
       {
-        filter: 'datum.height < 100'
+        filter: 'datum.Height < 100'
       },
       {
-        filter: '!(datum.EVENT === "Sciencefest 2019" && datum.id < 182)'
+        filter: '!(datum.Event === "Sciencefest 2019" && datum.id < 182)'
       }
     ],
     encoding: {
       x: {
-        title: visControls.xAxis === 'height' ? 'Height (inches)' : visControls.xAxis,
+        title: visControls.xAxis === 'Height' ? 'Height (inches)' : visControls.xAxis,
         field: visControls.xAxis,
         type: visControls.xAxis === 'Age Group' ? 'nominal' : 'quantitative',
         sort: ['Kid', 'Pre-Teen', 'Teen', 'Adult', 'Retired', '']
       },
       y: {
-        title: visControls.yAxis === 'height' ? 'Height (inches)' : visControls.yAxis,
+        title: visControls.yAxis === 'Height' ? 'Height (inches)' : visControls.yAxis,
         field: visControls.yAxis,
         type: visControls.yAxis === 'Age Group' ? 'nominal' : 'quantitative',
         sort: ['', 'Retired', 'Adult', 'Teen', 'Pre-Teen', 'Kid']
       },
-      fill: { field: 'EVENT', type: 'nominal' },
-      shape: visControls.shape ? { field: visControls.shape, type: 'nominal', legend: { title: visControls.shape === 'gender' ? 'Gender' : visControls.shape } } : { value: 'circle' },
-      size: visControls.size ? { field: visControls.size, type: 'quantitative', scale: { rangeMax: 1000 }, legend: { title: visControls.size === 'height' ? 'Height (inches)' : visControls.size } } : { value: 1000 },
+      fill: { field: 'Event', type: 'nominal' },
+      shape: visControls.shape ? { field: visControls.shape, type: 'nominal', legend: { title: visControls.shape === 'Gender' ? 'Gender' : visControls.shape } } : { value: 'circle' },
+      size: visControls.size ? { field: visControls.size, type: 'quantitative', scale: { rangeMax: 1000 }, legend: { title: visControls.size === 'Height' ? 'Height (inches)' : visControls.size } } : { value: 1000 },
       opacity: {
         condition: {
           test: {
