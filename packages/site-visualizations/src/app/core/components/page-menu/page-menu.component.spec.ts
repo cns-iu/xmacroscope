@@ -10,7 +10,7 @@ describe('PageMenuComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PageMenuComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

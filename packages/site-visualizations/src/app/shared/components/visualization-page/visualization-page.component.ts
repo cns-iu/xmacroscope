@@ -32,9 +32,6 @@ export class VisualizationPageComponent {
     return this.spec as string;
   }
 
-  constructor(
-  ) { }
-
   disableSpinner(key: string): void {
     this.spinners = {
       ...this.spinners,
