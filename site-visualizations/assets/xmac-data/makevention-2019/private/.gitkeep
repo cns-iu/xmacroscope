@@ -1,0 +1,2 @@
+# Ensure the private directory is created
+# Stores the DB credentials, which aren't tracked but it needs to be created.

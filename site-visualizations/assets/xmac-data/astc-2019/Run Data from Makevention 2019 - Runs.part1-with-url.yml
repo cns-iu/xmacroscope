@@ -1,0 +1,1351 @@
+apiVersion: 1
+metadata:
+  dateCreated: 2019-09-17T18:58:38.559Z
+  dateSaved: 2019-09-17T19:08:25.474Z
+dataSources:
+  - id: csvDataSource1
+    template: default
+    properties:
+      rawData: csvData1
+    recordStreams:
+      - id: csvData1
+        label: CSV Data 1
+  - id: activityLog
+    template: activityLog
+    properties:
+      rawData: activityLog
+      keepPreviousActivity: true
+      freezeLogs: false
+    recordStreams:
+      - id: activityLog
+        label: Activity Log
+recordSets:
+  - id: csvData1
+    label: CSV Data 1
+    labelPlural: CSV Data 1
+    description: Run Data from Makevention 2019 - Runs.csv
+    defaultRecordStream: csvData1
+    dataVariables:
+      - id: ID
+        label: ID
+        dataType: integer
+        scaleType: '???'
+      - id: Shape
+        label: Shape
+        dataType: string
+        scaleType: '???'
+      - id: Color
+        label: Color
+        dataType: string
+        scaleType: '???'
+      - id: Time
+        label: Time
+        dataType: number
+        scaleType: '???'
+      - id: Height
+        label: Height
+        dataType: integer
+        scaleType: '???'
+      - id: Favorite Activity
+        label: Favorite Activity
+        dataType: string
+        scaleType: '???'
+      - id: Age Group
+        label: Age Group
+        dataType: string
+        scaleType: '???'
+      - id: Zip Code
+        label: Zip Code
+        dataType: integer
+        scaleType: '???'
+      - id: Fixed
+        label: Fixed
+        dataType: string
+        scaleType: '???'
+graphicVariableMappings:
+  - recordStream: csvData1
+    mappings:
+      csvData1:
+        ID:
+          identifier:
+            - id: identifier
+              label: ID
+              selector: ID
+          axis:
+            - id: axis
+              label: ID
+              selector: ID
+          text:
+            - id: text
+              label: ID
+              selector: ID
+          tooltip:
+            - id: tooltip
+              label: ID
+              selector: ID
+          label:
+            - id: label
+              label: ID
+              selector: ID
+          input:
+            - id: input
+              label: ID
+              selector: ID
+          order:
+            - id: order
+              label: ID
+              selector: ID
+          areaSize:
+            - id: areaSize
+              label: ID
+              selector: ID
+          strokeWidth:
+            - id: strokeWidth
+              label: ID
+              selector: ID
+          fontSize:
+            - id: fontSize
+              label: ID
+              selector: ID
+        Shape:
+          identifier:
+            - id: identifier
+              label: Shape
+              selector: Shape
+          axis:
+            - id: axis
+              label: Shape
+              selector: Shape
+          text:
+            - id: text
+              label: Shape
+              selector: Shape
+          tooltip:
+            - id: tooltip
+              label: Shape
+              selector: Shape
+          label:
+            - id: label
+              label: Shape
+              selector: Shape
+          input:
+            - id: input
+              label: Shape
+              selector: Shape
+          order:
+            - id: order
+              label: Shape
+              selector: Shape
+          shape:
+            - id: shape
+              label: Shape
+              selector: Shape
+        Color:
+          identifier:
+            - id: identifier
+              label: Color
+              selector: Color
+          axis:
+            - id: axis
+              label: Color
+              selector: Color
+          text:
+            - id: text
+              label: Color
+              selector: Color
+          tooltip:
+            - id: tooltip
+              label: Color
+              selector: Color
+          label:
+            - id: label
+              label: Color
+              selector: Color
+          input:
+            - id: input
+              label: Color
+              selector: Color
+          order:
+            - id: order
+              label: Color
+              selector: Color
+          color:
+            - id: color
+              label: Color
+              selector: Color
+          strokeColor:
+            - id: strokeColor
+              label: Color
+              selector: Color
+        Time:
+          identifier:
+            - id: identifier
+              label: Time
+              selector: Time
+          axis:
+            - id: axis
+              label: Time
+              selector: Time
+          text:
+            - id: text
+              label: Time
+              selector: Time
+          tooltip:
+            - id: tooltip
+              label: Time
+              selector: Time
+          label:
+            - id: label
+              label: Time
+              selector: Time
+          input:
+            - id: input
+              label: Time
+              selector: Time
+          order:
+            - id: order
+              label: Time
+              selector: Time
+          areaSize:
+            - id: areaSize
+              label: Time
+              selector: Time$$areaSize
+          strokeWidth:
+            - id: strokeWidth
+              label: Time
+              selector: Time
+          fontSize:
+            - id: fontSize
+              label: Time
+              selector: Time
+        Height:
+          identifier:
+            - id: identifier
+              label: Height
+              selector: Height
+          axis:
+            - id: axis
+              label: Height
+              selector: Height
+          text:
+            - id: text
+              label: Height
+              selector: Height
+          tooltip:
+            - id: tooltip
+              label: Height
+              selector: Height
+          label:
+            - id: label
+              label: Height
+              selector: Height
+          input:
+            - id: input
+              label: Height
+              selector: Height
+          order:
+            - id: order
+              label: Height
+              selector: Height
+          areaSize:
+            - id: areaSize
+              label: Height
+              selector: Height$$areaSize
+          strokeWidth:
+            - id: strokeWidth
+              label: Height
+              selector: Height
+          fontSize:
+            - id: fontSize
+              label: Height
+              selector: Height
+          height:
+            - id: height
+              label: Height
+              selector: Height
+        Favorite Activity:
+          identifier:
+            - id: identifier
+              label: Favorite Activity
+              selector: Favorite Activity
+          axis:
+            - id: axis
+              label: Favorite Activity
+              selector: Favorite Activity
+          text:
+            - id: text
+              label: Favorite Activity
+              selector: Favorite Activity
+          tooltip:
+            - id: tooltip
+              label: Favorite Activity
+              selector: Favorite Activity
+          label:
+            - id: label
+              label: Favorite Activity
+              selector: Favorite Activity
+          input:
+            - id: input
+              label: Favorite Activity
+              selector: Favorite Activity
+          order:
+            - id: order
+              label: Favorite Activity
+              selector: Favorite Activity
+          color:
+            - id: color
+              label: Favorite Activity
+              selector: Favorite Activity$$color
+        Age Group:
+          identifier:
+            - id: identifier
+              label: Age Group
+              selector: Age Group
+          axis:
+            - id: axis
+              label: Age Group
+              selector: Age Group
+          text:
+            - id: text
+              label: Age Group
+              selector: Age Group
+          tooltip:
+            - id: tooltip
+              label: Age Group
+              selector: Age Group
+          label:
+            - id: label
+              label: Age Group
+              selector: Age Group
+          input:
+            - id: input
+              label: Age Group
+              selector: Age Group
+          order:
+            - id: order
+              label: Age Group
+              selector: Age Group
+          color:
+            - id: color
+              label: Age Group
+              selector: Age Group$$color
+        Zip Code:
+          identifier:
+            - id: identifier
+              label: Zip Code
+              selector: Zip Code
+          axis:
+            - id: axis
+              label: Zip Code
+              selector: Zip Code
+          text:
+            - id: text
+              label: Zip Code
+              selector: Zip Code
+          tooltip:
+            - id: tooltip
+              label: Zip Code
+              selector: Zip Code
+          label:
+            - id: label
+              label: Zip Code
+              selector: Zip Code
+          input:
+            - id: input
+              label: Zip Code
+              selector: Zip Code
+          order:
+            - id: order
+              label: Zip Code
+              selector: Zip Code
+          areaSize:
+            - id: areaSize
+              label: Zip Code
+              selector: Zip Code
+          strokeWidth:
+            - id: strokeWidth
+              label: Zip Code
+              selector: Zip Code
+          fontSize:
+            - id: fontSize
+              label: Zip Code
+              selector: Zip Code
+          latitude:
+            - id: latitude
+              label: Zip Code
+              selector: Zip Code$$latitude
+          longitude:
+            - id: longitude
+              label: Zip Code
+              selector: Zip Code$$longitude
+        Fixed:
+          identifier:
+            - id: identifier
+              label: Fixed
+              selector: Fixed
+          axis:
+            - id: axis
+              label: Fixed
+              selector: Fixed
+          text:
+            - id: text
+              label: Fixed
+              selector: Fixed
+          tooltip:
+            - id: tooltip
+              label: Fixed
+              selector: Fixed
+          label:
+            - id: label
+              label: Fixed
+              selector: Fixed
+          input:
+            - id: input
+              label: Fixed
+              selector: Fixed
+          order:
+            - id: order
+              label: Fixed
+              selector: Fixed
+          color:
+            - id: color
+              label: Fixed
+              selector: Fixed$$color
+          strokeColor:
+            - id: strokeColor
+              label: Fixed
+              selector: Fixed$$strokeColor
+          areaSize:
+            - id: areaSize
+              label: Fixed
+              selector: Fixed$$areaSize
+          strokeWidth:
+            - id: strokeWidth
+              label: Fixed
+              selector: Fixed$$strokeWidth
+graphicSymbolMappings:
+  - id: points-1282
+    type: area
+    recordStream: csvData1
+    graphicVariables:
+      identifier:
+        recordSet: csvData1
+        dataVariable: ID
+        graphicVariableType: identifier
+        graphicVariableId: identifier
+      x:
+        recordSet: csvData1
+        dataVariable: Time
+        graphicVariableType: axis
+        graphicVariableId: axis
+      'y':
+        recordSet: csvData1
+        dataVariable: Age Group
+        graphicVariableType: axis
+        graphicVariableId: axis
+      strokeColor:
+        recordSet: csvData1
+        dataVariable: Fixed
+        graphicVariableType: color
+        graphicVariableId: color
+      shape:
+        recordSet: csvData1
+        dataVariable: Shape
+        graphicVariableType: shape
+        graphicVariableId: shape
+      color:
+        recordSet: csvData1
+        dataVariable: Color
+        graphicVariableType: color
+        graphicVariableId: color
+      areaSize:
+        recordSet: csvData1
+        dataVariable: Fixed
+        graphicVariableType: areaSize
+        graphicVariableId: areaSize
+  - id: nodes-2011
+    type: area
+    recordStream: csvData1
+    graphicVariables:
+      identifier:
+        recordSet: csvData1
+        dataVariable: ID
+        graphicVariableType: identifier
+        graphicVariableId: identifier
+      shape:
+        recordSet: csvData1
+        dataVariable: Shape
+        graphicVariableType: shape
+        graphicVariableId: shape
+      color:
+        recordSet: csvData1
+        dataVariable: Color
+        graphicVariableType: color
+        graphicVariableId: color
+      latitude:
+        recordSet: csvData1
+        dataVariable: Zip Code
+        graphicVariableType: latitude
+        graphicVariableId: latitude
+      longitude:
+        recordSet: csvData1
+        dataVariable: Zip Code
+        graphicVariableType: longitude
+        graphicVariableId: longitude
+      strokeColor:
+        recordSet: csvData1
+        dataVariable: Fixed
+        graphicVariableType: color
+        graphicVariableId: color
+      areaSize:
+        recordSet: csvData1
+        dataVariable: Fixed
+        graphicVariableType: areaSize
+        graphicVariableId: areaSize
+      strokeWidth:
+        recordSet: csvData1
+        dataVariable: Fixed
+        graphicVariableType: strokeWidth
+        graphicVariableId: strokeWidth
+visualizations:
+  - id: visualization-1281
+    template: scattergraph
+    properties: {}
+    graphicSymbols:
+      points: points-1282
+  - id: visualization-1956
+    template: geomap
+    properties:
+      basemapZoomLevels:
+        - selector:
+            - world
+            - united states
+            - states
+          projection: albersUsa
+          label: United States
+          class: us-icon
+        - selector:
+            - world
+            - united states
+            - Indiana
+            - counties
+          projection: albersUsa
+          label: Indiana
+          class: state-icon
+      basemapSelectedZoomLevel: 2
+      basemapDefaultColor: white
+      basemapDefaultStrokeColor: '#bebebe'
+      basemapDefaultStrokeWidth: 0.1%
+    graphicSymbols:
+      nodes: nodes-2011
+rawData:
+  - id: csvData1
+    template: csv
+    url: https://docs.google.com/spreadsheets/d/1GpbHP8WfEHnD-HODaVUn4tPipaaGb8PN6BQl79h-_ko/export?format=csv
+  - id: activityLog
+    template: activityLog
+    data:
+      activityLog:
+        - actionName: '[UI] Project Loaded'
+          date: '9/17/2019, 2:58:38 PM'
+          time: 1568746718609
+          logid: 1
+          loadingProject: false
+          fileName: Run Data from Makevention 2019 - Runs.csv
+          fileExtension: csv
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 2:58:38 PM'
+          time: 1568746718609
+          logid: 2
+          visualizationIndex: -1
+        - actionName: '[UI] Add New Visualization'
+          date: '9/17/2019, 2:58:43 PM'
+          time: 1568746723852
+          logid: 3
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols: {}
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 2:58:43 PM'
+          time: 1568746723852
+          logid: 4
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols: {}
+        - actionName: '[UI] Set Record Stream'
+          date: '9/17/2019, 2:58:47 PM'
+          time: 1568746727068
+          logid: 5
+          slot: points
+          symbol:
+            id: points-1282
+            type: area
+            recordStream: csvData1
+            graphicVariables: {}
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:58:50 PM'
+          time: 1568746730613
+          logid: 6
+          id: identifier
+          slot: points
+          variable:
+            id: identifier
+            label: ID
+            type: identifier
+            selector: ID
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: ID
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:58:55 PM'
+          time: 1568746735900
+          logid: 7
+          id: x
+          slot: points
+          variable:
+            id: axis
+            label: Time
+            type: axis
+            selector: Time
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Time
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:58:57 PM'
+          time: 1568746737939
+          logid: 8
+          id: 'y'
+          slot: points
+          variable:
+            id: axis
+            label: Height
+            type: axis
+            selector: Height
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Height
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:59:02 PM'
+          time: 1568746742366
+          logid: 9
+          id: 'y'
+          slot: points
+          variable:
+            id: axis
+            label: Age Group
+            type: axis
+            selector: Age Group
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Age Group
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:59:12 PM'
+          time: 1568746752595
+          logid: 10
+          id: areaSize
+          slot: points
+          variable:
+            id: areaSize
+            label: Fixed
+            type: areaSize
+            selector: Fixed$$areaSize
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:59:19 PM'
+          time: 1568746759863
+          logid: 11
+          id: strokeColor
+          slot: points
+          variable:
+            id: color
+            label: Fixed
+            type: color
+            selector: Fixed$$color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:59:26 PM'
+          time: 1568746766842
+          logid: 12
+          id: shape
+          slot: points
+          variable:
+            id: shape
+            label: Shape
+            type: shape
+            selector: Shape
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Shape
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:59:31 PM'
+          time: 1568746771580
+          logid: 13
+          id: color
+          slot: points
+          variable:
+            id: color
+            label: Color
+            type: color
+            selector: Color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Color
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 2:59:56 PM'
+          time: 1568746796647
+          logid: 14
+          id: color
+          slot: points
+          variable:
+            id: color
+            label: Favorite Activity
+            type: color
+            selector: Favorite Activity$$color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Favorite Activity
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:00:05 PM'
+          time: 1568746805740
+          logid: 15
+          id: areaSize
+          slot: points
+          variable:
+            id: areaSize
+            label: Height
+            type: areaSize
+            selector: Height$$areaSize
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Height
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Add New Visualization'
+          date: '9/17/2019, 3:02:04 PM'
+          time: 1568746924515
+          logid: 16
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols: {}
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:02:04 PM'
+          time: 1568746924516
+          logid: 17
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols: {}
+        - actionName: '[UI] Set Record Stream'
+          date: '9/17/2019, 3:02:06 PM'
+          time: 1568746926817
+          logid: 18
+          slot: nodes
+          symbol:
+            id: nodes-2011
+            type: area
+            recordStream: csvData1
+            graphicVariables: {}
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:12 PM'
+          time: 1568746932538
+          logid: 19
+          id: identifier
+          slot: nodes
+          variable:
+            id: identifier
+            label: ID
+            type: identifier
+            selector: ID
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: ID
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:17 PM'
+          time: 1568746937667
+          logid: 20
+          id: shape
+          slot: nodes
+          variable:
+            id: shape
+            label: Shape
+            type: shape
+            selector: Shape
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Shape
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:22 PM'
+          time: 1568746942765
+          logid: 21
+          id: color
+          slot: nodes
+          variable:
+            id: color
+            label: Color
+            type: color
+            selector: Color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Color
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:27 PM'
+          time: 1568746947196
+          logid: 22
+          id: latitude
+          slot: nodes
+          variable:
+            id: latitude
+            label: Zip Code
+            type: latitude
+            selector: Zip Code$$latitude
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Zip Code
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:29 PM'
+          time: 1568746949006
+          logid: 23
+          id: longitude
+          slot: nodes
+          variable:
+            id: longitude
+            label: Zip Code
+            type: longitude
+            selector: Zip Code$$longitude
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Zip Code
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:35 PM'
+          time: 1568746955029
+          logid: 24
+          id: strokeColor
+          slot: nodes
+          variable:
+            id: color
+            label: Fixed
+            type: color
+            selector: Fixed$$color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:52 PM'
+          time: 1568746972966
+          logid: 25
+          id: areaSize
+          slot: nodes
+          variable:
+            id: areaSize
+            label: Fixed
+            type: areaSize
+            selector: Fixed$$areaSize
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:02:59 PM'
+          time: 1568746979132
+          logid: 26
+          id: strokeWidth
+          slot: nodes
+          variable:
+            id: strokeWidth
+            label: Fixed
+            type: strokeWidth
+            selector: Fixed$$strokeWidth
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:03:01 PM'
+          time: 1568746981461
+          logid: 27
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:03:03 PM'
+          time: 1568746983435
+          logid: 28
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:03:20 PM'
+          time: 1568747000770
+          logid: 29
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:03:23 PM'
+          time: 1568747003075
+          logid: 30
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:03:29 PM'
+          time: 1568747009194
+          logid: 31
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:04:56 PM'
+          time: 1568747096478
+          logid: 32
+          id: color
+          slot: points
+          variable:
+            id: color
+            label: Color
+            type: color
+            selector: Color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Color
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:05:04 PM'
+          time: 1568747104047
+          logid: 33
+          id: color
+          slot: points
+          variable:
+            id: color
+            label: Favorite Activity
+            type: color
+            selector: Favorite Activity$$color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Favorite Activity
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:05:06 PM'
+          time: 1568747106926
+          logid: 34
+          id: color
+          slot: points
+          variable:
+            id: color
+            label: Age Group
+            type: color
+            selector: Age Group$$color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Age Group
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:05:19 PM'
+          time: 1568747119180
+          logid: 35
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:05:21 PM'
+          time: 1568747121810
+          logid: 36
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:06:38 PM'
+          time: 1568747198232
+          logid: 37
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:06:40 PM'
+          time: 1568747200522
+          logid: 38
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:06:57 PM'
+          time: 1568747217849
+          logid: 39
+          id: 'y'
+          slot: points
+          variable:
+            id: axis
+            label: Shape
+            type: axis
+            selector: Shape
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Shape
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:07:08 PM'
+          time: 1568747228611
+          logid: 40
+          id: 'y'
+          slot: points
+          variable:
+            id: axis
+            label: Age Group
+            type: axis
+            selector: Age Group
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Age Group
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:07:20 PM'
+          time: 1568747240036
+          logid: 41
+          id: color
+          slot: points
+          variable:
+            id: color
+            label: Color
+            type: color
+            selector: Color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Color
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:07:29 PM'
+          time: 1568747249772
+          logid: 42
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:07:44 PM'
+          time: 1568747264172
+          logid: 43
+          id: color
+          slot: nodes
+          variable:
+            id: color
+            label: Color
+            type: color
+            selector: Color
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Color
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:08:02 PM'
+          time: 1568747282003
+          logid: 44
+          id: areaSize
+          slot: nodes
+          variable:
+            id: areaSize
+            label: Height
+            type: areaSize
+            selector: Height$$areaSize
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Height
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:08:06 PM'
+          time: 1568747286640
+          logid: 45
+          id: areaSize
+          slot: nodes
+          variable:
+            id: areaSize
+            label: Fixed
+            type: areaSize
+            selector: Fixed$$areaSize
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:08:08 PM'
+          time: 1568747288386
+          logid: 46
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Unset Graphic Variable'
+          date: '9/17/2019, 3:08:15 PM'
+          time: 1568747295002
+          logid: 47
+          id: areaSize
+          slot: points
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Graphic Variable'
+          date: '9/17/2019, 3:08:16 PM'
+          time: 1568747296930
+          logid: 48
+          id: areaSize
+          slot: points
+          variable:
+            id: areaSize
+            label: Fixed
+            type: areaSize
+            selector: Fixed$$areaSize
+            recordStream: csvData1
+            recordSet: csvData1
+            dataVariable: Fixed
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:08:18 PM'
+          time: 1568747298794
+          logid: 49
+          visualizationIndex: 1
+          visualization:
+            id: visualization-1956
+            template: geomap
+            properties: {}
+            graphicSymbols:
+              nodes: nodes-2011
+        - actionName: '[UI] Set Active Visualization'
+          date: '9/17/2019, 3:08:20 PM'
+          time: 1568747300650
+          logid: 50
+          visualizationIndex: 0
+          visualization:
+            id: visualization-1281
+            template: scattergraph
+            properties: {}
+            graphicSymbols:
+              points: points-1282
+        - actionName: '[UI] Save Project'
+          date: '9/17/2019, 3:08:25 PM'
+          time: 1568747305475
+          logid: 51

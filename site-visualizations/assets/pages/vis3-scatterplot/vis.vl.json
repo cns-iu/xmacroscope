@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "assets/generated/combined-data.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Time (seconds)": "number",
+        "Age Group": null
+      }
+    }
+  },
+  "height": 800,
+  "mark": "point",
+  "params": [
+    {
+      "name": "event",
+      "select": {"type": "point", "fields": ["EVENT"]},
+      "bind": "legend"
+    },
+    {
+      "name": "activity",
+      "select": {"type": "point", "fields": ["Favorite Activity"]},
+      "bind": "legend"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Time (seconds)",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "Age Group",
+      "type": "nominal",
+      "sort": [
+        "",
+        "Retired",
+        "Adult",
+        "Teen",
+        "Pre-Teen",
+        "Kid"
+      ]
+    },
+    "shape": {"field": "Favorite Activity", "type": "nominal"},
+    "color": {"field": "EVENT", "type": "nominal"},
+    "size": {"value": 300},
+    "opacity": {
+      "condition": {
+        "test": {
+          "and": [
+            {"param": "event"},
+            {"param": "activity"}
+          ]
+        },
+        "value": 1
+      },
+      "value": 0
+    }
+  }
+}
