@@ -17,16 +17,16 @@
       <div class="vis-controls" *ngIf="title === 'Scatterplot'">
         <div class="vis-axes">
           <div class="radio-group">
-            <label>X-Axis:</label>
-            <mat-radio-group class="x-label" (change)="update($event.value, 'xAxis')" [value]="visControls.xAxis">
+            <label>Y-Axis:</label>
+            <mat-radio-group class="y-label" (change)="update($event.value, 'yAxis')" [value]="visControls.yAxis">
               <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
               <mat-radio-button value="Age Group">Age</mat-radio-button>
               <mat-radio-button value="height">Height</mat-radio-button>
             </mat-radio-group>
           </div>
           <div class="radio-group">
-            <label>Y-Axis:</label>
-            <mat-radio-group class="y-label" (change)="update($event.value, 'yAxis')" [value]="visControls.yAxis">
+            <label>X-Axis:</label>
+            <mat-radio-group class="x-label" (change)="update($event.value, 'xAxis')" [value]="visControls.xAxis">
               <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
               <mat-radio-button value="Age Group">Age</mat-radio-button>
               <mat-radio-button value="height">Height</mat-radio-button>

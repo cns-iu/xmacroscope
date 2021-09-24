@@ -33,12 +33,12 @@ export class VisualizationPageComponent implements OnChanges {
   visControls: VisControls = {
     xAxis: 'Time (seconds)',
     yAxis: 'height'
-  }
+  };
 
   get specString(): string | undefined {
     return this.spec as string;
   }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
     if ('title' in changes) {
       this.spec = this.title === 'Scatterplot' ? createScatterplot(this.visControls) : this.spec;
@@ -60,7 +60,7 @@ export class VisualizationPageComponent implements OnChanges {
   }
 
   update(value: string, variable: string): void {
-    this.visControls = {...this.visControls, [variable]: value}
+    this.visControls = { ...this.visControls, [variable]: value }
     this.spec = createScatterplot(this.visControls);
   }
 }
