@@ -60,7 +60,7 @@ export class VisualizationPageComponent implements OnChanges {
   }
 
   update(value: string, variable: string): void {
-    this.visControls = { ...this.visControls, [variable]: value }
+    this.visControls = { ...this.visControls, [variable]: value };
     this.spec = createScatterplot(this.visControls);
   }
 }
