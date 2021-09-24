@@ -14,7 +14,7 @@
   "mark": "point",
   "params": [
     {
-      "name": "event",
+      "name": "eventName",
       "select": {"type": "point", "fields": ["EVENT"]},
       "bind": "legend"
     },
@@ -24,31 +24,31 @@
       "bind": "legend"
     }
   ],
+  "transform": [
+    {
+      "filter": "datum.height < 100"
+    },
+    {
+      "filter": "!(datum.EVENT === 'Sciencefest 2019' && datum.id < 182)"
+    }
+  ],
   "encoding": {
     "x": {
       "field": "Time (seconds)",
       "type": "quantitative"
     },
     "y": {
-      "field": "Age Group",
-      "type": "nominal",
-      "sort": [
-        "",
-        "Retired",
-        "Adult",
-        "Teen",
-        "Pre-Teen",
-        "Kid"
-      ]
+      "field": "height",
+      "type": "quantitative"
     },
-    "shape": {"field": "Favorite Activity", "type": "nominal"},
     "color": {"field": "EVENT", "type": "nominal"},
+    "shape": {"field": "Favorite Activity", "type": "nominal"},
     "size": {"value": 300},
     "opacity": {
       "condition": {
         "test": {
           "and": [
-            {"param": "event"},
+            {"param": "eventName"},
             {"param": "activity"}
           ]
         },
