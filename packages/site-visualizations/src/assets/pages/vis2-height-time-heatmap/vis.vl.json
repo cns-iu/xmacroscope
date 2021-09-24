@@ -12,7 +12,7 @@
   },
   "transform": [
     {
-      "filter": "datum.height < 100"
+      "filter": "datum.Height < 100"
     }
   ],
   "mark": "rect",
@@ -22,7 +22,7 @@
     "y": {
       "title": "Height (inches)",
       "bin": {"maxbins":40},
-      "field": "height",
+      "field": "Height",
       "type": "quantitative"
     },
     "x": {
