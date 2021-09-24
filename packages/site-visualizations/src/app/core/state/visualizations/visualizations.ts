@@ -16,7 +16,7 @@ export const visualizations: Visualization[] = [
   {
     id: 'vis1',
     title: 'Age-Time Heatmap',
-    description: 'Visualization 1',
+    description: 'Age/time comparison using combined data',
     spec: 'assets/pages/vis1-age-time-heatmap/vis.vl.json',
     options: {},
     content: 'test',
@@ -26,7 +26,7 @@ export const visualizations: Visualization[] = [
   {
     id: 'vis2',
     title: 'Height-Time Heatmap',
-    description: 'Visualization 2',
+    description: 'Height/time comparison using combined data',
     spec: 'assets/pages/vis2-height-time-heatmap/vis.vl.json',
     options: {},
     content: 'test',
@@ -36,7 +36,7 @@ export const visualizations: Visualization[] = [
   {
     id: 'vis3',
     title: 'Scatterplot',
-    description: 'Visualization 3',
+    description: 'Interactive scatterplot visualization to visualize data across event datasets',
     spec: 'assets/pages/vis3-scatterplot/vis.vl.json',
     options: {},
     content: 'test',
@@ -45,8 +45,8 @@ export const visualizations: Visualization[] = [
   },
   {
     id: 'vis4',
-    title: 'Interactive Scatterplot',
-    description: 'Visualization 4',
+    title: 'Scatterplot Matrix',
+    description: 'Interactive scatterplot matrix comparing time, height, and age group',
     spec: 'assets/pages/vis4-interactive-scatterplot/vis.vl.json',
     options: {},
     content: 'test',
