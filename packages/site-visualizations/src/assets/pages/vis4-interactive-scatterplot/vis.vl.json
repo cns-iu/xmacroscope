@@ -1,21 +1,19 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "repeat": {
-    "row": ["Horsepower", "Acceleration", "Miles_per_Gallon"],
-    "column": ["Miles_per_Gallon", "Acceleration", "Horsepower"]
+    "row": ["height", "Time (seconds)", "zipcode"],
+    "column": ["zipcode", "Time (seconds)", "height"]
   },
+  "transform": [{"filter": "datum.height < 200"}],
   "spec": {
     "data": {
       "url": "assets/generated/combined-data.csv",
       "format": {
         "type": "csv",
-        "parse": {
-          "Time (seconds)": "number",
-          "Age Group": null
-        }
+        "parse": {"Time (seconds)": "number"}
       }
     },
-    "mark": "point",
+    "mark": {"type": "point", "tooltip": {"content": "data"}},
     "params": [
       {
         "name": "brush",
@@ -46,11 +44,7 @@
         "axis": {"minExtent": 30}
       },
       "color": {
-        "condition": {
-          "param": "brush",
-          "field": "Origin",
-          "type": "nominal"
-        },
+        "condition": {"param": "brush", "field": "EVENT", "type": "nominal"},
         "value": "grey"
       }
     }
