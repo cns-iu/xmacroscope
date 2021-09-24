@@ -10,7 +10,7 @@ describe('VisualizationPageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ VisualizationPageComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
