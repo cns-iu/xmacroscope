@@ -91,7 +91,7 @@
       .vis-controls {
         display: flex;
         flex-direction: column;
-        position: fixed;
+        position: relative;
         bottom: 0;
 
         .vis-axes, .vis-shape-size {
