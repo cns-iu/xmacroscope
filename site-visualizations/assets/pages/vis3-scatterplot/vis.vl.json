@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "assets/generated/combined-data.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Time (seconds)": "number",
+        "Age Group": null
+      }
+    }
+  },
+  "height": 800,
+  "mark": "point",
+  "params": [
+    {
+      "name": "eventName",
+      "select": {"type": "point", "fields": ["EVENT"]},
+      "bind": "legend"
+    },
+    {
+      "name": "activity",
+      "select": {"type": "point", "fields": ["Favorite Activity"]},
+      "bind": "legend"
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.height < 100"
+    },
+    {
+      "filter": "!(datum.EVENT === 'Sciencefest 2019' && datum.id < 182)"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Time (seconds)",
+      "type": "quantitative"
+    },
+    "y": {
+      "field": "height",
+      "type": "quantitative"
+    },
+    "color": {"field": "EVENT", "type": "nominal"},
+    "shape": {"field": "Favorite Activity", "type": "nominal"},
+    "size": {"value": 300},
+    "opacity": {
+      "condition": {
+        "test": {
+          "and": [
+            {"param": "eventName"},
+            {"param": "activity"}
+          ]
+        },
+        "value": 1
+      },
+      "value": 0
+    }
+  }
+}
