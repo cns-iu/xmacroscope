@@ -74,9 +74,9 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
         { field: 'id', title: 'ID', type: 'nominal' },
         { field: 'Event', title: 'Event', type: 'nominal' },
         { field: 'Age Group', title: 'Age Group', type: 'nominal' },
-        { field: 'Gender', title: 'Gender', type: 'nominal'},
+        { field: 'Gender', title: 'Gender', type: 'nominal' },
         { field: 'Height', title: 'Height (inches)', type: 'quantitative' },
-        { field: 'state', title: 'State', type: 'nominal'},
+        { field: 'state', title: 'State', type: 'nominal' },
         { field: 'Favorite Activity', title: 'Favorite Activity', type: 'nominal' },
         { field: 'Time (seconds)', title: 'Time (seconds)', type: 'quantitative' }
       ],
