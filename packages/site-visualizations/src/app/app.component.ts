@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, NgZone, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, AfterViewInit, Component, HostBinding, NgZone, ViewChild } from '@angular/core';
 import { MatSidenavContainer } from '@angular/material/sidenav';
 
 import { PageLink } from './core/models/pages.model';
@@ -8,7 +8,8 @@ import { visualizations } from './core/state/visualizations/visualizations';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements AfterViewInit {
   @HostBinding('class') readonly clsName = 'app-root';

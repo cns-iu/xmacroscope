@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "node --max_old_space_size=3000 ./node_modules/@angular/cli/bin/ng",
     "start": "npm run ng serve",
-    "build": "npm run ng build",
+    "build": "node --max_old_space_size=3000 ./node_modules/@angular/cli/bin/ng build",
     "build:libs": "npm run build xmacroscope-dvl-fw-plugin && npm run build:cli",
     "test": "npm run ng test",
     "lint": "npm run ng lint",
