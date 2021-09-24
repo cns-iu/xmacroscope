@@ -13,6 +13,44 @@
       <ngx-vega *ngIf="spec" [spec]="spec" [options]="options" [autosize]="{ width: true, height: false }"
                 (viewLoading)="loadingVegaVisualization = $event">
       </ngx-vega>
+
+      <div class="vis-controls" *ngIf="title === 'Scatterplot'">
+        <div class="vis-axes">
+          <div class="radio-group">
+            <label>Y-Axis:</label>
+            <mat-radio-group class="y-label" (change)="update($event.value, 'yAxis')" [value]="visControls.yAxis">
+              <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
+              <mat-radio-button value="Age Group">Age</mat-radio-button>
+              <mat-radio-button value="height">Height</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="radio-group">
+            <label>X-Axis:</label>
+            <mat-radio-group class="x-label" (change)="update($event.value, 'xAxis')" [value]="visControls.xAxis">
+              <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
+              <mat-radio-button value="Age Group">Age</mat-radio-button>
+              <mat-radio-button value="height">Height</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div class="vis-shape-size">
+          <div class="radio-group">
+            <label>Shape:</label>
+            <mat-radio-group class="shape-label" (change)="update($event.value, 'shape')">
+              <mat-radio-button value="gender">Gender</mat-radio-button>
+              <mat-radio-button value="Favorite Activity">Favorite Activity</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="radio-group">
+            <label>Size:</label>
+            <mat-radio-group class="size-label" (change)="update($event.value, 'size')">
+              <mat-radio-button value="Time (seconds)">Time</mat-radio-button>
+              <mat-radio-button value="height">Height</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
