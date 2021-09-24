@@ -11,8 +11,8 @@
     }
   },
   "mark": "rect",
-  "width": 300,
-  "height": 200,
+  "height": 660,
+  "width": 950,
   "encoding": {
     "y": {
       "field": "Age Group",
