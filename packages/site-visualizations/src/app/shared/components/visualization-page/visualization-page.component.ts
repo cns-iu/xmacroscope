@@ -32,7 +32,9 @@ export class VisualizationPageComponent implements OnChanges {
 
   visControls: VisControls = {
     xAxis: 'Time (seconds)',
-    yAxis: 'height'
+    yAxis: 'Height',
+    shape: '',
+    size: ''
   };
 
   get specString(): string | undefined {
