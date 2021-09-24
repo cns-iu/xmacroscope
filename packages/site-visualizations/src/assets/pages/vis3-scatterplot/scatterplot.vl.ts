@@ -17,10 +17,10 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
       }
     },
     autosize: {
-      resize: true,
-      type: 'fit'
+      resize: true
     },
-    height: 740,
+    height: 660,
+    width: 950,
     config: {
       legend: {
         titleFontSize: 16,
@@ -36,7 +36,6 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
       }
     },
     padding: { top: 30, bottom: 30 },
-    width: 1,
     mark: 'point',
     params: [
       {
