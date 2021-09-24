@@ -18,6 +18,7 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
     },
     config: {
       legend: {
+        titleFontSize: 16,
         labelFontSize: 15,
         symbolSize: 200
       },
@@ -66,6 +67,16 @@ export function createScatterplot(visControls: VisControls): VisualizationSpec {
         type: visControls.yAxis === 'Age Group' ? 'nominal' : 'quantitative',
         sort: ['', 'Retired', 'Adult', 'Teen', 'Pre-Teen', 'Kid']
       },
+      tooltip: [
+        {field: 'id', title: 'ID', type: 'nominal'},
+        {field: 'Event', title: 'Event', type: 'nominal'},
+        {field: 'Age Group', title: 'Age Group', type: 'nominal'},
+        {field: 'Gender', title: 'Gender', type: 'nominal'},
+        {field: 'Height', title: 'Height (inches)', type: 'quantitative'},
+        {field: 'state', title: 'State', type: 'nominal'},
+        {field: 'Favorite Activity', title: 'Favorite Activity', type: 'nominal'},
+        {field: 'Time (seconds)', title: 'Time (seconds)', type: 'quantitative'}
+      ],
       fill: { field: 'Event', type: 'nominal' },
       shape: visControls.shape ? { field: visControls.shape, type: 'nominal', legend: { title: visControls.shape === 'Gender' ? 'Gender' : visControls.shape } } : { value: 'circle' },
       size: visControls.size ? { field: visControls.size, type: 'quantitative', scale: { rangeMax: 1000 }, legend: { title: visControls.size === 'Height' ? 'Height (inches)' : visControls.size } } : { value: 1000 },
