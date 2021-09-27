@@ -1,46 +1,34 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {
+  "data": {
     "url": "assets/generated/combined-data.csv",
     "format": {
       "type": "csv",
-      "parse": {
-        "Time (seconds)": "number",
-        "Age Group": null
-      }
+      "parse": {"Time (seconds)": "number", "Age Group": null}
     }
   },
-  "transform": [
-    {
-      "filter": "datum.Height < 100"
-    }
-  ],
+  "transform": [{"filter": "datum.Height < 100"}],
   "mark": "rect",
   "height": 660,
   "width": 950,
   "encoding": {
     "y": {
       "title": "Height (inches)",
-      "bin": {"maxbins":40},
+      "bin": {"maxbins": 40},
       "field": "Height",
       "type": "quantitative"
     },
     "x": {
-      "bin": {"maxbins": 60},
+      "bin": {"maxbins": 60, "minstep": 1},
       "field": "Time (seconds)",
+      "title": "Time (seconds)",
       "type": "quantitative"
     },
     "color": {
       "aggregate": "count",
       "type": "quantitative",
-      "legend": {
-        "title": "Count"
-      }
+      "legend": {"title": "Count"}
     }
   },
-  "config": {
-    "view": {
-      "stroke": "transparent"
-    }
-  }
+  "config": {"view": {"stroke": "transparent"}}
 }

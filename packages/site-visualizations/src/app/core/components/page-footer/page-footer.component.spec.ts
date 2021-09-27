@@ -1,0 +1,3 @@
+describe('PageFooterComponent', () => {
+  // Add tests
+});
