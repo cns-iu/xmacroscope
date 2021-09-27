@@ -32,4 +32,13 @@
       }
     }
   }
+
+  .banner {
+    height: 15rem;
+    align-items: center;
+    width: 100%;
+    background-image: url(/assets/images/visualization.svg);
+    background-size: cover;
+    background-position: center;
+  }
 }

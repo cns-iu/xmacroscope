@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { PageFooterModule } from './core/components/page-footer/page-footer.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    PageFooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
