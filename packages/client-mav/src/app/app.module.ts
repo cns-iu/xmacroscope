@@ -3,6 +3,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxsModule } from '@ngxs/store';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { VisualizationsModule, XMacroscopeDataModule, XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
 
 import { environment } from '../environments/environment';
@@ -21,6 +22,9 @@ import { IconRegistryState } from './shared/state/icon-registry/icon-registry.st
     MatTabsModule,
     MatToolbarModule,
 
+    NgxMapboxGLModule.withConfig({
+      accessToken: environment.mapboxToken
+    }),
     NgxsModule.forRoot([IconRegistryState], { developmentMode: !environment.production }),
     XMacroscopeDataModule.forRoot(environment.projectConfiguration),
     VisualizationsModule,
