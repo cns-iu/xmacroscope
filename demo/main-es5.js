@@ -19702,6 +19702,12 @@
       /* harmony import */
 
 
+      var ngx_mapbox_gl__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! ngx-mapbox-gl */
+      9709);
+      /* harmony import */
+
+
       var xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! xmacroscope-dvl-fw-plugin */
       37443);
@@ -19774,7 +19780,9 @@
       });
       _AppModule.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({
         providers: [xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.XMacroscopeDataService],
-        imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_11__.BrowserModule, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_12__.MatTabsModule, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_13__.MatToolbarModule, _ngxs_store__WEBPACK_IMPORTED_MODULE_0__.NgxsModule.forRoot([_shared_state_icon_registry_icon_registry_state__WEBPACK_IMPORTED_MODULE_8__.IconRegistryState], {
+        imports: [[_angular_platform_browser__WEBPACK_IMPORTED_MODULE_11__.BrowserModule, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_12__.MatTabsModule, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_13__.MatToolbarModule, ngx_mapbox_gl__WEBPACK_IMPORTED_MODULE_14__.NgxMapboxGLModule.withConfig({
+          accessToken: _environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.mapboxToken
+        }), _ngxs_store__WEBPACK_IMPORTED_MODULE_0__.NgxsModule.forRoot([_shared_state_icon_registry_icon_registry_state__WEBPACK_IMPORTED_MODULE_8__.IconRegistryState], {
           developmentMode: !_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.production
         }), xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.XMacroscopeDataModule.forRoot(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.projectConfiguration), xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.VisualizationsModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_2__.AppRoutingModule, _backend_backend_module__WEBPACK_IMPORTED_MODULE_4__.BackendModule, _endline_endline_module__WEBPACK_IMPORTED_MODULE_5__.EndlineModule, _home_home_module__WEBPACK_IMPORTED_MODULE_6__.HomeModule, _make_a_vis_make_a_vis_module__WEBPACK_IMPORTED_MODULE_7__.MakeAVisModule]]
       });
@@ -19782,7 +19790,7 @@
       (function () {
         (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsetNgModuleScope"](_AppModule, {
           declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__.AppComponent],
-          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_11__.BrowserModule, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_12__.MatTabsModule, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_13__.MatToolbarModule, _ngxs_store__WEBPACK_IMPORTED_MODULE_0__["ɵk"], xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.XMacroscopeDataModule, xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.VisualizationsModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_2__.AppRoutingModule, _backend_backend_module__WEBPACK_IMPORTED_MODULE_4__.BackendModule, _endline_endline_module__WEBPACK_IMPORTED_MODULE_5__.EndlineModule, _home_home_module__WEBPACK_IMPORTED_MODULE_6__.HomeModule, _make_a_vis_make_a_vis_module__WEBPACK_IMPORTED_MODULE_7__.MakeAVisModule]
+          imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_11__.BrowserModule, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_12__.MatTabsModule, _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_13__.MatToolbarModule, ngx_mapbox_gl__WEBPACK_IMPORTED_MODULE_14__.NgxMapboxGLModule, _ngxs_store__WEBPACK_IMPORTED_MODULE_0__["ɵk"], xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.XMacroscopeDataModule, xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_10__.VisualizationsModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_2__.AppRoutingModule, _backend_backend_module__WEBPACK_IMPORTED_MODULE_4__.BackendModule, _endline_endline_module__WEBPACK_IMPORTED_MODULE_5__.EndlineModule, _home_home_module__WEBPACK_IMPORTED_MODULE_6__.HomeModule, _make_a_vis_make_a_vis_module__WEBPACK_IMPORTED_MODULE_7__.MakeAVisModule]
         });
       })();
       /***/
@@ -24175,6 +24183,7 @@
       var _environment = {
         production: false,
         useHashStrategy: false,
+        mapboxToken: 'pk.eyJ1IjoiYXhib2xpbiIsImEiOiJjazRkNzFjeGgwa2l2M2xscm9idmE4cXRmIn0.QUW6G4VQVvTkPC5agwwreg',
         projectConfiguration: {
           deploymentLocation: 'cns-iu',
           defaultUsState: 'Indiana',
