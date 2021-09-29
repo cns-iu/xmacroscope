@@ -10,8 +10,8 @@ import clone from '@turf/clone';
 import { BBox, FeatureCollection, featureCollection, Geometry, Point, Polygon } from '@turf/helpers';
 import pointsWithinPolygon from '@turf/points-within-polygon';
 import { isArray } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point as MapPoint, PointLike, Style } from 'mapbox-gl';
-import { MapService } from 'ngx-mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point as MapPoint, PointLike, Style } from 'maplibre-gl';
+import { MapService } from 'ngx-maplibre-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 import { Run } from '../../shared/run';

@@ -9,8 +9,8 @@ import { BBox, FeatureCollection, featureCollection, Geometry, lineString } from
 import { extent } from 'd3-array';
 import { scaleLinear, scalePoint } from 'd3-scale';
 import { isArray, reverse, sortedUniq } from 'lodash';
-import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point, PointLike, Style } from 'mapbox-gl';
-import { MapService } from 'ngx-mapbox-gl';
+import { Map, MapLayerMouseEvent, MapMouseEvent, PaddingOptions, Point, PointLike, Style } from 'maplibre-gl';
+import { MapService } from 'ngx-maplibre-gl';
 import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';

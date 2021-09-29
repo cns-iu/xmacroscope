@@ -12,7 +12,6 @@
       "dom",
       "es2018"
     ],
-    "skipLibCheck": true,
 
     "allowSyntheticDefaultImports": true,
     "declaration": false,
