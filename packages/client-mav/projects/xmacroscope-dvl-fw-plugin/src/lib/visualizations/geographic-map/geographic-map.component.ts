@@ -199,7 +199,8 @@ export class GeographicMapComponent implements VisualizationComponent,
         this.worldBbox = fitBoundsToAspectRatio(bbox(grid5.geojson), viewBox);
       }
 
-      this.worldPadding.left += 16;
+      // Adjust some extra to prevent label clipping
+      this.worldPadding = { ...this.worldPadding, left: this.worldPadding.left + 16 };
     }
   }
 
