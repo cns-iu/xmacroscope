@@ -15729,9 +15729,12 @@
                 this.graticule = grid5.geojson;
                 this.worldPadding = grid5.padding;
                 this.worldBbox = fitBoundsToAspectRatio((0, _turf_bbox__WEBPACK_IMPORTED_MODULE_4__["default"])(grid5.geojson), viewBox);
-              }
+              } // Adjust some extra to prevent label clipping
 
-              this.worldPadding.left += 16;
+
+              this.worldPadding = Object.assign(Object.assign({}, this.worldPadding), {
+                left: this.worldPadding.left + 16
+              });
             }
           }
         }, {
