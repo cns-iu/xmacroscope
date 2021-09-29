@@ -13,7 +13,6 @@ export class AppComponent {
   showAppHeader = true;
 
   constructor(route: ActivatedRoute, public dataService: XMacroscopeDataService) {
-    console.log(dataService);
     this.routeLinks = [
       {
         label: 'Home',

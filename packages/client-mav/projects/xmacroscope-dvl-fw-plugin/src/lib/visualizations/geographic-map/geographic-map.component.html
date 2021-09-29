@@ -77,7 +77,7 @@
     [paint]="{
       'text-color': '#000'
     }"
-    [layout]="{
+    [layout]="$any({
       'icon-image': ['get', 'icon'],
       'icon-allow-overlap': true,
       'symbol-sort-key': ['get', 'areaSize'],
@@ -91,7 +91,7 @@
       'text-font': [
         'Roboto Regular'
       ]
-    }"
+    })"
     (click)="nodeClicked($event)"
     (mouseEnter)="onMouseEnter($event)"
     (mouseLeave)="onMouseLeave($event)">
@@ -137,7 +137,7 @@
         0
       ]
     }"
-    [layout]="{
+    [layout]="$any({
       'text-field': ['get', 'label'],
       'text-size': [
         'match',
@@ -186,6 +186,6 @@
         'axis-line-arrow-y', 'right',
         'top'
       ]
-    }">
+    })">
   </mgl-layer>
 </mgl-map>
