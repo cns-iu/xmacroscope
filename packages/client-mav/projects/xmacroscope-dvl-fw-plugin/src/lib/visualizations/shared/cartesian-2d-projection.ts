@@ -1,4 +1,4 @@
-import { LngLat } from 'mapbox-gl';
+import { LngLat } from 'maplibre-gl';
 import { BBox } from 'geojson';
 
 

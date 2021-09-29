@@ -3,7 +3,7 @@ import bbox from '@turf/bbox';
 import { Feature, FeatureCollection, featureCollection, Geometry, lineString, point } from '@turf/helpers';
 import lineIntersect from '@turf/line-intersect';
 import { max } from 'd3-array';
-import { PaddingOptions } from 'mapbox-gl';
+import { PaddingOptions } from 'maplibre-gl';
 
 
 export function graticule(interval: number): FeatureCollection<Geometry> {

@@ -1,4 +1,4 @@
-import { Map } from 'mapbox-gl';
+import { Map } from 'maplibre-gl';
 
 import { DataDrivenIcon, defaultCanvasCreator, IconConfig } from './data-driven-icon';
 
