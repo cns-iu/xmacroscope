@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   useHashStrategy: false,
-  mapboxToken: 'pk.eyJ1IjoiYXhib2xpbiIsImEiOiJjazRkNzFjeGgwa2l2M2xscm9idmE4cXRmIn0.QUW6G4VQVvTkPC5agwwreg',
   projectConfiguration: {
     deploymentLocation: 'cns-iu',
     defaultUsState: 'Indiana',

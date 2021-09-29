@@ -198,6 +198,8 @@ export class GeographicMapComponent implements VisualizationComponent,
         this.worldPadding = grid5.padding;
         this.worldBbox = fitBoundsToAspectRatio(bbox(grid5.geojson), viewBox);
       }
+
+      this.worldPadding.left += 16;
     }
   }
 
