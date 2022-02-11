@@ -18099,6 +18099,7 @@
 
       var opponentRuns = {
         'default': getOpponentRuns('Indiana'),
+        'inspirata': getOpponentRuns('Ohio'),
         'cosi': getOpponentRuns('Ohio'),
         'cns-iu': getOpponentRuns('Indiana'),
         'smm': getOpponentRuns('Minnesota'),
