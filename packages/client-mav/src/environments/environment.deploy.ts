@@ -2,10 +2,10 @@ export const environment = {
   production: true,
   useHashStrategy: true,
   projectConfiguration: {
-    deploymentLocation: 'cosi',
+    deploymentLocation: 'inspirata',
     defaultUsState: 'Ohio',
     runTimout: 10000,
     endpoint: '/graphql',
-    opponentRuns: 'cosi'
+    opponentRuns: 'inspirata'
   }
 };

@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const env = process.env.NODE_ENV || 'development';
+const env = 'development'; // process.env.NODE_ENV || 'development';
 const storage = env === 'development' ? `private/${process.env.DB_STORAGE}` : '';
 
 export default {

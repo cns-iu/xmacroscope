@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>xMacroscope Dashboard</title>
+    <base href="/">
+    <style>
+      iframe {
+        border: 4px solid #ccc;
+        padding: 20px;
+      }
+      .start-screen {
+        width: 1080px;
+        height: 1920px;
+        transform: scale(0.45) translateX(calc(1080px * -0.55 - 80px)) translateY(calc(1920px * -0.55));
+        position: absolute;
+        top: 79px;
+        left: 0px;
+      }
+      .endline-screen {
+        width: 1920px;
+        height: 1080px;
+        transform: scale(0.45) translateX(calc(1920px * -0.55)) translateY(calc(1080px * -0.55 - 80px));
+        position: absolute;
+        top: 0px;
+        left: calc(1080px * 0.45 - 30px);
+      }
+      .mav-screen {
+        width: 1920px;
+        height: 1080px;
+        transform: scale(0.45) translateX(calc(1920px * -0.55)) translateY(calc(1080px * -0.55));
+        position: absolute;
+        top: calc(1920px * 0.25);
+        left: calc(1080px * 0.45 - 30px);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>xMacroscope Dashboard</h1>
+      <ul>
+        <li><a href="start/">Start Line</a></li>
+        <li><a href="mav/#/endline?showAppHeader=false">End Line</a></li>
+        <li><a href="mav/#/mav?showAppHeader=false">Make-a-Vis</a></li>
+      </ul>
+    </div>
+    <iframe class="start-screen" src="start/"></iframe>
+    <iframe class="endline-screen" src="mav/#/endline?showAppHeader=false"></iframe>
+    <iframe class="mav-screen" src="mav/#/mav?showAppHeader=false"></iframe>
+  </body>
+</html>

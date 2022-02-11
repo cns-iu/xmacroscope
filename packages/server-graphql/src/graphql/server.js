@@ -28,40 +28,24 @@ if (process.env.NODE_ENV !== 'production') {
 // file. Create one if it doesn't exist.
 //
 if (process.env.DB_DIALECT === 'sqlite') {
-  const sqlite = require('sqlite3');
   const { spawnSync } = require('child_process');
   const sqliteStorage = path.join(
     __dirname,
     `../../private/${process.env.DB_STORAGE}`,
   );
-  fs.access(sqliteStorage, (err) => {
-    if (err === null) {
-      console.log(chalk.yellow('A SQLite database file already exists. '
-        + 'Leaving it intact.'));
-    } else if (err.code === 'ENOENT') {
+  try {
+    fs.accessSync(sqliteStorage, fs.constants.R_OK | fs.constants.W_OK);
+    console.log(chalk.yellow('A SQLite database file already exists. Leaving it intact.'));
+  } catch (err) {
+    if (err.code === 'ENOENT') {
       console.log(chalk.blue('The defined SQLite file doesn\'t exist.\n'
         + `Creating the SQLite db at ${sqliteStorage}.`));
-      new sqlite.Database(sqliteStorage);
-      // Populate database using Sequelize CLI
-      const migrate = spawnSync('node_modules/.bin/sequelize', ['db:migrate']);
-      console.log(`SQLite running migrations: ${migrate.stdout.toString()}`);
-      const seed = spawnSync('node_modules/.bin/sequelize', ['db:seed:all']);
-      console.log(`SQLite running seeders: ${seed.stdout.toString()}`);
+      const initialize = spawnSync('npm', ['run', 'initialize-db']);
+      console.log(`Initializing db: ${initialize.stdout.toString()}`);
     } else {
       console.log(chalk.red('Unknown error: ', err.code));
     }
-  });
-
-  const cron = require('node-cron');
-  const shell = require('shelljs');
-  const cmd = path.join(
-    __dirname,
-    `../../scripts/export.sh ${sqliteStorage} ${process.env.PG_PASS}`
-  );
-
-  cron.schedule('0,5,10,15,20,25,30,35,40,45,50,55 * * * *', () => {
-    shell.exec(cmd);
-  });
+  }
 }
 
 //
@@ -71,16 +55,20 @@ const PORT = process.env.PORT || '4000';
 const app = express();
 
 //
-// Serve client apps in production
+// Serve client apps
 //
 const startPath = '/start';
 const imagesPath = '/images';
 const mavPath = '/mav';
-if (process.env.NODE_ENV === 'production') {
-  app.use(startPath, express.static(path.join(__dirname, '../../../client-run/build')));
-  app.use(imagesPath, express.static(path.join(__dirname, '../../../client-run/public')));
-  app.use(mavPath, express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
-}
+const publicPath = '/public';
+app.use(startPath, express.static(path.join(__dirname, '../../../client-run/build')));
+app.use(imagesPath, express.static(path.join(__dirname, '../../../client-run/public')));
+app.use(mavPath, express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
+app.use(publicPath, express.static(path.join(__dirname, '../public')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 //
 // Setup GraphQL endpoint
@@ -107,13 +95,11 @@ httpServer.listen(PORT, () => {
   console.log(chalk.greenBright(
     `Message subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`,
   ));
-  if (process.env.NODE_ENV === 'production') {
-    console.log(chalk.greenBright(
-      `Start line app ready at http://localhost:${PORT}${startPath}`,
-    ));
-    console.log(chalk.greenBright(
-      `Make-a-Vis app ready at http://localhost:${PORT}${mavPath}`,
-    ));
-    console.log();
-  }
+  console.log(chalk.greenBright(
+    `Start line app ready at http://localhost:${PORT}${startPath}`,
+  ));
+  console.log(chalk.greenBright(
+    `Make-a-Vis app ready at http://localhost:${PORT}${mavPath}`,
+  ));
+  console.log();
 });

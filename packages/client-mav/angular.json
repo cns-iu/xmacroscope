@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "9f9cf384-452e-466e-ac77-6e6fb5c9ee20"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -55,7 +58,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "20mb",
                   "maximumError": "20mb"
                 },
                 {
@@ -79,7 +82,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "20mb",
                   "maximumError": "20mb"
                 },
                 {
@@ -105,7 +108,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "20mb",
                   "maximumError": "20mb"
                 },
                 {

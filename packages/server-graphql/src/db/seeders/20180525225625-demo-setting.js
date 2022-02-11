@@ -1,4 +1,4 @@
-const uuidv4 = require('uuid/v4');
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.bulkInsert(
@@ -32,6 +32,22 @@ module.exports = {
         attractDelay: 120000,
         latitude: 39.1726664,
         longitude: -86.5234313,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        deletedAt: null,
+      },
+      {
+        id: uuidv4(),
+        location: 'inspirata',
+        usState: 'OH',
+        activityName: 'run',
+        preRunDelay: 15540,
+        postRunDelay: 7500,
+        startLineTimeout: 10000,
+        runTimeout: 7500,
+        attractDelay: 120000,
+        latitude: 39.9598362,
+        longitude: -83.0092084,
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,

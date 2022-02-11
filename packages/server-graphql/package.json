@@ -10,6 +10,7 @@
     "dev-data-destroy": "rimraf private/data.sqlite",
     "dev-logs-destroy": "rimraf logs/*.log",
     "dev-tmp-destroy": "rimraf tmp/*.gz",
+    "initialize-db": "NODE_ENV=development sequelize db:migrate && NODE_ENV=development sequelize db:seed:all",
     "start:prod": "node ./build/server.js",
     "build": "webpack --progress --colors --config webpack.prod.js"
   },
@@ -68,7 +69,7 @@
     "sequelize": "^5.8.1",
     "sequelize-cli": "^4.0.0",
     "shelljs": "^0.8.3",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^5.0.0"
   },
   "resolutions": {
     "graphql": "^0.13.2"
