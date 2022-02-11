@@ -64,10 +64,10 @@ const publicPath = '/public';
 app.use(startPath, express.static(path.join(__dirname, '../../../client-run/build')));
 app.use(imagesPath, express.static(path.join(__dirname, '../../../client-run/public')));
 app.use(mavPath, express.static(path.join(__dirname, '../../../client-mav/dist/client-mav')));
-app.use(publicPath, express.static(path.join(__dirname, '../public')));
+app.use(publicPath, express.static(path.join(__dirname, '../../public')));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.resolve(__dirname, '../../public/index.html'));
 });
 
 //
@@ -96,10 +96,7 @@ httpServer.listen(PORT, () => {
     `Message subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`,
   ));
   console.log(chalk.greenBright(
-    `Start line app ready at http://localhost:${PORT}${startPath}`,
-  ));
-  console.log(chalk.greenBright(
-    `Make-a-Vis app ready at http://localhost:${PORT}${mavPath}`,
+    `xMacroscope server ready at http://localhost:${PORT}`,
   ));
   console.log();
 });
