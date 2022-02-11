@@ -1,4 +1,4 @@
-name: Build Server Contaner
+name: Build Server Container
 
 on:
   push:
@@ -37,6 +37,6 @@ jobs:
         with:
           context: .
           push: true
-          # tags: ${{ steps.meta.outputs.tags }}
-          tags: "type=raw,value={{branch}}"
+          tags: ${{ steps.meta.outputs.tags }}
+          # tags: "type=raw,value={{branch}}"
           labels: ${{ steps.meta.outputs.labels }}
