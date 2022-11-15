@@ -38,17 +38,17 @@ jobs:
           cd ../site-visualizations && npm ci
       - name: Build Website
         run: |
-          perl -i -pe 's/netlify\.app\"/netlify\.app\/xmacroscope\/\"/g' package.json
+          perl -i -pe 's/xmacroscope\.netlify\.app\"/xmacroscope\.org\"/g' package.json
           npm run build
         working-directory: packages/website
       - name: Build MAV
         working-directory: packages/client-mav
         run: |
           npm run build:libs
-          npm run build -- --output-hashing=none --base-href=/xmacroscope/demo/
+          npm run build -- --output-hashing=none --base-href=/demo/
       - name: Build Site Visualizations
         working-directory: packages/site-visualizations
-        run: npm run build -- --output-hashing=none --base-href=/xmacroscope/site-visualizations/
+        run: npm run build -- --output-hashing=none --base-href=/site-visualizations/
 
       - name: Package Site
         run: |
