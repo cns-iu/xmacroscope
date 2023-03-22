@@ -1,3 +1,140 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+.jumbotron {
+    background: #eacb66;
+    border-bottom: 3px solid #fff;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+    font-family: Roboto Condensed,sans-serif;
+    color: #0a0909;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 0.1rem;
+}
+
+a.home-link {
+    color: #000;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: initial;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.main-page{
+    background-color: #f2dfa2;
+}
+
+body {
+    margin: 0;
+}
+
 .page-title, .lead{
     text-align: center
 }
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-item {
+    margin: 1.25rem;
+    align-items: center;
+}
+
+.nav-item a {
+    min-width: 220px;
+    padding: 0.5rem 1.5rem;
+    position: relative;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    margin: 0;
+    box-shadow: 4px 4px 0 0 rgba(0,0,0,.75);
+    box-sizing: border-box;
+}
+
+.menu-buttons{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+/* margin-right: 2rem; */
+}
+
+.menu{
+    margin-right: 2rem;
+    height: 2rem;
+    min-width: 9rem;
+}
+
+.table-work{
+    table-layout: fixed;
+    width: 40% ;
+    margin: auto;
+    border-spacing: 2rem;
+}
+
+.text-below-table{
+    text-align: center;
+}
+
+.container{
+    margin-right: 30rem;
+    margin-left: 30rem;
+    display: block;
+}
+
+.justify-content-center {
+    justify-content: center!important;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.5;
+    padding: 2rem;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.col-12, .col-md-4 .col-md-2{
+    box-sizing: border-box;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.partnerImgContainer {
+    height: 75px;
+    position: relative;
+}
+
