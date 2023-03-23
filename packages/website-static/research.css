@@ -1,6 +1,72 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
 
 .justify-content-center {
     justify-content: center!important;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.5;       
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.jumbotron {
+    background: #eacb66;
+    border-bottom: 3px solid #fff;
+    padding: 4rem 2rem;
+    border-radius: 0.3rem;
+    font-family: Roboto Condensed, sans-serif;
+    color: #0a0909;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 0.1rem;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav li {
+    margin: 0 10px;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.nav-item a {
+    min-width: 220px;
+    font-size: 20px;
+    padding: 8px 18px;
+    position: relative;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    margin: 0;
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, .75);
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.main-page{
+    background-color: #f2dfa2;
 }
 
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
@@ -9,4 +75,6 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    display: block;
+    max-width: 1140px;
 }

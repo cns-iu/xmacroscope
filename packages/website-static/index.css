@@ -7,13 +7,13 @@ html {
 *::after {
     box-sizing: inherit;
 }
+
 .jumbotron {
     background: #eacb66;
     border-bottom: 3px solid #fff;
     padding: 4rem 2rem;
-    margin-bottom: 2rem;
     border-radius: 0.3rem;
-    font-family: Roboto Condensed,sans-serif;
+    font-family: Roboto Condensed, sans-serif;
     color: #0a0909;
     font-size: 1rem;
     font-weight: 400;
@@ -40,15 +40,17 @@ p {
     font-weight: 300;
 }
 
-.main-page{
+.main-page {
     background-color: #f2dfa2;
+    justify-content: center;
 }
 
 body {
     margin: 0;
 }
 
-.page-title, .lead{
+.page-title,
+.lead {
     text-align: center
 }
 
@@ -60,62 +62,55 @@ body {
     list-style: none;
 }
 
-.nav-item {
-    margin: 1.25rem;
-    align-items: center;
+.nav li {
+    margin: 0 10px;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
 }
 
 .nav-item a {
     min-width: 220px;
-    padding: 0.5rem 1.5rem;
+    font-size: 20px;
+    padding: 8px 18px;
     position: relative;
     background: #fff;
     color: #000;
     font-weight: 700;
     margin: 0;
-    box-shadow: 4px 4px 0 0 rgba(0,0,0,.75);
-    box-sizing: border-box;
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, .75);
 }
 
-.menu-buttons{
+.menu-buttons {
     display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-/* margin-right: 2rem; */
+    justify-content: center;
+    align-items: center;
 }
 
-.menu{
+.menu {
     margin-right: 2rem;
     height: 2rem;
     min-width: 9rem;
 }
 
-.table-work{
-    table-layout: fixed;
-    width: 40% ;
-    margin: auto;
-    border-spacing: 2rem;
-}
-
-.text-below-table{
-    text-align: center;
-}
-
-.container{
-    margin-right: 30rem;
-    margin-left: 30rem;
+.container {
     display: block;
+    margin: 0 auto;
+    max-width: 1140px;
 }
 
 .justify-content-center {
-    justify-content: center!important;
+    justify-content: center !important;
 }
-.row{
+
+.row {
     display: flex;
     flex-wrap: wrap;
-    line-height: 1.5;
-    padding: 2rem;
+    line-height: 1.5;       
+    margin-right: -15px;
+    margin-left: -15px;
 }
 
 .text-center {
@@ -127,9 +122,26 @@ body {
     max-width: 33.333333%;
 }
 
-.col-12, .col-md-4 .col-md-2{
+.col-md-1 {
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-12,
+.col-md-4 .col-md-2 {
     box-sizing: border-box;
     padding-right: 15px;
+    padding-left: 15px;
+}
+
+.pb-5 .pb-sm-2 .col-12{
+    box-sizing: border-box;
+    padding-right: 15px;
+    margin: 0 auto;
     padding-left: 15px;
 }
 
@@ -138,3 +150,31 @@ body {
     position: relative;
 }
 
+.mb-2 {
+    margin-bottom: 0.5rem!important;
+}
+
+.col-lg-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}   
+
+.footer-body {
+    border-top: 3px solid #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #f2dfa2;
+    justify-content: center;
+}
+
+.pb-4, .py-4 {
+    padding-bottom: 1.5rem!important;
+}
+
+.pt-4, .py-4 {
+    padding-top: 1.5rem!important;
+}
+.mt-4, .my-4 {
+    margin-top: 1.5rem!important;
+}
