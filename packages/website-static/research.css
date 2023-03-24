@@ -68,6 +68,7 @@ a.home-link {
 }
 
 a {
+    color: #3574d3;
     text-decoration: none;
     background-color: initial;
 }
@@ -168,8 +169,8 @@ p {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+    /* margin-right: -15px;
+    margin-left: -15px; */
 }
 
 .col {
@@ -224,4 +225,9 @@ p {
     font-weight: 500;
     line-height: 1.2;
     margin-top: 0;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

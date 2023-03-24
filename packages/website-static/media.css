@@ -181,8 +181,8 @@ h5 {
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+    /* margin-right: -15px;
+    margin-left: -15px; */
 }
 
 .col-md-4 {
@@ -347,4 +347,9 @@ img, svg {
 
 .list-group-item+.list-group-item {
     border-top-width: 0;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }

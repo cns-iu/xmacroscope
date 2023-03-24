@@ -308,8 +308,7 @@ footer {
     display: block;
 }
 
-a:-webkit-any-link {
-    color: -webkit-link;
+a:hover {
     cursor: pointer;
     text-decoration: underline;
 }
