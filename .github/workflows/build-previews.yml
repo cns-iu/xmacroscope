@@ -28,14 +28,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd packages/client-mav && npm ci
-          cd ../website-static
           cd ../site-visualizations && npm ci
-      - name: Website yarn
-        run: yarn #npm run build
-        working-directory: packages/website-static
-      - name: Build yarn Website
-        run: yarn run build #npm run build
-        working-directory: packages/website-static
       - name: Build MAV
         working-directory: packages/client-mav
         run: |
