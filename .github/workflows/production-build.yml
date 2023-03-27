@@ -34,13 +34,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd packages/client-mav && npm ci
-          cd ../website && npm ci
           cd ../site-visualizations && npm ci
-      - name: Build Website
-        run: |
-          perl -i -pe 's/xmacroscope\.netlify\.app\"/xmacroscope\.org\"/g' package.json
-          npm run build
-        working-directory: packages/website
       - name: Build MAV
         working-directory: packages/client-mav
         run: |
@@ -52,7 +46,7 @@ jobs:
 
       - name: Package Site
         run: |
-          cp -r packages/website/build dist
+          cp -r packages/website-static dist
           cp -r packages/client-mav/dist/client-mav dist/demo
           cp -r packages/site-visualizations/dist/site-visualizations dist/site-visualizations
           cp dist/index.html dist/404.html
