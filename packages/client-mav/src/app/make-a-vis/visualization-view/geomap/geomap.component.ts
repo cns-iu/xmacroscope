@@ -2,10 +2,9 @@ import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/c
 import { DvlFwVisualizationComponent } from '@dvl-fw/angular';
 import { GraphicSymbol, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
 import { get, set } from 'lodash';
-import { XMacroscopeDataService, XMacroscopeProject } from 'xmacroscope-dvl-fw-plugin';
+import { XMacroscopeDataService, XMacroscopeProject, XMacroscopeProjectConfig } from 'xmacroscope-dvl-fw-plugin';
 
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
-import { XMacroscopeProjectConfig } from 'projects/xmacroscope-dvl-fw-plugin/src/public_api';
 
 
 export interface ButtonItem {
