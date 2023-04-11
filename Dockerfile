@@ -6,12 +6,13 @@ COPY . .
 RUN npm-run-all setup clean install:mav build:mav
 RUN npm install -g npm@6
 RUN npm-run-all install:run install:server
-RUN npm-run-all build:run build:server
+RUN REACT_APP_LOCATION="server" npm-run-all build:run build:server
 RUN rm -rf packages/client-run/node_modules packages/client-mav/node_modules
 
 FROM node:14
 RUN apt update && apt install -y sqlite3
 ENV NODE_ENV production
+ENV LOCATION cns-iu
 ENV PORT 8080
 USER node
 WORKDIR /usr/src/app

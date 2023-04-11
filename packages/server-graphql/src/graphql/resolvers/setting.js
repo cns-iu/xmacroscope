@@ -11,7 +11,7 @@ import db from '../../db/models/index';
 const Settings = baseResolver
   .createResolver((root, args) => db.setting.findOne({
     where: {
-      location: args.location,
+      location: args.location === 'server' && process.env.LOCATION ? process.env.LOCATION : args.location,
     },
   }));
 
