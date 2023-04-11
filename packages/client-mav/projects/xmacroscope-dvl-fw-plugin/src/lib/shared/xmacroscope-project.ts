@@ -62,7 +62,7 @@ export class XMacroscopeProject extends DefaultProject {
 
   runStreamController?: RunStreamController;
 
-  constructor(private config: XMacroscopeProjectConfig) {
+  constructor(public config: XMacroscopeProjectConfig) {
     super();
     if (config.staticData) {
       this.dataSources = this.getStaticDataSources(config.staticData);

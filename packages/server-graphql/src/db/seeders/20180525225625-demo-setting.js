@@ -7,7 +7,7 @@ module.exports = {
       {
         id: uuidv4(),
         location: 'smm',
-        usState: 'MN',
+        usState: 'Minnesota',
         activityName: 'run',
         preRunDelay: 11540,
         postRunDelay: 7500,
@@ -23,7 +23,7 @@ module.exports = {
       {
         id: uuidv4(),
         location: 'cns-iu',
-        usState: 'IN',
+        usState: 'Indiana',
         activityName: 'run',
         preRunDelay: 15540,
         postRunDelay: 7500,
@@ -39,7 +39,7 @@ module.exports = {
       {
         id: uuidv4(),
         location: 'inspirata',
-        usState: 'OH',
+        usState: 'Ohio',
         activityName: 'run',
         preRunDelay: 15540,
         postRunDelay: 7500,
@@ -55,7 +55,7 @@ module.exports = {
       {
         id: uuidv4(),
         location: 'cosi',
-        usState: 'OH',
+        usState: 'Ohio',
         activityName: 'walk',
         preRunDelay: 15540,
         postRunDelay: 7500,
@@ -71,7 +71,7 @@ module.exports = {
       {
         id: uuidv4(),
         location: 'dev',
-        usState: 'MN',
+        usState: 'Minnesota',
         activityName: 'walk',
         preRunDelay: 2000,
         runTimeout: 6000,
@@ -87,7 +87,7 @@ module.exports = {
       {
         id: uuidv4(),
         location: 'demo',
-        usState: 'IN',
+        usState: 'Indiana',
         activityName: 'run',
         preRunDelay: 0,
         runTimeout: 6000,

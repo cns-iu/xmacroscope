@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/c
 import { DvlFwVisualizationComponent } from '@dvl-fw/angular';
 import { GraphicSymbol, GraphicVariable, GraphicVariableType, Visualization } from '@dvl-fw/core';
 import { get, set } from 'lodash';
-import { XMacroscopeDataService } from 'xmacroscope-dvl-fw-plugin';
+import { XMacroscopeDataService, XMacroscopeProject } from 'xmacroscope-dvl-fw-plugin';
 
-import { environment } from '../../../../environments/environment';
 import { UpdateVisService } from '../../../shared/services/update-vis.service';
+import { XMacroscopeProjectConfig } from 'projects/xmacroscope-dvl-fw-plugin/src/public_api';
 
 
 export interface ButtonItem {
@@ -30,17 +30,11 @@ export class GeomapComponent {
   readonly sizeType = GraphicVariableType.AREA_SIZE;
 
   readonly variables: GraphicVariable[];
-  readonly buttonItems: ButtonItem[] = [
+  buttonItems: ButtonItem[] = [
     {
       label: 'United States',
       icon: 'map:us',
       id: 'USA'
-    },
-    {
-      // TODO: Make this optionally driven by server settings
-      label: environment.projectConfiguration.defaultUsState,
-      icon: `map:${environment.projectConfiguration.defaultUsState.toLowerCase()}`,
-      id: environment.projectConfiguration.defaultUsState
     }
   ];
 
@@ -50,6 +44,26 @@ export class GeomapComponent {
 
   constructor(dataService: XMacroscopeDataService, private updateService: UpdateVisService) {
     this.variables = dataService.project.graphicVariables.filter(gv => gv.id !== 'row-color');
+
+    const proj: XMacroscopeProject = dataService.project;
+    this.resolveLocation(proj);
+  }
+
+  async resolveLocation(proj: XMacroscopeProject) {
+    let config: XMacroscopeProjectConfig = proj.config;
+    config = await XMacroscopeProject.resolveConfig(config);
+
+    if (config?.defaultUsState?.toLowerCase() !== 'us') {
+      const state = config.defaultUsState as string;
+      this.buttonItems = [
+        ...this.buttonItems,
+        {
+          label: state,
+          icon: `map:${state.toLowerCase()}`,
+          id: state
+        }
+      ];
+    }
   }
 
   currentFeature(): ButtonItem {
