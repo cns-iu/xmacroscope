@@ -6,7 +6,7 @@ services:
       - "4000:8080"
     volumes:
       - type: bind
-        source: ./private/data.sqlite
+        source: ./private/
         target: ${pwd}/private/
     restart: unless-stopped
     environment:
