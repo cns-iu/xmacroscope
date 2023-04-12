@@ -12,7 +12,6 @@ RUN rm -rf packages/client-run/node_modules packages/client-mav/node_modules
 FROM node:14
 RUN apt update && apt install -y sqlite3
 ENV NODE_ENV production
-ENV LOCATION cns-iu
 ENV PORT 8080
 USER node
 WORKDIR /usr/src/app
