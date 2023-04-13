@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    image: ghcr.io/cns-iu/xmacroscope:main
+    ports:
+      - "4000:8080"
+    volumes:
+      - type: bind
+        source: ./private/data.sqlite
+        target: ${pwd}/private/
+    restart: unless-stopped
+    environment:
+      - LOCATION=cns-iu
