@@ -10,4 +10,4 @@ services:
         target: ${pwd}/private/
     restart: unless-stopped
     environment:
-      - LOCATION=smm
+      - LOCATION=cns-iu
