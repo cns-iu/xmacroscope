@@ -3,11 +3,14 @@ services:
   app:
     image: ghcr.io/cns-iu/xmacroscope:main
     ports:
-      - "4000:8080"
+      # The first number is the port exposed on this computer, second is the internal port. Only change the first number if you need to use a different port.
+      - "8080:8080"
     volumes:
       - type: bind
-        source: ./private/data.sqlite
-        target: ${pwd}/private/
+        source: ./private/  # This is the path to a directory for storing the database on your computer.
+        target: /usr/src/app/packages/server-graphql/private/
     restart: unless-stopped
     environment:
+      # See <https://github.com/cns-iu/xmacroscope/blob/main/packages/server-graphql/src/db/seeders/20180525225625-demo-setting.js> for a list of locations you can use.
+      # The cns-iu location shows Indiana and is centered around CNS' headquarters in Luddy Hall, Bloomington, Indiana.
       - LOCATION=cns-iu
