@@ -1,3 +1,13 @@
+/* eslint-disable prefer-template */
+/* eslint-disable no-console */
+/* eslint-disable semi */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable indent */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable react/jsx-curly-brace-presence */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Form, Row, Col } from 'reactstrap';
@@ -9,6 +19,7 @@ import ControlSlider from '../Components/ControlSlider';
 import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
+// import { setLoc } from '../../../server-graphql/src/graphql/resolvers/setting'
 
 // Our inner form component which receives our form's state and updater methods as props
 const AgeInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
@@ -25,7 +36,10 @@ const SignupForm = ({
   isValid,
   setFieldValue,
   settings,
-}) => (
+}) => {
+  console.log('ssss  ', settings);
+  const location = settings.location;
+ return (
   <Form onSubmit={handleSubmit} className="signup-form">
     <Row>
       <Col className="mt-3 text-center" lg={8}>
@@ -75,20 +89,24 @@ const SignupForm = ({
           </Col>
         </Row>
       </Col>
-      <Col className="mt-3 text-center" lg={4}>
-        <div className="zip-code-input">
-          <ZipCodeInput
-            className="form-control form-control-lg"
-            name="zipCode"
-            label="What's your Zip Code?"
-            errors={errors}
-            touched={touched}
-            options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
-            type="hidden"
-            setInput={setFieldValue}
-          />
-        </div>
-      </Col>
+      { location !== 'null' &&
+      (
+        <Col className="mt-3 text-center" lg={4}>
+          <div className="zip-code-input">
+            <ZipCodeInput
+              className="form-control form-control-lg"
+              name="zipCode"
+              label="What's your Zip Code?"
+              errors={errors}
+              touched={touched}
+              options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
+              type="hidden"
+              setInput={setFieldValue}
+            />
+          </div>
+        </Col> 
+      ) 
+    }
     </Row>
     <Row className="mt-lg-n5">
       <Col className="text-center slider" lg={12}>
@@ -135,6 +153,7 @@ const SignupForm = ({
     </Row>
   </Form>
 );
+  };
 
 SignupForm.propTypes = {
   errors: PropTypes.object.isRequired,

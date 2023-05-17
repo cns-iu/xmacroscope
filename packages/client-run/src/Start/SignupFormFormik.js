@@ -1,3 +1,6 @@
+/* eslint-disable space-infix-ops */
+/* eslint-disable space-before-blocks */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { withFormik } from 'formik';
 import { Row, Col } from 'reactstrap';
@@ -55,7 +58,7 @@ const SignupFormFormik = withFormik({
     // Zip codes are 5 digits
     // We don't accept the extra 4 digits.
     zipCode: Yup.string()
-      .required('Required')
+      // .required('Required')
       .matches(
         /(^\d{5}$)|(^\d{5}-\d{4}$)/,
         'Please enter 5 numbers for a Zip Code.',
@@ -68,7 +71,11 @@ const SignupFormFormik = withFormik({
 
   // Submission handler
   handleSubmit: (values, { props }) => {
-    const location = zipcodes.lookup(values.zipCode);
+    let location;
+    console.log(values.zipCode);
+    if (values.zipCode !== undefined){
+      location = zipcodes.lookup(values.zipCode);
+    }
     props.updateRun({
       variables: {
         run: {
@@ -81,9 +88,9 @@ const SignupFormFormik = withFormik({
             height: values.height,
             zipCode: values.zipCode,
             icon: values.icon,
-            state: location.state,
-            latitude: location.latitude,
-            longitude: location.longitude,
+            state: values.zipCode===undefined ? '' : location.state,
+            latitude: values.zipCode===undefined ? 0.0 : location.latitude,
+            longitude: values.zipCode===undefined ? 0.0 : location.longitude,
             org: process.env.REACT_APP_LOCATION,
           },
         },

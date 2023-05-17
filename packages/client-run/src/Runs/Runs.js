@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable react/destructuring-assignment */
 import { Query } from 'react-apollo';
 import { Row, Col, Card } from 'reactstrap';
 import gql from 'graphql-tag';

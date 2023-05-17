@@ -11,6 +11,7 @@ const GET_SETTINGS = gql`
     Settings(location: $location){
       activityName
       postRunDelay
+      location
     }
   }
 `;
@@ -35,6 +36,7 @@ class AppSettings extends React.Component {
         {({ loading, error, data: { Settings } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
+          console.log('fffff', Settings);
           return (
             <AppRoutes settings={Settings} />
           );
