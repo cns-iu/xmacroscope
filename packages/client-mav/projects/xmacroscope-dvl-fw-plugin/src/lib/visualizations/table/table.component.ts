@@ -59,6 +59,11 @@ export class TableComponent implements VisualizationComponent,
     if (this.data) {
       this.columns = this.getColumns(this.data.graphicSymbols['items']);
       this.displayedColumns = Object.keys(this.columns);
+      if(this.xMacroscopeDataService.config.location === 'null'){
+        console.log('NULL LOC')
+        const index = this.displayedColumns.indexOf('zipCode')
+        this.displayedColumns.splice(index, 1)
+      }
       this.items$ = this.getGraphicSymbolData<DataItem>('items')
         .pipe(map(items => orderBy(items, 'order', 'asc')));
     } else {

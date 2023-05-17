@@ -2,7 +2,7 @@ import {
   DataSource, DefaultDataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject, DefaultRawData,
   DefaultRecordSet, GraphicSymbol, GraphicVariable, RecordSet, Visualization,
 } from '@dvl-fw/core';
-import { isArray } from 'lodash';
+import { isArray, set } from 'lodash';
 
 import { asMessage } from '../graphql/graphql-queries';
 import { LocationSettings } from '../graphql/location-settings';
@@ -23,6 +23,7 @@ export interface XMacroscopeProjectConfig {
   mockData?: boolean;
   staticData?: 'mocked' | unknown;
   endpoint?: string;
+  location?: string;
   deploymentLocation?: string;
   defaultUsState?: string;
   runTimeout?: number;
@@ -36,14 +37,18 @@ export class XMacroscopeProject extends DefaultProject {
   }
 
   static async resolveConfig(config: XMacroscopeProjectConfig): Promise<XMacroscopeProjectConfig> {
-    const resolvedConfig = { ...config };
+    const resolvedConfig = config;
     if (!isArray(config.opponentRuns)) {
       resolvedConfig.opponentRuns = opponentRuns[config.opponentRuns as keyof typeof opponentRuns] || [];
     }
     if (config.endpoint && config.deploymentLocation) {
       const settings = await LocationSettings.getSettings(config.endpoint, config.deploymentLocation);
+      console.log('got settings', settings)
       if (settings) {
-        if (settings.usState) {
+        if (settings.location) {
+          resolvedConfig.location = settings.location;
+        }
+        if (settings.usState !== undefined || settings.usState !== 'null') {
           resolvedConfig.defaultUsState = settings.usState;
         }
         if (settings.runTimeout) {
