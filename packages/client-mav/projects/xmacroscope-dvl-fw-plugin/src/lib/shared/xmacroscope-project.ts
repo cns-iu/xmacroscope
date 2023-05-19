@@ -43,7 +43,6 @@ export class XMacroscopeProject extends DefaultProject {
     }
     if (config.endpoint && config.deploymentLocation) {
       const settings = await LocationSettings.getSettings(config.endpoint, config.deploymentLocation);
-      console.log('got settings', settings)
       if (settings) {
         if (settings.location) {
           resolvedConfig.location = settings.location;

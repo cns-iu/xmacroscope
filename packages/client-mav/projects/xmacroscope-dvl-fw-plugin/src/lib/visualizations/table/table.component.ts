@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
 import { GraphicSymbol, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
-import { entries, orderBy } from 'lodash';
+import { entries, filter, orderBy } from 'lodash';
 import { EMPTY, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Run } from '../../shared/run';
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';
@@ -57,15 +57,18 @@ export class TableComponent implements VisualizationComponent,
 
   refreshItems(): void {
     if (this.data) {
+      const location = this.xMacroscopeDataService.config.location;
       this.columns = this.getColumns(this.data.graphicSymbols['items']);
       this.displayedColumns = Object.keys(this.columns);
-      if(this.xMacroscopeDataService.config.location === 'null'){
-        console.log('NULL LOC')
-        const index = this.displayedColumns.indexOf('zipCode')
-        this.displayedColumns.splice(index, 1)
+      if (location === 'null') {
+        this.displayedColumns = this.displayedColumns.filter(col => col !== 'zipCode');
       }
-      this.items$ = this.getGraphicSymbolData<DataItem>('items')
-        .pipe(map(items => orderBy(items, 'order', 'asc')));
+
+      this.items$ = this.getGraphicSymbolData<DataItem>('items').pipe(
+        // Maybe filter by location
+        // map(items => location !== 'null' ? items : items.filter()),
+        map(items => orderBy(items, 'order', 'asc'))
+      );
     } else {
       this.items$ = of([]);
     }
