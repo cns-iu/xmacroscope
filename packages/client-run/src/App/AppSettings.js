@@ -36,7 +36,6 @@ class AppSettings extends React.Component {
         {({ loading, error, data: { Settings } }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-          console.log('fffff', Settings);
           return (
             <AppRoutes settings={Settings} />
           );

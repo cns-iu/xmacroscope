@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable react/jsx-closing-bracket-location */
+/* eslint-disable react/jsx-indent-props */
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable prefer-template */
 /* eslint-disable no-console */
 /* eslint-disable semi */
@@ -37,123 +41,122 @@ const SignupForm = ({
   setFieldValue,
   settings,
 }) => {
-  console.log('ssss  ', settings);
   const location = settings.location;
- return (
-  <Form onSubmit={handleSubmit} className="signup-form">
-    <Row>
-      <Col className="mt-3 text-center" lg={8}>
-        <Row>
-          <Col>
-            <div className="icon-input">
-              <IconInput
+  return (
+    <Form onSubmit={handleSubmit} className="signup-form">
+      <Row>
+        <Col className="mt-3 text-center" lg={8}>
+          <Row>
+            <Col>
+              <div className="icon-input">
+                <IconInput
+                  className="form-control form-control-lg"
+                  name="icon"
+                  label="Select your icon"
+                  errors={errors}
+                  touched={touched}
+                  type="hidden"
+                  options={personOptions.iconNames}
+                  icon
+                  iconImages={personOptions.iconImages}
+                  iconImageSize={60}
+                  setInput={setFieldValue}
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="mt-3">
+              <OpponentInput
                 className="form-control form-control-lg"
-                name="icon"
-                label="Select your icon"
+                name="opponent"
+                label="Who would you like to race?"
                 errors={errors}
                 touched={touched}
                 type="hidden"
-                options={personOptions.iconNames}
-                icon
-                iconImages={personOptions.iconImages}
-                iconImageSize={60}
+                options={personOptions.opponents}
                 setInput={setFieldValue}
               />
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="mt-3">
-            <OpponentInput
-              className="form-control form-control-lg"
-              name="opponent"
-              label="Who would you like to race?"
-              errors={errors}
-              touched={touched}
-              type="hidden"
-              options={personOptions.opponents}
-              setInput={setFieldValue}
-            />
-          </Col>
-          <Col className="mt-3">
-            <ShoesInput
-              className="form-control form-control-lg"
-              name="shoes"
-              label='What kind of "shoes" are you wearing?'
-              errors={errors}
-              touched={touched}
-              type="hidden"
-              options={personOptions.shoes}
-              setInput={setFieldValue}
-            />
-          </Col>
-        </Row>
-      </Col>
-      { location !== 'null' &&
-      (
-        <Col className="mt-3 text-center" lg={4}>
-          <div className="zip-code-input">
-            <ZipCodeInput
-              className="form-control form-control-lg"
-              name="zipCode"
-              label="What's your Zip Code?"
-              errors={errors}
-              touched={touched}
-              options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
-              type="hidden"
-              setInput={setFieldValue}
-            />
-          </div>
-        </Col> 
-      ) 
-    }
-    </Row>
-    <Row className="mt-lg-n5">
-      <Col className="text-center slider" lg={12}>
-        <AgeInput
-          className="form-control form-control-lg"
-          min={0}
-          max={100}
-          name="age"
-          label="How old are you?"
-          errors={errors}
-          touched={touched}
-          type="hidden"
-          options={personOptions.age}
-          setInput={setFieldValue}
-        />
-      </Col>
-    </Row>
-    <Row>
-      <Col className="mt-5 text-center slider" lg={12}>
-        <HeightInput
-          className="form-control form-control-lg"
-          min={0}
-          max={89}
-          name="height"
-          label="What's your height in inches?"
-          errors={errors}
-          touched={touched}
-          type="hidden"
-          setInput={setFieldValue}
-        />
-      </Col>
-    </Row>
-    <Row>
-      <Col sm={10} className="offset-1 px-0 pt-4">
-        <StyledButton
-          className="btn-lg btn-block link no-select"
-          type="submit"
-          disabled={!isValid}
-          color="secondary"
-        >
-          {settings.activityName.toUpperCase()}
-        </StyledButton>
-      </Col>
-    </Row>
-  </Form>
-);
-  };
+            </Col>
+            <Col className="mt-3">
+              <ShoesInput
+                className="form-control form-control-lg"
+                name="shoes"
+                label='What kind of "shoes" are you wearing?'
+                errors={errors}
+                touched={touched}
+                type="hidden"
+                options={personOptions.shoes}
+                setInput={setFieldValue}
+              />
+            </Col>
+          </Row>
+        </Col>
+        {location !== 'null' &&
+          (
+            <Col className="mt-3 text-center" lg={4}>
+              <div className="zip-code-input">
+                <ZipCodeInput
+                  className="form-control form-control-lg"
+                  name="zipCode"
+                  label="What's your Zip Code?"
+                  errors={errors}
+                  touched={touched}
+                  options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
+                  type="hidden"
+                  setInput={setFieldValue}
+                />
+              </div>
+            </Col>
+          )
+        }
+      </Row>
+      <Row>
+        <Col className="text-center slider" lg={12}>
+          <AgeInput
+            className="form-control form-control-lg"
+            min={0}
+            max={100}
+            name="age"
+            label="How old are you?"
+            errors={errors}
+            touched={touched}
+            type="hidden"
+            options={personOptions.age}
+            setInput={setFieldValue}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mt-5 text-center slider" lg={12}>
+          <HeightInput
+            className="form-control form-control-lg"
+            min={0}
+            max={89}
+            name="height"
+            label="What's your height in inches?"
+            errors={errors}
+            touched={touched}
+            type="hidden"
+            setInput={setFieldValue}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={10} className="offset-1 px-0 pt-4">
+          <StyledButton
+            className="btn-lg btn-block link no-select"
+            type="submit"
+            disabled={!isValid}
+            color="secondary"
+          >
+            {settings.activityName.toUpperCase()}
+          </StyledButton>
+        </Col>
+      </Row>
+    </Form>
+  );
+};
 
 SignupForm.propTypes = {
   errors: PropTypes.object.isRequired,

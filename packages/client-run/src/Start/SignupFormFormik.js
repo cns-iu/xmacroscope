@@ -72,7 +72,6 @@ const SignupFormFormik = withFormik({
   // Submission handler
   handleSubmit: (values, { props }) => {
     let location;
-    console.log(values.zipCode);
     if (values.zipCode !== undefined){
       location = zipcodes.lookup(values.zipCode);
     }
