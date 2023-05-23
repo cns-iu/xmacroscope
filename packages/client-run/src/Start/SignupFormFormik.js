@@ -77,7 +77,7 @@ function getSignupForm(settings) {
         variables: {
           run: {
             start: null,
-            org: process.env.REACT_APP_LOCATION,
+            org: settings.location,
             person: {
               opponent: values.opponent,
               shoes: values.shoes,
@@ -85,10 +85,10 @@ function getSignupForm(settings) {
               height: values.height,
               zipCode: values.zipCode,
               icon: values.icon,
-              state: values.zipCode === undefined ? '' : location.state,
-              latitude: values.zipCode === undefined ? 0.0 : location.latitude,
-              longitude: values.zipCode === undefined ? 0.0 : location.longitude,
-              org: process.env.REACT_APP_LOCATION,
+              state: !values.zipcode ? '' : location.state,
+              latitude: !values.zipCode ? 0.0 : location.latitude,
+              longitude: !values.zipCode ? 0.0 : location.longitude,
+              org: settings.location,
             },
           },
         },
