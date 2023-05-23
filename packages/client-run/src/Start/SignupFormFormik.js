@@ -1,9 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable arrow-parens */
-/* eslint-disable no-console */
-/* eslint-disable space-infix-ops */
-/* eslint-disable space-before-blocks */
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { withFormik } from 'formik';
 import { Row, Col } from 'reactstrap';
@@ -76,7 +70,7 @@ function getSignupForm(settings) {
     // Submission handler
     handleSubmit: (values, { props }) => {
       let location;
-      if (values.zipCode !== undefined){
+      if (values.zipCode !== undefined) {
         location = zipcodes.lookup(values.zipCode);
       }
       props.updateRun({
@@ -91,9 +85,9 @@ function getSignupForm(settings) {
               height: values.height,
               zipCode: values.zipCode,
               icon: values.icon,
-              state: values.zipCode===undefined ? '' : location.state,
-              latitude: values.zipCode===undefined ? 0.0 : location.latitude,
-              longitude: values.zipCode===undefined ? 0.0 : location.longitude,
+              state: values.zipCode === undefined ? '' : location.state,
+              latitude: values.zipCode === undefined ? 0.0 : location.latitude,
+              longitude: values.zipCode === undefined ? 0.0 : location.longitude,
               org: process.env.REACT_APP_LOCATION,
             },
           },

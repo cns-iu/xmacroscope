@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { OnGraphicSymbolChange, OnPropertyChange } from '@dvl-fw/angular';
 import { GraphicSymbol, Visualization, VisualizationComponent } from '@dvl-fw/core';
 import { DataProcessorService, NgxDinoEvent, rawDataSymbol } from '@ngx-dino/core';
-import { entries, filter, orderBy } from 'lodash';
+import { entries, orderBy } from 'lodash';
 import { EMPTY, Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Run } from '../../shared/run';
 import { XMacroscopeDataService } from '../../shared/xmacroscope-data.service';

@@ -2,7 +2,7 @@ import {
   DataSource, DefaultDataSource, DefaultGraphicSymbol, DefaultGraphicVariableMapping, DefaultProject, DefaultRawData,
   DefaultRecordSet, GraphicSymbol, GraphicVariable, RecordSet, Visualization,
 } from '@dvl-fw/core';
-import { isArray, set } from 'lodash';
+import { isArray } from 'lodash';
 
 import { asMessage } from '../graphql/graphql-queries';
 import { LocationSettings } from '../graphql/location-settings';
