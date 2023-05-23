@@ -57,10 +57,16 @@ export class TableComponent implements VisualizationComponent,
 
   refreshItems(): void {
     if (this.data) {
+      const location = this.xMacroscopeDataService.config.location;
       this.columns = this.getColumns(this.data.graphicSymbols['items']);
       this.displayedColumns = Object.keys(this.columns);
-      this.items$ = this.getGraphicSymbolData<DataItem>('items')
-        .pipe(map(items => orderBy(items, 'order', 'asc')));
+      if (location === 'null') {
+        this.displayedColumns = this.displayedColumns.filter(col => col !== 'zipCode');
+      }
+
+      this.items$ = this.getGraphicSymbolData<DataItem>('items').pipe(
+        map(items => orderBy(items, 'order', 'asc'))
+      );
     } else {
       this.items$ = of([]);
     }

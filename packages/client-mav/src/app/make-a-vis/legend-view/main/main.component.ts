@@ -38,6 +38,11 @@ export class MainComponent implements OnChanges {
 
     this.originalGraphicSymbol = this.getRunPoints().toJSON();
     this.originalTableOrder = this.getRunTable().graphicVariables.order;
+
+    if (dataService.config.location === 'null') {
+      const index = this.navigation.findIndex(nav => nav.id === 'geomap');
+      this.navigation.splice(index, 1);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

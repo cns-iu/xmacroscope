@@ -11,6 +11,7 @@ const GET_SETTINGS = gql`
     Settings(location: $location){
       activityName
       postRunDelay
+      location
     }
   }
 `;

@@ -75,22 +75,26 @@ const SignupForm = ({
           </Col>
         </Row>
       </Col>
-      <Col className="mt-3 text-center" lg={4}>
-        <div className="zip-code-input">
-          <ZipCodeInput
-            className="form-control form-control-lg"
-            name="zipCode"
-            label="What's your Zip Code?"
-            errors={errors}
-            touched={touched}
-            options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
-            type="hidden"
-            setInput={setFieldValue}
-          />
-        </div>
-      </Col>
+      {settings.location !== 'null'
+        && (
+          <Col className="mt-3 text-center" lg={4}>
+            <div className="zip-code-input">
+              <ZipCodeInput
+                className="form-control form-control-lg"
+                name="zipCode"
+                label="What's your Zip Code?"
+                errors={errors}
+                touched={touched}
+                options={['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', 'CLR']}
+                type="hidden"
+                setInput={setFieldValue}
+              />
+            </div>
+          </Col>
+        )
+      }
     </Row>
-    <Row className="mt-lg-n5">
+    <Row>
       <Col className="text-center slider" lg={12}>
         <AgeInput
           className="form-control form-control-lg"
