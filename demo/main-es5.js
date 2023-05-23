@@ -17743,8 +17743,16 @@
           key: "refreshItems",
           value: function refreshItems() {
             if (this.data) {
+              var location = this.xMacroscopeDataService.config.location;
               this.columns = this.getColumns(this.data.graphicSymbols['items']);
               this.displayedColumns = Object.keys(this.columns);
+
+              if (location === 'null') {
+                this.displayedColumns = this.displayedColumns.filter(function (col) {
+                  return col !== 'zipCode';
+                });
+              }
+
               this.items$ = this.getGraphicSymbolData('items').pipe((0, rxjs_operators__WEBPACK_IMPORTED_MODULE_33__.map)(function (items) {
                 return (0, lodash__WEBPACK_IMPORTED_MODULE_0__.orderBy)(items, 'order', 'asc');
               }));
@@ -19174,7 +19182,7 @@
                 while (1) {
                   switch (_context11.prev = _context11.next) {
                     case 0:
-                      resolvedConfig = Object.assign({}, config);
+                      resolvedConfig = config;
 
                       if (!(0, lodash__WEBPACK_IMPORTED_MODULE_0__.isArray)(config.opponentRuns)) {
                         resolvedConfig.opponentRuns = opponentRuns[config.opponentRuns] || [];
@@ -19192,7 +19200,11 @@
                       settings = _context11.sent;
 
                       if (settings) {
-                        if (settings.usState) {
+                        if (settings.location) {
+                          resolvedConfig.location = settings.location;
+                        }
+
+                        if (settings.usState !== undefined || settings.usState !== 'null') {
                           resolvedConfig.defaultUsState = settings.usState;
                         }
 
@@ -21439,6 +21451,13 @@
           this.project = dataService.project;
           this.originalGraphicSymbol = this.getRunPoints().toJSON();
           this.originalTableOrder = this.getRunTable().graphicVariables.order;
+
+          if (dataService.config.location === 'null') {
+            var index = this.navigation.findIndex(function (nav) {
+              return nav.id === 'geomap';
+            });
+            this.navigation.splice(index, 1);
+          }
         }
 
         _createClass(_MainComponent4, [{
@@ -22617,7 +22636,7 @@
 
           this.updateService = updateService;
           this.orderType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_2__.GraphicVariableType.ORDER;
-          this.variables = dataService.project.graphicVariables;
+          this.variables = this.filterVariables(dataService.project.graphicVariables, dataService.project.config);
           this.defaultOrderVariable = dataService.project.graphicSymbols.find(function (g) {
             return g.id === 'runTable';
           }).graphicVariables.order;
@@ -22633,6 +22652,17 @@
               this.visualization.runDataChangeDetection();
               this.updateService.triggerUpdate(this.data);
             }
+          }
+        }, {
+          key: "filterVariables",
+          value: function filterVariables(variables, config) {
+            if (config.location !== 'null') {
+              return variables;
+            }
+
+            return variables.filter(function (v) {
+              return !v.selector.match(/zipCode|longitude|latitude/);
+            });
           }
         }]);
 
