@@ -65,8 +65,6 @@ export class TableComponent implements VisualizationComponent,
       }
 
       this.items$ = this.getGraphicSymbolData<DataItem>('items').pipe(
-        // Maybe filter by location
-        // map(items => location !== 'null' ? items : items.filter()),
         map(items => orderBy(items, 'order', 'asc'))
       );
     } else {

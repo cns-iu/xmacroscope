@@ -26,7 +26,6 @@ import ControlSlider from '../Components/ControlSlider';
 import ControlKeypad from '../Components/ControlKeypad';
 import ErrorFeedBack from '../Components/ErrorFeedBack';
 import { StyledButton } from '../Primatives/BasePrimatives';
-// import { setLoc } from '../../../server-graphql/src/graphql/resolvers/setting'
 
 // Our inner form component which receives our form's state and updater methods as props
 const AgeInput = CustomInputHOC(FormField, ControlSlider, ErrorFeedBack);
