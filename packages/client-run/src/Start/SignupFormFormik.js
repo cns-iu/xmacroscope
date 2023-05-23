@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable arrow-parens */
+/* eslint-disable no-console */
 /* eslint-disable space-infix-ops */
 /* eslint-disable space-before-blocks */
 /* eslint-disable no-unused-vars */
@@ -39,67 +42,70 @@ function zipCodeLookup(value) {
   return true;
 }
 
-const SignupFormFormik = withFormik({
-  validateOnBlur: false,
-  validateOnChange: true,
-  validationSchema: Yup.object().shape({
-    opponent: Yup.string()
-      .required('Required'),
-    shoes: Yup.string()
-      .required('Required'),
-    age: Yup.number()
-      .required('Required'),
-    height: Yup.number()
-      .required('Required')
-      .typeError('Height must be a number')
-      .min(0)
-      .max(100)
-      .integer('Please enter a valid number'),
-    // Zip codes are 5 digits
-    // We don't accept the extra 4 digits.
-    zipCode: Yup.string()
-      // .required('Required')
-      .matches(
-        /(^\d{5}$)|(^\d{5}-\d{4}$)/,
-        'Please enter 5 numbers for a Zip Code.',
-      )
-      // Also do a Zip Code lookup to ensure that it's a valid place.
-      .test('test-name', 'enter a valid US Zip Code', zipCodeLookup),
-    icon: Yup.string()
-      .required('Required'),
-  }),
+function getSignupForm(settings) {
+  return withFormik({
+    validateOnBlur: false,
+    validateOnChange: true,
+    validationSchema: Yup.object().shape({
+      opponent: Yup.string()
+        .required('Required'),
+      shoes: Yup.string()
+        .required('Required'),
+      age: Yup.number()
+        .required('Required'),
+      height: Yup.number()
+        .required('Required')
+        .typeError('Height must be a number')
+        .min(0)
+        .max(100)
+        .integer('Please enter a valid number'),
+      // Zip codes are 5 digits
+      // We don't accept the extra 4 digits.
+      zipCode: settings.location === 'null' ? undefined : Yup.string()
+        .required('Required') // Get location and then decide required or not
+        .matches(
+          /(^\d{5}$)|(^\d{5}-\d{4}$)/,
+          'Please enter 5 numbers for a Zip Code.',
+        )
+        // Also do a Zip Code lookup to ensure that it's a valid place.
+        .test('test-name', 'enter a valid US Zip Code', zipCodeLookup),
+      icon: Yup.string()
+        .required('Required'),
+    }),
 
-  // Submission handler
-  handleSubmit: (values, { props }) => {
-    let location;
-    if (values.zipCode !== undefined){
-      location = zipcodes.lookup(values.zipCode);
-    }
-    props.updateRun({
-      variables: {
-        run: {
-          start: null,
-          org: process.env.REACT_APP_LOCATION,
-          person: {
-            opponent: values.opponent,
-            shoes: values.shoes,
-            age: values.age,
-            height: values.height,
-            zipCode: values.zipCode,
-            icon: values.icon,
-            state: values.zipCode===undefined ? '' : location.state,
-            latitude: values.zipCode===undefined ? 0.0 : location.latitude,
-            longitude: values.zipCode===undefined ? 0.0 : location.longitude,
+    // Submission handler
+    handleSubmit: (values, { props }) => {
+      let location;
+      if (values.zipCode !== undefined){
+        location = zipcodes.lookup(values.zipCode);
+      }
+      props.updateRun({
+        variables: {
+          run: {
+            start: null,
             org: process.env.REACT_APP_LOCATION,
+            person: {
+              opponent: values.opponent,
+              shoes: values.shoes,
+              age: values.age,
+              height: values.height,
+              zipCode: values.zipCode,
+              icon: values.icon,
+              state: values.zipCode===undefined ? '' : location.state,
+              latitude: values.zipCode===undefined ? 0.0 : location.latitude,
+              longitude: values.zipCode===undefined ? 0.0 : location.longitude,
+              org: process.env.REACT_APP_LOCATION,
+            },
           },
         },
-      },
-    });
-  },
-})(SignupForm);
+      });
+    },
+  })(SignupForm);
+}
 
 function WithCreateMutation(props) {
   const { settings } = props;
+  const SignupFormFormik = getSignupForm(settings);
   return (
     <Mutation
       mutation={FINISH_SIGNUP}

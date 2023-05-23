@@ -1,3 +1,6 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable import/no-mutable-exports */
+/* eslint-disable no-var */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/jsx-indent-props */
@@ -41,7 +44,6 @@ const SignupForm = ({
   setFieldValue,
   settings,
 }) => {
-  const location = settings.location;
   return (
     <Form onSubmit={handleSubmit} className="signup-form">
       <Row>
@@ -92,7 +94,7 @@ const SignupForm = ({
             </Col>
           </Row>
         </Col>
-        {location !== 'null' &&
+        {settings.location !== 'null' &&
           (
             <Col className="mt-3 text-center" lg={4}>
               <div className="zip-code-input">
