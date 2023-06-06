@@ -141,6 +141,12 @@ a {
  .title {
   font-weight: 900;
   font-size: 80px;
+  display: contents;
+ }
+
+ .text-below-title {
+    width: 280px;
+    height: 80px;
  }
 
 
