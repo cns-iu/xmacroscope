@@ -20,6 +20,29 @@ a {
   text-decoration: none;
 }
 
+.default-button {
+  background-color: #F2DFA2;
+  padding: 16px 32px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width:100%;
+  line-height: 17.5px;
+  align-items: center;
+}
+
+.new-tab-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+}
+
+img {
+  width: 100%
+}
+
 /* ------------------------------- 
  * Header navigation list
  * ------------------------------- */
@@ -110,6 +133,26 @@ a {
   text-align: center;
 }
 
+@media (min-width: 544px) and (max-width: 767px) {
+  .home-page {
+    padding: 421px 16px;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .text-below-title {
+    font-size: 24px;
+  }
+}
+
+
+/* ------------------------------- 
+ * About page list
+ * ------------------------------- */
+
+
 .about-page {
   display: flex;
   flex-direction: column;
@@ -138,26 +181,24 @@ a {
   margin-bottom: 48px;
 }
 
-.default-button {
-  background-color: #F2DFA2;
-  padding: 16px 32px;
-  margin-bottom: 40px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width:100%;
+@media (min-width: 544px) and (max-width: 767px) {
+  .about-page {
+    padding: 224px 32.5px;
+  }
+
+  .about-title {
+    font-size: 32px;
+  }
+
+  .text-below-about {
+    font-size: 20px;
+    margin-bottom: 80px;
+  }
 }
 
-.new-tab-logo {
-  width: 24px;
-  height: 24px;
-  margin-right: 15px;
-}
-
-img {
-  width: 100%
-}
+/* ------------------------------- 
+ * Data Visualization page list
+ * ------------------------------- */
 
 .data-visualization-page {
   padding: 160px 16px;
@@ -171,11 +212,9 @@ img {
 
 .text-below-data-visualization-title {
   font-size: 14px;
+  line-height: 28px;
 }
 
-.filler {
-  padding: 80px 16px;
-}
 .plot-card {
   margin-bottom: 160px;
   padding-left: 16px;
@@ -191,9 +230,32 @@ img {
 .plot-caption {
   font-family: Inter;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 48px;
+  line-height: 200%;
 }
+
+@media (min-width: 544px) and (max-width: 767px) {
+  .data-visualization-page {
+    padding: 160px 32px;
+  }
+
+  .text-below-data-visualization-title {
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  .plot-card {
+    margin-bottom: 160px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+ 
+}
+
+/* ------------------------------- 
+ * Partnership page list
+ * ------------------------------- */
 
 .xM-partnership-page {
   display: flex;
@@ -227,6 +289,23 @@ img {
 .partner-location {
   padding-top: 16px;  
 }
+
+@media (min-width: 544px) and (max-width: 767px) {
+  .xM-partnership-page {
+    padding: 160px 80px;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  
+  .xM-partnership-page-title {
+    font-size: 38px;
+  }
+ 
+}
+
+/* ------------------------------- 
+ * Footer
+ * ------------------------------- */
 
 footer {
   display: flex;
