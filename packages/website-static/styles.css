@@ -20,6 +20,11 @@ a {
   text-decoration: none;
 }
 
+.default-button:hover {
+  cursor: pointer;
+  background: #FED03C;
+}
+
 .default-button {
   background-color: #F2DFA2;
   padding: 16px 32px;
@@ -31,6 +36,27 @@ a {
   width:100%;
   line-height: 17.5px;
   align-items: center;
+}
+
+@media (min-width: 544px)  {
+  .default-button {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px)  {
+  .custom {
+    display: inline;
+  }
+
+  .default-button {
+    padding: 16px 28px;
+    letter-spacing: -1px;
+  }
+
+  .new-tab-logo {
+    margin-right: 12px;
+  }
 }
 
 .new-tab-logo {
@@ -147,6 +173,49 @@ img {
   }
 }
 
+@media (min-width: 768px) {
+  .home-page {
+    padding: 366px 80px;
+  }
+
+  .title {
+    font-size: 80px;
+  }
+
+  .text-below-title {
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1012px)  {
+  .home-page {
+    padding: 372px 58px;
+  }
+
+  .title {
+    font-size: 90px;
+  }
+
+  .text-below-title {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .home-page {
+    padding: 361px 272px;
+  }
+
+  .title {
+    font-size: 96px;
+  }
+
+  .text-below-title {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
 
 /* ------------------------------- 
  * About page list
@@ -193,6 +262,64 @@ img {
   .text-below-about {
     font-size: 20px;
     margin-bottom: 80px;
+  }
+}
+
+@media (min-width: 768px)  {
+  .about-page {
+    padding: 224px 80px;
+  }
+
+  .about-title {
+    font-size: 48px;
+    margin-bottom: 80px;
+  }
+
+  .blue-box {
+    margin-bottom: 80px;
+  }
+
+  .text-below-about {
+    font-size: 24px;
+    margin-bottom: 80px;
+    font-weight: 400;
+  }
+
+  .about-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .about-image {
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: 1012px) {
+  .about-page {
+    padding: 336px 80px;
+  }
+
+  .about-title {
+    font-size: 64px;
+    margin-bottom: 80px;
+  }
+
+  .blue-box {
+    margin-bottom: 80px;
+  }
+
+  .text-below-about {
+    font-size: 24px;
+    margin-bottom: 80px;
+    font-weight: 400;
+  }
+
+  .about-image {
+    margin-top: 80px;
   }
 }
 
@@ -253,6 +380,71 @@ img {
  
 }
 
+@media (min-width: 768px) {
+  .data-visualization-page {
+    padding: 224px 80px;
+  }
+
+  .data-visualization-title {
+    font-size: 48px;
+  }
+
+  .text-below-data-visualization-title {
+    font-size: 22px;
+    line-height: 44px;
+  }
+
+  .plot-card {
+    margin-bottom: 224px;
+    padding-left: 83.5px;
+    padding-right: 83.5px;
+  }
+
+  .plot-title {
+    font-size: 40px;
+  }
+
+  .plot-caption {
+    font-size: 20px;
+  }
+
+  .plot-image {
+    margin-top: 48px;
+  }
+ 
+}
+
+@media (min-width: 1012px) {
+  .data-visualization-page {
+    padding: 336px 80px;
+    padding-bottom: 224px;
+  }
+
+  .data-visualization-title {
+    font-size: 64px;
+  }
+
+  .text-below-data-visualization-title {
+    font-size: 22px;
+    line-height: 44px;
+  }
+
+  .plot-card {
+    margin-bottom: 224px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .plot-title {
+    font-size: 48px;
+  }
+
+  .plot-image {
+    margin-top: 64px;
+  }
+ 
+}
+
 /* ------------------------------- 
  * Partnership page list
  * ------------------------------- */
@@ -270,6 +462,7 @@ img {
   font-weight: 900;
   font-size: 28px;
   text-align: center;
+  font-family: Lexend;
 }
 
 .partnership-card {
@@ -300,7 +493,29 @@ img {
   .xM-partnership-page-title {
     font-size: 38px;
   }
- 
+}
+
+@media (min-width: 768px) {
+  .xM-partnership-page {
+    padding: 224px 80px;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  
+  .xM-partnership-page-title {
+    font-size: 40px;
+    font-weight: 900;
+  }
+}
+
+@media (min-width: 1012px) {
+  .xM-partnership-page {
+    padding: 336px 58px;
+  }
+  
+  .xM-partnership-page-title {
+    font-size: 48px;
+  }
 }
 
 /* ------------------------------- 
