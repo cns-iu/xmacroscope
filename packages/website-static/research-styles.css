@@ -1,0 +1,167 @@
+/* ------------------------------- 
+ * Research page list
+ * ------------------------------- */
+
+.research-page {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 174px 32px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 250, 236, 0.92),
+    rgba(255, 250, 236, 0.92)
+  );
+}
+
+.research-title {
+  font-weight: 900;
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.text-below-research-title {
+  text-align: left;
+}
+
+@media (min-width: 544px)  {
+  .research-page {
+    padding: 340px 32px;
+  }
+
+  .research-title {
+    font-size: 48px;
+  }
+
+  .text-below-research-title {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .research-page {
+    padding: 314px 80px;
+  }
+
+  .research-title {
+    font-size: 80px;
+  }
+
+  .text-below-research-title {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1012px) {
+  .research-page {
+    padding: 334.5px 58px;
+  }
+
+  .research-title {
+    font-size: 90px;
+  }
+
+  .text-below-research-title {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .research-page {
+    padding: 296px 272px;
+  }
+
+  .research-title {
+    font-size: 96px;
+  }
+
+  .text-below-research-title {
+    font-size: 32px;
+  }
+}
+
+/* ------------------------------- 
+ * Page below research page list
+ * ------------------------------- */
+
+.page-below-research {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 160px 16px;
+  background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #FFF5D5 100%);
+}
+
+.research-card {
+  margin-bottom: 224px;
+}
+
+.research-card-title {
+  font-weight: 900;
+  font-size: 32px;
+  margin-bottom: 80px;
+}
+
+.research-list {
+  font-family: Inter;
+  line-height: 200%;
+  font-weight: 400;
+  margin-top: 20px;
+}
+
+ul {
+  font-size: 14px;
+  margin-left: -18px;
+}
+
+.custom-font {
+  font-size: 16px;
+}
+
+.custom-margin {
+  margin-bottom: 0px;
+}
+
+@media (min-width: 544px)  {
+  .page-below-research {
+    padding: 160px 32px;
+  }
+
+  .research-card-title {
+    font-size: 48px;
+  }
+
+  ul {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px)  {
+  .page-below-research {
+    padding: 224px 80px;
+  }
+
+  .research-card-title {
+    font-size: 64px;
+  }
+}
+
+@media (min-width: 1012px)  {
+  .page-below-research {
+    padding: 336px 80px;
+  }
+
+  .research-card-title {
+    font-size: 72px;
+  }
+}
+
+@media (min-width: 1280px)  {
+  .page-below-research {
+    padding: 336px 272px;
+  }
+
+  .research-card {
+    margin-bottom: 448px;
+  }
+}

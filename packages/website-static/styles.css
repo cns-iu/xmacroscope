@@ -173,7 +173,7 @@ img {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1011px) {
   .home-page {
     padding: 366px 80px;
   }
@@ -187,7 +187,7 @@ img {
   }
 }
 
-@media (min-width: 1012px)  {
+@media (min-width: 1012px) and (max-width: 1279px) {
   .home-page {
     padding: 372px 58px;
   }
@@ -323,6 +323,24 @@ img {
   }
 }
 
+@media (min-width: 1280px) {
+  .about-page {
+    padding: 336px 272px;
+  }
+
+  .about-title {
+    font-size: 72px;
+  }
+
+  .text-below-about {
+    font-size: 28px;
+  }
+
+  .about-image {
+    margin-top: 80px;
+  }
+}
+
 /* ------------------------------- 
  * Data Visualization page list
  * ------------------------------- */
@@ -344,8 +362,8 @@ img {
 
 .plot-card {
   margin-bottom: 160px;
-  padding-left: 16px;
-  padding-right: 16px;
+  /* padding-left: 16px;
+  padding-right: 16px; */
 }
 
 .plot-title {
@@ -374,8 +392,8 @@ img {
 
   .plot-card {
     margin-bottom: 160px;
-    padding-left: 32px;
-    padding-right: 32px;
+    /* padding-left: 32px;
+    padding-right: 32px; */
   }
  
 }
@@ -396,8 +414,8 @@ img {
 
   .plot-card {
     margin-bottom: 224px;
-    padding-left: 83.5px;
-    padding-right: 83.5px;
+    /* padding-left: 83.5px;
+    padding-right: 83.5px; */
   }
 
   .plot-title {
@@ -417,7 +435,6 @@ img {
 @media (min-width: 1012px) {
   .data-visualization-page {
     padding: 336px 80px;
-    padding-bottom: 224px;
   }
 
   .data-visualization-title {
@@ -430,17 +447,34 @@ img {
   }
 
   .plot-card {
-    margin-bottom: 224px;
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-
-  .plot-title {
-    font-size: 48px;
+    margin-top: 224px;
   }
 
   .plot-image {
-    margin-top: 64px;
+    margin-top: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .data-visualization-page {
+    padding: 336px 272px;
+  }
+
+  .data-visualization-title {
+    font-size: 72px;
+  }
+
+  .text-below-data-visualization-title {
+    font-size: 26px;
+    line-height: 52px;
+  }
+
+  .plot-card {
+    margin-top: 224px;
+  }
+
+  .plot-image {
+    margin-top: 48px;
   }
  
 }
@@ -511,6 +545,16 @@ img {
 @media (min-width: 1012px) {
   .xM-partnership-page {
     padding: 336px 58px;
+  }
+  
+  .xM-partnership-page-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xM-partnership-page {
+    padding: 336px 272px;
   }
   
   .xM-partnership-page-title {
