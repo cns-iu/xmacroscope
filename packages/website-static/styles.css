@@ -47,7 +47,8 @@ a {
 
 @media (min-width: 768px) {
   .custom {
-    display: inline;
+    width: auto;
+    max-width: 256px;
   }
 
   .default-button {
@@ -147,8 +148,7 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 249px 16px;
-  background: 
-    url('../assets/landing-image.png');
+  background: url('../assets/landing-image.png');
 }
 
 .title {
@@ -389,8 +389,7 @@ img {
   line-height: 200%;
 }
 
-
-@media (min-width: 544px)  {
+@media (min-width: 544px) {
   .data-visualization-page {
     padding: 160px 32px;
   }

@@ -35,6 +35,10 @@
 }
 
 @media (min-width: 768px)  {
+  .resource-page > * {
+    margin: auto;
+    max-width: 200px;
+  }
   .resource-page { 
     padding: 396px 80px ;
   }
