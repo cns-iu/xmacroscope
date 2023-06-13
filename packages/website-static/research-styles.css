@@ -7,11 +7,7 @@
   flex-direction: column;
   align-items: left;
   padding: 174px 32px;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 250, 236, 0.92),
-    rgba(255, 250, 236, 0.92)
-  );
+  background: url('../assets/research-image.png');
 }
 
 .research-title {

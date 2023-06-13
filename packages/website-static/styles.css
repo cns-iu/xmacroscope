@@ -22,29 +22,30 @@ a {
 
 .default-button:hover {
   cursor: pointer;
-  background: #FED03C;
+  background: #fed03c;
 }
 
 .default-button {
-  background-color: #F2DFA2;
+  background-color: #f2dfa2;
   padding: 16px 32px;
   margin-bottom: 40px;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width:100%;
+  width: 100%;
   line-height: 17.5px;
   align-items: center;
+  font-size: 14px;
 }
 
-@media (min-width: 544px)  {
+@media (min-width: 544px) {
   .default-button {
     font-size: 20px;
   }
 }
 
-@media (min-width: 768px)  {
+@media (min-width: 768px) {
   .custom {
     display: inline;
   }
@@ -66,7 +67,7 @@ a {
 }
 
 img {
-  width: 100%
+  width: 100%;
 }
 
 /* ------------------------------- 
@@ -146,7 +147,8 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 249px 16px;
-  background-color: aqua;
+  background: 
+    url('../assets/landing-image.png');
 }
 
 .title {
@@ -216,11 +218,9 @@ img {
   }
 }
 
-
 /* ------------------------------- 
  * About page list
  * ------------------------------- */
-
 
 .about-page {
   display: flex;
@@ -250,9 +250,9 @@ img {
   margin-bottom: 48px;
 }
 
-@media (min-width: 544px) and (max-width: 767px) {
+@media (min-width: 544px) {
   .about-page {
-    padding: 224px 32.5px;
+    padding: 224px 32px;
   }
 
   .about-title {
@@ -263,9 +263,13 @@ img {
     font-size: 20px;
     margin-bottom: 80px;
   }
+
+  .about-button {
+    width: 100%;
+  }
 }
 
-@media (min-width: 768px)  {
+@media (min-width: 768px) {
   .about-page {
     padding: 224px 80px;
   }
@@ -358,12 +362,17 @@ img {
 .text-below-data-visualization-title {
   font-size: 14px;
   line-height: 28px;
+  margin-bottom: 160px;
 }
 
 .plot-card {
   margin-bottom: 160px;
   /* padding-left: 16px;
   padding-right: 16px; */
+}
+
+.last-card {
+  margin-bottom: 0px;
 }
 
 .plot-title {
@@ -375,12 +384,13 @@ img {
 .plot-caption {
   font-family: Inter;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   margin-bottom: 48px;
   line-height: 200%;
 }
 
-@media (min-width: 544px) and (max-width: 767px) {
+
+@media (min-width: 544px)  {
   .data-visualization-page {
     padding: 160px 32px;
   }
@@ -392,10 +402,15 @@ img {
 
   .plot-card {
     margin-bottom: 160px;
-    /* padding-left: 32px;
-    padding-right: 32px; */
   }
- 
+
+  .last-card {
+    margin-bottom: 0px;
+  }
+
+  .plot-caption {
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -414,8 +429,10 @@ img {
 
   .plot-card {
     margin-bottom: 224px;
-    /* padding-left: 83.5px;
-    padding-right: 83.5px; */
+  }
+
+  .last-card {
+    margin-bottom: 0px;
   }
 
   .plot-title {
@@ -429,7 +446,6 @@ img {
   .plot-image {
     margin-top: 48px;
   }
- 
 }
 
 @media (min-width: 1012px) {
@@ -476,7 +492,6 @@ img {
   .plot-image {
     margin-top: 48px;
   }
- 
 }
 
 /* ------------------------------- 
@@ -489,7 +504,7 @@ img {
   align-items: center;
   padding: 160px 16px;
   font-family: Inter;
-  background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #FFF5D5 100%);
+  background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
 }
 
 .xM-partnership-page-title {
@@ -509,12 +524,13 @@ img {
   text-align: center;
 }
 
-.partner-university, .partner-location {
+.partner-university,
+.partner-location {
   padding-top: 16px;
 }
 
 .partner-location {
-  padding-top: 16px;  
+  padding-top: 16px;
 }
 
 @media (min-width: 544px) and (max-width: 767px) {
@@ -523,7 +539,7 @@ img {
     font-weight: 400;
     font-size: 20px;
   }
-  
+
   .xM-partnership-page-title {
     font-size: 38px;
   }
@@ -535,7 +551,7 @@ img {
     font-weight: 400;
     font-size: 20px;
   }
-  
+
   .xM-partnership-page-title {
     font-size: 40px;
     font-weight: 900;
@@ -546,7 +562,7 @@ img {
   .xM-partnership-page {
     padding: 336px 58px;
   }
-  
+
   .xM-partnership-page-title {
     font-size: 48px;
   }
@@ -556,7 +572,7 @@ img {
   .xM-partnership-page {
     padding: 336px 272px;
   }
-  
+
   .xM-partnership-page-title {
     font-size: 48px;
   }

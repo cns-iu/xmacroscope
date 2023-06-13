@@ -1,0 +1,149 @@
+/* ------------------------------- 
+ * Resource page list
+ * ------------------------------- */
+
+.resource-page {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 254px 16px;
+  background: url('../assets/resources-image.png');
+}
+
+.resource-title {
+  font-weight: 900;
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+.text-below-resource-title {
+  text-align: left;
+}
+
+@media (min-width: 544px)  {
+  .resource-page { 
+    padding: 424px 32px ;
+  }
+
+  .resource-title {
+    font-size: 48px;
+  }
+
+  .text-below-resource-title {  
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px)  {
+  .resource-page { 
+    padding: 396px 80px ;
+  }
+
+  .resource-title {
+    font-size: 80px;
+  }
+
+  .text-below-resource-title {  
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1012px)  {
+  .resource-page { 
+    padding: 404px 58px ;
+  }
+
+  .resource-title {
+    font-size: 90px;
+  }
+
+  .text-below-resource-title {  
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1280px)  {
+  .resource-page { 
+    padding: 396px 272px ;
+  }
+
+  .resource-title {
+    font-size: 96px;
+  }
+
+  .text-below-resource-title {  
+    font-size: 32px;
+  }
+}
+
+/* ------------------------------- 
+ * Page below resource page list
+ * ------------------------------- */
+
+.page-below-resource {
+  padding: 160px 16px;
+  background: linear-gradient(180deg, #fff5d5 0%, rgba(255, 250, 236, 0) 100%);
+}
+
+.page-below-resource-title {
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.page-below-resource-title-text {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+@media (min-width: 544px)  {
+  .page-below-resource {
+    padding: 160px 32px;
+  }
+
+  .page-below-resource-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 768px)  {
+  .page-below-resource {
+    padding: 224px 80px;
+  }
+
+  .page-below-resource-title {
+    font-size: 64px;
+  }
+
+  .page-below-resource-title-text {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1012px)  {
+  .page-below-resource {
+    padding: 336px 80px;
+  }
+
+  .page-below-resource-title {
+    font-size: 72px;
+  }
+
+  .resource-buttons{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .resource-button-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1012px)  {
+  .page-below-resource {
+    padding: 336px 272px;
+  }
+}

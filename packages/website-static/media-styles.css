@@ -7,11 +7,7 @@
   flex-direction: column;
   align-items: left;
   padding: 274px 16px;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 250, 236, 0.9),
-    rgba(255, 250, 236, 0.9)
-  );
+  background: url('../assets/media-image.png');
 }
 
 .media-title {
