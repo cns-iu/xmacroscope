@@ -573,10 +573,11 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 504px;
+  gap: 500px;
   font-family: Inter;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
-  /* height: */
+  
+  height: 2574px;
 }
 
 .xM-partnership-page-content {
@@ -585,6 +586,9 @@ img {
   align-items: center;
   padding: 0px;
   gap: 224px;
+  width: 288px;
+  height: 2254px;
+
 }
 
 .xM-partnership-page-title {
@@ -599,49 +603,67 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 8px;
+  gap: 16px;
+
+  width: 288px;
+  height: 242px;
 }
 
 .logo-image {
   width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0px;
 }
 
 .photo-caption {
-  margin-top: 43px;
   text-align: center;
 }
 
-.partner-university,
-.partner-location {
-  padding-top: 16px;
-}
 
-.partner-location {
-  padding-top: 16px;
-}
-
-@media (min-width: 544px) and (max-width: 767px) {
+@media (min-width: 544px) {
   .xM-partnership-page {
-    padding: 160px 80px;
+    height: 2678px;
     font-weight: 400;
     font-size: 20px;
+  }
+
+  .xM-partnership-page-content {
+    width: 384px;
+    height: 2358px;
   }
 
   .xM-partnership-page-title {
     font-size: 38px;
   }
+
+  .partnership-card {
+    width: 384px;
+    height: 262px;
+  }
 }
 
 @media (min-width: 768px) {
   .xM-partnership-page {
-    padding: 224px 80px;
+    height: 2738px;
     font-weight: 400;
     font-size: 20px;
+  }
+
+  .xM-partnership-page-content {
+    width: 608px;
+    height: 2290px;
   }
 
   .xM-partnership-page-title {
     font-size: 40px;
     font-weight: 900;
+  }
+
+  .partnership-card {
+    width: 453px;
+    height: 238px;
   }
 }
 
@@ -693,27 +715,43 @@ footer {
   align-items: center;
   padding: 0px;
   gap: 32px;
+  width: 256px;
+  height: 223px;
 }
 
-/* .footer-caption {
+.footer-caption {
   text-align: center;
-} */
+}
 
 .link {
   color: #006298;
 }
 
-/* .footer-image {
-  margin-top: 0px;
-  width: 100px;
-  height: 101px;
-} */
+@media (min-width: 544px) {
+  .footer-content {
+    width: 480px;
+    height: 193px;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    width: 608px;
+    height: 173px;
+  }
+}
+ 
+@media (min-width: 1012px) {
+  .footer-content {
+    width: 852px;
+    height: 173px;
+  }
+}
+
 
 @media (min-width: 1280px) {
-  footer {
-    height: 473px;
-  }
   .footer-content {
+    width: 1280px;
     height: 153px;
   }
 }
