@@ -18,7 +18,11 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #006298;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .default-button:hover {
@@ -38,6 +42,8 @@ a {
   line-height: 17.5px;
   align-items: center;
   font-size: 14px;
+
+  color: black;
 }
 
 @media (min-width: 544px) {
