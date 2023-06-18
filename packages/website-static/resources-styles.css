@@ -7,7 +7,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* padding: 254px 16px; */
   background: url('../assets/resources-image.png');
 
   gap: 32px;
@@ -18,7 +17,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+  padding: 0px; 
   gap: 32px;
 
   width: 288px;
