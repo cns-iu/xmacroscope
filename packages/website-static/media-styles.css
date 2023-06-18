@@ -13,7 +13,7 @@
   height: 660px;
 }
 
-.media-page-content{
+.media-page-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,16 +34,16 @@
   font-size: 16px;
 }
 
-@media (min-width: 544px)  {
+@media (min-width: 544px) {
   .media-page {
     height: 1024px;
   }
 
-  .media-page-content{ 
+  .media-page-content {
     width: 384px;
     height: 148px;
   }
-  
+
   .media-title {
     font-size: 48px;
   }
@@ -53,12 +53,12 @@
   }
 }
 
-@media (min-width: 768px)  {
-  .media-page-content{ 
+@media (min-width: 768px) {
+  .media-page-content {
     width: 608px;
     height: 165px;
   }
-  
+
   .media-title {
     font-size: 80px;
   }
@@ -68,12 +68,12 @@
   }
 }
 
-@media (min-width: 1012px)  {
-  .media-page-content{ 
+@media (min-width: 1012px) {
+  .media-page-content {
     width: 896px;
     height: 180px;
   }
-  
+
   .media-title {
     font-size: 90px;
   }
@@ -83,12 +83,12 @@
   }
 }
 
-@media (min-width: 1280px)  {
-  .media-page-content{ 
+@media (min-width: 1280px) {
+  .media-page-content {
     width: 896px;
     height: 192px;
   }
-  
+
   .media-title {
     font-size: 96px;
   }
@@ -115,7 +115,7 @@
   height: 7331px;
 }
 
-.media-view-content{
+.media-view-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -147,7 +147,7 @@
   margin-bottom: 16px;
 }
 
-.image-caption{
+.image-caption {
   font-family: Inter;
   line-height: 200%;
   margin-top: 32px;
@@ -171,26 +171,26 @@
   margin-bottom: 36px;
 }
 
-@media (min-width: 544px)  {
+@media (min-width: 544px) {
   .media-view {
     padding: 160px 32px;
     height: 9890px;
     font-size: 20px;
   }
 
-  .media-view-content{ 
+  .media-view-content {
     width: 480px;
   }
 }
 
-@media (min-width: 768px)  {
+@media (min-width: 768px) {
   .media-view {
     padding: 224px 80px;
     height: 11325px;
     font-size: 20px;
   }
 
-  .media-view-content{ 
+  .media-view-content {
     width: 608px;
   }
 
@@ -199,14 +199,14 @@
   }
 }
 
-@media (min-width: 1012px)  {
+@media (min-width: 1012px) {
   .media-view {
     padding: 336px 80px;
     height: 8235px;
     gap: 448px;
   }
 
-  .media-view-content{ 
+  .media-view-content {
     width: 852px;
   }
 
@@ -223,13 +223,13 @@
   }
 }
 
-@media (min-width: 1280px)  {
+@media (min-width: 1280px) {
   .media-view {
     padding: 336px 80px;
     height: 8392px;
   }
 
-  .media-view-content{ 
+  .media-view-content {
     width: 896px;
   }
 

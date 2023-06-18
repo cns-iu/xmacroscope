@@ -580,7 +580,7 @@ img {
   gap: 500px;
   font-family: Inter;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
-  
+
   height: 2574px;
 }
 
@@ -593,7 +593,6 @@ img {
 
   width: 288px;
   height: 2254px;
-
 }
 
 .xM-partnership-page-title {
@@ -621,14 +620,13 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 8px 0px;
-  gap:8px;
+  gap: 8px;
   height: 126px;
 }
 
 .photo-caption {
   text-align: center;
 }
-
 
 @media (min-width: 544px) {
   .xM-partnership-page {
@@ -692,7 +690,7 @@ img {
 
   .xM-partnership-page-content {
     height: 2310px;
-    gap:224px
+    gap: 224px;
   }
 
   .partnership-card {
@@ -748,14 +746,13 @@ footer {
     height: 173px;
   }
 }
- 
+
 @media (min-width: 1012px) {
   .footer-content {
     width: 852px;
     height: 173px;
   }
 }
-
 
 @media (min-width: 1280px) {
   .footer-content {
