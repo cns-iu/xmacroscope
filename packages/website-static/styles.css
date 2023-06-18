@@ -232,8 +232,6 @@ img {
 
 @media (min-width: 1280px) {
   .home-page {
-    /* padding: 361px 272px; */
-    /* width: 1440px; */
     height: 1024px;
   }
 
@@ -586,6 +584,7 @@ img {
   align-items: center;
   padding: 0px;
   gap: 224px;
+
   width: 288px;
   height: 2254px;
 
@@ -603,18 +602,21 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 16px;
+  /* gap: 16px; */
+  gap: 8px;
 
   width: 288px;
   height: 242px;
 }
 
 .logo-image {
-  width: auto;
+  /* width: auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 8px 0px;
+  gap:8px;
+  height: 126px;
 }
 
 .photo-caption {
