@@ -9,6 +9,8 @@
   justify-content: center;
   background: url('../assets/resources-image.png');
 
+  background-size: cover;
+
   gap: 32px;
   height: 660px;
 }
