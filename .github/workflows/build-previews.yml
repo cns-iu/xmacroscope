@@ -33,10 +33,10 @@ jobs:
         working-directory: packages/client-mav
         run: |
           npm run build:libs
-          npm run build -- --output-hashing=none --base-href=/demo/
+          npm run build -- --base-href=/demo/
       - name: Build Site Visualizations
         working-directory: packages/site-visualizations
-        run: npm run build -- --output-hashing=none --base-href=/site-visualizations/
+        run: npm run build -- --base-href=/site-visualizations/
 
       - name: Package Site
         run: |
