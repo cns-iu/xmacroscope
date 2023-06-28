@@ -17743,8 +17743,16 @@
           key: "refreshItems",
           value: function refreshItems() {
             if (this.data) {
+              var location = this.xMacroscopeDataService.config.location;
               this.columns = this.getColumns(this.data.graphicSymbols['items']);
               this.displayedColumns = Object.keys(this.columns);
+
+              if (location === 'null') {
+                this.displayedColumns = this.displayedColumns.filter(function (col) {
+                  return col !== 'zipCode';
+                });
+              }
+
               this.items$ = this.getGraphicSymbolData('items').pipe((0, rxjs_operators__WEBPACK_IMPORTED_MODULE_33__.map)(function (items) {
                 return (0, lodash__WEBPACK_IMPORTED_MODULE_0__.orderBy)(items, 'order', 'asc');
               }));
@@ -19174,7 +19182,7 @@
                 while (1) {
                   switch (_context11.prev = _context11.next) {
                     case 0:
-                      resolvedConfig = Object.assign({}, config);
+                      resolvedConfig = config;
 
                       if (!(0, lodash__WEBPACK_IMPORTED_MODULE_0__.isArray)(config.opponentRuns)) {
                         resolvedConfig.opponentRuns = opponentRuns[config.opponentRuns] || [];
@@ -19192,7 +19200,11 @@
                       settings = _context11.sent;
 
                       if (settings) {
-                        if (settings.usState) {
+                        if (settings.location) {
+                          resolvedConfig.location = settings.location;
+                        }
+
+                        if (settings.usState !== undefined || settings.usState !== 'null') {
                           resolvedConfig.defaultUsState = settings.usState;
                         }
 
@@ -21439,6 +21451,13 @@
           this.project = dataService.project;
           this.originalGraphicSymbol = this.getRunPoints().toJSON();
           this.originalTableOrder = this.getRunTable().graphicVariables.order;
+
+          if (dataService.config.location === 'null') {
+            var index = this.navigation.findIndex(function (nav) {
+              return nav.id === 'geomap';
+            });
+            this.navigation.splice(index, 1);
+          }
         }
 
         _createClass(_MainComponent4, [{
@@ -21788,7 +21807,13 @@
       /* harmony import */
 
 
-      var _dvl_fw_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! tslib */
+      52682);
+      /* harmony import */
+
+
+      var _dvl_fw_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @dvl-fw/core */
       83345);
       /* harmony import */
@@ -21804,31 +21829,25 @@
       /* harmony import */
 
 
-      var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! ../../../../environments/environment */
-      24766);
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! @angular/core */
-      1858);
-      /* harmony import */
-
-
       var xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! xmacroscope-dvl-fw-plugin */
       37443);
       /* harmony import */
 
 
-      var _shared_services_update_vis_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/core */
+      1858);
+      /* harmony import */
+
+
+      var _shared_services_update_vis_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! ../../../shared/services/update-vis.service */
       8445);
       /* harmony import */
 
 
-      var _shared_components_button_group_button_group_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _shared_components_button_group_button_group_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! ../../../shared/components/button-group/button-group.component */
       22994);
       /* harmony import */
@@ -21840,7 +21859,7 @@
       /* harmony import */
 
 
-      var _shared_components_gv_button_group_gv_button_group_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _shared_components_gv_button_group_gv_button_group_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! ../../../shared/components/gv-button-group/gv-button-group.component */
       77961);
       /* harmony import */
@@ -21854,29 +21873,29 @@
 
       function GeomapComponent_div_7_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 16);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "mat-icon", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](1, "mat-icon", 17);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "div", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](2, "div", 18);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](3);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
         }
 
         if (rf & 2) {
           var item_r2 = ctx.$implicit;
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("svgIcon", item_r2.icon);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("svgIcon", item_r2.icon);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtextInterpolate"](item_r2.label);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](item_r2.label);
         }
       }
 
@@ -21885,28 +21904,60 @@
           _classCallCheck(this, _GeomapComponent);
 
           this.updateService = updateService;
-          this.colorType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_6__.GraphicVariableType.COLOR;
-          this.shapeType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_6__.GraphicVariableType.SHAPE;
-          this.sizeType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_6__.GraphicVariableType.AREA_SIZE;
+          this.colorType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_5__.GraphicVariableType.COLOR;
+          this.shapeType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_5__.GraphicVariableType.SHAPE;
+          this.sizeType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_5__.GraphicVariableType.AREA_SIZE;
           this.buttonItems = [{
             label: 'United States',
             icon: 'map:us',
             id: 'USA'
-          }, {
-            // TODO: Make this optionally driven by server settings
-            label: _environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.projectConfiguration.defaultUsState,
-            icon: "map:".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.projectConfiguration.defaultUsState.toLowerCase()),
-            id: _environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.projectConfiguration.defaultUsState
           }];
           this.variables = dataService.project.graphicVariables.filter(function (gv) {
             return gv.id !== 'row-color';
           });
+          var proj = dataService.project;
+          this.resolveLocation(proj);
         }
 
         _createClass(_GeomapComponent, [{
           key: "graphicSymbol",
           get: function get() {
             return (0, lodash__WEBPACK_IMPORTED_MODULE_0__.get)(this.data, ['graphicSymbols', 'nodes']);
+          }
+        }, {
+          key: "resolveLocation",
+          value: function resolveLocation(proj) {
+            var _a;
+
+            return (0, tslib__WEBPACK_IMPORTED_MODULE_6__.__awaiter)(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+              var config, state;
+              return regeneratorRuntime.wrap(function _callee11$(_context12) {
+                while (1) {
+                  switch (_context12.prev = _context12.next) {
+                    case 0:
+                      config = proj.config;
+                      _context12.next = 3;
+                      return xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_7__.XMacroscopeProject.resolveConfig(config);
+
+                    case 3:
+                      config = _context12.sent;
+
+                      if (((_a = config === null || config === void 0 ? void 0 : config.defaultUsState) === null || _a === void 0 ? void 0 : _a.toLowerCase()) !== 'us') {
+                        state = config.defaultUsState;
+                        this.buttonItems = [].concat(_toConsumableArray(this.buttonItems), [{
+                          label: state,
+                          icon: "map:".concat(state.toLowerCase()),
+                          id: state
+                        }]);
+                      }
+
+                    case 5:
+                    case "end":
+                      return _context12.stop();
+                  }
+                }
+              }, _callee11, this);
+            }));
           }
         }, {
           key: "currentFeature",
@@ -21946,21 +21997,21 @@
       }();
 
       _GeomapComponent.ɵfac = function GeomapComponent_Factory(t) {
-        return new (t || _GeomapComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_7__.XMacroscopeDataService), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_shared_services_update_vis_service__WEBPACK_IMPORTED_MODULE_2__.UpdateVisService));
+        return new (t || _GeomapComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](xmacroscope_dvl_fw_plugin__WEBPACK_IMPORTED_MODULE_7__.XMacroscopeDataService), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_shared_services_update_vis_service__WEBPACK_IMPORTED_MODULE_1__.UpdateVisService));
       };
 
-      _GeomapComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
+      _GeomapComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
         type: _GeomapComponent,
         selectors: [["app-geomap"]],
         viewQuery: function GeomapComponent_Query(rf, ctx) {
           if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵviewQuery"](_c0, 7);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵviewQuery"](_c0, 7);
           }
 
           if (rf & 2) {
             var _t;
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵloadQuery"]()) && (ctx.visualization = _t.first);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵloadQuery"]()) && (ctx.visualization = _t.first);
           }
         },
         inputs: {
@@ -21971,114 +22022,114 @@
         consts: [[1, "scatter-graph"], [1, "container"], [1, "y-axis"], [1, "visualization-name"], [1, "map-selection"], [3, "items", "value", "deselectable", "vertical", "valueChange"], ["class", "button", 4, "appButtonContent"], [1, "visualization"], [1, "visualization-area"], [3, "data"], ["visualization", ""], [1, "x-axis-buttons"], [1, "graphic-variables-selection"], ["label", "Color", "icon", "label:color", 3, "variables", "type", "selected", "vertical", "variableChange"], ["label", "Shape", "icon", "label:shape", 3, "variables", "type", "selected", "vertical", "variableChange"], ["label", "Size", "icon", "label:size", 3, "variables", "type", "selected", "vertical", "variableChange"], [1, "button"], ["inline", "", 1, "icon", 3, "svgIcon"], [1, "label"]],
         template: function GeomapComponent_Template(rf, ctx) {
           if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 0);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](1, "div", 1);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](1, "div", 1);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "div", 2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](2, "div", 2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](3, "div", 3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "div", 3);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](4, "MAP");
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](4, "MAP");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "div", 4);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](5, "div", 4);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "app-button-group", 5);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](6, "app-button-group", 5);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("valueChange", function GeomapComponent_Template_app_button_group_valueChange_6_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("valueChange", function GeomapComponent_Template_app_button_group_valueChange_6_listener($event) {
               return ctx.geoMapChanged($event);
             });
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](7, GeomapComponent_div_7_Template, 4, 2, "div", 6);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](7, GeomapComponent_div_7_Template, 4, 2, "div", 6);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](8, "div", 7);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](8, "div", 7);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](9, "div", 8);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "div", 8);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](10, "dvl-visualization", 9, 10);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](10, "dvl-visualization", 9, 10);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](12, "div", 11);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](12, "div", 11);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](13, "div", 12);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](13, "div", 12);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](14, "div");
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](14, "div");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "app-gv-button-group", 13);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](15, "app-gv-button-group", 13);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("variableChange", function GeomapComponent_Template_app_gv_button_group_variableChange_15_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("variableChange", function GeomapComponent_Template_app_gv_button_group_variableChange_15_listener($event) {
               return ctx.variableChanged($event, "color");
             });
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](16, "div");
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](16, "div");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](17, "app-gv-button-group", 14);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](17, "app-gv-button-group", 14);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("variableChange", function GeomapComponent_Template_app_gv_button_group_variableChange_17_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("variableChange", function GeomapComponent_Template_app_gv_button_group_variableChange_17_listener($event) {
               return ctx.variableChanged($event, "shape");
             });
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](18, "div");
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](18, "div");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](19, "app-gv-button-group", 15);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](19, "app-gv-button-group", 15);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("variableChange", function GeomapComponent_Template_app_gv_button_group_variableChange_19_listener($event) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("variableChange", function GeomapComponent_Template_app_gv_button_group_variableChange_19_listener($event) {
               return ctx.variableChanged($event, "areaSize");
             });
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
           }
 
           if (rf & 2) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](6);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](6);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("items", ctx.buttonItems)("value", ctx.currentFeature())("deselectable", false)("vertical", true);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("items", ctx.buttonItems)("value", ctx.currentFeature())("deselectable", false)("vertical", true);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](4);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("data", ctx.data);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("data", ctx.data);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](5);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](5);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("variables", ctx.variables)("type", ctx.colorType)("selected", ctx.currentVariable("color"))("vertical", true);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("variables", ctx.variables)("type", ctx.colorType)("selected", ctx.currentVariable("color"))("vertical", true);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("variables", ctx.variables)("type", ctx.shapeType)("selected", ctx.currentVariable("shape"))("vertical", true);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("variables", ctx.variables)("type", ctx.shapeType)("selected", ctx.currentVariable("shape"))("vertical", true);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("variables", ctx.variables)("type", ctx.sizeType)("selected", ctx.currentVariable("areaSize"))("vertical", true);
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("variables", ctx.variables)("type", ctx.sizeType)("selected", ctx.currentVariable("areaSize"))("vertical", true);
           }
         },
-        directives: [_shared_components_button_group_button_group_component__WEBPACK_IMPORTED_MODULE_3__.ButtonGroupComponent, _shared_components_button_group_button_group_component__WEBPACK_IMPORTED_MODULE_3__.ButtonContentDirective, _dvl_fw_angular__WEBPACK_IMPORTED_MODULE_8__.DvlFwVisualizationComponent, _shared_components_gv_button_group_gv_button_group_component__WEBPACK_IMPORTED_MODULE_4__.GVButtonGroupComponent, _angular_material_icon__WEBPACK_IMPORTED_MODULE_9__.MatIcon],
+        directives: [_shared_components_button_group_button_group_component__WEBPACK_IMPORTED_MODULE_2__.ButtonGroupComponent, _shared_components_button_group_button_group_component__WEBPACK_IMPORTED_MODULE_2__.ButtonContentDirective, _dvl_fw_angular__WEBPACK_IMPORTED_MODULE_8__.DvlFwVisualizationComponent, _shared_components_gv_button_group_gv_button_group_component__WEBPACK_IMPORTED_MODULE_3__.GVButtonGroupComponent, _angular_material_icon__WEBPACK_IMPORTED_MODULE_9__.MatIcon],
         styles: [".scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%] {\n  display: flex;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%] {\n  width: 15.625rem;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%]   .visualization-name[_ngcontent-%COMP%] {\n  font-size: 3rem;\n  font-family: \"Paytone One\";\n  color: #006298;\n  text-align: left;\n  margin-left: 3rem;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%]   .map-selection[_ngcontent-%COMP%] {\n  margin-top: 13rem;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%]   .map-selection[_ngcontent-%COMP%]     .mat-button-toggle {\n  width: 7.5rem;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%]   .map-selection[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%] {\n  height: 6rem;\n  line-height: 1.6rem;\n  white-space: pre-wrap;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%]   .map-selection[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%]   .icon[_ngcontent-%COMP%] {\n  height: 3rem;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .y-axis[_ngcontent-%COMP%]   .map-selection[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%]   .label[_ngcontent-%COMP%] {\n  font-family: \"Paytone One\";\n  font-size: 1.25rem;\n  line-height: 1.25rem;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .visualization[_ngcontent-%COMP%] {\n  width: calc(100vw - 34.25rem);\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .visualization[_ngcontent-%COMP%]   .visualization-area[_ngcontent-%COMP%] {\n  height: calc(100vh - 16rem);\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .graphic-variables-selection[_ngcontent-%COMP%] {\n  width: 15.625rem;\n  margin: auto;\n}\n.scatter-graph[_ngcontent-%COMP%]   .container[_ngcontent-%COMP%]   .graphic-variables-selection[_ngcontent-%COMP%]   [_ngcontent-%COMP%]:not(:last-child) {\n  margin-bottom: 3rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdlb21hcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDRTtFQUNFLGFBQUE7QUFBSjtBQUVJO0VBQ0UsZ0JBQUE7QUFBTjtBQUVNO0VBQ0UsZUFBQTtFQUNBLDBCQUFBO0VBQ0EsY0FBQTtFQUNBLGdCQUFBO0VBQ0EsaUJBQUE7QUFBUjtBQUdNO0VBQ0UsaUJBQUE7QUFEUjtBQUdRO0VBQ0UsYUFBQTtBQURWO0FBSVE7RUFDRSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxxQkFBQTtBQUZWO0FBSVU7RUFDRSxZQUFBO0FBRlo7QUFLVTtFQUNFLDBCQUFBO0VBQ0Esa0JBQUE7RUFDQSxvQkFBQTtBQUhaO0FBU0k7RUFDRSw2QkFBQTtBQVBOO0FBU007RUFDRSwyQkFBQTtBQVBSO0FBV0k7RUFDRSxnQkFBQTtFQUNBLFlBQUE7QUFUTjtBQVdNO0VBQ0UsbUJBQUE7QUFUUiIsImZpbGUiOiJnZW9tYXAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuc2NhdHRlci1ncmFwaCB7XG4gIC5jb250YWluZXIge1xuICAgIGRpc3BsYXk6IGZsZXg7XG5cbiAgICAueS1heGlzIHtcbiAgICAgIHdpZHRoOiAxNS42MjVyZW07XG5cbiAgICAgIC52aXN1YWxpemF0aW9uLW5hbWUge1xuICAgICAgICBmb250LXNpemU6IDNyZW07XG4gICAgICAgIGZvbnQtZmFtaWx5OiAnUGF5dG9uZSBPbmUnO1xuICAgICAgICBjb2xvcjogIzAwNjI5ODtcbiAgICAgICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICAgICAgbWFyZ2luLWxlZnQ6IDNyZW07XG4gICAgICB9XG5cbiAgICAgIC5tYXAtc2VsZWN0aW9uIHtcbiAgICAgICAgbWFyZ2luLXRvcDogMTNyZW07XG5cbiAgICAgICAgOjpuZy1kZWVwIC5tYXQtYnV0dG9uLXRvZ2dsZSB7XG4gICAgICAgICAgd2lkdGg6IDcuNXJlbTtcbiAgICAgICAgfVxuXG4gICAgICAgIC5idXR0b24ge1xuICAgICAgICAgIGhlaWdodDogNnJlbTtcbiAgICAgICAgICBsaW5lLWhlaWdodDogMS42cmVtO1xuICAgICAgICAgIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDtcblxuICAgICAgICAgIC5pY29uIHtcbiAgICAgICAgICAgIGhlaWdodDogM3JlbTtcbiAgICAgICAgICB9XG5cbiAgICAgICAgICAubGFiZWwge1xuICAgICAgICAgICAgZm9udC1mYW1pbHk6ICdQYXl0b25lIE9uZSc7XG4gICAgICAgICAgICBmb250LXNpemU6IDEuMjVyZW07XG4gICAgICAgICAgICBsaW5lLWhlaWdodDogMS4yNXJlbTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG5cbiAgICAudmlzdWFsaXphdGlvbiB7XG4gICAgICB3aWR0aDogY2FsYygxMDB2dyAtIDM0LjI1cmVtKTtcblxuICAgICAgLnZpc3VhbGl6YXRpb24tYXJlYSB7XG4gICAgICAgIGhlaWdodDogY2FsYygxMDB2aCAtIDE2cmVtKTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICAuZ3JhcGhpYy12YXJpYWJsZXMtc2VsZWN0aW9uIHtcbiAgICAgIHdpZHRoOiAxNS42MjVyZW07XG4gICAgICBtYXJnaW46IGF1dG87XG5cbiAgICAgIDpub3QoOmxhc3QtY2hpbGQpIHtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogM3JlbTtcbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */"],
         changeDetection: 0
       });
@@ -22585,7 +22636,7 @@
 
           this.updateService = updateService;
           this.orderType = _dvl_fw_core__WEBPACK_IMPORTED_MODULE_2__.GraphicVariableType.ORDER;
-          this.variables = dataService.project.graphicVariables;
+          this.variables = this.filterVariables(dataService.project.graphicVariables, dataService.project.config);
           this.defaultOrderVariable = dataService.project.graphicSymbols.find(function (g) {
             return g.id === 'runTable';
           }).graphicVariables.order;
@@ -22601,6 +22652,17 @@
               this.visualization.runDataChangeDetection();
               this.updateService.triggerUpdate(this.data);
             }
+          }
+        }, {
+          key: "filterVariables",
+          value: function filterVariables(variables, config) {
+            if (config.location !== 'null') {
+              return variables;
+            }
+
+            return variables.filter(function (v) {
+              return !v.selector.match(/zipCode|longitude|latitude/);
+            });
           }
         }]);
 
