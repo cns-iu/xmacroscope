@@ -46,6 +46,11 @@ a {
   color: black;
 }
 
+.downward-arrow {
+  width: 48px;
+  height: 48px;
+}
+
 @media (min-width: 544px) {
   .default-button {
     font-size: 20px;
@@ -178,7 +183,7 @@ img {
   align-items: center;
   gap: 32px;
   max-width: 288px;
-  max-height: 162px;
+  /* max-height: 162px; */
 }
 
 @media (min-width: 544px) {
@@ -267,7 +272,9 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 1029px;
+  /* height: 1029px; */
+  gap: 504px;
+  padding: 80px 16px;
   background: linear-gradient(180deg, #fff5d5 0%, rgba(255, 250, 236, 0) 100%);
 }
 
@@ -303,7 +310,7 @@ img {
 
 @media (min-width: 544px) {
   .about-page {
-    height: 1348px;
+    /* height: 1348px; */
   }
 
   .about-contents {
@@ -331,7 +338,7 @@ img {
 
 @media (min-width: 768px) {
   .about-page {
-    height: 1396px;
+    /* height: 1396px; */
   }
 
   .about-contents {
@@ -364,7 +371,7 @@ img {
 
 @media (min-width: 1012px) {
   .about-page {
-    height: 1778px;
+    /* height: 1778px; */
   }
 
   .about-contents {
@@ -384,7 +391,7 @@ img {
 
 @media (min-width: 1280px) {
   .about-page {
-    height: 1848px;
+    /* height: 1848px; */
   }
 
   .about-contents {
@@ -411,17 +418,17 @@ img {
   align-items: center;
   justify-content: center;
   gap: 448px;
-
-  height: 3222px;
+  padding: 80px 16px;
+  /* height: 3222px; */
 }
 
 .data-visualization-contents {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 160px;
+  gap: 80px;
   width: 288px;
-  height: 2902px;
+  /* height: 2902px; */
 }
 
 .data-visualization-title-text {
@@ -442,7 +449,7 @@ img {
 }
 
 .plot-card {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   gap: 48px;
@@ -466,13 +473,13 @@ img {
 
 @media (min-width: 544px) {
   .data-visualization-page {
-    height: 3697px;
+    /* height: 3697px; */
   }
 
   .data-visualization-contents {
     width: 480px;
-    height: 3377px;
-    gap: 160px;
+    /* height: 3377px; */
+    gap: 80px;
   }
 
   .text-below-data-visualization-title {
@@ -491,13 +498,13 @@ img {
 
 @media (min-width: 768px) {
   .data-visualization-page {
-    height: 4608px;
+    /* height: 4608px; */
   }
 
   .data-visualization-contents {
     width: 608px;
-    height: 4160px;
-    gap: 224px;
+    /* height: 4160px; */
+    gap: 80px;
   }
 
   .data-visualization-title {
