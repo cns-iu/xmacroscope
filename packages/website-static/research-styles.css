@@ -3,7 +3,17 @@
  * ------------------------------- */
 
 .research-page {
+  background: url('../assets/research-image.png');
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+
+  background-size: cover;
+
+  height: 42rem;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -13,7 +23,8 @@
   background-size: cover;
 
   gap: 32px;
-  height: 660px;
+  height: 42rem;
+  padding-top: 1rem; */
 }
 
 .research-page-content {
@@ -24,7 +35,6 @@
   gap: 32px;
 
   width: 256px;
-  height: 312px;
 }
 
 .research-title {
@@ -121,16 +131,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 160px 16px;
+  padding: 5rem 1rem;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
-  gap: 224px;
+  gap: 5rem;
 }
 
 .research-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 60px;
+  gap: 5rem;
 
   width: 288px;
 }
@@ -144,7 +154,11 @@
   font-family: Inter;
   line-height: 200%;
   font-weight: 400;
-  margin-top: 20px;
+  margin-top: 2rem;
+}
+
+.first-item{
+  margin-top: -5px;
 }
 
 .research-items {
