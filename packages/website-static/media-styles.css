@@ -49,10 +49,11 @@
   .media-page {
     height: 1024px;
   }
-
+  
   .media-page-content {
     width: 384px;
-    height: 148px;
+    margin-top: 1rem;
+    /* height: 148px; */
   }
 
   .media-title {
@@ -67,7 +68,7 @@
 @media (min-width: 768px) {
   .media-page-content {
     width: 608px;
-    height: 165px;
+    /* height: 165px; */
   }
 
   .media-title {
@@ -82,7 +83,8 @@
 @media (min-width: 1012px) {
   .media-page-content {
     width: 896px;
-    height: 180px;
+    margin-top: -4rem;
+    /* height: 180px; */
   }
 
   .media-title {
@@ -97,7 +99,8 @@
 @media (min-width: 1280px) {
   .media-page-content {
     width: 896px;
-    height: 192px;
+    margin-top: -1rem;
+    /* height: 192px; */
   }
 
   .media-title {
@@ -192,8 +195,7 @@
 
 @media (min-width: 544px) {
   .media-view {
-    padding: 160px 32px;
-    height: 9890px;
+    padding: 80px 32px;
     font-size: 20px;
   }
 
@@ -210,13 +212,16 @@
 
 @media (min-width: 768px) {
   .media-view {
-    padding: 224px 80px;
-    height: 11325px;
+    padding: 160px 80px;
     font-size: 20px;
   }
 
   .media-view-content {
     width: 608px;
+  }
+
+  .padding-up{
+    padding-top: 80px;
   }
 
   .media-view-title {
@@ -232,9 +237,8 @@
 
 @media (min-width: 1012px) {
   .media-view {
-    padding: 336px 80px;
-    height: 8235px;
-    gap: 448px;
+    padding: 224px 80px;
+    gap: 80px;
   }
 
   .media-view-content {
@@ -261,8 +265,7 @@
 
 @media (min-width: 1280px) {
   .media-view {
-    padding: 336px 80px;
-    height: 8392px;
+    padding: 224px 80px;
   }
 
   .media-view-content {

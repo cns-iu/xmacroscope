@@ -154,13 +154,11 @@
 
 @media (min-width: 544px) {
   .page-below-resource {
-    padding: 160px 32px;
-    height: 928px;
+    padding: 80px 32px;
   }
 
   .page-below-resource-content {
     width: 480px;
-    height: 608px;
   }
 
   .page-below-resource-title {
