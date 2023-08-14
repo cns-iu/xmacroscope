@@ -31,51 +31,52 @@ a {
 }
 
 .default-button {
-  background-color: #f2dfa2;
-  padding: 16px 32px;
-  border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  background-color: #f2dfa2;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
   width: 100%;
+
   line-height: 17.5px;
   align-items: center;
-  font-size: 14px;
-
+  font-size: 0.875rem;
   color: black;
 }
 
 .downward-arrow {
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
 }
 
 @media (min-width: 544px) {
   .default-button {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 @media (min-width: 768px) {
   .custom {
     width: auto;
-    max-width: 256px;
+    max-width: 16rem;
   }
 
   .default-button {
-    padding: 16px 28px;
+    padding: 1rem 1.75rem;
     letter-spacing: -1px;
   }
 
   .new-tab-logo {
-    margin-right: 12px;
+    margin-right: 0.75rem;
   }
 }
 
 .new-tab-logo {
-  width: 24px;
-  height: 24px;
-  margin-right: 15px;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.938rem;
 }
 
 img {
@@ -93,8 +94,8 @@ img {
   width: 100%;
   height: 5rem;
   margin: 0;
-  padding: 16px 32px;
-  gap: 8px;
+  padding: 1rem 2rem;
+  gap: 0.5rem;
 
   align-items: center;
   justify-content: space-between;
@@ -105,26 +106,26 @@ img {
 
 .nav-link {
   display: block;
-  padding: 16px 4px;
+  padding: 1rem 0.25rem;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: black;
 }
 
 .nav-item:hover {
   cursor: pointer;
-  border-bottom: 4px solid #006298;
-  margin-bottom: -4px;
+  border-bottom: 0.25rem solid #006298;
+  margin-bottom: -0.25rem;
 }
 
 .nav-item:focus {
-  border: 4px solid #006298;
-  border-radius: 8px;
+  border: 0.25rem solid #006298;
+  border-radius: 0.5rem;
 }
 
 .nav-item.active {
-  border-bottom: 4px solid #006298;
-  margin-bottom: -4px;
+  border-bottom: 0.25rem solid #006298;
+  margin-bottom: -0.25rem;
 }
 
 @media (min-width: 544px) and (max-width: 767px) {
@@ -133,20 +134,20 @@ img {
   }
 
   .nav-link {
-    font-size: 18px;
-    padding: 16px;
+    font-size: 1.125rem;
+    padding: 1rem;
   }
 }
 
 @media (min-width: 768px) {
   .nav-list {
     height: 89px;
-    padding: 16px 80px;
+    padding: 1rem 5rem;
   }
 
   .nav-link {
-    font-size: 20px;
-    padding: 16px 32px;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
   }
 }
 
@@ -155,20 +156,24 @@ img {
  * ------------------------------- */
 
 .home-page {
-  padding-top: 1rem;
-  background: url('../assets/landing-image.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
+  padding-top: 1rem;
+  
+  background: url('../assets/landing-image.png');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: auto;
   height: 42rem;
 }
 
 .title {
   font-weight: 900;
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .text-below-title {
@@ -179,8 +184,8 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  max-width: 288px;
+  gap: 2rem;
+  max-width: 18rem;
 }
 
 @media (min-width: 544px) {
@@ -189,67 +194,67 @@ img {
   }
 
   .home-page-contents {
-    max-width: 512px;
+    max-width: 32rem;
   }
 
   .title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-title {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .home-page-contents {
-    max-width: 608px;
+    max-width: 38rem;
   }
 
   .title {
-    font-size: 80px;
+    font-size: 5rem;
   }
 
   .text-below-title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1012px) {
   .home-page {
-    height: 1024px;
+    height: 64rem;
   }
 
   .home-page-contents {
-    max-width: 896px;
+    max-width: 56rem;
     margin-top: -5rem;
   }
 
   .title {
-    font-size: 90px;
+    font-size: 5.625rem;
   }
 
   .text-below-title {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
 }
 
 @media (min-width: 1280px) {
   .home-page {
-    height: 1024px;
+    height: 64rem;
   }
 
   .home-page-contents {
-    max-width: 896px;
+    max-width: 56rem;
     margin-top: -3rem;
   }
 
   .title {
-    font-size: 96px;
+    font-size: 6rem;
   }
 
   .text-below-title {
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 50px;
   }
 }
@@ -263,8 +268,8 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 504px;
-  padding: 80px 16px;
+  gap: 31.5rem;
+  padding: 5rem 1rem;
   background: linear-gradient(180deg, #fff5d5 0%, rgba(255, 250, 236, 0) 100%);
 }
 
@@ -272,45 +277,47 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
-  width: 288px;
-  height: 709px;
+  gap: 3rem;
+  width: 18rem;
 }
 
 .about-title {
   font-weight: 900;
   text-align: center;
-  font-size: 28px;
+  font-size: 1.75rem;
+}
+
+.about-button {
+  width: 100%;
 }
 
 .blue-box {
   background-color: #006298;
-  width: 122px;
-  height: 24px;
+  width: 7.5rem;
+  height: 1.5rem;
 }
 
 .text-below-about {
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
 }
 
 .filler {
-  height: 40px;
+  height: 2.5rem;
 }
 
 @media (min-width: 544px) {
   .about-contents {
-    width: 480px;
-    height: 900px;
-    gap: 64px;
+    width: 30rem;
+    gap: 4rem;
   }
 
   .about-title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .text-below-about {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .about-button {
@@ -318,27 +325,26 @@ img {
   }
 
   .filler {
-    height: 40px;
+    height: 2.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .about-page {
-    padding: 160px 80px;
+    padding: 10rem 5rem;
   }
 
   .about-contents {
-    width: 608px;
-    height: 948px;
-    gap: 80px;
+    width: 38rem;
+    gap: 5rem;
   }
 
   .about-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-about {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
   }
 
@@ -346,7 +352,7 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 40px;
+    gap: 2.5rem;
     width: 100%;
   }
 
@@ -357,36 +363,34 @@ img {
 
 @media (min-width: 1012px) {
   .about-contents {
-    width: 869px;
-    height: 1096px;
+    width: 54.313rem;
   }
 
   .about-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 
   .text-below-about {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
   }
 }
 
 @media (min-width: 1280px) {
   .about-page {
-    padding: 224px 80px;
+    padding: 14rem 5rem;
   }
 
   .about-contents {
-    width: 869px;
-    height: 1167px;
+    width: 54.313rem;
   }
 
   .about-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 
   .text-below-about {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 }
 
@@ -399,40 +403,40 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 448px;
-  padding: 80px 16px;
+  gap: 28rem;
+  padding: 5rem 1rem;
 }
 
 .data-visualization-contents {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 80px;
-  width: 288px;
+  gap: 5rem;
+  width: 18rem;
 }
 
 .data-visualization-title-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 48px;
+  gap: 3rem;
 }
 
 .data-visualization-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .text-below-data-visualization-title {
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 0.875rem;
+  line-height: 1.75rem;
 }
 
 .plot-card {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 3rem;
 }
 
 .last-card {
@@ -441,29 +445,29 @@ img {
 
 .plot-title {
   font-weight: 900;
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 
 .plot-caption {
   font-family: Inter;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 200%;
 }
 
 @media (min-width: 544px) {
   .data-visualization-page {
-    padding: 80px 32px;
+    padding: 5rem 2rem;
   }
 
   .data-visualization-contents {
-    width: 480px;
-    gap: 160px;
+    width: 30rem;
+    gap: 10rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 18px;
-    line-height: 36px;
+    font-size: 1.125rem;
+    line-height: 2.25rem;
   }
 
   .last-card {
@@ -471,27 +475,27 @@ img {
   }
 
   .plot-caption {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
 @media (min-width: 768px) {
   .data-visualization-page {
-    padding: 160px 80px;
+    padding: 10rem 5rem;
   }
 
   .data-visualization-contents {
-    width: 608px;
-    gap: 160px;
+    width: 38rem;
+    gap: 10rem;
   }
 
   .data-visualization-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 22px;
-    line-height: 44px;
+    font-size: 1.375rem;
+    line-height: 2.75rem;
   }
 
   .last-card {
@@ -499,41 +503,41 @@ img {
   }
 
   .plot-title {
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   .plot-caption {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 @media (min-width: 1012px) {
   .data-visualization-contents {
-    width: 852px;
+    width: 53.25rem;
   }
 
   .data-visualization-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 22px;
-    line-height: 44px;
+    font-size: 1.375rem;
+    line-height: 2.75rem;
   }
 }
 
 @media (min-width: 1280px) {
   .data-visualization-contents {
-    width: 896px;
+    width: 56rem;
   }
 
   .data-visualization-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 26px;
-    line-height: 52px;
+    font-size: 1.625rem;
+    line-height: 3.25rem;
   }
 
   .plot-card {
@@ -541,7 +545,7 @@ img {
   }
 
   .plot-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 }
 
@@ -554,11 +558,11 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 500px;
+  gap: 31.25rem;
   font-family: Inter;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
 
-  padding: 160px 16px;
+  padding: 10rem 1rem;
 }
 
 .xM-partnership-page-content {
@@ -566,14 +570,14 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 224px;
+  gap: 14rem;
 
-  width: 288px;
+  width: 18rem;
 }
 
 .xM-partnership-page-title {
   font-weight: 900;
-  font-size: 28px;
+  font-size: 1.75rem;
   text-align: center;
   font-family: Lexend;
 }
@@ -583,18 +587,18 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 8px;
+  gap: 0.5rem;
 
-  width: 288px;
+  width: 18rem;
 }
 
 .logo-image {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 0px;
-  gap: 8px;
-  height: 126px;
+  padding: 0.5rem 0px;
+  gap: 0.5rem;
+  height: 7.875rem;
 }
 
 .photo-caption {
@@ -604,62 +608,62 @@ img {
 @media (min-width: 544px) {
   .xM-partnership-page {
     font-weight: 400;
-    font-size: 20px;
-    padding: 80px;
+    font-size: 1.25rem;
+    padding: 5rem;
   }
 
   .xM-partnership-page-content {
-    width: 384px;
+    width: 24rem;
   }
 
   .xM-partnership-page-title {
-    font-size: 38px;
+    font-size: 2.375rem;
   }
 
   .partnership-card {
-    width: 384px;
+    width: 24rem;
   }
 }
 
 @media (min-width: 768px) {
   .xM-partnership-page {
-    padding: 160px 80px;
+    padding: 10rem 5rem;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .xM-partnership-page-content {
-    width: 608px;
-    gap: 224px;
+    width: 38rem;
+    gap: 14rem;
   }
 
   .xM-partnership-page-title {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: 900;
   }
 
   .partnership-card {
-    width: 453px;
+    width: 28.313rem;
   }
 }
 
 @media (min-width: 1012px) {
   .xM-partnership-page-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 }
 
 @media (min-width: 1280px) {
   .xM-partnership-page-content {
-    gap: 224px;
+    gap: 14rem;
   }
 
   .partnership-card {
-    width: 453px;
+    width: 28.313rem;
   }
 
   .xM-partnership-page-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 }
 
@@ -671,7 +675,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 160px 32px;
+  padding: 10rem 2rem;
   background: rgba(255, 250, 236, 0.92);
 }
 
@@ -680,9 +684,9 @@ footer {
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 32px;
-  width: 256px;
-  height: 223px;
+  gap: 2rem;
+  width: 16rem;
+  height: 14rem;
 }
 
 .footer-caption {
@@ -695,28 +699,28 @@ footer {
 
 @media (min-width: 544px) {
   .footer-content {
-    width: 480px;
-    height: 193px;
+    width: 30rem;
+    height: 12rem;
   }
 }
 
 @media (min-width: 768px) {
   .footer-content {
-    width: 608px;
-    height: 173px;
+    width: 38rem;
+    height: 10.8rem;
   }
 }
 
 @media (min-width: 1012px) {
   .footer-content {
-    width: 852px;
-    height: 173px;
+    width: 53.25rem;
+    height: 10.8rem;
   }
 }
 
 @media (min-width: 1280px) {
   .footer-content {
-    width: 1280px;
-    height: 153px;
+    width: 80rem;
+    height: 9.5rem;
   }
 }

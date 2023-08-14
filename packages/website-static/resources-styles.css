@@ -3,15 +3,17 @@
  * ------------------------------- */
 
 .resource-page {
-  background: url('../assets/resources-image.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
-
+  
+  background: url('../assets/resources-image.png');
   background-size: cover;
-
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  width: auto;
   height: 42rem;
 }
 
@@ -20,33 +22,33 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 32px;
+  gap: 2rem;
 
-  width: 288px;
+  width: 18rem;
   margin-top: -4rem;
 }
 
 .resource-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 @media (min-width: 544px) {
   .resource-page {
-    height: 1024px;
+    height: 64rem;
   }
 
   .resource-page-content {
-    width: 480px;
+    width: 30rem;
     height: 176px;
   }
 
   .resource-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-resource-title {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
 }
 
@@ -57,46 +59,46 @@
   } */
 
   .resource-page-content {
-    width: 608px;
-    height: 231px;
+    width: 38rem;
+    height: 14.5rem;
   }
 
   .resource-title {
-    font-size: 80px;
+    font-size: 5rem;
   }
 
   .text-below-resource-title {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
 }
 
 @media (min-width: 1012px) {
   .resource-page-content {
-    width: 896px;
-    height: 215px;
+    width: 56rem;
+    height: 13.5rem;
   }
 
   .resource-title {
-    font-size: 90px;
+    font-size: 5.625rem;
   }
 
   .text-below-resource-title {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 }
 
 @media (min-width: 1280px) {
   .resource-page-content {
-    width: 896px;
-    height: 232px;
+    width: 56rem;
+    height: 14.5rem;
   }
 
   .resource-title {
-    font-size: 96px;
+    font-size: 6rem;
   }
 
   .text-below-resource-title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 }
 
@@ -105,13 +107,13 @@
  * ------------------------------- */
 
 .page-below-resource {
-  /* padding: 160px 16px; */
+  /* padding: 10rem 1rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 5rem 1rem;
-  gap: 448px;
+  gap: 28rem;
 
   background: linear-gradient(180deg, #fff5d5 0%, rgba(255, 250, 236, 0) 100%);
 }
@@ -121,14 +123,14 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 80px;
+  gap: 5rem;
 
-  width: 288px;
+  width: 18rem;
 }
 
 .page-below-resource-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .resource-buttons {
@@ -137,9 +139,9 @@
   justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: 40px;
+  gap: 2.5rem;
 
-  width: 288px;
+  width: 18rem;
 }
 
 .resource-button-row {
@@ -147,96 +149,94 @@
 }
 
 .download-logo {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   margin-right: 3px;
 }
 
 @media (min-width: 544px) {
   .page-below-resource {
-    padding: 80px 32px;
+    padding: 5rem 2rem;
   }
 
   .page-below-resource-content {
-    width: 480px;
+    width: 30rem;
   }
 
   .page-below-resource-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .resource-buttons {
-    width: 480px;
-    height: 348px;
+    width: 30rem;
+    height: 21.75rem;
   }
 
   .download-logo {
-    margin-right: 15px;
+    margin-right: 0.938rem;
   }
 }
 
 @media (min-width: 768px) {
   .page-below-resource {
-    padding: 224px 80px;
-    height: 1076px;
+    padding: 14rem 5rem;
   }
 
   .page-below-resource-content {
-    width: 608px;
-    height: 628px;
+    width: 38rem;
+    height: 39.25rem;
   }
 
   .page-below-resource-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 
   .page-below-resource-title-text {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .resource-buttons {
-    width: 608px;
-    height: 348px;
+    width: 38rem;
+    height: 21.75rem;
   }
 }
 
 @media (min-width: 1012px) {
   .page-below-resource {
-    padding: 336px 80px;
-    height: 1116px;
+    padding: 14rem 5rem;
   }
 
   .page-below-resource-content {
-    width: 852px;
-    height: 444px;
+    width: 53.25rem;
+    height: 27.75rem;
   }
 
   .page-below-resource-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 
   .resource-buttons {
-    width: 852px;
-    height: 154px;
+    width: 53.25rem;
+    height: 9.625rem;
   }
 
   .resource-button-row {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 40px;
+    gap: 2.5rem;
     width: 100%;
   }
 }
 
 @media (min-width: 1280px) {
   .page-below-resource-content {
-    width: 896px;
-    height: 444px;
+    width: 56rem;
+    height: 27.75rem;
   }
 
   .resource-buttons {
-    width: 896px;
-    height: 154px;
+    width: 56rem;
+    height: 9.625rem;
   }
 }

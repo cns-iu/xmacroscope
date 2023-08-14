@@ -3,15 +3,17 @@
  * ------------------------------- */
 
 .research-page {
-  background: url('../assets/research-image.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
-
+  
+  background: url('../assets/research-image.png');
   background-size: cover;
-
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  width: auto;
   height: 42rem;
 }
 
@@ -20,60 +22,58 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 32px;
+  gap: 2rem;
 
-  width: 256px;
+  width: 16rem;
 }
 
 .research-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .text-below-research-title {
-  font-size: 16px;
-  line-height: 20px;
-  /* height: 240px; */
+  font-size: 1rem;
+  line-height: 1.25rem;
 }
 
 @media (min-width: 544px) {
   .research-page {
-    height: 1024px;
+    height: 64rem;
   }
 
   .research-page-content {
-    width: 480px;
+    width: 30rem;
   }
 
   .research-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-research-title {
-    font-size: 22px;
-    line-height: 28px;
+    font-size: 1.375rem;
+    line-height: 1.75rem;
   }
 }
 
 @media (min-width: 768px) {
   .research-page {
-    /* height: 1024px; */
-    padding: 160px 80px 224px 80px;
+    /* height: 64rem; */
+    padding: 10rem 5rem 14rem 5rem;
   }
 
   .research-page-content {
-    width: 608px;
+    width: 38rem;
     margin-top: 4rem;
-    /* height: 396px; */
   }
 
   .research-title {
-    font-size: 80px;
+    font-size: 5rem;
   }
 
   .text-below-research-title {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 1.625rem;
+    line-height: 2rem;
   }
 }
 
@@ -82,35 +82,34 @@
     padding: 10rem 5rem 14rem 5rem;
   }
   .research-page-content {
-    width: 896px;
+    width: 56rem;
     margin-top: 0rem;
-    /* height: 355px; */
   }
 
   .research-title {
-    font-size: 90px;
+    font-size: 5.625rem;
   }
 
   .text-below-research-title {
-    font-size: 28px;
-    line-height: 35px;
+    font-size: 1.75rem;
+    line-height: 2.18rem;
   }
 }
 
 @media (min-width: 1280px) {
   .research-page-content {
-    width: 896px;
+    width: 56rem;
     margin-top: 7rem;
-    /* height: 432px; */
+    /* height: 42rem; */
   }
 
   .research-title {
-    font-size: 96px;
+    font-size: 6rem;
   }
 
   .text-below-research-title {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 }
 
@@ -134,12 +133,12 @@
   align-items: flex-start;
   gap: 5rem;
 
-  width: 288px;
+  width: 18rem;
 }
 
 .research-card-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .research-list {
@@ -154,33 +153,33 @@
 }
 
 .research-items {
-  gap: 15px;
+  gap: 0.938rem;
 }
 
 ul {
-  font-size: 14px;
-  margin-left: -18px;
+  font-size: 0.875rem;
+  margin-left: -1.125rem;
 }
 
 .custom-font {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 @media (min-width: 544px) {
   .page-below-research {
-    padding: 80px 32px;
+    padding: 5rem 2rem;
   }
 
   .research-card {
-    width: 480px;
+    width: 30rem;
   }
 
   .research-card-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   ul {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
@@ -191,11 +190,11 @@ ul {
   }
 
   .research-card {
-    width: 608px;
+    width: 38rem;
   }
 
   .research-card-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 }
 
@@ -206,20 +205,20 @@ ul {
   }
 
   .research-card {
-    width: 852px;
+    width: 53.25rem;
   }
 
   .research-card-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .page-below-research {
-    padding: 224px 80px;
+    padding: 14rem 5rem;
   }
 
   .research-card {
-    width: 896px;
+    width: 56rem;
   }
 }
