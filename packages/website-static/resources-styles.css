@@ -110,7 +110,7 @@
   padding: 0px;
   gap: 5rem;
 
-  width: 18rem;
+  width: 100%;
 }
 
 .page-below-resource-title {
@@ -126,7 +126,7 @@
   padding: 0px;
   gap: 2.5rem;
 
-  width: 18rem;
+  width: 100%;
 }
 
 .resource-button-row {
@@ -144,17 +144,8 @@
     padding: 5rem 2rem;
   }
 
-  .page-below-resource-content {
-    width: 30rem;
-  }
-
   .page-below-resource-title {
     font-size: 3rem;
-  }
-
-  .resource-buttons {
-    width: 30rem;
-    height: 21.75rem;
   }
 
   .download-logo {
@@ -167,22 +158,12 @@
     padding: 14rem 5rem;
   }
 
-  .page-below-resource-content {
-    width: 38rem;
-    height: 39.25rem;
-  }
-
   .page-below-resource-title {
     font-size: 4rem;
   }
 
   .page-below-resource-title-text {
     font-size: 1.25rem;
-  }
-
-  .resource-buttons {
-    width: 38rem;
-    height: 21.75rem;
   }
 }
 
@@ -191,18 +172,8 @@
     padding: 14rem 5rem;
   }
 
-  .page-below-resource-content {
-    width: 53.25rem;
-    height: 27.75rem;
-  }
-
   .page-below-resource-title {
     font-size: 4.5rem;
-  }
-
-  .resource-buttons {
-    width: 53.25rem;
-    height: 9.625rem;
   }
 
   .resource-button-row {
@@ -216,12 +187,6 @@
 
 @media (min-width: 1280px) {
   .page-below-resource-content {
-    width: 56rem;
-    height: 27.75rem;
-  }
-
-  .resource-buttons {
-    width: 56rem;
-    height: 9.625rem;
+    max-width: 56rem;
   }
 }

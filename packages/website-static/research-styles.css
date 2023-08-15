@@ -110,9 +110,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5rem;
 
-  width: 18rem;
+  gap: 5rem;
 }
 
 .research-card-title {
@@ -149,10 +148,6 @@ ul {
     padding: 5rem 2rem;
   }
 
-  .research-card {
-    width: 30rem;
-  }
-
   .research-card-title {
     font-size: 3rem;
   }
@@ -168,10 +163,6 @@ ul {
     gap: 10rem;
   }
 
-  .research-card {
-    width: 38rem;
-  }
-
   .research-card-title {
     font-size: 4rem;
   }
@@ -181,10 +172,6 @@ ul {
   .page-below-research {
     padding: 14rem 5rem;
     gap: 10rem;
-  }
-
-  .research-card {
-    width: 53.25rem;
   }
 
   .research-card-title {
@@ -198,6 +185,6 @@ ul {
   }
 
   .research-card {
-    width: 56rem;
+    max-width: 56rem;
   }
 }
