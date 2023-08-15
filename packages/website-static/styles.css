@@ -92,7 +92,7 @@ img {
   display: flex;
 
   width: 100%;
-  height: 5rem;
+  /* height: 5rem; */
   margin: 0;
   padding: 1rem 2rem;
   gap: 0.5rem;
@@ -130,7 +130,7 @@ img {
 
 @media (min-width: 544px) and (max-width: 767px) {
   .nav-list {
-    height: 87px;
+    /* height: 5.5rem; */
   }
 
   .nav-link {
@@ -141,7 +141,6 @@ img {
 
 @media (min-width: 768px) {
   .nav-list {
-    height: 89px;
     padding: 1rem 5rem;
   }
 
@@ -155,20 +154,25 @@ img {
  * Home page list
  * ------------------------------- */
 
+.main-page-wrapper {
+  padding-top: 5rem;
+  height: 100vh;
+}
+
 .home-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 1rem;
-  
+
   background: url('../assets/landing-image.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   width: auto;
-  height: 42rem;
+  height: 100%;
+  padding: 10rem 1rem;
 }
 
 .title {
@@ -185,16 +189,16 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  max-width: 18rem;
+  /* max-width: 18rem; */
 }
 
 @media (min-width: 544px) {
-  .home-page {
-    height: 64rem;
+  .main-page-wrapper {
+    padding-top: 5.5rem;
   }
 
-  .home-page-contents {
-    max-width: 32rem;
+  .home-page {
+    padding: 14rem 1rem;
   }
 
   .title {
@@ -207,8 +211,8 @@ img {
 }
 
 @media (min-width: 768px) {
-  .home-page-contents {
-    max-width: 38rem;
+  .home-page {
+    padding: 14rem 5rem;
   }
 
   .title {
@@ -222,12 +226,11 @@ img {
 
 @media (min-width: 1012px) {
   .home-page {
-    height: 64rem;
+    padding: 10rem 5rem 14rem 5rem;
   }
 
   .home-page-contents {
     max-width: 56rem;
-    margin-top: -5rem;
   }
 
   .title {
@@ -240,15 +243,6 @@ img {
 }
 
 @media (min-width: 1280px) {
-  .home-page {
-    height: 64rem;
-  }
-
-  .home-page-contents {
-    max-width: 56rem;
-    margin-top: -3rem;
-  }
-
   .title {
     font-size: 6rem;
   }

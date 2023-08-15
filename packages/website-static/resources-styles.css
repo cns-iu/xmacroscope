@@ -7,14 +7,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   background: url('../assets/resources-image.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
+
   width: auto;
-  height: 42rem;
+  height: 100%;
+  padding: 10rem 1rem;
 }
 
 .resource-page-content {
@@ -23,9 +24,6 @@
   align-items: flex-start;
   padding: 0px;
   gap: 2rem;
-
-  width: 18rem;
-  margin-top: -4rem;
 }
 
 .resource-title {
@@ -35,12 +33,7 @@
 
 @media (min-width: 544px) {
   .resource-page {
-    height: 64rem;
-  }
-
-  .resource-page-content {
-    width: 30rem;
-    height: 176px;
+    padding: 14rem 2rem;
   }
 
   .resource-title {
@@ -53,14 +46,8 @@
 }
 
 @media (min-width: 768px) {
-  /* .resource-page > * {
-    margin: auto;
-    max-width: 200px;
-  } */
-
-  .resource-page-content {
-    width: 38rem;
-    height: 14.5rem;
+  .resource-page {
+    padding: 14rem 5rem;
   }
 
   .resource-title {
@@ -73,9 +60,12 @@
 }
 
 @media (min-width: 1012px) {
+  .resource-page {
+    padding: 10rem 5rem 14rem 5rem;
+  }
+
   .resource-page-content {
-    width: 56rem;
-    height: 13.5rem;
+    max-width: 56rem;
   }
 
   .resource-title {
@@ -88,11 +78,6 @@
 }
 
 @media (min-width: 1280px) {
-  .resource-page-content {
-    width: 56rem;
-    height: 14.5rem;
-  }
-
   .resource-title {
     font-size: 6rem;
   }
