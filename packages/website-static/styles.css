@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: Lexend;
+  font-family: Inter;
   margin: 0;
 }
 
@@ -424,7 +424,6 @@ img {
 }
 
 .plot-caption {
-  font-family: Inter;
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 200%;
@@ -528,7 +527,6 @@ img {
   align-items: center;
   justify-content: center;
   gap: 31.25rem;
-  font-family: Inter;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
 
   padding: 10rem 1rem;
@@ -548,7 +546,7 @@ img {
   font-weight: 900;
   font-size: 1.75rem;
   text-align: center;
-  font-family: Lexend;
+  /* font-family: Lexend; */
 }
 
 .partnership-card {
