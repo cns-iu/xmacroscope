@@ -59,8 +59,7 @@ a {
 
 @media (min-width: 768px) {
   .custom {
-    width: auto;
-    max-width: 16rem;
+    max-width: 17rem;
   }
 
   .default-button {
@@ -75,7 +74,7 @@ a {
 .new-tab-logo {
   width: 1.5rem;
   height: 1.5rem;
-  margin-right: 0.938rem;
+  margin-right: 0.75rem;
 }
 
 img {
