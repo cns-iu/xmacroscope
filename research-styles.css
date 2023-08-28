@@ -5,16 +5,17 @@
 .research-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 224px 32px;
+  align-items: center;
+
   background: url('../assets/research-image.png');
-
   background-size: cover;
-  /* background-repeat: no-repeat; */
+  background-position: center;
+  background-repeat: no-repeat;
 
-  gap: 32px;
-  height: 660px;
+  width: auto;
+  height: 100%;
+  padding: 14rem 2rem;
 }
 
 .research-page-content {
@@ -22,92 +23,72 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 32px;
-
-  width: 256px;
-  height: 312px;
+  gap: 2rem;
 }
 
 .research-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .text-below-research-title {
-  font-size: 16px;
-  line-height: 20px;
-  height: 240px;
+  font-size: 1rem;
+  line-height: 1.25rem;
 }
 
 @media (min-width: 544px) {
-  .research-page {
-    height: 1024px;
-  }
-
-  .research-page-content {
-    width: 480px;
-    height: 344px;
-  }
-
   .research-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-research-title {
-    font-size: 22px;
-    line-height: 28px;
+    font-size: 1.375rem;
+    line-height: 1.75rem;
   }
 }
 
 @media (min-width: 768px) {
   .research-page {
-    height: 1024px;
-  }
-
-  .research-page-content {
-    width: 608px;
-    height: 396px;
+    padding: 14rem 5rem;
   }
 
   .research-title {
-    font-size: 80px;
+    font-size: 5rem;
   }
 
   .text-below-research-title {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 1.625rem;
+    line-height: 2rem;
   }
 }
 
 @media (min-width: 1012px) {
+  .research-page {
+    padding: 10rem 5rem 14rem 5rem;
+  }
+
   .research-page-content {
-    width: 896px;
-    height: 355px;
+    max-width: 56rem;
   }
 
   .research-title {
-    font-size: 90px;
+    font-size: 5.625rem;
   }
 
   .text-below-research-title {
-    font-size: 28px;
-    line-height: 35px;
+    font-size: 1.75rem;
+    line-height: 2.18rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .research-page-content {
-    width: 896px;
-    height: 432px;
-  }
-
   .research-title {
-    font-size: 96px;
+    font-size: 6rem;
   }
 
   .text-below-research-title {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 }
 
@@ -120,98 +101,89 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 160px 16px;
+  padding: 5rem 1rem;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
-  gap: 224px;
+  gap: 5rem;
 }
 
 .research-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 60px;
 
-  width: 288px;
+  gap: 5rem;
 }
 
 .research-card-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .research-list {
-  font-family: Inter;
   line-height: 200%;
   font-weight: 400;
-  margin-top: 20px;
+  margin-top: 2rem;
+}
+
+.first-item {
+  margin-top: -5px;
 }
 
 .research-items {
-  gap: 15px;
+  gap: 0.938rem;
 }
 
 ul {
-  font-size: 14px;
-  margin-left: -18px;
+  font-size: 0.875rem;
+  margin-left: -1.125rem;
 }
 
 .custom-font {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 @media (min-width: 544px) {
   .page-below-research {
-    padding: 160px 32px;
-  }
-
-  .research-card {
-    width: 480px;
+    padding: 5rem 2rem;
   }
 
   .research-card-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   ul {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 @media (min-width: 768px) {
   .page-below-research {
-    padding: 224px 80px;
-  }
-
-  .research-card {
-    width: 608px;
+    padding: 10rem 5rem;
+    gap: 10rem;
   }
 
   .research-card-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 }
 
 @media (min-width: 1012px) {
   .page-below-research {
-    padding: 336px 80px;
-    gap: 448px;
-  }
-
-  .research-card {
-    width: 852px;
+    padding: 14rem 5rem;
+    gap: 10rem;
   }
 
   .research-card-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .page-below-research {
-    padding: 336px 272px;
+    padding: 14rem 5rem;
   }
 
   .research-card {
-    width: 896px;
+    max-width: 56rem;
   }
 }

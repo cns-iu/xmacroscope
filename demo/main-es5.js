@@ -19538,7 +19538,7 @@
 
       function AppComponent_a_10_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 10, 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "a", 11, 12);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
 
@@ -19605,9 +19605,9 @@
       _AppComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
         type: _AppComponent,
         selectors: [["app-root"]],
-        decls: 12,
+        decls: 14,
         vars: 7,
-        consts: [[1, "toolbar", "z-depth-1-half"], [1, "title"], ["href", "https://github.com/cns-iu/xmacroscope", "title", "View source on Github", "aria-label", "View source on Github", 1, "github-corner"], ["width", "64", "height", "64", "viewBox", "0 0 250 250", "aria-hidden", "true", 2, "fill", "#8CC53E", "color", "#fff", "position", "absolute", "top", "0", "border", "0", "right", "0"], ["d", "M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"], ["d", "M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2", "fill", "currentColor", 1, "octo-arm", 2, "transform-origin", "130px 106px"], ["d", "M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z", "fill", "currentColor", 1, "octo-body"], [1, "nav-tabs", 3, "ngClass"], ["mat-tab-nav-bar", ""], ["mat-tab-link", "", "routerLinkActive", "", 3, "routerLink", "active", 4, "ngFor", "ngForOf"], ["mat-tab-link", "", "routerLinkActive", "", 3, "routerLink", "active"], ["rla", "routerLinkActive"]],
+        consts: [[1, "toolbar", "z-depth-1-half"], [1, "title"], ["href", "https://github.com/cns-iu/xmacroscope", "title", "View source on Github", "aria-label", "View source on Github", 1, "github-corner"], ["width", "64", "height", "64", "viewBox", "0 0 250 250", "aria-hidden", "true", 2, "fill", "#8CC53E", "color", "#fff", "position", "absolute", "top", "0", "border", "0", "right", "0"], ["d", "M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"], ["d", "M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2", "fill", "currentColor", 1, "octo-arm", 2, "transform-origin", "130px 106px"], ["d", "M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z", "fill", "currentColor", 1, "octo-body"], [1, "nav-tabs", 3, "ngClass"], ["mat-tab-nav-bar", ""], ["mat-tab-link", "", "routerLinkActive", "", 3, "routerLink", "active", 4, "ngFor", "ngForOf"], ["mat-tab-link", "", "href", "https://xmacroscope.org/", "target", "_blank"], ["mat-tab-link", "", "routerLinkActive", "", 3, "routerLink", "active"], ["rla", "routerLinkActive"]],
         template: function AppComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-toolbar", 0);
@@ -19644,11 +19644,17 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](10, AppComponent_a_10_Template, 3, 3, "a", 9);
 
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "a", 10);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, " xMacroscope ");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "router-outlet");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "router-outlet");
           }
 
           if (rf & 2) {
@@ -19667,7 +19673,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.routeLinks);
           }
         },
-        directives: [_angular_material_toolbar__WEBPACK_IMPORTED_MODULE_3__.MatToolbar, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgClass, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__.MatTabNav, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterOutlet, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterLinkWithHref, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__.MatTabLink, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterLinkActive],
+        directives: [_angular_material_toolbar__WEBPACK_IMPORTED_MODULE_3__.MatToolbar, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgClass, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__.MatTabNav, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_material_tabs__WEBPACK_IMPORTED_MODULE_5__.MatTabLink, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterOutlet, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterLinkWithHref, _angular_router__WEBPACK_IMPORTED_MODULE_1__.RouterLinkActive],
         styles: [".toolbar[_ngcontent-%COMP%] {\n  height: 4.5vh;\n  background: #fff;\n  color: #006298;\n}\n.toolbar[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%] {\n  font-size: 25px;\n  margin: 15px;\n}\n.nav-tabs[_ngcontent-%COMP%] {\n  background: #fff;\n}\n.nav-tabs[_ngcontent-%COMP%]   .mat-tab-link[_ngcontent-%COMP%] {\n  color: #006298;\n  opacity: 1;\n}\n.nav-tabs[_ngcontent-%COMP%]     .mat-ink-bar._mat-animation-noopable {\n  background: #006298;\n}\n.no-header[_ngcontent-%COMP%] {\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2FzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7RUFDQSxnQkFBQTtFQUNBLGNBQUE7QUFDRjtBQUNFO0VBQ0UsZUFBQTtFQUNBLFlBQUE7QUFDSjtBQUNBO0VBQ0UsZ0JBQUE7QUFFRjtBQUFFO0VBQ0UsY0FBQTtFQUNBLFVBQUE7QUFFSjtBQUFFO0VBQ0UsbUJBQUE7QUFFSjtBQUFBO0VBQ0UsYUFBQTtBQUdGIiwiZmlsZSI6ImFwcC5jb21wb25lbnQuc2FzcyIsInNvdXJjZXNDb250ZW50IjpbIi50b29sYmFyXG4gIGhlaWdodDogNC41dmhcbiAgYmFja2dyb3VuZDogI2ZmZlxuICBjb2xvcjogIzAwNjI5OFxuXG4gIC50aXRsZVxuICAgIGZvbnQtc2l6ZTogMjVweFxuICAgIG1hcmdpbjogMTVweFxuXG4ubmF2LXRhYnNcbiAgYmFja2dyb3VuZDogI2ZmZlxuXG4gIC5tYXQtdGFiLWxpbmtcbiAgICBjb2xvcjogIzAwNjI5OFxuICAgIG9wYWNpdHk6IDFcblxuICA6Om5nLWRlZXAgLm1hdC1pbmstYmFyLl9tYXQtYW5pbWF0aW9uLW5vb3BhYmxlXG4gICAgYmFja2dyb3VuZDogIzAwNjI5OFxuXG4ubm8taGVhZGVyXG4gIGRpc3BsYXk6IG5vbmUiXX0= */", ".github-corner[_ngcontent-%COMP%]:hover   .octo-arm[_ngcontent-%COMP%]{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner[_ngcontent-%COMP%]:hover   .octo-arm[_ngcontent-%COMP%]{animation:none}.github-corner[_ngcontent-%COMP%]   .octo-arm[_ngcontent-%COMP%]{animation:octocat-wave 560ms ease-in-out}}"]
       });
       /***/
