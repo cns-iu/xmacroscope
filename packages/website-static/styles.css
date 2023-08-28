@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  font-family: Lexend;
+  font-family: Inter;
   margin: 0;
 }
 
@@ -31,47 +31,50 @@ a {
 }
 
 .default-button {
-  background-color: #f2dfa2;
-  padding: 16px 32px;
-  /* margin-bottom: 40px; */
-  border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  background-color: #f2dfa2;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
   width: 100%;
+
   line-height: 17.5px;
   align-items: center;
-  font-size: 14px;
-
+  font-size: 0.875rem;
   color: black;
+}
+
+.downward-arrow {
+  width: 3rem;
+  height: 3rem;
 }
 
 @media (min-width: 544px) {
   .default-button {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 @media (min-width: 768px) {
   .custom {
-    width: auto;
-    max-width: 256px;
+    max-width: 17rem;
   }
 
   .default-button {
-    padding: 16px 28px;
-    letter-spacing: -1px;
+    padding: 1rem 1.75rem;
   }
 
   .new-tab-logo {
-    margin-right: 12px;
+    margin-right: 0.75rem;
   }
 }
 
 .new-tab-logo {
-  width: 24px;
-  height: 24px;
-  margin-right: 15px;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.75rem;
 }
 
 img {
@@ -87,10 +90,9 @@ img {
   display: flex;
 
   width: 100%;
-  height: 79px;
   margin: 0;
-  padding: 16px 32px;
-  gap: 8px;
+  padding: 1rem 2rem;
+  gap: 0.5rem;
 
   align-items: center;
   justify-content: space-between;
@@ -101,48 +103,43 @@ img {
 
 .nav-link {
   display: block;
-  padding: 16px 4px;
+  padding: 1rem 0.25rem;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: black;
 }
 
 .nav-item:hover {
   cursor: pointer;
-  border-bottom: 4px solid #006298;
-  margin-bottom: -4px;
+  border-bottom: 0.25rem solid #006298;
+  margin-bottom: -0.25rem;
 }
 
 .nav-item:focus {
-  border: 4px solid #006298;
-  border-radius: 8px;
+  border: 0.25rem solid #006298;
+  border-radius: 0.5rem;
 }
 
 .nav-item.active {
-  border-bottom: 4px solid #006298;
-  margin-bottom: -4px;
+  border-bottom: 0.25rem solid #006298;
+  margin-bottom: -0.25rem;
 }
 
 @media (min-width: 544px) and (max-width: 767px) {
-  .nav-list {
-    height: 87px;
-  }
-
   .nav-link {
-    font-size: 18px;
-    padding: 16px;
+    font-size: 1.125rem;
+    padding: 1rem;
   }
 }
 
 @media (min-width: 768px) {
   .nav-list {
-    height: 89px;
-    padding: 16px 80px;
+    padding: 1rem 5rem;
   }
 
   .nav-link {
-    font-size: 20px;
-    padding: 16px 32px;
+    font-size: 1.25rem;
+    padding: 1rem 2rem;
   }
 }
 
@@ -150,22 +147,30 @@ img {
  * Home page list
  * ------------------------------- */
 
+.main-page-wrapper {
+  padding-top: 4.5rem;
+  height: 100vh;
+}
+
 .home-page {
-  background: url('../assets/landing-image.png');
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
 
+  background: url('../assets/landing-image.png');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  height: 660px;
+  width: auto;
+  height: 100%;
+  padding: 10rem 1rem;
 }
 
 .title {
   font-weight: 900;
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .text-below-title {
@@ -176,84 +181,66 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  max-width: 288px;
-  max-height: 162px;
+  gap: 2rem;
 }
 
 @media (min-width: 544px) {
-  .home-page {
-    height: 1024px;
+  .main-page-wrapper {
+    padding-top: 5rem;
   }
 
-  .home-page-contents {
-    max-width: 512px;
-    max-height: 182px;
+  .home-page {
+    padding: 14rem 1rem;
   }
 
   .title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-title {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .home-page {
-    height: 1024px;
-  }
-
-  .home-page-contents {
-    max-width: 608px;
-    max-height: 292px;
+    padding: 14rem 5rem;
   }
 
   .title {
-    font-size: 80px;
+    font-size: 5rem;
   }
 
   .text-below-title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1012px) {
   .home-page {
-    height: 1024px;
+    padding: 10rem 5rem 14rem 5rem;
   }
 
   .home-page-contents {
-    max-width: 896px;
-    max-height: 280px;
+    max-width: 56rem;
   }
 
   .title {
-    font-size: 90px;
+    font-size: 5.625rem;
   }
 
   .text-below-title {
-    font-size: 36px;
+    font-size: 2.25rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .home-page {
-    height: 1024px;
-  }
-
-  .home-page-contents {
-    max-width: 896px;
-    max-height: 302px;
-  }
-
   .title {
-    font-size: 96px;
+    font-size: 6rem;
   }
 
   .text-below-title {
-    font-size: 40px;
+    font-size: 2.5rem;
     line-height: 50px;
   }
 }
@@ -267,7 +254,8 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 1029px;
+  gap: 31.5rem;
+  padding: 5rem 1rem;
   background: linear-gradient(180deg, #fff5d5 0%, rgba(255, 250, 236, 0) 100%);
 }
 
@@ -275,85 +263,74 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
-  width: 288px;
-  height: 709px;
+  gap: 3rem;
 }
 
 .about-title {
   font-weight: 900;
   text-align: center;
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 
-.blue-box {
-  background-color: #006298;
-  width: 122px;
-  height: 24px;
+.about-buttons {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  gap: 2.5rem;
+}
+
+.about-button {
+  width: 100%;
 }
 
 .text-below-about {
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
 }
 
-.filler {
-  height: 40px;
-}
-
 @media (min-width: 544px) {
-  .about-page {
-    height: 1348px;
-  }
-
   .about-contents {
-    width: 480px;
-    height: 900px;
-    gap: 64px;
+    gap: 4rem;
   }
 
   .about-title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .text-below-about {
-    font-size: 20px;
-  }
-
-  .about-button {
-    width: 100%;
+    font-size: 1.25rem;
   }
 
   .filler {
-    height: 40px;
+    height: 2.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .about-page {
-    height: 1396px;
+    padding: 10rem 5rem;
   }
 
   .about-contents {
-    width: 608px;
-    height: 948px;
-    gap: 80px;
+    gap: 5rem;
   }
 
   .about-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-about {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
   }
 
-  .about-button {
+  .about-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 40px;
+    gap: 2.5rem;
     width: 100%;
   }
 
@@ -363,41 +340,31 @@ img {
 }
 
 @media (min-width: 1012px) {
-  .about-page {
-    height: 1778px;
-  }
-
-  .about-contents {
-    width: 869px;
-    height: 1176px;
-  }
-
   .about-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 
   .text-below-about {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400;
   }
 }
 
 @media (min-width: 1280px) {
   .about-page {
-    height: 1848px;
+    padding: 14rem 5rem;
   }
 
   .about-contents {
-    width: 869px;
-    height: 1176px;
+    max-width: 56rem;
   }
 
   .about-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 
   .text-below-about {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 }
 
@@ -410,42 +377,39 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 448px;
-
-  height: 3222px;
+  gap: 28rem;
+  padding: 5rem 1rem;
 }
 
 .data-visualization-contents {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 160px;
-  width: 288px;
-  height: 2902px;
+  gap: 5rem;
 }
 
 .data-visualization-title-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 48px;
+  gap: 3rem;
 }
 
 .data-visualization-title {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .text-below-data-visualization-title {
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 0.875rem;
+  line-height: 1.75rem;
 }
 
 .plot-card {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 3rem;
 }
 
 .last-card {
@@ -454,30 +418,27 @@ img {
 
 .plot-title {
   font-weight: 900;
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 
 .plot-caption {
-  font-family: Inter;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 200%;
 }
 
 @media (min-width: 544px) {
   .data-visualization-page {
-    height: 3697px;
+    padding: 5rem 2rem;
   }
 
   .data-visualization-contents {
-    width: 480px;
-    height: 3377px;
-    gap: 160px;
+    gap: 10rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 18px;
-    line-height: 36px;
+    font-size: 1.125rem;
+    line-height: 2.25rem;
   }
 
   .last-card {
@@ -485,28 +446,26 @@ img {
   }
 
   .plot-caption {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 
 @media (min-width: 768px) {
   .data-visualization-page {
-    height: 4608px;
+    padding: 10rem 5rem;
   }
 
   .data-visualization-contents {
-    width: 608px;
-    height: 4160px;
-    gap: 224px;
+    gap: 10rem;
   }
 
   .data-visualization-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 22px;
-    line-height: 44px;
+    font-size: 1.375rem;
+    line-height: 2.75rem;
   }
 
   .last-card {
@@ -514,51 +473,37 @@ img {
   }
 
   .plot-title {
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   .plot-caption {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 @media (min-width: 1012px) {
-  .data-visualization-page {
-    height: 5480px;
-  }
-
-  .data-visualization-contents {
-    width: 852px;
-    height: 4808px;
-  }
-
   .data-visualization-title {
-    font-size: 64px;
+    font-size: 4rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 22px;
-    line-height: 44px;
+    font-size: 1.375rem;
+    line-height: 2.75rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .data-visualization-page {
-    height: 5657px;
-  }
-
   .data-visualization-contents {
-    width: 896px;
-    height: 4985px;
+    max-width: 56rem;
   }
 
   .data-visualization-title {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 
   .text-below-data-visualization-title {
-    font-size: 26px;
-    line-height: 52px;
+    font-size: 1.625rem;
+    line-height: 3.25rem;
   }
 
   .plot-card {
@@ -566,7 +511,7 @@ img {
   }
 
   .plot-title {
-    font-size: 48px;
+    font-size: 3rem;
   }
 }
 
@@ -574,34 +519,32 @@ img {
  * Partnership page list
  * ------------------------------- */
 
-.xM-partnership-page {
+.partnership-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 500px;
-  font-family: Inter;
+  gap: 31.25rem;
   background: linear-gradient(180deg, rgba(255, 250, 236, 0) 0%, #fff5d5 100%);
 
-  height: 2574px;
+  padding: 10rem 1rem;
 }
 
-.xM-partnership-page-content {
+.partnership-page-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  gap: 224px;
+  gap: 14rem;
 
-  width: 288px;
-  height: 2254px;
+  width: 100%;
 }
 
-.xM-partnership-page-title {
+.partnership-page-title {
   font-weight: 900;
-  font-size: 28px;
+  font-size: 1.75rem;
   text-align: center;
-  font-family: Lexend;
+  /* font-family: Lexend; */
 }
 
 .partnership-card {
@@ -609,21 +552,18 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  /* gap: 16px; */
-  gap: 8px;
+  gap: 0.5rem;
 
-  width: 288px;
-  height: 242px;
+  width: 18rem;
 }
 
 .logo-image {
-  /* width: auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px 0px;
-  gap: 8px;
-  height: 126px;
+  padding: 0.5rem 0px;
+  gap: 0.5rem;
+  height: 7.875rem;
 }
 
 .photo-caption {
@@ -631,77 +571,63 @@ img {
 }
 
 @media (min-width: 544px) {
-  .xM-partnership-page {
-    height: 2678px;
+  .partnership-page {
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
+    padding: 5rem;
   }
 
-  .xM-partnership-page-content {
-    width: 384px;
-    height: 2358px;
-  }
-
-  .xM-partnership-page-title {
-    font-size: 38px;
+  .partnership-page-title {
+    font-size: 2.375rem;
   }
 
   .partnership-card {
-    width: 384px;
-    height: 262px;
+    width: 24rem;
   }
 }
 
 @media (min-width: 768px) {
-  .xM-partnership-page {
-    height: 2738px;
+  .partnership-page {
+    padding: 10rem 5rem;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
-  .xM-partnership-page-content {
-    width: 608px;
-    height: 2290px;
+  .partnership-page-content {
+    gap: 14rem;
   }
 
-  .xM-partnership-page-title {
-    font-size: 40px;
+  .partnership-page-title {
+    font-size: 2.5rem;
     font-weight: 900;
   }
 
   .partnership-card {
-    width: 453px;
-    height: 238px;
+    width: 28.313rem;
   }
 }
 
 @media (min-width: 1012px) {
-  .xM-partnership-page {
-    padding: 336px 58px;
+  .partnership-page-content {
+    max-width: 56rem;
   }
 
-  .xM-partnership-page-title {
-    font-size: 48px;
+  .partnership-page-title {
+    font-size: 3rem;
   }
 }
 
 @media (min-width: 1280px) {
-  .xM-partnership-page {
-    height: 2982px;
-  }
-
-  .xM-partnership-page-content {
-    height: 2310px;
-    gap: 224px;
+  .partnership-page-content {
+    gap: 14rem;
   }
 
   .partnership-card {
-    width: 453px;
-    height: 238px;
+    width: 28.313rem;
   }
 
-  .xM-partnership-page-title {
-    font-size: 48px;
+  .partnership-page-title {
+    font-size: 3rem;
   }
 }
 
@@ -713,7 +639,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 160px 32px;
+  padding: 10rem 2rem;
   background: rgba(255, 250, 236, 0.92);
 }
 
@@ -721,10 +647,8 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px;
-  gap: 32px;
-  width: 256px;
-  height: 223px;
+
+  gap: 2rem;
 }
 
 .footer-caption {
@@ -735,30 +659,14 @@ footer {
   color: #006298;
 }
 
-@media (min-width: 544px) {
-  .footer-content {
-    width: 480px;
-    height: 193px;
-  }
-}
-
 @media (min-width: 768px) {
-  .footer-content {
-    width: 608px;
-    height: 173px;
-  }
-}
-
-@media (min-width: 1012px) {
-  .footer-content {
-    width: 852px;
-    height: 173px;
+  footer {
+    padding: 10rem 5rem;
   }
 }
 
 @media (min-width: 1280px) {
   .footer-content {
-    width: 1280px;
-    height: 153px;
+    max-width: 90rem;
   }
 }
