@@ -148,7 +148,7 @@ img {
  * ------------------------------- */
 
 .main-page-wrapper {
-  padding-top: 5rem;
+  padding-top: 4.5rem;
   height: 100vh;
 }
 
@@ -186,7 +186,7 @@ img {
 
 @media (min-width: 544px) {
   .main-page-wrapper {
-    padding-top: 5.5rem;
+    padding-top: 5rem;
   }
 
   .home-page {
