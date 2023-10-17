@@ -1,168 +1,238 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <link rel="stylesheet" href="media-styles.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>xMacroscope</title>
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-  <link rel="stylesheet" href="media-styles.css">
-  <link rel="stylesheet" href="styles.css">
-  <title>xMacroscope</title>
-  <link rel="shortcut icon" href="assets/favicon.ico">
-</head>
+  <body class="body">
+    <!-- Navigation bar -->
 
-<body class="body">
-  <!-- Navigation bar -->
+    <ul class="nav-list">
+      <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+      <li class="nav-item active"><a class="nav-link" href="media.html">Media</a></li>
+      <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
+    </ul>
 
-  <ul class="nav-list">
-    <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
-    <li class="nav-item active"><a class="nav-link" href="media.html">Media</a></li>
-    <li class="nav-item"><a class="nav-link" href="resources.html">Resources</a></li>
-  </ul>
+    <!-- The main media page -->
 
-  <!-- The main media page -->
-
-  <section class="main-page-wrapper">
-    <div class="media-page">
-      <div class="media-page-content">
-        <div class="media-title">
-          Media
-        </div>
-        <div class="text-below-media-title">
-          xMacroscope videos, presentations, and photos
-        </div>
-        <div>
-          <img class="downward-arrow" src="../assets/arrow_downward.svg" alt="Downward arrow">
+    <section class="main-page-wrapper">
+      <div class="media-page">
+        <div class="media-page-content">
+          <div class="media-title">Media</div>
+          <div class="text-below-media-title">xMacroscope videos, presentations, and photos</div>
+          <div>
+            <img class="downward-arrow" src="../assets/arrow_downward.svg" alt="Downward arrow" />
+          </div>
         </div>
       </div>
+    </section>
+
+    <!-- The Media page containing videos, and images -->
+
+    <div class="media-view">
+      <div class="media-view-content">
+        <div class="media-view-title">Videos</div>
+        <iframe
+          class="video-link"
+          src="https://www.youtube-nocookie.com/embed/8jL5RhT9gVs"
+          title="Run Exhibit at Makevention 2018"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen=""
+        ></iframe>
+        <div class="media-caption">
+          We built an xMacroscope prototype and tested it out with families at the Makevention Event in Bloomington, Indiana. Their feedback helped us develop the hardware and
+          software platforms. Filmed in 2018.
+        </div>
+
+        <iframe
+          class="video-link-2 video-link"
+          src="https://www.youtube-nocookie.com/embed/kdBWGEEVt-Q"
+          title="Sportsology"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen=""
+        ></iframe>
+        <div class="last-caption media-caption">
+          We originally planned to build the Make a Vis station into the Run experience in the Science Museum of Minnesota's Sportsology exhibit. Run is a popular experience that
+          works well as a test bed for visualization research involving the xMacroscope platform.
+        </div>
+      </div>
+
+      <div class="media-view-content padding-up">
+        <div class="media-view-title">Photos</div>
+        <div class="flex-row">
+          <img class="media-image" src="../assets/media-image-1.svg" alt="xMacroscope Research Team" />
+          <img class="media-image" src="../assets/media-image-2.svg" alt="xMacroscope Research Team" />
+        </div>
+        <img class="media-image" src="../assets/media-image-3.svg" alt="xMacroscope Research Team" />
+        <div class="image-caption">xMacroscope research team at Indiana University, February 2018</div>
+        <div class="flex-row">
+          <img class="media-image" src="../assets/media-image-4.svg" alt="xMacroscope Research Team" />
+          <img class="media-image" src="../assets/media-image-5.svg" alt="xMacroscope Research Team" />
+        </div>
+        <img class="media-image" src="../assets/media-image-6.svg" alt="xMacroscope Research Team" />
+        <div class="image-caption">Developing the video research protocol at Indiana University, February 2019</div>
+        <div class="flex-row">
+          <img class="media-image" src="../assets/media-image-7.svg" alt="xMacroscope Research Team" />
+          <img class="media-image" src="../assets/media-image-8.svg" alt="xMacroscope Research Team" />
+          <img class="media-image" src="../assets/media-image-9.svg" alt="xMacroscope Research Team" />
+        </div>
+        <div class="image-caption">Sciencefest, October 2019</div>
+        <div class="flex-row">
+          <img class="media-image" src="../assets/media-image-10.svg" alt="xMacroscope Research Team" />
+          <img class="media-image" src="../assets/media-image-11.svg" alt="xMacroscope Research Team" />
+        </div>
+        <img class="media-image" src="../assets/media-image-12.svg" alt="xMacroscope Research Team" />
+        <div class="last-image-caption">Ready for testing with museum visitors at COSI, February 2020</div>
+      </div>
+
+      <div class="media-view-content">
+        <div class="presentation-font media-view-title padding-up">Presentations</div>
+        Jun 13, 2023
+        <ul class="presentation-list">
+          <li>
+            Kylie Peppler, Joey Huang, and Katy Börner present “Learning at Work: Visual Learning Analytics to Upskill Aerospace Engineers in Advanced Manufacturing” at the
+            International Society of the Learning Sciences (ISLS) Annual Meeting 2023.
+          </li>
+        </ul>
+        Nov 30, 2022
+        <ul class="presentation-list">
+          <li>
+            Katy Börner presents Mapping Science, Technology, and Innovation at 2022 Chengdu Conference on Scientometrics & Evaluation, Chengdu, Sichuan, China (Virtual Event).
+          </li>
+        </ul>
+        Sep 29, 2022
+        <ul class="presentation-list">
+          <li>
+            Katy Börner presents Datatopia: Data Visualizations of Science and the Science of Data Visualization at Michigan Institute for Data Science (MIDAS) September 2022
+            Colloquium at the University of Michigan, Ann Arbor, MI.
+          </li>
+        </ul>
+        Sep 22, 2022
+        <ul class="presentation-list">
+          <li>Katy Börner presents Utilizing Visualization for Program Evaluation: Techniques and Strategies at Health Research Alliance Webinar, Research Triangle Park, NC.</li>
+        </ul>
+        Jun 15, 2022
+        <ul class="presentation-list">
+          <li>Katy Börner presents Atlas of Forecasts & Mapping Science at Data Visualization Lisboa, Lisbon, Portugal (Virtual Event).</li>
+        </ul>
+        Mar 15, 2022
+        <ul class="presentation-list">
+          <li>Katy Börner presents The Future of Work at The Future of Learning & Work Workshop at Futurium, Berlin, Germany.</li>
+        </ul>
+        Oct 27, 2021
+        <ul class="presentation-list">
+          <li>
+            Katy Börner presents (Data) Visualization Literacy at Visualization Literacy for General Audiences - Can We Make A Difference? Panel at IEEE VIS 2021 Conference, New
+            Orleans, LA (Virtual Event).
+          </li>
+        </ul>
+        Apr 11, 2021
+        <ul class="presentation-list">
+          <li>Katy Börner presents Dagstuhl Seminar Overview at Dagstuhl Seminar on Multi-Level Graph Representation for Big Data Arising in Science Mapping, Wadern, Germany.</li>
+        </ul>
+        Apr 06, 2021
+        <ul class="presentation-list">
+          <li>Katy Börner presents Data Visualization Best Practices at Chan Zuckerberg Initiative (CZI) Seed Networks Computational Biology Meeting, Virtual Event.</li>
+        </ul>
+        Apr 02, 2021
+        <ul class="presentation-list">
+          <li>
+            Katy Börner presents Designing Actionable Data Visualizations at Data Science Upskilling Program/Data Modernization Initiative, United States Centers for Disease
+            Control and Prevention, Virtual Event.
+          </li>
+        </ul>
+        Mar 16, 2021
+        <ul class="presentation-list">
+          <li>Todd Theriault presents Maps & Macroscopes at Digital Studies of Digital Science (DS2 2021) at UCLouvain, Lovain-la-Neuve, Belgium.</li>
+        </ul>
+        Dec 07, 2020
+        <ul class="presentation-list">
+          <li>Katy Börner presents Data Visualization at Indiana University Department of Informatics: Virtual Guest Lecture in T100 What is Data Science, Bloomington, IN.</li>
+        </ul>
+        Nov 05, 2020
+        <ul class="presentation-list">
+          <li>Katy Börner presents Data Analytics in Support of Effective Workforce Training at 2020 Innovation Digi Virtual Conference, Indianapolis, IN.</li>
+        </ul>
+        Sep 30, 2020
+        <ul class="presentation-list">
+          <li>Katy Börner presents Data Visualization Literacy at Indiana University Department of Physics Virtual Colloquium Series, Bloomington, IN.</li>
+        </ul>
+        July 29, 2020
+        <ul class="presentation-list">
+          <li>Kylie Peppler presents “Data Visualization Exploration in Science Museums” at the Connected Learning Summit (CLS) in Cambridge, MA.</li>
+        </ul>
+        Sep 20, 2019
+        <ul class="presentation-list">
+          <li>
+            Börner, Katy; Kennedy, Bryan; Herr, Bruce; Keune, Anna; Uzzo, Stephen presents “Make-A-Vis: Come Build a Data Visualization from The Ground Up” at ASTC Annual
+            Conference (Pre-Conference Workshop). Toronto, ON, Canada.
+          </li>
+        </ul>
+        May 08, 2019
+        <ul class="presentation-list">
+          <li>Andreas Bueckle presents “Make-A-Vis & Tavola” at VisualISE: Visualization for Informal Science Education Conference. San Francisco, CA.</li>
+          <li>
+            Bryan Kennedy presents “Expanding data visualization literacy in the museum” at VisualISE: Visualization for Informal Science Education Conference. San Francisco, CA.
+          </li>
+        </ul>
+        Nov 27, 2018
+        <ul class="presentation-list">
+          <li>
+            <a class="link" href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank"> Katy Börner </a>
+            presents <a class="link" href="https://cns.iu.edu/docs/presentations/18-borner-Dagstuhl.pdf" target="_blank"> Actionable Data Visualizations </a> at
+            <a class="link" href="https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/18482" target="_blank">
+              Dagstuhl Seminar on Network Visualization in the Humanities,</a
+            >
+            Dagstuhl, Germany.
+          </li>
+        </ul>
+        Nov 16, 2018
+        <ul class="presentation-list">
+          <li>
+            <a class="link" href="https://cns.iu.edu/current_team/bio/lisel_record.html" target="_blank"> Lisel Record </a> presents
+            <a class="link" href="https://cns.iu.edu/docs/presentations/MCN_2018_TheInBetween.pdf" target="_blank">
+              The "In-Between": How to Facilitate Interdepartmental Collaboration from the Institutional Middle
+            </a>
+            at the Museum Computer Network conference, Denver, CO.
+          </li>
+        </ul>
+        Nov 14, 2018
+        <ul class="presentation-list">
+          <li>
+            <a class="link" href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank"> Katy Börner</a>, and
+            <a class="link" href="https://cns.iu.edu/current_team/bio/bruce-herr.html" target="_blank"> Bruce W. Herr II </a> present
+            <a class="link" href="https://cns.iu.edu/docs/presentations/2018-borner-herr-aisl.pdf" target="_blank"> Data Visualization Literacy and Make-A-Vis User Interface </a>
+            at Scientific Visualization Workshop Series: Fall 2018, Bloomington, IN.
+          </li>
+        </ul>
+        Sep 27, 2018
+        <ul class="presentation-list last-item">
+          <li>
+            <a class="link" href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank"> Katy Börner</a>
+            presents <a class="link" href="https://cns.iu.edu/docs/presentations/18-borner-SSRC.pdf" target="_blank"> Actionable Data Visualizations </a> at Data Science Meets
+            Social Science, Social Science Research Commons (SSRC), Bloomington, IN.
+          </li>
+        </ul>
+      </div>
     </div>
-  </section>
+  </body>
 
-  <!-- The Media page containing videos, and images -->
-
-  <div class="media-view">
-    <div class="media-view-content">
-      <div class="media-view-title">
-        Videos
-      </div>
-      <iframe class="video-link" src="https://www.youtube-nocookie.com/embed/8jL5RhT9gVs"
-        title="Run Exhibit at Makevention 2018"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-      <div class="media-caption">
-        We built an xMacroscope prototype and tested it out with families at the Makevention Event in Bloomington,
-        Indiana. Their feedback helped us develop the hardware and software platforms. Filmed in 2018.
-      </div>
-
-      <iframe class="video-link-2 video-link" src="https://www.youtube-nocookie.com/embed/kdBWGEEVt-Q"
-        title="Sportsology" frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-      <div class="last-caption media-caption">
-        We originally planned to build the Make a Vis station into the Run experience in the Science Museum of
-        Minnesota's
-        Sportsology exhibit. Run is a popular experience that works well as a test bed for visualization research
-        involving the xMacroscope platform.
+  <footer>
+    <div class="footer-content">
+      <img src="../assets/nsf_logo.svg" class="logo-image" />
+      <div class="footer-caption">
+        The xMacroscope project is supported by the
+        <a class="link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1713567" target="_blank">
+          National Science Foundation, Advancing Informal STEM Learning (AISL - award #1713567).</a
+        >
       </div>
     </div>
-
-    <div class="media-view-content padding-up">
-      <div class="media-view-title ">
-        Photos
-      </div>
-      <div class="flex-row">
-        <img class="media-image" src="../assets/media-image-1.svg" alt="xMacroscope Research Team">
-        <img class="media-image" src="../assets/media-image-2.svg" alt="xMacroscope Research Team">
-      </div>
-      <img class="media-image" src="../assets/media-image-3.svg" alt="xMacroscope Research Team">
-      <div class="image-caption">
-        xMacroscope research team at Indiana University, February 2018
-      </div>
-      <div class="flex-row">
-        <img class="media-image" src="../assets/media-image-4.svg" alt="xMacroscope Research Team">
-        <img class="media-image" src="../assets/media-image-5.svg" alt="xMacroscope Research Team">
-      </div>
-      <img class="media-image" src="../assets/media-image-6.svg" alt="xMacroscope Research Team">
-      <div class="image-caption">
-        Developing the video research protocol at Indiana University, February 2019
-      </div>
-      <div class="flex-row">
-        <img class="media-image" src="../assets/media-image-7.svg" alt="xMacroscope Research Team">
-        <img class="media-image" src="../assets/media-image-8.svg" alt="xMacroscope Research Team">
-        <img class="media-image" src="../assets/media-image-9.svg" alt="xMacroscope Research Team">
-      </div>
-      <div class="image-caption">
-        Sciencefest, October 2019
-      </div>
-      <div class="flex-row">
-        <img class="media-image" src="../assets/media-image-10.svg" alt="xMacroscope Research Team">
-        <img class="media-image" src="../assets/media-image-11.svg" alt="xMacroscope Research Team">
-      </div>
-      <img class="media-image" src="../assets/media-image-12.svg" alt="xMacroscope Research Team">
-      <div class="last-image-caption">
-        Ready for testing with museum visitors at COSI, February 2020
-      </div>
-    </div>
-
-    <div class="media-view-content">
-      <div class="presentation-font media-view-title padding-up">
-        Presentations
-      </div>
-      Nov 27, 2018
-      <ul class="presentation-list">
-        <li>
-          <a class="link" href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank"> Katy Börner </a>
-          presents <a class="link" href="https://cns.iu.edu/docs/presentations/18-borner-Dagstuhl.pdf" target="_blank">
-            Actionable Data
-            Visualizations </a> at <a class="link"
-            href="https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/18482" target="_blank"> Dagstuhl
-            Seminar on Network
-            Visualization in the Humanities,</a> Dagstuhl, Germany.
-        </li>
-      </ul>
-      Nov 16, 2018
-      <ul class="presentation-list">
-        <li>
-          <a class="link" href="https://cns.iu.edu/current_team/bio/lisel_record.html" target="_blank"> Lisel Record
-          </a> presents <a class="link" href="https://cns.iu.edu/docs/presentations/MCN_2018_TheInBetween.pdf"
-            target="_blank"> The "In-Between":
-            How to Facilitate Interdepartmental Collaboration from the
-            Institutional Middle </a> at the Museum Computer Network conference, Denver, CO.
-        </li>
-      </ul>
-      Nov 14, 2018
-      <ul class="presentation-list">
-        <li>
-          <a class="link" href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank"> Katy Börner</a>,
-          and <a class="link" href="https://cns.iu.edu/current_team/bio/bruce-herr.html" target="_blank"> Bruce W. Herr
-            II </a> present <a class="link" href="https://cns.iu.edu/docs/presentations/2018-borner-herr-aisl.pdf"
-            target="_blank"> Data Visualization
-            Literacy and Make-A-Vis User Interface </a> at
-          Scientific Visualization Workshop Series: Fall 2018, Bloomington, IN.
-        </li>
-      </ul>
-      Sep 27, 2018
-      <ul class="presentation-list last-item">
-        <li>
-          <a class="link" href="https://cns.iu.edu/current_team/bio/katy_borner.html" target="_blank"> Katy Börner</a>
-          presents <a class="link" href="https://cns.iu.edu/docs/presentations/18-borner-SSRC.pdf" target="_blank">
-            Actionable Data
-            Visualizations </a> at Data Science Meets Social Science, Social Science
-          Research Commons (SSRC), Bloomington, IN.
-        </li>
-      </ul>
-    </div>
-  </div>
-</body>
-
-<footer>
-  <div class="footer-content">
-    <img src="../assets/nsf_logo.svg" class="logo-image">
-    <div class="footer-caption">
-      The xMacroscope project is supported by the <a class="link"
-        href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1713567" target="_blank"> National Science Foundation,
-        Advancing Informal STEM
-        Learning (AISL - award #1713567).</a>
-    </div>
-  </div>
-</footer>
-
+  </footer>
 </html>
